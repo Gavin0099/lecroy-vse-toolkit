@@ -1,5 +1,12 @@
 # Tools
 
+run-m2-packet-extraction.ps1 is the M2-PACKET-EXTRACTION-1 host harness. It
+reuses the M1 COM connection-point pattern, receives batched decoded
+_USB3_LINK_CMD records from the VSE script, writes a host-owned packets JSON
+artifact, reads it back, and verifies the sacrificial input trace hash, size,
+and UTC mtime. It does not assign severity, suspicion, root cause, or AI
+explanations.
+
 `run-m1-com1-notify.ps1` is the bounded M1-COM1 host harness. It loads the
 local C# COM connection-point sink, opens a trace through `CATC.UsbTracer`,
 attaches to the VSE engine event interface, runs the script synchronously, and

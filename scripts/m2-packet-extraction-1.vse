@@ -1,0 +1,85 @@
+# M2-PACKET-EXTRACTION-1: extract USB3 link-command events.
+#
+# This first M2 slice deliberately exports only:
+#   event index, event timestamp text, and decoded event type.
+# It reuses the M1 full delivery configuration and does not infer severity,
+# suspicion, root cause, GUI locations, or AI explanations.
+
+set LinkCommandCount = 0;
+set BatchNumber = 0;
+set BatchCount = 0;
+set BatchText = "";
+
+const BATCH_SIZE = 250;
+
+%include "VSTools.inc"
+
+OnStartScript()
+{
+    LinkCommandCount = 0;
+    BatchNumber = 0;
+    BatchCount = 0;
+    BatchText = "";
+
+    SendAllChannels();
+    SendLevel(_PKT);
+    SendLevel(_TRA);
+    SendLevel(_SPL_TRA);
+    SendLevel(_XFER);
+    SendLevel(_SCSI);
+    SendLevel(_PHY_TRA);
+    SendAllTraceEvents();
+    ScriptForDisplayOnly();
+}
+
+ProcessEvent()
+{
+    if ((in.Channel == _USB3_TX || in.Channel == _USB3_RX) &&
+        in.TraceEvent == _USB3_LINK_CMD)
+    {
+        LinkCommandCount++;
+        BatchText += FormatEx(
+            "%d|%s|%s\n",
+            in.Index,
+            TimeToText(in.Time),
+            GetEventName()
+        );
+        BatchCount++;
+
+        if (BatchCount >= BATCH_SIZE)
+        {
+            NotifyClient(
+                2101,
+                ["M2-PACKET-EXTRACTION-1",
+                 BatchNumber,
+                 BatchCount,
+                 BatchText]
+            );
+            BatchNumber++;
+            BatchCount = 0;
+            BatchText = "";
+        }
+    }
+
+    return Complete();
+}
+
+OnFinishScript()
+{
+    if (BatchCount > 0)
+    {
+        NotifyClient(
+            2101,
+            ["M2-PACKET-EXTRACTION-1",
+             BatchNumber,
+             BatchCount,
+             BatchText]
+        );
+    }
+
+    NotifyClient(
+        2102,
+        ["M2-PACKET-EXTRACTION-1-SUMMARY", LinkCommandCount]
+    );
+    return 0;
+}

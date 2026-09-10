@@ -13,7 +13,7 @@ The repository name remains `lecroy-vse-toolkit` because that is the existing ch
 | M0 | Repository bootstrap | Ready | Repo structure, scope, reference policy, and fixture policy exist. |
 | M1 | Minimal VSE execution and host-owned summary bridge | PASS; historical anomaly recorded | A real `.usb` trace completes the selected VSE traversal, sends the required summary once through `NotifyClient()`, and the host produces a verifiable artifact with controlled integrity qualification. |
 | G0 | Governance topology decision | Decision recorded: Minimal Audit + Lightweight Memory | The consumer decision is recorded from the Before/After evidence; runtime capability remains explicitly bounded. |
-| M2 | Packet extraction | Not started; next product slice | Replayed packet output with fields verified against the LeCroy view. |
+| M2 | Packet extraction | M2-PACKET-EXTRACTION-1 PASS; broader coverage not complete | A bounded selected decoded event crosses VSE -> COM -> Host with index, timestamp, type, JSON read-back, and controlled trace integrity. |
 | M3 | Transfer reconstruction | Not started | Control/bulk/interrupt/isochronous transfer grouping replayed and checked. |
 | M4 | Enumeration analyzer | Not started | Reset-to-configuration sequence checks with bounded findings. |
 | M5 | Large-trace performance validation | Not started | Trace size, event count, runtime, peak memory, and output size recorded. |
@@ -172,11 +172,13 @@ The COM2 record is in `scripts/io-probe/real-summary-notify-results.md`, the
 COM3 record is in `scripts/io-probe/host-summary-json-results.md`, the I1
 record is in `scripts/io-probe/trace-integrity-isolation-results.md`, and the
 I2 record is in `scripts/io-probe/exact-com3-integrity-results.md`. M1 is
-functionally PASS; the next gate is the consumer-owned G0 topology decision.
+functionally PASS; the next product slice is M2-PACKET-EXTRACTION-1.
 
 ## G0 governance adoption boundary
 
-G0 starts only after M1 has a real-trace PASS. It is intentionally separate from the VSE feasibility experiment so a failure can be attributed to the correct layer.
+G0 was evaluated only after M1 had a real-trace PASS. It remains separate from
+the VSE feasibility experiment so failures can be attributed to the correct
+layer.
 
 ```yaml
 canonical_source: https://github.com/Gavin0099/ai-governance-framework
@@ -191,9 +193,22 @@ automatic_memory: NOT_CLAIMED
 lightweight_memory: MANUAL_PROJECT_NOTES
 ```
 
-When G0 is authorized, use a clean checkout or worktree derived from the GitHub source, record its exact commit SHA, run `adopt_governance.py --dry-run`, review the predicted files, and only then apply adoption. Do not use the current dirty local framework checkout as the source baseline.
+The G0 experiment used a clean checkout derived from the GitHub source, pinned
+the exact framework commit, reviewed the dry-run, and applied the adoption as a
+separate commit. The dirty local framework checkout was not used.
 
 G0 adoption artifacts do not by themselves prove runtime governance, hook
 execution, fail-closed behavior, or memory continuity. Those require separate
 runtime evidence. Do not turn those evidence gaps into implementation work
 until the consumer-owned topology decision justifies that cost.
+
+## M2-PACKET-EXTRACTION-1 result
+
+The first M2 slice extracts only the installed LeCroy decoded event
+_USB3_LINK_CMD from _USB3_TX and _USB3_RX. It exports event index, timestamp
+text, and event type through the existing VSE -> COM -> Host path.
+
+The batched transport result is recorded in
+scripts/m2-packet-extraction-1-results.md. This slice does not claim complete
+packet extraction, suspicious regions, root cause, comparison, GUI guidance,
+or AI explanation.

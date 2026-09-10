@@ -10,6 +10,10 @@ The current posture is an experimental lab/toolkit. It does not claim to be a co
 
 ## Current status
 
+- M2-PACKET-EXTRACTION-1: PASS for 166,196 decoded USB3 link-command events
+  with index, timestamp, type, JSON read-back, and unchanged sacrificial trace
+  integrity. Broader packet coverage is not claimed.
+
 - M0 repository bootstrap: present.
 - M1 runtime traversal: PASS on the known real `.usb` trace under the selected delivery configuration.
 - M1-COM1 event bridge: PASS.
@@ -27,6 +31,7 @@ The current posture is an experimental lab/toolkit. It does not claim to be a co
 docs/                         Working notes and data-model boundaries
 reference/                    Local-installation and sample references
 scripts/hello/                M1 execution probe
+scripts/m2-packet-extraction-1.vse M2 selected-event extraction probe
 scripts/packet-dump/          Reserved for M2
 scripts/transfer-dump/        Reserved for M3
 samples/                      External-input policy
@@ -62,8 +67,14 @@ first useful output should identify suspicious timestamps, event windows, and
 nearby evidence so an engineer can return to the GUI for packet-level
 verification.
 
-Packet extraction, ordering, timestamps, addresses, endpoints, and protocol fields remain deterministic. AI, RAG, agents, plugin systems, and broad framework abstractions are outside the current slice. M2 triage begins only after the clean baseline and G0 governance gates.
+Packet extraction, ordering, timestamps, addresses, endpoints, and protocol
+fields remain deterministic. M2-PACKET-EXTRACTION-1 now validates only the
+selected event path. AI, RAG, agents, plugin systems, broad framework
+abstractions, and higher-level triage remain outside the current slice.
 
 See [PLAN.md](PLAN.md) for the milestone gate and [docs/vse-api-notes.md](docs/vse-api-notes.md) for the local API evidence boundary.
 
-Governance adoption is a later, separate G0 slice. Its source is the [canonical GitHub repository](https://github.com/Gavin0099/ai-governance-framework), but the adoption baseline must be a confirmed commit SHA, not the moving `main` branch. See [docs/governance-adoption.md](docs/governance-adoption.md).
+Governance adoption is recorded as a separate G0 decision. Its source is the
+[canonical GitHub repository](https://github.com/Gavin0099/ai-governance-framework),
+but the adoption baseline is a confirmed commit SHA, not the moving main
+branch. See [docs/governance-adoption.md](docs/governance-adoption.md).
