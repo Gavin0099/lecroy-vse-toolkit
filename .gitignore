@@ -12,6 +12,8 @@ lecroy-vse-toolkit-trace-summary.txt
 trace-*.txt
 trace-*.json
 *.vse.log
+demo-output*/
+demo-winps-compat-output*/
 
 # Local editor and OS files
 .vscode/

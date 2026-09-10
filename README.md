@@ -35,6 +35,12 @@ The current posture is an experimental lab/toolkit. It does not claim to be a co
 - M1 overall: PASS; the historical input `.usb` size/timestamp change remains recorded as `UNEXPLAINED / NOT REPRODUCED`.
 - DEMO-I2 source integrity: PASS for the preserved source artifact and this
   read-only working-copy execution. Universal immutability is not claimed.
+- DEMO-2 one-click runner: implemented and self-tested; user test pending.
+  It creates read-only sandbox copies, runs both timelines, verifies source
+  identity, and writes comparison/report artifacts.
+- DEMO-2-WINPS-COMPAT: PASS on a fresh Windows PowerShell 5.1 process using
+  the exact repository-relative PASS/FAIL traces. Universal performance
+  qualification is not claimed.
 - VSE-owned direct file output: not proven and non-blocking for the selected architecture.
 - Official LeCroy samples: referenced only; not copied into this repository.
 
@@ -48,7 +54,9 @@ scripts/m2-packet-extraction-1.vse M2 selected-event extraction probe
 scripts/m2-packet-extraction-2.vse M2 LTSSM event extraction probe
 scripts/m2-packet-extraction-3.vse M2 LFPS event and field extraction probe
 scripts/m2-packet-extraction-4.vse M2 combined timeline extractor
+run-demo.ps1                  DEMO-2 one-click PASS/FAIL runner
 docs/demo-1-pass-fail-results.md  PASS/FAIL candidate comparison evidence
+docs/demo-2-winps-compatibility-results.md  Windows PowerShell 5.1 evidence
 scripts/packet-dump/          Reserved for M2
 scripts/transfer-dump/        Reserved for M3
 samples/                      External-input policy
@@ -70,6 +78,34 @@ The COM2 probe selects the installed VSE levels `_PKT`, `_TRA`, `_SPL_TRA`,
 relevant to those levels. Its payload counts events delivered to
 `ProcessEvent()` under that selection. It must not be interpreted as a
 complete trace-event count for every trace, version, or configuration.
+
+## DEMO-2 quick start
+
+Run this from the repository root with a new output directory:
+
+```powershell
+.\run-demo.ps1 `
+  -PassTrace "C:\path\to\pass.usb" `
+  -FailTrace "C:\path\to\fail.usb" `
+  -Output ".\demo-output"
+```
+
+The runner does not pass the source files to VSE. It records their identity,
+creates read-only copies under `demo-output\sandbox`, runs the same extractor
+on both copies, and writes `report.md`, `comparison.json`, and
+`source-integrity.json`. Use a new output directory for each run; existing
+directories are rejected to protect prior evidence.
+
+For an exact Windows PowerShell 5.1 qualification, run the compatibility
+harness from `powershell.exe`:
+
+```powershell
+powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File `
+  .\tools\test-demo2-winps-compat.ps1 `
+  -PassTrace ".\dp1 hub detect SSD Ex power ok-4.usb" `
+  -FailTrace ".\dp1 hub detect SSD fail-2.usb" `
+  -Output ".\demo-winps-compat-output"
+```
 
 ## Scope boundary
 

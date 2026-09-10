@@ -68,3 +68,19 @@ unexplained observation.
 read-only working copy, runs the combined M2-4 extractor, and verifies source
 and working-copy SHA-256/size plus JSON read-back. The qualification target is
 source evidence integrity; universal working-copy immutability is not claimed.
+
+`run-demo.ps1` is the DEMO-2 wrapper. It applies the same source-preserving
+read-only workflow to a PASS/FAIL pair, invokes both timeline extractions,
+invokes the common-anchor comparator, and writes the timeline, comparison,
+source-integrity, log, and Markdown report artifacts. It refuses an existing
+output directory so prior evidence is not overwritten.
+
+`m2-timeline-extraction.cs` intentionally uses legacy-compatible C# syntax and
+reflection-based COM invocation because Windows PowerShell `Add-Type` may use
+a compiler that does not accept newer language syntax or implicitly reference
+`Microsoft.CSharp.RuntimeBinder`.
+
+`test-demo2-winps-compat.ps1` is the exact-target qualification harness. It is
+intended to be launched by a fresh `powershell.exe -NoProfile` process and
+checks compile, parse, existing-output refusal, full runner execution, source
+integrity, and comparison artifacts.

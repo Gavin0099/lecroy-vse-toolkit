@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 public sealed class M2TimelineRaw
@@ -15,11 +16,18 @@ public sealed class M2TimelineRaw
 
 public sealed class M2TimelineEvent
 {
-    public string EventClass { get; set; } = "";
+    public string EventClass { get; set; }
     public long Index { get; set; }
-    public string Timestamp { get; set; } = "";
-    public string Type { get; set; } = "";
+    public string Timestamp { get; set; }
+    public string Type { get; set; }
     public M2TimelineRaw Raw { get; set; }
+
+    public M2TimelineEvent()
+    {
+        EventClass = "";
+        Timestamp = "";
+        Type = "";
+    }
 }
 
 [ComVisible(true)]
@@ -55,10 +63,18 @@ public sealed class M2TimelineEventSink : IM2TimelineEngineEvents
     public long DeclaredLtssmCount { get; private set; }
     public long DeclaredLfpsCount { get; private set; }
     public long DeclaredTotalCount { get; private set; }
-    public int FinishedResult { get; private set; } = -1;
-    public string Error { get; private set; } = "";
-    public List<string> Reports { get; } = new List<string>();
-    public List<M2TimelineEvent> Events { get; } = new List<M2TimelineEvent>();
+    public int FinishedResult { get; private set; }
+    public string Error { get; private set; }
+    public List<string> Reports { get; private set; }
+    public List<M2TimelineEvent> Events { get; private set; }
+
+    public M2TimelineEventSink()
+    {
+        FinishedResult = -1;
+        Error = "";
+        Reports = new List<string>();
+        Events = new List<M2TimelineEvent>();
+    }
 
     public void OnVScriptReportUpdated(string newLine, int tag)
     {
@@ -77,7 +93,8 @@ public sealed class M2TimelineEventSink : IM2TimelineEngineEvents
     {
         NotifyCount++;
 
-        if (!(eventBody is Array values))
+        Array values = eventBody as Array;
+        if (values == null)
         {
             Error = "eventBody was not an array";
             return;
@@ -217,13 +234,40 @@ public sealed class M2TimelineResult
     public long DeclaredLfpsCount { get; set; }
     public long DeclaredTotalCount { get; set; }
     public int FinishedResult { get; set; }
-    public List<M2TimelineEvent> Events { get; set; } = new List<M2TimelineEvent>();
-    public List<string> Reports { get; set; } = new List<string>();
-    public string Error { get; set; } = "";
+    public List<M2TimelineEvent> Events { get; set; }
+    public List<string> Reports { get; set; }
+    public string Error { get; set; }
+
+    public M2TimelineResult()
+    {
+        Events = new List<M2TimelineEvent>();
+        Reports = new List<string>();
+        Error = "";
+    }
 }
 
 public static class M2TimelineRunner
 {
+    private static object InvokeComMethod(object target, string methodName, params object[] arguments)
+    {
+        return target.GetType().InvokeMember(
+            methodName,
+            BindingFlags.InvokeMethod | BindingFlags.Public | BindingFlags.Instance,
+            null,
+            target,
+            arguments);
+    }
+
+    private static void SetComProperty(object target, string propertyName, object value)
+    {
+        target.GetType().InvokeMember(
+            propertyName,
+            BindingFlags.SetProperty | BindingFlags.Public | BindingFlags.Instance,
+            null,
+            target,
+            new[] { value });
+    }
+
     public static M2TimelineResult Run(string tracePath, string scriptPath)
     {
         var result = new M2TimelineResult();
@@ -244,30 +288,27 @@ public static class M2TimelineRunner
             }
 
             analyzer = Activator.CreateInstance(analyzerType);
-            dynamic analyzerDynamic = analyzer;
-            trace = analyzerDynamic.OpenFile(tracePath);
+            trace = InvokeComMethod(analyzer, "OpenFile", tracePath);
             if (trace == null)
             {
                 throw new InvalidOperationException("OpenFile returned null.");
             }
 
-            dynamic traceDynamic = trace;
-            engine = traceDynamic.GetVScriptEngine(scriptPath);
+            engine = InvokeComMethod(trace, "GetVScriptEngine", scriptPath);
             if (engine == null)
             {
                 throw new InvalidOperationException("GetVScriptEngine returned null.");
             }
 
-            dynamic engineDynamic = engine;
             var container = (IM2TimelineConnectionPointContainer)engine;
             Guid eventInterface = typeof(IM2TimelineEngineEvents).GUID;
             container.FindConnectionPoint(ref eventInterface, out connectionPoint);
             connectionPoint.Advise(sink, out cookie);
             advised = true;
-            engineDynamic.Tag = 4242;
+            SetComProperty(engine, "Tag", 4242);
 
             var watch = Stopwatch.StartNew();
-            result.RunResult = (int)engineDynamic.RunVScript();
+            result.RunResult = Convert.ToInt32(InvokeComMethod(engine, "RunVScript"));
             watch.Stop();
             result.ElapsedMilliseconds = watch.ElapsedMilliseconds;
         }
@@ -284,7 +325,7 @@ public static class M2TimelineRunner
 
             try
             {
-                if (trace != null) ((dynamic)trace).Close();
+                if (trace != null) InvokeComMethod(trace, "Close");
             }
             catch { }
 

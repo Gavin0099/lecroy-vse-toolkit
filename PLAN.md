@@ -15,6 +15,7 @@ The repository name remains `lecroy-vse-toolkit` because that is the existing ch
 | G0 | Governance topology decision | Decision recorded: Minimal Audit + Lightweight Memory | The consumer decision is recorded from the Before/After evidence; runtime capability remains explicitly bounded. |
 | M2 | Packet extraction | M2-PACKET-EXTRACTION-1 through M2-PACKET-EXTRACTION-3 PASS; broader coverage not complete | Bounded selected decoded events cross VSE -> COM -> Host with event identity, selected protocol fields, JSON read-back, and controlled trace integrity. |
 | M2-4 / DEMO-1 | Unified timeline and PASS vs FAIL candidate comparison | QUALIFIED for controlled source-preserving read-only mode | One combined extractor produces normalized timelines for PASS/FAIL candidates, reports a common-anchor candidate divergence without claiming absolute first divergence, and preserves the immutable source artifact. |
+| DEMO-2 | One-click PASS/FAIL runner | Implemented; Windows PowerShell 5.1 compatibility PASS | One command creates read-only sandbox copies, runs both extractions, compares timelines, verifies source identity, and writes JSON plus Markdown artifacts. |
 | M3 | Transfer reconstruction | Not started | Control/bulk/interrupt/isochronous transfer grouping replayed and checked. |
 | M4 | Enumeration analyzer | Not started | Reset-to-configuration sequence checks with bounded findings. |
 | M5 | Large-trace performance validation | Not started | Trace size, event count, runtime, peak memory, and output size recorded. |
@@ -266,3 +267,31 @@ remained unchanged for this run. DEMO-1 is therefore qualified for this
 controlled source-preserving read-only mode. The earlier mutation remains a
 known anomaly; the qualification does not claim that every trace, version, or
 execution context is universally immutable.
+
+## DEMO-2 one-click runner
+
+`run-demo.ps1` packages the qualified Demo workflow behind one command. It
+refuses to overwrite an existing output directory, records source SHA-256 and
+size before and after, creates separate read-only sandbox copies, runs the
+same combined extractor for both traces, and writes:
+
+```text
+pass-timeline.json
+fail-timeline.json
+comparison.json
+source-integrity.json
+report.md
+sandbox/pass/<trace>.usb
+sandbox/fail/<trace>.usb
+logs/
+```
+
+The runner treats source evidence integrity as the hard safety gate. A missing
+common anchor is reported in `comparison.json` and `report.md`; it is not
+silently converted into a root-cause or PASS/FAIL claim.
+
+`DEMO-2-WINPS-COMPAT` ran the exact repository-relative inputs in a fresh
+Windows PowerShell 5.1 process. Add-Type, script parsing, existing-output
+refusal, full extraction, comparison, and source-integrity acceptance all
+passed. The Windows PowerShell comparator's higher resource cost remains an
+observation for M5, not a correctness failure.
