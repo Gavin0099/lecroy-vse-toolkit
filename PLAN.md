@@ -14,6 +14,7 @@ The repository name remains `lecroy-vse-toolkit` because that is the existing ch
 | M1 | Minimal VSE execution and host-owned summary bridge | PASS; historical anomaly recorded | A real `.usb` trace completes the selected VSE traversal, sends the required summary once through `NotifyClient()`, and the host produces a verifiable artifact with controlled integrity qualification. |
 | G0 | Governance topology decision | Decision recorded: Minimal Audit + Lightweight Memory | The consumer decision is recorded from the Before/After evidence; runtime capability remains explicitly bounded. |
 | M2 | Packet extraction | M2-PACKET-EXTRACTION-1 through M2-PACKET-EXTRACTION-3 PASS; broader coverage not complete | Bounded selected decoded events cross VSE -> COM -> Host with event identity, selected protocol fields, JSON read-back, and controlled trace integrity. |
+| M2-4 / DEMO-1 | Unified timeline and PASS vs FAIL candidate comparison | QUALIFIED for controlled source-preserving read-only mode | One combined extractor produces normalized timelines for PASS/FAIL candidates, reports a common-anchor candidate divergence without claiming absolute first divergence, and preserves the immutable source artifact. |
 | M3 | Transfer reconstruction | Not started | Control/bulk/interrupt/isochronous transfer grouping replayed and checked. |
 | M4 | Enumeration analyzer | Not started | Reset-to-configuration sequence checks with bounded findings. |
 | M5 | Large-trace performance validation | Not started | Trace size, event count, runtime, peak memory, and output size recorded. |
@@ -242,3 +243,26 @@ complete Host reconstruction, JSON read-back, and unchanged sacrificial trace
 integrity. The three-slice product threshold is now met. Governance
 retrospective eligibility still depends on the separately defined meaningful
 interaction threshold; no retrospective is started by this product slice.
+
+## M2-4 / DEMO-1 result
+
+The combined extractor and PASS vs FAIL comparator are recorded in
+docs/demo-1-pass-fail-results.md. Both candidate timelines were produced with
+one shared extractor and complete Host reconstruction. The comparator found a
+common sequence anchor and emitted candidate GUI windows without comparing
+absolute timestamps or claiming root cause.
+
+The FAIL working copy preserved input identity. The initial PASS working copy
+grew by 20 bytes during VSE execution, including when restored from the
+pristine Desktop zip. DEMO-I1 localized that mutation to 307 changed byte
+positions across 15 ranges, including existing content and an appended
+20-byte tail.
+
+`DEMO-I2` then used the preserved pristine source artifact as an immutable
+source, created a separate working copy, set the working copy read-only, and
+ran the same combined extractor. The source SHA-256 remained unchanged, the
+read-only working copy completed successfully, and the working copy also
+remained unchanged for this run. DEMO-1 is therefore qualified for this
+controlled source-preserving read-only mode. The earlier mutation remains a
+known anomaly; the qualification does not claim that every trace, version, or
+execution context is universally immutable.

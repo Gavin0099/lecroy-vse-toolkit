@@ -1,0 +1,122 @@
+# M2-PACKET-EXTRACTION-4: combine the three validated event classes.
+#
+# One traversal emits the already validated event classes:
+#   _USB3_LINK_CMD, _USB3_LTSSM_STATE, and _USB3_LFPS.
+# No new decoder or semantic mapping is introduced here.
+
+set LinkCommandCount = 0;
+set LtssmEventCount = 0;
+set LfpsEventCount = 0;
+set BatchNumber = 0;
+set BatchCount = 0;
+set BatchText = "";
+
+const BATCH_SIZE = 250;
+
+%include "VSTools.inc"
+
+OnStartScript()
+{
+    LinkCommandCount = 0;
+    LtssmEventCount = 0;
+    LfpsEventCount = 0;
+    BatchNumber = 0;
+    BatchCount = 0;
+    BatchText = "";
+
+    # Reuse the delivery configuration validated by M2-1, M2-2, and M2-3.
+    SendAllChannels();
+    SendLevel(_PKT);
+    SendLevel(_TRA);
+    SendLevel(_SPL_TRA);
+    SendLevel(_XFER);
+    SendLevel(_SCSI);
+    SendLevel(_PHY_TRA);
+    SendAllTraceEvents();
+    ScriptForDisplayOnly();
+}
+
+ProcessEvent()
+{
+    # Preserve M2-1's channel boundary for LINK_CMD.
+    if ((in.Channel == _USB3_TX || in.Channel == _USB3_RX) &&
+        in.TraceEvent == _USB3_LINK_CMD)
+    {
+        LinkCommandCount++;
+        BatchText += FormatEx(
+            "LINK_CMD|%d|%s|%s|-1|-1|-1|-1|-1|-1\n",
+            in.Index,
+            TimeToText(in.Time),
+            GetEventName()
+        );
+        BatchCount++;
+    }
+    else if (in.TraceEvent == _USB3_LTSSM_STATE)
+    {
+        LtssmEventCount++;
+        BatchText += FormatEx(
+            "LTSSM_STATE|%d|%s|%s|-1|-1|-1|-1|-1|-1\n",
+            in.Index,
+            TimeToText(in.Time),
+            GetEventName()
+        );
+        BatchCount++;
+    }
+    else if (in.TraceEvent == _USB3_LFPS)
+    {
+        LfpsEventCount++;
+        BatchText += FormatEx(
+            "LFPS|%d|%s|%s|%d|%d|%d|%d|%d|%d\n",
+            in.Index,
+            TimeToText(in.Time),
+            GetEventName(),
+            in.Type,
+            in.Duration,
+            in.DurationSec,
+            in.DurationNS,
+            in.PatternType,
+            in.StartsPattern
+        );
+        BatchCount++;
+    }
+
+    if (BatchCount >= BATCH_SIZE)
+    {
+        NotifyClient(
+            2401,
+            ["M2-PACKET-EXTRACTION-4",
+             BatchNumber,
+             BatchCount,
+             BatchText]
+        );
+        BatchNumber++;
+        BatchCount = 0;
+        BatchText = "";
+    }
+
+    return Complete();
+}
+
+OnFinishScript()
+{
+    if (BatchCount > 0)
+    {
+        NotifyClient(
+            2401,
+            ["M2-PACKET-EXTRACTION-4",
+             BatchNumber,
+             BatchCount,
+             BatchText]
+        );
+    }
+
+    NotifyClient(
+        2402,
+        ["M2-PACKET-EXTRACTION-4-SUMMARY",
+         LinkCommandCount,
+         LtssmEventCount,
+         LfpsEventCount,
+         LinkCommandCount + LtssmEventCount + LfpsEventCount]
+    );
+    return 0;
+}

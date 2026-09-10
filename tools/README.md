@@ -14,6 +14,19 @@ the sacrificial input trace hash, size, and UTC mtime. It retains raw numeric
 field values and does not infer semantic enum names, severity, suspicion, root
 cause, or AI explanations.
 
+run-m2-timeline-extraction.ps1 is the combined M2-4 extractor. It emits the
+three validated event classes in one traversal and verifies per-class counts,
+chronological event-index ordering, JSON read-back, and trace integrity.
+
+compare-m2-timelines.ps1 compares two normalized timeline JSON artifacts. It
+uses a common event-sequence anchor when available and reports a candidate
+divergence plus trace-local GUI windows. It does not claim absolute first
+divergence, root cause, severity, or PASS/FAIL classification.
+
+localize-trace-mutation.ps1 compares two binary trace files and reports changed
+offset ranges plus bounded before/after hex. It localizes bytes only; it does
+not assign semantic meaning or safety to the mutation.
+
 run-m2-ltssm-extraction.ps1 is the M2-PACKET-EXTRACTION-2 host harness. It
 receives batched decoded _USB3_LTSSM_STATE records, writes a host-owned LTSSM
 event JSON artifact, reads it back, and verifies the sacrificial input trace
@@ -50,3 +63,8 @@ preserved their input copy; they do not prove universal immutability.
 passed the JSON and hash/size/mtime acceptance, so the M1 workflow is now
 functionally qualified. The historical mutation remains an explicit
 unexplained observation.
+
+`DEMO-I2` uses a preserved pristine source artifact, creates a separate
+read-only working copy, runs the combined M2-4 extractor, and verifies source
+and working-copy SHA-256/size plus JSON read-back. The qualification target is
+source evidence integrity; universal working-copy immutability is not claimed.

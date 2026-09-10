@@ -19,6 +19,11 @@ The current posture is an experimental lab/toolkit. It does not claim to be a co
 - M2-PACKET-EXTRACTION-3: PASS for 47,006 decoded USB3 LFPS events with
   event identity, LFPS-specific raw fields, JSON read-back, and unchanged
   sacrificial trace integrity. Semantic enum names are not claimed.
+- M2-4 / DEMO-1: combined PASS/FAIL timeline and candidate-divergence path
+  demonstrated and qualified for the controlled source-preserving read-only
+  mode. DEMO-I1 recorded a prior PASS working-copy mutation; DEMO-I2 proved
+  that the preserved source artifact remained unchanged while a separate
+  read-only working copy completed the same extraction.
 
 - M0 repository bootstrap: present.
 - M1 runtime traversal: PASS on the known real `.usb` trace under the selected delivery configuration.
@@ -28,6 +33,8 @@ The current posture is an experimental lab/toolkit. It does not claim to be a co
 - M1-I1 sacrificial-copy integrity isolation: PASS; the mutation was not reproduced in A/B/C.
 - M1-I2 exact same-folder COM3 integrity reproduction: PASS.
 - M1 overall: PASS; the historical input `.usb` size/timestamp change remains recorded as `UNEXPLAINED / NOT REPRODUCED`.
+- DEMO-I2 source integrity: PASS for the preserved source artifact and this
+  read-only working-copy execution. Universal immutability is not claimed.
 - VSE-owned direct file output: not proven and non-blocking for the selected architecture.
 - Official LeCroy samples: referenced only; not copied into this repository.
 
@@ -40,6 +47,8 @@ scripts/hello/                M1 execution probe
 scripts/m2-packet-extraction-1.vse M2 selected-event extraction probe
 scripts/m2-packet-extraction-2.vse M2 LTSSM event extraction probe
 scripts/m2-packet-extraction-3.vse M2 LFPS event and field extraction probe
+scripts/m2-packet-extraction-4.vse M2 combined timeline extractor
+docs/demo-1-pass-fail-results.md  PASS/FAIL candidate comparison evidence
 scripts/packet-dump/          Reserved for M2
 scripts/transfer-dump/        Reserved for M3
 samples/                      External-input policy
