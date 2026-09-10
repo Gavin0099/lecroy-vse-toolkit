@@ -13,7 +13,7 @@ The repository name remains `lecroy-vse-toolkit` because that is the existing ch
 | M0 | Repository bootstrap | Ready | Repo structure, scope, reference policy, and fixture policy exist. |
 | M1 | Minimal VSE execution and host-owned summary bridge | PASS; historical anomaly recorded | A real `.usb` trace completes the selected VSE traversal, sends the required summary once through `NotifyClient()`, and the host produces a verifiable artifact with controlled integrity qualification. |
 | G0 | Governance topology decision | Decision recorded: Minimal Audit + Lightweight Memory | The consumer decision is recorded from the Before/After evidence; runtime capability remains explicitly bounded. |
-| M2 | Packet extraction | M2-PACKET-EXTRACTION-1 PASS; broader coverage not complete | A bounded selected decoded event crosses VSE -> COM -> Host with index, timestamp, type, JSON read-back, and controlled trace integrity. |
+| M2 | Packet extraction | M2-PACKET-EXTRACTION-1 and M2-PACKET-EXTRACTION-2 PASS; broader coverage not complete | Bounded selected decoded events cross VSE -> COM -> Host with index, timestamp, type, JSON read-back, and controlled trace integrity. |
 | M3 | Transfer reconstruction | Not started | Control/bulk/interrupt/isochronous transfer grouping replayed and checked. |
 | M4 | Enumeration analyzer | Not started | Reset-to-configuration sequence checks with bounded findings. |
 | M5 | Large-trace performance validation | Not started | Trace size, event count, runtime, peak memory, and output size recorded. |
@@ -172,7 +172,8 @@ The COM2 record is in `scripts/io-probe/real-summary-notify-results.md`, the
 COM3 record is in `scripts/io-probe/host-summary-json-results.md`, the I1
 record is in `scripts/io-probe/trace-integrity-isolation-results.md`, and the
 I2 record is in `scripts/io-probe/exact-com3-integrity-results.md`. M1 is
-functionally PASS; the next product slice is M2-PACKET-EXTRACTION-1.
+functionally PASS; M2-PACKET-EXTRACTION-1 and M2-PACKET-EXTRACTION-2 are now
+complete bounded extraction slices.
 
 ## G0 governance adoption boundary
 
@@ -212,3 +213,17 @@ The batched transport result is recorded in
 scripts/m2-packet-extraction-1-results.md. This slice does not claim complete
 packet extraction, suspicious regions, root cause, comparison, GUI guidance,
 or AI explanation.
+
+## M2-PACKET-EXTRACTION-2 result
+
+The second M2 slice extracts the installed LeCroy decoded event
+_USB3_LTSSM_STATE. It exports event index, timestamp text, and event type
+through the existing batched VSE -> COM -> Host path. The state name is not
+exported because no reliable decoded state field was established for the
+installed 10.40 environment; no state mapping is inferred.
+
+The execution record is in
+scripts/m2-packet-extraction-2-results.md. It records 30 target events,
+matching Host reconstruction, JSON read-back, and unchanged sacrificial trace
+integrity. M2 now has two completed post-G0 product slices. A third bounded
+product slice is required before revisiting the Governance retrospective.

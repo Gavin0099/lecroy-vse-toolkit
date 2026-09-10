@@ -1,0 +1,85 @@
+# M2-PACKET-EXTRACTION-2: extract USB3 LTSSM state events.
+#
+# This slice deliberately exports only:
+#   event index, event timestamp text, and decoded event type.
+# The local 10.40 VSE examples do not expose SendTraceEventOnly(). The
+# delivery configuration below is the M2-1 configuration already validated
+# against this trace. No LTSSM decoded state field is assumed here.
+
+set LtssmEventCount = 0;
+set BatchNumber = 0;
+set BatchCount = 0;
+set BatchText = "";
+
+const BATCH_SIZE = 250;
+
+%include "VSTools.inc"
+
+OnStartScript()
+{
+    LtssmEventCount = 0;
+    BatchNumber = 0;
+    BatchCount = 0;
+    BatchText = "";
+
+    SendAllChannels();
+    SendLevel(_PKT);
+    SendLevel(_TRA);
+    SendLevel(_SPL_TRA);
+    SendLevel(_XFER);
+    SendLevel(_SCSI);
+    SendLevel(_PHY_TRA);
+    SendAllTraceEvents();
+    ScriptForDisplayOnly();
+}
+
+ProcessEvent()
+{
+    if (in.TraceEvent == _USB3_LTSSM_STATE)
+    {
+        LtssmEventCount++;
+        BatchText += FormatEx(
+            "%d|%s|%s\n",
+            in.Index,
+            TimeToText(in.Time),
+            GetEventName()
+        );
+        BatchCount++;
+
+        if (BatchCount >= BATCH_SIZE)
+        {
+            NotifyClient(
+                2201,
+                ["M2-PACKET-EXTRACTION-2",
+                 BatchNumber,
+                 BatchCount,
+                 BatchText]
+            );
+            BatchNumber++;
+            BatchCount = 0;
+            BatchText = "";
+        }
+    }
+
+    return Complete();
+}
+
+OnFinishScript()
+{
+    if (BatchCount > 0)
+    {
+        NotifyClient(
+            2201,
+            ["M2-PACKET-EXTRACTION-2",
+             BatchNumber,
+             BatchCount,
+             BatchText]
+        );
+    }
+
+    NotifyClient(
+        2202,
+        ["M2-PACKET-EXTRACTION-2-SUMMARY", LtssmEventCount]
+    );
+    return 0;
+}

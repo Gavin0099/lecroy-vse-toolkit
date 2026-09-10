@@ -7,6 +7,13 @@ artifact, reads it back, and verifies the sacrificial input trace hash, size,
 and UTC mtime. It does not assign severity, suspicion, root cause, or AI
 explanations.
 
+run-m2-ltssm-extraction.ps1 is the M2-PACKET-EXTRACTION-2 host harness. It
+receives batched decoded _USB3_LTSSM_STATE records, writes a host-owned LTSSM
+event JSON artifact, reads it back, and verifies the sacrificial input trace
+hash, size, and UTC mtime. It exports event index, timestamp, and event type;
+it does not infer decoded state names, severity, suspicion, root cause, or AI
+explanations.
+
 `run-m1-com1-notify.ps1` is the bounded M1-COM1 host harness. It loads the
 local C# COM connection-point sink, opens a trace through `CATC.UsbTracer`,
 attaches to the VSE engine event interface, runs the script synchronously, and

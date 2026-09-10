@@ -1,3 +1,3 @@
 # Active Task
 
-Next: choose the next bounded M2 extraction slice; maintain lightweight project memory manually.
+Next: choose the third bounded post-G0 M2 extraction slice; maintain lightweight project memory manually. Do not start the Governance retrospective until three post-G0 product slices are complete.

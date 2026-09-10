@@ -13,6 +13,9 @@ The current posture is an experimental lab/toolkit. It does not claim to be a co
 - M2-PACKET-EXTRACTION-1: PASS for 166,196 decoded USB3 link-command events
   with index, timestamp, type, JSON read-back, and unchanged sacrificial trace
   integrity. Broader packet coverage is not claimed.
+- M2-PACKET-EXTRACTION-2: PASS for 30 decoded USB3 LTSSM state events with
+  index, timestamp, type, JSON read-back, and unchanged sacrificial trace
+  integrity. Decoded state names are not claimed.
 
 - M0 repository bootstrap: present.
 - M1 runtime traversal: PASS on the known real `.usb` trace under the selected delivery configuration.
@@ -32,6 +35,7 @@ docs/                         Working notes and data-model boundaries
 reference/                    Local-installation and sample references
 scripts/hello/                M1 execution probe
 scripts/m2-packet-extraction-1.vse M2 selected-event extraction probe
+scripts/m2-packet-extraction-2.vse M2 LTSSM event extraction probe
 scripts/packet-dump/          Reserved for M2
 scripts/transfer-dump/        Reserved for M3
 samples/                      External-input policy
@@ -68,9 +72,10 @@ nearby evidence so an engineer can return to the GUI for packet-level
 verification.
 
 Packet extraction, ordering, timestamps, addresses, endpoints, and protocol
-fields remain deterministic. M2-PACKET-EXTRACTION-1 now validates only the
-selected event path. AI, RAG, agents, plugin systems, broad framework
-abstractions, and higher-level triage remain outside the current slice.
+fields remain deterministic. M2-PACKET-EXTRACTION-1 and
+M2-PACKET-EXTRACTION-2 validate only two selected event paths. AI, RAG,
+agents, plugin systems, broad framework abstractions, and higher-level triage
+remain outside the current slices.
 
 See [PLAN.md](PLAN.md) for the milestone gate and [docs/vse-api-notes.md](docs/vse-api-notes.md) for the local API evidence boundary.
 
