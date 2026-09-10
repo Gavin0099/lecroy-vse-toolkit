@@ -9,14 +9,30 @@ Known trace: `dp1 hub detect SSD fail-2.usb`
 
 ## Decision
 
-`BENEFICIAL_WITH_COST` for the measured static audit surface.
+`STATIC_AUDIT_ADOPTION = BENEFICIAL_WITH_COST`
 
-This result does not approve a claim of full runtime governance. The canonical
-installer produced a copy-based audit surface with a contract, protected
-baseline metadata, repository instructions, memory scaffolds, and a drift
-checker. The framework remains external to this repository; runtime capability
-was not established, hooks were not installed, and the runtime smoke path was
-blocked by missing version metadata.
+`FULL_GOVERNANCE_VALUE = INCONCLUSIVE`
+
+`G0_RESULT = RETAIN_MINIMAL_AUDIT_WITH_LIGHTWEIGHT_MEMORY`
+
+`runtime_governance = NOT_ADOPTED`
+
+`runtime_readiness = PARTIAL_BY_DESIGN`
+
+`automatic_memory = NOT_CLAIMED`
+
+The canonical installer produced a copy-based audit surface with a contract,
+protected baseline metadata, repository instructions, memory scaffolds, and a
+drift checker. This establishes useful static auditability without proving the
+value of full runtime governance. Hooks were not installed, runtime capability
+was not established, and the runtime smoke path was blocked by missing version
+metadata.
+
+The selected LeCroy topology keeps a small manually maintained project memory
+for current goal, status, decisions, verified and unverified evidence, known
+issues, and next step. It deliberately excludes automatic closeout, memory
+authority, promotion chains, record-identity hashing, pressure state machines,
+and autonomous memory consolidation.
 
 The product result is unchanged: M1 remains PASS and M2 remains NOT STARTED.
 
@@ -143,16 +159,15 @@ Not established by this experiment:
 
 ## Final assessment
 
-The adoption added useful auditability and did not regress the trace-to-JSON
-pipeline, so it is beneficial with a measurable cost. It is not yet a clean or
-self-contained Governance installation. The `plan_freshness` finding and the
-missing runtime/version surfaces remain adoption findings, not reasons to
-modify M1 or start M2.
+The adoption added useful static auditability and did not regress the
+trace-to-JSON pipeline, so the static surface is beneficial with a measurable
+cost. The value of full runtime governance remains inconclusive by design. The
+`plan_freshness` finding and missing runtime/version surfaces remain adoption
+findings, not reasons to expand Governance implementation.
 
 ## One next slice
 
-`G0-TOPOLOGY-DECISION`: decide whether this repository should retain the
-copy-based audit surface as its documented minimal Governance mode, or authorize
-a separate runtime-capable adoption slice covering version identity, hooks, and
-independent verification. Do not auto-fix those gaps and do not start M2 as part
-of that decision.
+`M2-PACKET-EXTRACTION`: start the next independent product slice for
+deterministic packet extraction on the known trace. Maintain the lightweight
+project memory manually while working on M2. Do not expand Governance runtime
+capabilities as part of M2.

@@ -12,8 +12,8 @@ The repository name remains `lecroy-vse-toolkit` because that is the existing ch
 | --- | --- | --- | --- |
 | M0 | Repository bootstrap | Ready | Repo structure, scope, reference policy, and fixture policy exist. |
 | M1 | Minimal VSE execution and host-owned summary bridge | PASS; historical anomaly recorded | A real `.usb` trace completes the selected VSE traversal, sends the required summary once through `NotifyClient()`, and the host produces a verifiable artifact with controlled integrity qualification. |
-| G0 | Governance adoption | Ready after baseline commit | A canonical framework commit SHA is pinned, dry-run changes are reviewed, and adoption is delivered as a separate commit/PR. |
-| M2 | Packet extraction | Not started | Replayed packet output with fields verified against the LeCroy view. |
+| G0 | Governance topology decision | Decision recorded: Minimal Audit + Lightweight Memory | The consumer decision is recorded from the Before/After evidence; runtime capability remains explicitly bounded. |
+| M2 | Packet extraction | Not started; next product slice | Replayed packet output with fields verified against the LeCroy view. |
 | M3 | Transfer reconstruction | Not started | Control/bulk/interrupt/isochronous transfer grouping replayed and checked. |
 | M4 | Enumeration analyzer | Not started | Reset-to-configuration sequence checks with bounded findings. |
 | M5 | Large-trace performance validation | Not started | Trace size, event count, runtime, peak memory, and output size recorded. |
@@ -52,7 +52,85 @@ layout on a fresh sacrificial copy and also preserved the input identity.
 M1 is now functionally qualified; the historical discrepancy remains recorded
 as `UNEXPLAINED / NOT REPRODUCED`.
 
-## Current next slice: clean baseline and G0 governance adoption
+## G0 governance topology decision
+
+The Before/After experiment established that static audit adoption can add
+baseline identity, a contract, claim/scope guidance, and drift/readiness
+visibility without changing M1 product behavior. It did not establish runtime
+governance value.
+
+This slice is a consumer-repository adoption decision, not an
+ai-governance-framework task.
+
+### Decision
+
+The consumer decision is:
+
+yaml:
+  static_audit_adoption: BENEFICIAL_WITH_COST
+  full_governance_value: INCONCLUSIVE
+  G0_RESULT: RETAIN_MINIMAL_AUDIT_WITH_LIGHTWEIGHT_MEMORY
+  runtime_governance: NOT_ADOPTED
+  runtime_readiness: PARTIAL_BY_DESIGN
+  automatic_memory: NOT_CLAIMED
+
+This is a LeCroy repository adoption decision, not an
+ai-governance-framework task.
+
+### Lightweight project memory
+
+Keep a small, manually maintained project memory with only:
+
+- current_goal;
+- current_status;
+- important_decisions;
+- verified;
+- not_verified;
+- known_issues;
+- next_step.
+
+For the current project, this records M1 PASS, the verified trace-to-JSON
+evidence, the historical mutation as UNEXPLAINED / NOT REPRODUCED, and M2 as
+the next product slice.
+
+### Explicitly excluded
+
+Do not add these capabilities as part of G0:
+
+- automatic stop/session memory writes;
+- closeout receipts;
+- memory authority or promotion chains;
+- record-identity hashing;
+- pressure state machines;
+- full hook enforcement;
+- autonomous memory consolidation.
+
+### Established evidence
+
+- M1 BEFORE: PASS.
+- M1 AFTER: PASS.
+- Product regression: 0.
+- Product code mutation during adoption: 0.
+- Static audit surface: established.
+- Drift/readiness gap detection: established.
+- Limited fail-closed case: observed.
+- Runtime governance, hooks, memory continuity, and independent verification:
+  not proven.
+
+### Decision rule and boundary
+
+Choose Runtime-Capable Mode only if LeCroy has a concrete, observable runtime
+failure that this capability would address at worthwhile cost. Do not select it
+merely because readiness is false or because the copied audit surface is not
+self-contained.
+
+After this decision:
+
+- M2 is the next separate product slice, but this update does not start it.
+- Missing runtime, hook, memory, or version surfaces remain findings, not
+  implementation tasks.
+- No Governance framework files are changed.
+- Automatic memory is not claimed.
 
 The first VSE script is intentionally a probe, not a parser. It requests all channels and trace events, counts the events delivered to `ProcessEvent()`, records trace and callback time boundaries, and records coarse channel and level buckets. The selected architecture sends the machine-readable result to the host rather than requiring VSE-owned file output.
 
@@ -94,7 +172,7 @@ The COM2 record is in `scripts/io-probe/real-summary-notify-results.md`, the
 COM3 record is in `scripts/io-probe/host-summary-json-results.md`, the I1
 record is in `scripts/io-probe/trace-integrity-isolation-results.md`, and the
 I2 record is in `scripts/io-probe/exact-com3-integrity-results.md`. M1 is
-functionally PASS; the next gate is a clean baseline commit followed by G0.
+functionally PASS; the next gate is the consumer-owned G0 topology decision.
 
 ## G0 governance adoption boundary
 
@@ -102,11 +180,20 @@ G0 starts only after M1 has a real-trace PASS. It is intentionally separate from
 
 ```yaml
 canonical_source: https://github.com/Gavin0099/ai-governance-framework
-baseline_commit: NOT_SELECTED
+product_baseline_commit: bd93629e6c5241cc42df76ac366d14c97157ac78
+framework_commit: 77262a51d79c1c6a1b5eff55ce3f4a64f5af3f37
 local_dirty_checkout: E:\BackUp\Git_EE\ai-governance-framework
-adoption_status: DEFERRED_UNTIL_M1_PASS
+adoption_status: STATIC_AUDIT_SURFACE_APPLIED
+topology_decision: RETAIN_MINIMAL_AUDIT_WITH_LIGHTWEIGHT_MEMORY
+runtime_governance: NOT_ADOPTED
+runtime_readiness: PARTIAL_BY_DESIGN
+automatic_memory: NOT_CLAIMED
+lightweight_memory: MANUAL_PROJECT_NOTES
 ```
 
 When G0 is authorized, use a clean checkout or worktree derived from the GitHub source, record its exact commit SHA, run `adopt_governance.py --dry-run`, review the predicted files, and only then apply adoption. Do not use the current dirty local framework checkout as the source baseline.
 
-G0 adoption artifacts do not by themselves prove runtime governance, hook execution, fail-closed behavior, or memory continuity. Those require separate runtime evidence.
+G0 adoption artifacts do not by themselves prove runtime governance, hook
+execution, fail-closed behavior, or memory continuity. Those require separate
+runtime evidence. Do not turn those evidence gaps into implementation work
+until the consumer-owned topology decision justifies that cost.

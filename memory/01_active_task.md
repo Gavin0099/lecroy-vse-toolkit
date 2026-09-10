@@ -1,9 +1,3 @@
 # Active Task
 
-## Current Status
-
-- Adopted governance baseline.
-
-## Next Steps
-
-- Update this file when task state changes.
+Next: start M2 as a separate product slice; maintain lightweight project memory manually.
