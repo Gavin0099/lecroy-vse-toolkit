@@ -1,0 +1,51 @@
+# M1-COM2 full-trace summary bridge.
+#
+# This probe reuses the M1 trace-info delivery configuration and counts only
+# the four values required by the COM2 acceptance. It does not perform VSE
+# filesystem I/O. The completed summary is sent once from OnFinishScript().
+#
+
+set EventCount = 0;
+set Usb3RxCount = 0;
+set Usb3TxCount = 0;
+set UsbCcCount = 0;
+
+%include "VSTools.inc"
+
+OnStartScript()
+{
+    EventCount = 0;
+    Usb3RxCount = 0;
+    Usb3TxCount = 0;
+    UsbCcCount = 0;
+
+    SendAllChannels();
+    SendLevel(_PKT);
+    SendLevel(_TRA);
+    SendLevel(_SPL_TRA);
+    SendLevel(_XFER);
+    SendLevel(_SCSI);
+    SendLevel(_PHY_TRA);
+    SendAllTraceEvents();
+    ScriptForDisplayOnly();
+}
+
+ProcessEvent()
+{
+    EventCount++;
+
+    if (in.Channel == _USB3_RX)
+        Usb3RxCount++;
+    else if (in.Channel == _USB3_TX)
+        Usb3TxCount++;
+    else if (in.Channel == _USB_CC_0)
+        UsbCcCount++;
+
+    return Complete();
+}
+
+OnFinishScript()
+{
+    NotifyClient(2001, ["M1-COM2", EventCount, Usb3RxCount, Usb3TxCount, UsbCcCount]);
+    return 0;
+}

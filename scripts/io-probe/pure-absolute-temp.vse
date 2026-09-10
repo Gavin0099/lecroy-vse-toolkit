@@ -1,0 +1,43 @@
+#
+# M1-IO-PURE probe A: OnStart/OnFinish plus C:\Temp file output.
+#
+
+set ProbeLabel = "pure-absolute-temp";
+set ProbePath = "";
+set ProbeHandle = -1;
+set StartCompleted = 0;
+set WriteAttempted = 0;
+set CloseAttempted = 0;
+set FinishCompleted = 0;
+
+%include "VSTools.inc"
+
+OnStartScript()
+{
+    ProbePath = "C:\\Temp\\vse-io-probe.txt";
+    ReportText(FormatEx("probe=%s", ProbeLabel));
+    ReportText(FormatEx("path=%s", ProbePath));
+
+    ProbeHandle = OpenFile(ProbePath, 0, _FO_TEXT);
+    ReportText(FormatEx("handle=%d", ProbeHandle));
+
+    if (ProbeHandle >= 0)
+    {
+        WriteString(ProbeHandle, "hello from lecroy-vse-toolkit M1-IO-PURE absolute-temp");
+        WriteAttempted = 1;
+        CloseFile(ProbeHandle);
+        CloseAttempted = 1;
+    }
+
+    StartCompleted = 1;
+    ScriptForDisplayOnly();
+}
+
+OnFinishScript()
+{
+    FinishCompleted = 1;
+    ReportText(FormatEx("start_completed=%d", StartCompleted));
+    ReportText(FormatEx("write_attempted=%d", WriteAttempted));
+    ReportText(FormatEx("close_attempted=%d", CloseAttempted));
+    return 0;
+}

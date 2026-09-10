@@ -1,0 +1,34 @@
+# M1-LC1 documented minimal VSE lifecycle probe.
+#
+# This probe intentionally performs no file I/O and sends no trace levels.
+# ProcessEvent() is retained because it is part of the documented VSE script
+# structure.  Reaching it changes the result to FAILED as a fail sentinel.
+#
+
+set Lc1Start = 0;
+set Lc1ProcessEvent = 0;
+set Lc1Finish = 0;
+
+%include "VSTools.inc"
+
+OnStartScript()
+{
+    Lc1Start = 1;
+    ReportText("LC1 START");
+    out.Result = _VERIFICATION_PASSED;
+}
+
+ProcessEvent()
+{
+    Lc1ProcessEvent = Lc1ProcessEvent + 1;
+    ReportText("LC1 UNEXPECTED PROCESS EVENT");
+    out.Result = _VERIFICATION_FAILED;
+    return Complete();
+}
+
+OnFinishScript()
+{
+    Lc1Finish = 1;
+    ReportText("LC1 FINISH");
+    return 0;
+}

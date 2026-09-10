@@ -1,0 +1,197 @@
+#
+# M1 execution probe for lecroy-vse-toolkit.
+#
+# This script intentionally consumes only the common VSE lifecycle and helper
+# functions observed in the locally installed USB Protocol Suite samples.
+# It is an observation/reporting probe, not a USB decoder replacement.
+#
+
+set SummaryFile = null;
+set SummaryPath = "";
+set EventCount = 0;
+set FirstEventSeen = 0;
+set FirstEventTime = Time(0);
+set LastEventTime = Time(0);
+set FirstEventName = "";
+set LastEventName = "";
+set FirstChannelName = "";
+set LastChannelName = "";
+
+set Usb2Count = 0;
+set Usb2_1Count = 0;
+set Usb2_2Count = 0;
+set Usb2_3Count = 0;
+set Usb3RxCount = 0;
+set Usb3TxCount = 0;
+set UsbPdCount = 0;
+set UsbCcCount = 0;
+set OtherChannelCount = 0;
+
+set PacketLevelCount = 0;
+set TransactionLevelCount = 0;
+set TransferLevelCount = 0;
+set SplitTransactionLevelCount = 0;
+set ScsiLevelCount = 0;
+set PhyTransactionLevelCount = 0;
+set OtherLevelCount = 0;
+
+set TraceStartTime = Time(0);
+set TraceEndTime = Time(0);
+
+set DecoderDesc = "lecroy-vse-toolkit M1 trace information probe";
+
+%include "VSTools.inc"
+
+OnStartScript()
+{
+    EventCount = 0;
+    FirstEventSeen = 0;
+
+    Usb2Count = 0;
+    Usb2_1Count = 0;
+    Usb2_2Count = 0;
+    Usb2_3Count = 0;
+    Usb3RxCount = 0;
+    Usb3TxCount = 0;
+    UsbPdCount = 0;
+    UsbCcCount = 0;
+    OtherChannelCount = 0;
+
+    PacketLevelCount = 0;
+    TransactionLevelCount = 0;
+    TransferLevelCount = 0;
+    SplitTransactionLevelCount = 0;
+    ScsiLevelCount = 0;
+    PhyTransactionLevelCount = 0;
+    OtherLevelCount = 0;
+
+    TraceStartTime = GetTraceStartTime();
+    TraceEndTime = GetTraceEndTime();
+    SummaryPath = GetTraceFilePath() + "lecroy-vse-toolkit-trace-summary.txt";
+    SummaryFile = OpenFile(SummaryPath, 0, _FO_TEXT);
+
+    SendAllChannels();
+    SendLevel(_PKT);
+    SendLevel(_TRA);
+    SendLevel(_SPL_TRA);
+    SendLevel(_XFER);
+    SendLevel(_SCSI);
+    SendLevel(_PHY_TRA);
+    SendAllTraceEvents();
+    ScriptForDisplayOnly();
+
+    if (SummaryFile >= 0)
+    {
+        WriteString(SummaryFile, "# lecroy-vse-toolkit M1 trace summary\n");
+        WriteString(SummaryFile, "# Counts are callback observations from ProcessEvent().\n");
+        WriteString(SummaryFile, FormatEx("trace_name=%s\n", GetTraceName()));
+        WriteString(SummaryFile, FormatEx("trace_start_time=%s\n", TimeToText(TraceStartTime)));
+        WriteString(SummaryFile, FormatEx("trace_end_time=%s\n", TimeToText(TraceEndTime)));
+    }
+    else
+    {
+        ReportText(FormatEx("Could not open summary output: %s", SummaryPath));
+    }
+}
+
+ProcessEvent()
+{
+    if (FirstEventSeen == 0)
+    {
+        FirstEventSeen = 1;
+        FirstEventTime = in.Time;
+        FirstEventName = GetEventName();
+        FirstChannelName = GetChannelName();
+    }
+
+    LastEventTime = in.Time;
+    LastEventName = GetEventName();
+    LastChannelName = GetChannelName();
+    EventCount++;
+
+    if (in.Channel == _USB2)
+        Usb2Count++;
+    else if (in.Channel == _USB2_1)
+        Usb2_1Count++;
+    else if (in.Channel == _USB2_2)
+        Usb2_2Count++;
+    else if (in.Channel == _USB2_3)
+        Usb2_3Count++;
+    else if (in.Channel == _USB3_RX)
+        Usb3RxCount++;
+    else if (in.Channel == _USB3_TX)
+        Usb3TxCount++;
+    else if (in.Channel == _USB_PD_0)
+        UsbPdCount++;
+    else if (in.Channel == _USB_CC_0)
+        UsbCcCount++;
+    else
+        OtherChannelCount++;
+
+    if (in.Level == _PKT)
+        PacketLevelCount++;
+    else if (in.Level == _TRA)
+        TransactionLevelCount++;
+    else if (in.Level == _XFER)
+        TransferLevelCount++;
+    else if (in.Level == _SPL_TRA)
+        SplitTransactionLevelCount++;
+    else if (in.Level == _SCSI)
+        ScsiLevelCount++;
+    else if (in.Level == _PHY_TRA)
+        PhyTransactionLevelCount++;
+    else
+        OtherLevelCount++;
+
+    return Complete();
+}
+
+OnFinishScript()
+{
+    if (SummaryFile >= 0)
+    {
+        WriteString(SummaryFile, FormatEx("delivered_event_count=%u\n", EventCount));
+
+        if (FirstEventSeen != 0)
+        {
+            WriteString(SummaryFile, FormatEx("first_delivered_event_time=%s\n", TimeToText(FirstEventTime)));
+            WriteString(SummaryFile, FormatEx("last_delivered_event_time=%s\n", TimeToText(LastEventTime)));
+            WriteString(SummaryFile, FormatEx("first_delivered_event=%s\n", FirstEventName));
+            WriteString(SummaryFile, FormatEx("last_delivered_event=%s\n", LastEventName));
+            WriteString(SummaryFile, FormatEx("first_delivered_channel=%s\n", FirstChannelName));
+            WriteString(SummaryFile, FormatEx("last_delivered_channel=%s\n", LastChannelName));
+        }
+
+        WriteString(SummaryFile, "\n[protocol_channel_observation]\n");
+        WriteString(SummaryFile, FormatEx("_USB2_channels=%u\n", Usb2Count + Usb2_1Count + Usb2_2Count + Usb2_3Count));
+        WriteString(SummaryFile, FormatEx("_USB3_channels=%u\n", Usb3RxCount + Usb3TxCount));
+        WriteString(SummaryFile, FormatEx("_USB_PD_channels=%u\n", UsbPdCount));
+        WriteString(SummaryFile, FormatEx("_USB_CC_channels=%u\n", UsbCcCount));
+        WriteString(SummaryFile, FormatEx("other=%u\n", OtherChannelCount));
+
+        WriteString(SummaryFile, "\n[channel_distribution]\n");
+        WriteString(SummaryFile, FormatEx("_USB2=%u\n", Usb2Count));
+        WriteString(SummaryFile, FormatEx("_USB2_1=%u\n", Usb2_1Count));
+        WriteString(SummaryFile, FormatEx("_USB2_2=%u\n", Usb2_2Count));
+        WriteString(SummaryFile, FormatEx("_USB2_3=%u\n", Usb2_3Count));
+        WriteString(SummaryFile, FormatEx("_USB3_RX=%u\n", Usb3RxCount));
+        WriteString(SummaryFile, FormatEx("_USB3_TX=%u\n", Usb3TxCount));
+        WriteString(SummaryFile, FormatEx("_USB_PD_0=%u\n", UsbPdCount));
+        WriteString(SummaryFile, FormatEx("_USB_CC_0=%u\n", UsbCcCount));
+        WriteString(SummaryFile, FormatEx("other=%u\n", OtherChannelCount));
+
+        WriteString(SummaryFile, "\n[level_distribution]\n");
+        WriteString(SummaryFile, FormatEx("_PKT=%u\n", PacketLevelCount));
+        WriteString(SummaryFile, FormatEx("_TRA=%u\n", TransactionLevelCount));
+        WriteString(SummaryFile, FormatEx("_XFER=%u\n", TransferLevelCount));
+        WriteString(SummaryFile, FormatEx("_SPL_TRA=%u\n", SplitTransactionLevelCount));
+        WriteString(SummaryFile, FormatEx("_SCSI=%u\n", ScsiLevelCount));
+        WriteString(SummaryFile, FormatEx("_PHY_TRA=%u\n", PhyTransactionLevelCount));
+        WriteString(SummaryFile, FormatEx("other=%u\n", OtherLevelCount));
+
+        CloseFile(SummaryFile);
+    }
+
+    ReportText(FormatEx("M1 trace summary written to: %s", SummaryPath));
+    return 0;
+}

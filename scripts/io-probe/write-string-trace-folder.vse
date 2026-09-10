@@ -1,0 +1,35 @@
+# M1-E3 trace-folder WriteString probe.
+#
+# This probe keeps the M1-E1 delivery configuration and adds the trace-folder
+# path plus one WriteString() operation to the M1-E2 Open/Close sequence. The
+# target is placed beside the .usb trace. The returned handle is reported but
+# is not a standalone verdict.
+#
+
+set E3Path = "";
+set E3Handle = 0;
+
+%include "VSTools.inc"
+
+OnStartScript()
+{
+    SendAllChannels();
+    SendLevel(_PKT);
+    SendLevel(_TRA);
+    SendLevel(_SPL_TRA);
+    SendLevel(_XFER);
+    SendLevel(_SCSI);
+    SendLevel(_PHY_TRA);
+    SendAllTraceEvents();
+}
+
+ProcessEvent()
+{
+    E3Path = GetTraceFilePath() + "vse-io-probe.txt";
+    E3Handle = OpenFile(E3Path, 0, _FO_TEXT);
+    ReportText(FormatEx("M1-E3 PATH=%s", E3Path));
+    ReportText(FormatEx("M1-E3 HANDLE=%d", E3Handle));
+    WriteString(E3Handle, "M1-E3");
+    CloseFile(E3Handle);
+    out.Result = _VERIFICATION_PASSED_WARNING;
+}

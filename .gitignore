@@ -1,0 +1,22 @@
+# LeCroy trace captures and other potentially large proprietary inputs
+*.usb
+*.usbtrace
+*.uwb
+*.utp
+samples/data/
+
+# Generated VSE output
+results/
+trace-summary.txt
+lecroy-vse-toolkit-trace-summary.txt
+trace-*.txt
+trace-*.json
+*.vse.log
+
+# Local editor and OS files
+.vscode/
+.idea/
+*.user
+*.suo
+Thumbs.db
+Desktop.ini

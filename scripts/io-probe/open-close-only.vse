@@ -1,0 +1,31 @@
+# M1-E2 Open/Close-only file capability probe.
+#
+# This probe keeps the M1-E1 event-delivery configuration unchanged. The only
+# added operations are OpenFile() and CloseFile(); WriteString() is deliberately
+# absent. File existence is checked outside VSE after the run. The handle is
+# reported for observation but is not a standalone verdict.
+#
+
+set E2Handle = 0;
+
+%include "VSTools.inc"
+
+OnStartScript()
+{
+    SendAllChannels();
+    SendLevel(_PKT);
+    SendLevel(_TRA);
+    SendLevel(_SPL_TRA);
+    SendLevel(_XFER);
+    SendLevel(_SCSI);
+    SendLevel(_PHY_TRA);
+    SendAllTraceEvents();
+}
+
+ProcessEvent()
+{
+    E2Handle = OpenFile("C:\\Temp\\vse-io-probe.txt", 0, _FO_TEXT);
+    ReportText(FormatEx("M1-E2 HANDLE=%d", E2Handle));
+    CloseFile(E2Handle);
+    out.Result = _VERIFICATION_PASSED_WARNING;
+}

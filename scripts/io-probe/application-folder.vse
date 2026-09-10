@@ -1,0 +1,45 @@
+#
+# M1-IO probe C: output beside the application executable.
+#
+
+set ProbeLabel = "application-folder";
+set ProbePath = "";
+set ProbeHandle = -1;
+set WriteAttempted = 0;
+set CloseAttempted = 0;
+
+%include "VSTools.inc"
+
+OnStartScript()
+{
+    # Disable the default frame-level delivery; this probe must not scan events.
+    DontSendLevel(_PKT);
+    ProbePath = GetApplicationFolder() + "vse-io-probe.txt";
+    ReportText(FormatEx("probe=%s", ProbeLabel));
+    ReportText(FormatEx("path=%s", ProbePath));
+
+    ProbeHandle = OpenFile(ProbePath, 0, _FO_TEXT);
+    ReportText(FormatEx("handle=%d", ProbeHandle));
+
+    if (ProbeHandle >= 0)
+    {
+        WriteString(ProbeHandle, "hello from lecroy-vse-toolkit M1-IO application-folder");
+        WriteAttempted = 1;
+        CloseFile(ProbeHandle);
+        CloseAttempted = 1;
+    }
+
+    ScriptForDisplayOnly();
+}
+
+ProcessEvent()
+{
+    return Complete();
+}
+
+OnFinishScript()
+{
+    ReportText(FormatEx("write_attempted=%d", WriteAttempted));
+    ReportText(FormatEx("close_attempted=%d", CloseAttempted));
+    return 0;
+}

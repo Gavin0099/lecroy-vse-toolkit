@@ -1,0 +1,26 @@
+# M1-E1 first-event delivery sentinel.
+#
+# The delivery configuration is copied from trace-info.vse, whose execution
+# produced 3,186,175 ProcessEvent() callbacks on the selected trace. This
+# probe contains no external-file operation. The first delivered event sets a
+# terminal PASSED_WARNING result so the run should stop immediately.
+#
+
+%include "VSTools.inc"
+
+OnStartScript()
+{
+    SendAllChannels();
+    SendLevel(_PKT);
+    SendLevel(_TRA);
+    SendLevel(_SPL_TRA);
+    SendLevel(_XFER);
+    SendLevel(_SCSI);
+    SendLevel(_PHY_TRA);
+    SendAllTraceEvents();
+}
+
+ProcessEvent()
+{
+    out.Result = _VERIFICATION_PASSED_WARNING;
+}

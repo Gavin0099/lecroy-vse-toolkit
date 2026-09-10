@@ -1,0 +1,39 @@
+# M1-IO-B1 bounded first-event file-output probe.
+#
+# The script uses the documented lifecycle.  It deliberately does not set a
+# terminal result in OnStartScript().  The first event reaching ProcessEvent()
+# performs the complete C:\Temp I/O sequence and then stops the script.
+# File existence and content are the acceptance evidence; the handle value is
+# reported but is not used as a standalone verdict.
+#
+
+set B1ProcessEvents = 0;
+set B1Handle = 0;
+
+%include "VSTools.inc"
+
+OnStartScript()
+{
+    B1ProcessEvents = 0;
+    ReportText("M1-IO-B1 START");
+}
+
+ProcessEvent()
+{
+    B1ProcessEvents = B1ProcessEvents + 1;
+    ReportText("M1-IO-B1 FIRST EVENT");
+
+    B1Handle = OpenFile("C:\\Temp\\vse-io-probe.txt", 0, _FO_TEXT);
+    ReportText(FormatEx("M1-IO-B1 HANDLE=%d", B1Handle));
+    WriteString(B1Handle, "lecroy-vse-toolkit M1-IO-B1 PASS");
+    CloseFile(B1Handle);
+
+    out.Result = _VERIFICATION_PASSED_WARNING;
+    return Complete();
+}
+
+OnFinishScript()
+{
+    ReportText("M1-IO-B1 FINISH");
+    return 0;
+}

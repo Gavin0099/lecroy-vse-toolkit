@@ -1,0 +1,26 @@
+# M1-COM1 NotifyClient sentinel.
+#
+# The delivery configuration matches M1-E1. The first delivered event sends a
+# small VARIANT-list payload to the Automation host and then stops with a
+# PASSED_WARNING result. This probe performs no filesystem I/O.
+#
+
+%include "VSTools.inc"
+
+OnStartScript()
+{
+    SendAllChannels();
+    SendLevel(_PKT);
+    SendLevel(_TRA);
+    SendLevel(_SPL_TRA);
+    SendLevel(_XFER);
+    SendLevel(_SCSI);
+    SendLevel(_PHY_TRA);
+    SendAllTraceEvents();
+}
+
+ProcessEvent()
+{
+    NotifyClient(1001, ["M1-COM1", in.Index]);
+    out.Result = _VERIFICATION_PASSED_WARNING;
+}

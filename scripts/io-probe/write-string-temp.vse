@@ -1,0 +1,31 @@
+# M1-E3A C:\Temp WriteString controlled comparison.
+#
+# This probe is identical to the M1-E2 Open/Close probe for event delivery and
+# path selection. The only added operation is WriteString() with known content.
+# The handle is reported but is not a standalone verdict.
+#
+
+set E3AHandle = 0;
+
+%include "VSTools.inc"
+
+OnStartScript()
+{
+    SendAllChannels();
+    SendLevel(_PKT);
+    SendLevel(_TRA);
+    SendLevel(_SPL_TRA);
+    SendLevel(_XFER);
+    SendLevel(_SCSI);
+    SendLevel(_PHY_TRA);
+    SendAllTraceEvents();
+}
+
+ProcessEvent()
+{
+    E3AHandle = OpenFile("C:\\Temp\\vse-io-probe.txt", 0, _FO_TEXT);
+    ReportText(FormatEx("M1-E3A HANDLE=%d", E3AHandle));
+    WriteString(E3AHandle, "M1-E3A");
+    CloseFile(E3AHandle);
+    out.Result = _VERIFICATION_PASSED_WARNING;
+}
