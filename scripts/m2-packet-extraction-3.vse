@@ -1,0 +1,90 @@
+# M2-PACKET-EXTRACTION-3: extract USB3 LFPS events and fields.
+#
+# This slice exports the event identity plus the LFPS-specific input context
+# members documented by the VSE manual: Type, Duration, DurationSec,
+# DurationNS, PatternType, and StartsPattern.
+
+set LfpsEventCount = 0;
+set BatchNumber = 0;
+set BatchCount = 0;
+set BatchText = "";
+
+const BATCH_SIZE = 250;
+
+%include "VSTools.inc"
+
+OnStartScript()
+{
+    LfpsEventCount = 0;
+    BatchNumber = 0;
+    BatchCount = 0;
+    BatchText = "";
+
+    # Reuse the M2-1/M2-2 delivery configuration validated on this trace.
+    SendAllChannels();
+    SendLevel(_PKT);
+    SendLevel(_TRA);
+    SendLevel(_SPL_TRA);
+    SendLevel(_XFER);
+    SendLevel(_SCSI);
+    SendLevel(_PHY_TRA);
+    SendAllTraceEvents();
+    ScriptForDisplayOnly();
+}
+
+ProcessEvent()
+{
+    if (in.TraceEvent == _USB3_LFPS)
+    {
+        LfpsEventCount++;
+        BatchText += FormatEx(
+            "%d|%s|%s|%d|%d|%d|%d|%d|%d\n",
+            in.Index,
+            TimeToText(in.Time),
+            GetEventName(),
+            in.Type,
+            in.Duration,
+            in.DurationSec,
+            in.DurationNS,
+            in.PatternType,
+            in.StartsPattern
+        );
+        BatchCount++;
+
+        if (BatchCount >= BATCH_SIZE)
+        {
+            NotifyClient(
+                2301,
+                ["M2-PACKET-EXTRACTION-3",
+                 BatchNumber,
+                 BatchCount,
+                 BatchText]
+            );
+            BatchNumber++;
+            BatchCount = 0;
+            BatchText = "";
+        }
+    }
+
+    return Complete();
+}
+
+OnFinishScript()
+{
+    if (BatchCount > 0)
+    {
+        NotifyClient(
+            2301,
+            ["M2-PACKET-EXTRACTION-3",
+             BatchNumber,
+             BatchCount,
+             BatchText]
+        );
+    }
+
+    NotifyClient(
+        2302,
+        ["M2-PACKET-EXTRACTION-3-SUMMARY", LfpsEventCount]
+    );
+    return 0;
+}

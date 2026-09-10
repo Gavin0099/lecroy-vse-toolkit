@@ -7,6 +7,13 @@ artifact, reads it back, and verifies the sacrificial input trace hash, size,
 and UTC mtime. It does not assign severity, suspicion, root cause, or AI
 explanations.
 
+run-m2-lfps-extraction.ps1 is the M2-PACKET-EXTRACTION-3 host harness. It
+receives batched decoded _USB3_LFPS records, including the observed LFPS input
+context fields, writes a host-owned JSON artifact, reads it back, and verifies
+the sacrificial input trace hash, size, and UTC mtime. It retains raw numeric
+field values and does not infer semantic enum names, severity, suspicion, root
+cause, or AI explanations.
+
 run-m2-ltssm-extraction.ps1 is the M2-PACKET-EXTRACTION-2 host harness. It
 receives batched decoded _USB3_LTSSM_STATE records, writes a host-owned LTSSM
 event JSON artifact, reads it back, and verifies the sacrificial input trace
