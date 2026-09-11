@@ -19,9 +19,12 @@ three validated event classes in one traversal and verifies per-class counts,
 chronological event-index ordering, JSON read-back, and trace integrity.
 
 compare-m2-timelines.ps1 compares two normalized timeline JSON artifacts. It
-uses a common event-sequence anchor when available and reports a candidate
-divergence plus trace-local GUI windows. It does not claim absolute first
-divergence, root cause, severity, or PASS/FAIL classification.
+uses stable event signatures, unique occurrence checks, and matching context
+before and after the anchor. If no reliable common anchor is established, it
+returns `NO_RELIABLE_COMMON_ANCHOR` and emits no GUI window. When an anchor is
+accepted, it reports only a candidate divergence plus trace-local GUI windows;
+it does not claim absolute first divergence, root cause, severity, or PASS/FAIL
+classification.
 
 localize-trace-mutation.ps1 compares two binary trace files and reports changed
 offset ranges plus bounded before/after hex. It localizes bytes only; it does

@@ -231,6 +231,12 @@ $anchorDetail = $anchor.status
 if ($null -ne $anchor) {
     $anchorDetail = "$($anchor.status), length $($anchor.length)"
 }
+$passWindowText = Convert-WindowToText $candidate.pass_suggested_window
+$failWindowText = Convert-WindowToText $candidate.fail_suggested_window
+if ($candidate.status -eq 'NO_RELIABLE_COMMON_ANCHOR') {
+    $passWindowText = 'NOT PRODUCED (no reliable common anchor)'
+    $failWindowText = 'NOT PRODUCED (no reliable common anchor)'
+}
 
 $reportLines = [System.Collections.Generic.List[string]]::new()
 $reportLines.Add('# LeCroy PASS / FAIL Triage')
@@ -256,8 +262,8 @@ $reportLines.Add("- Common anchor: $anchorDetail")
 $reportLines.Add("- Candidate status: $($candidate.status)")
 $reportLines.Add("- PASS timestamp: $($candidate.pass_timestamp)")
 $reportLines.Add("- FAIL timestamp: $($candidate.fail_timestamp)")
-$reportLines.Add("- Suggested PASS GUI window: $(Convert-WindowToText $candidate.pass_suggested_window)")
-$reportLines.Add("- Suggested FAIL GUI window: $(Convert-WindowToText $candidate.fail_suggested_window)")
+$reportLines.Add("- Suggested PASS GUI window: $passWindowText")
+$reportLines.Add("- Suggested FAIL GUI window: $failWindowText")
 $reportLines.Add('')
 $reportLines.Add('## Source integrity')
 $reportLines.Add('')
@@ -267,7 +273,9 @@ $reportLines.Add('- Working copies: read-only')
 $reportLines.Add('')
 $reportLines.Add('## Claim boundary')
 $reportLines.Add('')
-$reportLines.Add('- Candidate divergence only.')
+$reportLines.Add('- A reliable common anchor is required before any GUI window is emitted.')
+$reportLines.Add('- No reliable common anchor means no GUI recommendation was produced.')
+$reportLines.Add('- Candidate divergence, when emitted, is only a candidate.')
 $reportLines.Add('- Root cause, severity, and automatic PASS/FAIL classification are not determined.')
 $reportLines.Add('- Timestamps are trace-local and are not directly aligned across captures.')
 $reportLines.Add('- Universal immutability across all traces and environments is not claimed.')

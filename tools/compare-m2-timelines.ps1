@@ -121,22 +121,120 @@ $passSignatures = Get-Signatures -Events $passEvents
 $failSignatures = Get-Signatures -Events $failEvents
 
 $anchorLength = 5
+$anchorPreContextLength = 10
+$anchorPostContextLength = 5
 $passWindows = Get-WindowPositions -Signatures $passSignatures -Length $anchorLength
 $failWindows = Get-WindowPositions -Signatures $failSignatures -Length $anchorLength
-$anchor = $null
+$anchorCandidates = [System.Collections.Generic.List[object]]::new()
+$rejectedAnchors = [System.Collections.Generic.List[object]]::new()
 
 foreach ($entry in $passWindows.GetEnumerator()) {
-    if ($entry.Value.Count -eq 1 -and
-        $failWindows.ContainsKey($entry.Key) -and
-        $failWindows[$entry.Key].Count -eq 1) {
-        $anchor = [pscustomobject]@{
-            status = 'FOUND'
-            length = $anchorLength
-            pass_index = $entry.Value[0]
-            fail_index = $failWindows[$entry.Key][0]
-            signature = $entry.Key -replace "`n", ' > '
+    if ($entry.Value.Count -ne 1 -or
+        -not $failWindows.ContainsKey($entry.Key) -or
+        $failWindows[$entry.Key].Count -ne 1) {
+        continue
+    }
+
+    $passIndex = $entry.Value[0]
+    $failIndex = $failWindows[$entry.Key][0]
+    $rejectionReason = $null
+    $preContextMatches = 0
+    $postContextMatches = 0
+
+    if ($passIndex -lt $anchorPreContextLength -or
+        $failIndex -lt $anchorPreContextLength) {
+        $rejectionReason = 'INSUFFICIENT_PRE_CONTEXT'
+    }
+    else {
+        for ($contextOffset = 1; $contextOffset -le $anchorPreContextLength; $contextOffset++) {
+            if ($passSignatures[$passIndex - $contextOffset] -eq
+                $failSignatures[$failIndex - $contextOffset]) {
+                $preContextMatches++
+            }
         }
-        break
+
+        if ($preContextMatches -ne $anchorPreContextLength) {
+            $rejectionReason = 'PRE_CONTEXT_MISMATCH'
+        }
+    }
+
+    $passPostContextEnd = $passIndex + $anchorLength + $anchorPostContextLength
+    $failPostContextEnd = $failIndex + $anchorLength + $anchorPostContextLength
+    if ($null -eq $rejectionReason -and
+        ($passPostContextEnd -gt $passSignatures.Length -or
+         $failPostContextEnd -gt $failSignatures.Length)) {
+        $rejectionReason = 'INSUFFICIENT_POST_CONTEXT'
+    }
+    elseif ($null -eq $rejectionReason) {
+        for ($contextOffset = 0; $contextOffset -lt $anchorPostContextLength; $contextOffset++) {
+            if ($passSignatures[$passIndex + $anchorLength + $contextOffset] -eq
+                $failSignatures[$failIndex + $anchorLength + $contextOffset]) {
+                $postContextMatches++
+            }
+        }
+
+        if ($postContextMatches -ne $anchorPostContextLength) {
+            $rejectionReason = 'POST_CONTEXT_MISMATCH'
+        }
+    }
+
+    $candidateRecord = [ordered]@{
+        pass_index = $passIndex
+        fail_index = $failIndex
+        signature = $entry.Key -replace "`n", ' > '
+        anchor_occurrences_pass = $entry.Value.Count
+        anchor_occurrences_fail = $failWindows[$entry.Key].Count
+        pre_context_length = $anchorPreContextLength
+        pre_context_matches = $preContextMatches
+        post_context_length = $anchorPostContextLength
+        post_context_matches = $postContextMatches
+    }
+
+    if ($null -ne $rejectionReason) {
+        $candidateRecord['rejection_reason'] = $rejectionReason
+        $rejectedAnchors.Add([pscustomobject]$candidateRecord)
+        continue
+    }
+
+    $candidateRecord['confidence'] = 'HIGH'
+    $anchorCandidates.Add([pscustomobject]$candidateRecord)
+}
+
+$anchor = $null
+if ($anchorCandidates.Count -gt 0) {
+    $selectedAnchor = @($anchorCandidates | Sort-Object pass_index, fail_index)[0]
+    $anchor = [pscustomobject]@{
+        status = 'FOUND'
+        confidence = $selectedAnchor.confidence
+        length = $anchorLength
+        pre_context_length = $selectedAnchor.pre_context_length
+        pre_context_matches = $selectedAnchor.pre_context_matches
+        post_context_length = $selectedAnchor.post_context_length
+        post_context_matches = $selectedAnchor.post_context_matches
+        pass_index = $selectedAnchor.pass_index
+        fail_index = $selectedAnchor.fail_index
+        anchor_occurrences_pass = $selectedAnchor.anchor_occurrences_pass
+        anchor_occurrences_fail = $selectedAnchor.anchor_occurrences_fail
+        rejected_candidate_count = $rejectedAnchors.Count
+        signature = $selectedAnchor.signature
+    }
+}
+else {
+    $anchor = [pscustomobject]@{
+        status = 'NO_RELIABLE_COMMON_ANCHOR'
+        confidence = 'LOW'
+        length = $anchorLength
+        pre_context_length = $anchorPreContextLength
+        pre_context_matches = 0
+        post_context_length = $anchorPostContextLength
+        post_context_matches = 0
+        pass_index = $null
+        fail_index = $null
+        anchor_occurrences_pass = $null
+        anchor_occurrences_fail = $null
+        rejected_candidate_count = $rejectedAnchors.Count
+        rejected_candidates = @($rejectedAnchors | Select-Object -First 20)
+        signature = $null
     }
 }
 
@@ -153,7 +251,7 @@ $candidate = [ordered]@{
     fail_window = @()
 }
 
-if ($null -eq $anchor) {
+if ($null -eq $anchor -or $anchor.status -ne 'FOUND') {
     $candidate.status = 'NO_RELIABLE_COMMON_ANCHOR'
 }
 else {
@@ -220,6 +318,7 @@ $artifact = [ordered]@{
     candidate_divergence = $candidate
     claims = @(
         'This output identifies a candidate divergence after a common sequence anchor when one is found.',
+        'An anchor is accepted only when the unique event window has matching pre-context and post-context; otherwise no GUI window is produced.',
         'It does not claim absolute first divergence, root cause, severity, or PASS/FAIL classification.',
         'Timestamp windows are trace-local and are not directly aligned across captures.'
     )
