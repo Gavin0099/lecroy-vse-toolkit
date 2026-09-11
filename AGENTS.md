@@ -357,6 +357,37 @@ NOT CLAIMED unless separately implemented and validated:
 - Use the canonical memory writer for session-derived memory; do not edit memory records as ordinary markdown.
 - Canonical writer signal: `governance_tools.memory_record` / `memory_record.py`.
 
+## Product State Authority Rule
+<!-- governance:key=product_state_authority -->
+
+This is a narrow consumer rule for product progress and correctness decisions.
+It does not adopt runtime hooks, validators, memory writers, or the full
+Governance topology.
+
+- Resolve current product state from the current user instruction, the latest
+  verified evidence, and the current `PLAN.md` before using handoff memory.
+- `memory/01_active_task.md` is a derived handoff candidate. It may suggest a
+  next action, but it is not independent evidence or work-order authority.
+- Memory alone must not reopen a verified PASS milestone or turn it into HOLD.
+  Reopening requires newer, applicable contradictory evidence: a failing test,
+  trace, observed defect, or code change shown to invalidate the earlier result
+  for the same claim and scope. A newer timestamp or commit alone is not enough.
+- Without such evidence, preserve the existing verified result within its
+  original scope and treat the conflicting memory as stale/advisory. With such
+  evidence, reassess only the affected claim; do not assume the old PASS wins
+  because it was committed. Uncommitted observations can also be valid evidence.
+- If evidence applicability is unknown, report that uncertainty rather than
+  declaring a new HOLD or reaffirming current PASS. The historical PASS remains
+  a historical result, not proof for a changed or unverified scope.
+- Before acting on a memory-derived next step, inspect `git status`, the
+  current `PLAN.md`, and the cited evidence. Distinguish committed state from
+  user-owned working-tree changes; do not discard dirty memory to resolve the
+  conflict.
+- If active-task memory conflicts with `PLAN.md` or newer verified evidence,
+  report `memory_state_conflict`, use the authoritative source for the product
+  decision, and treat the memory file as a reconciliation candidate. Do not
+  silently resolve the conflict in favor of memory.
+
 ## Repo-Specific Risk Levels
 <!-- governance:key=risk_levels -->
 

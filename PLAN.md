@@ -13,6 +13,7 @@ The repository name remains `lecroy-vse-toolkit` because that is the existing ch
 | M0 | Repository bootstrap | Ready | Repo structure, scope, reference policy, and fixture policy exist. |
 | M1 | Minimal VSE execution and host-owned summary bridge | PASS; historical anomaly recorded | A real `.usb` trace completes the selected VSE traversal, sends the required summary once through `NotifyClient()`, and the host produces a verifiable artifact with controlled integrity qualification. |
 | G0 | Governance topology decision | Decision recorded: Minimal Audit + Lightweight Memory | The consumer decision is recorded from the Before/After evidence; runtime capability remains explicitly bounded. |
+| G0-C1 | State authority correction | Controlled fresh-context behavior PASS; delivery tracked in Git | Memory alone did not reopen PASS in one isolated sub-agent case; not a universal recovery claim. |
 | M2 | Packet extraction | M2-PACKET-EXTRACTION-1 through M2-PACKET-EXTRACTION-3 PASS; broader coverage not complete | Bounded selected decoded events cross VSE -> COM -> Host with event identity, selected protocol fields, JSON read-back, and controlled trace integrity. |
 | M2-4 / DEMO-1 | Unified timeline and PASS vs FAIL candidate comparison | QUALIFIED for controlled source-preserving read-only mode | One combined extractor produces normalized timelines for PASS/FAIL candidates, reports a common-anchor candidate divergence without claiming absolute first divergence, and preserves the immutable source artifact. |
 | DEMO-2 | One-click PASS/FAIL runner | Implemented; Windows PowerShell 5.1 compatibility PASS | One command creates read-only sandbox copies, runs both extractions, compares timelines, verifies source identity, and writes JSON plus Markdown artifacts. |
@@ -295,3 +296,27 @@ Windows PowerShell 5.1 process. Add-Type, script parsing, existing-output
 refusal, full extraction, comparison, and source-integrity acceptance all
 passed. The Windows PowerShell comparator's higher resource cost remains an
 observation for M5, not a correctness failure.
+
+## G0-C1 state authority correction
+
+The natural fresh-session observation exposed a Lightweight consumer defect:
+stale `memory/01_active_task.md` could steer task judgment toward an already
+closed DEMO-1 hold even though the newer PLAN/evidence state qualified the
+controlled source-preserving mode. The active-task file is a derived handoff,
+not an independent authority.
+
+The bounded C1 correction is recorded in the repo-local `AGENTS.md` rule and
+the report-only `tools/test-state-authority.ps1` probe. On a conflict, the
+consumer must emit `memory_state_conflict`, use current user instruction plus
+verified evidence/PLAN for the product decision, and preserve the dirty memory
+file for explicit reconciliation.
+
+`FULL_VS_LIGHT_PILOT` is deferred. No Governance clone, runtime hook, writer,
+validator, or framework file is added by C1. Product M3 resumes only after
+this C1 rule passes the scoped fresh-session behavioral check and review.
+
+The C1 result is recorded in
+`docs/g0-c1-state-authority-results.md`. The script checks rule text only;
+it does not prove Agent behavior. One separate fresh-context sub-agent case
+passed on 2026-09-11; review and delivery are recorded with the scoped Git change. This controlled observation
+does not establish universal natural-session recovery.
