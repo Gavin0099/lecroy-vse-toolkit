@@ -16,7 +16,18 @@ The repository name remains `lecroy-vse-toolkit` because that is the existing ch
 | G0-C1 | State authority correction | Controlled fresh-context behavior PASS; delivery tracked in Git | Memory alone did not reopen PASS in one isolated sub-agent case; not a universal recovery claim. |
 | M2 | Packet extraction | M2-PACKET-EXTRACTION-1 through M2-PACKET-EXTRACTION-3 PASS; broader coverage not complete | Bounded selected decoded events cross VSE -> COM -> Host with event identity, selected protocol fields, JSON read-back, and controlled trace integrity. |
 | M2-4 / DEMO-1 | Unified timeline and PASS vs FAIL candidate comparison | QUALIFIED for controlled source-preserving read-only mode | One combined extractor produces normalized timelines for PASS/FAIL candidates, reports a common-anchor candidate divergence without claiming absolute first divergence, and preserves the immutable source artifact. |
-| DEMO-2 | One-click PASS/FAIL runner | Implemented; Windows PowerShell 5.1 compatibility PASS | One command creates read-only sandbox copies, runs both extractions, compares timelines, verifies source identity, and writes JSON plus Markdown artifacts. |
+| DEMO-2 | One-click PASS/FAIL runner | Implemented; integrity closure PASS; Windows PowerShell 5.1 compatibility PASS | One command creates read-only sandbox copies, runs both extractions, compares timelines, verifies source and working-copy integrity, and writes JSON plus Markdown artifacts. |
+| DEMO-C2 | Reliable common-anchor gate | PASS for fail-closed behavior on the known pair | Weak or insufficiently contextualized anchors are rejected; `NO_RELIABLE_COMMON_ANCHOR` produces no GUI recommendation. |
+| DEMO-C3 | Timestamp fidelity | PASS | VSE seconds/nanoseconds survive the VSE -> COM -> Host -> JSON path with 0 ns error for the expert-labeled FAIL timestamp; comparator logic is unchanged. |
+| DEMO-C4 | Semantic alignment | PASS for fail-closed behavior; useful alignment not proven | A verified raw-field and relative-gap fingerprint is unique in FAIL but has no PASS match, so `NO_RELIABLE_SEMANTIC_MATCH` is emitted and no GUI handoff is produced. |
+| DEMO-C5 | Automatic suspicious-region discovery | PASS for the known pair; generalization not proven | Without a ground-truth input, PASS baseline scoring ranks a FAIL window intersecting the expert-labeled region at Top 1; the result remains triage evidence only. |
+| DEMO-V1 | Engineer HTML report | PASS for presentation layer | Existing C5 JSON is rendered as a single offline HTML report with Top-3 candidates, exact timestamps, reasons/features, PASS/FAIL overview, integrity, and claim boundary. The JSON remains canonical; scoring is unchanged. |
+| DEMO-V2 | Engineer-first triage report | PASS for presentation layer | Adjacent C5 windows are grouped into suspicious episodes; the report foregrounds the actionable interval, quantitative PASS baseline comparison, and claim boundary while retaining JSON as canonical. C5 scoring is unchanged. |
+| DEMO-V3 | Evidence timeline | PASS for presentation layer on the known pair | Existing timeline events are visualized at their actual positions inside the primary episode; trace basenames are shown and exact internal metadata remains in details. Missing event-position data fails closed to a clear fallback message. |
+| DEMO-V4 | Plain-language triage summary | PASS for presentation layer on the known pair | The Hero adds a conservative observation summary; selected LTSSM timestamps are labelled; secondary candidate scores stay in details; raw LFPS duration and baseline direction are easier to scan. C5 JSON and scoring are unchanged. |
+| DEMO-V5 | Instrument color semantics | PASS for presentation layer on the known pair | Graphite surfaces, instrument blue, investigation amber, and integrity green now have distinct meanings; LFPS, LTSSM, and LINK_CMD use separate timeline colors. Layout, C5 JSON, and scoring are unchanged. |
+| DEMO-V6 | Plain-language report copy | PASS for presentation layer on the known pair | The first screen leads with plain-language findings and next action; protocol names remain as secondary labels; p95, ranking details, and technical limits stay in expandable details. C5 JSON and scoring are unchanged. |
+| DEMO-V7 | Capability/method/limit copy | PASS for presentation layer on the known pair | The report separates what the tool can do, how it works, and what it cannot claim; the Hero uses direct LFPS wording and secondary candidate ranking data stays hidden by default. C5 JSON and scoring are unchanged. |
 | M3 | Transfer reconstruction | Not started | Control/bulk/interrupt/isochronous transfer grouping replayed and checked. |
 | M4 | Enumeration analyzer | Not started | Reset-to-configuration sequence checks with bounded findings. |
 | M5 | Large-trace performance validation | Not started | Trace size, event count, runtime, peak memory, and output size recorded. |
@@ -296,6 +307,23 @@ Windows PowerShell 5.1 process. Add-Type, script parsing, existing-output
 refusal, full extraction, comparison, and source-integrity acceptance all
 passed. The Windows PowerShell comparator's higher resource cost remains an
 observation for M5, not a correctness failure.
+
+## DEMO-2 integrity closure
+
+The runner now records SHA-256, size, UTC mtime, and read-only state for both
+source traces and both disposable working copies. The run fails before
+comparison when any source changes, either working copy changes, or either
+working copy loses its read-only state. The Windows PowerShell 5.1
+qualification harness asserts the same working-copy evidence in the emitted
+`source-integrity.json`.
+
+The controlled closure run is recorded in
+`docs/demo-2-integrity-closure-results.md`. It passed on the known local
+PASS/FAIL pair with source evidence integrity, working-copy integrity, and
+the combined `analysis_input_integrity` all true. This closes the current
+working-copy integrity hold for the selected source-preserving runner mode;
+it does not claim universal immutability across traces, LeCroy versions,
+Windows policies, or execution contexts.
 
 ## G0-C1 state authority correction
 

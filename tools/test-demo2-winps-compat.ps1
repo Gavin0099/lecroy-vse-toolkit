@@ -112,7 +112,7 @@ if (-not $refusalPassed) {
     throw "Existing-output refusal check failed. Exit=$refusalExitCode`n$refusalText"
 }
 
-$runnerLog = $outputPath + '.windows-powershell-run.log'
+$runnerLog = Join-Path $outputPath 'windows-powershell-run.log'
 $savedErrorActionPreference = $ErrorActionPreference
 $ErrorActionPreference = 'Continue'
 try {
@@ -152,6 +152,16 @@ $comparison = Get-Content -LiteralPath $comparisonPath -Raw | ConvertFrom-Json
 if (-not $integrity.source_evidence_integrity) {
     throw 'DEMO-2 source evidence integrity was not PASS.'
 }
+if (-not $integrity.working_copy_integrity -or
+    -not $integrity.analysis_input_integrity -or
+    -not $integrity.working_copy.pass.unchanged -or
+    -not $integrity.working_copy.fail.unchanged -or
+    -not $integrity.working_copy.pass.before.is_readonly -or
+    -not $integrity.working_copy.pass.after.is_readonly -or
+    -not $integrity.working_copy.fail.before.is_readonly -or
+    -not $integrity.working_copy.fail.after.is_readonly) {
+    throw 'DEMO-2 working-copy integrity was not PASS.'
+}
 
 $compatibility = [ordered]@{
     status = 'PASS'
@@ -169,6 +179,8 @@ $compatibility = [ordered]@{
     source_evidence_integrity = $integrity.source_evidence_integrity
     anchor_status = $comparison.anchor.status
     candidate_status = $comparison.candidate_divergence.status
+    working_copy_integrity = $integrity.working_copy_integrity
+    analysis_input_integrity = $integrity.analysis_input_integrity
     output = $outputPath
     runner_log = $runnerLog
 }

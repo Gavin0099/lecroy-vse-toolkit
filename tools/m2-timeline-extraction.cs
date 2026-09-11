@@ -18,6 +18,9 @@ public sealed class M2TimelineEvent
 {
     public string EventClass { get; set; }
     public long Index { get; set; }
+    public long TimestampSeconds { get; set; }
+    public long TimestampNanoseconds { get; set; }
+    public long TimestampNs { get; set; }
     public string Timestamp { get; set; }
     public string Type { get; set; }
     public M2TimelineRaw Raw { get; set; }
@@ -131,9 +134,9 @@ public sealed class M2TimelineEventSink : IM2TimelineEngineEvents
             foreach (string record in records)
             {
                 string[] fields = record.Split('|');
-                if (fields.Length != 10)
+                if (fields.Length != 12)
                 {
-                    Error = "timeline record did not contain 10 fields";
+                    Error = "timeline record did not contain 12 fields";
                     return;
                 }
 
@@ -142,21 +145,43 @@ public sealed class M2TimelineEventSink : IM2TimelineEngineEvents
                 {
                     EventClass = eventClass,
                     Index = Convert.ToInt64(fields[1].Trim()),
-                    Timestamp = fields[2].Trim(),
-                    Type = fields[3].Trim(),
+                    TimestampSeconds = Convert.ToInt64(fields[2].Trim()),
+                    TimestampNanoseconds = Convert.ToInt64(fields[3].Trim()),
+                    Timestamp = fields[4].Trim(),
+                    Type = fields[5].Trim(),
                     Raw = null
                 };
+
+                if (timelineEvent.TimestampSeconds < 0 ||
+                    timelineEvent.TimestampNanoseconds < 0 ||
+                    timelineEvent.TimestampNanoseconds >= 1000000000L)
+                {
+                    Error = "timeline timestamp components were outside the expected range";
+                    return;
+                }
+
+                try
+                {
+                    timelineEvent.TimestampNs = checked(
+                        timelineEvent.TimestampSeconds * 1000000000L +
+                        timelineEvent.TimestampNanoseconds);
+                }
+                catch (OverflowException)
+                {
+                    Error = "timeline timestamp nanoseconds overflowed Int64";
+                    return;
+                }
 
                 if (eventClass == "LFPS")
                 {
                     timelineEvent.Raw = new M2TimelineRaw
                     {
-                        LfpsType = Convert.ToInt64(fields[4].Trim()),
-                        DurationNs = Convert.ToInt64(fields[5].Trim()),
-                        DurationSec = Convert.ToInt64(fields[6].Trim()),
-                        DurationRemainderNs = Convert.ToInt64(fields[7].Trim()),
-                        PatternType = Convert.ToInt64(fields[8].Trim()),
-                        StartsPattern = Convert.ToInt64(fields[9].Trim())
+                        LfpsType = Convert.ToInt64(fields[6].Trim()),
+                        DurationNs = Convert.ToInt64(fields[7].Trim()),
+                        DurationSec = Convert.ToInt64(fields[8].Trim()),
+                        DurationRemainderNs = Convert.ToInt64(fields[9].Trim()),
+                        PatternType = Convert.ToInt64(fields[10].Trim()),
+                        StartsPattern = Convert.ToInt64(fields[11].Trim())
                     };
                 }
                 else if (eventClass != "LINK_CMD" && eventClass != "LTSSM_STATE")

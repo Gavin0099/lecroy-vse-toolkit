@@ -49,6 +49,7 @@ function Get-FileSnapshot {
         sha256 = (Get-FileHash -LiteralPath $item.FullName -Algorithm SHA256).Hash
         size = $item.Length
         mtime_utc = $item.LastWriteTimeUtc.ToString('o')
+        is_readonly = [bool]$item.IsReadOnly
     }
 }
 
@@ -62,6 +63,19 @@ function Test-SnapshotUnchanged {
         $Before.sha256 -eq $After.sha256 -and
         $Before.size -eq $After.size -and
         $Before.mtime_utc -eq $After.mtime_utc
+    )
+}
+
+function Test-WorkingCopyIntegrity {
+    param(
+        [Parameter(Mandatory = $true)] $Before,
+        [Parameter(Mandatory = $true)] $After
+    )
+
+    return (
+        (Test-SnapshotUnchanged -Before $Before -After $After) -and
+        $Before.is_readonly -and
+        $After.is_readonly
     )
 }
 
@@ -164,6 +178,8 @@ $passWorkingPath = Join-Path $sandboxDirectory (Join-Path 'pass' ([System.IO.Pat
 $failWorkingPath = Join-Path $sandboxDirectory (Join-Path 'fail' ([System.IO.Path]::GetFileName($failSourcePath)))
 Set-ReadOnlyWorkingCopy -SourcePath $passSourcePath -DestinationPath $passWorkingPath
 Set-ReadOnlyWorkingCopy -SourcePath $failSourcePath -DestinationPath $failWorkingPath
+$passWorkingBefore = Get-FileSnapshot -Path $passWorkingPath
+$failWorkingBefore = Get-FileSnapshot -Path $failWorkingPath
 
 $passTimelinePath = Join-Path $outputDirectory 'pass-timeline.json'
 $failTimelinePath = Join-Path $outputDirectory 'fail-timeline.json'
@@ -183,8 +199,16 @@ $failTimeline = Invoke-TimelineExtraction `
 
 $passAfter = Get-FileSnapshot -Path $passSourcePath
 $failAfter = Get-FileSnapshot -Path $failSourcePath
+$passWorkingAfter = Get-FileSnapshot -Path $passWorkingPath
+$failWorkingAfter = Get-FileSnapshot -Path $failWorkingPath
 $passSourceUnchanged = Test-SnapshotUnchanged -Before $passBefore -After $passAfter
 $failSourceUnchanged = Test-SnapshotUnchanged -Before $failBefore -After $failAfter
+$passWorkingUnchanged = Test-WorkingCopyIntegrity `
+    -Before $passWorkingBefore `
+    -After $passWorkingAfter
+$failWorkingUnchanged = Test-WorkingCopyIntegrity `
+    -Before $failWorkingBefore `
+    -After $failWorkingAfter
 
 $sourceIntegrity = [ordered]@{
     pass = [ordered]@{
@@ -197,16 +221,35 @@ $sourceIntegrity = [ordered]@{
         after = $failAfter
         unchanged = $failSourceUnchanged
     }
+    working_copy = [ordered]@{
+        pass = [ordered]@{
+            before = $passWorkingBefore
+            after = $passWorkingAfter
+            unchanged = $passWorkingUnchanged
+        }
+        fail = [ordered]@{
+            before = $failWorkingBefore
+            after = $failWorkingAfter
+            unchanged = $failWorkingUnchanged
+        }
+    }
     source_evidence_integrity = ($passSourceUnchanged -and $failSourceUnchanged)
-    claim_boundary = 'Source evidence integrity is qualified for this run; universal immutability is not claimed.'
+    working_copy_integrity = ($passWorkingUnchanged -and $failWorkingUnchanged)
+    analysis_input_integrity = (
+        $passSourceUnchanged -and
+        $failSourceUnchanged -and
+        $passWorkingUnchanged -and
+        $failWorkingUnchanged
+    )
+    claim_boundary = 'Source evidence and disposable working-copy integrity are qualified for this run; universal immutability is not claimed.'
 }
 [System.IO.File]::WriteAllText(
     $sourceIntegrityPath,
     (($sourceIntegrity | ConvertTo-Json -Depth 10) + [Environment]::NewLine),
     [System.Text.UTF8Encoding]::new($false))
 
-if (-not $sourceIntegrity.source_evidence_integrity) {
-    throw "Source evidence integrity failed. See $sourceIntegrityPath"
+if (-not $sourceIntegrity.analysis_input_integrity) {
+    throw "Analysis input integrity failed. See $sourceIntegrityPath"
 }
 
 $comparatorPath = Join-Path $PSScriptRoot 'tools\compare-m2-timelines.ps1'
@@ -269,7 +312,13 @@ $reportLines.Add('## Source integrity')
 $reportLines.Add('')
 $reportLines.Add("- PASS source unchanged: $($passSourceUnchanged)")
 $reportLines.Add("- FAIL source unchanged: $($failSourceUnchanged)")
-$reportLines.Add('- Working copies: read-only')
+$reportLines.Add('')
+$reportLines.Add('## Working-copy integrity')
+$reportLines.Add('')
+$reportLines.Add("- PASS working copy read-only before/after: $($passWorkingBefore.is_readonly) / $($passWorkingAfter.is_readonly)")
+$reportLines.Add("- FAIL working copy read-only before/after: $($failWorkingBefore.is_readonly) / $($failWorkingAfter.is_readonly)")
+$reportLines.Add("- PASS working copy unchanged: $($passWorkingUnchanged)")
+$reportLines.Add("- FAIL working copy unchanged: $($failWorkingUnchanged)")
 $reportLines.Add('')
 $reportLines.Add('## Claim boundary')
 $reportLines.Add('')
@@ -293,5 +342,7 @@ $result = [ordered]@{
     candidate_status = $candidate.status
     anchor_status = $anchor.status
     source_evidence_integrity = $sourceIntegrity.source_evidence_integrity
+    working_copy_integrity = $sourceIntegrity.working_copy_integrity
+    analysis_input_integrity = $sourceIntegrity.analysis_input_integrity
 }
 $result | ConvertTo-Json -Depth 10 -Compress

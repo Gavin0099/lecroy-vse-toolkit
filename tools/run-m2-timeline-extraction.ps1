@@ -134,10 +134,13 @@ $summaryCountsMatch = (
 
 $eventFieldsValid = $false
 $chronologicalOrderValid = $false
+$timestampComponentsValid = $false
 if ($artifact.events.Count -gt 0) {
     $eventFieldsValid = $true
     $chronologicalOrderValid = $true
+    $timestampComponentsValid = $true
     $previousIndex = -1
+    $previousTimestampNs = -1
 
     foreach ($event in $artifact.events) {
         if ($event.Index -lt 0 -or
@@ -147,6 +150,20 @@ if ($artifact.events.Count -gt 0) {
             ($event.EventClass -eq 'LTSSM_STATE' -and $event.Type -ne '_USB3_LTSSM_STATE') -or
             ($event.EventClass -eq 'LFPS' -and $event.Type -ne '_USB3_LFPS')) {
             $eventFieldsValid = $false
+            $chronologicalOrderValid = $false
+            break
+        }
+
+        if ($event.TimestampSeconds -lt 0 -or
+            $event.TimestampNanoseconds -lt 0 -or
+            $event.TimestampNanoseconds -ge 1000000000 -or
+            $event.TimestampNs -lt 0) {
+            $timestampComponentsValid = $false
+            $chronologicalOrderValid = $false
+            break
+        }
+
+        if ($event.TimestampNs -lt $previousTimestampNs) {
             $chronologicalOrderValid = $false
             break
         }
@@ -169,6 +186,7 @@ if ($artifact.events.Count -gt 0) {
         }
 
         $previousIndex = $event.Index
+        $previousTimestampNs = $event.TimestampNs
     }
 }
 
@@ -180,6 +198,7 @@ $accepted = (
     $readBackValid -and
     $readBackMatch -and
     $eventFieldsValid -and
+    $timestampComponentsValid -and
     $chronologicalOrderValid -and
     $traceIntegrityUnchanged
 )
@@ -197,6 +216,7 @@ $accepted = (
     declared_total_count = $result.DeclaredTotalCount
     target_event_count = $result.Events.Count
     summary_counts_match = $summaryCountsMatch
+    timestamp_components_valid = $timestampComponentsValid
     chronological_order_valid = $chronologicalOrderValid
     json_exists = Test-Path -LiteralPath $OutputPath -PathType Leaf
     valid_json = $readBackValid

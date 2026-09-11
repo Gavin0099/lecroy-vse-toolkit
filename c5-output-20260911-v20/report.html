@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeCroy Trace &#21021;&#27493;&#20998;&#26512;</title>
+<style>
+:root { color-scheme:dark; --bg:#0D1117; --panel:#161B22; --panel-2:#1C232D; --line:#30363D; --text:#F0F3F6; --muted:#8B949E; --accent:#58A6FF; --warn:#F0A33A; --success:#3FB950; --danger:#F47067; --blue:#58A6FF; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--text); font:15px/1.55 "Segoe UI", "Microsoft JhengHei", system-ui, sans-serif; }
+a { color:var(--blue); }
+a:focus-visible, summary:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+.shell { max-width:1040px; margin:0 auto; padding:32px 22px 64px; }
+.eyebrow { color:var(--accent); font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
+h1 { margin:6px 0 4px; font-size:clamp(28px,5vw,46px); line-height:1.08; }
+h2 { margin:0 0 16px; font-size:22px; }
+h3 { margin:0; font-size:18px; }
+p { color:var(--muted); }
+.hero, .panel, .episode { background:var(--panel); border:1px solid var(--line); border-radius:16px; }
+.hero { padding:28px; display:grid; gap:22px; }
+.hero-label { color:var(--muted); margin:0; }
+.state-line { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:18px; }
+.badge { color:#251A05; background:var(--warn); border-radius:999px; padding:5px 10px; font-size:12px; font-weight:800; letter-spacing:.05em; }
+.boundary { color:var(--warn); font-weight:650; }
+.priority-label { margin:0; color:var(--muted); font-size:13px; text-transform:uppercase; letter-spacing:.08em; }
+.priority-time { margin:7px 0 0; color:var(--text); font:650 clamp(25px,4vw,42px)/1.1 ui-monospace, SFMono-Regular, Consolas, monospace; }
+.priority-meta { color:var(--muted); font:13px ui-monospace, SFMono-Regular, Consolas, monospace; margin-top:10px; }
+.action { border-left:3px solid var(--warn); padding:12px 14px; background:rgba(240,163,58,.08); }
+.action strong { color:var(--text); }
+.observation-summary { border-left:3px solid var(--blue); padding:12px 14px; background:rgba(88,166,255,.08); }
+.observation-summary strong { color:var(--text); }
+.observation-summary p { margin:6px 0 0; color:var(--text); }
+.observe { border-top:1px solid var(--line); padding-top:18px; }
+.observe ul, .reasons { margin:10px 0 0; padding-left:22px; color:var(--muted); }
+.observe li + li, .reasons li + li { margin-top:4px; }
+.section { margin-top:28px; }
+.panel { padding:22px; }
+.comparison table { margin-top:8px; }
+table { width:100%; border-collapse:collapse; }
+th, td { border-bottom:1px solid var(--line); padding:11px 10px; text-align:right; vertical-align:top; }
+th:first-child, td:first-child { text-align:left; }
+th { color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.05em; }
+.comparison td:last-child { color:var(--warn); }
+.small { color:var(--muted); font-size:13px; }
+.timeline-scale { display:flex; justify-content:space-between; gap:12px; color:var(--muted); font:13px ui-monospace, SFMono-Regular, Consolas, monospace; }
+.timeline-rail { height:14px; margin:12px 0 18px; padding:3px; background:#253342; border-radius:99px; }
+.timeline-range { display:block; height:100%; width:100%; background:var(--warn); border-radius:99px; }
+.timeline-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.timeline-stat { background:var(--panel-2); border-radius:10px; padding:12px; }
+.timeline-stat span { display:block; color:var(--muted); font-size:12px; }
+.timeline-stat strong { display:block; margin-top:3px; font:650 19px ui-monospace, SFMono-Regular, Consolas, monospace; }
+.evidence-svg { display:block; width:100%; height:auto; min-height:205px; background:#0a0f15; border:1px solid var(--line); border-radius:10px; }
+.other-list { display:grid; gap:10px; }
+.other-episode { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:15px 17px; }
+.other-head { display:flex; justify-content:space-between; gap:12px; align-items:baseline; }
+.other-time { color:var(--text); font:14px ui-monospace, SFMono-Regular, Consolas, monospace; margin-top:6px; }
+.rank-score { color:var(--muted); font:13px ui-monospace, SFMono-Regular, Consolas, monospace; white-space:nowrap; }
+.details-grid { display:grid; gap:12px; }
+details { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+summary { cursor:pointer; color:var(--text); font-weight:650; }
+details[open] summary { margin-bottom:14px; }
+.raw-table { overflow:auto; }
+.warning { color:var(--warn); }
+.status { color:var(--success); font-weight:700; }
+footer { margin-top:30px; color:var(--muted); font-size:12px; }
+@media (max-width:700px) { .shell { padding:22px 14px 44px; } .hero, .panel, .episode { border-radius:12px; padding:18px; } .timeline-stats { grid-template-columns:1fr; } .other-head { align-items:flex-start; flex-direction:column; gap:5px; } }
+@media (prefers-reduced-motion:reduce) { *, *::before, *::after { scroll-behavior:auto !important; transition:none !important; animation:none !important; } }
+</style>
+</head><body><main class="shell">
+<section class="hero" aria-labelledby="page-title">
+<div><div class="eyebrow">FAIL TRACE &#21021;&#27493;&#20998;&#26512;</div><h1 id="page-title">LeCroy Trace &#21021;&#27493;&#20998;&#26512;</h1>
+<p class='hero-label'>FAIL trace&#65306;<code>dp1 hub detect SSD fail-2.usb</code><br>&#27491;&#24120; PASS &#32000;&#37636;&#65306;<code>dp1 hub detect SSD Ex power ok-4.usb</code></p>
+<div class="state-line"><span class="badge">&#20540;&#24471;&#20778;&#20808;&#27298;&#26597;&#30340;&#21312;&#27573;</span><span class="boundary">&#23578;&#26410;&#30906;&#35469;&#30495;&#27491;&#21407;&#22240;</span></div></div>
+<div><p class="priority-label">&#26368;&#20540;&#24471;&#20808;&#30475;&#30340;&#20301;&#32622;</p>
+<div class='priority-time'>21.786 sec &mdash; 21.806 sec</div><div class='priority-meta'>20 ms</div>
+<div class='action'>&#24314;&#35696;&#22238; LeCroy GUI &#26597;&#30475; FAIL trace &#30340; <strong>21.786 sec &mdash; 21.806 sec</strong>&#12290;</div>
+<div class='observation-summary'><strong>&#35264;&#23519;&#25688;&#35201;</strong><p>&#36889;&#19968;&#27573;&#21644;&#27491;&#24120;&#32000;&#37636;&#30340;&#34892;&#28858;&#24046;&#30064;&#24456;&#22823;&#12290;20 ms &#20839;&#24190;&#20046;&#37117;&#26159; LFPS &#35338;&#34399;&#65292;&#36899;&#32218;&#29376;&#24907;&#35722;&#21270;&#20102; 6 &#27425;&#65292;&#32780;&#19988;&#27794;&#26377;&#30475;&#21040; LINK_CMD&#12290;</p></div>
+<div class='observe'><strong>&#20027;&#35201;&#35264;&#23519;</strong><ul><li>&#36899;&#32218;&#35338;&#34399;&#27604;&#20363;&#65288;LFPS&#65289;&#65306;99.9 %</li><li>&#36899;&#32218;&#29376;&#24907;&#35722;&#21270;&#65288;LTSSM&#65289;&#65306;6 &#27425;</li><li>LINK_CMD &#21629;&#20196;&#65306;0 &#27425;</li></ul></div>
+</section>
+<section class='section panel comparison' aria-labelledby='why-title'><h2 id='why-title'>&#21644;&#27491;&#24120;&#32000;&#37636;&#30456;&#27604;</h2><p class='small'>&#20197;&#19979;&#27604;&#36611;&#21839;&#38988;&#21312;&#27573;&#21644;&#27491;&#24120; PASS &#32000;&#37636;&#65292;&#24171;&#21161;&#20320;&#27770;&#23450;&#26159;&#21542;&#22238; GUI &#26597;&#30475;&#12290;</p><table><thead><tr><th>&#35264;&#23519;&#38917;&#30446;</th><th>&#21839;&#38988;&#21312;&#27573; 20 ms</th><th>&#27491;&#24120;&#32000;&#37636;&#21443;&#32771;&#20540;</th><th>&#21028;&#26039;</th></tr></thead><tbody>
+<tr><td>&#36899;&#32218;&#35338;&#34399;&#27604;&#20363;&#65288;LFPS&#65289;</td><td>99.9 %</td><td>0.0 %</td><td>&#8593; &#24456;&#19981;&#23563;&#24120;</td></tr>
+<tr><td>&#36899;&#32218;&#35338;&#34399;&#25976;&#37327;&#65288;LFPS&#65289;</td><td>5,377</td><td>0</td><td>&#8593; &#24456;&#19981;&#23563;&#24120;</td></tr>
+<tr><td>&#36899;&#32218;&#29376;&#24907;&#35722;&#21270;&#65288;LTSSM&#65289;</td><td>6</td><td>0</td><td>&#8593; &#24456;&#19981;&#23563;&#24120;</td></tr>
+<tr><td>LINK_CMD &#21629;&#20196;</td><td>0</td><td>160</td><td>&#8595; &#26126;&#39023;&#20559;&#23569;</td></tr>
+</tbody></table><p class='small'>&#27491;&#24120;&#32000;&#37636;&#21443;&#32771;&#20540;&#65306;&#25226;&#27491;&#24120; PASS trace &#20999;&#25104;&#24456;&#22810;&#20491; 10 ms &#23567;&#27573;&#65292;&#30475;&#30475;&#19968;&#33324;&#27491;&#24120;&#24773;&#27841;&#19979;&#36889;&#20123;&#25976;&#20540;&#22823;&#32004;&#26371;&#26159;&#22810;&#23569;&#12290;&#35443;&#32048;&#27604;&#36611;&#26041;&#24335;&#35531;&#30475;&#20998;&#26512;&#32048;&#31680;&#12290;</p></section>
+<section class="section panel" aria-labelledby="timeline-title"><h2 id="timeline-title">&#36889;&#27573;&#26178;&#38291;&#30332;&#29983;&#20102;&#20160;&#40636;</h2>
+<svg class='evidence-svg' viewBox='0 0 1000 205' role='img' aria-label='Protocol event timeline'>
+<line x1='145' y1='24' x2='980' y2='24' stroke='#2b3b4c' stroke-width='1'/>
+<text x='145' y='16' fill='#9fb0c0' font-size='12'>21.786067664 sec</text>
+<text x='562.5' y='16' text-anchor='middle' fill='#9fb0c0' font-size='12'>21.796067664 sec</text>
+<text x='980' y='16' text-anchor='end' fill='#9fb0c0' font-size='12'>21.806067664 sec</text>
+<text x='10' y='62' fill='#edf4fa' font-size='13'>&#36899;&#32218;&#35338;&#34399;&#65288;LFPS&#65289;&#23494;&#24230;</text><line x1='145' y1='62' x2='980' y2='62' stroke='#253342' stroke-width='8' stroke-linecap='round'/>
+<text x='10' y='112' fill='#edf4fa' font-size='13'>&#36899;&#32218;&#29376;&#24907;&#65288;LTSSM&#65289;</text><line x1='145' y1='112' x2='980' y2='112' stroke='#253342' stroke-width='8' stroke-linecap='round'/>
+<text x='10' y='162' fill='#edf4fa' font-size='13'>LINK_CMD &#21629;&#20196;</text><line x1='145' y1='162' x2='980' y2='162' stroke='#253342' stroke-width='8' stroke-linecap='round'/>
+<rect x='171.09' y='57.79' width='4.42' height='8.42' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 9</title></rect>
+<rect x='176.31' y='56.98' width='4.42' height='10.04' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 15</title></rect>
+<rect x='181.53' y='56.98' width='4.42' height='10.04' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 15</title></rect>
+<rect x='186.75' y='57.12' width='4.42' height='9.77' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 14</title></rect>
+<rect x='191.97' y='56.98' width='4.42' height='10.04' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 15</title></rect>
+<rect x='197.19' y='56.98' width='4.42' height='10.04' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 15</title></rect>
+<rect x='202.41' y='57.12' width='4.42' height='9.77' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 14</title></rect>
+<rect x='207.63' y='56.98' width='4.42' height='10.04' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 15</title></rect>
+<rect x='212.84' y='56.98' width='4.42' height='10.04' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 15</title></rect>
+<rect x='218.06' y='57.12' width='4.42' height='9.77' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 14</title></rect>
+<rect x='223.28' y='56.98' width='4.42' height='10.04' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 15</title></rect>
+<rect x='228.50' y='56.98' width='4.42' height='10.04' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 15</title></rect>
+<rect x='233.72' y='57.12' width='4.42' height='9.77' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 14</title></rect>
+<rect x='238.94' y='56.98' width='4.42' height='10.04' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 15</title></rect>
+<rect x='244.16' y='56.98' width='4.42' height='10.04' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 15</title></rect>
+<rect x='249.38' y='57.12' width='4.42' height='9.77' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 14</title></rect>
+<rect x='254.59' y='56.98' width='4.42' height='10.04' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 15</title></rect>
+<rect x='259.81' y='56.98' width='4.42' height='10.04' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 15</title></rect>
+<rect x='265.03' y='56.98' width='4.42' height='10.04' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 15</title></rect>
+<rect x='270.25' y='56.04' width='4.42' height='11.92' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 22</title></rect>
+<rect x='275.47' y='55.63' width='4.42' height='12.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 25</title></rect>
+<rect x='280.69' y='56.31' width='4.42' height='11.38' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 20</title></rect>
+<rect x='285.91' y='52.67' width='4.42' height='18.65' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 47</title></rect>
+<rect x='291.13' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='296.34' y='52.27' width='4.42' height='19.46' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 50</title></rect>
+<rect x='301.56' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='306.78' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='312.00' y='52.27' width='4.42' height='19.46' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 50</title></rect>
+<rect x='317.22' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='322.44' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='327.66' y='52.27' width='4.42' height='19.46' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 50</title></rect>
+<rect x='332.88' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='338.09' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='343.31' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='348.53' y='52.27' width='4.42' height='19.46' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 50</title></rect>
+<rect x='353.75' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='358.97' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='364.19' y='52.27' width='4.42' height='19.46' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 50</title></rect>
+<rect x='369.41' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='374.63' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='379.84' y='52.27' width='4.42' height='19.46' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 50</title></rect>
+<rect x='385.06' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='390.28' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='395.50' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='400.72' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='405.94' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='411.16' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='416.38' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='421.59' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='426.81' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='432.03' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='437.25' y='52.27' width='4.42' height='19.46' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 50</title></rect>
+<rect x='442.47' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='447.69' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='452.91' y='52.27' width='4.42' height='19.46' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 50</title></rect>
+<rect x='458.13' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='463.34' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='468.56' y='52.27' width='4.42' height='19.46' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 50</title></rect>
+<rect x='473.78' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='479.00' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='484.22' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='489.44' y='52.27' width='4.42' height='19.46' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 50</title></rect>
+<rect x='494.66' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='499.88' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='505.09' y='52.27' width='4.42' height='19.46' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 50</title></rect>
+<rect x='510.31' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='515.53' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='520.75' y='52.27' width='4.42' height='19.46' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 50</title></rect>
+<rect x='525.97' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='531.19' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='536.41' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='541.63' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='546.84' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='552.06' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='557.28' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='562.50' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='567.72' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='572.94' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='578.16' y='52.27' width='4.42' height='19.46' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 50</title></rect>
+<rect x='583.38' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='588.59' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='593.81' y='52.27' width='4.42' height='19.46' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 50</title></rect>
+<rect x='599.03' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='604.25' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='609.47' y='52.27' width='4.42' height='19.46' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 50</title></rect>
+<rect x='614.69' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='619.91' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='625.13' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='630.34' y='52.27' width='4.42' height='19.46' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 50</title></rect>
+<rect x='635.56' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='640.78' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='646.00' y='52.27' width='4.42' height='19.46' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 50</title></rect>
+<rect x='651.22' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='656.44' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='661.66' y='52.27' width='4.42' height='19.46' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 50</title></rect>
+<rect x='666.88' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='672.09' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='677.31' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='682.53' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='687.75' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='692.97' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='698.19' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='703.41' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='708.63' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='713.84' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='719.06' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='724.28' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='729.50' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='734.72' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='739.94' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='745.16' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='750.38' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='755.59' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='760.81' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='766.03' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='771.25' y='52.27' width='4.42' height='19.46' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 50</title></rect>
+<rect x='776.47' y='52.13' width='4.42' height='19.73' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 51</title></rect>
+<rect x='781.69' y='52.00' width='4.42' height='20.00' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 52</title></rect>
+<rect x='786.91' y='56.98' width='4.42' height='10.04' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 15</title></rect>
+<rect x='933.03' y='57.52' width='4.42' height='8.96' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 11</title></rect>
+<rect x='938.25' y='57.12' width='4.42' height='9.77' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 14</title></rect>
+<rect x='943.47' y='57.12' width='4.42' height='9.77' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 14</title></rect>
+<rect x='948.69' y='56.98' width='4.42' height='10.04' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 15</title></rect>
+<rect x='953.91' y='57.12' width='4.42' height='9.77' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 14</title></rect>
+<rect x='959.13' y='57.12' width='4.42' height='9.77' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 14</title></rect>
+<rect x='964.34' y='57.12' width='4.42' height='9.77' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 14</title></rect>
+<rect x='969.56' y='57.12' width='4.42' height='9.77' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 14</title></rect>
+<rect x='974.78' y='56.98' width='4.42' height='10.04' rx='1' fill='#58A6FF' opacity='0.9'><title>LFPS density bin: 15</title></rect>
+<circle cx='173.57' cy='112' r='5' fill='#F0A33A'><title>LTSSM event at 21.786751888 sec</title></circle>
+<text x='173.57' y='94' text-anchor='middle' fill='#F0A33A' font-size='11'>21.786751888 sec</text>
+<circle cx='272.60' cy='112' r='5' fill='#F0A33A'><title>LTSSM event at 21.789123944 sec</title></circle>
+<circle cx='276.99' cy='112' r='5' fill='#F0A33A'><title>LTSSM event at 21.789229176 sec</title></circle>
+<circle cx='278.77' cy='112' r='5' fill='#F0A33A'><title>LTSSM event at 21.789271672 sec</title></circle>
+<circle cx='286.40' cy='112' r='5' fill='#F0A33A'><title>LTSSM event at 21.789454560 sec</title></circle>
+<text x='286.40' y='94' text-anchor='middle' fill='#F0A33A' font-size='11'>21.789454560 sec</text>
+<circle cx='788.18' cy='112' r='5' fill='#F0A33A'><title>LTSSM event at 21.801473168 sec</title></circle>
+<text x='788.18' y='94' text-anchor='middle' fill='#F0A33A' font-size='11'>21.801473168 sec</text>
+<text x='562.5' y='166' text-anchor='middle' fill='#9fb0c0' font-size='12'>&#36889;&#27573;&#27794;&#26377;&#35264;&#23519;&#21040; LINK_CMD</text>
+</svg>
+
+<p class='small'>&#22294;&#20363;&#65306;&#34253;&#33394;&#36234;&#23494;&#65292;&#34920;&#31034;&#35442;&#26178;&#38291;&#40670;&#20986;&#29694;&#36234;&#22810;&#36899;&#32218;&#35338;&#34399;&#65288;LFPS&#65289;&#65307;&#27224;&#33394;&#22291;&#40670;&#20195;&#34920;&#36899;&#32218;&#29376;&#24907;&#65288;LTSSM&#65289;&#30332;&#29983;&#35722;&#21270;&#12290;&#36889;&#24373;&#22294;&#20351;&#29992; FAIL trace &#20013;&#30340; 5,383 &#31558;&#23526;&#38555;&#35352;&#37636;&#65292;&#23565;&#25033;&#21040;&#19978;&#26041;&#30340;&#21839;&#38988;&#21312;&#27573;&#12290;</p>
+</section>
+<section class="section" aria-labelledby="other-title"><h2 id="other-title">&#21478;&#19968;&#20491;&#20540;&#24471;&#27298;&#26597;&#30340;&#21312;&#27573;</h2><div class="other-list">
+<article class='other-episode'><div class='other-head'><h3>&#21478;&#19968;&#20491;&#21312;&#27573;</h3></div><div class='other-time'>13.996067664 sec &mdash; 14.006067664 sec</div><details><summary>&#26597;&#30475;&#36889;&#20491;&#21312;&#27573;</summary><p class='small'>&#36889;&#20491;&#21312;&#27573;&#21644;&#27491;&#24120; PASS &#32000;&#37636;&#30456;&#27604;&#65306;</p><ul class='reasons'>
+<li>&#36899;&#32218;&#35338;&#34399;&#65288;LFPS&#65289;&#27604;&#27491;&#24120;&#32000;&#37636;&#22810;&#12290;</li>
+<li>&#20986;&#29694;&#27491;&#24120;&#32000;&#37636;&#24456;&#23569;&#35211;&#12289;&#29978;&#33267;&#27794;&#20986;&#29694;&#36942;&#30340;&#36899;&#32218;&#35338;&#34399;&#29305;&#24501;&#65288;LFPS&#65289;&#12290;</li>
+<li>&#36899;&#32218;&#29376;&#24907;&#35722;&#21270;&#65288;LTSSM&#65289;&#27604;&#27491;&#24120;&#32000;&#37636;&#38971;&#32321;&#12290;</li>
+<li>LINK_CMD &#21629;&#20196;&#27604;&#27491;&#24120;&#32000;&#37636;&#23569;&#12290;</li>
+</ul><details class='technical-detail'><summary>&#35443;&#32048;&#36039;&#26009;</summary><p class='small'>&#25490;&#24207;&#20998;&#25976;&#65306;0.846&#65288;&#21482;&#29992;&#20358;&#25490;&#21015;&#38918;&#24207;&#65292;&#19981;&#20195;&#34920;&#24037;&#20855;&#26377;&#22810;&#30906;&#23450;&#65289;&#12290;<br>C5 &#26178;&#38291;&#21312;&#27573;&#32232;&#34399;&#65306;#2</p></details></details></article>
+</div></section>
+<section class="section details-grid">
+<details><summary>&#20998;&#26512;&#32048;&#31680;</summary>
+<p class='small'>&#20027;&#35201;&#21312;&#27573;&#65306;<code>21.786 sec &mdash; 21.806 sec</code><br>&#31934;&#30906;&#26178;&#38291;&#65288;ns&#65289;&#65306;<code>21786067664 &mdash; 21806067664</code><br>C5 &#26178;&#38291;&#21312;&#27573;&#32232;&#34399;&#65306;<code>#1, #3</code><br>&#25490;&#24207;&#20998;&#25976;&#65288;&#21482;&#20379;&#25490;&#24207;&#65289;&#65306;<code>#1 = 0.849, #3 = 0.812</code><br>&#21312;&#27573;&#20839;&#23526;&#38555;&#35352;&#37636;&#25976;&#65306;<code>5,383</code><br>&#27604;&#36611;&#26041;&#24335;&#65306;PASS trace &#20998;&#25104;&#22810;&#20491; 10 ms &#21312;&#27573;&#65292;&#20351;&#29992;&#27491;&#24120;&#21312;&#27573;&#30340;&#32113;&#35336;&#20998;&#24067;&#20316;&#28858;&#21443;&#32771;&#65307;&#34920;&#26684;&#25505;&#29992; p95&#12290;</p>
+<p class='small'>FAIL trace&#65306;<code>dp1 hub detect SSD fail-2.usb</code><br>&#27491;&#24120; PASS trace&#65306;<code>dp1 hub detect SSD Ex power ok-4.usb</code><br>&#20998;&#26512;&#29986;&#29289;&#65306;<code>suspicious-regions.json</code></p>
+</details>
+<details><summary>&#25972;&#20221; PASS / FAIL &#35352;&#37636;&#32317;&#25976;</summary><p class="small">&#21482;&#29992;&#20358;&#35264;&#23519;&#25976;&#37327;&#24046;&#30064;&#65292;&#19981;&#20195;&#34920;&#25925;&#38556;&#21407;&#22240;&#12290;</p><table><thead><tr><th>&#35352;&#37636;&#39006;&#22411;</th><th>PASS</th><th>FAIL</th></tr></thead><tbody>
+<tr><td>LINK_CMD</td><td>353,289</td><td>166,196</td></tr>
+<tr><td>LTSSM_STATE</td><td>35</td><td>30</td></tr>
+<tr><td>LFPS</td><td>1,175</td><td>47,006</td></tr>
+<tr><td>&#20107;&#20214;&#32317;&#25976;</td><td>354,499</td><td>213,232</td></tr>
+</tbody></table></details>
+<details><summary>&#21407;&#22987;&#36899;&#32218;&#35338;&#34399;&#29305;&#24501;&#65288;LFPS&#65292;&#21253;&#21547; 2200 ns&#65289;</summary><div class='raw-table'><table><thead><tr><th>&#39006;&#22411;</th><th>&#27169;&#24335;</th><th>&#25345;&#32396;&#26178;&#38291;&#65288;ns&#65289;</th><th>&#26159;&#21542;&#28858;&#38283;&#22987;&#27169;&#24335;</th><th>&#25976;&#37327;</th></tr></thead><tbody>
+<tr><td>72</td><td>4</td><td>648</td><td>0</td><td>1,112</td></tr>
+<tr><td>72</td><td>4</td><td>656</td><td>0</td><td>814</td></tr>
+<tr><td>74</td><td>4</td><td>2200</td><td>1</td><td>179</td></tr>
+<tr><td>68</td><td>1</td><td>1056</td><td>0</td><td>162</td></tr>
+<tr><td>73</td><td>4</td><td>1568</td><td>0</td><td>162</td></tr>
+<tr><td>72</td><td>4</td><td>648</td><td>0</td><td>896</td></tr>
+<tr><td>72</td><td>4</td><td>656</td><td>0</td><td>685</td></tr>
+<tr><td>74</td><td>4</td><td>2200</td><td>1</td><td>135</td></tr>
+</tbody></table></div></details>
+<details><summary>&#20358;&#28304;&#27284;&#26696;&#26159;&#21542;&#20445;&#25345;&#19981;&#35722;</summary><p class='status'>PASS - &#21407;&#22987; trace &#30340;&#20358;&#28304;&#35657;&#25818;&#27794;&#26377;&#25913;&#35722;&#12290;</p><p class='small'>&#20358;&#28304;&#35657;&#25818;&#30001;&#19978;&#28216;&#30340;&#21807;&#35712; sandbox &#20445;&#35703;&#12290;</p>
+<p class='small'>PASS timeline&#65306;<code>pass-timeline.json</code><br>FAIL timeline&#65306;<code>fail-timeline.json</code><br>&#35222;&#31383;&#65306; 10 ms&#65307;&#27493;&#38263;&#65306; 1 ms&#65307;&#30456;&#23565; trace &#x5C0D;&#x9F4A;&#65306; False</p>
+</details>
+<details><summary>&#30446;&#21069;&#24037;&#20855;&#21487;&#20197;&#20570;&#20160;&#40636;</summary><p class="small">&#30446;&#21069;&#24037;&#20855;&#21487;&#20197;&#20570;&#20160;&#40636;&#65306;</p><ul class="reasons"><li>&#33258;&#21205;&#25214;&#20986;&#21644;&#27491;&#24120;&#32000;&#37636;&#24046;&#30064;&#36611;&#22823;&#30340;&#26178;&#38291;&#21312;&#27573;&#12290;</li><li>&#21578;&#35380;&#24037;&#31243;&#24107;&#25033;&#35442;&#20808;&#22238; LeCroy GUI &#26597;&#30475;&#21738;&#35041;&#12290;</li><li>&#19981;&#38656;&#35201;&#20107;&#20808;&#25552;&#20379;&#24050;&#30693;&#25925;&#38556;&#26178;&#38291;&#12290;</li></ul><p class="small">&#20998;&#26512;&#26041;&#24335;&#65306;</p><ul class="reasons"><li>PASS trace &#29992;&#20358;&#24314;&#31435;&#27491;&#24120;&#32000;&#37636;&#21443;&#32771;&#20540;&#12290;</li><li>PASS / FAIL &#21508;&#33258;&#20197;&#26178;&#38291;&#21312;&#27573;&#27604;&#36611;&#65292;&#19981;&#24375;&#34892;&#23565;&#40778;&#20841;&#20221; trace &#30340;&#26178;&#38291;&#12290;</li><li>LFPS &#21407;&#22987;&#20540;&#20445;&#30041;&#25976;&#23383;&#65292;&#19981;&#33258;&#34892;&#29468;&#28204; enum &#21517;&#31281;&#12290;</li><li>&#24037;&#31243;&#24107;&#27161;&#35352;&#30340;&#21312;&#22495;&#21482;&#29992;&#26044;&#20107;&#24460;&#39511;&#35657;&#65292;&#19981;&#26159;&#20998;&#26512;&#36664;&#20837;&#12290;</li></ul><p class="small">&#30446;&#21069;&#36996;&#19981;&#33021;&#20570;&#20160;&#40636;&#65306;</p><ul class="reasons"><li>&#21028;&#23450;&#30495;&#27491;&#25925;&#38556;&#21407;&#22240;&#12290;</li><li>&#21028;&#26039;&#25925;&#38556;&#22196;&#37325;&#31243;&#24230;&#12290;</li><li>&#33258;&#21205;&#21028;&#23450;&#29986;&#21697; PASS / FAIL&#12290;</li></ul>
+</details></section>
+<footer>&#38626;&#32218;&#22577;&#21578;&#65307;&#20358;&#33258; <code>suspicious-regions.json</code>&#12290;JSON &#26159;&#27491;&#24335;&#20998;&#26512;&#36039;&#26009;&#12290;</footer>
+</main></body></html>

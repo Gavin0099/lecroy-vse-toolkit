@@ -35,12 +35,49 @@ The current posture is an experimental lab/toolkit. It does not claim to be a co
 - M1 overall: PASS; the historical input `.usb` size/timestamp change remains recorded as `UNEXPLAINED / NOT REPRODUCED`.
 - DEMO-I2 source integrity: PASS for the preserved source artifact and this
   read-only working-copy execution. Universal immutability is not claimed.
-- DEMO-2 one-click runner: implemented and self-tested; user test pending.
-  It creates read-only sandbox copies, runs both timelines, verifies source
-  identity, and writes comparison/report artifacts.
+- DEMO-2 one-click runner: integrity closure PASS on pwsh and Windows
+  PowerShell 5.1 using the repository-relative PASS/FAIL traces; user test
+  remains pending. It creates read-only sandbox copies, records source and
+  working-copy integrity, runs both timelines, verifies source identity, and
+  writes comparison/report artifacts. Universal immutability is not claimed.
 - DEMO-2-WINPS-COMPAT: PASS on a fresh Windows PowerShell 5.1 process using
   the exact repository-relative PASS/FAIL traces. Universal performance
   qualification is not claimed.
+- DEMO-C3: unified timelines preserve VSE seconds/nanoseconds through COM,
+  Host, and JSON with 0 ns error for the expert-labeled FAIL timestamp.
+- DEMO-C4: semantic alignment is fail-closed. The known FAIL fingerprint is
+  unique in FAIL but has no PASS match, so no GUI handoff is emitted. Useful
+  semantic alignment is not yet claimed.
+- DEMO-C5: automatic suspicious-region discovery ranks a FAIL window
+  intersecting the expert-labeled region at Top 1 without receiving that
+  timestamp as input. This is qualified only for the known pair.
+- DEMO-V1: the existing C5 JSON is rendered as a single offline HTML report
+  for engineers. It preserves exact timestamps, Top-3 candidates, reasons,
+  PASS/FAIL overview, source integrity, and claim boundaries without changing
+  the C5 algorithm. JSON remains canonical.
+- DEMO-V2: the report is engineer-first. Adjacent candidate windows are
+  grouped into suspicious episodes, PASS baseline comparison is visible, the
+  actionable interval and claim boundary are elevated, and raw evidence is
+  collapsed. C5 JSON and scoring remain unchanged.
+- DEMO-V3: the report shows the PASS/FAIL trace basenames and actual event
+  positions inside the primary episode when the referenced timeline artifact
+  is available. Missing event-position data fails closed rather than being
+  invented.
+- DEMO-V4: the report adds a conservative plain-language observation summary,
+  selected LTSSM timestamp labels, directional baseline cues, a raw LFPS
+  duration hint, and collapsed secondary ranking scores. C5 JSON and scoring
+  remain unchanged.
+- DEMO-V5: the report uses instrument-style semantic colors: amber for triage,
+  blue for information and LFPS, amber LTSSM markers, muted LINK_CMD markers,
+  and green only for qualified source integrity. Layout and C5 scoring remain
+  unchanged.
+- DEMO-V6: the first screen uses plain-language Traditional Chinese for the
+  finding, comparison, timeline, and next action; protocol terms and p95
+  details remain available without changing C5 JSON or scoring.
+- DEMO-V7: the report separates tool capabilities, analysis method, and
+  current limitations; the Hero uses direct LFPS wording and secondary
+  candidate ranking data stays hidden by default. C5 JSON and scoring remain
+  unchanged.
 - VSE-owned direct file output: not proven and non-blocking for the selected architecture.
 - Official LeCroy samples: referenced only; not copied into this repository.
 
@@ -95,6 +132,20 @@ creates read-only copies under `demo-output\sandbox`, runs the same extractor
 on both copies, and writes `report.md`, `comparison.json`, and
 `source-integrity.json`. Use a new output directory for each run; existing
 directories are rejected to protect prior evidence.
+
+To render an existing passing C5 artifact for an engineer, use a new output
+path:
+
+```powershell
+powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File `
+  .\tools\render-c5-html.ps1 `
+  -InputPath .\c5-output\suspicious-regions.json `
+  -OutputPath .\c5-output\report.html
+```
+
+Open `report.html` directly in a browser. It is offline and dependency-free;
+the JSON remains the canonical analysis output. The report presents candidate
+inspection windows, not root cause or an automatic PASS/FAIL verdict.
 
 For an exact Windows PowerShell 5.1 qualification, run the compatibility
 harness from `powershell.exe`:

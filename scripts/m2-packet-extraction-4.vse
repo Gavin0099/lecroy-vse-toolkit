@@ -44,8 +44,10 @@ ProcessEvent()
     {
         LinkCommandCount++;
         BatchText += FormatEx(
-            "LINK_CMD|%d|%s|%s|-1|-1|-1|-1|-1|-1\n",
+            "LINK_CMD|%d|%d|%d|%s|%s|-1|-1|-1|-1|-1|-1\n",
             in.Index,
+            in.Time[0],
+            in.Time[1],
             TimeToText(in.Time),
             GetEventName()
         );
@@ -55,8 +57,10 @@ ProcessEvent()
     {
         LtssmEventCount++;
         BatchText += FormatEx(
-            "LTSSM_STATE|%d|%s|%s|-1|-1|-1|-1|-1|-1\n",
+            "LTSSM_STATE|%d|%d|%d|%s|%s|-1|-1|-1|-1|-1|-1\n",
             in.Index,
+            in.Time[0],
+            in.Time[1],
             TimeToText(in.Time),
             GetEventName()
         );
@@ -66,8 +70,10 @@ ProcessEvent()
     {
         LfpsEventCount++;
         BatchText += FormatEx(
-            "LFPS|%d|%s|%s|%d|%d|%d|%d|%d|%d\n",
+            "LFPS|%d|%d|%d|%s|%s|%d|%d|%d|%d|%d|%d\n",
             in.Index,
+            in.Time[0],
+            in.Time[1],
             TimeToText(in.Time),
             GetEventName(),
             in.Type,
