@@ -1,0 +1,17 @@
+{
+  "receipt_schema": "test_evidence_receipt.v0.1",
+  "status": "report_only",
+  "command": "powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command \"& { $errors = $null; [System.Management.Automation.Language.Parser]::ParseFile(\\\"E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\tools\\render-c5-html.ps1\\\", [ref]$null, [ref]$errors) | Out-Null; if ($errors.Count -gt 0) { exit 1 }; $html = Get-Content -LiteralPath \\\"E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\c5-output-20260911-v20\\report.html\\\" -Raw; if ($html -notmatch \\\"&#30446;&#21069;&#24037;&#20855;&#21487;&#20197;&#20570;&#20160;&#40636;\\\" -or $html -match \\\"<script\\\") { exit 1 }; Write-Output \\\"WinPS parser and report read-back PASS\\\" }\"",
+  "exit_code": 0,
+  "started_at": "2026-09-11T10:08:20Z",
+  "finished_at": "2026-09-11T10:08:21Z",
+  "runner": "codex",
+  "linked_commit": "2ab04b71accc48911775302a6ac3a5d2aab556d6",
+  "output_artifacts": [
+    "artifacts/evidence/memory-reconciliation-20260911-v2.txt"
+  ],
+  "cannot_claim": [
+    "semantic correctness of the tested behavior",
+    "receipt authenticity: every field is fabricatable by a direct writer"
+  ]
+}
