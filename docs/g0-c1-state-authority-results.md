@@ -31,8 +31,11 @@ loaded or why it chose HOLD; it does not establish a need for full runtime adopt
 - `tools/test-state-authority.ps1` checks only the required rule text. The old
   test-local resolver always chose PLAN; it did not test an actual Agent and
   is no longer used as behavioral evidence.
-- `PLAN.md` and `memory/01_active_task.md` now keep C1 ahead of M3 and record
-  the deferred Full-vs-Light pilot.
+- The C1 PLAN additions record the deferred Full-vs-Light pilot. The live
+  checkout also has an independently modified active-task memory; that memory
+  change is excluded from this commit. No committed memory synchronization is
+  claimed, and the parent memory's retrospective suggestion remains historical
+  handoff input rather than authorization for new Governance work.
 
 ## Verification and limits
 
@@ -77,6 +80,15 @@ comparison and new runtime mechanisms remain outside this slice.
   timestamp is new, but its cited evidence is historical.
 - Candidate AGENTS SHA-256:
   `DACC7F7692C2FEFD2210E582A8D8B88D029C09ECF43F2F5D82CB4EEB924CC0A5`.
+- That is the raw tested worktree file, which has mixed CRLF/LF line endings,
+  not the committed blob hash. Git normalizes its line endings on staging.
+  The committed AGENTS blob is `1b8d6183442ac11c3c06bc92360880f5b644b0f9`;
+  its SHA-256 is
+  `e46e083bb43c53c82f87cf29d7d9d9583442f97961b0b56bb350a58f7fe9851a`.
+  Comparing the preserved fixture bytes after replacing CRLF with LF against
+  `git show 21ca92918620247eed28650382c480a7d4a3670d:AGENTS.md` returns
+  byte equality. This proves text identity after newline normalization, not
+  raw-byte identity or a second behavioral run against the committed blob.
 - This evaluator document and the test script were absent from the copy.
 - Prompt named only the isolated project and requested ordinary read-only
   next-product-slice assessment; it did not mention stale memory or the answer.
