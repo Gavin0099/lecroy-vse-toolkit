@@ -1,0 +1,86 @@
+# C3: preserve the raw VSE event time components through NotifyClient().
+#
+# The installed VSE template documents in.Time as [seconds, nanoseconds].
+# Keep both integer components and the existing human-readable TimeToText()
+# value so the host can distinguish source precision from display formatting.
+
+set LfpsEventCount = 0;
+set BatchNumber = 0;
+set BatchCount = 0;
+set BatchText = "";
+
+const BATCH_SIZE = 250;
+
+%include "VSTools.inc"
+
+OnStartScript()
+{
+    LfpsEventCount = 0;
+    BatchNumber = 0;
+    BatchCount = 0;
+    BatchText = "";
+
+    # Reuse the delivery configuration validated by M2-1, M2-2, and M2-3.
+    SendAllChannels();
+    SendLevel(_PKT);
+    SendLevel(_TRA);
+    SendLevel(_SPL_TRA);
+    SendLevel(_XFER);
+    SendLevel(_SCSI);
+    SendLevel(_PHY_TRA);
+    SendAllTraceEvents();
+    ScriptForDisplayOnly();
+}
+
+ProcessEvent()
+{
+    if (in.TraceEvent == _USB3_LFPS)
+    {
+        LfpsEventCount++;
+        BatchText += FormatEx(
+            "%d|%d|%d|%s|%s\n",
+            in.Index,
+            in.Time[0],
+            in.Time[1],
+            TimeToText(in.Time),
+            GetEventName()
+        );
+        BatchCount++;
+
+        if (BatchCount >= BATCH_SIZE)
+        {
+            NotifyClient(
+                2601,
+                ["C3-TIMESTAMP-FIDELITY",
+                 BatchNumber,
+                 BatchCount,
+                 BatchText]
+            );
+            BatchNumber++;
+            BatchCount = 0;
+            BatchText = "";
+        }
+    }
+
+    return Complete();
+}
+
+OnFinishScript()
+{
+    if (BatchCount > 0)
+    {
+        NotifyClient(
+            2601,
+            ["C3-TIMESTAMP-FIDELITY",
+             BatchNumber,
+             BatchCount,
+             BatchText]
+        );
+    }
+
+    NotifyClient(
+        2602,
+        ["C3-TIMESTAMP-FIDELITY-SUMMARY", LfpsEventCount]
+    );
+    return 0;
+}
