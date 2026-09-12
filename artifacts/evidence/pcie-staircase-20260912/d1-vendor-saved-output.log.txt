@@ -1,0 +1,25 @@
+
+------------------------------------------------------------------------------------
+                                    lecroy-vse-toolkit-poc-20260912-30e3b5c6\p0-d1-tlps
+------------------------------------------------------------------------------------
+
+
+Running verification script...
+...
+
+Test Description : 
+PCIe P0-D1 first five TLP projections - spike-v1
+PCIE_D1_TLP_SPIKE_V1 cap=5 time=vendor_display_text
+PCIE_D1_TLP|1944516| 4.848 sec|TLP|Downstream|0xE|1
+PCIE_D1_TLP|1944517| 4.848 sec|TLP|Downstream|0x9|1
+PCIE_D1_TLP|1944519| 4.848 sec|TLP|Downstream|0x9|1
+PCIE_D1_TLP|1944521| 4.848 sec|TLP|Downstream|0x9|1
+PCIE_D1_TLP|1944523| 4.848 sec|TLP|Downstream|0x9|1
+
+
+------- D O N E !!! -------
+
+
+*************************************************************
+Output was saved on Saturday, September 12, 2026, 01:46:26 PM
+*************************************************************

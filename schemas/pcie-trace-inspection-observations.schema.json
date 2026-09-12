@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.invalid/lecroy-vse-toolkit/pcie-trace-inspection-observations-v1.schema.json",
+  "title": "PCIe Single-Trace Inspection Observations v1",
+  "description": "Single-trace inspection output only. Not a diagnostic finding contract, normalized event schema, or shared USB/PCIe model.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "report_kind", "report_date", "trace", "software", "extractor", "status", "evidence", "observations", "gui_context", "limitations"],
+  "properties": {
+    "schema_version": {"const": "pcie.trace-inspection-observations/v1"},
+    "report_kind": {"const": "SINGLE_TRACE_INSPECTION"},
+    "report_date": {"type": "string", "format": "date"},
+    "trace": {
+      "type": "object", "additionalProperties": false,
+      "required": ["file_name", "source_path", "size_bytes", "sha256", "last_write_utc", "ground_truth"],
+      "properties": {
+        "file_name": {"type": "string", "minLength": 1},
+        "source_path": {"type": "string", "minLength": 1},
+        "size_bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "last_write_utc": {"type": "string", "format": "date-time"},
+        "ground_truth": {"const": "UNKNOWN"}
+      }
+    },
+    "software": {
+      "type": "object", "additionalProperties": false,
+      "required": ["product", "version", "executable_path", "executable_sha256"],
+      "properties": {
+        "product": {"type": "string"}, "version": {"type": "string"},
+        "executable_path": {"type": "string"}, "executable_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "extractor": {
+      "type": "object", "additionalProperties": false,
+      "required": ["script_path", "script_sha256", "scope", "record_cap", "fields", "time_representation"],
+      "properties": {
+        "script_path": {"type": "string"}, "script_sha256": {"$ref": "#/$defs/sha256"},
+        "scope": {"type": "string"}, "record_cap": {"const": 5},
+        "fields": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+        "time_representation": {"type": "string"}
+      }
+    },
+    "status": {
+      "type": "object", "additionalProperties": false,
+      "required": ["extraction", "ground_truth", "diagnostic_result", "coverage"],
+      "properties": {
+        "extraction": {"const": "PASS_BOUNDED"},
+        "ground_truth": {"const": "UNKNOWN"},
+        "diagnostic_result": {"const": "NOT_EVALUATED"},
+        "coverage": {"const": "FIRST_FIVE_TLP_RECORDS_ONLY"}
+      }
+    },
+    "evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["extractor_log_path", "extractor_log_sha256", "gui_image_path", "gui_image_sha256", "gui_rows_checked"],
+      "properties": {
+        "extractor_log_path": {"type": "string"}, "extractor_log_sha256": {"$ref": "#/$defs/sha256"},
+        "gui_image_path": {"type": "string"}, "gui_image_sha256": {"$ref": "#/$defs/sha256"},
+        "gui_rows_checked": {"const": 5}
+      }
+    },
+    "observations": {
+      "type": "array", "minItems": 5, "maxItems": 5,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["packet_index", "event_family", "vendor_channel", "vendor_type_code_hex", "link_width", "extractor_time_display", "gui_crosscheck"],
+        "properties": {
+          "packet_index": {"type": "integer", "minimum": 0},
+          "event_family": {"const": "TLP"}, "vendor_channel": {"type": "string"},
+          "vendor_type_code_hex": {"type": "string", "pattern": "^0x[0-9A-F]+$"},
+          "link_width": {"type": "integer", "minimum": 1},
+          "extractor_time_display": {"type": "string"},
+          "gui_crosscheck": {
+            "type": "object", "additionalProperties": false,
+            "required": ["status", "family", "subtype", "time_seconds", "link_width"],
+            "properties": {
+              "status": {"const": "MATCHED"}, "family": {"type": "string"},
+              "subtype": {"type": "string"}, "time_seconds": {"type": "string"},
+              "link_width": {"type": "integer", "minimum": 1}
+            }
+          }
+        }
+      }
+    },
+    "gui_context": {
+      "type": "object", "additionalProperties": false,
+      "required": ["visible_packet_indices", "intervening_non_extracted_indices", "next_tlp_visible_beyond_cap", "interpretation"],
+      "properties": {
+        "visible_packet_indices": {"type": "array", "items": {"type": "integer"}},
+        "intervening_non_extracted_indices": {"type": "array", "items": {"type": "integer"}},
+        "next_tlp_visible_beyond_cap": {"type": "integer"},
+        "interpretation": {"type": "string"}
+      }
+    },
+    "limitations": {"type": "array", "items": {"type": "string"}, "minItems": 1}
+  },
+  "$defs": {"sha256": {"type": "string", "pattern": "^[A-Fa-f0-9]{64}$"}}
+}

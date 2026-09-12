@@ -6,7 +6,246 @@ Verify that LeCroy USB Protocol Suite VSE can read a large USB trace, expose use
 
 The repository name remains `lecroy-vse-toolkit` because that is the existing checkout and remote identity. The working posture is experimental/lab; no product or analyzer claim is implied.
 
-## Milestones
+## PCIe feasibility scope (revised 2026-09-12)
+
+The owner adopted same-repository USB/PCIe work with isolated implementations.
+Existing USB results retain their original scope. No common core is established.
+P0-A setup baseline is accepted. The owner's latest instruction authorizes
+sequential execution: verify each slice separately, then proceed on PASS
+without repeated confirmation. FAIL/BLOCKED or a required scope decision stops
+the sequence; this does not combine B1, B2 and B3 into one acceptance claim.
+The owner's subsequent staircase instruction replaces the C1-only retry stop:
+close each evidence gate in order, proceed on PASS without reconfirmation,
+and stop on FAIL/BLOCKED or a required owner decision. No speculative later
+implementation, presumed three-class event set or automatic C5 reuse follows.
+The latest diagnosis-first V1 roadmap supersedes prior D2/E ordering and IDs:
+D1e → E1a ground truth → E1b diagnostic question → D2c/D2d/(D2e)/D2f
+signal sufficiency and model freeze → E2a-E2d minimal triage → E3a-E3e testing
+→ F1 structured findings → F2 Markdown / F3 HTML → F4 UX alignment
+→ F5 Engineer Review Build.
+B1-B4 and C1a-D1d are not reopened. Each slice is validated before advancement;
+E3 is the final integrated test series, not permission to postpone all checks.
+From D1e through the E3e analysis gate there are 14 required slices and two conditional slices: D2e adds only
+one signal if evidence proves TLP insufficient; E3d may defer if no second
+ground-truth pair is available. Unknown ground truth is not a technical D1e
+prerequisite, but it cannot be guessed to bypass E1a.
+Analysis V1 is established only at E3e; the engineer-evaluable MD/HTML first
+release additionally requires F1-F5. These are distinct delivery gates.
+The earlier E4a report/UX proposal is replaced by F1-F5, not a parallel task.
+Broader multi-trace coverage and automation/host work remain outside this
+review-build path; no COM/host implementation follows without observed need.
+The prior USB independent-pair validation remains a
+separate pending task, not a PCIe prerequisite or a reopened USB milestone.
+
+| Slice | Scope | State |
+| --- | --- | --- |
+| PCIe-P0-A | Setup baseline and external sample provenance | PASS for setup inventory (2026-09-12): installed PETracer.exe 13.26 Build 43 BETA and VSE files/location verified; September 11 sample provenance and integrity policy retained. Trace compatibility and script execution remain UNKNOWN. PCIe-P0 is not PASS. |
+| PCIe-P0-B1 | Trace Open Baseline | PASS (2026-09-12): exact candidate copy loaded, Ready and navigable packet content; post-close integrity unchanged. |
+| PCIe-P0-B2 | VSE Entry Discovery | PASS: actual Tools → Run verification scripts dialog/list observed before any script run. |
+| PCIe-P0-B3 | Vendor Sample Execution | PASS: unchanged examp_tlps.pevs produced output and DONE on the selected trace. |
+| PCIe-P0-B4 | Minimal Execution Evidence | PASS: B1-B3 reproduced on a fresh protected copy; identities and GUI evidence retained. |
+| PCIe-P0-C1a | Channel Bootstrap | PASS for the narrow channel diagnostic: SendAllChannels removed it; historical overall C1 attempt remained FAIL with no events. |
+| PCIe-P0-C1b | Event Bootstrap | PASS: vendor-backed TLP subscription removed event error; fixed marker, DONE, no new runtime error. |
+| PCIe-P0-C1c | Clean Minimal Execution | PASS: separate fixed-message run, normal end and zero observed runtime errors; no trace-field reads. |
+| PCIe-P0-C1d | Reproducibility | PASS: fresh read-only copy and reopened VSE reproduce clean execution; post-close integrity unchanged. C1 own-script execution PASS, not extraction. |
+| PCIe-P0-C2a | Primitive Inventory | PASS: actual prior vendor output mapped to installed helpers; bounded inventory in staircase evidence, no extractor. |
+| PCIe-P0-C2b | One Primitive Read | PASS: own script read vendor in.Index=1944516. |
+| PCIe-P0-C2c | Primitive Reproducibility | PASS: separate same-trace execution returned 1944516 again. |
+| PCIe-P0-C2d | Trace Dependency Proof | PASS: skipping the first callback changed the read to 1944517; no runtime error. |
+| PCIe-P0-D1a | Candidate Event Inventory | PASS for bounded candidate inventory: TLP with observed metadata; triage usefulness remains a hypothesis, no scorer. |
+| PCIe-P0-D1b | Single Event Extractor | PASS for bounded spike: first five TLP records reproduced in two runs; no full-trace coverage claim. |
+| PCIe-P0-D1c | Extraction Contract | PASS for D1 projection-v1 only: field/unit/identity and cap documented in staircase evidence; not the final triage model or shared schema. |
+| PCIe-P0-D1d | Cross-check | PASS for five-record projection: exact GUI packet references/families/widths and coarse time agree; vendor subtype references documented. No full-trace or physical-channel claim. |
+| PCIe-P0-D1e | Cross-trace Extraction | PASS (2026-09-12): existing B output matched five actual GUI TLPs; trace closed and A/B source plus B copy hashes unchanged. Same extractor on two distinct files; first-five projection only, no ground-truth or full-coverage claim. |
+| PCIe-P0-E1a | Ground-truth Pair Qualification | BLOCKED on ground truth: trustworthy PASS/FAIL provenance, test operation and observed behavior. Does not block technical D1e. |
+| PCIe-P0-E1b | Diagnostic Question Freeze | NOT STARTED; fix one operation → normal expectation → FAIL symptom → question for triage, after E1a. |
+| PCIe-P0-D2c | Candidate Signal Model | NOT STARTED; derive candidate PCIe signals from the qualified diagnostic question, not API availability. No scorer design. |
+| PCIe-P0-D2d | TLP Sufficiency Test | NOT STARTED; test whether existing TLP extraction supplies observable evidence relevant to that question on the qualified pair. Current cap/display time do not establish full counts or precise timing. |
+| PCIe-P0-D2e | Additional Signal Spike | CONDITIONAL / NOT STARTED; add only one justified signal if D2d establishes a gap; DROP if TLP is sufficient. Historical extra-class DROP does not prejudge this new test. |
+| PCIe-P0-D2f | V1 Event Model Freeze | NOT STARTED; after E1a/E1b and sufficiency evidence, fix signals, PCIe-only schema and necessary/excluded fields. No triage implementation before freeze. |
+| PCIe-P0-E2a | Raw PASS/FAIL Divergence | NOT STARTED; reproducible count/timing/sequence differences within validated extraction coverage and units, without scores or heuristics. |
+| PCIe-P0-E2b | First Meaningful Divergence | NOT STARTED; at least one difference relevant to the failure symptom and explainable from GUI/trace, not metric proliferation. |
+| PCIe-P0-E2c | Normalized Evidence Contract | NOT STARTED; minimal PCIe triage-consumable evidence contract, not USB/PCIe canonical schema or report UX. No assumed USB scorer reuse. |
+| PCIe-P0-E2d | Minimal Triage Runner | NOT STARTED; one defined extraction → comparison flow on the two traces, no AI ranking or assumed host requirement. |
+| PCIe-P0-E3a | First End-to-end PASS/FAIL Test | NOT STARTED; real qualified pair through the whole pipeline; different scores alone are insufficient. |
+| PCIe-P0-E3b | Explanation Cross-check | NOT STARTED; findings trace back to GUI/packet/timestamp evidence, not black-box scores. |
+| PCIe-P0-E3c | Repeatability | NOT STARTED; same pair reproduces findings/anchors/evidence; no all-trace or cross-version claim. |
+| PCIe-P0-E3d | Second-pair Sanity Check | CONDITIONAL / NOT STARTED; second known pair checks overfit, DEFER permitted if unavailable. |
+| PCIe-P0-E3e | PCIe V1 Testable Gate | NOT STARTED; at least one real qualified pair produces stable, credible, traceable analysis. Not a production/full-coverage claim. |
+| PCIe-P0-F1 | Finding Contract | NOT STARTED; after E3e, establish PCIe analysis structured findings as the authoritative report input (analysis.json or equivalent). This is not a USB/PCIe canonical extraction schema. |
+| PCIe-P0-F2 | Markdown Report | NOT STARTED; automatically render inputs, symptom, candidates, evidence and limitations from F1 findings in engineer-readable language. No independent analysis in the renderer. |
+| PCIe-P0-F3 | HTML Report | NOT STARTED; render the same F1 findings as HTML, preserving findings/evidence/limitations shared with Markdown. No trace reanalysis or different verdicts. |
+| PCIe-P0-F4 | USB / PCIe UX Alignment | NOT STARTED; align report structure, cards, PASS/FAIL comparison and evidence navigation only. Do not share or equate diagnostic semantics, event classes or scorers. |
+| PCIe-P0-F5 | Engineer Review Build | NOT STARTED; one qualified real case plus structured findings, generated MD/HTML and evidence traceable back to LeCroy. This prepares the first engineer evaluation; it does not establish positive feedback or measured time savings. |
+
+Prior D2 optional-class DROP/SKIP decisions remain historical: no extra class
+was implemented, and old statuses do not complete newly defined slices.
+Model freeze is now D2f and explicitly follows E1a/E1b. E1a establishes labels
+and observations, E1b fixes one use case, and only then can D2 determine signal
+necessity. The candidate TLP projection is not the final diagnostic model.
+
+This revision replaces the earlier B=event/GUI correlation, C=programmatic
+execution, D=completion/counts/JSON, and E=qualification-only roadmap. Old
+references to those letters are historical, not current execution instructions.
+The former F abstraction candidate remains deferred outside this sequence;
+the new F1-F5 reporting slices do not revive shared-core architecture work.
+
+### Engineer-review delivery boundary
+
+E2c defines the minimum PCIe analysis evidence consumed by the triage flow.
+F1 subsequently fixes the structured finding output consumed by both report
+renderers. "Canonical" at F1 means the authoritative PCIe report input only;
+it does not formalize a shared USB/PCIe event schema. Exact fields are decided
+at their gated slices, not implemented by this roadmap update.
+
+F5's intended local delivery is one qualified PASS/FAIL case with
+`analysis.json` (or equivalent structured findings), `report.md`, `report.html`
+and enough input/packet/time/context identity to return to the original LeCroy
+evidence. MD and HTML must reflect the same analysis result. The existing
+source-preserving trace policy remains: captures stay outside Git, referenced
+by verified identities or supplied as appropriately authorized separate copies.
+Do not relabel the current unknown-outcome A/B captures as PASS/FAIL to create
+this package. No report or review build exists merely because these filenames
+are specified here.
+
+Engineer review should assess whether the suggested regions are worth looking
+at, whether they actually reduce manual search effort, and which missing PCIe
+evidence would improve usefulness. Those benefits require review evidence;
+F5 readiness does not itself prove them. Better signals, heuristics, ranking
+and candidate root-cause inference belong to a later V2 decision after useful
+engineer feedback, not this V1 implementation path.
+
+Evidence and missing inputs: [PCIe setup](docs/setup/pcie-protocol-suite.md),
+[runtime evidence](docs/pcie-runtime-baseline.md),
+[staircase evidence](docs/pcie-staircase-evidence.md) and
+[sample policy](samples/pcie/README.md). P0-A PASS is limited to installed
+inventory. The historical hello-events.pevs draft remains unexecuted and is not
+runtime evidence or the C1 implementation. No host or formal event schema is
+adopted. Installer/package `25.28.43-BETA` and installed executable
+`13.26 (Build 43)` BETA remain separate observed identities; their relationship
+is UNKNOWN.
+
+Current work: D1e complete; P1 manifest, P2 status matrix and P3 engineer handoff prepared in [handoff](docs/pcie-engineer-handoff.md). P4 is DEFERRED / LEGACY_FORMAT_COMPATIBILITY and does not block E1a: one trace showed a verified v12.36 format-update prompt, a second open reached a modal with unrecorded cause, and four traces remain untried; no extractor ran on these attempts. Reopen a separate P4a only if E1a confirms a required PASS/FAIL trace is among the legacy-format inputs. Stop diagnostic implementation at E1a pending test background. C1a-C1d, C2a-C2d and D1a-D1d retain
+their documented bounded PASS. Trace A is `S0-Remove SD7-1350.pex`; Trace B
+is the distinct `S0-Remove SD7-1335.pex`, selected by convenient size from the
+existing owner-authorized Kent inventory. Both outcome labels remain UNKNOWN.
+Different path and hash establish distinct files, not statistical independence
+or known capture/test conditions. No filename is promoted to ground truth.
+
+### Independent single-trace inspection branch (F0)
+
+This owner-authorized presentation branch uses already verified Trace A evidence
+and proceeds independently of E1a. It does not establish a device verdict,
+diagnostic usefulness, or full-trace coverage, and it does not move the E1a
+ground-truth gate. The inspection observation schema is PCIe-only and local to
+this report; it does not replace the later F1 finding contract or establish a
+USB/PCIe schema. The retained preview is in
+[`artifacts/reports/pcie-inspection-1350-20260912`](artifacts/reports/pcie-inspection-1350-20260912/report.md).
+
+| Slice | Scope | State |
+| --- | --- | --- |
+| F0a | Single-trace structured observation contract | PASS: inspection-only schema; no PASS/FAIL or finding semantics. |
+| F0b | Convert retained extractor output to structured data | PASS: verified VSE log, input identities and five GUI rows bind into `observations.json`; no new VSE execution or trace parsing. |
+| F0c | Markdown inspection report | PASS: rendered from the saved structured JSON. |
+| F0d | HTML inspection report | PASS: same JSON source, offline and script-free. |
+| F0e | Single-trace UX review | READY_FOR_ENGINEER_REVIEW: local desktop render and claim boundaries checked; engineer feedback on usefulness/readability remains pending. |
+
+This sample labels extraction `PASS_BOUNDED`, ground truth `UNKNOWN`,
+diagnostic result `NOT_EVALUATED`, and coverage as the first five TLP records
+only. Renderer mechanics may inform later work; F1 fields and diagnostic
+semantics remain gated by E3e and their own evidence.
+
+D1e is closed as PASS within the five-record projection: the unchanged
+extractor produced TLP output for Trace B, five records were sampled against
+the B trace GUI, the analyzer was closed, and source/working-copy identities
+remained unchanged. The earlier GUI-focus interruption is retained as
+historical evidence, not the current slice state. See the final D1e closure in
+the [staircase evidence](docs/pcie-staircase-evidence.md) and [handoff](docs/pcie-engineer-handoff.md).
+
+Continuation input check (2026-09-12): read-only `Get-ChildItem` confirmed the
+eight GL9767 captures still have the recorded sizes. `rg --files` beneath the
+owner-authorized `C:\Users\reiko\Desktop\Kent` tree found zero matching
+companion files with extensions md/txt/csv/xlsx/xls/pdf/docx/log/json/html/png/jpg.
+This is a bounded accessible-files search, not proof that no evidence exists
+elsewhere. ZIP files and installer payloads were not opened. No source hash,
+runtime execution or prior PASS was requalified by this metadata-only check.
+
+Needed only at E1a: PASS trace, PASS observed behavior, FAIL trace, FAIL
+observed behavior. Trigger/operation and expected behavior are useful context;
+root cause is not required. These are not D1e prerequisites. A fixed D1
+projection does not establish full-trace coverage, precision timing or the
+necessary V1 event model. E1b+ and integrated V1 testing remain NOT STARTED.
+
+### Slice acceptance and boundaries
+
+Each slice has a distinct evidence record. A failed or inconclusive prerequisite
+stops the sequence at that slice; an available later task is not a workaround.
+Successful sample execution is a runtime-path result, not a PASS judgment about
+the captured device. No blanket PCIe-P0 qualification follows from this table.
+
+| Slice | PASS evidence | Explicit exclusion |
+| --- | --- | --- |
+| B1 Trace Open Baseline | The installed PETracer.exe accepts a known-source candidate working copy, completes loading to a usable state with visible/navigable packet/timeline/detail content, gives no incompatible/unsupported/corrupt rejection, and evidence identifies the exact input. | No VSE, packet analysis or extraction; file existence does not imply known-good. |
+| B2 VSE Entry Discovery | With the B1 trace loaded, record an actual, repeatable GUI path to the VSE script execution dialog/list. | No script run, COM research or undocumented API guesses. |
+| B3 Vendor Sample Execution | Run one unchanged installed vendor sample, such as examp_tlps.pevs, through B2's entry; observe and retain output, dialog, file or log evidence attributable to that run. A parse/runtime error is not success. | No vendor sample edits, own script, structured extraction implementation or host bridge. |
+| B4 Minimal Execution Evidence | Record executable, source/copy, sample identities, exact B1-B3 steps and observations; repeat from a closed trace/new protected copy and reproduce loading, entry and sample execution a second time. | No automation or extraction implementation. |
+| C1 Own Minimal Script | The staircase separately proves bootstrap, fixed message, normal termination with zero runtime errors, then fresh-copy repeatability. | No trace-field reads or event extraction; DONE with an error is FAIL. |
+| C2 Read Trace Primitive | At least one vendor API trace/event value is observed with trace and script identity, distinguishing data access from C1's fixed message. | No complete data model or multi-class extraction. |
+| D1 Extraction Spike | One selected PCIe event class is extracted with a checkable trace/event reference and field/unit meaning. | No three-class implementation or common schema. |
+| D2 Extraction Expansion | Extend only to a PCIe event set justified by actual API/trace evidence; repeatable records preserve identity and field/unit meanings needed by the chosen analysis. | No report UX; USB event names alone do not establish PCIe equivalence. |
+| E Integration | Real PCIe extraction feeds a specified analysis flow with validated input semantics and a replayable result. Existing USB scorer reuse requires evidence of compatible meanings. | No governance expansion, speculative architecture or automatic core/common-schema adoption. |
+
+### P0-B1 — retained execution contract
+
+Question: can the installed PCIe Protocol Suite open a known-source candidate
+PCIe trace? This does not claim prior decoder compatibility, known-good data
+or a verified PASS/FAIL capture label.
+
+- Owner-authorized trace source root: `C:\Users\reiko\Desktop\Kent`.
+  Input candidate: `ASUS NV CRB_20260604\GL9767\S0-Remove SD7-1350.pex`
+  beneath that root, from the existing sample inventory. File existence and
+  size (105,224,486 bytes) were checked during planning; this is not a trace-open
+  result. It is the smallest candidate in that inventory;
+  that is a selection convenience, not a correctness or quality judgment.
+- Before opening: verify the selected source against its recorded identity;
+  create a fresh external read-only working copy and record both paths,
+  SHA-256, size, UTC mtime and attributes. Use the baseline's actual
+  `PETracer.exe` path and record the executable identity for the run.
+- Operation: open only that working copy in PETracer. Observe successful load
+  and a usable trace view. Record elapsed loading time and an image or equally
+  concrete observation binding the visible content to the selected file.
+- PASS requires loaded trace content, responsive GUI, no format/version/corrupt
+  rejection, and unchanged source/copy identity after closing the trace.
+  Merely launching an application shell or seeing a filename is insufficient.
+- FAIL: explicit open/format/version/corruption rejection, crash, or evidenced
+  hang. Record the exact observed message/behavior. Do not infer incompatibility
+  from a slow load alone. Loading still in progress or unavailable GUI evidence
+  is inconclusive, not PASS; missing/mismatched input is a prerequisite blocker.
+- If input integrity changes or read-only handling is rejected, stop and record
+  it. Do not retry against the original or silently make the copy writable.
+- UNKNOWN after B1: VSE GUI entry, vendor/own .pevs execution, extraction and
+  COM necessity. These are not B1 acceptance requirements.
+- Close the B1 evidence gate before any B2 work. Under the owner's subsequent
+  continuation instruction, PASS proceeds to B2; FAIL/BLOCKED stops immediately.
+  Do not debug the installer or investigate another implementation as a workaround.
+
+### Deferred PCIe event and integration decisions
+
+The proposed later `LINK_CMD / LTSSM_STATE / LFPS` set matches the current USB
+extractor's `_USB3_LINK_CMD`, `_USB3_LTSSM_STATE` and `_USB3_LFPS` selections in
+`scripts/m2-packet-extraction-4.vse`. The C5 scorer directly consumes these
+classes in `tools/discover-c5-suspicious-regions.ps1`. This is repository
+evidence of USB-specific behavior, not evidence of PCIe field equivalence.
+
+Retain D1/D2/E as future goals. Their exact PCIe event set and integration
+contract remain unresolved until C2/D1 supplies applicable evidence. Do not
+rename PCIe data to satisfy the USB schema or manufacture absent event classes.
+This dependency does not block earlier runtime gates. Investigate it only when
+the applicable staircase prerequisites have passed, not as a fallback task.
+COM/Automation and a minimal host remain conditional on an observed runtime need;
+no current slice requires them simply because the package contains support.
+
+## USB milestones
 
 | ID | Milestone | Status | Exit evidence |
 | --- | --- | --- | --- |

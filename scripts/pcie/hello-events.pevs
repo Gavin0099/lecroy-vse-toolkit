@@ -1,0 +1,59 @@
+# PCIe-P0-B document-backed discovery draft; NOT RUNTIME VERIFIED.
+# API references and post-install acceptance: docs/pcie-api-discovery.md.
+# Run only on a protected disposable copy, never the source capture.
+# Reports at most five TLP records while continuing the selected traversal.
+# Finish callback observation is not proof of successful full execution.
+
+set ModuleType = "Verification Script";
+set OutputType = "VS";
+set InputType = "VS";
+set DecoderDesc = "PCIe P0 TLP discovery - unqualified evidence probe";
+
+%include "VSTools.inc"
+
+const SAMPLE_LIMIT = 5;
+set TargetCallbacks = 0;
+set EmittedRecords = 0;
+
+OnStartScript()
+{
+    TargetCallbacks = 0;
+    EmittedRecords = 0;
+    ScriptForDisplayOnly();
+    EnableOutput();
+    SendLevel(_PACKET);
+    SendAllChannels();
+    SendTraceEventOnly(_PKT_TLP);
+
+    ReportText("{\"kind\":\"probe_start\",\"protocol\":\"pcie\",\"probe_revision\":1,\"sample_limit\":5,\"selection\":\"_PACKET/_PKT_TLP/all_channels\"}");
+}
+
+ProcessEvent()
+{
+    if (in.Level != _PACKET || in.TraceEvent != _PKT_TLP)
+    {
+        return;
+    }
+
+    TargetCallbacks++;
+    if (EmittedRecords < SAMPLE_LIMIT)
+    {
+        # Preserve Time2 list components, without conversion to float seconds.
+        # Units describe representation, NOT analyzer measurement accuracy.
+        ReportText(FormatEx(
+            "{\"kind\":\"pcie_event_record\",\"protocol\":\"pcie\",\"event_index\":%d,\"segment_raw\":%d,\"level_raw\":%d,\"channel_raw\":%d,\"event_type\":\"TLP\",\"trace_event_raw\":%d,\"time_api\":\"in.Time2\",\"time_raw\":[%d,%d,%d],\"time_unit\":[\"s\",\"ns\",\"ps\"],\"time_component_scale_ps\":[1000000000000,1000,1],\"measurement_resolution\":null,\"raw_fields\":{\"TLPType\":%d,\"PayloadLength\":%d}}",
+            in.Index, GetEventSegNumber(), in.Level, in.Channel,
+            in.TraceEvent, in.Time2[0], in.Time2[1], in.Time2[2],
+            in.TLPType, in.PayloadLength));
+        EmittedRecords++;
+    }
+}
+
+OnFinishScript()
+{
+    # Do not emit SUCCESS or completed=true here: abort semantics and host
+    # completion/count reconciliation have not been qualified.
+    ReportText(FormatEx(
+        "{\"kind\":\"probe_finish_callback\",\"target_callbacks\":%d,\"emitted_records\":%d,\"execution_status\":\"UNVERIFIED\",\"sampling\":\"first_five_TLP_callbacks\"}",
+        TargetCallbacks, EmittedRecords));
+}

@@ -1,0 +1,156 @@
+{
+  "schema_version": "pcie.trace-inspection-observations/v1",
+  "report_kind": "SINGLE_TRACE_INSPECTION",
+  "report_date": "2026-09-12",
+  "trace": {
+    "file_name": "S0-Remove SD7-1350.pex",
+    "source_path": "C:\\Users\\reiko\\Desktop\\Kent\\ASUS NV CRB_20260604\\GL9767\\S0-Remove SD7-1350.pex",
+    "size_bytes": 105224486,
+    "sha256": "1ADB98F89C2C0CF2A9733EA01552E39438483C4A9741136DC4BE36F0A27F1AEB",
+    "last_write_utc": "2026-06-11T07:12:55.2721460Z",
+    "ground_truth": "UNKNOWN"
+  },
+  "software": {
+    "product": "Teledyne LeCroy PCIe Protocol Analysis",
+    "version": "13.26 Build 43 BETA",
+    "executable_path": "C:\\Program Files\\LeCroy\\PCIe Protocol Suite\\PETracer.exe",
+    "executable_sha256": "160A542BF369701DF00466E744C9981FA9C530265AC237D81C0343C8F732E118"
+  },
+  "extractor": {
+    "script_path": "scripts/pcie/p0-d1-tlps.pevs",
+    "script_sha256": "91AAA647D24C4785A2C4418066B0D1A4BABF926E4C09B8F1EA86558EE0C507CA",
+    "scope": "First five TLP callbacks emitted by the unchanged D1 bounded spike; not a full-trace traversal/count.",
+    "record_cap": 5,
+    "fields": [
+      "in.Index",
+      "TimeToText(in.Time)",
+      "GetEventName()",
+      "GetChannelName()",
+      "in.TLPType",
+      "in.LinkWidth"
+    ],
+    "time_representation": "Vendor-formatted display text from TimeToText(in.Time); coarse seconds only. GUI timestamps are separate corroborating observations."
+  },
+  "status": {
+    "extraction": "PASS_BOUNDED",
+    "ground_truth": "UNKNOWN",
+    "diagnostic_result": "NOT_EVALUATED",
+    "coverage": "FIRST_FIVE_TLP_RECORDS_ONLY"
+  },
+  "evidence": {
+    "extractor_log_path": "artifacts/evidence/pcie-staircase-20260912/d1-vendor-saved-output.log.txt",
+    "extractor_log_sha256": "31EF4279896C216F4FA6928D275D5D3388F7FAC576A059CF4CBC5926D992EEF3",
+    "gui_image_path": "artifacts/evidence/pcie-staircase-20260912/d1-gui-crosscheck.png",
+    "gui_image_sha256": "C6FE380483ACDB27775168AA91DA630F282889DFFA1E39CC09C21BC4DFF873A0",
+    "gui_rows_checked": 5
+  },
+  "observations": [
+    {
+      "packet_index": 1944516,
+      "event_family": "TLP",
+      "vendor_channel": "Downstream",
+      "vendor_type_code_hex": "0xE",
+      "link_width": 1,
+      "extractor_time_display": "4.848 sec",
+      "gui_crosscheck": {
+        "status": "MATCHED",
+        "family": "Msg",
+        "subtype": "MsgD",
+        "time_seconds": "4.847933004000",
+        "link_width": 1
+      }
+    },
+    {
+      "packet_index": 1944517,
+      "event_family": "TLP",
+      "vendor_channel": "Downstream",
+      "vendor_type_code_hex": "0x9",
+      "link_width": 1,
+      "extractor_time_display": "4.848 sec",
+      "gui_crosscheck": {
+        "status": "MATCHED",
+        "family": "Cfg",
+        "subtype": "CfgRd0",
+        "time_seconds": "4.847933068000",
+        "link_width": 1
+      }
+    },
+    {
+      "packet_index": 1944519,
+      "event_family": "TLP",
+      "vendor_channel": "Downstream",
+      "vendor_type_code_hex": "0x9",
+      "link_width": 1,
+      "extractor_time_display": "4.848 sec",
+      "gui_crosscheck": {
+        "status": "MATCHED",
+        "family": "Cfg",
+        "subtype": "CfgRd0",
+        "time_seconds": "4.847937356000",
+        "link_width": 1
+      }
+    },
+    {
+      "packet_index": 1944521,
+      "event_family": "TLP",
+      "vendor_channel": "Downstream",
+      "vendor_type_code_hex": "0x9",
+      "link_width": 1,
+      "extractor_time_display": "4.848 sec",
+      "gui_crosscheck": {
+        "status": "MATCHED",
+        "family": "Cfg",
+        "subtype": "CfgRd0",
+        "time_seconds": "4.847939414000",
+        "link_width": 1
+      }
+    },
+    {
+      "packet_index": 1944523,
+      "event_family": "TLP",
+      "vendor_channel": "Downstream",
+      "vendor_type_code_hex": "0x9",
+      "link_width": 1,
+      "extractor_time_display": "4.848 sec",
+      "gui_crosscheck": {
+        "status": "MATCHED",
+        "family": "Cfg",
+        "subtype": "CfgRd0",
+        "time_seconds": "4.847948900000",
+        "link_width": 1
+      }
+    }
+  ],
+  "gui_context": {
+    "visible_packet_indices": [
+      1944516,
+      1944517,
+      1944518,
+      1944519,
+      1944520,
+      1944521,
+      1944522,
+      1944523,
+      1944524,
+      1944525
+    ],
+    "intervening_non_extracted_indices": [
+      1944518,
+      1944520,
+      1944522,
+      1944524
+    ],
+    "next_tlp_visible_beyond_cap": 1944525,
+    "interpretation": "GUI screenshot context only. Intervening packet indices and the next visible TLP were not added to the bounded extractor output."
+  },
+  "limitations": [
+    "This is a single-trace inspection report, not PASS/FAIL triage.",
+    "Ground truth is UNKNOWN; diagnostic result is NOT EVALUATED.",
+    "Only the first five TLP callbacks emitted by this bounded script are represented; this is not full-trace coverage or a total TLP count.",
+    "Extractor time is coarse vendor display text. More precise values shown are separate GUI cross-check observations.",
+    "The extractor reports the vendor channel label Downstream; physical endpoint mapping is not established.",
+    "No TLP payload, request/completion semantics, suspicious region, or root cause was analyzed.",
+    "The GUI Errors detected! indicator is not interpreted as a device PASS/FAIL result.",
+    "The source capture remains external to this report bundle; its identity is bound by size, modification time, and SHA-256."
+  ]
+}

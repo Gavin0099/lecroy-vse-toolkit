@@ -1,0 +1,20 @@
+# PCIe POC C1: fixed-message execution proof only; no trace-field reads.
+set ModuleType = "Verification Script";
+set OutputType = "VS";
+set InputType = "VS";
+set DecoderDesc = "PCIe P0-C1 fixed message only - message-v1";
+
+%include "VSTools.inc"
+
+OnStartScript()
+{
+    ScriptForDisplayOnly();
+    ReportText("PCIE_P0_C1_MESSAGE_V1");
+}
+
+ProcessEvent()
+{
+    # End at the first callback without inspecting its input.
+    ScriptDone();
+    return Complete();
+}

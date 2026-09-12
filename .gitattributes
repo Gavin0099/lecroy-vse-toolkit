@@ -1,0 +1,3 @@
+# Preserve exact vendor log bytes because the PCIe evidence records their SHA-256.
+artifacts/evidence/pcie-d1e-20260912/b-vendor-output.log.txt binary
+artifacts/evidence/pcie-staircase-20260912/d1-vendor-saved-output.log.txt binary
