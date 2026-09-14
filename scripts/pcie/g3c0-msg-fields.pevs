@@ -1,0 +1,60 @@
+# PCIe-G3c-0 message field probe v1: Message TLPs only, with MessageCode and MessageRoute.
+# Subscription and END handling follow the verified G2a script. Null fields print NA; codes are raw hex.
+# Field names follow installed vendor verification scripts (in.MessageCode, in.MessageRoute).
+set ModuleType = "Verification Script";
+set OutputType = "VS";
+set InputType = "VS";
+set DecoderDesc = "PCIe G3c-0 message field probe - v1";
+
+%include "VSTools.inc"
+set TlpCount = 0;
+set MsgCount = 0;
+set EndSent = 0;
+
+OnStartScript()
+{
+    ScriptForDisplayOnly();
+    ReportText("PCIE_G3C0_MSG_FIELDS_V1 fields=requester_id,message_code,message_route");
+    SendAllChannels();
+    SendTraceEventOnly(_PKT_TLP);
+    SendTlpType(_ANY_TYPE);
+    TlpCount = 0;
+    MsgCount = 0;
+    EndSent = 0;
+}
+
+ProcessEvent()
+{
+    TlpCount++;
+    if (in.TLPType == TLP_TYPE_ID_MSG || in.TLPType == TLP_TYPE_ID_MSGD || in.TLPType == TLP_TYPE_ID_MSGAS || in.TLPType == TLP_TYPE_ID_MSGASD)
+    {
+        requester = "NA";
+        code = "NA";
+        route = "NA";
+        if (in.RequesterId != null)
+        {
+            requester = FormatEx("0x%04X", in.RequesterId);
+        }
+        if (in.MessageCode != null)
+        {
+            code = FormatEx("0x%02X", in.MessageCode);
+        }
+        if (in.MessageRoute != null)
+        {
+            route = FormatEx("0x%X", in.MessageRoute);
+        }
+        ReportText(FormatEx("PCIE_G3C0_MSG|%u|%s|%s|0x%X|%s|%s|%s",
+            in.Index, TimeToText(in.Time), GetChannelName(), in.TLPType, requester, code, route));
+        MsgCount++;
+    }
+    return Complete();
+}
+
+OnFinishScript()
+{
+    if (EndSent == 0)
+    {
+        ReportText(FormatEx("PCIE_G3C0_END|tlps=%u|messages=%u|reason=trace_end", TlpCount, MsgCount));
+        EndSent = 1;
+    }
+}

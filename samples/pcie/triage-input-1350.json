@@ -1,0 +1,23 @@
+{
+  "schema_version": "pcie.triage-input/v1",
+  "trace": {
+    "file_name": "S0-Remove SD7-1350.pex",
+    "sha256": "1ADB98F89C2C0CF2A9733EA01552E39438483C4A9741136DC4BE36F0A27F1AEB",
+    "tlp_count": 938
+  },
+  "fields": {
+    "path": "artifacts/evidence/pcie-g2a-20260914/export/fields.json",
+    "sha256": "FA64728D3023DF8C476FE858B3C39568E04D3313714EDCED944BEF0FC9D5BB79",
+    "verifier_summary": "artifacts/evidence/pcie-g2a-20260914/export/summary.json"
+  },
+  "messages": {
+    "path": "artifacts/evidence/pcie-g3c0-20260914/export/messages.json",
+    "sha256": "08A7307F029E2BB55EC9419EE694ED97EAA1518112AC1C9E288E2AE9D57E1754",
+    "verifier_summary": "artifacts/evidence/pcie-g3c0-20260914/export/summary.json"
+  },
+  "gui_crosschecks": {
+    "path": "artifacts/evidence/pcie-g2b-20260914/gui-split/crosschecks.json",
+    "sha256": "151FEBC497C4311C44C33D5EA3B08504429FDE0B783500C52E2412518C49940A"
+  },
+  "extraction_note": "GUI extraction was performed manually under control; see docs/pcie-g2a-evidence.md, docs/pcie-g3c0-evidence.md and docs/pcie-g2b-evidence.md."
+}

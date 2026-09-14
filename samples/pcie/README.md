@@ -22,13 +22,69 @@ No PCIe comparison pair was qualified. D1e does not require PASS/FAIL labels.
 ## Single-trace inspection preview
 
 The first presentation sample uses Trace A (`S0-Remove SD7-1350.pex`) and the
-retained D1 VSE output plus GUI cross-check. See the generated
-[Markdown report](../../artifacts/reports/pcie-inspection-1350-20260912/report.md),
-[HTML report](../../artifacts/reports/pcie-inspection-1350-20260912/report.html),
-and [observation contract](../../docs/pcie-inspection-observation-contract.md).
-The sample says extraction PASS only for the first five emitted TLP rows;
-ground truth is UNKNOWN and diagnostic result is NOT EVALUATED. It does not
-include the trace binary or assess the entire capture.
+retained D1 VSE output plus GUI cross-check. The [2026-09-12 Markdown baseline](../../artifacts/reports/pcie-inspection-1350-20260912/report.md)
+and [HTML baseline](../../artifacts/reports/pcie-inspection-1350-20260912/report.html)
+remain unchanged in commit `5806d18`. After owner feedback that the first
+version was hard to understand, a [plain-language Markdown revision](../../artifacts/reports/pcie-inspection-1350-20260913/report.md)
+and [HTML revision](../../artifacts/reports/pcie-inspection-1350-20260913/report.html)
+were generated from the same observations. See the [observation contract](../../docs/pcie-inspection-observation-contract.md).
+
+The revision explains the bounded read and unknown test outcome before showing
+technical identities. It does not change the data: only the first five emitted
+TLP rows are shown, ground truth is UNKNOWN, diagnostic result is NOT EVALUATED,
+and the trace binary remains external. F0e UX review is still open.
+
+## Offline triage runner (PCIe-G9a)
+
+After the manual, controlled GUI extraction has produced verified G2a fields and
+G3c-0 messages, one command builds the engineer review package:
+
+```powershell
+.\run-pcie-triage.ps1 -InputManifest samples\pcie\triage-input-1350.json -OutputDir artifacts\reports\<new-run-directory>
+```
+
+The input manifest names the trace identity and TLP count, the verified
+`fields.json` and `messages.json` with their SHA-256 and verifier summaries, and
+optional GUI cross-checks. The runner stops if any hash, verifier status, TLP
+count or extraction binding does not match, and never opens a trace, drives
+PETracer, uses COM or runs VSE. The output folder contains `report.html`,
+`report.md`, `findings.json`, `run-manifest.json` and `使用說明.md`. See
+[runner evidence](../../docs/pcie-g9-runner-evidence.md).
+
+## Bounded two-trace HTML comparison
+
+`scripts/pcie/build_inspection_comparison.py` creates an offline HTML view from
+two existing F0 `observations.json` files. It requires both inputs to use the
+same PETracer executable and extractor, contain five TLP rows, and record GUI
+cross-checks. The page, titled `PCIe Trace Inspection Comparison` (F0f-1,
+2026-09-14), lists what each trace's own five-row sample contains under
+**Observed**, lists what is **Not established** (which trace is normal or
+abnormal, whether differences indicate a fault, whether five rows represent the
+full trace, whether same-position rows are corresponding events, root cause),
+and shows sample composition counts with an adjacent note that they are not
+full-trace statistics. Outcome-like filename tokens such as `Fail` or `hang`
+appear only when present, as filename hints. It does not align timestamps,
+compute A-B differences, or claim that similarly numbered rows are the same
+event.
+
+Example (replace the input paths with two generated observation bundles):
+
+```powershell
+python -B scripts/pcie/build_inspection_comparison.py `
+  --trace-a "path\to\trace-a\observations.json" `
+  --trace-b "path\to\trace-b\observations.json" `
+  --output "artifacts\reports\pcie-comparison\comparison.html"
+```
+
+The command reads the JSON inputs only; it does not run VSE or open `.pex`
+files. Its output is descriptive, keeps ground truth UNKNOWN and diagnostic
+result NOT EVALUATED, does not re-verify the underlying `.pex` or evidence
+files, and refuses to overwrite an existing HTML file. The
+requested 1329/1335 HTML has not been generated: 1329 has no extraction
+evidence, and neither trace currently has a saved F0 observation bundle. 1335
+has no retained clean GUI cross-check image, so its bundle cannot be built
+under the unchanged v1 contract until that evidence is recovered (F0g). As of
+2026-09-14 this comparison is a side branch, not the PCIe mainline; see PLAN.
 
 P0-A status on 2026-09-11: eight owner-designated external `.pex` candidates
 were located and fingerprinted. During the live baseline check, the
@@ -38,6 +94,13 @@ event contents and GUI correlation remain unverified. No synthetic output or
 USB capture substitutes for PCIe extraction evidence.
 
 ## Owner-designated source
+
+2026-09-14 relocation: the eight captures now reside in
+`E:\Kent\ASUS NV CRB_20260604\GL9767`. Size, UTC mtime and SHA-256 of all
+eight were re-verified identical to the inventory below; the former
+`C:\Users\reiko\Desktop\Kent\...` path no longer exists. Historical evidence
+and committed manifests keep the path that was valid when they were produced;
+new manifests must use the E: path.
 
 The supplied path was resolved by listing the immediate parent directories to:
 

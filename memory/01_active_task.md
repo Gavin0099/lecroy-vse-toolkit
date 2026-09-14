@@ -1,3 +1,5 @@
 # Active Task
 
-Next: run blind validation on an independent PASS/FAIL pair using the frozen C5 scorer; do not provide the engineer-labeled ground-truth region as analysis input. Keep the Full-vs-Light pilot deferred and Governance unchanged.
+Pointer only (2026-09-14). The current product state and next step live in `PLAN.md`,
+section "Single-Fail triage mainline (PCIe-G)". Do not copy status here; on any
+conflict follow the Product State Authority Rule in `AGENTS.md`.

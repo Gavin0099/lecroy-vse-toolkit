@@ -1,0 +1,1358 @@
+{
+  "schema_version": "pcie.g3e-candidate-groups/v1",
+  "inputs": {
+    "candidates": {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/stages/g3ab/candidates.json",
+      "sha256": "02830BDFE41021D51781A755B9A4D990E14EDFB9889397B5E33186364B5D921F"
+    },
+    "associations": {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/stages/g2b/associations.json",
+      "sha256": "BDF7D1C20A4948E2497FC6C8F4A8AE6A5491D9CE9D1D162365C3696B41139A12"
+    },
+    "nearby": {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/stages/g3c/nearby_messages.json",
+      "sha256": "FE8F04CDBCB6B76EFDE78BE5F81A612F354256D4F32E2112173D0792E33D1E4B"
+    }
+  },
+  "protected_outputs_unchanged": {
+    "artifacts/reports/pcie-triage-1350-20260914/stages/g2b/associations.json": "BDF7D1C20A4948E2497FC6C8F4A8AE6A5491D9CE9D1D162365C3696B41139A12",
+    "artifacts/reports/pcie-triage-1350-20260914/stages/g3ab/candidates.json": "02830BDFE41021D51781A755B9A4D990E14EDFB9889397B5E33186364B5D921F",
+    "artifacts/reports/pcie-triage-1350-20260914/stages/g3c/nearby_messages.json": "FE8F04CDBCB6B76EFDE78BE5F81A612F354256D4F32E2112173D0792E33D1E4B",
+    "artifacts/reports/pcie-triage-1350-20260914/stages/g3d/contexts.json": "D42756322133A3740D443594DDD2BD1E0BE201952E8A45F1D5673377050B2B7A"
+  },
+  "merge_rules": [
+    "shared_anchor_packet",
+    "shared_association_lineage",
+    "request_or_completion_is_other_candidate_anchor"
+  ],
+  "not_merge_rules": [
+    "same display time",
+    "same nearby message",
+    "overlapping context",
+    "same RequesterId",
+    "same Tag",
+    "same completion status"
+  ],
+  "group_count_target": "NONE",
+  "ground_truth": "UNKNOWN",
+  "candidates_total": 31,
+  "groups_total": 16,
+  "groups": [
+    {
+      "members": [
+        "C001",
+        "C019"
+      ],
+      "grouping_basis": [
+        "shared_anchor_packet",
+        "shared_association_lineage"
+      ],
+      "relationship": "grouped_by_shared_evidence",
+      "edges": [
+        {
+          "members": [
+            "C001",
+            "C019"
+          ],
+          "basis": [
+            "shared_anchor_packet",
+            "shared_association_lineage"
+          ],
+          "evidence": {
+            "shared_anchor_packets": [
+              1944559
+            ],
+            "anchor_roles": {
+              "C001": {
+                "1944559": "repeated_request"
+              },
+              "C019": {
+                "1944559": "first_request"
+              }
+            },
+            "lineage_end_request_packet": 2093601
+          }
+        }
+      ],
+      "primary_go_to_packet": 1944517,
+      "primary_go_to_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+      "anchor_packets": [
+        1944517,
+        1944559,
+        1944559,
+        2093601
+      ],
+      "lineage": {
+        "request_packets": [
+          1944517,
+          1944559,
+          2093601
+        ],
+        "packet_span": 149084
+      },
+      "observations": [
+        {
+          "candidate_id": "C001",
+          "observed": "CfgRd0 request 1944517 (Tag 8): same association key observed again at 1944559 (CfgRd0) before an associated completion was observed"
+        },
+        {
+          "candidate_id": "C019",
+          "observed": "CfgRd0 request 1944559 (Tag 8): same association key observed again at 2093601 (CfgRd0) before an associated completion was observed"
+        }
+      ],
+      "auxiliary_descriptors_not_used_for_grouping": {
+        "anchor_time_displays": [
+          "4.848 sec"
+        ],
+        "nearby_messages_from_g3c": [
+          {
+            "packet": 1944516,
+            "message_name": "SLOTPOWERLIMIT",
+            "display_time": "4.848 sec"
+          }
+        ],
+        "detectors": [
+          "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION"
+        ]
+      },
+      "interpretation": "NOT_EVALUATED",
+      "group_id": "G001"
+    },
+    {
+      "members": [
+        "C002",
+        "C020"
+      ],
+      "grouping_basis": [
+        "shared_anchor_packet",
+        "shared_association_lineage"
+      ],
+      "relationship": "grouped_by_shared_evidence",
+      "edges": [
+        {
+          "members": [
+            "C002",
+            "C020"
+          ],
+          "basis": [
+            "shared_anchor_packet",
+            "shared_association_lineage"
+          ],
+          "evidence": {
+            "shared_anchor_packets": [
+              1944563
+            ],
+            "anchor_roles": {
+              "C002": {
+                "1944563": "repeated_request"
+              },
+              "C020": {
+                "1944563": "first_request"
+              }
+            },
+            "lineage_end_request_packet": 2093615
+          }
+        }
+      ],
+      "primary_go_to_packet": 1944519,
+      "primary_go_to_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+      "anchor_packets": [
+        1944519,
+        1944563,
+        1944563,
+        2093615
+      ],
+      "lineage": {
+        "request_packets": [
+          1944519,
+          1944563,
+          2093615
+        ],
+        "packet_span": 149096
+      },
+      "observations": [
+        {
+          "candidate_id": "C002",
+          "observed": "CfgRd0 request 1944519 (Tag 14): same association key observed again at 1944563 (CfgWr0) before an associated completion was observed"
+        },
+        {
+          "candidate_id": "C020",
+          "observed": "CfgWr0 request 1944563 (Tag 14): same association key observed again at 2093615 (CfgRd0) before an associated completion was observed"
+        }
+      ],
+      "auxiliary_descriptors_not_used_for_grouping": {
+        "anchor_time_displays": [
+          "4.848 sec"
+        ],
+        "nearby_messages_from_g3c": [
+          {
+            "packet": 1944516,
+            "message_name": "SLOTPOWERLIMIT",
+            "display_time": "4.848 sec"
+          }
+        ],
+        "detectors": [
+          "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION"
+        ]
+      },
+      "interpretation": "NOT_EVALUATED",
+      "group_id": "G002"
+    },
+    {
+      "members": [
+        "C003",
+        "C012",
+        "C021",
+        "C030"
+      ],
+      "grouping_basis": [
+        "request_or_completion_is_other_candidate_anchor",
+        "shared_anchor_packet",
+        "shared_association_lineage"
+      ],
+      "relationship": "grouped_by_shared_evidence",
+      "edges": [
+        {
+          "members": [
+            "C003",
+            "C012"
+          ],
+          "basis": [
+            "shared_anchor_packet",
+            "shared_association_lineage"
+          ],
+          "evidence": {
+            "shared_anchor_packets": [
+              1944543
+            ],
+            "anchor_roles": {
+              "C003": {
+                "1944543": "repeated_request"
+              },
+              "C012": {
+                "1944543": "first_request"
+              }
+            },
+            "lineage_end_request_packet": 2093086
+          }
+        },
+        {
+          "members": [
+            "C003",
+            "C021"
+          ],
+          "basis": [
+            "shared_association_lineage"
+          ],
+          "evidence": {
+            "lineage_end_request_packet": 2093086
+          }
+        },
+        {
+          "members": [
+            "C003",
+            "C030"
+          ],
+          "basis": [
+            "shared_association_lineage"
+          ],
+          "evidence": {
+            "lineage_end_request_packet": 2093086
+          }
+        },
+        {
+          "members": [
+            "C012",
+            "C021"
+          ],
+          "basis": [
+            "shared_anchor_packet",
+            "shared_association_lineage"
+          ],
+          "evidence": {
+            "shared_anchor_packets": [
+              1944567
+            ],
+            "anchor_roles": {
+              "C012": {
+                "1944567": "repeated_request"
+              },
+              "C021": {
+                "1944567": "first_request"
+              }
+            },
+            "lineage_end_request_packet": 2093086
+          }
+        },
+        {
+          "members": [
+            "C012",
+            "C030"
+          ],
+          "basis": [
+            "shared_association_lineage"
+          ],
+          "evidence": {
+            "lineage_end_request_packet": 2093086
+          }
+        },
+        {
+          "members": [
+            "C021",
+            "C030"
+          ],
+          "basis": [
+            "shared_anchor_packet",
+            "request_or_completion_is_other_candidate_anchor",
+            "shared_association_lineage"
+          ],
+          "evidence": {
+            "shared_anchor_packets": [
+              2093086
+            ],
+            "anchor_roles": {
+              "C021": {
+                "2093086": "repeated_request"
+              },
+              "C030": {
+                "2093086": "request"
+              }
+            },
+            "lineage_end_request_packet": 2093086
+          }
+        }
+      ],
+      "primary_go_to_packet": 1944521,
+      "primary_go_to_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+      "anchor_packets": [
+        1944521,
+        1944543,
+        1944543,
+        1944567,
+        1944567,
+        2093086,
+        2093086,
+        2093088
+      ],
+      "lineage": {
+        "request_packets": [
+          1944521,
+          1944543,
+          1944567,
+          2093086
+        ],
+        "packet_span": 148565
+      },
+      "observations": [
+        {
+          "candidate_id": "C003",
+          "observed": "CfgRd0 request 1944521 (Tag 0): same association key observed again at 1944543 (CfgRd0) before an associated completion was observed"
+        },
+        {
+          "candidate_id": "C012",
+          "observed": "CfgRd0 request 1944543 (Tag 0): same association key observed again at 1944567 (CfgWr0) before an associated completion was observed"
+        },
+        {
+          "candidate_id": "C021",
+          "observed": "CfgWr0 request 1944567 (Tag 0): same association key observed again at 2093086 (MRd(32)) before an associated completion was observed"
+        },
+        {
+          "candidate_id": "C030",
+          "observed": "MRd(32) request 2093086 (Tag 0) has associated completion 2093088 with status UR"
+        }
+      ],
+      "auxiliary_descriptors_not_used_for_grouping": {
+        "anchor_time_displays": [
+          "4.848 sec",
+          "5.880 sec"
+        ],
+        "nearby_messages_from_g3c": [
+          {
+            "packet": 1944516,
+            "message_name": "SLOTPOWERLIMIT",
+            "display_time": "4.848 sec"
+          },
+          {
+            "packet": 2093072,
+            "message_name": "ERR_COR",
+            "display_time": "5.880 sec"
+          }
+        ],
+        "detectors": [
+          "G3A_NON_SUCCESS_COMPLETION",
+          "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION"
+        ]
+      },
+      "interpretation": "NOT_EVALUATED",
+      "group_id": "G003"
+    },
+    {
+      "members": [
+        "C004",
+        "C022"
+      ],
+      "grouping_basis": [
+        "shared_anchor_packet",
+        "shared_association_lineage"
+      ],
+      "relationship": "grouped_by_shared_evidence",
+      "edges": [
+        {
+          "members": [
+            "C004",
+            "C022"
+          ],
+          "basis": [
+            "shared_anchor_packet",
+            "shared_association_lineage"
+          ],
+          "evidence": {
+            "shared_anchor_packets": [
+              1944571
+            ],
+            "anchor_roles": {
+              "C004": {
+                "1944571": "repeated_request"
+              },
+              "C022": {
+                "1944571": "first_request"
+              }
+            },
+            "lineage_end_request_packet": 2093652
+          }
+        }
+      ],
+      "primary_go_to_packet": 1944523,
+      "primary_go_to_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+      "anchor_packets": [
+        1944523,
+        1944571,
+        1944571,
+        2093652
+      ],
+      "lineage": {
+        "request_packets": [
+          1944523,
+          1944571,
+          2093652
+        ],
+        "packet_span": 149129
+      },
+      "observations": [
+        {
+          "candidate_id": "C004",
+          "observed": "CfgRd0 request 1944523 (Tag 5): same association key observed again at 1944571 (CfgWr0) before an associated completion was observed"
+        },
+        {
+          "candidate_id": "C022",
+          "observed": "CfgWr0 request 1944571 (Tag 5): same association key observed again at 2093652 (CfgRd0) before an associated completion was observed"
+        }
+      ],
+      "auxiliary_descriptors_not_used_for_grouping": {
+        "anchor_time_displays": [
+          "4.848 sec"
+        ],
+        "nearby_messages_from_g3c": [
+          {
+            "packet": 1944516,
+            "message_name": "SLOTPOWERLIMIT",
+            "display_time": "4.848 sec"
+          }
+        ],
+        "detectors": [
+          "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION"
+        ]
+      },
+      "interpretation": "NOT_EVALUATED",
+      "group_id": "G004"
+    },
+    {
+      "members": [
+        "C005",
+        "C023"
+      ],
+      "grouping_basis": [
+        "request_or_completion_is_other_candidate_anchor",
+        "shared_anchor_packet",
+        "shared_association_lineage"
+      ],
+      "relationship": "grouped_by_shared_evidence",
+      "edges": [
+        {
+          "members": [
+            "C005",
+            "C023"
+          ],
+          "basis": [
+            "shared_anchor_packet",
+            "request_or_completion_is_other_candidate_anchor",
+            "shared_association_lineage"
+          ],
+          "evidence": {
+            "shared_anchor_packets": [
+              1945005
+            ],
+            "anchor_roles": {
+              "C005": {
+                "1945005": "repeated_request"
+              },
+              "C023": {
+                "1945005": "request"
+              }
+            },
+            "lineage_end_request_packet": 1945005
+          }
+        }
+      ],
+      "primary_go_to_packet": 1944525,
+      "primary_go_to_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+      "anchor_packets": [
+        1944525,
+        1945005,
+        1945005,
+        1945008
+      ],
+      "lineage": {
+        "request_packets": [
+          1944525,
+          1945005
+        ],
+        "packet_span": 480
+      },
+      "observations": [
+        {
+          "candidate_id": "C005",
+          "observed": "CfgRd0 request 1944525 (Tag 11): same association key observed again at 1945005 (MRd(32)) before an associated completion was observed"
+        },
+        {
+          "candidate_id": "C023",
+          "observed": "MRd(32) request 1945005 (Tag 11) has associated completion 1945008 with status UR"
+        }
+      ],
+      "auxiliary_descriptors_not_used_for_grouping": {
+        "anchor_time_displays": [
+          "4.848 sec",
+          "4.853 sec"
+        ],
+        "nearby_messages_from_g3c": [
+          {
+            "packet": 1944516,
+            "message_name": "SLOTPOWERLIMIT",
+            "display_time": "4.848 sec"
+          },
+          {
+            "packet": 1945029,
+            "message_name": "ERR_COR",
+            "display_time": "4.853 sec"
+          }
+        ],
+        "detectors": [
+          "G3A_NON_SUCCESS_COMPLETION",
+          "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION"
+        ]
+      },
+      "interpretation": "NOT_EVALUATED",
+      "group_id": "G005"
+    },
+    {
+      "members": [
+        "C006",
+        "C015",
+        "C024"
+      ],
+      "grouping_basis": [
+        "request_or_completion_is_other_candidate_anchor",
+        "shared_anchor_packet",
+        "shared_association_lineage"
+      ],
+      "relationship": "grouped_by_shared_evidence",
+      "edges": [
+        {
+          "members": [
+            "C006",
+            "C015"
+          ],
+          "basis": [
+            "shared_anchor_packet",
+            "shared_association_lineage"
+          ],
+          "evidence": {
+            "shared_anchor_packets": [
+              1944551
+            ],
+            "anchor_roles": {
+              "C006": {
+                "1944551": "repeated_request"
+              },
+              "C015": {
+                "1944551": "first_request"
+              }
+            },
+            "lineage_end_request_packet": 1945011
+          }
+        },
+        {
+          "members": [
+            "C006",
+            "C024"
+          ],
+          "basis": [
+            "shared_association_lineage"
+          ],
+          "evidence": {
+            "lineage_end_request_packet": 1945011
+          }
+        },
+        {
+          "members": [
+            "C015",
+            "C024"
+          ],
+          "basis": [
+            "shared_anchor_packet",
+            "request_or_completion_is_other_candidate_anchor",
+            "shared_association_lineage"
+          ],
+          "evidence": {
+            "shared_anchor_packets": [
+              1945011
+            ],
+            "anchor_roles": {
+              "C015": {
+                "1945011": "repeated_request"
+              },
+              "C024": {
+                "1945011": "request"
+              }
+            },
+            "lineage_end_request_packet": 1945011
+          }
+        }
+      ],
+      "primary_go_to_packet": 1944527,
+      "primary_go_to_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+      "anchor_packets": [
+        1944527,
+        1944551,
+        1944551,
+        1945011,
+        1945011,
+        1945013
+      ],
+      "lineage": {
+        "request_packets": [
+          1944527,
+          1944551,
+          1945011
+        ],
+        "packet_span": 484
+      },
+      "observations": [
+        {
+          "candidate_id": "C006",
+          "observed": "CfgRd0 request 1944527 (Tag 1): same association key observed again at 1944551 (CfgRd0) before an associated completion was observed"
+        },
+        {
+          "candidate_id": "C015",
+          "observed": "CfgRd0 request 1944551 (Tag 1): same association key observed again at 1945011 (MRd(32)) before an associated completion was observed"
+        },
+        {
+          "candidate_id": "C024",
+          "observed": "MRd(32) request 1945011 (Tag 1) has associated completion 1945013 with status UR"
+        }
+      ],
+      "auxiliary_descriptors_not_used_for_grouping": {
+        "anchor_time_displays": [
+          "4.848 sec",
+          "4.853 sec"
+        ],
+        "nearby_messages_from_g3c": [
+          {
+            "packet": 1944516,
+            "message_name": "SLOTPOWERLIMIT",
+            "display_time": "4.848 sec"
+          },
+          {
+            "packet": 1945029,
+            "message_name": "ERR_COR",
+            "display_time": "4.853 sec"
+          }
+        ],
+        "detectors": [
+          "G3A_NON_SUCCESS_COMPLETION",
+          "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION"
+        ]
+      },
+      "interpretation": "NOT_EVALUATED",
+      "group_id": "G006"
+    },
+    {
+      "members": [
+        "C007",
+        "C025"
+      ],
+      "grouping_basis": [
+        "request_or_completion_is_other_candidate_anchor",
+        "shared_anchor_packet",
+        "shared_association_lineage"
+      ],
+      "relationship": "grouped_by_shared_evidence",
+      "edges": [
+        {
+          "members": [
+            "C007",
+            "C025"
+          ],
+          "basis": [
+            "shared_anchor_packet",
+            "request_or_completion_is_other_candidate_anchor",
+            "shared_association_lineage"
+          ],
+          "evidence": {
+            "shared_anchor_packets": [
+              1945016
+            ],
+            "anchor_roles": {
+              "C007": {
+                "1945016": "repeated_request"
+              },
+              "C025": {
+                "1945016": "request"
+              }
+            },
+            "lineage_end_request_packet": 1945016
+          }
+        }
+      ],
+      "primary_go_to_packet": 1944531,
+      "primary_go_to_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+      "anchor_packets": [
+        1944531,
+        1945016,
+        1945016,
+        1945018
+      ],
+      "lineage": {
+        "request_packets": [
+          1944531,
+          1945016
+        ],
+        "packet_span": 485
+      },
+      "observations": [
+        {
+          "candidate_id": "C007",
+          "observed": "CfgRd0 request 1944531 (Tag 7): same association key observed again at 1945016 (MRd(32)) before an associated completion was observed"
+        },
+        {
+          "candidate_id": "C025",
+          "observed": "MRd(32) request 1945016 (Tag 7) has associated completion 1945018 with status UR"
+        }
+      ],
+      "auxiliary_descriptors_not_used_for_grouping": {
+        "anchor_time_displays": [
+          "4.848 sec",
+          "4.853 sec"
+        ],
+        "nearby_messages_from_g3c": [
+          {
+            "packet": 1944516,
+            "message_name": "SLOTPOWERLIMIT",
+            "display_time": "4.848 sec"
+          },
+          {
+            "packet": 1945029,
+            "message_name": "ERR_COR",
+            "display_time": "4.853 sec"
+          }
+        ],
+        "detectors": [
+          "G3A_NON_SUCCESS_COMPLETION",
+          "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION"
+        ]
+      },
+      "interpretation": "NOT_EVALUATED",
+      "group_id": "G007"
+    },
+    {
+      "members": [
+        "C008",
+        "C026"
+      ],
+      "grouping_basis": [
+        "request_or_completion_is_other_candidate_anchor",
+        "shared_anchor_packet",
+        "shared_association_lineage"
+      ],
+      "relationship": "grouped_by_shared_evidence",
+      "edges": [
+        {
+          "members": [
+            "C008",
+            "C026"
+          ],
+          "basis": [
+            "shared_anchor_packet",
+            "request_or_completion_is_other_candidate_anchor",
+            "shared_association_lineage"
+          ],
+          "evidence": {
+            "shared_anchor_packets": [
+              1945021
+            ],
+            "anchor_roles": {
+              "C008": {
+                "1945021": "repeated_request"
+              },
+              "C026": {
+                "1945021": "request"
+              }
+            },
+            "lineage_end_request_packet": 1945021
+          }
+        }
+      ],
+      "primary_go_to_packet": 1944533,
+      "primary_go_to_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+      "anchor_packets": [
+        1944533,
+        1945021,
+        1945021,
+        1945023
+      ],
+      "lineage": {
+        "request_packets": [
+          1944533,
+          1945021
+        ],
+        "packet_span": 488
+      },
+      "observations": [
+        {
+          "candidate_id": "C008",
+          "observed": "CfgRd0 request 1944533 (Tag 13): same association key observed again at 1945021 (MRd(32)) before an associated completion was observed"
+        },
+        {
+          "candidate_id": "C026",
+          "observed": "MRd(32) request 1945021 (Tag 13) has associated completion 1945023 with status UR"
+        }
+      ],
+      "auxiliary_descriptors_not_used_for_grouping": {
+        "anchor_time_displays": [
+          "4.848 sec",
+          "4.853 sec"
+        ],
+        "nearby_messages_from_g3c": [
+          {
+            "packet": 1944516,
+            "message_name": "SLOTPOWERLIMIT",
+            "display_time": "4.848 sec"
+          },
+          {
+            "packet": 1945029,
+            "message_name": "ERR_COR",
+            "display_time": "4.853 sec"
+          }
+        ],
+        "detectors": [
+          "G3A_NON_SUCCESS_COMPLETION",
+          "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION"
+        ]
+      },
+      "interpretation": "NOT_EVALUATED",
+      "group_id": "G008"
+    },
+    {
+      "members": [
+        "C009",
+        "C027"
+      ],
+      "grouping_basis": [
+        "request_or_completion_is_other_candidate_anchor",
+        "shared_anchor_packet",
+        "shared_association_lineage"
+      ],
+      "relationship": "grouped_by_shared_evidence",
+      "edges": [
+        {
+          "members": [
+            "C009",
+            "C027"
+          ],
+          "basis": [
+            "shared_anchor_packet",
+            "request_or_completion_is_other_candidate_anchor",
+            "shared_association_lineage"
+          ],
+          "evidence": {
+            "shared_anchor_packets": [
+              2093063
+            ],
+            "anchor_roles": {
+              "C009": {
+                "2093063": "repeated_request"
+              },
+              "C027": {
+                "2093063": "request"
+              }
+            },
+            "lineage_end_request_packet": 2093063
+          }
+        }
+      ],
+      "primary_go_to_packet": 1944535,
+      "primary_go_to_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+      "anchor_packets": [
+        1944535,
+        2093063,
+        2093063,
+        2093065
+      ],
+      "lineage": {
+        "request_packets": [
+          1944535,
+          2093063
+        ],
+        "packet_span": 148528
+      },
+      "observations": [
+        {
+          "candidate_id": "C009",
+          "observed": "CfgRd0 request 1944535 (Tag 3): same association key observed again at 2093063 (MRd(32)) before an associated completion was observed"
+        },
+        {
+          "candidate_id": "C027",
+          "observed": "MRd(32) request 2093063 (Tag 3) has associated completion 2093065 with status UR"
+        }
+      ],
+      "auxiliary_descriptors_not_used_for_grouping": {
+        "anchor_time_displays": [
+          "4.848 sec",
+          "5.880 sec"
+        ],
+        "nearby_messages_from_g3c": [
+          {
+            "packet": 2093072,
+            "message_name": "ERR_COR",
+            "display_time": "5.880 sec"
+          }
+        ],
+        "detectors": [
+          "G3A_NON_SUCCESS_COMPLETION",
+          "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION"
+        ]
+      },
+      "interpretation": "NOT_EVALUATED",
+      "group_id": "G009"
+    },
+    {
+      "members": [
+        "C010",
+        "C028"
+      ],
+      "grouping_basis": [
+        "request_or_completion_is_other_candidate_anchor",
+        "shared_anchor_packet",
+        "shared_association_lineage"
+      ],
+      "relationship": "grouped_by_shared_evidence",
+      "edges": [
+        {
+          "members": [
+            "C010",
+            "C028"
+          ],
+          "basis": [
+            "shared_anchor_packet",
+            "request_or_completion_is_other_candidate_anchor",
+            "shared_association_lineage"
+          ],
+          "evidence": {
+            "shared_anchor_packets": [
+              2093071
+            ],
+            "anchor_roles": {
+              "C010": {
+                "2093071": "repeated_request"
+              },
+              "C028": {
+                "2093071": "request"
+              }
+            },
+            "lineage_end_request_packet": 2093071
+          }
+        }
+      ],
+      "primary_go_to_packet": 1944537,
+      "primary_go_to_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+      "anchor_packets": [
+        1944537,
+        2093071,
+        2093071,
+        2093075
+      ],
+      "lineage": {
+        "request_packets": [
+          1944537,
+          2093071
+        ],
+        "packet_span": 148534
+      },
+      "observations": [
+        {
+          "candidate_id": "C010",
+          "observed": "CfgRd0 request 1944537 (Tag 9): same association key observed again at 2093071 (MRd(32)) before an associated completion was observed"
+        },
+        {
+          "candidate_id": "C028",
+          "observed": "MRd(32) request 2093071 (Tag 9) has associated completion 2093075 with status UR"
+        }
+      ],
+      "auxiliary_descriptors_not_used_for_grouping": {
+        "anchor_time_displays": [
+          "4.848 sec",
+          "5.880 sec"
+        ],
+        "nearby_messages_from_g3c": [
+          {
+            "packet": 2093072,
+            "message_name": "ERR_COR",
+            "display_time": "5.880 sec"
+          }
+        ],
+        "detectors": [
+          "G3A_NON_SUCCESS_COMPLETION",
+          "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION"
+        ]
+      },
+      "interpretation": "NOT_EVALUATED",
+      "group_id": "G010"
+    },
+    {
+      "members": [
+        "C011",
+        "C029"
+      ],
+      "grouping_basis": [
+        "request_or_completion_is_other_candidate_anchor",
+        "shared_anchor_packet",
+        "shared_association_lineage"
+      ],
+      "relationship": "grouped_by_shared_evidence",
+      "edges": [
+        {
+          "members": [
+            "C011",
+            "C029"
+          ],
+          "basis": [
+            "shared_anchor_packet",
+            "request_or_completion_is_other_candidate_anchor",
+            "shared_association_lineage"
+          ],
+          "evidence": {
+            "shared_anchor_packets": [
+              2093079
+            ],
+            "anchor_roles": {
+              "C011": {
+                "2093079": "repeated_request"
+              },
+              "C029": {
+                "2093079": "request"
+              }
+            },
+            "lineage_end_request_packet": 2093079
+          }
+        }
+      ],
+      "primary_go_to_packet": 1944539,
+      "primary_go_to_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+      "anchor_packets": [
+        1944539,
+        2093079,
+        2093079,
+        2093081
+      ],
+      "lineage": {
+        "request_packets": [
+          1944539,
+          2093079
+        ],
+        "packet_span": 148540
+      },
+      "observations": [
+        {
+          "candidate_id": "C011",
+          "observed": "CfgRd0 request 1944539 (Tag 15): same association key observed again at 2093079 (MRd(32)) before an associated completion was observed"
+        },
+        {
+          "candidate_id": "C029",
+          "observed": "MRd(32) request 2093079 (Tag 15) has associated completion 2093081 with status UR"
+        }
+      ],
+      "auxiliary_descriptors_not_used_for_grouping": {
+        "anchor_time_displays": [
+          "4.848 sec",
+          "5.880 sec"
+        ],
+        "nearby_messages_from_g3c": [
+          {
+            "packet": 2093072,
+            "message_name": "ERR_COR",
+            "display_time": "5.880 sec"
+          }
+        ],
+        "detectors": [
+          "G3A_NON_SUCCESS_COMPLETION",
+          "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION"
+        ]
+      },
+      "interpretation": "NOT_EVALUATED",
+      "group_id": "G011"
+    },
+    {
+      "members": [
+        "C013",
+        "C031"
+      ],
+      "grouping_basis": [
+        "request_or_completion_is_other_candidate_anchor",
+        "shared_anchor_packet",
+        "shared_association_lineage"
+      ],
+      "relationship": "grouped_by_shared_evidence",
+      "edges": [
+        {
+          "members": [
+            "C013",
+            "C031"
+          ],
+          "basis": [
+            "shared_anchor_packet",
+            "request_or_completion_is_other_candidate_anchor",
+            "shared_association_lineage"
+          ],
+          "evidence": {
+            "shared_anchor_packets": [
+              2093091
+            ],
+            "anchor_roles": {
+              "C013": {
+                "2093091": "repeated_request"
+              },
+              "C031": {
+                "2093091": "request"
+              }
+            },
+            "lineage_end_request_packet": 2093091
+          }
+        }
+      ],
+      "primary_go_to_packet": 1944547,
+      "primary_go_to_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+      "anchor_packets": [
+        1944547,
+        2093091,
+        2093091,
+        2093093
+      ],
+      "lineage": {
+        "request_packets": [
+          1944547,
+          2093091
+        ],
+        "packet_span": 148544
+      },
+      "observations": [
+        {
+          "candidate_id": "C013",
+          "observed": "CfgRd0 request 1944547 (Tag 4): same association key observed again at 2093091 (MRd(32)) before an associated completion was observed"
+        },
+        {
+          "candidate_id": "C031",
+          "observed": "MRd(32) request 2093091 (Tag 4) has associated completion 2093093 with status UR"
+        }
+      ],
+      "auxiliary_descriptors_not_used_for_grouping": {
+        "anchor_time_displays": [
+          "4.848 sec",
+          "5.880 sec"
+        ],
+        "nearby_messages_from_g3c": [
+          {
+            "packet": 2093072,
+            "message_name": "ERR_COR",
+            "display_time": "5.880 sec"
+          }
+        ],
+        "detectors": [
+          "G3A_NON_SUCCESS_COMPLETION",
+          "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION"
+        ]
+      },
+      "interpretation": "NOT_EVALUATED",
+      "group_id": "G012"
+    },
+    {
+      "members": [
+        "C014"
+      ],
+      "grouping_basis": [
+        "none_singleton"
+      ],
+      "relationship": "singleton_no_strong_relationship",
+      "edges": [],
+      "primary_go_to_packet": 1944549,
+      "primary_go_to_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+      "anchor_packets": [
+        1944549,
+        2093522
+      ],
+      "lineage": {
+        "request_packets": [
+          1944549,
+          2093522
+        ],
+        "packet_span": 148973
+      },
+      "observations": [
+        {
+          "candidate_id": "C014",
+          "observed": "CfgRd0 request 1944549 (Tag 10): same association key observed again at 2093522 (CfgRd0) before an associated completion was observed"
+        }
+      ],
+      "auxiliary_descriptors_not_used_for_grouping": {
+        "anchor_time_displays": [
+          "4.848 sec"
+        ],
+        "nearby_messages_from_g3c": [],
+        "detectors": [
+          "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION"
+        ]
+      },
+      "interpretation": "NOT_EVALUATED",
+      "group_id": "G013"
+    },
+    {
+      "members": [
+        "C016"
+      ],
+      "grouping_basis": [
+        "none_singleton"
+      ],
+      "relationship": "singleton_no_strong_relationship",
+      "edges": [],
+      "primary_go_to_packet": 1944553,
+      "primary_go_to_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+      "anchor_packets": [
+        1944553,
+        2093550
+      ],
+      "lineage": {
+        "request_packets": [
+          1944553,
+          2093550
+        ],
+        "packet_span": 148997
+      },
+      "observations": [
+        {
+          "candidate_id": "C016",
+          "observed": "CfgRd0 request 1944553 (Tag 6): same association key observed again at 2093550 (CfgRd0) before an associated completion was observed"
+        }
+      ],
+      "auxiliary_descriptors_not_used_for_grouping": {
+        "anchor_time_displays": [
+          "4.848 sec"
+        ],
+        "nearby_messages_from_g3c": [],
+        "detectors": [
+          "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION"
+        ]
+      },
+      "interpretation": "NOT_EVALUATED",
+      "group_id": "G014"
+    },
+    {
+      "members": [
+        "C017"
+      ],
+      "grouping_basis": [
+        "none_singleton"
+      ],
+      "relationship": "singleton_no_strong_relationship",
+      "edges": [],
+      "primary_go_to_packet": 1944555,
+      "primary_go_to_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+      "anchor_packets": [
+        1944555,
+        2093564
+      ],
+      "lineage": {
+        "request_packets": [
+          1944555,
+          2093564
+        ],
+        "packet_span": 149009
+      },
+      "observations": [
+        {
+          "candidate_id": "C017",
+          "observed": "CfgRd0 request 1944555 (Tag 12): same association key observed again at 2093564 (CfgRd0) before an associated completion was observed"
+        }
+      ],
+      "auxiliary_descriptors_not_used_for_grouping": {
+        "anchor_time_displays": [
+          "4.848 sec"
+        ],
+        "nearby_messages_from_g3c": [],
+        "detectors": [
+          "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION"
+        ]
+      },
+      "interpretation": "NOT_EVALUATED",
+      "group_id": "G015"
+    },
+    {
+      "members": [
+        "C018"
+      ],
+      "grouping_basis": [
+        "none_singleton"
+      ],
+      "relationship": "singleton_no_strong_relationship",
+      "edges": [],
+      "primary_go_to_packet": 1944557,
+      "primary_go_to_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+      "anchor_packets": [
+        1944557,
+        2093577
+      ],
+      "lineage": {
+        "request_packets": [
+          1944557,
+          2093577
+        ],
+        "packet_span": 149020
+      },
+      "observations": [
+        {
+          "candidate_id": "C018",
+          "observed": "CfgRd0 request 1944557 (Tag 2): same association key observed again at 2093577 (CfgRd0) before an associated completion was observed"
+        }
+      ],
+      "auxiliary_descriptors_not_used_for_grouping": {
+        "anchor_time_displays": [
+          "4.848 sec"
+        ],
+        "nearby_messages_from_g3c": [],
+        "detectors": [
+          "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION"
+        ]
+      },
+      "interpretation": "NOT_EVALUATED",
+      "group_id": "G016"
+    }
+  ]
+}

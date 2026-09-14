@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PCIe Trace 候選檢查位置報告（S0-Remove SD7-1350.pex）</title><style>
+:root{--bg:#f6f7f9;--panel:#fff;--ink:#1d2433;--muted:#5b6475;--line:#d9dee7;--warn-bg:#fff4d6;--warn-line:#e6c36a;
+--ur:#b3261e;--ur-bg:#fde8e7;--msg:#8a4b00;--msg-bg:#fff0dc;--key:#1f4e8c;--key-bg:#e6eefb;--seg:#4a4f5c;--seg-bg:#eceef2}
+@media (prefers-color-scheme: dark){:root{--bg:#14171c;--panel:#1d2129;--ink:#e6e9ef;--muted:#a3abba;--line:#343a46;--warn-bg:#3a3020;
+--warn-line:#8c7336;--ur:#ff9b94;--ur-bg:#46211f;--msg:#ffc680;--msg-bg:#3d2c14;--key:#9cc3ff;--key-bg:#1d2d45;--seg:#c9ced8;--seg-bg:#2b303a}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 system-ui,"Segoe UI","Microsoft JhengHei",sans-serif}
+main{max-width:1100px;margin:0 auto;padding:24px 16px 48px}h1{font-size:1.5rem;margin:.2em 0 .6em}h2{font-size:1.15rem;margin:1.6em 0 .6em}
+p{margin:.5em 0}code{font-family:ui-monospace,Consolas,monospace;font-size:.92em;background:var(--seg-bg);padding:0 .25em;border-radius:3px;overflow-wrap:anywhere}
+.warn{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:10px;padding:12px 16px;margin:16px 0}.warn ul{margin:.3em 0;padding-left:1.2em}
+.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;background:var(--panel);font-size:.9rem}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}th{background:var(--seg-bg);white-space:nowrap}
+.badge{display:inline-block;font-size:.78rem;font-weight:600;border-radius:999px;padding:1px 8px;margin:1px 4px 1px 0;white-space:nowrap}
+.b-ur{color:var(--ur);background:var(--ur-bg)}.b-msg{color:var(--msg);background:var(--msg-bg)}.b-key{color:var(--key);background:var(--key-bg)}.b-seg{color:var(--seg);background:var(--seg-bg)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:14px 0}
+.card h3{margin:0 0 .4em;font-size:1.05rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px 18px}
+.label{color:var(--muted);font-size:.82rem}.card ul{margin:.2em 0;padding-left:1.2em}details{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+summary{cursor:pointer;font-weight:600}details h4{margin:.9em 0 .3em;font-size:.95rem}.muted{color:var(--muted);font-size:.85rem}
+</style></head><body><main>
+<h1>PCIe Trace 候選檢查位置報告（S0-Remove SD7-1350.pex）</h1>
+<p>工具在 <code>S0-Remove SD7-1350.pex</code> 的 938 筆 TLP 裡整理出 16 組候選檢查位置。每一組都附上主要定位點，也就是 LeCroy 可以直接跳過去的 packet 編號。各組依主要定位點在 trace 裡出現的先後排列，順序不代表嚴重程度。</p>
+<section class="warn" aria-label="閱讀前須知"><strong>閱讀前須知</strong><ul><li>Ground truth <code>UNKNOWN</code>，這份 trace 的測試結果還沒確認。</li><li>工具沒有判斷故障原因，每一組都只是候選檢查位置（<code>NOT_EVALUATED</code>）。</li><li>判斷附近與否用的 64 packets 範圍是 prototype heuristic，看過資料後才訂。</li><li>各組依主要定位點在 trace 裡出現的先後排列，順序不代表嚴重程度。</li><li>主要定位點依固定規則選出，取這一組最早出現的 request。它只用來快速跳轉，不代表該位置比較嚴重、比較可疑，或比較接近故障原因。</li></ul></section>
+<h2>16 組候選檢查位置一覽</h2>
+<div class="table-wrap"><table><thead><tr><th>Finding</th><th>主要定位點</th><th>時間</th><th>標記</th><th>內容</th></tr></thead><tbody>
+<tr><td><a href="#finding-f001">F001</a></td><td><code>Packet 1944517</code></td><td>4.848 sec、5.883 sec</td><td><span class="badge b-msg">SLOTPOWERLIMIT</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">3 Segments，跨 149,084 packets</span></td><td><code>CfgRd0</code> 同一組 key 再次出現；附近有 <code>SLOTPOWERLIMIT</code></td></tr><tr><td><a href="#finding-f002">F002</a></td><td><code>Packet 1944519</code></td><td>4.848 sec、5.883 sec</td><td><span class="badge b-msg">SLOTPOWERLIMIT</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">3 Segments，跨 149,096 packets</span></td><td><code>CfgRd0</code>、<code>CfgWr0</code> 同一組 key 再次出現；附近有 <code>SLOTPOWERLIMIT</code></td></tr><tr><td><a href="#finding-f003">F003</a></td><td><code>Packet 1944521</code></td><td>4.848 sec、5.880 sec</td><td><span class="badge b-ur">UR</span><span class="badge b-msg">ERR_COR</span><span class="badge b-msg">SLOTPOWERLIMIT</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 148,567 packets</span></td><td><code>CfgRd0</code>、<code>CfgWr0</code> 同一組 key 再次出現；<code>MRd(32)</code> 收到 <code>UR</code>；附近有 <code>ERR_COR</code>、<code>SLOTPOWERLIMIT</code></td></tr><tr><td><a href="#finding-f004">F004</a></td><td><code>Packet 1944523</code></td><td>4.848 sec、5.883 sec</td><td><span class="badge b-msg">SLOTPOWERLIMIT</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">3 Segments，跨 149,129 packets</span></td><td><code>CfgRd0</code>、<code>CfgWr0</code> 同一組 key 再次出現；附近有 <code>SLOTPOWERLIMIT</code></td></tr><tr><td><a href="#finding-f005">F005</a></td><td><code>Packet 1944525</code></td><td>4.848 sec、4.853 sec</td><td><span class="badge b-ur">UR</span><span class="badge b-msg">ERR_COR</span><span class="badge b-msg">SLOTPOWERLIMIT</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 483 packets</span></td><td><code>CfgRd0</code> 同一組 key 再次出現；<code>MRd(32)</code> 收到 <code>UR</code>；附近有 <code>ERR_COR</code>、<code>SLOTPOWERLIMIT</code></td></tr><tr><td><a href="#finding-f006">F006</a></td><td><code>Packet 1944527</code></td><td>4.848 sec、4.853 sec</td><td><span class="badge b-ur">UR</span><span class="badge b-msg">ERR_COR</span><span class="badge b-msg">SLOTPOWERLIMIT</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 486 packets</span></td><td><code>CfgRd0</code> 同一組 key 再次出現；<code>MRd(32)</code> 收到 <code>UR</code>；附近有 <code>ERR_COR</code>、<code>SLOTPOWERLIMIT</code></td></tr><tr><td><a href="#finding-f007">F007</a></td><td><code>Packet 1944531</code></td><td>4.848 sec、4.853 sec</td><td><span class="badge b-ur">UR</span><span class="badge b-msg">ERR_COR</span><span class="badge b-msg">SLOTPOWERLIMIT</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 487 packets</span></td><td><code>CfgRd0</code> 同一組 key 再次出現；<code>MRd(32)</code> 收到 <code>UR</code>；附近有 <code>ERR_COR</code>、<code>SLOTPOWERLIMIT</code></td></tr><tr><td><a href="#finding-f008">F008</a></td><td><code>Packet 1944533</code></td><td>4.848 sec、4.853 sec</td><td><span class="badge b-ur">UR</span><span class="badge b-msg">ERR_COR</span><span class="badge b-msg">SLOTPOWERLIMIT</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 490 packets</span></td><td><code>CfgRd0</code> 同一組 key 再次出現；<code>MRd(32)</code> 收到 <code>UR</code>；附近有 <code>ERR_COR</code>、<code>SLOTPOWERLIMIT</code></td></tr><tr><td><a href="#finding-f009">F009</a></td><td><code>Packet 1944535</code></td><td>4.848 sec、5.880 sec</td><td><span class="badge b-ur">UR</span><span class="badge b-msg">ERR_COR</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 148,530 packets</span></td><td><code>CfgRd0</code> 同一組 key 再次出現；<code>MRd(32)</code> 收到 <code>UR</code>；附近有 <code>ERR_COR</code></td></tr><tr><td><a href="#finding-f010">F010</a></td><td><code>Packet 1944537</code></td><td>4.848 sec、5.880 sec</td><td><span class="badge b-ur">UR</span><span class="badge b-msg">ERR_COR</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 148,538 packets</span></td><td><code>CfgRd0</code> 同一組 key 再次出現；<code>MRd(32)</code> 收到 <code>UR</code>；附近有 <code>ERR_COR</code></td></tr><tr><td><a href="#finding-f011">F011</a></td><td><code>Packet 1944539</code></td><td>4.848 sec、5.880 sec</td><td><span class="badge b-ur">UR</span><span class="badge b-msg">ERR_COR</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 148,542 packets</span></td><td><code>CfgRd0</code> 同一組 key 再次出現；<code>MRd(32)</code> 收到 <code>UR</code>；附近有 <code>ERR_COR</code></td></tr><tr><td><a href="#finding-f012">F012</a></td><td><code>Packet 1944547</code></td><td>4.848 sec、5.880 sec</td><td><span class="badge b-ur">UR</span><span class="badge b-msg">ERR_COR</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 148,546 packets</span></td><td><code>CfgRd0</code> 同一組 key 再次出現；<code>MRd(32)</code> 收到 <code>UR</code>；附近有 <code>ERR_COR</code></td></tr><tr><td><a href="#finding-f013">F013</a></td><td><code>Packet 1944549</code></td><td>4.848 sec、5.883 sec</td><td><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 148,973 packets</span></td><td><code>CfgRd0</code> 同一組 key 再次出現</td></tr><tr><td><a href="#finding-f014">F014</a></td><td><code>Packet 1944553</code></td><td>4.848 sec、5.883 sec</td><td><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 148,997 packets</span></td><td><code>CfgRd0</code> 同一組 key 再次出現</td></tr><tr><td><a href="#finding-f015">F015</a></td><td><code>Packet 1944555</code></td><td>4.848 sec、5.883 sec</td><td><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 149,009 packets</span></td><td><code>CfgRd0</code> 同一組 key 再次出現</td></tr><tr><td><a href="#finding-f016">F016</a></td><td><code>Packet 1944557</code></td><td>4.848 sec、5.883 sec</td><td><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 149,020 packets</span></td><td><code>CfgRd0</code> 同一組 key 再次出現</td></tr>
+</tbody></table></div>
+<h2>Findings</h2>
+<section class="card" id="finding-f001" data-finding="F001">
+<h3>Finding F001 <span class="badge b-msg">SLOTPOWERLIMIT</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">3 Segments，跨 149,084 packets</span></h3>
+<div class="grid">
+<div><div class="label">主要定位點</div><div><code>Packet 1944517</code></div><div class="muted">依固定規則選出，只用來跳轉</div></div>
+<div><div class="label">觀察</div><ul><li><code>CfgRd0</code> 同一組 key 再次出現</li><li>附近有 <code>SLOTPOWERLIMIT</code></li></ul></div>
+<div><div class="label">Segments</div><ul><li>Segment A（4.848 sec），定位 <code>Packet 1944517</code></li><li>Segment B（4.848 sec），定位 <code>Packet 1944559</code></li><li>Segment C（5.883 sec），定位 <code>Packet 2093601</code></li></ul></div>
+</div>
+<details>
+<summary>展開完整證據</summary>
+<h4>主要定位點</h4><p><code>Packet 1944517</code>，依固定規則選出的主要定位點（這一組最早出現的 request）。在 LeCroy 用 Go to Packet 跳過去。</p><p class="label">其他位置</p><ul><li>Segment B，<code>Packet 1944559</code></li><li>Segment C，<code>Packet 2093601</code></li></ul>
+<h4>觀察到什麼</h4><p>4.848 sec，<code>Packet 1944517</code> 的 <code>CfgRd0</code>（<code>Tag 8</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 1944559</code> 再次出現（4.848 sec，<code>CfgRd0</code>）。</p><p>4.848 sec，<code>Packet 1944559</code> 的 <code>CfgRd0</code>（<code>Tag 8</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 2093601</code> 再次出現（5.883 sec，<code>CfgRd0</code>）。</p><p class="label">附近也觀察到</p><ul><li><code>Packet 1944516</code>，<code>SLOTPOWERLIMIT</code>（4.848 sec）</li></ul>
+<h4>相關位置</h4><h4>Segment A（4.848 sec）</h4><ul><li><code>Packet 1944517</code>，<code>CfgRd0</code>，<code>Tag 8</code>，Requester <code>000:00.0</code></li><li><code>Packet 1944516</code>，<code>SLOTPOWERLIMIT</code>，附近的 message</li></ul><h4>Segment B（4.848 sec）</h4><ul><li><code>Packet 1944559</code>，<code>CfgRd0</code>，<code>Tag 8</code>，Requester <code>000:00.0</code></li></ul><h4>Segment C（5.883 sec）</h4><ul><li><code>Packet 2093601</code>，<code>CfgRd0</code>，<code>Tag 8</code>，Requester <code>000:00.0</code></li></ul>
+<h4>為什麼列出這一項</h4><ul><li>同一組 <code>RequesterId</code> + <code>Tag</code> 在看到 Completion 以前再次出現。</li><li>這幾項觀察放在同一組，原因如下<ul><li>它們用到同一個 packet</li><li>它們在同一條 request 關聯鏈上，同一組 <code>RequesterId</code> + <code>Tag</code> 連續出現</li></ul></li></ul>
+<h4>目前還不能確定</h4><ul><li>這份 trace 的 ground truth 還沒確認（<code>UNKNOWN</code>），工具沒有判斷這裡是否異常。</li><li><code>SLOTPOWERLIMIT</code> 和 這裡的 request 目前只確認位置接近，沒有證明因果。判斷附近與否用的 64 packets 範圍，是看過資料後才訂的暫定條件。</li><li>這一組的 3 個 Segment 前後相隔約 149,084 packets。放在同一組是因為 evidence 有關聯，不代表這幾段屬於同一個故障事件。</li><li>同一組 key 再次出現，不代表 requester 重送、<code>Tag</code> 用法違規，或 Completion 落在 capture 範圍外。</li></ul>
+<h4>追溯</h4><p><code>findings.json</code> 的 <code>F001</code>，group <code>G001</code>，candidates <code>C001</code>、<code>C019</code>。</p>
+</details>
+</section>
+<section class="card" id="finding-f002" data-finding="F002">
+<h3>Finding F002 <span class="badge b-msg">SLOTPOWERLIMIT</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">3 Segments，跨 149,096 packets</span></h3>
+<div class="grid">
+<div><div class="label">主要定位點</div><div><code>Packet 1944519</code></div><div class="muted">依固定規則選出，只用來跳轉</div></div>
+<div><div class="label">觀察</div><ul><li><code>CfgRd0</code>、<code>CfgWr0</code> 同一組 key 再次出現</li><li>附近有 <code>SLOTPOWERLIMIT</code></li></ul></div>
+<div><div class="label">Segments</div><ul><li>Segment A（4.848 sec），定位 <code>Packet 1944519</code></li><li>Segment B（4.848 sec），定位 <code>Packet 1944563</code></li><li>Segment C（5.883 sec），定位 <code>Packet 2093615</code></li></ul></div>
+</div>
+<details>
+<summary>展開完整證據</summary>
+<h4>主要定位點</h4><p><code>Packet 1944519</code>，依固定規則選出的主要定位點（這一組最早出現的 request）。在 LeCroy 用 Go to Packet 跳過去。</p><p class="label">其他位置</p><ul><li>Segment B，<code>Packet 1944563</code></li><li>Segment C，<code>Packet 2093615</code></li></ul>
+<h4>觀察到什麼</h4><p>4.848 sec，<code>Packet 1944519</code> 的 <code>CfgRd0</code>（<code>Tag 14</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 1944563</code> 再次出現（4.848 sec，<code>CfgWr0</code>）。</p><p>4.848 sec，<code>Packet 1944563</code> 的 <code>CfgWr0</code>（<code>Tag 14</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 2093615</code> 再次出現（5.883 sec，<code>CfgRd0</code>）。</p><p class="label">附近也觀察到</p><ul><li><code>Packet 1944516</code>，<code>SLOTPOWERLIMIT</code>（4.848 sec）</li></ul>
+<h4>相關位置</h4><h4>Segment A（4.848 sec）</h4><ul><li><code>Packet 1944519</code>，<code>CfgRd0</code>，<code>Tag 14</code>，Requester <code>000:00.0</code></li><li><code>Packet 1944516</code>，<code>SLOTPOWERLIMIT</code>，附近的 message</li></ul><h4>Segment B（4.848 sec）</h4><ul><li><code>Packet 1944563</code>，<code>CfgWr0</code>，<code>Tag 14</code>，Requester <code>000:00.0</code></li></ul><h4>Segment C（5.883 sec）</h4><ul><li><code>Packet 2093615</code>，<code>CfgRd0</code>，<code>Tag 14</code>，Requester <code>000:00.0</code></li></ul>
+<h4>為什麼列出這一項</h4><ul><li>同一組 <code>RequesterId</code> + <code>Tag</code> 在看到 Completion 以前再次出現。</li><li>這幾項觀察放在同一組，原因如下<ul><li>它們用到同一個 packet</li><li>它們在同一條 request 關聯鏈上，同一組 <code>RequesterId</code> + <code>Tag</code> 連續出現</li></ul></li></ul>
+<h4>目前還不能確定</h4><ul><li>這份 trace 的 ground truth 還沒確認（<code>UNKNOWN</code>），工具沒有判斷這裡是否異常。</li><li><code>SLOTPOWERLIMIT</code> 和 這裡的 request 目前只確認位置接近，沒有證明因果。判斷附近與否用的 64 packets 範圍，是看過資料後才訂的暫定條件。</li><li>這一組的 3 個 Segment 前後相隔約 149,096 packets。放在同一組是因為 evidence 有關聯，不代表這幾段屬於同一個故障事件。</li><li>同一組 key 再次出現，不代表 requester 重送、<code>Tag</code> 用法違規，或 Completion 落在 capture 範圍外。</li></ul>
+<h4>追溯</h4><p><code>findings.json</code> 的 <code>F002</code>，group <code>G002</code>，candidates <code>C002</code>、<code>C020</code>。</p>
+</details>
+</section>
+<section class="card" id="finding-f003" data-finding="F003">
+<h3>Finding F003 <span class="badge b-ur">UR</span><span class="badge b-msg">ERR_COR</span><span class="badge b-msg">SLOTPOWERLIMIT</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 148,567 packets</span></h3>
+<div class="grid">
+<div><div class="label">主要定位點</div><div><code>Packet 1944521</code></div><div class="muted">依固定規則選出，只用來跳轉</div></div>
+<div><div class="label">觀察</div><ul><li><code>CfgRd0</code>、<code>CfgWr0</code> 同一組 key 再次出現</li><li><code>MRd(32)</code> 收到 <code>UR</code></li><li>附近有 <code>ERR_COR</code>、<code>SLOTPOWERLIMIT</code></li></ul></div>
+<div><div class="label">Segments</div><ul><li>Segment A（4.848 sec），定位 <code>Packet 1944521</code></li><li>Segment B（5.880 sec），定位 <code>Packet 2093086</code></li></ul></div>
+</div>
+<details>
+<summary>展開完整證據</summary>
+<h4>主要定位點</h4><p><code>Packet 1944521</code>，依固定規則選出的主要定位點（這一組最早出現的 request）。在 LeCroy 用 Go to Packet 跳過去。</p><p class="label">其他位置</p><ul><li>Segment B，<code>Packet 2093086</code></li></ul>
+<h4>觀察到什麼</h4><p>4.848 sec，<code>Packet 1944521</code> 的 <code>CfgRd0</code>（<code>Tag 0</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 1944543</code> 再次出現（4.848 sec，<code>CfgRd0</code>）。</p><p>4.848 sec，<code>Packet 1944543</code> 的 <code>CfgRd0</code>（<code>Tag 0</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 1944567</code> 再次出現（4.848 sec，<code>CfgWr0</code>）。</p><p>4.848 sec，<code>Packet 1944567</code> 的 <code>CfgWr0</code>（<code>Tag 0</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 2093086</code> 再次出現（5.880 sec，<code>MRd(32)</code>）。</p><p>5.880 sec，<code>Packet 2093086</code> 的 <code>MRd(32)</code> request（<code>Tag 0</code>）收到 <code>Packet 2093088</code> 的 Completion，status 是 <code>UR</code>。</p><p class="label">附近也觀察到</p><ul><li><code>Packet 1944516</code>，<code>SLOTPOWERLIMIT</code>（4.848 sec）</li><li><code>Packet 2093072</code>，<code>ERR_COR</code>（5.880 sec）</li></ul>
+<h4>相關位置</h4><h4>Segment A（4.848 sec）</h4><ul><li><code>Packet 1944521</code>，<code>CfgRd0</code>，<code>Tag 0</code>，Requester <code>000:00.0</code></li><li><code>Packet 1944543</code>，<code>CfgRd0</code>，<code>Tag 0</code>，Requester <code>000:00.0</code></li><li><code>Packet 1944567</code>，<code>CfgWr0</code>，<code>Tag 0</code>，Requester <code>000:00.0</code></li><li><code>Packet 1944516</code>，<code>SLOTPOWERLIMIT</code>，附近的 message</li></ul><h4>Segment B（5.880 sec）</h4><ul><li><code>Packet 2093086</code>，<code>MRd(32)</code>，<code>Tag 0</code>，Requester <code>000:00.0</code></li><li><code>Packet 2093088</code>，<code>Cpl</code>，<code>Tag 0</code>，Requester <code>000:00.0</code>，Completer <code>001:00.0</code>，status <code>UR</code></li><li><code>Packet 2093072</code>，<code>ERR_COR</code>，附近的 message</li></ul><p><code>Packet 2093086</code> 和 <code>Packet 2093088</code> 的對應，已在 LeCroy Split Transaction 畫面核對一致（<code>Split Tra 29</code>）。</p>
+<h4>為什麼列出這一項</h4><ul><li>有 request 收到 status 為 <code>UR</code> 的 Completion，工具會列出 status 不是 <code>SC</code> 的 Completion。</li><li>同一組 <code>RequesterId</code> + <code>Tag</code> 在看到 Completion 以前再次出現。</li><li>這幾項觀察放在同一組，原因如下<ul><li>其中一項的 request 或 Completion 也是另一項的觀察位置</li><li>它們用到同一個 packet</li><li>它們在同一條 request 關聯鏈上，同一組 <code>RequesterId</code> + <code>Tag</code> 連續出現</li></ul></li></ul>
+<h4>目前還不能確定</h4><ul><li>這份 trace 的 ground truth 還沒確認（<code>UNKNOWN</code>），工具沒有判斷這裡是否異常。</li><li><code>ERR_COR</code>、<code>SLOTPOWERLIMIT</code> 和 <code>UR</code> 目前只確認位置接近，沒有證明因果。判斷附近與否用的 64 packets 範圍，是看過資料後才訂的暫定條件。</li><li>這一組的 2 個 Segment 前後相隔約 148,567 packets。放在同一組是因為 evidence 有關聯，不代表這幾段屬於同一個故障事件。</li><li>同一組 key 再次出現，不代表 requester 重送、<code>Tag</code> 用法違規，或 Completion 落在 capture 範圍外。</li></ul>
+<h4>追溯</h4><p><code>findings.json</code> 的 <code>F003</code>，group <code>G003</code>，candidates <code>C003</code>、<code>C012</code>、<code>C021</code>、<code>C030</code>。</p>
+</details>
+</section>
+<section class="card" id="finding-f004" data-finding="F004">
+<h3>Finding F004 <span class="badge b-msg">SLOTPOWERLIMIT</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">3 Segments，跨 149,129 packets</span></h3>
+<div class="grid">
+<div><div class="label">主要定位點</div><div><code>Packet 1944523</code></div><div class="muted">依固定規則選出，只用來跳轉</div></div>
+<div><div class="label">觀察</div><ul><li><code>CfgRd0</code>、<code>CfgWr0</code> 同一組 key 再次出現</li><li>附近有 <code>SLOTPOWERLIMIT</code></li></ul></div>
+<div><div class="label">Segments</div><ul><li>Segment A（4.848 sec），定位 <code>Packet 1944523</code></li><li>Segment B（4.848 sec），定位 <code>Packet 1944571</code></li><li>Segment C（5.883 sec），定位 <code>Packet 2093652</code></li></ul></div>
+</div>
+<details>
+<summary>展開完整證據</summary>
+<h4>主要定位點</h4><p><code>Packet 1944523</code>，依固定規則選出的主要定位點（這一組最早出現的 request）。在 LeCroy 用 Go to Packet 跳過去。</p><p class="label">其他位置</p><ul><li>Segment B，<code>Packet 1944571</code></li><li>Segment C，<code>Packet 2093652</code></li></ul>
+<h4>觀察到什麼</h4><p>4.848 sec，<code>Packet 1944523</code> 的 <code>CfgRd0</code>（<code>Tag 5</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 1944571</code> 再次出現（4.848 sec，<code>CfgWr0</code>）。</p><p>4.848 sec，<code>Packet 1944571</code> 的 <code>CfgWr0</code>（<code>Tag 5</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 2093652</code> 再次出現（5.883 sec，<code>CfgRd0</code>）。</p><p class="label">附近也觀察到</p><ul><li><code>Packet 1944516</code>，<code>SLOTPOWERLIMIT</code>（4.848 sec）</li></ul>
+<h4>相關位置</h4><h4>Segment A（4.848 sec）</h4><ul><li><code>Packet 1944523</code>，<code>CfgRd0</code>，<code>Tag 5</code>，Requester <code>000:00.0</code></li><li><code>Packet 1944516</code>，<code>SLOTPOWERLIMIT</code>，附近的 message</li></ul><h4>Segment B（4.848 sec）</h4><ul><li><code>Packet 1944571</code>，<code>CfgWr0</code>，<code>Tag 5</code>，Requester <code>000:00.0</code></li></ul><h4>Segment C（5.883 sec）</h4><ul><li><code>Packet 2093652</code>，<code>CfgRd0</code>，<code>Tag 5</code>，Requester <code>000:00.0</code></li></ul>
+<h4>為什麼列出這一項</h4><ul><li>同一組 <code>RequesterId</code> + <code>Tag</code> 在看到 Completion 以前再次出現。</li><li>這幾項觀察放在同一組，原因如下<ul><li>它們用到同一個 packet</li><li>它們在同一條 request 關聯鏈上，同一組 <code>RequesterId</code> + <code>Tag</code> 連續出現</li></ul></li></ul>
+<h4>目前還不能確定</h4><ul><li>這份 trace 的 ground truth 還沒確認（<code>UNKNOWN</code>），工具沒有判斷這裡是否異常。</li><li><code>SLOTPOWERLIMIT</code> 和 這裡的 request 目前只確認位置接近，沒有證明因果。判斷附近與否用的 64 packets 範圍，是看過資料後才訂的暫定條件。</li><li>這一組的 3 個 Segment 前後相隔約 149,129 packets。放在同一組是因為 evidence 有關聯，不代表這幾段屬於同一個故障事件。</li><li>同一組 key 再次出現，不代表 requester 重送、<code>Tag</code> 用法違規，或 Completion 落在 capture 範圍外。</li></ul>
+<h4>追溯</h4><p><code>findings.json</code> 的 <code>F004</code>，group <code>G004</code>，candidates <code>C004</code>、<code>C022</code>。</p>
+</details>
+</section>
+<section class="card" id="finding-f005" data-finding="F005">
+<h3>Finding F005 <span class="badge b-ur">UR</span><span class="badge b-msg">ERR_COR</span><span class="badge b-msg">SLOTPOWERLIMIT</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 483 packets</span></h3>
+<div class="grid">
+<div><div class="label">主要定位點</div><div><code>Packet 1944525</code></div><div class="muted">依固定規則選出，只用來跳轉</div></div>
+<div><div class="label">觀察</div><ul><li><code>CfgRd0</code> 同一組 key 再次出現</li><li><code>MRd(32)</code> 收到 <code>UR</code></li><li>附近有 <code>ERR_COR</code>、<code>SLOTPOWERLIMIT</code></li></ul></div>
+<div><div class="label">Segments</div><ul><li>Segment A（4.848 sec），定位 <code>Packet 1944525</code></li><li>Segment B（4.853 sec），定位 <code>Packet 1945005</code></li></ul></div>
+</div>
+<details>
+<summary>展開完整證據</summary>
+<h4>主要定位點</h4><p><code>Packet 1944525</code>，依固定規則選出的主要定位點（這一組最早出現的 request）。在 LeCroy 用 Go to Packet 跳過去。</p><p class="label">其他位置</p><ul><li>Segment B，<code>Packet 1945005</code></li></ul>
+<h4>觀察到什麼</h4><p>4.848 sec，<code>Packet 1944525</code> 的 <code>CfgRd0</code>（<code>Tag 11</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 1945005</code> 再次出現（4.853 sec，<code>MRd(32)</code>）。</p><p>4.853 sec，<code>Packet 1945005</code> 的 <code>MRd(32)</code> request（<code>Tag 11</code>）收到 <code>Packet 1945008</code> 的 Completion，status 是 <code>UR</code>。</p><p class="label">附近也觀察到</p><ul><li><code>Packet 1944516</code>，<code>SLOTPOWERLIMIT</code>（4.848 sec）</li><li><code>Packet 1945029</code>，<code>ERR_COR</code>（4.853 sec）</li></ul>
+<h4>相關位置</h4><h4>Segment A（4.848 sec）</h4><ul><li><code>Packet 1944525</code>，<code>CfgRd0</code>，<code>Tag 11</code>，Requester <code>000:00.0</code></li><li><code>Packet 1944516</code>，<code>SLOTPOWERLIMIT</code>，附近的 message</li></ul><h4>Segment B（4.853 sec）</h4><ul><li><code>Packet 1945005</code>，<code>MRd(32)</code>，<code>Tag 11</code>，Requester <code>000:00.0</code></li><li><code>Packet 1945008</code>，<code>Cpl</code>，<code>Tag 11</code>，Requester <code>000:00.0</code>，Completer <code>001:00.0</code>，status <code>UR</code></li><li><code>Packet 1945029</code>，<code>ERR_COR</code>，附近的 message</li></ul><p><code>Packet 1945005</code> 和 <code>Packet 1945008</code> 的對應，已在 LeCroy Split Transaction 畫面核對一致（<code>Split Tra 22</code>）。</p>
+<h4>為什麼列出這一項</h4><ul><li>有 request 收到 status 為 <code>UR</code> 的 Completion，工具會列出 status 不是 <code>SC</code> 的 Completion。</li><li>同一組 <code>RequesterId</code> + <code>Tag</code> 在看到 Completion 以前再次出現。</li><li>這幾項觀察放在同一組，原因如下<ul><li>其中一項的 request 或 Completion 也是另一項的觀察位置</li><li>它們用到同一個 packet</li><li>它們在同一條 request 關聯鏈上，同一組 <code>RequesterId</code> + <code>Tag</code> 連續出現</li></ul></li></ul>
+<h4>目前還不能確定</h4><ul><li>這份 trace 的 ground truth 還沒確認（<code>UNKNOWN</code>），工具沒有判斷這裡是否異常。</li><li><code>ERR_COR</code>、<code>SLOTPOWERLIMIT</code> 和 <code>UR</code> 目前只確認位置接近，沒有證明因果。判斷附近與否用的 64 packets 範圍，是看過資料後才訂的暫定條件。</li><li>這一組的 2 個 Segment 前後相隔約 483 packets。放在同一組是因為 evidence 有關聯，不代表這幾段屬於同一個故障事件。</li><li>同一組 key 再次出現，不代表 requester 重送、<code>Tag</code> 用法違規，或 Completion 落在 capture 範圍外。</li></ul>
+<h4>追溯</h4><p><code>findings.json</code> 的 <code>F005</code>，group <code>G005</code>，candidates <code>C005</code>、<code>C023</code>。</p>
+</details>
+</section>
+<section class="card" id="finding-f006" data-finding="F006">
+<h3>Finding F006 <span class="badge b-ur">UR</span><span class="badge b-msg">ERR_COR</span><span class="badge b-msg">SLOTPOWERLIMIT</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 486 packets</span></h3>
+<div class="grid">
+<div><div class="label">主要定位點</div><div><code>Packet 1944527</code></div><div class="muted">依固定規則選出，只用來跳轉</div></div>
+<div><div class="label">觀察</div><ul><li><code>CfgRd0</code> 同一組 key 再次出現</li><li><code>MRd(32)</code> 收到 <code>UR</code></li><li>附近有 <code>ERR_COR</code>、<code>SLOTPOWERLIMIT</code></li></ul></div>
+<div><div class="label">Segments</div><ul><li>Segment A（4.848 sec），定位 <code>Packet 1944527</code></li><li>Segment B（4.853 sec），定位 <code>Packet 1945011</code></li></ul></div>
+</div>
+<details>
+<summary>展開完整證據</summary>
+<h4>主要定位點</h4><p><code>Packet 1944527</code>，依固定規則選出的主要定位點（這一組最早出現的 request）。在 LeCroy 用 Go to Packet 跳過去。</p><p class="label">其他位置</p><ul><li>Segment B，<code>Packet 1945011</code></li></ul>
+<h4>觀察到什麼</h4><p>4.848 sec，<code>Packet 1944527</code> 的 <code>CfgRd0</code>（<code>Tag 1</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 1944551</code> 再次出現（4.848 sec，<code>CfgRd0</code>）。</p><p>4.848 sec，<code>Packet 1944551</code> 的 <code>CfgRd0</code>（<code>Tag 1</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 1945011</code> 再次出現（4.853 sec，<code>MRd(32)</code>）。</p><p>4.853 sec，<code>Packet 1945011</code> 的 <code>MRd(32)</code> request（<code>Tag 1</code>）收到 <code>Packet 1945013</code> 的 Completion，status 是 <code>UR</code>。</p><p class="label">附近也觀察到</p><ul><li><code>Packet 1944516</code>，<code>SLOTPOWERLIMIT</code>（4.848 sec）</li><li><code>Packet 1945029</code>，<code>ERR_COR</code>（4.853 sec）</li></ul>
+<h4>相關位置</h4><h4>Segment A（4.848 sec）</h4><ul><li><code>Packet 1944527</code>，<code>CfgRd0</code>，<code>Tag 1</code>，Requester <code>000:00.0</code></li><li><code>Packet 1944551</code>，<code>CfgRd0</code>，<code>Tag 1</code>，Requester <code>000:00.0</code></li><li><code>Packet 1944516</code>，<code>SLOTPOWERLIMIT</code>，附近的 message</li></ul><h4>Segment B（4.853 sec）</h4><ul><li><code>Packet 1945011</code>，<code>MRd(32)</code>，<code>Tag 1</code>，Requester <code>000:00.0</code></li><li><code>Packet 1945013</code>，<code>Cpl</code>，<code>Tag 1</code>，Requester <code>000:00.0</code>，Completer <code>001:00.0</code>，status <code>UR</code></li><li><code>Packet 1945029</code>，<code>ERR_COR</code>，附近的 message</li></ul>
+<h4>為什麼列出這一項</h4><ul><li>有 request 收到 status 為 <code>UR</code> 的 Completion，工具會列出 status 不是 <code>SC</code> 的 Completion。</li><li>同一組 <code>RequesterId</code> + <code>Tag</code> 在看到 Completion 以前再次出現。</li><li>這幾項觀察放在同一組，原因如下<ul><li>其中一項的 request 或 Completion 也是另一項的觀察位置</li><li>它們用到同一個 packet</li><li>它們在同一條 request 關聯鏈上，同一組 <code>RequesterId</code> + <code>Tag</code> 連續出現</li></ul></li></ul>
+<h4>目前還不能確定</h4><ul><li>這份 trace 的 ground truth 還沒確認（<code>UNKNOWN</code>），工具沒有判斷這裡是否異常。</li><li><code>ERR_COR</code>、<code>SLOTPOWERLIMIT</code> 和 <code>UR</code> 目前只確認位置接近，沒有證明因果。判斷附近與否用的 64 packets 範圍，是看過資料後才訂的暫定條件。</li><li>這一組的 2 個 Segment 前後相隔約 486 packets。放在同一組是因為 evidence 有關聯，不代表這幾段屬於同一個故障事件。</li><li><code>Packet 1945011</code> 和 <code>Packet 1945013</code> 的對應是依規則配出來的，還沒在 LeCroy GUI 核對。</li><li>同一組 key 再次出現，不代表 requester 重送、<code>Tag</code> 用法違規，或 Completion 落在 capture 範圍外。</li></ul>
+<h4>追溯</h4><p><code>findings.json</code> 的 <code>F006</code>，group <code>G006</code>，candidates <code>C006</code>、<code>C015</code>、<code>C024</code>。</p>
+</details>
+</section>
+<section class="card" id="finding-f007" data-finding="F007">
+<h3>Finding F007 <span class="badge b-ur">UR</span><span class="badge b-msg">ERR_COR</span><span class="badge b-msg">SLOTPOWERLIMIT</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 487 packets</span></h3>
+<div class="grid">
+<div><div class="label">主要定位點</div><div><code>Packet 1944531</code></div><div class="muted">依固定規則選出，只用來跳轉</div></div>
+<div><div class="label">觀察</div><ul><li><code>CfgRd0</code> 同一組 key 再次出現</li><li><code>MRd(32)</code> 收到 <code>UR</code></li><li>附近有 <code>ERR_COR</code>、<code>SLOTPOWERLIMIT</code></li></ul></div>
+<div><div class="label">Segments</div><ul><li>Segment A（4.848 sec），定位 <code>Packet 1944531</code></li><li>Segment B（4.853 sec），定位 <code>Packet 1945016</code></li></ul></div>
+</div>
+<details>
+<summary>展開完整證據</summary>
+<h4>主要定位點</h4><p><code>Packet 1944531</code>，依固定規則選出的主要定位點（這一組最早出現的 request）。在 LeCroy 用 Go to Packet 跳過去。</p><p class="label">其他位置</p><ul><li>Segment B，<code>Packet 1945016</code></li></ul>
+<h4>觀察到什麼</h4><p>4.848 sec，<code>Packet 1944531</code> 的 <code>CfgRd0</code>（<code>Tag 7</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 1945016</code> 再次出現（4.853 sec，<code>MRd(32)</code>）。</p><p>4.853 sec，<code>Packet 1945016</code> 的 <code>MRd(32)</code> request（<code>Tag 7</code>）收到 <code>Packet 1945018</code> 的 Completion，status 是 <code>UR</code>。</p><p class="label">附近也觀察到</p><ul><li><code>Packet 1944516</code>，<code>SLOTPOWERLIMIT</code>（4.848 sec）</li><li><code>Packet 1945029</code>，<code>ERR_COR</code>（4.853 sec）</li></ul>
+<h4>相關位置</h4><h4>Segment A（4.848 sec）</h4><ul><li><code>Packet 1944531</code>，<code>CfgRd0</code>，<code>Tag 7</code>，Requester <code>000:00.0</code></li><li><code>Packet 1944516</code>，<code>SLOTPOWERLIMIT</code>，附近的 message</li></ul><h4>Segment B（4.853 sec）</h4><ul><li><code>Packet 1945016</code>，<code>MRd(32)</code>，<code>Tag 7</code>，Requester <code>000:00.0</code></li><li><code>Packet 1945018</code>，<code>Cpl</code>，<code>Tag 7</code>，Requester <code>000:00.0</code>，Completer <code>001:00.0</code>，status <code>UR</code></li><li><code>Packet 1945029</code>，<code>ERR_COR</code>，附近的 message</li></ul>
+<h4>為什麼列出這一項</h4><ul><li>有 request 收到 status 為 <code>UR</code> 的 Completion，工具會列出 status 不是 <code>SC</code> 的 Completion。</li><li>同一組 <code>RequesterId</code> + <code>Tag</code> 在看到 Completion 以前再次出現。</li><li>這幾項觀察放在同一組，原因如下<ul><li>其中一項的 request 或 Completion 也是另一項的觀察位置</li><li>它們用到同一個 packet</li><li>它們在同一條 request 關聯鏈上，同一組 <code>RequesterId</code> + <code>Tag</code> 連續出現</li></ul></li></ul>
+<h4>目前還不能確定</h4><ul><li>這份 trace 的 ground truth 還沒確認（<code>UNKNOWN</code>），工具沒有判斷這裡是否異常。</li><li><code>ERR_COR</code>、<code>SLOTPOWERLIMIT</code> 和 <code>UR</code> 目前只確認位置接近，沒有證明因果。判斷附近與否用的 64 packets 範圍，是看過資料後才訂的暫定條件。</li><li>這一組的 2 個 Segment 前後相隔約 487 packets。放在同一組是因為 evidence 有關聯，不代表這幾段屬於同一個故障事件。</li><li><code>Packet 1945016</code> 和 <code>Packet 1945018</code> 的對應是依規則配出來的，還沒在 LeCroy GUI 核對。</li><li>同一組 key 再次出現，不代表 requester 重送、<code>Tag</code> 用法違規，或 Completion 落在 capture 範圍外。</li></ul>
+<h4>追溯</h4><p><code>findings.json</code> 的 <code>F007</code>，group <code>G007</code>，candidates <code>C007</code>、<code>C025</code>。</p>
+</details>
+</section>
+<section class="card" id="finding-f008" data-finding="F008">
+<h3>Finding F008 <span class="badge b-ur">UR</span><span class="badge b-msg">ERR_COR</span><span class="badge b-msg">SLOTPOWERLIMIT</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 490 packets</span></h3>
+<div class="grid">
+<div><div class="label">主要定位點</div><div><code>Packet 1944533</code></div><div class="muted">依固定規則選出，只用來跳轉</div></div>
+<div><div class="label">觀察</div><ul><li><code>CfgRd0</code> 同一組 key 再次出現</li><li><code>MRd(32)</code> 收到 <code>UR</code></li><li>附近有 <code>ERR_COR</code>、<code>SLOTPOWERLIMIT</code></li></ul></div>
+<div><div class="label">Segments</div><ul><li>Segment A（4.848 sec），定位 <code>Packet 1944533</code></li><li>Segment B（4.853 sec），定位 <code>Packet 1945021</code></li></ul></div>
+</div>
+<details>
+<summary>展開完整證據</summary>
+<h4>主要定位點</h4><p><code>Packet 1944533</code>，依固定規則選出的主要定位點（這一組最早出現的 request）。在 LeCroy 用 Go to Packet 跳過去。</p><p class="label">其他位置</p><ul><li>Segment B，<code>Packet 1945021</code></li></ul>
+<h4>觀察到什麼</h4><p>4.848 sec，<code>Packet 1944533</code> 的 <code>CfgRd0</code>（<code>Tag 13</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 1945021</code> 再次出現（4.853 sec，<code>MRd(32)</code>）。</p><p>4.853 sec，<code>Packet 1945021</code> 的 <code>MRd(32)</code> request（<code>Tag 13</code>）收到 <code>Packet 1945023</code> 的 Completion，status 是 <code>UR</code>。</p><p class="label">附近也觀察到</p><ul><li><code>Packet 1944516</code>，<code>SLOTPOWERLIMIT</code>（4.848 sec）</li><li><code>Packet 1945029</code>，<code>ERR_COR</code>（4.853 sec）</li></ul>
+<h4>相關位置</h4><h4>Segment A（4.848 sec）</h4><ul><li><code>Packet 1944533</code>，<code>CfgRd0</code>，<code>Tag 13</code>，Requester <code>000:00.0</code></li><li><code>Packet 1944516</code>，<code>SLOTPOWERLIMIT</code>，附近的 message</li></ul><h4>Segment B（4.853 sec）</h4><ul><li><code>Packet 1945021</code>，<code>MRd(32)</code>，<code>Tag 13</code>，Requester <code>000:00.0</code></li><li><code>Packet 1945023</code>，<code>Cpl</code>，<code>Tag 13</code>，Requester <code>000:00.0</code>，Completer <code>001:00.0</code>，status <code>UR</code></li><li><code>Packet 1945029</code>，<code>ERR_COR</code>，附近的 message</li></ul>
+<h4>為什麼列出這一項</h4><ul><li>有 request 收到 status 為 <code>UR</code> 的 Completion，工具會列出 status 不是 <code>SC</code> 的 Completion。</li><li>同一組 <code>RequesterId</code> + <code>Tag</code> 在看到 Completion 以前再次出現。</li><li>這幾項觀察放在同一組，原因如下<ul><li>其中一項的 request 或 Completion 也是另一項的觀察位置</li><li>它們用到同一個 packet</li><li>它們在同一條 request 關聯鏈上，同一組 <code>RequesterId</code> + <code>Tag</code> 連續出現</li></ul></li></ul>
+<h4>目前還不能確定</h4><ul><li>這份 trace 的 ground truth 還沒確認（<code>UNKNOWN</code>），工具沒有判斷這裡是否異常。</li><li><code>ERR_COR</code>、<code>SLOTPOWERLIMIT</code> 和 <code>UR</code> 目前只確認位置接近，沒有證明因果。判斷附近與否用的 64 packets 範圍，是看過資料後才訂的暫定條件。</li><li>這一組的 2 個 Segment 前後相隔約 490 packets。放在同一組是因為 evidence 有關聯，不代表這幾段屬於同一個故障事件。</li><li><code>Packet 1945021</code> 和 <code>Packet 1945023</code> 的對應是依規則配出來的，還沒在 LeCroy GUI 核對。</li><li>同一組 key 再次出現，不代表 requester 重送、<code>Tag</code> 用法違規，或 Completion 落在 capture 範圍外。</li></ul>
+<h4>追溯</h4><p><code>findings.json</code> 的 <code>F008</code>，group <code>G008</code>，candidates <code>C008</code>、<code>C026</code>。</p>
+</details>
+</section>
+<section class="card" id="finding-f009" data-finding="F009">
+<h3>Finding F009 <span class="badge b-ur">UR</span><span class="badge b-msg">ERR_COR</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 148,530 packets</span></h3>
+<div class="grid">
+<div><div class="label">主要定位點</div><div><code>Packet 1944535</code></div><div class="muted">依固定規則選出，只用來跳轉</div></div>
+<div><div class="label">觀察</div><ul><li><code>CfgRd0</code> 同一組 key 再次出現</li><li><code>MRd(32)</code> 收到 <code>UR</code></li><li>附近有 <code>ERR_COR</code></li></ul></div>
+<div><div class="label">Segments</div><ul><li>Segment A（4.848 sec），定位 <code>Packet 1944535</code></li><li>Segment B（5.880 sec），定位 <code>Packet 2093063</code></li></ul></div>
+</div>
+<details>
+<summary>展開完整證據</summary>
+<h4>主要定位點</h4><p><code>Packet 1944535</code>，依固定規則選出的主要定位點（這一組最早出現的 request）。在 LeCroy 用 Go to Packet 跳過去。</p><p class="label">其他位置</p><ul><li>Segment B，<code>Packet 2093063</code></li></ul>
+<h4>觀察到什麼</h4><p>4.848 sec，<code>Packet 1944535</code> 的 <code>CfgRd0</code>（<code>Tag 3</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 2093063</code> 再次出現（5.880 sec，<code>MRd(32)</code>）。</p><p>5.880 sec，<code>Packet 2093063</code> 的 <code>MRd(32)</code> request（<code>Tag 3</code>）收到 <code>Packet 2093065</code> 的 Completion，status 是 <code>UR</code>。</p><p class="label">附近也觀察到</p><ul><li><code>Packet 2093072</code>，<code>ERR_COR</code>（5.880 sec）</li></ul>
+<h4>相關位置</h4><h4>Segment A（4.848 sec）</h4><ul><li><code>Packet 1944535</code>，<code>CfgRd0</code>，<code>Tag 3</code>，Requester <code>000:00.0</code></li></ul><h4>Segment B（5.880 sec）</h4><ul><li><code>Packet 2093063</code>，<code>MRd(32)</code>，<code>Tag 3</code>，Requester <code>000:00.0</code></li><li><code>Packet 2093065</code>，<code>Cpl</code>，<code>Tag 3</code>，Requester <code>000:00.0</code>，Completer <code>001:00.0</code>，status <code>UR</code></li><li><code>Packet 2093072</code>，<code>ERR_COR</code>，附近的 message</li></ul>
+<h4>為什麼列出這一項</h4><ul><li>有 request 收到 status 為 <code>UR</code> 的 Completion，工具會列出 status 不是 <code>SC</code> 的 Completion。</li><li>同一組 <code>RequesterId</code> + <code>Tag</code> 在看到 Completion 以前再次出現。</li><li>這幾項觀察放在同一組，原因如下<ul><li>其中一項的 request 或 Completion 也是另一項的觀察位置</li><li>它們用到同一個 packet</li><li>它們在同一條 request 關聯鏈上，同一組 <code>RequesterId</code> + <code>Tag</code> 連續出現</li></ul></li></ul>
+<h4>目前還不能確定</h4><ul><li>這份 trace 的 ground truth 還沒確認（<code>UNKNOWN</code>），工具沒有判斷這裡是否異常。</li><li><code>ERR_COR</code> 和 <code>UR</code> 目前只確認位置接近，沒有證明因果。判斷附近與否用的 64 packets 範圍，是看過資料後才訂的暫定條件。</li><li>這一組的 2 個 Segment 前後相隔約 148,530 packets。放在同一組是因為 evidence 有關聯，不代表這幾段屬於同一個故障事件。</li><li><code>Packet 2093063</code> 和 <code>Packet 2093065</code> 的對應是依規則配出來的，還沒在 LeCroy GUI 核對。</li><li>同一組 key 再次出現，不代表 requester 重送、<code>Tag</code> 用法違規，或 Completion 落在 capture 範圍外。</li></ul>
+<h4>追溯</h4><p><code>findings.json</code> 的 <code>F009</code>，group <code>G009</code>，candidates <code>C009</code>、<code>C027</code>。</p>
+</details>
+</section>
+<section class="card" id="finding-f010" data-finding="F010">
+<h3>Finding F010 <span class="badge b-ur">UR</span><span class="badge b-msg">ERR_COR</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 148,538 packets</span></h3>
+<div class="grid">
+<div><div class="label">主要定位點</div><div><code>Packet 1944537</code></div><div class="muted">依固定規則選出，只用來跳轉</div></div>
+<div><div class="label">觀察</div><ul><li><code>CfgRd0</code> 同一組 key 再次出現</li><li><code>MRd(32)</code> 收到 <code>UR</code></li><li>附近有 <code>ERR_COR</code></li></ul></div>
+<div><div class="label">Segments</div><ul><li>Segment A（4.848 sec），定位 <code>Packet 1944537</code></li><li>Segment B（5.880 sec），定位 <code>Packet 2093071</code></li></ul></div>
+</div>
+<details>
+<summary>展開完整證據</summary>
+<h4>主要定位點</h4><p><code>Packet 1944537</code>，依固定規則選出的主要定位點（這一組最早出現的 request）。在 LeCroy 用 Go to Packet 跳過去。</p><p class="label">其他位置</p><ul><li>Segment B，<code>Packet 2093071</code></li></ul>
+<h4>觀察到什麼</h4><p>4.848 sec，<code>Packet 1944537</code> 的 <code>CfgRd0</code>（<code>Tag 9</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 2093071</code> 再次出現（5.880 sec，<code>MRd(32)</code>）。</p><p>5.880 sec，<code>Packet 2093071</code> 的 <code>MRd(32)</code> request（<code>Tag 9</code>）收到 <code>Packet 2093075</code> 的 Completion，status 是 <code>UR</code>。</p><p class="label">附近也觀察到</p><ul><li><code>Packet 2093072</code>，<code>ERR_COR</code>（5.880 sec）</li></ul>
+<h4>相關位置</h4><h4>Segment A（4.848 sec）</h4><ul><li><code>Packet 1944537</code>，<code>CfgRd0</code>，<code>Tag 9</code>，Requester <code>000:00.0</code></li></ul><h4>Segment B（5.880 sec）</h4><ul><li><code>Packet 2093071</code>，<code>MRd(32)</code>，<code>Tag 9</code>，Requester <code>000:00.0</code></li><li><code>Packet 2093075</code>，<code>Cpl</code>，<code>Tag 9</code>，Requester <code>000:00.0</code>，Completer <code>001:00.0</code>，status <code>UR</code></li><li><code>Packet 2093072</code>，<code>ERR_COR</code>，附近的 message</li></ul>
+<h4>為什麼列出這一項</h4><ul><li>有 request 收到 status 為 <code>UR</code> 的 Completion，工具會列出 status 不是 <code>SC</code> 的 Completion。</li><li>同一組 <code>RequesterId</code> + <code>Tag</code> 在看到 Completion 以前再次出現。</li><li>這幾項觀察放在同一組，原因如下<ul><li>其中一項的 request 或 Completion 也是另一項的觀察位置</li><li>它們用到同一個 packet</li><li>它們在同一條 request 關聯鏈上，同一組 <code>RequesterId</code> + <code>Tag</code> 連續出現</li></ul></li></ul>
+<h4>目前還不能確定</h4><ul><li>這份 trace 的 ground truth 還沒確認（<code>UNKNOWN</code>），工具沒有判斷這裡是否異常。</li><li><code>ERR_COR</code> 和 <code>UR</code> 目前只確認位置接近，沒有證明因果。判斷附近與否用的 64 packets 範圍，是看過資料後才訂的暫定條件。</li><li>這一組的 2 個 Segment 前後相隔約 148,538 packets。放在同一組是因為 evidence 有關聯，不代表這幾段屬於同一個故障事件。</li><li><code>Packet 2093071</code> 和 <code>Packet 2093075</code> 的對應是依規則配出來的，還沒在 LeCroy GUI 核對。</li><li>同一組 key 再次出現，不代表 requester 重送、<code>Tag</code> 用法違規，或 Completion 落在 capture 範圍外。</li></ul>
+<h4>追溯</h4><p><code>findings.json</code> 的 <code>F010</code>，group <code>G010</code>，candidates <code>C010</code>、<code>C028</code>。</p>
+</details>
+</section>
+<section class="card" id="finding-f011" data-finding="F011">
+<h3>Finding F011 <span class="badge b-ur">UR</span><span class="badge b-msg">ERR_COR</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 148,542 packets</span></h3>
+<div class="grid">
+<div><div class="label">主要定位點</div><div><code>Packet 1944539</code></div><div class="muted">依固定規則選出，只用來跳轉</div></div>
+<div><div class="label">觀察</div><ul><li><code>CfgRd0</code> 同一組 key 再次出現</li><li><code>MRd(32)</code> 收到 <code>UR</code></li><li>附近有 <code>ERR_COR</code></li></ul></div>
+<div><div class="label">Segments</div><ul><li>Segment A（4.848 sec），定位 <code>Packet 1944539</code></li><li>Segment B（5.880 sec），定位 <code>Packet 2093079</code></li></ul></div>
+</div>
+<details>
+<summary>展開完整證據</summary>
+<h4>主要定位點</h4><p><code>Packet 1944539</code>，依固定規則選出的主要定位點（這一組最早出現的 request）。在 LeCroy 用 Go to Packet 跳過去。</p><p class="label">其他位置</p><ul><li>Segment B，<code>Packet 2093079</code></li></ul>
+<h4>觀察到什麼</h4><p>4.848 sec，<code>Packet 1944539</code> 的 <code>CfgRd0</code>（<code>Tag 15</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 2093079</code> 再次出現（5.880 sec，<code>MRd(32)</code>）。</p><p>5.880 sec，<code>Packet 2093079</code> 的 <code>MRd(32)</code> request（<code>Tag 15</code>）收到 <code>Packet 2093081</code> 的 Completion，status 是 <code>UR</code>。</p><p class="label">附近也觀察到</p><ul><li><code>Packet 2093072</code>，<code>ERR_COR</code>（5.880 sec）</li></ul>
+<h4>相關位置</h4><h4>Segment A（4.848 sec）</h4><ul><li><code>Packet 1944539</code>，<code>CfgRd0</code>，<code>Tag 15</code>，Requester <code>000:00.0</code></li></ul><h4>Segment B（5.880 sec）</h4><ul><li><code>Packet 2093079</code>，<code>MRd(32)</code>，<code>Tag 15</code>，Requester <code>000:00.0</code></li><li><code>Packet 2093081</code>，<code>Cpl</code>，<code>Tag 15</code>，Requester <code>000:00.0</code>，Completer <code>001:00.0</code>，status <code>UR</code></li><li><code>Packet 2093072</code>，<code>ERR_COR</code>，附近的 message</li></ul>
+<h4>為什麼列出這一項</h4><ul><li>有 request 收到 status 為 <code>UR</code> 的 Completion，工具會列出 status 不是 <code>SC</code> 的 Completion。</li><li>同一組 <code>RequesterId</code> + <code>Tag</code> 在看到 Completion 以前再次出現。</li><li>這幾項觀察放在同一組，原因如下<ul><li>其中一項的 request 或 Completion 也是另一項的觀察位置</li><li>它們用到同一個 packet</li><li>它們在同一條 request 關聯鏈上，同一組 <code>RequesterId</code> + <code>Tag</code> 連續出現</li></ul></li></ul>
+<h4>目前還不能確定</h4><ul><li>這份 trace 的 ground truth 還沒確認（<code>UNKNOWN</code>），工具沒有判斷這裡是否異常。</li><li><code>ERR_COR</code> 和 <code>UR</code> 目前只確認位置接近，沒有證明因果。判斷附近與否用的 64 packets 範圍，是看過資料後才訂的暫定條件。</li><li>這一組的 2 個 Segment 前後相隔約 148,542 packets。放在同一組是因為 evidence 有關聯，不代表這幾段屬於同一個故障事件。</li><li><code>Packet 2093079</code> 和 <code>Packet 2093081</code> 的對應是依規則配出來的，還沒在 LeCroy GUI 核對。</li><li>同一組 key 再次出現，不代表 requester 重送、<code>Tag</code> 用法違規，或 Completion 落在 capture 範圍外。</li></ul>
+<h4>追溯</h4><p><code>findings.json</code> 的 <code>F011</code>，group <code>G011</code>，candidates <code>C011</code>、<code>C029</code>。</p>
+</details>
+</section>
+<section class="card" id="finding-f012" data-finding="F012">
+<h3>Finding F012 <span class="badge b-ur">UR</span><span class="badge b-msg">ERR_COR</span><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 148,546 packets</span></h3>
+<div class="grid">
+<div><div class="label">主要定位點</div><div><code>Packet 1944547</code></div><div class="muted">依固定規則選出，只用來跳轉</div></div>
+<div><div class="label">觀察</div><ul><li><code>CfgRd0</code> 同一組 key 再次出現</li><li><code>MRd(32)</code> 收到 <code>UR</code></li><li>附近有 <code>ERR_COR</code></li></ul></div>
+<div><div class="label">Segments</div><ul><li>Segment A（4.848 sec），定位 <code>Packet 1944547</code></li><li>Segment B（5.880 sec），定位 <code>Packet 2093091</code></li></ul></div>
+</div>
+<details>
+<summary>展開完整證據</summary>
+<h4>主要定位點</h4><p><code>Packet 1944547</code>，依固定規則選出的主要定位點（這一組最早出現的 request）。在 LeCroy 用 Go to Packet 跳過去。</p><p class="label">其他位置</p><ul><li>Segment B，<code>Packet 2093091</code></li></ul>
+<h4>觀察到什麼</h4><p>4.848 sec，<code>Packet 1944547</code> 的 <code>CfgRd0</code>（<code>Tag 4</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 2093091</code> 再次出現（5.880 sec，<code>MRd(32)</code>）。</p><p>5.880 sec，<code>Packet 2093091</code> 的 <code>MRd(32)</code> request（<code>Tag 4</code>）收到 <code>Packet 2093093</code> 的 Completion，status 是 <code>UR</code>。</p><p class="label">附近也觀察到</p><ul><li><code>Packet 2093072</code>，<code>ERR_COR</code>（5.880 sec）</li></ul>
+<h4>相關位置</h4><h4>Segment A（4.848 sec）</h4><ul><li><code>Packet 1944547</code>，<code>CfgRd0</code>，<code>Tag 4</code>，Requester <code>000:00.0</code></li></ul><h4>Segment B（5.880 sec）</h4><ul><li><code>Packet 2093091</code>，<code>MRd(32)</code>，<code>Tag 4</code>，Requester <code>000:00.0</code></li><li><code>Packet 2093093</code>，<code>Cpl</code>，<code>Tag 4</code>，Requester <code>000:00.0</code>，Completer <code>001:00.0</code>，status <code>UR</code></li><li><code>Packet 2093072</code>，<code>ERR_COR</code>，附近的 message</li></ul>
+<h4>為什麼列出這一項</h4><ul><li>有 request 收到 status 為 <code>UR</code> 的 Completion，工具會列出 status 不是 <code>SC</code> 的 Completion。</li><li>同一組 <code>RequesterId</code> + <code>Tag</code> 在看到 Completion 以前再次出現。</li><li>這幾項觀察放在同一組，原因如下<ul><li>其中一項的 request 或 Completion 也是另一項的觀察位置</li><li>它們用到同一個 packet</li><li>它們在同一條 request 關聯鏈上，同一組 <code>RequesterId</code> + <code>Tag</code> 連續出現</li></ul></li></ul>
+<h4>目前還不能確定</h4><ul><li>這份 trace 的 ground truth 還沒確認（<code>UNKNOWN</code>），工具沒有判斷這裡是否異常。</li><li><code>ERR_COR</code> 和 <code>UR</code> 目前只確認位置接近，沒有證明因果。判斷附近與否用的 64 packets 範圍，是看過資料後才訂的暫定條件。</li><li>這一組的 2 個 Segment 前後相隔約 148,546 packets。放在同一組是因為 evidence 有關聯，不代表這幾段屬於同一個故障事件。</li><li><code>Packet 2093091</code> 和 <code>Packet 2093093</code> 的對應是依規則配出來的，還沒在 LeCroy GUI 核對。</li><li>同一組 key 再次出現，不代表 requester 重送、<code>Tag</code> 用法違規，或 Completion 落在 capture 範圍外。</li></ul>
+<h4>追溯</h4><p><code>findings.json</code> 的 <code>F012</code>，group <code>G012</code>，candidates <code>C013</code>、<code>C031</code>。</p>
+</details>
+</section>
+<section class="card" id="finding-f013" data-finding="F013">
+<h3>Finding F013 <span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 148,973 packets</span></h3>
+<div class="grid">
+<div><div class="label">主要定位點</div><div><code>Packet 1944549</code></div><div class="muted">依固定規則選出，只用來跳轉</div></div>
+<div><div class="label">觀察</div><ul><li><code>CfgRd0</code> 同一組 key 再次出現</li></ul></div>
+<div><div class="label">Segments</div><ul><li>Segment A（4.848 sec），定位 <code>Packet 1944549</code></li><li>Segment B（5.883 sec），定位 <code>Packet 2093522</code></li></ul></div>
+</div>
+<details>
+<summary>展開完整證據</summary>
+<h4>主要定位點</h4><p><code>Packet 1944549</code>，依固定規則選出的主要定位點（這一組最早出現的 request）。在 LeCroy 用 Go to Packet 跳過去。</p><p class="label">其他位置</p><ul><li>Segment B，<code>Packet 2093522</code></li></ul>
+<h4>觀察到什麼</h4><p>4.848 sec，<code>Packet 1944549</code> 的 <code>CfgRd0</code>（<code>Tag 10</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 2093522</code> 再次出現（5.883 sec，<code>CfgRd0</code>）。</p>
+<h4>相關位置</h4><h4>Segment A（4.848 sec）</h4><ul><li><code>Packet 1944549</code>，<code>CfgRd0</code>，<code>Tag 10</code>，Requester <code>000:00.0</code></li></ul><h4>Segment B（5.883 sec）</h4><ul><li><code>Packet 2093522</code>，<code>CfgRd0</code>，<code>Tag 10</code>，Requester <code>000:00.0</code></li></ul>
+<h4>為什麼列出這一項</h4><ul><li>同一組 <code>RequesterId</code> + <code>Tag</code> 在看到 Completion 以前再次出現。</li></ul>
+<h4>目前還不能確定</h4><ul><li>這份 trace 的 ground truth 還沒確認（<code>UNKNOWN</code>），工具沒有判斷這裡是否異常。</li><li>同一組 <code>RequesterId</code> + <code>Tag</code> 的兩次出現相隔約 148,973 packets，key 相同不代表兩次出現屬於同一個故障事件。</li><li>同一組 key 再次出現，不代表 requester 重送、<code>Tag</code> 用法違規，或 Completion 落在 capture 範圍外。</li></ul>
+<h4>追溯</h4><p><code>findings.json</code> 的 <code>F013</code>，group <code>G013</code>，candidates <code>C014</code>。</p>
+</details>
+</section>
+<section class="card" id="finding-f014" data-finding="F014">
+<h3>Finding F014 <span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 148,997 packets</span></h3>
+<div class="grid">
+<div><div class="label">主要定位點</div><div><code>Packet 1944553</code></div><div class="muted">依固定規則選出，只用來跳轉</div></div>
+<div><div class="label">觀察</div><ul><li><code>CfgRd0</code> 同一組 key 再次出現</li></ul></div>
+<div><div class="label">Segments</div><ul><li>Segment A（4.848 sec），定位 <code>Packet 1944553</code></li><li>Segment B（5.883 sec），定位 <code>Packet 2093550</code></li></ul></div>
+</div>
+<details>
+<summary>展開完整證據</summary>
+<h4>主要定位點</h4><p><code>Packet 1944553</code>，依固定規則選出的主要定位點（這一組最早出現的 request）。在 LeCroy 用 Go to Packet 跳過去。</p><p class="label">其他位置</p><ul><li>Segment B，<code>Packet 2093550</code></li></ul>
+<h4>觀察到什麼</h4><p>4.848 sec，<code>Packet 1944553</code> 的 <code>CfgRd0</code>（<code>Tag 6</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 2093550</code> 再次出現（5.883 sec，<code>CfgRd0</code>）。</p>
+<h4>相關位置</h4><h4>Segment A（4.848 sec）</h4><ul><li><code>Packet 1944553</code>，<code>CfgRd0</code>，<code>Tag 6</code>，Requester <code>000:00.0</code></li></ul><h4>Segment B（5.883 sec）</h4><ul><li><code>Packet 2093550</code>，<code>CfgRd0</code>，<code>Tag 6</code>，Requester <code>000:00.0</code></li></ul>
+<h4>為什麼列出這一項</h4><ul><li>同一組 <code>RequesterId</code> + <code>Tag</code> 在看到 Completion 以前再次出現。</li></ul>
+<h4>目前還不能確定</h4><ul><li>這份 trace 的 ground truth 還沒確認（<code>UNKNOWN</code>），工具沒有判斷這裡是否異常。</li><li>同一組 <code>RequesterId</code> + <code>Tag</code> 的兩次出現相隔約 148,997 packets，key 相同不代表兩次出現屬於同一個故障事件。</li><li>同一組 key 再次出現，不代表 requester 重送、<code>Tag</code> 用法違規，或 Completion 落在 capture 範圍外。</li></ul>
+<h4>追溯</h4><p><code>findings.json</code> 的 <code>F014</code>，group <code>G014</code>，candidates <code>C016</code>。</p>
+</details>
+</section>
+<section class="card" id="finding-f015" data-finding="F015">
+<h3>Finding F015 <span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 149,009 packets</span></h3>
+<div class="grid">
+<div><div class="label">主要定位點</div><div><code>Packet 1944555</code></div><div class="muted">依固定規則選出，只用來跳轉</div></div>
+<div><div class="label">觀察</div><ul><li><code>CfgRd0</code> 同一組 key 再次出現</li></ul></div>
+<div><div class="label">Segments</div><ul><li>Segment A（4.848 sec），定位 <code>Packet 1944555</code></li><li>Segment B（5.883 sec），定位 <code>Packet 2093564</code></li></ul></div>
+</div>
+<details>
+<summary>展開完整證據</summary>
+<h4>主要定位點</h4><p><code>Packet 1944555</code>，依固定規則選出的主要定位點（這一組最早出現的 request）。在 LeCroy 用 Go to Packet 跳過去。</p><p class="label">其他位置</p><ul><li>Segment B，<code>Packet 2093564</code></li></ul>
+<h4>觀察到什麼</h4><p>4.848 sec，<code>Packet 1944555</code> 的 <code>CfgRd0</code>（<code>Tag 12</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 2093564</code> 再次出現（5.883 sec，<code>CfgRd0</code>）。</p>
+<h4>相關位置</h4><h4>Segment A（4.848 sec）</h4><ul><li><code>Packet 1944555</code>，<code>CfgRd0</code>，<code>Tag 12</code>，Requester <code>000:00.0</code></li></ul><h4>Segment B（5.883 sec）</h4><ul><li><code>Packet 2093564</code>，<code>CfgRd0</code>，<code>Tag 12</code>，Requester <code>000:00.0</code></li></ul>
+<h4>為什麼列出這一項</h4><ul><li>同一組 <code>RequesterId</code> + <code>Tag</code> 在看到 Completion 以前再次出現。</li></ul>
+<h4>目前還不能確定</h4><ul><li>這份 trace 的 ground truth 還沒確認（<code>UNKNOWN</code>），工具沒有判斷這裡是否異常。</li><li>同一組 <code>RequesterId</code> + <code>Tag</code> 的兩次出現相隔約 149,009 packets，key 相同不代表兩次出現屬於同一個故障事件。</li><li>同一組 key 再次出現，不代表 requester 重送、<code>Tag</code> 用法違規，或 Completion 落在 capture 範圍外。</li></ul>
+<h4>追溯</h4><p><code>findings.json</code> 的 <code>F015</code>，group <code>G015</code>，candidates <code>C017</code>。</p>
+</details>
+</section>
+<section class="card" id="finding-f016" data-finding="F016">
+<h3>Finding F016 <span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">2 Segments，跨 149,020 packets</span></h3>
+<div class="grid">
+<div><div class="label">主要定位點</div><div><code>Packet 1944557</code></div><div class="muted">依固定規則選出，只用來跳轉</div></div>
+<div><div class="label">觀察</div><ul><li><code>CfgRd0</code> 同一組 key 再次出現</li></ul></div>
+<div><div class="label">Segments</div><ul><li>Segment A（4.848 sec），定位 <code>Packet 1944557</code></li><li>Segment B（5.883 sec），定位 <code>Packet 2093577</code></li></ul></div>
+</div>
+<details>
+<summary>展開完整證據</summary>
+<h4>主要定位點</h4><p><code>Packet 1944557</code>，依固定規則選出的主要定位點（這一組最早出現的 request）。在 LeCroy 用 Go to Packet 跳過去。</p><p class="label">其他位置</p><ul><li>Segment B，<code>Packet 2093577</code></li></ul>
+<h4>觀察到什麼</h4><p>4.848 sec，<code>Packet 1944557</code> 的 <code>CfgRd0</code>（<code>Tag 2</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 2093577</code> 再次出現（5.883 sec，<code>CfgRd0</code>）。</p>
+<h4>相關位置</h4><h4>Segment A（4.848 sec）</h4><ul><li><code>Packet 1944557</code>，<code>CfgRd0</code>，<code>Tag 2</code>，Requester <code>000:00.0</code></li></ul><h4>Segment B（5.883 sec）</h4><ul><li><code>Packet 2093577</code>，<code>CfgRd0</code>，<code>Tag 2</code>，Requester <code>000:00.0</code></li></ul>
+<h4>為什麼列出這一項</h4><ul><li>同一組 <code>RequesterId</code> + <code>Tag</code> 在看到 Completion 以前再次出現。</li></ul>
+<h4>目前還不能確定</h4><ul><li>這份 trace 的 ground truth 還沒確認（<code>UNKNOWN</code>），工具沒有判斷這裡是否異常。</li><li>同一組 <code>RequesterId</code> + <code>Tag</code> 的兩次出現相隔約 149,020 packets，key 相同不代表兩次出現屬於同一個故障事件。</li><li>同一組 key 再次出現，不代表 requester 重送、<code>Tag</code> 用法違規，或 Completion 落在 capture 範圍外。</li></ul>
+<h4>追溯</h4><p><code>findings.json</code> 的 <code>F016</code>，group <code>G016</code>，candidates <code>C018</code>。</p>
+</details>
+</section>
+<h2>報告用到的 PCIe 名詞</h2><ul><li><code>MRd(32)</code>，32-bit Memory Read request</li><li><code>CfgRd0</code>，Type 0 Configuration Read request</li><li><code>CfgWr0</code>，Type 0 Configuration Write request</li><li><code>Cpl</code>，沒有帶資料的 Completion</li><li><code>UR</code>，Unsupported Request，Completion status 的一種</li><li><code>SC</code>，Successful Completion，正常完成的 Completion status</li><li><code>ERR_COR</code>，Correctable Error Message，裝置回報可更正錯誤的 message</li><li><code>SLOTPOWERLIMIT</code>，Set Slot Power Limit message</li><li><code>Tag</code>，request 的編號，Completion 會帶回同一個 Tag</li><li><code>RequesterId</code>，送出 request 的裝置位址，格式 <code>bus:device.function</code></li><li><code>Go to Packet</code>，LeCroy PETracer 的 Search &gt; Go to Packet（Ctrl+G）</li><li><code>Segment</code>，同一組候選檢查位置裡位置相近的一段 packet</li></ul>
+<h2>資料來源</h2><ul><li><code>findings.json</code> SHA-256 <code>B36283941560512B24A25C2DB6333AF9A8E4FE8FFFC76B9BAA35DCE581B02936</code>，本報告的所有觀察都來自這個檔案。</li><li>Trace 檔名 <code>S0-Remove SD7-1350.pex</code>，由產生報告時的命令列提供。</li><li>Trace SHA-256 <code>1ADB98F89C2C0CF2A9733EA01552E39438483C4A9741136DC4BE36F0A27F1AEB</code>，由命令列提供。</li><li>TLP 總數 938，由命令列提供，來自已驗證的 G1a 計數。</li></ul>
+</main></body></html>

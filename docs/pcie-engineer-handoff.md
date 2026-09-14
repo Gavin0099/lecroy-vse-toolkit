@@ -6,7 +6,7 @@
 
 D1e 已完成：同一最小 extractor 在 1350 / 1335 兩份不同 trace 取得前五筆 TLP，GUI 核對與關閉後完整性通過。這不代表全 trace extraction、capture health、測試 PASS 或故障診斷成立。1329-Fail 尚未執行 extraction。
 
-另附 [1350 單 trace inspection Markdown](../artifacts/reports/pcie-inspection-1350-20260912/report.md) 與 [HTML](../artifacts/reports/pcie-inspection-1350-20260912/report.html)，提供 presentation 試閱。這不是 PASS/FAIL triage；Extraction 僅標示前五筆 TLP 範圍，ground truth 仍 UNKNOWN。F0e 工程師回饋尚未取得。
+另附 [1350 單 trace inspection Markdown](../artifacts/reports/pcie-inspection-1350-20260913/report.md) 與 [HTML](../artifacts/reports/pcie-inspection-1350-20260913/report.html)，供 presentation 試閱；[2026-09-12 初版](../artifacts/reports/pcie-inspection-1350-20260912/report.html) 保留作為 checkpoint 對照。使用者回饋初版「看不太懂」，新版因此先說明能回答／不能回答什麼，再呈現簡化封包表，技術身份移至附錄。新版不改資料與診斷語意；F0e 仍待讀者確認是否清楚。
 
 ## P1 — Trace manifest
 
@@ -78,12 +78,14 @@ P1/P2/P3 已整理成可本機交付的 inventory、狀態表與交接包；交�
 
 ## F0e — Single-trace report review prompts
 
-Preview: [Markdown](../artifacts/reports/pcie-inspection-1350-20260912/report.md) / [HTML](../artifacts/reports/pcie-inspection-1350-20260912/report.html). Please review presentation only; this sample carries no normal/abnormal label.
+Revised preview: [Markdown](../artifacts/reports/pcie-inspection-1350-20260913/report.md) / [HTML](../artifacts/reports/pcie-inspection-1350-20260913/report.html). The [committed 2026-09-12 baseline](../artifacts/reports/pcie-inspection-1350-20260912/report.html) is unchanged. Review presentation only; neither version carries a normal/abnormal label.
 
-1. Can you quickly locate the trace identity, the five checked TLPs and their GUI evidence?
-2. Which displayed fields help you inspect a trace, and which can be removed?
-3. Is the GUI-only packet context enough, or what neighboring packet details would you need?
-4. Is the separation between coarse extractor time and GUI timestamp clear?
-5. What single piece of context is missing before this report would be useful during debugging?
+Owner readability feedback on 2026-09-13: “報告其實看不太懂”. The revision puts purpose, bounded result, and non-claims first; the main table now prioritizes packet navigation. Please check:
 
-F0e feedback is pending. This review does not request ground truth through the report itself; the five P3 questions above remain the E1a source for ground-truth qualification.
+1. From the opening summary, is it clear what was read and what was not concluded?
+2. Can you use the packet number and LeCroy time to find the same row in the analyzer?
+3. Are any words or labels in the summary still unclear?
+4. Is any technical detail in the collapsed appendix essential in the main view?
+5. What one change would make this useful during a real debug session?
+
+F0e is not accepted yet; revised-reader feedback is pending. This presentation review does not request ground truth through the report itself; the five P3 questions above remain the E1a source for ground-truth qualification.

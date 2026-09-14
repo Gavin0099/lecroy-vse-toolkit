@@ -1,0 +1,21 @@
+
+------------------------------------------------------------------------------------
+                                    lecroy-vse-toolkit-poc-20260912-30e3b5c6\g1a-tlp-count
+------------------------------------------------------------------------------------
+
+
+Running verification script...
+...
+
+Test Description : 
+PCIe G1a full-trace TLP count probe - v1
+PCIE_G1A_TLP_COUNT_V1 progress_every=250000 rows=none
+PCIE_G1A_SUMMARY|tlp_count=938|first_index=1944516|first_time= 4.848 sec|last_index=2121703
+
+
+------- D O N E !!! -------
+
+
+*************************************************************
+Output was saved on Monday, September 14, 2026, 11:21:39 AM
+*************************************************************

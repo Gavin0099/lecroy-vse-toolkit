@@ -1,0 +1,2944 @@
+{
+  "schema_version": "pcie.g3f-findings/v1",
+  "inputs": {
+    "groups": {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/stages/g3e/groups.json",
+      "sha256": "97A307CA65E61ABB40448508A8BED9F71BAC48128EA23B76C93F89F6048B2C7A"
+    },
+    "candidates": {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/stages/g3ab/candidates.json",
+      "sha256": "02830BDFE41021D51781A755B9A4D990E14EDFB9889397B5E33186364B5D921F"
+    },
+    "nearby": {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/stages/g3c/nearby_messages.json",
+      "sha256": "FE8F04CDBCB6B76EFDE78BE5F81A612F354256D4F32E2112173D0792E33D1E4B"
+    },
+    "contexts": {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/stages/g3d/contexts.json",
+      "sha256": "D42756322133A3740D443594DDD2BD1E0BE201952E8A45F1D5673377050B2B7A"
+    },
+    "fields": {
+      "path": "E:/BackUp/Git_EE/lecroy-vse-toolkit/artifacts/evidence/pcie-g2a-20260914/export/fields.json",
+      "sha256": "FA64728D3023DF8C476FE858B3C39568E04D3313714EDCED944BEF0FC9D5BB79"
+    }
+  },
+  "trace_ground_truth": "UNKNOWN",
+  "ordering": "capture order of primary Go to Packet; not a ranking",
+  "segmentation": "G3d context blocks merged when their TLP row ranges overlap; display only, membership unchanged",
+  "findings_total": 16,
+  "findings": [
+    {
+      "finding_id": "F001",
+      "group_id": "G001",
+      "where_to_look": {
+        "primary_go_to_packet": 1944517,
+        "primary_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+        "segment_go_to_packets": [
+          1944517,
+          1944559,
+          2093601
+        ],
+        "lecroy_hint": "LeCroy PETracer: Search > Go to Packet (Ctrl+G)."
+      },
+      "what_was_observed": {
+        "candidate_observations": [
+          {
+            "candidate_id": "C001",
+            "observed": "CfgRd0 request 1944517 (Tag 8): same association key observed again at 1944559 (CfgRd0) before an associated completion was observed"
+          },
+          {
+            "candidate_id": "C019",
+            "observed": "CfgRd0 request 1944559 (Tag 8): same association key observed again at 2093601 (CfgRd0) before an associated completion was observed"
+          }
+        ],
+        "local_segments": [
+          {
+            "segment": "A",
+            "go_to_packet": 1944517,
+            "display_times": [
+              "4.848 sec"
+            ],
+            "anchor_packet_range": [
+              1944517,
+              1944517
+            ],
+            "anchors": [
+              {
+                "packet": 1944517,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 8,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C001:first_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C001"
+            ],
+            "nearby_messages": [
+              {
+                "packet": 1944516,
+                "message": "SLOTPOWERLIMIT",
+                "display_time": "4.848 sec",
+                "relationship": "temporal_correlation_only"
+              }
+            ],
+            "context_refs": [
+              {
+                "candidate_id": "C001",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  1,
+                  7
+                ],
+                "truncated_sides": [
+                  "before"
+                ]
+              }
+            ]
+          },
+          {
+            "segment": "B",
+            "go_to_packet": 1944559,
+            "display_times": [
+              "4.848 sec"
+            ],
+            "anchor_packet_range": [
+              1944559,
+              1944559
+            ],
+            "anchors": [
+              {
+                "packet": 1944559,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 8,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C001:repeated_request",
+                  "C019:first_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C001",
+              "C019"
+            ],
+            "nearby_messages": [],
+            "context_refs": [
+              {
+                "candidate_id": "C001",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  15,
+                  25
+                ],
+                "truncated_sides": []
+              },
+              {
+                "candidate_id": "C019",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  15,
+                  25
+                ],
+                "truncated_sides": []
+              }
+            ]
+          },
+          {
+            "segment": "C",
+            "go_to_packet": 2093601,
+            "display_times": [
+              "5.883 sec"
+            ],
+            "anchor_packet_range": [
+              2093601,
+              2093601
+            ],
+            "anchors": [
+              {
+                "packet": 2093601,
+                "display_time": "5.883 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 8,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C019:repeated_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C019"
+            ],
+            "nearby_messages": [],
+            "context_refs": [
+              {
+                "candidate_id": "C019",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  52,
+                  62
+                ],
+                "truncated_sides": []
+              }
+            ]
+          }
+        ],
+        "nearby_messages_outside_segments": []
+      },
+      "why_surfaced": {
+        "detectors": [
+          {
+            "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+            "surfaces": "Same association key observed again before an associated completion was observed in the captured sequence."
+          }
+        ],
+        "grouping_basis": [
+          "shared_anchor_packet",
+          "shared_association_lineage"
+        ],
+        "grouping_basis_text": [
+          "members anchor the same packet",
+          "members are on the same G2b same-key association lineage"
+        ],
+        "group_relationship": "grouped_by_shared_evidence",
+        "members": [
+          "C001",
+          "C019"
+        ]
+      },
+      "gui_crosschecks": [],
+      "trace_span_packets": 149084,
+      "not_known": [
+        "Interpretation NOT_EVALUATED: no statement that this is abnormal, a fault, or related to the reported failure.",
+        "Ground truth for the trace is UNKNOWN.",
+        "Grouping expresses members anchor the same packet, members are on the same G2b same-key association lineage. It does not establish that observations in separate local segments (trace span 149084 packets) belong to the same failure episode.",
+        "Nearby messages are temporal correlation only; causality is NOT ESTABLISHED. G3c's 64-packet bound is a prototype heuristic chosen after seeing its v1 results.",
+        "Same-key reappearance does not establish a requester retransmission, an illegal Tag reuse, or a completion missing from the capture."
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "finding_id": "F002",
+      "group_id": "G002",
+      "where_to_look": {
+        "primary_go_to_packet": 1944519,
+        "primary_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+        "segment_go_to_packets": [
+          1944519,
+          1944563,
+          2093615
+        ],
+        "lecroy_hint": "LeCroy PETracer: Search > Go to Packet (Ctrl+G)."
+      },
+      "what_was_observed": {
+        "candidate_observations": [
+          {
+            "candidate_id": "C002",
+            "observed": "CfgRd0 request 1944519 (Tag 14): same association key observed again at 1944563 (CfgWr0) before an associated completion was observed"
+          },
+          {
+            "candidate_id": "C020",
+            "observed": "CfgWr0 request 1944563 (Tag 14): same association key observed again at 2093615 (CfgRd0) before an associated completion was observed"
+          }
+        ],
+        "local_segments": [
+          {
+            "segment": "A",
+            "go_to_packet": 1944519,
+            "display_times": [
+              "4.848 sec"
+            ],
+            "anchor_packet_range": [
+              1944519,
+              1944519
+            ],
+            "anchors": [
+              {
+                "packet": 1944519,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 14,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C002:first_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C002"
+            ],
+            "nearby_messages": [
+              {
+                "packet": 1944516,
+                "message": "SLOTPOWERLIMIT",
+                "display_time": "4.848 sec",
+                "relationship": "temporal_correlation_only"
+              }
+            ],
+            "context_refs": [
+              {
+                "candidate_id": "C002",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  1,
+                  8
+                ],
+                "truncated_sides": [
+                  "before"
+                ]
+              }
+            ]
+          },
+          {
+            "segment": "B",
+            "go_to_packet": 1944563,
+            "display_times": [
+              "4.848 sec"
+            ],
+            "anchor_packet_range": [
+              1944563,
+              1944563
+            ],
+            "anchors": [
+              {
+                "packet": 1944563,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgWr0",
+                "requester": "000:00.0",
+                "tag": 14,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C002:repeated_request",
+                  "C020:first_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C002",
+              "C020"
+            ],
+            "nearby_messages": [],
+            "context_refs": [
+              {
+                "candidate_id": "C002",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  16,
+                  26
+                ],
+                "truncated_sides": []
+              },
+              {
+                "candidate_id": "C020",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  16,
+                  26
+                ],
+                "truncated_sides": []
+              }
+            ]
+          },
+          {
+            "segment": "C",
+            "go_to_packet": 2093615,
+            "display_times": [
+              "5.883 sec"
+            ],
+            "anchor_packet_range": [
+              2093615,
+              2093615
+            ],
+            "anchors": [
+              {
+                "packet": 2093615,
+                "display_time": "5.883 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 14,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C020:repeated_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C020"
+            ],
+            "nearby_messages": [],
+            "context_refs": [
+              {
+                "candidate_id": "C020",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  54,
+                  64
+                ],
+                "truncated_sides": []
+              }
+            ]
+          }
+        ],
+        "nearby_messages_outside_segments": []
+      },
+      "why_surfaced": {
+        "detectors": [
+          {
+            "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+            "surfaces": "Same association key observed again before an associated completion was observed in the captured sequence."
+          }
+        ],
+        "grouping_basis": [
+          "shared_anchor_packet",
+          "shared_association_lineage"
+        ],
+        "grouping_basis_text": [
+          "members anchor the same packet",
+          "members are on the same G2b same-key association lineage"
+        ],
+        "group_relationship": "grouped_by_shared_evidence",
+        "members": [
+          "C002",
+          "C020"
+        ]
+      },
+      "gui_crosschecks": [],
+      "trace_span_packets": 149096,
+      "not_known": [
+        "Interpretation NOT_EVALUATED: no statement that this is abnormal, a fault, or related to the reported failure.",
+        "Ground truth for the trace is UNKNOWN.",
+        "Grouping expresses members anchor the same packet, members are on the same G2b same-key association lineage. It does not establish that observations in separate local segments (trace span 149096 packets) belong to the same failure episode.",
+        "Nearby messages are temporal correlation only; causality is NOT ESTABLISHED. G3c's 64-packet bound is a prototype heuristic chosen after seeing its v1 results.",
+        "Same-key reappearance does not establish a requester retransmission, an illegal Tag reuse, or a completion missing from the capture."
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "finding_id": "F003",
+      "group_id": "G003",
+      "where_to_look": {
+        "primary_go_to_packet": 1944521,
+        "primary_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+        "segment_go_to_packets": [
+          1944521,
+          2093086
+        ],
+        "lecroy_hint": "LeCroy PETracer: Search > Go to Packet (Ctrl+G)."
+      },
+      "what_was_observed": {
+        "candidate_observations": [
+          {
+            "candidate_id": "C003",
+            "observed": "CfgRd0 request 1944521 (Tag 0): same association key observed again at 1944543 (CfgRd0) before an associated completion was observed"
+          },
+          {
+            "candidate_id": "C012",
+            "observed": "CfgRd0 request 1944543 (Tag 0): same association key observed again at 1944567 (CfgWr0) before an associated completion was observed"
+          },
+          {
+            "candidate_id": "C021",
+            "observed": "CfgWr0 request 1944567 (Tag 0): same association key observed again at 2093086 (MRd(32)) before an associated completion was observed"
+          },
+          {
+            "candidate_id": "C030",
+            "observed": "MRd(32) request 2093086 (Tag 0) has associated completion 2093088 with status UR"
+          }
+        ],
+        "local_segments": [
+          {
+            "segment": "A",
+            "go_to_packet": 1944521,
+            "display_times": [
+              "4.848 sec"
+            ],
+            "anchor_packet_range": [
+              1944521,
+              1944567
+            ],
+            "anchors": [
+              {
+                "packet": 1944521,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 0,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C003:first_request"
+                ]
+              },
+              {
+                "packet": 1944543,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 0,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C003:repeated_request",
+                  "C012:first_request"
+                ]
+              },
+              {
+                "packet": 1944567,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgWr0",
+                "requester": "000:00.0",
+                "tag": 0,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C012:repeated_request",
+                  "C021:first_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C003",
+              "C012",
+              "C021"
+            ],
+            "nearby_messages": [
+              {
+                "packet": 1944516,
+                "message": "SLOTPOWERLIMIT",
+                "display_time": "4.848 sec",
+                "relationship": "temporal_correlation_only"
+              }
+            ],
+            "context_refs": [
+              {
+                "candidate_id": "C003",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  1,
+                  9
+                ],
+                "truncated_sides": [
+                  "before"
+                ]
+              },
+              {
+                "candidate_id": "C003",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  8,
+                  18
+                ],
+                "truncated_sides": []
+              },
+              {
+                "candidate_id": "C012",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  8,
+                  18
+                ],
+                "truncated_sides": []
+              },
+              {
+                "candidate_id": "C012",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  17,
+                  27
+                ],
+                "truncated_sides": []
+              },
+              {
+                "candidate_id": "C021",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  17,
+                  27
+                ],
+                "truncated_sides": []
+              }
+            ]
+          },
+          {
+            "segment": "B",
+            "go_to_packet": 2093086,
+            "display_times": [
+              "5.880 sec"
+            ],
+            "anchor_packet_range": [
+              2093086,
+              2093088
+            ],
+            "anchors": [
+              {
+                "packet": 2093086,
+                "display_time": "5.880 sec",
+                "channel": "Downstream",
+                "type": "MRd(32)",
+                "requester": "000:00.0",
+                "tag": 0,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C021:repeated_request",
+                  "C030:request"
+                ]
+              },
+              {
+                "packet": 2093088,
+                "display_time": "5.880 sec",
+                "channel": "Upstream",
+                "type": "Cpl",
+                "requester": "000:00.0",
+                "tag": 0,
+                "completer": "001:00.0",
+                "status": "UR",
+                "roles": [
+                  "C030:completion"
+                ]
+              }
+            ],
+            "candidates": [
+              "C021",
+              "C030"
+            ],
+            "nearby_messages": [
+              {
+                "packet": 2093072,
+                "message": "ERR_COR",
+                "display_time": "5.880 sec",
+                "relationship": "temporal_correlation_only"
+              }
+            ],
+            "context_refs": [
+              {
+                "candidate_id": "C021",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  38,
+                  48
+                ],
+                "truncated_sides": []
+              },
+              {
+                "candidate_id": "C030",
+                "g3d_block": "request_to_completion",
+                "tlp_rows": [
+                  38,
+                  49
+                ],
+                "truncated_sides": []
+              }
+            ]
+          }
+        ],
+        "nearby_messages_outside_segments": []
+      },
+      "why_surfaced": {
+        "detectors": [
+          {
+            "detector": "G3A_NON_SUCCESS_COMPLETION",
+            "surfaces": "An associated completion reports a status other than SC."
+          },
+          {
+            "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+            "surfaces": "Same association key observed again before an associated completion was observed in the captured sequence."
+          }
+        ],
+        "grouping_basis": [
+          "request_or_completion_is_other_candidate_anchor",
+          "shared_anchor_packet",
+          "shared_association_lineage"
+        ],
+        "grouping_basis_text": [
+          "a request or completion of one member is an anchor of another",
+          "members anchor the same packet",
+          "members are on the same G2b same-key association lineage"
+        ],
+        "group_relationship": "grouped_by_shared_evidence",
+        "members": [
+          "C003",
+          "C012",
+          "C021",
+          "C030"
+        ]
+      },
+      "gui_crosschecks": [
+        {
+          "candidate_id": "C030",
+          "result": "MATCHED",
+          "lecroy_view": "Split Tra 29"
+        }
+      ],
+      "trace_span_packets": 148567,
+      "not_known": [
+        "Interpretation NOT_EVALUATED: no statement that this is abnormal, a fault, or related to the reported failure.",
+        "Ground truth for the trace is UNKNOWN.",
+        "Grouping expresses a request or completion of one member is an anchor of another, members anchor the same packet, members are on the same G2b same-key association lineage. It does not establish that observations in separate local segments (trace span 148567 packets) belong to the same failure episode.",
+        "Nearby messages are temporal correlation only; causality is NOT ESTABLISHED. G3c's 64-packet bound is a prototype heuristic chosen after seeing its v1 results.",
+        "Same-key reappearance does not establish a requester retransmission, an illegal Tag reuse, or a completion missing from the capture."
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "finding_id": "F004",
+      "group_id": "G004",
+      "where_to_look": {
+        "primary_go_to_packet": 1944523,
+        "primary_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+        "segment_go_to_packets": [
+          1944523,
+          1944571,
+          2093652
+        ],
+        "lecroy_hint": "LeCroy PETracer: Search > Go to Packet (Ctrl+G)."
+      },
+      "what_was_observed": {
+        "candidate_observations": [
+          {
+            "candidate_id": "C004",
+            "observed": "CfgRd0 request 1944523 (Tag 5): same association key observed again at 1944571 (CfgWr0) before an associated completion was observed"
+          },
+          {
+            "candidate_id": "C022",
+            "observed": "CfgWr0 request 1944571 (Tag 5): same association key observed again at 2093652 (CfgRd0) before an associated completion was observed"
+          }
+        ],
+        "local_segments": [
+          {
+            "segment": "A",
+            "go_to_packet": 1944523,
+            "display_times": [
+              "4.848 sec"
+            ],
+            "anchor_packet_range": [
+              1944523,
+              1944523
+            ],
+            "anchors": [
+              {
+                "packet": 1944523,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 5,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C004:first_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C004"
+            ],
+            "nearby_messages": [
+              {
+                "packet": 1944516,
+                "message": "SLOTPOWERLIMIT",
+                "display_time": "4.848 sec",
+                "relationship": "temporal_correlation_only"
+              }
+            ],
+            "context_refs": [
+              {
+                "candidate_id": "C004",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  1,
+                  10
+                ],
+                "truncated_sides": [
+                  "before"
+                ]
+              }
+            ]
+          },
+          {
+            "segment": "B",
+            "go_to_packet": 1944571,
+            "display_times": [
+              "4.848 sec"
+            ],
+            "anchor_packet_range": [
+              1944571,
+              1944571
+            ],
+            "anchors": [
+              {
+                "packet": 1944571,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgWr0",
+                "requester": "000:00.0",
+                "tag": 5,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C004:repeated_request",
+                  "C022:first_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C004",
+              "C022"
+            ],
+            "nearby_messages": [],
+            "context_refs": [
+              {
+                "candidate_id": "C004",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  18,
+                  28
+                ],
+                "truncated_sides": []
+              },
+              {
+                "candidate_id": "C022",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  18,
+                  28
+                ],
+                "truncated_sides": []
+              }
+            ]
+          },
+          {
+            "segment": "C",
+            "go_to_packet": 2093652,
+            "display_times": [
+              "5.883 sec"
+            ],
+            "anchor_packet_range": [
+              2093652,
+              2093652
+            ],
+            "anchors": [
+              {
+                "packet": 2093652,
+                "display_time": "5.883 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 5,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C022:repeated_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C022"
+            ],
+            "nearby_messages": [],
+            "context_refs": [
+              {
+                "candidate_id": "C022",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  58,
+                  68
+                ],
+                "truncated_sides": []
+              }
+            ]
+          }
+        ],
+        "nearby_messages_outside_segments": []
+      },
+      "why_surfaced": {
+        "detectors": [
+          {
+            "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+            "surfaces": "Same association key observed again before an associated completion was observed in the captured sequence."
+          }
+        ],
+        "grouping_basis": [
+          "shared_anchor_packet",
+          "shared_association_lineage"
+        ],
+        "grouping_basis_text": [
+          "members anchor the same packet",
+          "members are on the same G2b same-key association lineage"
+        ],
+        "group_relationship": "grouped_by_shared_evidence",
+        "members": [
+          "C004",
+          "C022"
+        ]
+      },
+      "gui_crosschecks": [],
+      "trace_span_packets": 149129,
+      "not_known": [
+        "Interpretation NOT_EVALUATED: no statement that this is abnormal, a fault, or related to the reported failure.",
+        "Ground truth for the trace is UNKNOWN.",
+        "Grouping expresses members anchor the same packet, members are on the same G2b same-key association lineage. It does not establish that observations in separate local segments (trace span 149129 packets) belong to the same failure episode.",
+        "Nearby messages are temporal correlation only; causality is NOT ESTABLISHED. G3c's 64-packet bound is a prototype heuristic chosen after seeing its v1 results.",
+        "Same-key reappearance does not establish a requester retransmission, an illegal Tag reuse, or a completion missing from the capture."
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "finding_id": "F005",
+      "group_id": "G005",
+      "where_to_look": {
+        "primary_go_to_packet": 1944525,
+        "primary_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+        "segment_go_to_packets": [
+          1944525,
+          1945005
+        ],
+        "lecroy_hint": "LeCroy PETracer: Search > Go to Packet (Ctrl+G)."
+      },
+      "what_was_observed": {
+        "candidate_observations": [
+          {
+            "candidate_id": "C005",
+            "observed": "CfgRd0 request 1944525 (Tag 11): same association key observed again at 1945005 (MRd(32)) before an associated completion was observed"
+          },
+          {
+            "candidate_id": "C023",
+            "observed": "MRd(32) request 1945005 (Tag 11) has associated completion 1945008 with status UR"
+          }
+        ],
+        "local_segments": [
+          {
+            "segment": "A",
+            "go_to_packet": 1944525,
+            "display_times": [
+              "4.848 sec"
+            ],
+            "anchor_packet_range": [
+              1944525,
+              1944525
+            ],
+            "anchors": [
+              {
+                "packet": 1944525,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 11,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C005:first_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C005"
+            ],
+            "nearby_messages": [
+              {
+                "packet": 1944516,
+                "message": "SLOTPOWERLIMIT",
+                "display_time": "4.848 sec",
+                "relationship": "temporal_correlation_only"
+              }
+            ],
+            "context_refs": [
+              {
+                "candidate_id": "C005",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  1,
+                  11
+                ],
+                "truncated_sides": []
+              }
+            ]
+          },
+          {
+            "segment": "B",
+            "go_to_packet": 1945005,
+            "display_times": [
+              "4.853 sec"
+            ],
+            "anchor_packet_range": [
+              1945005,
+              1945008
+            ],
+            "anchors": [
+              {
+                "packet": 1945005,
+                "display_time": "4.853 sec",
+                "channel": "Downstream",
+                "type": "MRd(32)",
+                "requester": "000:00.0",
+                "tag": 11,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C005:repeated_request",
+                  "C023:request"
+                ]
+              },
+              {
+                "packet": 1945008,
+                "display_time": "4.853 sec",
+                "channel": "Upstream",
+                "type": "Cpl",
+                "requester": "000:00.0",
+                "tag": 11,
+                "completer": "001:00.0",
+                "status": "UR",
+                "roles": [
+                  "C023:completion"
+                ]
+              }
+            ],
+            "candidates": [
+              "C005",
+              "C023"
+            ],
+            "nearby_messages": [
+              {
+                "packet": 1945029,
+                "message": "ERR_COR",
+                "display_time": "4.853 sec",
+                "relationship": "temporal_correlation_only"
+              }
+            ],
+            "context_refs": [
+              {
+                "candidate_id": "C005",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  20,
+                  30
+                ],
+                "truncated_sides": []
+              },
+              {
+                "candidate_id": "C023",
+                "g3d_block": "request_to_completion",
+                "tlp_rows": [
+                  20,
+                  31
+                ],
+                "truncated_sides": []
+              }
+            ]
+          }
+        ],
+        "nearby_messages_outside_segments": []
+      },
+      "why_surfaced": {
+        "detectors": [
+          {
+            "detector": "G3A_NON_SUCCESS_COMPLETION",
+            "surfaces": "An associated completion reports a status other than SC."
+          },
+          {
+            "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+            "surfaces": "Same association key observed again before an associated completion was observed in the captured sequence."
+          }
+        ],
+        "grouping_basis": [
+          "request_or_completion_is_other_candidate_anchor",
+          "shared_anchor_packet",
+          "shared_association_lineage"
+        ],
+        "grouping_basis_text": [
+          "a request or completion of one member is an anchor of another",
+          "members anchor the same packet",
+          "members are on the same G2b same-key association lineage"
+        ],
+        "group_relationship": "grouped_by_shared_evidence",
+        "members": [
+          "C005",
+          "C023"
+        ]
+      },
+      "gui_crosschecks": [
+        {
+          "candidate_id": "C023",
+          "result": "MATCHED",
+          "lecroy_view": "Split Tra 22"
+        }
+      ],
+      "trace_span_packets": 483,
+      "not_known": [
+        "Interpretation NOT_EVALUATED: no statement that this is abnormal, a fault, or related to the reported failure.",
+        "Ground truth for the trace is UNKNOWN.",
+        "Grouping expresses a request or completion of one member is an anchor of another, members anchor the same packet, members are on the same G2b same-key association lineage. It does not establish that observations in separate local segments (trace span 483 packets) belong to the same failure episode.",
+        "Nearby messages are temporal correlation only; causality is NOT ESTABLISHED. G3c's 64-packet bound is a prototype heuristic chosen after seeing its v1 results.",
+        "Same-key reappearance does not establish a requester retransmission, an illegal Tag reuse, or a completion missing from the capture."
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "finding_id": "F006",
+      "group_id": "G006",
+      "where_to_look": {
+        "primary_go_to_packet": 1944527,
+        "primary_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+        "segment_go_to_packets": [
+          1944527,
+          1945011
+        ],
+        "lecroy_hint": "LeCroy PETracer: Search > Go to Packet (Ctrl+G)."
+      },
+      "what_was_observed": {
+        "candidate_observations": [
+          {
+            "candidate_id": "C006",
+            "observed": "CfgRd0 request 1944527 (Tag 1): same association key observed again at 1944551 (CfgRd0) before an associated completion was observed"
+          },
+          {
+            "candidate_id": "C015",
+            "observed": "CfgRd0 request 1944551 (Tag 1): same association key observed again at 1945011 (MRd(32)) before an associated completion was observed"
+          },
+          {
+            "candidate_id": "C024",
+            "observed": "MRd(32) request 1945011 (Tag 1) has associated completion 1945013 with status UR"
+          }
+        ],
+        "local_segments": [
+          {
+            "segment": "A",
+            "go_to_packet": 1944527,
+            "display_times": [
+              "4.848 sec"
+            ],
+            "anchor_packet_range": [
+              1944527,
+              1944551
+            ],
+            "anchors": [
+              {
+                "packet": 1944527,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 1,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C006:first_request"
+                ]
+              },
+              {
+                "packet": 1944551,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 1,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C006:repeated_request",
+                  "C015:first_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C006",
+              "C015"
+            ],
+            "nearby_messages": [
+              {
+                "packet": 1944516,
+                "message": "SLOTPOWERLIMIT",
+                "display_time": "4.848 sec",
+                "relationship": "temporal_correlation_only"
+              }
+            ],
+            "context_refs": [
+              {
+                "candidate_id": "C006",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  2,
+                  12
+                ],
+                "truncated_sides": []
+              },
+              {
+                "candidate_id": "C006",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  11,
+                  21
+                ],
+                "truncated_sides": []
+              },
+              {
+                "candidate_id": "C015",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  11,
+                  21
+                ],
+                "truncated_sides": []
+              }
+            ]
+          },
+          {
+            "segment": "B",
+            "go_to_packet": 1945011,
+            "display_times": [
+              "4.853 sec"
+            ],
+            "anchor_packet_range": [
+              1945011,
+              1945013
+            ],
+            "anchors": [
+              {
+                "packet": 1945011,
+                "display_time": "4.853 sec",
+                "channel": "Downstream",
+                "type": "MRd(32)",
+                "requester": "000:00.0",
+                "tag": 1,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C015:repeated_request",
+                  "C024:request"
+                ]
+              },
+              {
+                "packet": 1945013,
+                "display_time": "4.853 sec",
+                "channel": "Upstream",
+                "type": "Cpl",
+                "requester": "000:00.0",
+                "tag": 1,
+                "completer": "001:00.0",
+                "status": "UR",
+                "roles": [
+                  "C024:completion"
+                ]
+              }
+            ],
+            "candidates": [
+              "C015",
+              "C024"
+            ],
+            "nearby_messages": [
+              {
+                "packet": 1945029,
+                "message": "ERR_COR",
+                "display_time": "4.853 sec",
+                "relationship": "temporal_correlation_only"
+              }
+            ],
+            "context_refs": [
+              {
+                "candidate_id": "C015",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  22,
+                  32
+                ],
+                "truncated_sides": []
+              },
+              {
+                "candidate_id": "C024",
+                "g3d_block": "request_to_completion",
+                "tlp_rows": [
+                  22,
+                  33
+                ],
+                "truncated_sides": []
+              }
+            ]
+          }
+        ],
+        "nearby_messages_outside_segments": []
+      },
+      "why_surfaced": {
+        "detectors": [
+          {
+            "detector": "G3A_NON_SUCCESS_COMPLETION",
+            "surfaces": "An associated completion reports a status other than SC."
+          },
+          {
+            "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+            "surfaces": "Same association key observed again before an associated completion was observed in the captured sequence."
+          }
+        ],
+        "grouping_basis": [
+          "request_or_completion_is_other_candidate_anchor",
+          "shared_anchor_packet",
+          "shared_association_lineage"
+        ],
+        "grouping_basis_text": [
+          "a request or completion of one member is an anchor of another",
+          "members anchor the same packet",
+          "members are on the same G2b same-key association lineage"
+        ],
+        "group_relationship": "grouped_by_shared_evidence",
+        "members": [
+          "C006",
+          "C015",
+          "C024"
+        ]
+      },
+      "gui_crosschecks": [],
+      "trace_span_packets": 486,
+      "not_known": [
+        "Interpretation NOT_EVALUATED: no statement that this is abnormal, a fault, or related to the reported failure.",
+        "Ground truth for the trace is UNKNOWN.",
+        "Grouping expresses a request or completion of one member is an anchor of another, members anchor the same packet, members are on the same G2b same-key association lineage. It does not establish that observations in separate local segments (trace span 486 packets) belong to the same failure episode.",
+        "Nearby messages are temporal correlation only; causality is NOT ESTABLISHED. G3c's 64-packet bound is a prototype heuristic chosen after seeing its v1 results.",
+        "Request/completion association for C024 rests on the G2b nearest-preceding same-key rule and was not GUI-cross-checked.",
+        "Same-key reappearance does not establish a requester retransmission, an illegal Tag reuse, or a completion missing from the capture."
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "finding_id": "F007",
+      "group_id": "G007",
+      "where_to_look": {
+        "primary_go_to_packet": 1944531,
+        "primary_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+        "segment_go_to_packets": [
+          1944531,
+          1945016
+        ],
+        "lecroy_hint": "LeCroy PETracer: Search > Go to Packet (Ctrl+G)."
+      },
+      "what_was_observed": {
+        "candidate_observations": [
+          {
+            "candidate_id": "C007",
+            "observed": "CfgRd0 request 1944531 (Tag 7): same association key observed again at 1945016 (MRd(32)) before an associated completion was observed"
+          },
+          {
+            "candidate_id": "C025",
+            "observed": "MRd(32) request 1945016 (Tag 7) has associated completion 1945018 with status UR"
+          }
+        ],
+        "local_segments": [
+          {
+            "segment": "A",
+            "go_to_packet": 1944531,
+            "display_times": [
+              "4.848 sec"
+            ],
+            "anchor_packet_range": [
+              1944531,
+              1944531
+            ],
+            "anchors": [
+              {
+                "packet": 1944531,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 7,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C007:first_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C007"
+            ],
+            "nearby_messages": [
+              {
+                "packet": 1944516,
+                "message": "SLOTPOWERLIMIT",
+                "display_time": "4.848 sec",
+                "relationship": "temporal_correlation_only"
+              }
+            ],
+            "context_refs": [
+              {
+                "candidate_id": "C007",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  3,
+                  13
+                ],
+                "truncated_sides": []
+              }
+            ]
+          },
+          {
+            "segment": "B",
+            "go_to_packet": 1945016,
+            "display_times": [
+              "4.853 sec"
+            ],
+            "anchor_packet_range": [
+              1945016,
+              1945018
+            ],
+            "anchors": [
+              {
+                "packet": 1945016,
+                "display_time": "4.853 sec",
+                "channel": "Downstream",
+                "type": "MRd(32)",
+                "requester": "000:00.0",
+                "tag": 7,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C007:repeated_request",
+                  "C025:request"
+                ]
+              },
+              {
+                "packet": 1945018,
+                "display_time": "4.853 sec",
+                "channel": "Upstream",
+                "type": "Cpl",
+                "requester": "000:00.0",
+                "tag": 7,
+                "completer": "001:00.0",
+                "status": "UR",
+                "roles": [
+                  "C025:completion"
+                ]
+              }
+            ],
+            "candidates": [
+              "C007",
+              "C025"
+            ],
+            "nearby_messages": [
+              {
+                "packet": 1945029,
+                "message": "ERR_COR",
+                "display_time": "4.853 sec",
+                "relationship": "temporal_correlation_only"
+              }
+            ],
+            "context_refs": [
+              {
+                "candidate_id": "C007",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  24,
+                  34
+                ],
+                "truncated_sides": []
+              },
+              {
+                "candidate_id": "C025",
+                "g3d_block": "request_to_completion",
+                "tlp_rows": [
+                  24,
+                  35
+                ],
+                "truncated_sides": []
+              }
+            ]
+          }
+        ],
+        "nearby_messages_outside_segments": []
+      },
+      "why_surfaced": {
+        "detectors": [
+          {
+            "detector": "G3A_NON_SUCCESS_COMPLETION",
+            "surfaces": "An associated completion reports a status other than SC."
+          },
+          {
+            "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+            "surfaces": "Same association key observed again before an associated completion was observed in the captured sequence."
+          }
+        ],
+        "grouping_basis": [
+          "request_or_completion_is_other_candidate_anchor",
+          "shared_anchor_packet",
+          "shared_association_lineage"
+        ],
+        "grouping_basis_text": [
+          "a request or completion of one member is an anchor of another",
+          "members anchor the same packet",
+          "members are on the same G2b same-key association lineage"
+        ],
+        "group_relationship": "grouped_by_shared_evidence",
+        "members": [
+          "C007",
+          "C025"
+        ]
+      },
+      "gui_crosschecks": [],
+      "trace_span_packets": 487,
+      "not_known": [
+        "Interpretation NOT_EVALUATED: no statement that this is abnormal, a fault, or related to the reported failure.",
+        "Ground truth for the trace is UNKNOWN.",
+        "Grouping expresses a request or completion of one member is an anchor of another, members anchor the same packet, members are on the same G2b same-key association lineage. It does not establish that observations in separate local segments (trace span 487 packets) belong to the same failure episode.",
+        "Nearby messages are temporal correlation only; causality is NOT ESTABLISHED. G3c's 64-packet bound is a prototype heuristic chosen after seeing its v1 results.",
+        "Request/completion association for C025 rests on the G2b nearest-preceding same-key rule and was not GUI-cross-checked.",
+        "Same-key reappearance does not establish a requester retransmission, an illegal Tag reuse, or a completion missing from the capture."
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "finding_id": "F008",
+      "group_id": "G008",
+      "where_to_look": {
+        "primary_go_to_packet": 1944533,
+        "primary_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+        "segment_go_to_packets": [
+          1944533,
+          1945021
+        ],
+        "lecroy_hint": "LeCroy PETracer: Search > Go to Packet (Ctrl+G)."
+      },
+      "what_was_observed": {
+        "candidate_observations": [
+          {
+            "candidate_id": "C008",
+            "observed": "CfgRd0 request 1944533 (Tag 13): same association key observed again at 1945021 (MRd(32)) before an associated completion was observed"
+          },
+          {
+            "candidate_id": "C026",
+            "observed": "MRd(32) request 1945021 (Tag 13) has associated completion 1945023 with status UR"
+          }
+        ],
+        "local_segments": [
+          {
+            "segment": "A",
+            "go_to_packet": 1944533,
+            "display_times": [
+              "4.848 sec"
+            ],
+            "anchor_packet_range": [
+              1944533,
+              1944533
+            ],
+            "anchors": [
+              {
+                "packet": 1944533,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 13,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C008:first_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C008"
+            ],
+            "nearby_messages": [
+              {
+                "packet": 1944516,
+                "message": "SLOTPOWERLIMIT",
+                "display_time": "4.848 sec",
+                "relationship": "temporal_correlation_only"
+              }
+            ],
+            "context_refs": [
+              {
+                "candidate_id": "C008",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  4,
+                  14
+                ],
+                "truncated_sides": []
+              }
+            ]
+          },
+          {
+            "segment": "B",
+            "go_to_packet": 1945021,
+            "display_times": [
+              "4.853 sec"
+            ],
+            "anchor_packet_range": [
+              1945021,
+              1945023
+            ],
+            "anchors": [
+              {
+                "packet": 1945021,
+                "display_time": "4.853 sec",
+                "channel": "Downstream",
+                "type": "MRd(32)",
+                "requester": "000:00.0",
+                "tag": 13,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C008:repeated_request",
+                  "C026:request"
+                ]
+              },
+              {
+                "packet": 1945023,
+                "display_time": "4.853 sec",
+                "channel": "Upstream",
+                "type": "Cpl",
+                "requester": "000:00.0",
+                "tag": 13,
+                "completer": "001:00.0",
+                "status": "UR",
+                "roles": [
+                  "C026:completion"
+                ]
+              }
+            ],
+            "candidates": [
+              "C008",
+              "C026"
+            ],
+            "nearby_messages": [
+              {
+                "packet": 1945029,
+                "message": "ERR_COR",
+                "display_time": "4.853 sec",
+                "relationship": "temporal_correlation_only"
+              }
+            ],
+            "context_refs": [
+              {
+                "candidate_id": "C008",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  26,
+                  36
+                ],
+                "truncated_sides": []
+              },
+              {
+                "candidate_id": "C026",
+                "g3d_block": "request_to_completion",
+                "tlp_rows": [
+                  26,
+                  37
+                ],
+                "truncated_sides": []
+              }
+            ]
+          }
+        ],
+        "nearby_messages_outside_segments": []
+      },
+      "why_surfaced": {
+        "detectors": [
+          {
+            "detector": "G3A_NON_SUCCESS_COMPLETION",
+            "surfaces": "An associated completion reports a status other than SC."
+          },
+          {
+            "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+            "surfaces": "Same association key observed again before an associated completion was observed in the captured sequence."
+          }
+        ],
+        "grouping_basis": [
+          "request_or_completion_is_other_candidate_anchor",
+          "shared_anchor_packet",
+          "shared_association_lineage"
+        ],
+        "grouping_basis_text": [
+          "a request or completion of one member is an anchor of another",
+          "members anchor the same packet",
+          "members are on the same G2b same-key association lineage"
+        ],
+        "group_relationship": "grouped_by_shared_evidence",
+        "members": [
+          "C008",
+          "C026"
+        ]
+      },
+      "gui_crosschecks": [],
+      "trace_span_packets": 490,
+      "not_known": [
+        "Interpretation NOT_EVALUATED: no statement that this is abnormal, a fault, or related to the reported failure.",
+        "Ground truth for the trace is UNKNOWN.",
+        "Grouping expresses a request or completion of one member is an anchor of another, members anchor the same packet, members are on the same G2b same-key association lineage. It does not establish that observations in separate local segments (trace span 490 packets) belong to the same failure episode.",
+        "Nearby messages are temporal correlation only; causality is NOT ESTABLISHED. G3c's 64-packet bound is a prototype heuristic chosen after seeing its v1 results.",
+        "Request/completion association for C026 rests on the G2b nearest-preceding same-key rule and was not GUI-cross-checked.",
+        "Same-key reappearance does not establish a requester retransmission, an illegal Tag reuse, or a completion missing from the capture."
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "finding_id": "F009",
+      "group_id": "G009",
+      "where_to_look": {
+        "primary_go_to_packet": 1944535,
+        "primary_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+        "segment_go_to_packets": [
+          1944535,
+          2093063
+        ],
+        "lecroy_hint": "LeCroy PETracer: Search > Go to Packet (Ctrl+G)."
+      },
+      "what_was_observed": {
+        "candidate_observations": [
+          {
+            "candidate_id": "C009",
+            "observed": "CfgRd0 request 1944535 (Tag 3): same association key observed again at 2093063 (MRd(32)) before an associated completion was observed"
+          },
+          {
+            "candidate_id": "C027",
+            "observed": "MRd(32) request 2093063 (Tag 3) has associated completion 2093065 with status UR"
+          }
+        ],
+        "local_segments": [
+          {
+            "segment": "A",
+            "go_to_packet": 1944535,
+            "display_times": [
+              "4.848 sec"
+            ],
+            "anchor_packet_range": [
+              1944535,
+              1944535
+            ],
+            "anchors": [
+              {
+                "packet": 1944535,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 3,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C009:first_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C009"
+            ],
+            "nearby_messages": [],
+            "context_refs": [
+              {
+                "candidate_id": "C009",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  5,
+                  15
+                ],
+                "truncated_sides": []
+              }
+            ]
+          },
+          {
+            "segment": "B",
+            "go_to_packet": 2093063,
+            "display_times": [
+              "5.880 sec"
+            ],
+            "anchor_packet_range": [
+              2093063,
+              2093065
+            ],
+            "anchors": [
+              {
+                "packet": 2093063,
+                "display_time": "5.880 sec",
+                "channel": "Downstream",
+                "type": "MRd(32)",
+                "requester": "000:00.0",
+                "tag": 3,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C009:repeated_request",
+                  "C027:request"
+                ]
+              },
+              {
+                "packet": 2093065,
+                "display_time": "5.880 sec",
+                "channel": "Upstream",
+                "type": "Cpl",
+                "requester": "000:00.0",
+                "tag": 3,
+                "completer": "001:00.0",
+                "status": "UR",
+                "roles": [
+                  "C027:completion"
+                ]
+              }
+            ],
+            "candidates": [
+              "C009",
+              "C027"
+            ],
+            "nearby_messages": [
+              {
+                "packet": 2093072,
+                "message": "ERR_COR",
+                "display_time": "5.880 sec",
+                "relationship": "temporal_correlation_only"
+              }
+            ],
+            "context_refs": [
+              {
+                "candidate_id": "C009",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  30,
+                  40
+                ],
+                "truncated_sides": []
+              },
+              {
+                "candidate_id": "C027",
+                "g3d_block": "request_to_completion",
+                "tlp_rows": [
+                  30,
+                  41
+                ],
+                "truncated_sides": []
+              }
+            ]
+          }
+        ],
+        "nearby_messages_outside_segments": []
+      },
+      "why_surfaced": {
+        "detectors": [
+          {
+            "detector": "G3A_NON_SUCCESS_COMPLETION",
+            "surfaces": "An associated completion reports a status other than SC."
+          },
+          {
+            "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+            "surfaces": "Same association key observed again before an associated completion was observed in the captured sequence."
+          }
+        ],
+        "grouping_basis": [
+          "request_or_completion_is_other_candidate_anchor",
+          "shared_anchor_packet",
+          "shared_association_lineage"
+        ],
+        "grouping_basis_text": [
+          "a request or completion of one member is an anchor of another",
+          "members anchor the same packet",
+          "members are on the same G2b same-key association lineage"
+        ],
+        "group_relationship": "grouped_by_shared_evidence",
+        "members": [
+          "C009",
+          "C027"
+        ]
+      },
+      "gui_crosschecks": [],
+      "trace_span_packets": 148530,
+      "not_known": [
+        "Interpretation NOT_EVALUATED: no statement that this is abnormal, a fault, or related to the reported failure.",
+        "Ground truth for the trace is UNKNOWN.",
+        "Grouping expresses a request or completion of one member is an anchor of another, members anchor the same packet, members are on the same G2b same-key association lineage. It does not establish that observations in separate local segments (trace span 148530 packets) belong to the same failure episode.",
+        "Nearby messages are temporal correlation only; causality is NOT ESTABLISHED. G3c's 64-packet bound is a prototype heuristic chosen after seeing its v1 results.",
+        "Request/completion association for C027 rests on the G2b nearest-preceding same-key rule and was not GUI-cross-checked.",
+        "Same-key reappearance does not establish a requester retransmission, an illegal Tag reuse, or a completion missing from the capture."
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "finding_id": "F010",
+      "group_id": "G010",
+      "where_to_look": {
+        "primary_go_to_packet": 1944537,
+        "primary_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+        "segment_go_to_packets": [
+          1944537,
+          2093071
+        ],
+        "lecroy_hint": "LeCroy PETracer: Search > Go to Packet (Ctrl+G)."
+      },
+      "what_was_observed": {
+        "candidate_observations": [
+          {
+            "candidate_id": "C010",
+            "observed": "CfgRd0 request 1944537 (Tag 9): same association key observed again at 2093071 (MRd(32)) before an associated completion was observed"
+          },
+          {
+            "candidate_id": "C028",
+            "observed": "MRd(32) request 2093071 (Tag 9) has associated completion 2093075 with status UR"
+          }
+        ],
+        "local_segments": [
+          {
+            "segment": "A",
+            "go_to_packet": 1944537,
+            "display_times": [
+              "4.848 sec"
+            ],
+            "anchor_packet_range": [
+              1944537,
+              1944537
+            ],
+            "anchors": [
+              {
+                "packet": 1944537,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 9,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C010:first_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C010"
+            ],
+            "nearby_messages": [],
+            "context_refs": [
+              {
+                "candidate_id": "C010",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  6,
+                  16
+                ],
+                "truncated_sides": []
+              }
+            ]
+          },
+          {
+            "segment": "B",
+            "go_to_packet": 2093071,
+            "display_times": [
+              "5.880 sec"
+            ],
+            "anchor_packet_range": [
+              2093071,
+              2093075
+            ],
+            "anchors": [
+              {
+                "packet": 2093071,
+                "display_time": "5.880 sec",
+                "channel": "Downstream",
+                "type": "MRd(32)",
+                "requester": "000:00.0",
+                "tag": 9,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C010:repeated_request",
+                  "C028:request"
+                ]
+              },
+              {
+                "packet": 2093075,
+                "display_time": "5.880 sec",
+                "channel": "Upstream",
+                "type": "Cpl",
+                "requester": "000:00.0",
+                "tag": 9,
+                "completer": "001:00.0",
+                "status": "UR",
+                "roles": [
+                  "C028:completion"
+                ]
+              }
+            ],
+            "candidates": [
+              "C010",
+              "C028"
+            ],
+            "nearby_messages": [
+              {
+                "packet": 2093072,
+                "message": "ERR_COR",
+                "display_time": "5.880 sec",
+                "relationship": "temporal_correlation_only"
+              }
+            ],
+            "context_refs": [
+              {
+                "candidate_id": "C010",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  33,
+                  43
+                ],
+                "truncated_sides": []
+              },
+              {
+                "candidate_id": "C028",
+                "g3d_block": "request_to_completion",
+                "tlp_rows": [
+                  33,
+                  45
+                ],
+                "truncated_sides": []
+              }
+            ]
+          }
+        ],
+        "nearby_messages_outside_segments": []
+      },
+      "why_surfaced": {
+        "detectors": [
+          {
+            "detector": "G3A_NON_SUCCESS_COMPLETION",
+            "surfaces": "An associated completion reports a status other than SC."
+          },
+          {
+            "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+            "surfaces": "Same association key observed again before an associated completion was observed in the captured sequence."
+          }
+        ],
+        "grouping_basis": [
+          "request_or_completion_is_other_candidate_anchor",
+          "shared_anchor_packet",
+          "shared_association_lineage"
+        ],
+        "grouping_basis_text": [
+          "a request or completion of one member is an anchor of another",
+          "members anchor the same packet",
+          "members are on the same G2b same-key association lineage"
+        ],
+        "group_relationship": "grouped_by_shared_evidence",
+        "members": [
+          "C010",
+          "C028"
+        ]
+      },
+      "gui_crosschecks": [],
+      "trace_span_packets": 148538,
+      "not_known": [
+        "Interpretation NOT_EVALUATED: no statement that this is abnormal, a fault, or related to the reported failure.",
+        "Ground truth for the trace is UNKNOWN.",
+        "Grouping expresses a request or completion of one member is an anchor of another, members anchor the same packet, members are on the same G2b same-key association lineage. It does not establish that observations in separate local segments (trace span 148538 packets) belong to the same failure episode.",
+        "Nearby messages are temporal correlation only; causality is NOT ESTABLISHED. G3c's 64-packet bound is a prototype heuristic chosen after seeing its v1 results.",
+        "Request/completion association for C028 rests on the G2b nearest-preceding same-key rule and was not GUI-cross-checked.",
+        "Same-key reappearance does not establish a requester retransmission, an illegal Tag reuse, or a completion missing from the capture."
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "finding_id": "F011",
+      "group_id": "G011",
+      "where_to_look": {
+        "primary_go_to_packet": 1944539,
+        "primary_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+        "segment_go_to_packets": [
+          1944539,
+          2093079
+        ],
+        "lecroy_hint": "LeCroy PETracer: Search > Go to Packet (Ctrl+G)."
+      },
+      "what_was_observed": {
+        "candidate_observations": [
+          {
+            "candidate_id": "C011",
+            "observed": "CfgRd0 request 1944539 (Tag 15): same association key observed again at 2093079 (MRd(32)) before an associated completion was observed"
+          },
+          {
+            "candidate_id": "C029",
+            "observed": "MRd(32) request 2093079 (Tag 15) has associated completion 2093081 with status UR"
+          }
+        ],
+        "local_segments": [
+          {
+            "segment": "A",
+            "go_to_packet": 1944539,
+            "display_times": [
+              "4.848 sec"
+            ],
+            "anchor_packet_range": [
+              1944539,
+              1944539
+            ],
+            "anchors": [
+              {
+                "packet": 1944539,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 15,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C011:first_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C011"
+            ],
+            "nearby_messages": [],
+            "context_refs": [
+              {
+                "candidate_id": "C011",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  7,
+                  17
+                ],
+                "truncated_sides": []
+              }
+            ]
+          },
+          {
+            "segment": "B",
+            "go_to_packet": 2093079,
+            "display_times": [
+              "5.880 sec"
+            ],
+            "anchor_packet_range": [
+              2093079,
+              2093081
+            ],
+            "anchors": [
+              {
+                "packet": 2093079,
+                "display_time": "5.880 sec",
+                "channel": "Downstream",
+                "type": "MRd(32)",
+                "requester": "000:00.0",
+                "tag": 15,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C011:repeated_request",
+                  "C029:request"
+                ]
+              },
+              {
+                "packet": 2093081,
+                "display_time": "5.880 sec",
+                "channel": "Upstream",
+                "type": "Cpl",
+                "requester": "000:00.0",
+                "tag": 15,
+                "completer": "001:00.0",
+                "status": "UR",
+                "roles": [
+                  "C029:completion"
+                ]
+              }
+            ],
+            "candidates": [
+              "C011",
+              "C029"
+            ],
+            "nearby_messages": [
+              {
+                "packet": 2093072,
+                "message": "ERR_COR",
+                "display_time": "5.880 sec",
+                "relationship": "temporal_correlation_only"
+              }
+            ],
+            "context_refs": [
+              {
+                "candidate_id": "C011",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  36,
+                  46
+                ],
+                "truncated_sides": []
+              },
+              {
+                "candidate_id": "C029",
+                "g3d_block": "request_to_completion",
+                "tlp_rows": [
+                  36,
+                  47
+                ],
+                "truncated_sides": []
+              }
+            ]
+          }
+        ],
+        "nearby_messages_outside_segments": []
+      },
+      "why_surfaced": {
+        "detectors": [
+          {
+            "detector": "G3A_NON_SUCCESS_COMPLETION",
+            "surfaces": "An associated completion reports a status other than SC."
+          },
+          {
+            "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+            "surfaces": "Same association key observed again before an associated completion was observed in the captured sequence."
+          }
+        ],
+        "grouping_basis": [
+          "request_or_completion_is_other_candidate_anchor",
+          "shared_anchor_packet",
+          "shared_association_lineage"
+        ],
+        "grouping_basis_text": [
+          "a request or completion of one member is an anchor of another",
+          "members anchor the same packet",
+          "members are on the same G2b same-key association lineage"
+        ],
+        "group_relationship": "grouped_by_shared_evidence",
+        "members": [
+          "C011",
+          "C029"
+        ]
+      },
+      "gui_crosschecks": [],
+      "trace_span_packets": 148542,
+      "not_known": [
+        "Interpretation NOT_EVALUATED: no statement that this is abnormal, a fault, or related to the reported failure.",
+        "Ground truth for the trace is UNKNOWN.",
+        "Grouping expresses a request or completion of one member is an anchor of another, members anchor the same packet, members are on the same G2b same-key association lineage. It does not establish that observations in separate local segments (trace span 148542 packets) belong to the same failure episode.",
+        "Nearby messages are temporal correlation only; causality is NOT ESTABLISHED. G3c's 64-packet bound is a prototype heuristic chosen after seeing its v1 results.",
+        "Request/completion association for C029 rests on the G2b nearest-preceding same-key rule and was not GUI-cross-checked.",
+        "Same-key reappearance does not establish a requester retransmission, an illegal Tag reuse, or a completion missing from the capture."
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "finding_id": "F012",
+      "group_id": "G012",
+      "where_to_look": {
+        "primary_go_to_packet": 1944547,
+        "primary_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+        "segment_go_to_packets": [
+          1944547,
+          2093091
+        ],
+        "lecroy_hint": "LeCroy PETracer: Search > Go to Packet (Ctrl+G)."
+      },
+      "what_was_observed": {
+        "candidate_observations": [
+          {
+            "candidate_id": "C013",
+            "observed": "CfgRd0 request 1944547 (Tag 4): same association key observed again at 2093091 (MRd(32)) before an associated completion was observed"
+          },
+          {
+            "candidate_id": "C031",
+            "observed": "MRd(32) request 2093091 (Tag 4) has associated completion 2093093 with status UR"
+          }
+        ],
+        "local_segments": [
+          {
+            "segment": "A",
+            "go_to_packet": 1944547,
+            "display_times": [
+              "4.848 sec"
+            ],
+            "anchor_packet_range": [
+              1944547,
+              1944547
+            ],
+            "anchors": [
+              {
+                "packet": 1944547,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 4,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C013:first_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C013"
+            ],
+            "nearby_messages": [],
+            "context_refs": [
+              {
+                "candidate_id": "C013",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  9,
+                  19
+                ],
+                "truncated_sides": []
+              }
+            ]
+          },
+          {
+            "segment": "B",
+            "go_to_packet": 2093091,
+            "display_times": [
+              "5.880 sec"
+            ],
+            "anchor_packet_range": [
+              2093091,
+              2093093
+            ],
+            "anchors": [
+              {
+                "packet": 2093091,
+                "display_time": "5.880 sec",
+                "channel": "Downstream",
+                "type": "MRd(32)",
+                "requester": "000:00.0",
+                "tag": 4,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C013:repeated_request",
+                  "C031:request"
+                ]
+              },
+              {
+                "packet": 2093093,
+                "display_time": "5.880 sec",
+                "channel": "Upstream",
+                "type": "Cpl",
+                "requester": "000:00.0",
+                "tag": 4,
+                "completer": "001:00.0",
+                "status": "UR",
+                "roles": [
+                  "C031:completion"
+                ]
+              }
+            ],
+            "candidates": [
+              "C013",
+              "C031"
+            ],
+            "nearby_messages": [
+              {
+                "packet": 2093072,
+                "message": "ERR_COR",
+                "display_time": "5.880 sec",
+                "relationship": "temporal_correlation_only"
+              }
+            ],
+            "context_refs": [
+              {
+                "candidate_id": "C013",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  40,
+                  50
+                ],
+                "truncated_sides": []
+              },
+              {
+                "candidate_id": "C031",
+                "g3d_block": "request_to_completion",
+                "tlp_rows": [
+                  40,
+                  51
+                ],
+                "truncated_sides": []
+              }
+            ]
+          }
+        ],
+        "nearby_messages_outside_segments": []
+      },
+      "why_surfaced": {
+        "detectors": [
+          {
+            "detector": "G3A_NON_SUCCESS_COMPLETION",
+            "surfaces": "An associated completion reports a status other than SC."
+          },
+          {
+            "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+            "surfaces": "Same association key observed again before an associated completion was observed in the captured sequence."
+          }
+        ],
+        "grouping_basis": [
+          "request_or_completion_is_other_candidate_anchor",
+          "shared_anchor_packet",
+          "shared_association_lineage"
+        ],
+        "grouping_basis_text": [
+          "a request or completion of one member is an anchor of another",
+          "members anchor the same packet",
+          "members are on the same G2b same-key association lineage"
+        ],
+        "group_relationship": "grouped_by_shared_evidence",
+        "members": [
+          "C013",
+          "C031"
+        ]
+      },
+      "gui_crosschecks": [],
+      "trace_span_packets": 148546,
+      "not_known": [
+        "Interpretation NOT_EVALUATED: no statement that this is abnormal, a fault, or related to the reported failure.",
+        "Ground truth for the trace is UNKNOWN.",
+        "Grouping expresses a request or completion of one member is an anchor of another, members anchor the same packet, members are on the same G2b same-key association lineage. It does not establish that observations in separate local segments (trace span 148546 packets) belong to the same failure episode.",
+        "Nearby messages are temporal correlation only; causality is NOT ESTABLISHED. G3c's 64-packet bound is a prototype heuristic chosen after seeing its v1 results.",
+        "Request/completion association for C031 rests on the G2b nearest-preceding same-key rule and was not GUI-cross-checked.",
+        "Same-key reappearance does not establish a requester retransmission, an illegal Tag reuse, or a completion missing from the capture."
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "finding_id": "F013",
+      "group_id": "G013",
+      "where_to_look": {
+        "primary_go_to_packet": 1944549,
+        "primary_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+        "segment_go_to_packets": [
+          1944549,
+          2093522
+        ],
+        "lecroy_hint": "LeCroy PETracer: Search > Go to Packet (Ctrl+G)."
+      },
+      "what_was_observed": {
+        "candidate_observations": [
+          {
+            "candidate_id": "C014",
+            "observed": "CfgRd0 request 1944549 (Tag 10): same association key observed again at 2093522 (CfgRd0) before an associated completion was observed"
+          }
+        ],
+        "local_segments": [
+          {
+            "segment": "A",
+            "go_to_packet": 1944549,
+            "display_times": [
+              "4.848 sec"
+            ],
+            "anchor_packet_range": [
+              1944549,
+              1944549
+            ],
+            "anchors": [
+              {
+                "packet": 1944549,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 10,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C014:first_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C014"
+            ],
+            "nearby_messages": [],
+            "context_refs": [
+              {
+                "candidate_id": "C014",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  10,
+                  20
+                ],
+                "truncated_sides": []
+              }
+            ]
+          },
+          {
+            "segment": "B",
+            "go_to_packet": 2093522,
+            "display_times": [
+              "5.883 sec"
+            ],
+            "anchor_packet_range": [
+              2093522,
+              2093522
+            ],
+            "anchors": [
+              {
+                "packet": 2093522,
+                "display_time": "5.883 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 10,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C014:repeated_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C014"
+            ],
+            "nearby_messages": [],
+            "context_refs": [
+              {
+                "candidate_id": "C014",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  42,
+                  52
+                ],
+                "truncated_sides": []
+              }
+            ]
+          }
+        ],
+        "nearby_messages_outside_segments": []
+      },
+      "why_surfaced": {
+        "detectors": [
+          {
+            "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+            "surfaces": "Same association key observed again before an associated completion was observed in the captured sequence."
+          }
+        ],
+        "grouping_basis": [
+          "none_singleton"
+        ],
+        "grouping_basis_text": [
+          "no strong relationship to any other candidate; kept alone"
+        ],
+        "group_relationship": "singleton_no_strong_relationship",
+        "members": [
+          "C014"
+        ]
+      },
+      "gui_crosschecks": [],
+      "trace_span_packets": 148973,
+      "not_known": [
+        "Interpretation NOT_EVALUATED: no statement that this is abnormal, a fault, or related to the reported failure.",
+        "Ground truth for the trace is UNKNOWN.",
+        "This candidate's anchors lie in separate local segments (trace span 148973 packets). Their shared association key does not establish that they belong to the same failure episode.",
+        "Same-key reappearance does not establish a requester retransmission, an illegal Tag reuse, or a completion missing from the capture."
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "finding_id": "F014",
+      "group_id": "G014",
+      "where_to_look": {
+        "primary_go_to_packet": 1944553,
+        "primary_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+        "segment_go_to_packets": [
+          1944553,
+          2093550
+        ],
+        "lecroy_hint": "LeCroy PETracer: Search > Go to Packet (Ctrl+G)."
+      },
+      "what_was_observed": {
+        "candidate_observations": [
+          {
+            "candidate_id": "C016",
+            "observed": "CfgRd0 request 1944553 (Tag 6): same association key observed again at 2093550 (CfgRd0) before an associated completion was observed"
+          }
+        ],
+        "local_segments": [
+          {
+            "segment": "A",
+            "go_to_packet": 1944553,
+            "display_times": [
+              "4.848 sec"
+            ],
+            "anchor_packet_range": [
+              1944553,
+              1944553
+            ],
+            "anchors": [
+              {
+                "packet": 1944553,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 6,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C016:first_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C016"
+            ],
+            "nearby_messages": [],
+            "context_refs": [
+              {
+                "candidate_id": "C016",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  12,
+                  22
+                ],
+                "truncated_sides": []
+              }
+            ]
+          },
+          {
+            "segment": "B",
+            "go_to_packet": 2093550,
+            "display_times": [
+              "5.883 sec"
+            ],
+            "anchor_packet_range": [
+              2093550,
+              2093550
+            ],
+            "anchors": [
+              {
+                "packet": 2093550,
+                "display_time": "5.883 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 6,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C016:repeated_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C016"
+            ],
+            "nearby_messages": [],
+            "context_refs": [
+              {
+                "candidate_id": "C016",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  46,
+                  56
+                ],
+                "truncated_sides": []
+              }
+            ]
+          }
+        ],
+        "nearby_messages_outside_segments": []
+      },
+      "why_surfaced": {
+        "detectors": [
+          {
+            "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+            "surfaces": "Same association key observed again before an associated completion was observed in the captured sequence."
+          }
+        ],
+        "grouping_basis": [
+          "none_singleton"
+        ],
+        "grouping_basis_text": [
+          "no strong relationship to any other candidate; kept alone"
+        ],
+        "group_relationship": "singleton_no_strong_relationship",
+        "members": [
+          "C016"
+        ]
+      },
+      "gui_crosschecks": [],
+      "trace_span_packets": 148997,
+      "not_known": [
+        "Interpretation NOT_EVALUATED: no statement that this is abnormal, a fault, or related to the reported failure.",
+        "Ground truth for the trace is UNKNOWN.",
+        "This candidate's anchors lie in separate local segments (trace span 148997 packets). Their shared association key does not establish that they belong to the same failure episode.",
+        "Same-key reappearance does not establish a requester retransmission, an illegal Tag reuse, or a completion missing from the capture."
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "finding_id": "F015",
+      "group_id": "G015",
+      "where_to_look": {
+        "primary_go_to_packet": 1944555,
+        "primary_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+        "segment_go_to_packets": [
+          1944555,
+          2093564
+        ],
+        "lecroy_hint": "LeCroy PETracer: Search > Go to Packet (Ctrl+G)."
+      },
+      "what_was_observed": {
+        "candidate_observations": [
+          {
+            "candidate_id": "C017",
+            "observed": "CfgRd0 request 1944555 (Tag 12): same association key observed again at 2093564 (CfgRd0) before an associated completion was observed"
+          }
+        ],
+        "local_segments": [
+          {
+            "segment": "A",
+            "go_to_packet": 1944555,
+            "display_times": [
+              "4.848 sec"
+            ],
+            "anchor_packet_range": [
+              1944555,
+              1944555
+            ],
+            "anchors": [
+              {
+                "packet": 1944555,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 12,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C017:first_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C017"
+            ],
+            "nearby_messages": [],
+            "context_refs": [
+              {
+                "candidate_id": "C017",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  13,
+                  23
+                ],
+                "truncated_sides": []
+              }
+            ]
+          },
+          {
+            "segment": "B",
+            "go_to_packet": 2093564,
+            "display_times": [
+              "5.883 sec"
+            ],
+            "anchor_packet_range": [
+              2093564,
+              2093564
+            ],
+            "anchors": [
+              {
+                "packet": 2093564,
+                "display_time": "5.883 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 12,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C017:repeated_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C017"
+            ],
+            "nearby_messages": [],
+            "context_refs": [
+              {
+                "candidate_id": "C017",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  48,
+                  58
+                ],
+                "truncated_sides": []
+              }
+            ]
+          }
+        ],
+        "nearby_messages_outside_segments": []
+      },
+      "why_surfaced": {
+        "detectors": [
+          {
+            "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+            "surfaces": "Same association key observed again before an associated completion was observed in the captured sequence."
+          }
+        ],
+        "grouping_basis": [
+          "none_singleton"
+        ],
+        "grouping_basis_text": [
+          "no strong relationship to any other candidate; kept alone"
+        ],
+        "group_relationship": "singleton_no_strong_relationship",
+        "members": [
+          "C017"
+        ]
+      },
+      "gui_crosschecks": [],
+      "trace_span_packets": 149009,
+      "not_known": [
+        "Interpretation NOT_EVALUATED: no statement that this is abnormal, a fault, or related to the reported failure.",
+        "Ground truth for the trace is UNKNOWN.",
+        "This candidate's anchors lie in separate local segments (trace span 149009 packets). Their shared association key does not establish that they belong to the same failure episode.",
+        "Same-key reappearance does not establish a requester retransmission, an illegal Tag reuse, or a completion missing from the capture."
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "finding_id": "F016",
+      "group_id": "G016",
+      "where_to_look": {
+        "primary_go_to_packet": 1944557,
+        "primary_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+        "segment_go_to_packets": [
+          1944557,
+          2093577
+        ],
+        "lecroy_hint": "LeCroy PETracer: Search > Go to Packet (Ctrl+G)."
+      },
+      "what_was_observed": {
+        "candidate_observations": [
+          {
+            "candidate_id": "C018",
+            "observed": "CfgRd0 request 1944557 (Tag 2): same association key observed again at 2093577 (CfgRd0) before an associated completion was observed"
+          }
+        ],
+        "local_segments": [
+          {
+            "segment": "A",
+            "go_to_packet": 1944557,
+            "display_times": [
+              "4.848 sec"
+            ],
+            "anchor_packet_range": [
+              1944557,
+              1944557
+            ],
+            "anchors": [
+              {
+                "packet": 1944557,
+                "display_time": "4.848 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 2,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C018:first_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C018"
+            ],
+            "nearby_messages": [],
+            "context_refs": [
+              {
+                "candidate_id": "C018",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  14,
+                  24
+                ],
+                "truncated_sides": []
+              }
+            ]
+          },
+          {
+            "segment": "B",
+            "go_to_packet": 2093577,
+            "display_times": [
+              "5.883 sec"
+            ],
+            "anchor_packet_range": [
+              2093577,
+              2093577
+            ],
+            "anchors": [
+              {
+                "packet": 2093577,
+                "display_time": "5.883 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 2,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C018:repeated_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C018"
+            ],
+            "nearby_messages": [],
+            "context_refs": [
+              {
+                "candidate_id": "C018",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  50,
+                  60
+                ],
+                "truncated_sides": []
+              }
+            ]
+          }
+        ],
+        "nearby_messages_outside_segments": []
+      },
+      "why_surfaced": {
+        "detectors": [
+          {
+            "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+            "surfaces": "Same association key observed again before an associated completion was observed in the captured sequence."
+          }
+        ],
+        "grouping_basis": [
+          "none_singleton"
+        ],
+        "grouping_basis_text": [
+          "no strong relationship to any other candidate; kept alone"
+        ],
+        "group_relationship": "singleton_no_strong_relationship",
+        "members": [
+          "C018"
+        ]
+      },
+      "gui_crosschecks": [],
+      "trace_span_packets": 149020,
+      "not_known": [
+        "Interpretation NOT_EVALUATED: no statement that this is abnormal, a fault, or related to the reported failure.",
+        "Ground truth for the trace is UNKNOWN.",
+        "This candidate's anchors lie in separate local segments (trace span 149020 packets). Their shared association key does not establish that they belong to the same failure episode.",
+        "Same-key reappearance does not establish a requester retransmission, an illegal Tag reuse, or a completion missing from the capture."
+      ],
+      "interpretation": "NOT_EVALUATED"
+    }
+  ]
+}

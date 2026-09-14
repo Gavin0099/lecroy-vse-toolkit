@@ -58,7 +58,7 @@ Run from the repository root:
 ```powershell
 python scripts/pcie/build_inspection_report.py `
   --manifest samples/pcie/inspection-1350-evidence.json `
-  --output-dir artifacts/reports/pcie-inspection-1350-20260912
+  --output-dir artifacts/reports/pcie-inspection-1350-20260913
 ```
 
 The new output directory contains `observations.json`, `report.md`, and
@@ -78,7 +78,10 @@ the GUI and was not emitted by the current script.
 
 Automated tests check parsing, completion/error rejection, identity drift,
 cross-check disagreement, HTML escaping, and same-source MD/HTML rendering.
-Local rendering review can establish readability and claim boundaries; it
-does not stand in for an engineer's feedback about which information they
-need. The first bundle is ready for that review, while F0e external UX
-acceptance remains pending.
+The initial 2026-09-12 bundle is retained as the committed presentation
+baseline. Owner feedback on 2026-09-13 was that it was hard to understand; the
+2026-09-13 revision moves the plain-language answer and limits first and
+reduces the main packet table to navigation fields. Technical identities and
+raw fields remain available in an appendix. This is a presentation-only change:
+the observation JSON contract and extraction evidence are unchanged. F0e
+remains open until the revised presentation receives a reader review.

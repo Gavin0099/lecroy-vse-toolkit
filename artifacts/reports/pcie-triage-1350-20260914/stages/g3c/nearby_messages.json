@@ -1,0 +1,1741 @@
+{
+  "schema_version": "pcie.g3c-nearby-messages/v2",
+  "inputs": {
+    "candidates": {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/stages/g3ab/candidates.json",
+      "sha256": "02830BDFE41021D51781A755B9A4D990E14EDFB9889397B5E33186364B5D921F"
+    },
+    "fields": {
+      "path": "E:/BackUp/Git_EE/lecroy-vse-toolkit/artifacts/evidence/pcie-g2a-20260914/export/fields.json",
+      "sha256": "FA64728D3023DF8C476FE858B3C39568E04D3313714EDCED944BEF0FC9D5BB79"
+    },
+    "messages": {
+      "path": "E:/BackUp/Git_EE/lecroy-vse-toolkit/artifacts/evidence/pcie-g3c0-20260914/export/messages.json",
+      "sha256": "08A7307F029E2BB55EC9419EE694ED97EAA1518112AC1C9E288E2AE9D57E1754"
+    }
+  },
+  "window": {
+    "unit": "TLP rows in capture order",
+    "rows_each_side": 8,
+    "max_abs_packet_gap": 64,
+    "rationale": "TLP-row window additionally bounded by vendor packet-index distance: v1 (rows only) attached messages that were row-adjacent but about 148000 packets away across a stretch without TLPs."
+  },
+  "ground_truth": "UNKNOWN",
+  "causality": "NOT_ESTABLISHED",
+  "candidates_with_nearby_messages": 23,
+  "candidates_total": 31,
+  "attachments_excluded_by_packet_bound": 9,
+  "messages_not_near_any_candidate": [],
+  "candidates": [
+    {
+      "candidate_id": "C001",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944517,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944517
+            ],
+            "window_rows": [
+              -6,
+              10
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              1944559
+            ],
+            "window_rows": [
+              12,
+              28
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "first_request"
+          ],
+          "packet": 1944516,
+          "display_time": "4.848 sec",
+          "position": "before",
+          "tlp_row_gap": -1,
+          "packet_gap": -1,
+          "gap_reference_packet": 1944517,
+          "message_type": "0xE",
+          "message_code": 80,
+          "message_name": "SLOTPOWERLIMIT",
+          "requester_id": 0,
+          "routing": "LOCALTERMRECEIVER",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C002",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944519,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944519
+            ],
+            "window_rows": [
+              -5,
+              11
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              1944563
+            ],
+            "window_rows": [
+              13,
+              29
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "first_request"
+          ],
+          "packet": 1944516,
+          "display_time": "4.848 sec",
+          "position": "before",
+          "tlp_row_gap": -2,
+          "packet_gap": -3,
+          "gap_reference_packet": 1944519,
+          "message_type": "0xE",
+          "message_code": 80,
+          "message_name": "SLOTPOWERLIMIT",
+          "requester_id": 0,
+          "routing": "LOCALTERMRECEIVER",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C003",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944521,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944521
+            ],
+            "window_rows": [
+              -4,
+              12
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              1944543
+            ],
+            "window_rows": [
+              5,
+              21
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "first_request"
+          ],
+          "packet": 1944516,
+          "display_time": "4.848 sec",
+          "position": "before",
+          "tlp_row_gap": -3,
+          "packet_gap": -5,
+          "gap_reference_packet": 1944521,
+          "message_type": "0xE",
+          "message_code": 80,
+          "message_name": "SLOTPOWERLIMIT",
+          "requester_id": 0,
+          "routing": "LOCALTERMRECEIVER",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C004",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944523,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944523
+            ],
+            "window_rows": [
+              -3,
+              13
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              1944571
+            ],
+            "window_rows": [
+              15,
+              31
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "first_request"
+          ],
+          "packet": 1944516,
+          "display_time": "4.848 sec",
+          "position": "before",
+          "tlp_row_gap": -4,
+          "packet_gap": -7,
+          "gap_reference_packet": 1944523,
+          "message_type": "0xE",
+          "message_code": 80,
+          "message_name": "SLOTPOWERLIMIT",
+          "requester_id": 0,
+          "routing": "LOCALTERMRECEIVER",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C005",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944525,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944525
+            ],
+            "window_rows": [
+              -2,
+              14
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              1945005
+            ],
+            "window_rows": [
+              17,
+              33
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "first_request"
+          ],
+          "packet": 1944516,
+          "display_time": "4.848 sec",
+          "position": "before",
+          "tlp_row_gap": -5,
+          "packet_gap": -9,
+          "gap_reference_packet": 1944525,
+          "message_type": "0xE",
+          "message_code": 80,
+          "message_name": "SLOTPOWERLIMIT",
+          "requester_id": 0,
+          "routing": "LOCALTERMRECEIVER",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C006",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944527,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944527
+            ],
+            "window_rows": [
+              -1,
+              15
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              1944551
+            ],
+            "window_rows": [
+              8,
+              24
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "first_request"
+          ],
+          "packet": 1944516,
+          "display_time": "4.848 sec",
+          "position": "before",
+          "tlp_row_gap": -6,
+          "packet_gap": -11,
+          "gap_reference_packet": 1944527,
+          "message_type": "0xE",
+          "message_code": 80,
+          "message_name": "SLOTPOWERLIMIT",
+          "requester_id": 0,
+          "routing": "LOCALTERMRECEIVER",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C007",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944531,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944531
+            ],
+            "window_rows": [
+              0,
+              16
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              1945016
+            ],
+            "window_rows": [
+              21,
+              37
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "first_request"
+          ],
+          "packet": 1944516,
+          "display_time": "4.848 sec",
+          "position": "before",
+          "tlp_row_gap": -7,
+          "packet_gap": -15,
+          "gap_reference_packet": 1944531,
+          "message_type": "0xE",
+          "message_code": 80,
+          "message_name": "SLOTPOWERLIMIT",
+          "requester_id": 0,
+          "routing": "LOCALTERMRECEIVER",
+          "relationship": "temporal_correlation_only"
+        },
+        {
+          "span_anchors": [
+            "repeated_request"
+          ],
+          "packet": 1945029,
+          "display_time": "4.853 sec",
+          "position": "after",
+          "tlp_row_gap": 5,
+          "packet_gap": 13,
+          "gap_reference_packet": 1945016,
+          "message_type": "0xD",
+          "message_code": 48,
+          "message_name": "ERR_COR",
+          "requester_id": 256,
+          "routing": "TOROOTCOMPLEX",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C008",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944533,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944533
+            ],
+            "window_rows": [
+              1,
+              17
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              1945021
+            ],
+            "window_rows": [
+              23,
+              39
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "first_request"
+          ],
+          "packet": 1944516,
+          "display_time": "4.848 sec",
+          "position": "before",
+          "tlp_row_gap": -8,
+          "packet_gap": -17,
+          "gap_reference_packet": 1944533,
+          "message_type": "0xE",
+          "message_code": 80,
+          "message_name": "SLOTPOWERLIMIT",
+          "requester_id": 0,
+          "routing": "LOCALTERMRECEIVER",
+          "relationship": "temporal_correlation_only"
+        },
+        {
+          "span_anchors": [
+            "repeated_request"
+          ],
+          "packet": 1945029,
+          "display_time": "4.853 sec",
+          "position": "after",
+          "tlp_row_gap": 3,
+          "packet_gap": 8,
+          "gap_reference_packet": 1945021,
+          "message_type": "0xD",
+          "message_code": 48,
+          "message_name": "ERR_COR",
+          "requester_id": 256,
+          "routing": "TOROOTCOMPLEX",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [
+        {
+          "span_anchors": [
+            "repeated_request"
+          ],
+          "packet": 2093072,
+          "message_name": "ERR_COR",
+          "tlp_row_gap": 8,
+          "packet_gap": 148051,
+          "gap_reference_packet": 1945021
+        }
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C009",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944535,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944535
+            ],
+            "window_rows": [
+              2,
+              18
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              2093063
+            ],
+            "window_rows": [
+              27,
+              43
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "repeated_request"
+          ],
+          "packet": 2093072,
+          "display_time": "5.880 sec",
+          "position": "after",
+          "tlp_row_gap": 4,
+          "packet_gap": 9,
+          "gap_reference_packet": 2093063,
+          "message_type": "0xD",
+          "message_code": 48,
+          "message_name": "ERR_COR",
+          "requester_id": 256,
+          "routing": "TOROOTCOMPLEX",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [
+        {
+          "span_anchors": [
+            "repeated_request"
+          ],
+          "packet": 1945029,
+          "message_name": "ERR_COR",
+          "tlp_row_gap": -1,
+          "packet_gap": -148034,
+          "gap_reference_packet": 2093063
+        }
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C010",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944537,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944537
+            ],
+            "window_rows": [
+              3,
+              19
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              2093071
+            ],
+            "window_rows": [
+              30,
+              46
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "repeated_request"
+          ],
+          "packet": 2093072,
+          "display_time": "5.880 sec",
+          "position": "after",
+          "tlp_row_gap": 1,
+          "packet_gap": 1,
+          "gap_reference_packet": 2093071,
+          "message_type": "0xD",
+          "message_code": 48,
+          "message_name": "ERR_COR",
+          "requester_id": 256,
+          "routing": "TOROOTCOMPLEX",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [
+        {
+          "span_anchors": [
+            "repeated_request"
+          ],
+          "packet": 1945029,
+          "message_name": "ERR_COR",
+          "tlp_row_gap": -4,
+          "packet_gap": -148042,
+          "gap_reference_packet": 2093071
+        }
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C011",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944539,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944539
+            ],
+            "window_rows": [
+              4,
+              20
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              2093079
+            ],
+            "window_rows": [
+              33,
+              49
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "repeated_request"
+          ],
+          "packet": 2093072,
+          "display_time": "5.880 sec",
+          "position": "before",
+          "tlp_row_gap": -2,
+          "packet_gap": -7,
+          "gap_reference_packet": 2093079,
+          "message_type": "0xD",
+          "message_code": 48,
+          "message_name": "ERR_COR",
+          "requester_id": 256,
+          "routing": "TOROOTCOMPLEX",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [
+        {
+          "span_anchors": [
+            "repeated_request"
+          ],
+          "packet": 1945029,
+          "message_name": "ERR_COR",
+          "tlp_row_gap": -7,
+          "packet_gap": -148050,
+          "gap_reference_packet": 2093079
+        }
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C012",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944543,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944543
+            ],
+            "window_rows": [
+              5,
+              21
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              1944567
+            ],
+            "window_rows": [
+              14,
+              30
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C013",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944547,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944547
+            ],
+            "window_rows": [
+              6,
+              22
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              2093091
+            ],
+            "window_rows": [
+              37,
+              53
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "repeated_request"
+          ],
+          "packet": 2093072,
+          "display_time": "5.880 sec",
+          "position": "before",
+          "tlp_row_gap": -6,
+          "packet_gap": -19,
+          "gap_reference_packet": 2093091,
+          "message_type": "0xD",
+          "message_code": 48,
+          "message_name": "ERR_COR",
+          "requester_id": 256,
+          "routing": "TOROOTCOMPLEX",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C014",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944549,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944549
+            ],
+            "window_rows": [
+              7,
+              23
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              2093522
+            ],
+            "window_rows": [
+              39,
+              55
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [],
+      "excluded_beyond_packet_bound": [
+        {
+          "span_anchors": [
+            "repeated_request"
+          ],
+          "packet": 2093072,
+          "message_name": "ERR_COR",
+          "tlp_row_gap": -8,
+          "packet_gap": -450,
+          "gap_reference_packet": 2093522
+        }
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C015",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944551,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944551
+            ],
+            "window_rows": [
+              8,
+              24
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              1945011
+            ],
+            "window_rows": [
+              19,
+              35
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "repeated_request"
+          ],
+          "packet": 1945029,
+          "display_time": "4.853 sec",
+          "position": "after",
+          "tlp_row_gap": 7,
+          "packet_gap": 18,
+          "gap_reference_packet": 1945011,
+          "message_type": "0xD",
+          "message_code": 48,
+          "message_name": "ERR_COR",
+          "requester_id": 256,
+          "routing": "TOROOTCOMPLEX",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C016",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944553,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944553
+            ],
+            "window_rows": [
+              9,
+              25
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              2093550
+            ],
+            "window_rows": [
+              43,
+              59
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C017",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944555,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944555
+            ],
+            "window_rows": [
+              10,
+              26
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              2093564
+            ],
+            "window_rows": [
+              45,
+              61
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C018",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944557,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944557
+            ],
+            "window_rows": [
+              11,
+              27
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              2093577
+            ],
+            "window_rows": [
+              47,
+              63
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C019",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944559,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944559
+            ],
+            "window_rows": [
+              12,
+              28
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              2093601
+            ],
+            "window_rows": [
+              49,
+              65
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C020",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944563,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944563
+            ],
+            "window_rows": [
+              13,
+              29
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              2093615
+            ],
+            "window_rows": [
+              51,
+              67
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C021",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944567,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944567
+            ],
+            "window_rows": [
+              14,
+              30
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              2093086
+            ],
+            "window_rows": [
+              35,
+              51
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "repeated_request"
+          ],
+          "packet": 2093072,
+          "display_time": "5.880 sec",
+          "position": "before",
+          "tlp_row_gap": -4,
+          "packet_gap": -14,
+          "gap_reference_packet": 2093086,
+          "message_type": "0xD",
+          "message_code": 48,
+          "message_name": "ERR_COR",
+          "requester_id": 256,
+          "routing": "TOROOTCOMPLEX",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C022",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 1944571,
+      "candidate_time": "4.848 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              1944571
+            ],
+            "window_rows": [
+              15,
+              31
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              2093652
+            ],
+            "window_rows": [
+              55,
+              71
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C023",
+      "detector": "G3A_NON_SUCCESS_COMPLETION",
+      "candidate_packet": 1945008,
+      "candidate_time": "4.853 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "request",
+              "completion"
+            ],
+            "anchor_packets": [
+              1945005,
+              1945008
+            ],
+            "window_rows": [
+              17,
+              34
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "request",
+            "completion"
+          ],
+          "packet": 1945029,
+          "display_time": "4.853 sec",
+          "position": "after",
+          "tlp_row_gap": 8,
+          "packet_gap": 21,
+          "gap_reference_packet": 1945008,
+          "message_type": "0xD",
+          "message_code": 48,
+          "message_name": "ERR_COR",
+          "requester_id": 256,
+          "routing": "TOROOTCOMPLEX",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C024",
+      "detector": "G3A_NON_SUCCESS_COMPLETION",
+      "candidate_packet": 1945013,
+      "candidate_time": "4.853 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "request",
+              "completion"
+            ],
+            "anchor_packets": [
+              1945011,
+              1945013
+            ],
+            "window_rows": [
+              19,
+              36
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "request",
+            "completion"
+          ],
+          "packet": 1945029,
+          "display_time": "4.853 sec",
+          "position": "after",
+          "tlp_row_gap": 6,
+          "packet_gap": 16,
+          "gap_reference_packet": 1945013,
+          "message_type": "0xD",
+          "message_code": 48,
+          "message_name": "ERR_COR",
+          "requester_id": 256,
+          "routing": "TOROOTCOMPLEX",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C025",
+      "detector": "G3A_NON_SUCCESS_COMPLETION",
+      "candidate_packet": 1945018,
+      "candidate_time": "4.853 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "request",
+              "completion"
+            ],
+            "anchor_packets": [
+              1945016,
+              1945018
+            ],
+            "window_rows": [
+              21,
+              38
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "request",
+            "completion"
+          ],
+          "packet": 1945029,
+          "display_time": "4.853 sec",
+          "position": "after",
+          "tlp_row_gap": 4,
+          "packet_gap": 11,
+          "gap_reference_packet": 1945018,
+          "message_type": "0xD",
+          "message_code": 48,
+          "message_name": "ERR_COR",
+          "requester_id": 256,
+          "routing": "TOROOTCOMPLEX",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C026",
+      "detector": "G3A_NON_SUCCESS_COMPLETION",
+      "candidate_packet": 1945023,
+      "candidate_time": "4.853 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "request",
+              "completion"
+            ],
+            "anchor_packets": [
+              1945021,
+              1945023
+            ],
+            "window_rows": [
+              23,
+              40
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "request",
+            "completion"
+          ],
+          "packet": 1945029,
+          "display_time": "4.853 sec",
+          "position": "after",
+          "tlp_row_gap": 2,
+          "packet_gap": 6,
+          "gap_reference_packet": 1945023,
+          "message_type": "0xD",
+          "message_code": 48,
+          "message_name": "ERR_COR",
+          "requester_id": 256,
+          "routing": "TOROOTCOMPLEX",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [
+        {
+          "span_anchors": [
+            "request",
+            "completion"
+          ],
+          "packet": 2093072,
+          "message_name": "ERR_COR",
+          "tlp_row_gap": 7,
+          "packet_gap": 148049,
+          "gap_reference_packet": 1945023
+        }
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C027",
+      "detector": "G3A_NON_SUCCESS_COMPLETION",
+      "candidate_packet": 2093065,
+      "candidate_time": "5.880 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "request",
+              "completion"
+            ],
+            "anchor_packets": [
+              2093063,
+              2093065
+            ],
+            "window_rows": [
+              27,
+              44
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "request",
+            "completion"
+          ],
+          "packet": 2093072,
+          "display_time": "5.880 sec",
+          "position": "after",
+          "tlp_row_gap": 3,
+          "packet_gap": 7,
+          "gap_reference_packet": 2093065,
+          "message_type": "0xD",
+          "message_code": 48,
+          "message_name": "ERR_COR",
+          "requester_id": 256,
+          "routing": "TOROOTCOMPLEX",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [
+        {
+          "span_anchors": [
+            "request",
+            "completion"
+          ],
+          "packet": 1945029,
+          "message_name": "ERR_COR",
+          "tlp_row_gap": -1,
+          "packet_gap": -148034,
+          "gap_reference_packet": 2093063
+        }
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C028",
+      "detector": "G3A_NON_SUCCESS_COMPLETION",
+      "candidate_packet": 2093075,
+      "candidate_time": "5.880 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "request",
+              "completion"
+            ],
+            "anchor_packets": [
+              2093071,
+              2093075
+            ],
+            "window_rows": [
+              30,
+              48
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "request",
+            "completion"
+          ],
+          "packet": 2093072,
+          "display_time": "5.880 sec",
+          "position": "inside_anchor_span",
+          "tlp_row_gap": 0,
+          "packet_gap": 1,
+          "gap_reference_packet": 2093071,
+          "message_type": "0xD",
+          "message_code": 48,
+          "message_name": "ERR_COR",
+          "requester_id": 256,
+          "routing": "TOROOTCOMPLEX",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [
+        {
+          "span_anchors": [
+            "request",
+            "completion"
+          ],
+          "packet": 1945029,
+          "message_name": "ERR_COR",
+          "tlp_row_gap": -4,
+          "packet_gap": -148042,
+          "gap_reference_packet": 2093071
+        }
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C029",
+      "detector": "G3A_NON_SUCCESS_COMPLETION",
+      "candidate_packet": 2093081,
+      "candidate_time": "5.880 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "request",
+              "completion"
+            ],
+            "anchor_packets": [
+              2093079,
+              2093081
+            ],
+            "window_rows": [
+              33,
+              50
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "request",
+            "completion"
+          ],
+          "packet": 2093072,
+          "display_time": "5.880 sec",
+          "position": "before",
+          "tlp_row_gap": -2,
+          "packet_gap": -7,
+          "gap_reference_packet": 2093079,
+          "message_type": "0xD",
+          "message_code": 48,
+          "message_name": "ERR_COR",
+          "requester_id": 256,
+          "routing": "TOROOTCOMPLEX",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [
+        {
+          "span_anchors": [
+            "request",
+            "completion"
+          ],
+          "packet": 1945029,
+          "message_name": "ERR_COR",
+          "tlp_row_gap": -7,
+          "packet_gap": -148050,
+          "gap_reference_packet": 2093079
+        }
+      ],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C030",
+      "detector": "G3A_NON_SUCCESS_COMPLETION",
+      "candidate_packet": 2093088,
+      "candidate_time": "5.880 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "request",
+              "completion"
+            ],
+            "anchor_packets": [
+              2093086,
+              2093088
+            ],
+            "window_rows": [
+              35,
+              52
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "request",
+            "completion"
+          ],
+          "packet": 2093072,
+          "display_time": "5.880 sec",
+          "position": "before",
+          "tlp_row_gap": -4,
+          "packet_gap": -14,
+          "gap_reference_packet": 2093086,
+          "message_type": "0xD",
+          "message_code": 48,
+          "message_name": "ERR_COR",
+          "requester_id": 256,
+          "routing": "TOROOTCOMPLEX",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    },
+    {
+      "candidate_id": "C031",
+      "detector": "G3A_NON_SUCCESS_COMPLETION",
+      "candidate_packet": 2093093,
+      "candidate_time": "5.880 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "request",
+              "completion"
+            ],
+            "anchor_packets": [
+              2093091,
+              2093093
+            ],
+            "window_rows": [
+              37,
+              54
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [
+        {
+          "span_anchors": [
+            "request",
+            "completion"
+          ],
+          "packet": 2093072,
+          "display_time": "5.880 sec",
+          "position": "before",
+          "tlp_row_gap": -6,
+          "packet_gap": -19,
+          "gap_reference_packet": 2093091,
+          "message_type": "0xD",
+          "message_code": 48,
+          "message_name": "ERR_COR",
+          "requester_id": 256,
+          "routing": "TOROOTCOMPLEX",
+          "relationship": "temporal_correlation_only"
+        }
+      ],
+      "excluded_beyond_packet_bound": [],
+      "interpretation": "NOT_EVALUATED"
+    }
+  ]
+}

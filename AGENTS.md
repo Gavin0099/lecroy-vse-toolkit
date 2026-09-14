@@ -356,6 +356,11 @@ NOT CLAIMED unless separately implemented and validated:
 - For memory completion claims, run `python -m governance_tools.memory_workflow --check --repo . --run-guard` and report blockers before claiming DONE.
 - Use the canonical memory writer for session-derived memory; do not edit memory records as ordinary markdown.
 - Canonical writer signal: `governance_tools.memory_record` / `memory_record.py`.
+- Consumer note (2026-09-14, G0 lightweight memory): this repository did not vendor
+  `governance_tools`, so the commands above cannot run here, and G0 excludes the
+  canonical memory writer and record-identity hashing. `memory/01_active_task.md` is a
+  pointer to `PLAN.md`; `memory/02-04` are marked unused. Product state, decisions and
+  evidence live in `PLAN.md` and `docs/`. See PLAN.md "G0 lightweight maintenance".
 
 ## Product State Authority Rule
 <!-- governance:key=product_state_authority -->
@@ -387,6 +392,11 @@ Governance topology.
   report `memory_state_conflict`, use the authoritative source for the product
   decision, and treat the memory file as a reconciliation candidate. Do not
   silently resolve the conflict in favor of memory.
+- Report completed local work, delivery state, and commit/push authorization
+  separately. Validated local work can be complete while delivery is not done
+  and push is not authorized; that does not undo the local result or permit an
+  unauthorized commit or push. (Principle adopted from framework M1, PR #177, as
+  wording only; the canonical memory delivery workflow is not adopted.)
 
 ## Repo-Specific Risk Levels
 <!-- governance:key=risk_levels -->

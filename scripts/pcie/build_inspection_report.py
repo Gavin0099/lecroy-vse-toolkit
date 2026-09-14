@@ -274,78 +274,93 @@ def relative_url(repo_root: Path, output_dir: Path, repo_path: str) -> str:
 
 def render_markdown(data: dict[str, Any], log_url: str, gui_url: str) -> str:
     trace = data["trace"]
-    status = data["status"]
     rows = []
+    technical_rows = []
     for item in data["observations"]:
         gui = item["gui_crosscheck"]
         rows.append(
-            "| {index} | {api_time} | {code} | {channel} | x{width} | {family} / {subtype} | {gui_time} |".format(
+            "| {index} | {name} | {gui_time} | {api_time} |".format(
                 index=item["packet_index"],
+                name=markdown_escape(f"{gui['family']} / {gui['subtype']}"),
+                gui_time=markdown_escape(gui["time_seconds"]),
                 api_time=markdown_escape(item["extractor_time_display"]),
+            )
+        )
+        technical_rows.append(
+            "| {index} | {code} | {channel} | x{width} |".format(
+                index=item["packet_index"],
                 code=markdown_escape(item["vendor_type_code_hex"]),
                 channel=markdown_escape(item["vendor_channel"]),
                 width=item["link_width"],
-                family=markdown_escape(gui["family"]),
-                subtype=markdown_escape(gui["subtype"]),
-                gui_time=markdown_escape(gui["time_seconds"]),
             )
         )
-    limits = "\n".join(f"- {markdown_escape(item)}" for item in data["limitations"])
     context = data["gui_context"]
     visible = ", ".join(str(index) for index in context["visible_packet_indices"])
     interleaved = ", ".join(str(index) for index in context["intervening_non_extracted_indices"])
-    return f"""# PCIe Trace Inspection
+    count = len(data["observations"])
+    fields = ", ".join(f"`{markdown_escape(field)}`" for field in data["extractor"]["fields"])
+    return f"""# PCIe Trace 檢視報告
 
-單一 trace 的有限範圍檢視。這份報告不判斷正常／異常，也不提出故障原因。
+## 先看重點
 
-| 狀態 | 值 |
-| --- | --- |
-| Extraction | **PASS — bounded first five TLP records** |
-| Ground truth | **{status['ground_truth']}** |
-| Diagnostic result | **{status['diagnostic_result']}** |
-| Coverage | **{status['coverage']}** |
+這份報告檢查 PCIe 擷取檔（trace）`{markdown_escape(trace['file_name'])}`：只讀取工具輸出的前 {count} 筆 TLP（PCIe 封包），再抽樣與 LeCroy 畫面核對。
 
-## Trace identity
+- **讀到了什麼：** {count} 筆資料；這只是前五筆，不是整份 trace 的統計。
+- **畫面核對：** {data['evidence']['gui_rows_checked']} 筆都能依封包編號及顯示內容，在 LeCroy GUI 找到相符資料。
+- **測試結果：** 不知道這份 trace 對應的測試是正常或異常；本報告沒有做故障判斷。
 
-| 欄位 | 值 |
-| --- | --- |
-| File | `{markdown_escape(trace['file_name'])}` |
-| Local source path | `{markdown_escape(trace['source_path'])}` |
-| Size | {trace['size_bytes']:,} bytes |
-| SHA-256 | `{trace['sha256']}` |
-| Last write (UTC) | `{trace['last_write_utc']}` |
+> **簡單說：** 這證明目前工具能讀出並核對這幾筆資料，不代表裝置測試 PASS，也不代表已找出問題。
 
-## Runtime and extraction scope
+## 封包清單
 
-- Software: {markdown_escape(data['software']['product'])} {markdown_escape(data['software']['version'])}
-- Executable SHA-256: `{data['software']['executable_sha256']}`
-- VSE script: `{markdown_escape(data['extractor']['script_path'])}`
-- Script SHA-256: `{data['extractor']['script_sha256']}`
-- Scope: {markdown_escape(data['extractor']['scope'])}
-- Fields actually emitted: {', '.join(f'`{markdown_escape(field)}`' for field in data['extractor']['fields'])}
-- Time source: {markdown_escape(data['extractor']['time_representation'])}
-
-## Extracted TLP observations
-
-API display time and GUI timestamp are separate measurements. The GUI column is a cross-check observation, not a higher-precision value emitted by the VSE script.
-
-| Packet index | Extractor time | Raw vendor type | Vendor channel | Width | GUI family / subtype | GUI time (sec) |
-| ---: | --- | --- | --- | ---: | --- | ---: |
+| 封包編號 | LeCroy 顯示名稱 | LeCroy 畫面時間 | 工具讀取時間 |
+| ---: | --- | ---: | ---: |
 {chr(10).join(rows)}
 
-Five of five emitted records matched the GUI sample by packet index, raw vendor type, displayed-time rounding, and link width. The visible GUI sequence covers indices {visible}; intervening non-extracted packet indices are {interleaved}. The next TLP visible beyond the script cap is {context['next_tlp_visible_beyond_cap']}; it is context only and is not included in the extraction result.
+封包編號可用來在 LeCroy 中找到該列。LeCroy 畫面時間比工具輸出的時間精確；工具時間只顯示到千分之一秒（1 毫秒），因此五筆都顯示 `4.848 sec`，**不代表它們發生在同一個時間點**。
 
-## Evidence
+## 回看證據
 
-- [Original VSE extraction output]({log_url}) — SHA-256 `{data['evidence']['extractor_log_sha256']}`
-- [LeCroy GUI cross-check]({gui_url}) — SHA-256 `{data['evidence']['gui_image_sha256']}`
-- Structured observations: `observations.json`
+- [先看 LeCroy 畫面核對]({gui_url})：可依上方封包編號找到對應資料。
+- [查看工具原始輸出]({log_url})：核對工具實際印出的五筆資料。
+- [查看資料底稿](observations.json)：機器可讀的記錄與來源身份。
 
-## Limitations
+## 本報告沒有判斷的事
 
-{limits}
+- 哪份測試是 PASS 或 FAIL、裝置是否正常、或故障原因。
+- 整份 trace 有多少 TLP；目前只處理工具輸出的前五筆。
+- 封包 payload、request/completion 關係或可疑區段。
+- LeCroy 的 `Errors detected!` 指示器不等同產品測試結果。
 
-Schema: `{data['schema_version']}`. This inspection-only observation document is not the later F1 finding contract, a normalized PCIe event model, or a USB/PCIe shared schema.
+## 技術附錄（需要重現或核對身份時再看）
+
+### Trace 與軟體身份
+
+| 項目 | 值 |
+| --- | --- |
+| Trace 原始檔 | `{markdown_escape(trace['file_name'])}` |
+| 本機來源路徑 | `{markdown_escape(trace['source_path'])}` |
+| 檔案大小 | {trace['size_bytes']:,} bytes |
+| Trace SHA-256 | `{trace['sha256']}` |
+| Trace 最後修改時間 (UTC) | `{trace['last_write_utc']}` |
+| 分析軟體 | {markdown_escape(data['software']['product'])} {markdown_escape(data['software']['version'])} |
+| PETracer SHA-256 | `{data['software']['executable_sha256']}` |
+| VSE script | `{markdown_escape(data['extractor']['script_path'])}` |
+| Script SHA-256 | `{data['extractor']['script_sha256']}` |
+
+### 原始欄位與核對方式
+
+| 封包編號 | VSE 原始類型碼 | VSE channel 標籤 | Link width |
+| ---: | --- | --- | ---: |
+{chr(10).join(technical_rows)}
+
+- 工具實際輸出欄位：{fields}
+- 工具時間來源：{markdown_escape(data['extractor']['time_representation'])}
+- GUI 另顯示封包編號 {visible}；其中 {interleaved} 是畫面上可見、但不在工具五筆輸出中的封包。下一筆畫面可見 TLP 是 {context['next_tlp_visible_beyond_cap']}，只作畫面脈絡。
+- VSE 原始輸出 SHA-256：`{data['evidence']['extractor_log_sha256']}`
+- GUI 截圖 SHA-256：`{data['evidence']['gui_image_sha256']}`
+- 機器狀態碼：`{data['status']['extraction']}` / ground truth `{data['status']['ground_truth']}` / diagnostic `{data['status']['diagnostic_result']}` / coverage `{data['status']['coverage']}`
+- Schema：`{data['schema_version']}`。這是單 trace 檢視資料，不是 finding contract、PCIe normalized event model 或 USB/PCIe 共用 schema。
 """
 
 
@@ -353,15 +368,19 @@ def render_html(data: dict[str, Any], log_url: str, gui_url: str) -> str:
     esc = lambda value: html.escape(str(value), quote=True)
     trace = data["trace"]
     rows = []
+    technical_rows = []
     for item in data["observations"]:
         gui = item["gui_crosscheck"]
         rows.append(
-            "<tr><td>{}</td><td>{}</td><td><code>{}</code></td><td>{}</td>"
-            "<td>x{}</td><td>{} / {}</td><td>{}</td></tr>".format(
-                item["packet_index"], esc(item["extractor_time_display"]),
-                esc(item["vendor_type_code_hex"]), esc(item["vendor_channel"]),
-                item["link_width"], esc(gui["family"]), esc(gui["subtype"]),
-                esc(gui["time_seconds"]),
+            "<tr><td><code>{}</code></td><td>{} / {}</td><td>{}</td><td>{}</td></tr>".format(
+                item["packet_index"], esc(gui["family"]), esc(gui["subtype"]),
+                esc(gui["time_seconds"]), esc(item["extractor_time_display"]),
+            )
+        )
+        technical_rows.append(
+            "<tr><td>{}</td><td><code>{}</code></td><td>{}</td><td>x{}</td></tr>".format(
+                item["packet_index"], esc(item["vendor_type_code_hex"]),
+                esc(item["vendor_channel"]), item["link_width"],
             )
         )
     limits = "".join(f"<li>{esc(item)}</li>" for item in data["limitations"])
@@ -369,59 +388,70 @@ def render_html(data: dict[str, Any], log_url: str, gui_url: str) -> str:
     visible = ", ".join(str(index) for index in context["visible_packet_indices"])
     interleaved = ", ".join(str(index) for index in context["intervening_non_extracted_indices"])
     fields = " ".join(f"<code>{esc(field)}</code>" for field in data["extractor"]["fields"])
+    count = len(data["observations"])
     return f"""<!doctype html>
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline';">
-<title>PCIe Trace Inspection — {esc(trace['file_name'])}</title>
+<title>PCIe Trace 檢視報告 — {esc(trace['file_name'])}</title>
 <style>
 :root {{ color-scheme: light; --ink:#172b3a; --muted:#536777; --line:#d7e0e7; --paper:#fff; --wash:#f2f6f8; --accent:#24516b; }}
 * {{ box-sizing:border-box; }} body {{ margin:0; background:var(--wash); color:var(--ink); font:16px/1.55 "Segoe UI", "Noto Sans TC", sans-serif; }}
-main {{ max-width:1120px; margin:0 auto; padding:32px 22px 56px; }} h1 {{ margin:0 0 6px; font-size:2rem; }} h2 {{ margin:0 0 16px; font-size:1.25rem; }} p {{ margin:8px 0; }}
-.intro {{ color:var(--muted); margin:0 0 22px; }} .status-grid {{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:18px 0 24px; }}
-.status {{ border:1px solid var(--line); border-left:4px solid var(--accent); background:var(--paper); padding:14px 16px; }} .status span {{ display:block; color:var(--muted); font-size:.88rem; }} .status strong {{ display:block; margin-top:3px; }}
-section {{ background:var(--paper); border:1px solid var(--line); padding:22px; margin:16px 0; }} .grid {{ display:grid; grid-template-columns:190px 1fr; gap:8px 16px; }} .label {{ color:var(--muted); }} code {{ overflow-wrap:anywhere; font: .92em/1.45 Consolas, monospace; }}
-.table-wrap {{ overflow-x:auto; }} table {{ width:100%; border-collapse:collapse; min-width:850px; }} th,td {{ border-bottom:1px solid var(--line); text-align:left; padding:10px 9px; vertical-align:top; }} th {{ color:var(--muted); font-size:.9rem; }}
-.note {{ background:var(--wash); border-left:3px solid var(--line); padding:12px 14px; }} ul {{ padding-left:22px; }} li {{ margin:7px 0; }} a {{ color:var(--accent); }} img {{ display:block; width:100%; height:auto; border:1px solid var(--line); }} details {{ margin-top:14px; }} summary {{ cursor:pointer; color:var(--accent); }} footer {{ color:var(--muted); font-size:.9rem; margin-top:20px; }}
-@media(max-width:700px) {{ main {{ padding:20px 12px 36px; }} .status-grid {{ grid-template-columns:1fr; }} section {{ padding:16px; }} .grid {{ grid-template-columns:1fr; gap:2px; }} .label:not(:first-child) {{ margin-top:10px; }} }}
+main {{ max-width:1040px; margin:0 auto; padding:30px 20px 52px; }} h1 {{ margin:0 0 6px; font-size:2rem; }} h2 {{ margin:0 0 14px; font-size:1.25rem; }} h3 {{ margin:18px 0 8px; font-size:1.05rem; }} p {{ margin:8px 0; }}
+.intro {{ color:var(--muted); margin:0 0 20px; }} section {{ background:var(--paper); border:1px solid var(--line); padding:22px; margin:16px 0; }}
+.summary-grid {{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin:16px 0; }} .summary-card {{ border:1px solid var(--line); background:var(--paper); padding:13px; }} .summary-card span {{ display:block; color:var(--muted); font-size:.88rem; }} .summary-card strong {{ display:block; margin-top:4px; }}
+.plain-note {{ background:var(--wash); border-left:4px solid var(--accent); padding:12px 15px; margin:12px 0; }} .table-wrap {{ overflow-x:auto; }} table {{ width:100%; border-collapse:collapse; min-width:600px; }} th,td {{ border-bottom:1px solid var(--line); text-align:left; padding:10px 9px; vertical-align:top; }} th {{ color:var(--muted); font-size:.9rem; }}
+.glossary {{ display:grid; grid-template-columns:190px 1fr; gap:7px 14px; }} .term {{ color:var(--muted); }} code {{ overflow-wrap:anywhere; font:.92em/1.45 Consolas,monospace; }} ul,ol {{ padding-left:22px; }} li {{ margin:7px 0; }} a {{ color:var(--accent); }} img {{ display:block; width:100%; height:auto; border:1px solid var(--line); }} details {{ margin-top:12px; border-top:1px solid var(--line); padding-top:12px; }} summary {{ cursor:pointer; color:var(--accent); font-weight:600; }} footer {{ color:var(--muted); font-size:.9rem; margin-top:20px; }}
+@media(max-width:760px) {{ main {{ padding:18px 12px 34px; }} .summary-grid {{ grid-template-columns:repeat(2,minmax(0,1fr)); }} section {{ padding:16px; }} .glossary {{ grid-template-columns:1fr; gap:2px; }} .term:not(:first-child) {{ margin-top:9px; }} }}
 </style>
 </head>
 <body><main>
-<header><h1>PCIe Trace Inspection</h1><p class="intro">單一 trace 的有限範圍檢視。報告呈現可回查的封包觀察，不判斷正常／異常，也不推測故障原因。</p></header>
-<div class="status-grid">
-<div class="status"><span>Extraction</span><strong>PASS — 前五筆 TLP 範圍</strong></div>
-<div class="status"><span>Ground truth</span><strong>{esc(data['status']['ground_truth'])}</strong></div>
-<div class="status"><span>Diagnostic result</span><strong>{esc(data['status']['diagnostic_result'])}</strong></div>
+<header><h1>PCIe Trace 檢視報告</h1><p class="intro">{esc(trace['file_name'])}。先看摘要即可理解本報告結果；檔案與程式身份資料放在頁面下方。</p></header>
+<section><h2>先看重點</h2>
+<p><strong>這份報告檢查什麼？</strong>從 PCIe 擷取檔（trace）讀出前 {count} 筆 TLP（PCIe 封包），再抽樣與 LeCroy 畫面核對。</p>
+<div class="summary-grid">
+<div class="summary-card"><span>讀到資料</span><strong>{count} 筆（僅前五筆）</strong></div>
+<div class="summary-card"><span>畫面核對</span><strong>{data['evidence']['gui_rows_checked']} / {count} 筆相符</strong></div>
+<div class="summary-card"><span>測試正常或異常</span><strong>未知</strong></div>
+<div class="summary-card"><span>故障判斷</span><strong>未進行</strong></div>
 </div>
-<section><h2>Trace identity</h2><div class="grid">
-<div class="label">檔案</div><div>{esc(trace['file_name'])}</div>
-<div class="label">本機來源路徑</div><div><code>{esc(trace['source_path'])}</code></div>
-<div class="label">大小</div><div>{trace['size_bytes']:,} bytes</div>
-<div class="label">SHA-256</div><div><code>{esc(trace['sha256'])}</code></div>
-<div class="label">最後修改時間 (UTC)</div><div><code>{esc(trace['last_write_utc'])}</code></div>
-</div></section>
-<section><h2>Runtime and extraction scope</h2><div class="grid">
-<div class="label">分析軟體</div><div>{esc(data['software']['product'])} {esc(data['software']['version'])}</div>
-<div class="label">Executable SHA-256</div><div><code>{esc(data['software']['executable_sha256'])}</code></div>
-<div class="label">VSE script</div><div><code>{esc(data['extractor']['script_path'])}</code></div>
-<div class="label">Script SHA-256</div><div><code>{esc(data['extractor']['script_sha256'])}</code></div>
-<div class="label">範圍</div><div>{esc(data['extractor']['scope'])}</div>
-<div class="label">實際輸出欄位</div><div>{fields}</div>
-<div class="label">時間來源</div><div>{esc(data['extractor']['time_representation'])}</div>
-</div></section>
-<section><h2>Extracted TLP observations</h2><p class="note">Extractor 輸出的顯示時間與 GUI 時間分欄呈現。GUI 時間只作核對，並非 VSE script 輸出的高精度時間。</p>
-<div class="table-wrap"><table><thead><tr><th>Packet index</th><th>Extractor time</th><th>Raw vendor type</th><th>Vendor channel</th><th>Width</th><th>GUI family / subtype</th><th>GUI time (sec)</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>
-<p>五筆輸出均依 packet index、raw vendor type、顯示時間四捨五入值及 link width 與 GUI 抽樣相符。GUI 畫面顯示的封包 index 範圍為 {esc(visible)}；其中未輸出的插入封包 index 為 {esc(interleaved)}。下一筆可見 TLP 是 {context['next_tlp_visible_beyond_cap']}，位於 script 上限之外，只作畫面脈絡。</p>
+<p class="plain-note"><strong>簡單說：</strong>工具讀到並核對了這幾筆資料；這不代表裝置測試 PASS，也不代表已找出問題。整份 trace 尚未分析。</p>
 </section>
-<section><h2>Evidence</h2><ul>
-<li><a href="{esc(log_url)}">原始 VSE extraction output</a> — SHA-256 <code>{esc(data['evidence']['extractor_log_sha256'])}</code></li>
-<li><a href="{esc(gui_url)}">LeCroy GUI cross-check</a> — SHA-256 <code>{esc(data['evidence']['gui_image_sha256'])}</code></li>
-<li><a href="observations.json">Structured observations</a></li>
-</ul><details><summary>查看 GUI cross-check 畫面</summary><p><img src="{esc(gui_url)}" alt="LeCroy GUI showing the five TLP packets checked against the extractor output"></p></details></section>
-<section><h2>Limitations</h2><ul>{limits}</ul></section>
-<footer>Schema {esc(data['schema_version'])}. 此 inspection observation 僅供單 trace 檢視，並非 F1 finding contract、PCIe normalized event model 或 USB/PCIe 共用 schema。</footer>
+<section><h2>封包清單</h2>
+<div class="glossary"><div class="term">封包編號</div><div>用這個編號在 LeCroy 畫面找到同一筆資料。</div>
+<div class="term">LeCroy 顯示名稱</div><div>分析軟體對封包顯示的名稱。</div>
+<div class="term">兩種時間</div><div>LeCroy 時間較精確；工具時間只到千分之一秒（1 毫秒），因此五筆都顯示 4.848 秒，不代表它們同時發生。</div></div>
+<div class="table-wrap"><table><thead><tr><th>封包編號</th><th>LeCroy 顯示名稱</th><th>LeCroy 畫面時間</th><th>工具讀取時間</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>
+</section>
+<section><h2>回看證據</h2><ol>
+<li><a href="{esc(gui_url)}">先看 LeCroy 畫面核對</a>：可用上方封包編號定位。</li>
+<li><a href="{esc(log_url)}">看工具原始輸出</a>：確認工具實際列出的資料。</li>
+<li><a href="observations.json">看資料底稿（JSON）</a>：供程式或追查身份使用。</li>
+</ol><details><summary>展開 LeCroy 核對畫面</summary><p><img src="{esc(gui_url)}" alt="LeCroy 畫面中與工具輸出核對的五筆 TLP"></p></details></section>
+<section><h2>本報告沒有判斷的事</h2><ul>
+<li>這份 trace 對應的裝置測試是 PASS 還是 FAIL。</li><li>整份 trace 的封包總數；目前只讀取前五筆。</li>
+<li>封包內容、可疑區段或故障原因。</li><li>LeCroy 的「Errors detected!」提示不等同產品測試結果。</li>
+</ul></section>
+<section><details><summary>技術附錄：檔案、軟體與原始欄位（需要重現或追查時再展開）</summary>
+<h3>Trace 與軟體身份</h3><div class="glossary">
+<div class="term">Trace 原始檔</div><div>{esc(trace['file_name'])}</div><div class="term">本機來源路徑</div><div><code>{esc(trace['source_path'])}</code></div>
+<div class="term">檔案大小</div><div>{trace['size_bytes']:,} bytes</div><div class="term">Trace SHA-256</div><div><code>{esc(trace['sha256'])}</code></div>
+<div class="term">最後修改時間 (UTC)</div><div><code>{esc(trace['last_write_utc'])}</code></div><div class="term">分析軟體</div><div>{esc(data['software']['product'])} {esc(data['software']['version'])}</div>
+<div class="term">PETracer SHA-256</div><div><code>{esc(data['software']['executable_sha256'])}</code></div><div class="term">VSE script</div><div><code>{esc(data['extractor']['script_path'])}</code></div>
+<div class="term">Script SHA-256</div><div><code>{esc(data['extractor']['script_sha256'])}</code></div><div class="term">工具範圍</div><div>{esc(data['extractor']['scope'])}</div>
+<div class="term">實際輸出欄位</div><div>{fields}</div><div class="term">工具時間來源</div><div>{esc(data['extractor']['time_representation'])}</div>
+</div>
+<h3>VSE 原始值</h3><div class="table-wrap"><table><thead><tr><th>封包編號</th><th>原始類型碼</th><th>Channel 標籤</th><th>Link width</th></tr></thead><tbody>{''.join(technical_rows)}</tbody></table></div>
+<p>這些是工具與分析軟體提供的技術欄位，不表示嚴重度或錯誤分類。</p>
+<p>畫面可見的封包編號：{esc(visible)}。其中 {esc(interleaved)} 沒有出現在這支工具的五筆輸出中。下一筆畫面可見 TLP 是 {context['next_tlp_visible_beyond_cap']}，只作畫面脈絡。</p>
+<ul><li>VSE 原始輸出 SHA-256：<code>{esc(data['evidence']['extractor_log_sha256'])}</code></li><li>GUI 截圖 SHA-256：<code>{esc(data['evidence']['gui_image_sha256'])}</code></li>
+<li>機器狀態碼：<code>{esc(data['status']['extraction'])}</code>；ground truth <code>{esc(data['status']['ground_truth'])}</code>；diagnostic <code>{esc(data['status']['diagnostic_result'])}</code>；coverage <code>{esc(data['status']['coverage'])}</code>。</li>
+</ul><p>Schema {esc(data['schema_version'])}。這是單 trace 檢視資料，不是 PCIe finding contract、normalized event model 或 USB/PCIe 共用 schema。</p>
+<h3>來源中記錄的限制</h3><ul>{limits}</ul>
+</details></section>
+<footer>本頁呈現資料讀取與 GUI 抽樣核對，不代表完整 trace 分析，也不提供裝置 PASS/FAIL 或故障診斷。</footer>
 </main></body></html>
 """
 

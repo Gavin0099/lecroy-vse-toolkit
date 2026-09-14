@@ -1,24 +1,11 @@
 name: Governance Drift
 
+# Disabled for automatic triggers on 2026-09-14 (owner decision, G0 lightweight maintenance).
+# The job calls governance/governance_tools/governance_drift_checker.py, which was never
+# vendored into this repository: all five runs since adoption failed with
+# "can't open file ... [Errno 2]" and never evaluated drift. Keep manual dispatch only;
+# restore push/pull_request triggers after a pinned checker is vendored. See PLAN.md G0.
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".governance/**"
-      - "AGENTS.base.md"
-      - "AGENTS.md"
-      - "PLAN.md"
-      - "contract.yaml"
-      - "governance/**"
-  pull_request:
-    branches: [main]
-    paths:
-      - ".governance/**"
-      - "AGENTS.base.md"
-      - "AGENTS.md"
-      - "PLAN.md"
-      - "contract.yaml"
-      - "governance/**"
   workflow_dispatch:
 
 jobs:

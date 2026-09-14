@@ -57,7 +57,7 @@ separate pending task, not a PCIe prerequisite or a reopened USB milestone.
 | PCIe-P0-D1c | Extraction Contract | PASS for D1 projection-v1 only: field/unit/identity and cap documented in staircase evidence; not the final triage model or shared schema. |
 | PCIe-P0-D1d | Cross-check | PASS for five-record projection: exact GUI packet references/families/widths and coarse time agree; vendor subtype references documented. No full-trace or physical-channel claim. |
 | PCIe-P0-D1e | Cross-trace Extraction | PASS (2026-09-12): existing B output matched five actual GUI TLPs; trace closed and A/B source plus B copy hashes unchanged. Same extractor on two distinct files; first-five projection only, no ground-truth or full-coverage claim. |
-| PCIe-P0-E1a | Ground-truth Pair Qualification | BLOCKED on ground truth: trustworthy PASS/FAIL provenance, test operation and observed behavior. Does not block technical D1e. |
+| PCIe-P0-E1a | Ground-truth Pair Qualification | BLOCKED on ground truth: trustworthy PASS/FAIL provenance, test operation and observed behavior. Does not block technical D1e. Since 2026-09-14 a non-blocking reference track for the PCIe-G single-Fail mainline. |
 | PCIe-P0-E1b | Diagnostic Question Freeze | NOT STARTED; fix one operation → normal expectation → FAIL symptom → question for triage, after E1a. |
 | PCIe-P0-D2c | Candidate Signal Model | NOT STARTED; derive candidate PCIe signals from the qualified diagnostic question, not API availability. No scorer design. |
 | PCIe-P0-D2d | TLP Sufficiency Test | NOT STARTED; test whether existing TLP extraction supplies observable evidence relevant to that question on the qualified pair. Current cap/display time do not establish full counts or precise timing. |
@@ -125,12 +125,85 @@ adopted. Installer/package `25.28.43-BETA` and installed executable
 `13.26 (Build 43)` BETA remain separate observed identities; their relationship
 is UNKNOWN.
 
-Current work: D1e complete; P1 manifest, P2 status matrix and P3 engineer handoff prepared in [handoff](docs/pcie-engineer-handoff.md). P4 is DEFERRED / LEGACY_FORMAT_COMPATIBILITY and does not block E1a: one trace showed a verified v12.36 format-update prompt, a second open reached a modal with unrecorded cause, and four traces remain untried; no extractor ran on these attempts. Reopen a separate P4a only if E1a confirms a required PASS/FAIL trace is among the legacy-format inputs. Stop diagnostic implementation at E1a pending test background. C1a-C1d, C2a-C2d and D1a-D1d retain
+Current work: D1e complete; P1 manifest, P2 status matrix and P3 engineer handoff prepared in [handoff](docs/pcie-engineer-handoff.md). P4 is DEFERRED / LEGACY_FORMAT_COMPATIBILITY and does not block E1a: one trace showed a verified v12.36 format-update prompt, a second open reached a modal with unrecorded cause, and four traces remain untried; no extractor ran on these attempts. Reopen a separate P4a only if E1a confirms a required PASS/FAIL trace is among the legacy-format inputs. The earlier stop at E1a applies only to the PASS/FAIL reference track; the 2026-09-14 owner decision moved the V1 mainline to single-Fail triage (PCIe-G below). C1a-C1d, C2a-C2d and D1a-D1d retain
 their documented bounded PASS. Trace A is `S0-Remove SD7-1350.pex`; Trace B
 is the distinct `S0-Remove SD7-1335.pex`, selected by convenient size from the
 existing owner-authorized Kent inventory. Both outcome labels remain UNKNOWN.
 Different path and hash establish distinct files, not statistical independence
 or known capture/test conditions. No filename is promoted to ground truth.
+
+### Single-Fail triage mainline (PCIe-G, owner decision 2026-09-14)
+
+The V1 mainline is single-Fail-trace triage: one Fail `.pex` is narrowed to a
+few ranked candidate locations, each with its reason, evidence packets, a
+navigable LeCroy window and its limitations. A PASS trace becomes an accuracy
+and ranking reference, not a required V1 input. First-version output is
+candidates only: no automatic root cause, device responsibility, or claim that
+a candidate explains the user-visible failure.
+
+This supersedes the D1e -> E1a -> ... -> F5 ordering as the V1 path. E1a, E1b,
+D2c-D2f, E2a-E2d and E3a-E3e remain a non-blocking PASS/FAIL reference track;
+their states are unchanged and none becomes PASS through this decision. For the
+single-Fail path, F1-F5 are replaced by PCIe-G5/G7/G8/G9. The F0 inspection
+branch, including the comparison renderer, is retained as a side branch. The
+`PCIe-G` prefix is distinct from the governance `G0` decisions in this plan.
+
+| Slice | Scope | State |
+| --- | --- | --- |
+| PCIe-G1a | Full-trace Traversal Probe | PASS (2026-09-14, 1350 protected copy; evidence in `docs/pcie-g1a-evidence.md`): 938 TLP callbacks, first index 1944516 (4.848 sec), last index 2121703; normal finish with summary, zero runtime-error text, zero progress markers (count below 250,000); Run 11:20:15 to DONE visible by 11:20:20 (about 5 s or less); post-close source/copy/executable/script identities unchanged; log SHA-256 `C1B551461F30FD5FE863DE8BF0B95DE68F7028A6972DDCA0F1DDE99E14A17A39`. Original scope: count TLP callbacks from start to normal finish with no per-row output. PASS: exactly one header, DONE, finish summary, zero runtime-error text, consistent progress markers, total TLP callback count and GUI-observed wall-clock time recorded. Verified GUI path only; 1350 protected copy first. The vendor index is not an event count. Script `scripts/pcie/g1a-tlp-count.pevs` SHA-256 `ECB8EF2B83F25177C1E749250CA19430FEBE11D843A890D025AD7BE94B230094`, identical copy in the existing isolated `lecroy-vse-toolkit-poc-20260912-30e3b5c6` VFScripts folder; `scripts/pcie/verify_g1a_log.py` checks the saved log. |
+| PCIe-G1b | Bounded Row Export Probe | PASS (2026-09-14, evidence `docs/pcie-g1b-g1d-evidence.md`): GUI sample matched row 469 (packet 2097003, Cfg/CfgRd0, 5.897 sec, x1) and row 938 (packet 2121703, Cpl/CplD, 6.055 sec, x1); row 1 matched earlier D1 GUI evidence. 1k v2 on the 1350 copy: `trace_end`, one END, 938 rows, TSV and canonical JSON re-read equal, first five rows equal D1, DONE 1.2 s after Run, 51891-byte log. Design (v2, owner decision 2026-09-14): rows until cap or natural trace end, whichever comes first; exactly one `PCIE_G1B_END|rows=N|reason=cap|trace_end` guarded by an EndSent flag across the `ScriptDone` and `OnFinishScript` paths. Six D1-verified fields only; no G2a fields. Verifier `verify_g1b_rows.py` requires the verified G1a log and expects min(cap, G1a total) rows, the matching END reason, strictly increasing indices, first (and, when complete, last) index equal to G1a, TSV and canonical JSON re-read equal, first five rows equal to the D1 1350 log. For 1350 only the 1k script runs (938 < 1000); the 10k script is kept for larger traces and not run for form. Scripts `g1b-tlp-rows-1k.pevs` SHA-256 `952996AEAAA8EB30746F19541F4819FB378B6F78491E73558645CD6E08EA8249` and `g1b-tlp-rows-10k.pevs` SHA-256 `769F7142D33332C3A710F081602EF1048A7BA4F771F886A247F534A5E5F73A28`, identical deployed copies (v1 superseded). PASS claim: the row export mechanism works. |
+| PCIe-G1c | Full-trace Row Export | PASS (2026-09-14, same run as G1b cited as evidence): `complete_export: true`, 938 of 938 G1a TLP callbacks exported, first/last index equal to G1a (1944516/2121703). Separate claim from G1b: every TLP callback of 1350 is exported. May cite the same 1350 1k-script run as evidence when its verifier summary shows `complete_export: true` (938 of 938, last index equal to G1a). The G1b-G1c capacity gate is satisfied for 1350 (938 rows, about 50 KB). |
+| PCIe-G1d | Reproducibility | PASS (2026-09-14): second run on a fresh protected copy, `compare_g1_exports.py --expected-rows 938` returned PASS_REPRODUCED; rows.tsv SHA-256 `0028CC8D65948F0BCBF4149A7F50328DC815BDDB1B944F4684CE88F1EE45D3B8`, canonical rows.json SHA-256 `A5398FB6863F63CC44D809EFF2884E3EECE53D551B1FCA18414238C5EE0C12D6` for both runs; post-close identities unchanged. Criteria: fresh protected copy and reopened trace, rerun the same 1k script. PASS via `compare_g1_exports.py --expected-rows 938`: both runs 938 rows, identical packet index sequence, all columns equal row by row, identical TSV and canonical JSON SHA-256. Scope: all TLP callbacks of this subscription, not all PETracer events. |
+| PCIe-G2a | Transaction Field Probe | PASS (2026-09-14, evidence `docs/pcie-g2a-evidence.md`): 938 rows equal to G1 export, zero runtime-error text, one END; VSE equals GUI for request 2097003 (CfgRd0: Tag 3, RequesterId 000:00.0, CompleterId/ComplStatus NA) and completion 2121703 (CplD: Tag 7, RequesterId 000:00.0, CompleterId 001:00.0, ComplStatus 0=SC); post-close identities unchanged. CompleterId/ComplStatus are null on all non-completion types and present only on 0x11/0x12; Tag/RequesterId are never null (including Msg), so G2b must select keys per TLP type. 0x11 completions include ComplStatus 1 (UR) rows, not GUI-checked and not interpreted. Design: `g2a-tlp-fields.pevs` (SHA-256 `DBE5ADB6AC4CD02FF73B013C69B5296D6262A7ED835ECADEBE0FA798E3C726FE`, identical deployed copy) reads `in.Tag`, `in.RequesterId`, `in.CompleterId`, `in.ComplStatus` for every TLP callback on 1350 and prints NA when a field reads null; no defaults, pairing or interpretation. `verify_g2a_fields.py` requires 938 rows equal in index/time/channel/type to the verified G1 rows.json, one END, zero runtime-error text, and reports per-type availability. PASS also needs VSE values equal to GUI for at least one request (packet 2097003 CfgRd0: RequesterID 000:0:0, Tag 3) and one completion (packet 2121703 CplD: RequesterID 000:0:0, Tag 7, CompleterID 001:00:0, Status SC), from the retained G1b GUI screenshots, plus unchanged trace/copy hashes. Known limit: a field may read 0 rather than null on types where it does not apply, so per-type applicability must not be inferred from non-null values alone. |
+| PCIe-G2b-1 | TLP Role Classification | PASS (2026-09-14, offline from G2a fields.json; evidence `docs/pcie-g2b-evidence.md`): roles from the installed vendor constant table `VS_constants.inc` (SHA-256 `799311B51894B31B1B35B99294227D3CB770D28758B0EEE4D915CAD09E6A2E6D`) checked against field shape; 1350: 439 NON_POSTED_REQUEST (CfgRd0 293, CfgWr0 64, MRd32 82), 417 COMPLETION_CANDIDATE (Cpl 70, CplD 347), 82 POSTED_OR_OTHER, 0 UNKNOWN. 0x9/0xE/0x12 GUI-confirmed; 0x11 vendor-constant only. |
+| PCIe-G2b-2 | Request/Completion Association | PASS (2026-09-14): key (RequesterId, Tag), nearest preceding non-posted request, completions never close a request, no completeness/timeout/fault claims. 1350: 417/417 completions associated, 0 without preceding request, 0 multi-completion requests, all opposite direction; 417 requests COMPLETIONS_OBSERVED, 0 NONE_OBSERVED_IN_CAPTURE, 22 SAME_KEY_REISSUED_BEFORE_ANY_COMPLETION_OBSERVED (CfgRd0 19, CfgWr0 3); completion statuses SC 408, UR 9 (Cpl). Request 2097003 -> completion 2097005 also visible in the retained GUI screenshot. Independent cross-check (13:30-13:33): LeCroy Split transaction view groups 1945005 MRd(32) Tag 11 with a Cpl UR (Lwr Addr 0x028) as Split Tra 22 and 2093086 MRd(32) Tag 0 with a Cpl UR (Lwr Addr 0x01C) as Split Tra 29, matching the G2b association and excluding earlier same-key CfgRd0 requests for these two; the 22 reissued-key requests are not GUI-checked. |
+| PCIe-G3a | Non-success Completion Candidates | PASS (prototype, 2026-09-14, evidence `docs/pcie-g3ab-evidence.md`): `g3_candidates.py` over G2b associations; one candidate per associated completion with status other than SC, interpretation NOT_EVALUATED, optional GUI cross-check reference. 1350: 9 candidates (MRd(32) -> UR), 2 with LeCroy Split transaction cross-check. Terminology (owner decision 2026-09-14): candidate detectors, not anomaly rules. |
+| PCIe-G3b | Same-key Reappearance Candidates | PASS (prototype, 2026-09-14): one candidate per request whose (RequesterId, Tag) reappears before an associated completion was observed; reports first/repeated request, packet gap, and whether a completion was later observed for the key (attributed to the last request of the chain). No retry/timeout claim. 1350: 22 candidates at 4.848 sec. |
+| PCIe-G3c-0 | Message Field Probe | PASS (2026-09-14, evidence `docs/pcie-g3c0-evidence.md`): END 938 TLPs, 3 message rows equal to G2a, zero runtime-error text, identities unchanged; 1945029 reads MessageCode 0x30 ERR_COR, MessageRoute 0x0 TOROOTCOMPLEX, matching the retained Split view (Link Tra 33); 2093072 also ERR_COR (not GUI-checked); 1944516 MsgD 0x50 SLOTPOWERLIMIT. Temporal adjacency to UR groups recorded only; causality NOT ESTABLISHED. Design: `g3c0-msg-fields.pevs` (SHA-256 `9389D6E2EE5A876D9A17576FD9F2A17F7220D62B58D7FA0DABDD7C95227B9B48`, identical deployed copy) emits Message TLPs only with RequesterId, `in.MessageCode`, `in.MessageRoute` (vendor-script field names), NA for null, and one END with TLP and message counts. `verify_g3c0_messages.py` requires END TLPs = 938, message rows equal to the 3 G2a message rows (1944516 0xE, 1945029 0xD, 2093072 0xD) in index/time/channel/type/RequesterId, and names codes from `VS_constants.inc` (ERR_COR = 0x30). PASS also needs packet 1945029 to read ERR_COR, matching the retained Split view screenshot (Link Tra 33, Msg To RC, ERR_COR, ACK #1945030), zero runtime-error text and unchanged identities. G3a/G3b are not changed; ERR_COR is not interpreted as a cause. |
+| PCIe-G3c | Error-message Correlation | PASS (prototype, 2026-09-14, evidence `docs/pcie-g3c-evidence.md`): RISK KEPT: the 64-packet bound was chosen after seeing v1 results and is a prototype heuristic, not a proven PCIe rule; reports must carry this limit. `g3c_nearby_messages.py` attaches Message TLPs within 8 TLP rows AND 64 vendor packet indices of each candidate's anchor span (no timestamps); every attachment `temporal_correlation_only`, candidates stay NOT_EVALUATED, causality NOT ESTABLISHED. The 64-packet bound was added after v1 (rows only) attached ERR_COR across a ~148,000-packet stretch without TLPs; v1 output kept as `pcie-g3c-20260914-v1-rowonly`. 1350: 23 of 31 candidates have a nearby message, 9 attachments excluded by the packet bound (8 cross-gap, 1 at -450); each G3a UR candidate has exactly its own group's ERR_COR (1945029 or 2093072). |
+| PCIe-G3d | Candidate Context Windows | PASS (prototype, 2026-09-14, evidence `docs/pcie-g3d-evidence.md`): `g3d_context.py` gives each candidate a primary LeCroy Go to Packet (G3a request, G3b first request), one block per anchor span (G3b: first and repeated request separately) with 5 TLP rows before/after (PRESENTATION_HEURISTIC), rows keeping packet index, raw packet gap from the previous TLP row, time, channel, type, RequesterId, Tag, CompleterId, status and G2b association, `TRUNCATED_AT_CAPTURE_BOUNDARY` where short, and G3c nearby messages copied not recomputed. No new candidates, ranking or interpretation. 1350: 31 candidates, 53 blocks, 4 truncated sides, 7 blocks visibly crossing the ~148,034-packet non-TLP stretch. Supersedes PCIe-G4. |
+| PCIe-G3e | Candidate Grouping | PASS (prototype, 2026-09-14, evidence `docs/pcie-g3e-evidence.md`): `g3e_groups.py` merges only on shared anchor packet, shared G2b association lineage, or a G3a request/completion being another candidate's anchor (rules fixed before results); time, nearby message, context overlap, RequesterId, Tag and status are auxiliary only. 1350: 31 candidates -> 16 groups (12 multi-member, 4 singletons), every candidate exactly once, earlier outputs byte-identical, no group-count target, no severity/priority/interpretation. OWNER DECISION (2026-09-14): rule 2 kept unchanged (option 1); no post-hoc distance bound. The ~148,500-packet lineage span (G003, G009-G012) is surfaced in G3f instead. |
+| PCIe-G3f | First Single-trace Triage Output | PASS (prototype, 2026-09-14, evidence `docs/pcie-g3f-evidence.md`): `g3f_findings.py` turns each G3e group into one finding answering where to look (primary and per-segment Go to Packet), what was observed, why surfaced, what is nearby (G3c messages, G3d context refs, GUI cross-checks) and what is not known. Groups are split into local segments by overlapping G3d context blocks (no new distance threshold, membership unchanged); multi-segment findings state that grouping does not establish one failure episode, with the packet span. Three issues found in the first run (unplaced messages, non-anchor rows listed as anchors, singleton wording) were fixed before delivery. 1350: 16 findings, all multi-segment, 0 unplaced messages; capture order, no ranking, NOT_EVALUATED. Supersedes PCIe-G5; PCIe-G6 ranking is DEFERRED. |
+| PCIe-G7 | Single-Fail Markdown Report | PASS (prototype, 2026-09-14, evidence `docs/pcie-g7-evidence.md`): `g7_render_markdown.py` renders `findings.json` only, as a Traditional Chinese engineering report with PCIe names, packet identities and field names in English (owner decision 2026-09-14). Per finding: 建議先看, 觀察到什麼, 相關位置, 為什麼列出這一項, 目前還不能確定, 追溯. A repository report contract (order, all findings, Go to Packet, anchor packets, `UNKNOWN`, traceability, no over-claims, no dashes) fails closed before writing; human-writing skill principles only, `check_prose.py` advisory. 1350: `artifacts/reports/pcie-g7-1350-20260914/report.md`, 16 findings, 0 contract errors. Owner review 2026-09-14: wording patch v2 (候選檢查位置, 主要定位點, fixed-rule navigation note), analysis unchanged; v1 kept as `report-v1.md`. |
+| PCIe-G8 | Single-Fail HTML Report | PASS (prototype, 2026-09-14, evidence `docs/pcie-g8-evidence.md`): `g8_render_html.py` renders the same `findings.json` with G7's shared wording as an offline, script-free page: top notice panel (UNKNOWN, no failure-cause judgement, 64-packet prototype heuristic, capture order, navigation-anchor note), scan table with badges (status, nearby messages, same-key, segment count and packet span), and 16 cards whose first layer shows the navigation anchor, summary and segments while `<details>` keeps all evidence, limitations and traceability. HTML contract fails closed; 1350: 16 cards, 0 errors. Next: first engineer trial. |
+| PCIe-G9a | Offline Triage Runner | PASS (prototype, 2026-09-14, evidence `docs/pcie-g9-runner-evidence.md`): `scripts/pcie/run_pcie_triage.py` (wrapper `run-pcie-triage.ps1`) chains G2b, G3a/b, G3c, G3d, G3e, G3f, G7 and G8 from a verified extraction bundle input manifest, calling the existing stage CLIs. Excludes PETracer GUI, COM, `.pex` opening, VSE execution, legacy conversion, AI agent and writing skill (owner decision). 1350 run `20260914T081330Z-78474DEA`: all stages PASS, findings identical to the manual run, report.md differs only in the findings SHA line. |
+| PCIe-G9b | Fail-closed Contract | PASS (prototype, 2026-09-14): stops on missing or hash-mismatched inputs, non-PASS verifier summaries, messages verified against another fields.json, TLP count mismatch, existing output directory, or any stage failure; writes `run-manifest.json` with `failed_stage`. Tested for each case. |
+| PCIe-G9c | Engineer Review Package | PASS (prototype, 2026-09-14): package with report.html, report.md, findings.json, run-manifest.json (trace identity, input, script, stage and output SHA-256, parameters) and `使用說明.md` (Traditional Chinese usage, limits, feedback with run id and finding id). 1350 package `artifacts/reports/pcie-triage-1350-20260914/`. |
+| PCIe-G9 | Engineer Review Build | NOT STARTED; one real Fail-named trace, which first needs F0i open/extraction qualification. Its filename stays a hint until the engineer confirms the failure context. Owner direction 2026-09-14: engineer trial of the G8 prototype may start in parallel with G9a-G9c; the runner is not a gate. The 1350 package is outcome-unknown, so a real Fail trace is still required for this slice. |
+| PCIe-G10 | Signal Expansion | CONDITIONAL; LTSSM/DLLP or other signals only when G3/G9 evidence shows TLP-only rules are insufficient. |
+| PCIe-A1 | COM Automation Qualification | OPTIONAL / NOT STARTED; only if GUI focus seriously slows G1/G2, batch traces are needed, or G9 needs unattended runs. Scope limited to `OpenFile`, `RunVerificationScript` and their success/failure status; not coupled to extraction logic. |
+
+G1 status (owner decision 2026-09-14): CLOSED. G1a-G1d PASS for 1350: all 938 TLP callbacks of the subscription exported, reproducible, GUI-sampled.
+
+Execution order (owner decision 2026-09-14): F0f-1 (PASS) -> G1a -> G1b ->
+G1c -> G1d -> G2a -> G2b. G1 uses the already verified GUI path; COM stays
+outside it so a failure cannot be confused between traversal, VSE and control
+plane. G1a runs at the next session with PETracer in the foreground.
+
+G1b-G1c capacity gate (owner decision 2026-09-14; a decision, not a code slice):
+estimated full-export size = G1a total TLP callback count x G1b measured log
+bytes per row, plus header/output overhead, judged together with the measured
+10k runtime. If full export through the VSE output window and Save Output is
+reasonable, proceed to G1c; otherwise redesign chunking/output path before G1c.
+G1b PASS alone never starts a full export.
+
+G3 prerequisite candidate, not scheduled: precise timestamp probe (candidate
+API `Time2` components from the VSE manual, unverified). Trigger only if a
+time-window/timeout anomaly rule is selected for G3. It is not part of G1b or
+G2a; vendor display time such as `4.848 sec` is sufficient for row identity,
+full export and approximate GUI navigation.
+
+Recorded at the decision, not yet resolved:
+
+- `S0-Remove SD7-1329-Fail.pex` has never been opened, so its legacy-format
+  status is UNKNOWN. F0i is promoted to a G9 prerequisite; a format-update
+  prompt stops it and starts separate P4a on a disposable copy.
+- Vendor scripts such as `trans_1-1_TXN_BFT_RequestCompletion.pevs` and
+  `trans_1-2_TXN_BFT_CompletionTimeout.pevs` are compliance tests driven by a
+  test-stage/device-emulator context. They were not run and are field-name
+  references only, not reusable triage rules.
+- Full-trace runtime and output volume are unmeasured. In both 1350 and 1335
+  the first TLP already carries a vendor event index near 1.9-2.0 million.
 
 ### Independent single-trace inspection branch (F0)
 
@@ -148,12 +221,31 @@ USB/PCIe schema. The retained preview is in
 | F0b | Convert retained extractor output to structured data | PASS: verified VSE log, input identities and five GUI rows bind into `observations.json`; no new VSE execution or trace parsing. |
 | F0c | Markdown inspection report | PASS: rendered from the saved structured JSON. |
 | F0d | HTML inspection report | PASS: same JSON source, offline and script-free. |
-| F0e | Single-trace UX review | READY_FOR_ENGINEER_REVIEW: local desktop render and claim boundaries checked; engineer feedback on usefulness/readability remains pending. |
+| F0e | Single-trace UX review | REVISION_READY_FOR_REVIEW: owner feedback on 2026-09-13 said the first report was hard to understand; plain-language revision is available, with engineer UX feedback still pending. |
+| F0f | Bounded two-trace HTML comparison | IMPLEMENTED / REAL-PAIR NOT GENERATED: accepts two compatible F0 observation JSON files and compares per-trace first-five TLP type-code counts plus separately displayed rows. No cross-trace event/time alignment, PASS/FAIL result, or diagnosis. The requested 1329/1335 pair lacks completed F0 observations. |
+| F0f-1 | Comparison semantics hardening | PASS (2026-09-14): fixed title `PCIe Trace Inspection Comparison`; Observed / Not established sections; sample-boundary note adjacent to the composition table; A-B difference column removed; outcome-like filename tokens shown only when present, as hints. Presentation only; input validation unchanged. |
+| F0g | 1335 GUI evidence recovery | NOT STARTED / SIDE BRANCH: one clean screenshot at packet 2000010 recording visible, intervening and next-TLP indices with SHA-256; reuse the existing log, no extractor rerun; post-close hash check. Schema v1 is not relaxed (owner decision 2026-09-14). |
+| F0h | 1335 observation materialization | NOT STARTED / SIDE BRANCH; after F0g PASS, existing builder with an E:-path manifest. |
+| F0i | 1329-Fail open and bounded extraction qualification | NOT STARTED; PCIe-G9 prerequisite. Filename is a hint only; a legacy-format prompt means STOP and separate P4a. |
+| F0j | Unlabeled pair comparison report | NOT STARTED / SIDE BRANCH; after F0h and F0i, titled as an inspection comparison, not PASS/FAIL. |
 
 This sample labels extraction `PASS_BOUNDED`, ground truth `UNKNOWN`,
 diagnostic result `NOT_EVALUATED`, and coverage as the first five TLP records
 only. Renderer mechanics may inform later work; F1 fields and diagnostic
 semantics remain gated by E3e and their own evidence.
+
+F0f is a descriptive presentation utility only: it reads two existing
+single-trace observation JSON files, does not open or parse `.pex` files, and
+does not replace the E1a/E1b gate. A real comparison HTML is not available for
+1329/1335 until both traces have eligible F0 observations; 1329 has no
+extraction evidence, and its filename is not ground truth.
+
+The initial 2026-09-12 report is preserved as the committed baseline. Owner
+readability feedback on 2026-09-13 was that it was hard to understand. A
+separate revision puts the plain-language purpose, bounded result and
+non-claims first, with detailed fields and identities below; it changes no
+observations or diagnostic semantics. F0e remains open until a reader reviews
+the revised presentation.
 
 D1e is closed as PASS within the five-record projection: the unchanged
 extractor produced TLP output for Trace B, five records were sampled against
@@ -365,7 +457,9 @@ Do not add these capabilities as part of G0:
 - Product regression: 0.
 - Product code mutation during adoption: 0.
 - Static audit surface: established.
-- Drift/readiness gap detection: established.
+- Drift/readiness gap detection: established at adoption time by a manual run.
+  Since 2026-09-14 the drift workflow is manual-only and automatic enforcement is
+  disabled (see G0 lightweight maintenance); no automatic drift protection is claimed.
 - Limited fail-closed case: observed.
 - Runtime governance, hooks, memory continuity, and independent verification:
   not proven.
@@ -397,6 +491,37 @@ The M1 claim ceiling is:
 - `RECORDED`: the original input `.usb` size/timestamp change remains `UNEXPLAINED / NOT REPRODUCED`.
 - `UNKNOWN`: whether the delivered-event count equals all events in every trace/version/configuration.
 - `OUT OF SCOPE`: packet schema completeness, transfer reconstruction, analyzer correctness, large-trace performance, automation, and AI diagnosis.
+
+### G0 lightweight maintenance (2026-09-14)
+
+Owner-approved consumer maintenance; the G0 topology decision is unchanged
+(`RETAIN_MINIMAL_AUDIT_WITH_LIGHTWEIGHT_MEMORY`, runtime governance NOT_ADOPTED).
+
+- Governance Drift workflow: **manual-only; automatic enforcement disabled.** The
+  push/pull_request triggers were removed and only manual dispatch is kept. The job calls `governance/governance_tools/governance_drift_checker.py`,
+  which was never vendored; all five runs since adoption failed with `[Errno 2]` and
+  never evaluated drift. Even a manual dispatch fails until a pinned checker is vendored;
+  restore triggers only after that. Comments in `AGENTS.base.md` (hash-protected) and
+  `.governance/baseline.yaml` (generated) that mention drift checks or CI blocking describe
+  the framework design, not active enforcement in this repository.
+- Memory: `memory/01_active_task.md` is now a pointer to this PLAN (it had stayed on the
+  USB C5 next step while the mainline moved to PCIe-G, the stale-handoff risk fixed by
+  G0-C1). `memory/02-04` template placeholders are marked unused.
+- Finding kept as history: `memory/2026-09-11.md` was written with the canonical writer
+  and a `record_identity` hash although G0 excludes record-identity hashing. It is not
+  rewritten; it is not repeated.
+- `AGENTS.md` memory router: the referenced `governance_tools` commands cannot run in
+  this repository (`python -m governance_tools.memory_workflow` fails: module absent). A
+  consumer note records this and the G0 memory scope; the router text is not deleted.
+- Framework M1 (ai-governance-framework PR #177, 2026-09-14) was reviewed. It clarifies the
+  canonical memory Definition Of Done (memory update, session closeout and Git delivery
+  are separate). This repository does not use that workflow, so the governance payload is
+  not re-synced; only the reporting principle (local completion vs delivery vs push
+  authorization) is added to `AGENTS.md` as wording. The framework's pending report-only
+  `closeout_companion_not_observed` check would flag most product commit ranges here and
+  is not adopted.
+- Re-evaluate only if engineer use (PCIe-G9), a second contributor, or a claim-inflation
+  incident creates a concrete runtime need.
 
 ## Rules for advancing
 

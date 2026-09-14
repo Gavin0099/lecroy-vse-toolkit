@@ -1,0 +1,60 @@
+# PCIe-G2a transaction field probe v1: every TLP callback with Tag, RequesterId, CompleterId, ComplStatus.
+# Subscription and END handling follow the verified G1b v2 script. A field that reads as null is
+# printed as NA; no default value is substituted. No pairing or interpretation happens here.
+set ModuleType = "Verification Script";
+set OutputType = "VS";
+set InputType = "VS";
+set DecoderDesc = "PCIe G2a TLP transaction field probe - v1";
+
+%include "VSTools.inc"
+set Emitted = 0;
+set EndSent = 0;
+
+OnStartScript()
+{
+    ScriptForDisplayOnly();
+    ReportText("PCIE_G2A_TLP_FIELDS_V1 fields=tag,requester_id,completer_id,compl_status");
+    SendAllChannels();
+    SendTraceEventOnly(_PKT_TLP);
+    SendTlpType(_ANY_TYPE);
+    Emitted = 0;
+    EndSent = 0;
+}
+
+ProcessEvent()
+{
+    tag = "NA";
+    requester = "NA";
+    completer = "NA";
+    status = "NA";
+    if (in.Tag != null)
+    {
+        tag = FormatEx("%d", in.Tag);
+    }
+    if (in.RequesterId != null)
+    {
+        requester = FormatEx("0x%04X", in.RequesterId);
+    }
+    if (in.CompleterId != null)
+    {
+        completer = FormatEx("0x%04X", in.CompleterId);
+    }
+    if (in.ComplStatus != null)
+    {
+        status = FormatEx("%d", in.ComplStatus);
+    }
+    ReportText(FormatEx("PCIE_G2A_TLP|%u|%s|%s|0x%X|%s|%s|%s|%s",
+        in.Index, TimeToText(in.Time), GetChannelName(), in.TLPType,
+        tag, requester, completer, status));
+    Emitted++;
+    return Complete();
+}
+
+OnFinishScript()
+{
+    if (EndSent == 0)
+    {
+        ReportText(FormatEx("PCIE_G2A_END|rows=%u|reason=trace_end", Emitted));
+        EndSent = 1;
+    }
+}
