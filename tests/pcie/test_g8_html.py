@@ -62,6 +62,18 @@ class G8HtmlTests(unittest.TestCase):
         self.assertNotIn("<img src=x", doc)
         self.assertIn("&lt;img src=x onerror=alert(1)&gt;.pex", doc)
 
+    def test_conversion_provenance_panel_precedes_cards(self):
+        prov = {"original_sha256": "F" * 64, "conversion": "PETracer 12.36 (Build 19) → 13.26 (Build 43) format update", "analysis_target": "converted disposable copy"}
+        fd = findings_doc()
+        doc = g8.render(fd, "sample.pex", "C" * 64, 30, "A" * 64, prov)
+        head = doc.split('<section class="card" ')[0]
+        self.assertIn(g8.PROVENANCE_LABEL, head)
+        self.assertIn(g7.PACKET_INDEX_NOTE, head)
+        self.assertIn("F" * 64, head)
+        self.assertEqual(g8.contract_check(doc, fd, prov), [])
+        self.assertTrue(g8.contract_check(doc.replace(g7.PACKET_INDEX_NOTE, ""), fd, prov))
+        self.assertTrue(g8.contract_check(page(), fd, prov))
+
     def test_cli_writes_once(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

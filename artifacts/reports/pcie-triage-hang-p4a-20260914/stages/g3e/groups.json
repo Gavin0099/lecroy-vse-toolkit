@@ -1,0 +1,82 @@
+{
+  "schema_version": "pcie.g3e-candidate-groups/v1",
+  "inputs": {
+    "candidates": {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g3ab/candidates.json",
+      "sha256": "B7D8B7B483308A826ED250CFB1D25C43E14D5D3ADA1B3583B44E4E2E0C57E784"
+    },
+    "associations": {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g2b/associations.json",
+      "sha256": "698712433C670F98DE3D427935123FFA616DAD67D3771E62296ADACD6E2985EB"
+    },
+    "nearby": {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g3c/nearby_messages.json",
+      "sha256": "DC0BF0ADAD6AC635915B6E5BEBB2F3F1B282D8086D49D96B1AB8BBEC2F10DF80"
+    }
+  },
+  "protected_outputs_unchanged": {
+    "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g2b/associations.json": "698712433C670F98DE3D427935123FFA616DAD67D3771E62296ADACD6E2985EB",
+    "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g3ab/candidates.json": "B7D8B7B483308A826ED250CFB1D25C43E14D5D3ADA1B3583B44E4E2E0C57E784",
+    "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g3c/nearby_messages.json": "DC0BF0ADAD6AC635915B6E5BEBB2F3F1B282D8086D49D96B1AB8BBEC2F10DF80",
+    "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g3d/contexts.json": "2AE7F98E343A38F6713691D5ABD8FEF38B34092574A70FCE0A2FC15ACB2D5DE1"
+  },
+  "merge_rules": [
+    "shared_anchor_packet",
+    "shared_association_lineage",
+    "request_or_completion_is_other_candidate_anchor"
+  ],
+  "not_merge_rules": [
+    "same display time",
+    "same nearby message",
+    "overlapping context",
+    "same RequesterId",
+    "same Tag",
+    "same completion status"
+  ],
+  "group_count_target": "NONE",
+  "ground_truth": "UNKNOWN",
+  "candidates_total": 1,
+  "groups_total": 1,
+  "groups": [
+    {
+      "members": [
+        "C001"
+      ],
+      "grouping_basis": [
+        "none_singleton"
+      ],
+      "relationship": "singleton_no_strong_relationship",
+      "edges": [],
+      "primary_go_to_packet": 225043,
+      "primary_go_to_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+      "anchor_packets": [
+        225043,
+        225048
+      ],
+      "lineage": {
+        "request_packets": [
+          225043,
+          225048
+        ],
+        "packet_span": 5
+      },
+      "observations": [
+        {
+          "candidate_id": "C001",
+          "observed": "CfgRd0 request 225043 (Tag 6): same association key observed again at 225048 (CfgRd0) before an associated completion was observed"
+        }
+      ],
+      "auxiliary_descriptors_not_used_for_grouping": {
+        "anchor_time_displays": [
+          "9.512 sec"
+        ],
+        "nearby_messages_from_g3c": [],
+        "detectors": [
+          "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION"
+        ]
+      },
+      "interpretation": "NOT_EVALUATED",
+      "group_id": "G001"
+    }
+  ]
+}

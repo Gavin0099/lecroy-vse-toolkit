@@ -25,7 +25,8 @@ ROW_RE = re.compile(
     r"(?P<channel>[^|]+)\|(?P<type>0x[0-9A-Fa-f]+)\|(?P<width>\d+)$"
 )
 END_RE = re.compile(r"^PCIE_G1B_END\|rows=(?P<rows>\d+)\|reason=(?P<reason>cap|trace_end)$")
-ALLOWED_CAPS = (1000, 10000)
+FULL_EXPORT_CAP = 100000000  # g1c-tlp-rows-all.pevs: runs to natural trace end
+ALLOWED_CAPS = (1000, 10000, FULL_EXPORT_CAP)
 COLUMNS = ("row", "packet_index", "time_display", "event_family", "channel", "tlp_type_hex", "link_width")
 
 

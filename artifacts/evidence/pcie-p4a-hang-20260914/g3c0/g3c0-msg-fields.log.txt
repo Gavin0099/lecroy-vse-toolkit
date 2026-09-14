@@ -1,0 +1,24 @@
+
+------------------------------------------------------------------------------------
+                                    lecroy-vse-toolkit-poc-20260912-30e3b5c6\g3c0-msg-fields
+------------------------------------------------------------------------------------
+
+
+Running verification script...
+...
+
+Test Description : 
+PCIe G3c-0 message field probe - v1
+PCIE_G3C0_MSG_FIELDS_V1 fields=requester_id,message_code,message_route
+PCIE_G3C0_MSG|3129| 8.277 sec|Upstream|0xD|0x0100|0x18|0x0
+PCIE_G3C0_MSG|1484399|10.912 sec|Upstream|0xD|0x0000|0x7F|0x4
+PCIE_G3C0_MSG|1484414|10.912 sec|Downstream|0xE|0x0000|0x50|0x4
+PCIE_G3C0_END|tlps=704|messages=3|reason=trace_end
+
+
+------- D O N E !!! -------
+
+
+*************************************************************
+Output was saved on Monday, September 14, 2026, 05:17:50 PM
+*************************************************************

@@ -82,6 +82,29 @@ class RunnerTests(unittest.TestCase):
     def test_fail_closed_on_tlp_count_mismatch(self):
         self.assert_fails_at_validation(lambda m, fs, ms: m["trace"].update(tlp_count=31), "differ from trace tlp_count")
 
+    def test_conversion_provenance_reaches_reports_readme_and_manifest(self):
+        provenance = {"original_sha256": "F" * 64, "conversion": "PETracer 12.36 (Build 19) → 13.26 (Build 43) format update",
+                      "analysis_target": "converted disposable copy", "packet_index_note": runner.g7_render_markdown.PACKET_INDEX_NOTE}
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            out = root / "package"
+            bundle = write_bundle(root, tamper=lambda m, fs, ms: m["trace"].update(provenance=provenance))
+            self.assertEqual(runner.main(["--input-manifest", str(bundle), "--output-dir", str(out), "--repo-root", str(root)]), 0)
+            note = runner.g7_render_markdown.PACKET_INDEX_NOTE
+            for name in ("report.md", "report.html", "使用說明.md"):
+                text = (out / name).read_text(encoding="utf-8")
+                self.assertIn(note, text, name)
+                self.assertIn("F" * 64, text, name)
+            manifest = json.loads((out / "run-manifest.json").read_text(encoding="utf-8"))
+            self.assertEqual(manifest["trace"]["provenance"]["original_sha256"], "F" * 64)
+
+    def test_fail_closed_on_altered_packet_index_note(self):
+        base = {"original_sha256": "F" * 64, "conversion": "x", "analysis_target": "converted disposable copy"}
+        self.assert_fails_at_validation(lambda m, fs, ms: m["trace"].update(provenance={**base, "packet_index_note": "packet 編號一致"}),
+                                        "packet index caveat")
+        self.assert_fails_at_validation(lambda m, fs, ms: m["trace"].update(provenance={**base, "original_sha256": "B" * 64,
+                                        "packet_index_note": runner.g7_render_markdown.PACKET_INDEX_NOTE}), "a conversion changes the file")
+
     def test_refuses_existing_output_directory(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

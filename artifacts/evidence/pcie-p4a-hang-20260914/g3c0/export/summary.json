@@ -1,0 +1,46 @@
+{
+  "status": "PASS_MESSAGE_FIELD_PROBE_OUTPUT",
+  "messages": [
+    {
+      "packet_index": 3129,
+      "time_display": "8.277 sec",
+      "channel": "Upstream",
+      "tlp_type_hex": "0xD",
+      "requester_id": 256,
+      "message_code": 24,
+      "message_code_name": "PM_PME",
+      "message_route": 0,
+      "message_route_name": "TOROOTCOMPLEX"
+    },
+    {
+      "packet_index": 1484399,
+      "time_display": "10.912 sec",
+      "channel": "Upstream",
+      "tlp_type_hex": "0xD",
+      "requester_id": 0,
+      "message_code": 127,
+      "message_code_name": "VENDOR1",
+      "message_route": 4,
+      "message_route_name": "LOCALTERMRECEIVER"
+    },
+    {
+      "packet_index": 1484414,
+      "time_display": "10.912 sec",
+      "channel": "Downstream",
+      "tlp_type_hex": "0xE",
+      "requester_id": 0,
+      "message_code": 80,
+      "message_code_name": "SLOTPOWERLIMIT",
+      "message_route": 4,
+      "message_route_name": "LOCALTERMRECEIVER"
+    }
+  ],
+  "log_sha256": "8CFD82F8194CCFD75188AD082B5847B998B7D6A10D9F2F8C2BAE759F1BC74DDE",
+  "g2a_fields_sha256": "DFC6FC2540B242A549D9F0CC84C1F9FA7C2385F8DF620A2FED0B01530657ACBC",
+  "messages_json_sha256": "F5B4F1226CA023D617C3FB695E0C772E1FB8FF5EB463393BF4C4617E88E96A12",
+  "name_source": "Scripts/VFScripts/VS_constants.inc SHA-256 799311B51894B31B1B35B99294227D3CB770D28758B0EEE4D915CAD09E6A2E6D",
+  "not_established": [
+    "GUI agreement (compared separately against retained GUI screenshots)",
+    "any causal relation between a message and a candidate"
+  ]
+}

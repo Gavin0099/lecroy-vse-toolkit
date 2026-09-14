@@ -484,3 +484,28 @@ UNKNOWN for all six. Reopen only if E1a identifies one of these legacy inputs
 as necessary; then handle format conversion in a separate P4a using a
 disposable copy, source protection and explicit pre/post hashes. Conversion
 does not prove bit-equivalence.
+
+### P4 follow-up: hang trace modal identified (2026-09-14)
+
+An owner-requested triage run on `Disable ASPM--Insert SD7-hang.pex` used a new
+read-only working copy (`%TEMP%\pcie-hang-20260914-1ec2caab`, SHA-256
+`F21FCDEB86F8BE1927951C8DE9D169E2DE8AAD404D7336C721A0B21BDDC02CD6`, identical
+to the source). The guarded open stopped after 180 s on a persistent dialog
+titled `PCIe Protocol Analysis`. Its controls, read without clicking:
+
+- text: "File to convert: 'Disable ASPM--Insert SD7-hang.pex'"
+- text: "This file was last modified by LeCroy PETracer 12.36 (Build 19) and is about
+  to be updated. The changed file might not be readable by the older versions of
+  the application than PCIe Protocol Analysis 13.26 (Build 43)."
+- buttons: `Update file`, `Update file, backup old version`, `Cancel`
+
+This is the same format-update prompt seen on `hang-2`, so the modal of the
+earlier second attempt is now identified. `Cancel` was sent; PETracer closed at
+16:27:07 without loading the trace. Source and copy size, UTC mtime and SHA-256
+were unchanged afterwards and no file was added. No VSE script ran and no
+conversion was applied. Continuing requires the separate P4a conversion on a
+disposable copy with explicit owner authorization. No screenshot was retained
+because the foreground belonged to another application at capture time.
+
+The owner authorized P4a later the same day; the conversion on a separate
+disposable writable copy is recorded in [P4a evidence](pcie-p4a-hang-evidence.md).

@@ -117,6 +117,20 @@ def validate_inputs(manifest: dict[str, Any], repo_root: Path) -> dict[str, Any]
     if str(messages_summary.get("g2a_fields_sha256", "")).upper() != fields_sha:
         raise TriageError("messages.json was verified against a different fields.json (other extraction or trace)", stage)
 
+    provenance = trace.get("provenance")
+    if provenance is not None:
+        allowed = set(g7_render_markdown.PROVENANCE_KEYS) | {"packet_index_note"}
+        if not isinstance(provenance, dict) or set(provenance) != allowed:
+            raise TriageError(f"trace.provenance must have exactly the keys {sorted(allowed)}", stage)
+        if not SHA_RE.fullmatch(str(provenance["original_sha256"])):
+            raise TriageError("trace.provenance.original_sha256 must be a 64-hex SHA-256", stage)
+        if provenance["original_sha256"].upper() == trace["sha256"].upper():
+            raise TriageError("trace.provenance.original_sha256 equals the analysed trace SHA-256; a conversion changes the file", stage)
+        if not all(isinstance(provenance[k], str) and provenance[k].strip() for k in ("conversion", "analysis_target")):
+            raise TriageError("trace.provenance needs non-empty conversion and analysis_target", stage)
+        if provenance["packet_index_note"] != g7_render_markdown.PACKET_INDEX_NOTE:
+            raise TriageError("trace.provenance.packet_index_note must be the unchanged packet index caveat", stage)
+
     return {"trace": trace, "fields": fields_path, "messages": messages_path, "gui_crosschecks": crosschecks_path,
             "fields_summary": fields_summary_path}
 
@@ -137,7 +151,7 @@ def run_stage(name: str, func: Callable[[list[str]], int], argv: list[str], expe
 README_TEMPLATE = """# PCIe Trace 候選檢查位置報告，使用說明
 
 Run id `{run_id}`，trace `{trace_name}`（SHA-256 `{trace_sha}`）。
-
+{provenance_block}
 ## 先開哪個檔案
 
 打開 `report.html`。最上面是閱讀前須知，接著是 {findings} 組候選檢查位置的一覽表，下面每一組一張卡片。
@@ -205,6 +219,15 @@ def run(input_manifest_path: Path, output_dir: Path, repo_root: Path = REPO_ROOT
             g3_args[2:2] = ["--gui-crosschecks", str(inputs["gui_crosschecks"])]
         common_report = ["--findings", str(output_dir / "findings.json"), "--trace-file-name", trace["file_name"],
                          "--trace-sha256", trace["sha256"].upper(), "--tlp-count", str(trace["tlp_count"])]
+        provenance = trace.get("provenance")
+        provenance_block = ""
+        if provenance:
+            original = provenance["original_sha256"].upper()
+            common_report += ["--original-trace-sha256", original, "--conversion", provenance["conversion"],
+                              "--analysis-target", provenance["analysis_target"]]
+            lines = g7_render_markdown.provenance_lines(trace["sha256"].upper(), {**provenance, "original_sha256": original})
+            provenance_block = ("\n" + g7_render_markdown.PROVENANCE_HEADING + "\n\n" + "\n".join(f"- {x}" for x in lines)
+                                + "\n\n在 LeCroy 對照時請打開 converted analysis copy，本說明裡的 trace SHA-256 指的都是這一份。\n")
         plan = [
             ("g2b", g2b_associate.main, ["--fields", f, "--output-dir", str(s / "g2b")], [s / "g2b" / "roles.json", s / "g2b" / "associations.json"]),
             ("g3ab", g3_candidates.main, g3_args, [s / "g3ab" / "candidates.json"]),
@@ -229,7 +252,8 @@ def run(input_manifest_path: Path, output_dir: Path, repo_root: Path = REPO_ROOT
         run_manifest["stages"].append(run_stage("g8", g8_render_html.main, common_report + ["--output", str(output_dir / "report.html")], [output_dir / "report.html"]))
 
         findings_total = len(json.loads((output_dir / "findings.json").read_text(encoding="utf-8"))["findings"])
-        readme = README_TEMPLATE.format(run_id=run_id, trace_name=trace["file_name"], trace_sha=trace["sha256"].upper(), findings=findings_total)
+        readme = README_TEMPLATE.format(run_id=run_id, trace_name=trace["file_name"], trace_sha=trace["sha256"].upper(), findings=findings_total,
+                                        provenance_block=provenance_block)
         (output_dir / "使用說明.md").write_text(readme, encoding="utf-8", newline="\n")
         run_manifest["package"] = {name: sha256(output_dir / name) for name in ("report.html", "report.md", "findings.json", "使用說明.md")}
         run_manifest["findings_total"] = findings_total

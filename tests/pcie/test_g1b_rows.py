@@ -44,6 +44,10 @@ class G1bRowsTests(unittest.TestCase):
         self.assertEqual(rows[-1]["packet_index"], index_of(937))
         self.assertEqual(g1b.crosscheck_d1(rows, D1_LOG.read_text(encoding="utf-8-sig")), "MATCHED_FIRST_FIVE")
 
+    def test_full_export_cap_runs_to_trace_end(self):
+        cap, reason, rows = g1b.parse_rows(make_log(cap=g1b.FULL_EXPORT_CAP, rows=938), g1a_result(938))
+        self.assertEqual((cap, reason, len(rows)), (100000000, "trace_end", 938))
+
     def test_cap_reached_before_trace_end(self):
         cap, reason, rows = g1b.parse_rows(make_log(cap=1000, rows=1000), g1a_result(5000))
         self.assertEqual((reason, len(rows)), ("cap", 1000))

@@ -19,6 +19,9 @@ from typing import Any
 
 REPORT_TITLE = "PCIe Trace 候選檢查位置報告"
 NAVIGATION_NOTE = "主要定位點依固定規則選出，取這一組最早出現的 request。它只用來快速跳轉，不代表該位置比較嚴重、比較可疑，或比較接近故障原因。"
+PACKET_INDEX_NOTE = "packet 編號來自轉換後的 13.26 trace；尚未證明與原始 12.36 顯示的 packet index 完全一致。"
+PROVENANCE_HEADING = "## Trace 來源與轉換"
+PROVENANCE_KEYS = ("original_sha256", "conversion", "analysis_target")
 GLOSSARY = {
     "MRd(32)": "32-bit Memory Read request",
     "CfgRd0": "Type 0 Configuration Read request",
@@ -206,14 +209,30 @@ def intro_paragraphs(trace_name: str, tlp_count: int | None, total: int) -> list
     ]
 
 
-def source_lines(trace_name: str, trace_sha256: str | None, tlp_count: int | None, findings_sha256: str) -> list[str]:
+def source_lines(trace_name: str, trace_sha256: str | None, tlp_count: int | None, findings_sha256: str,
+                 converted: bool = False) -> list[str]:
     lines = [f"`findings.json` SHA-256 `{findings_sha256}`，本報告的所有觀察都來自這個檔案。",
              f"Trace 檔名 `{trace_name}`，由產生報告時的命令列提供。"]
     if trace_sha256:
-        lines.append(f"Trace SHA-256 `{trace_sha256}`，由命令列提供。")
+        label = "Converted analysis copy SHA-256" if converted else "Trace SHA-256"
+        lines.append(f"{label} `{trace_sha256}`，由命令列提供。")
     if tlp_count is not None:
         lines.append(f"TLP 總數 {tlp_count}，由命令列提供，來自已驗證的 G1a 計數。")
     return lines
+
+
+def provenance_lines(converted_sha256: str | None, provenance: dict[str, str]) -> list[str]:
+    """Identity of a trace that was format-converted before analysis; shown before any finding."""
+    missing = [key for key in PROVENANCE_KEYS if not provenance.get(key)]
+    if missing or not converted_sha256:
+        raise G7Error(f"conversion provenance needs {list(PROVENANCE_KEYS)} and the converted trace SHA-256; missing {missing}")
+    return [
+        f"Original trace SHA-256 `{provenance['original_sha256']}`",
+        f"Converted analysis copy SHA-256 `{converted_sha256}`",
+        f"Conversion：{provenance['conversion']}",
+        f"Analysis target：{provenance['analysis_target']}",
+        PACKET_INDEX_NOTE,
+    ]
 
 
 def render_finding(finding: dict[str, Any]) -> str:
@@ -240,9 +259,12 @@ def render_finding(finding: dict[str, Any]) -> str:
     return "\n".join(out)
 
 
-def render(findings_doc: dict[str, Any], trace_name: str, trace_sha256: str | None, tlp_count: int | None, findings_sha256: str) -> str:
+def render(findings_doc: dict[str, Any], trace_name: str, trace_sha256: str | None, tlp_count: int | None, findings_sha256: str,
+           provenance: dict[str, str] | None = None) -> str:
     findings = findings_doc["findings"]
     lines = [f"# {REPORT_TITLE}（{trace_name}）", ""]
+    if provenance:
+        lines += [PROVENANCE_HEADING, ""] + [f"- {x}" for x in provenance_lines(trace_sha256, provenance)] + [""]
     for paragraph in intro_paragraphs(trace_name, tlp_count, len(findings)):
         lines += [paragraph, ""]
     lines += ["## 報告用到的 PCIe 名詞", ""] + [f"- {x}" for x in glossary_lines(findings)]
@@ -252,13 +274,19 @@ def render(findings_doc: dict[str, Any], trace_name: str, trace_sha256: str | No
         lines.append(f"| [{f['finding_id']}](#finding-{f['finding_id'].lower()}) | {_p(f['where_to_look']['primary_go_to_packet'])} | {'、'.join(facts['times'])} | {'；'.join(summary_parts(f))} |")
     lines.append("")
     lines += [render_finding(f) for f in findings]
-    lines += ["## 資料來源", ""] + [f"- {x}" for x in source_lines(trace_name, trace_sha256, tlp_count, findings_sha256)] + [""]
+    lines += ["## 資料來源", ""] + [f"- {x}" for x in source_lines(trace_name, trace_sha256, tlp_count, findings_sha256, bool(provenance))] + [""]
     return "\n".join(lines)
 
 
-def contract_check(markdown: str, findings_doc: dict[str, Any]) -> list[str]:
+def contract_check(markdown: str, findings_doc: dict[str, Any], provenance: dict[str, str] | None = None) -> list[str]:
     errors: list[str] = []
     findings = findings_doc["findings"]
+    if provenance:
+        head = markdown.split("\n## Finding ")[0]
+        block = head.split(PROVENANCE_HEADING)[-1] if PROVENANCE_HEADING in head else ""
+        for needed in (f"Original trace SHA-256 `{provenance.get('original_sha256')}`", "Converted analysis copy SHA-256", PACKET_INDEX_NOTE):
+            if needed not in block:
+                errors.append(f"conversion provenance before the findings lacks: {needed}")
     headings = re.findall(r"^## Finding (F\d{3})$", markdown, flags=re.MULTILINE)
     expected = [f["finding_id"] for f in findings]
     if headings != expected:
@@ -291,12 +319,24 @@ def contract_check(markdown: str, findings_doc: dict[str, Any]) -> list[str]:
     return errors
 
 
+def add_provenance_arguments(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument("--original-trace-sha256", help="Source trace SHA-256 when --trace-sha256 names a converted copy")
+    parser.add_argument("--conversion", help="Format conversion applied before analysis")
+    parser.add_argument("--analysis-target", help="Which file the extraction was bound to")
+
+
+def provenance_from_args(args: argparse.Namespace) -> dict[str, str] | None:
+    values = {"original_sha256": args.original_trace_sha256, "conversion": args.conversion, "analysis_target": args.analysis_target}
+    return values if any(values.values()) else None
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--findings", type=Path, required=True)
     parser.add_argument("--trace-file-name", required=True)
     parser.add_argument("--trace-sha256")
     parser.add_argument("--tlp-count", type=int)
+    add_provenance_arguments(parser)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args(argv)
     try:
@@ -304,8 +344,9 @@ def main(argv: list[str] | None = None) -> int:
             raise G7Error(f"Refusing to overwrite existing report: {args.output}")
         raw = args.findings.read_bytes()
         doc = json.loads(raw.decode("utf-8"))
-        markdown = render(doc, args.trace_file_name, args.trace_sha256, args.tlp_count, hashlib.sha256(raw).hexdigest().upper())
-        errors = contract_check(markdown, doc)
+        provenance = provenance_from_args(args)
+        markdown = render(doc, args.trace_file_name, args.trace_sha256, args.tlp_count, hashlib.sha256(raw).hexdigest().upper(), provenance)
+        errors = contract_check(markdown, doc, provenance)
         if errors:
             raise G7Error("report contract failed: " + "; ".join(errors))
     except (OSError, UnicodeDecodeError, json.JSONDecodeError, KeyError, G7Error) as exc:

@@ -65,6 +65,25 @@ class G7MarkdownTests(unittest.TestCase):
         swapped = md.replace("## Finding F001", "## Finding FTMP").replace("## Finding F002", "## Finding F001").replace("## Finding FTMP", "## Finding F002")
         self.assertTrue(any("differ from findings.json order" in e for e in g7.contract_check(swapped, doc2)))
 
+    def test_conversion_provenance_precedes_findings_and_is_contract_bound(self):
+        prov = {"original_sha256": "F" * 64, "conversion": "PETracer 12.36 (Build 19) → 13.26 (Build 43) format update", "analysis_target": "converted disposable copy"}
+        doc = findings_doc()
+        md = g7.render(doc, "sample.pex", "C" * 64, 30, "A" * 64, prov)
+        head = md.split("## Finding ")[0]
+        self.assertIn(g7.PROVENANCE_HEADING, head)
+        self.assertIn("Original trace SHA-256 `" + "F" * 64 + "`", head)
+        self.assertIn("Converted analysis copy SHA-256 `" + "C" * 64 + "`", head)
+        self.assertIn("Analysis target：converted disposable copy", head)
+        self.assertIn(g7.PACKET_INDEX_NOTE, head)
+        self.assertIn("UNKNOWN", md)
+        self.assertEqual(g7.contract_check(md, doc, prov), [])
+        self.assertTrue(any("packet index" in e or "13.26" in e for e in g7.contract_check(md.replace(g7.PACKET_INDEX_NOTE, ""), doc, prov)))
+        self.assertTrue(g7.contract_check(report(), doc, prov))
+        with self.assertRaises(g7.G7Error):
+            g7.render(doc, "sample.pex", "C" * 64, 30, "A" * 64, {**prov, "conversion": None})
+        with self.assertRaises(g7.G7Error):
+            g7.render(doc, "sample.pex", None, 30, "A" * 64, prov)
+
     def test_cli_refuses_overwrite(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

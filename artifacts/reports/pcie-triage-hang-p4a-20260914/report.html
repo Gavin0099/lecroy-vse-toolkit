@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PCIe Trace 候選檢查位置報告（Disable ASPM--Insert SD7-hang.pex）</title><style>
+:root{--bg:#f6f7f9;--panel:#fff;--ink:#1d2433;--muted:#5b6475;--line:#d9dee7;--warn-bg:#fff4d6;--warn-line:#e6c36a;
+--ur:#b3261e;--ur-bg:#fde8e7;--msg:#8a4b00;--msg-bg:#fff0dc;--key:#1f4e8c;--key-bg:#e6eefb;--seg:#4a4f5c;--seg-bg:#eceef2}
+@media (prefers-color-scheme: dark){:root{--bg:#14171c;--panel:#1d2129;--ink:#e6e9ef;--muted:#a3abba;--line:#343a46;--warn-bg:#3a3020;
+--warn-line:#8c7336;--ur:#ff9b94;--ur-bg:#46211f;--msg:#ffc680;--msg-bg:#3d2c14;--key:#9cc3ff;--key-bg:#1d2d45;--seg:#c9ced8;--seg-bg:#2b303a}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 system-ui,"Segoe UI","Microsoft JhengHei",sans-serif}
+main{max-width:1100px;margin:0 auto;padding:24px 16px 48px}h1{font-size:1.5rem;margin:.2em 0 .6em}h2{font-size:1.15rem;margin:1.6em 0 .6em}
+p{margin:.5em 0}code{font-family:ui-monospace,Consolas,monospace;font-size:.92em;background:var(--seg-bg);padding:0 .25em;border-radius:3px;overflow-wrap:anywhere}
+.warn{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:10px;padding:12px 16px;margin:16px 0}.warn ul{margin:.3em 0;padding-left:1.2em}
+.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;background:var(--panel);font-size:.9rem}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}th{background:var(--seg-bg);white-space:nowrap}
+.badge{display:inline-block;font-size:.78rem;font-weight:600;border-radius:999px;padding:1px 8px;margin:1px 4px 1px 0;white-space:nowrap}
+.b-ur{color:var(--ur);background:var(--ur-bg)}.b-msg{color:var(--msg);background:var(--msg-bg)}.b-key{color:var(--key);background:var(--key-bg)}.b-seg{color:var(--seg);background:var(--seg-bg)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:14px 0}
+.card h3{margin:0 0 .4em;font-size:1.05rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px 18px}
+.label{color:var(--muted);font-size:.82rem}.card ul{margin:.2em 0;padding-left:1.2em}details{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+summary{cursor:pointer;font-weight:600}details h4{margin:.9em 0 .3em;font-size:.95rem}.muted{color:var(--muted);font-size:.85rem}
+</style></head><body><main>
+<h1>PCIe Trace 候選檢查位置報告（Disable ASPM--Insert SD7-hang.pex）</h1>
+<section class="warn" aria-label="Trace 來源與轉換"><strong>Trace 來源與轉換</strong><ul><li>Original trace SHA-256 <code>F21FCDEB86F8BE1927951C8DE9D169E2DE8AAD404D7336C721A0B21BDDC02CD6</code></li><li>Converted analysis copy SHA-256 <code>C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD</code></li><li>Conversion：PETracer 12.36 (Build 19) → 13.26 (Build 43) format update（PCIe Protocol Analysis 13.26 的 Update file）</li><li>Analysis target：converted disposable copy（原始 .pex 與既有唯讀副本都沒有轉換）</li><li>packet 編號來自轉換後的 13.26 trace；尚未證明與原始 12.36 顯示的 packet index 完全一致。</li></ul></section><p>工具在 <code>Disable ASPM--Insert SD7-hang.pex</code> 的 704 筆 TLP 裡整理出 1 組候選檢查位置。每一組都附上主要定位點，也就是 LeCroy 可以直接跳過去的 packet 編號。各組依主要定位點在 trace 裡出現的先後排列，順序不代表嚴重程度。</p>
+<section class="warn" aria-label="閱讀前須知"><strong>閱讀前須知</strong><ul><li>Ground truth <code>UNKNOWN</code>，這份 trace 的測試結果還沒確認。</li><li>工具沒有判斷故障原因，每一組都只是候選檢查位置（<code>NOT_EVALUATED</code>）。</li><li>判斷附近與否用的 64 packets 範圍是 prototype heuristic，看過資料後才訂。</li><li>各組依主要定位點在 trace 裡出現的先後排列，順序不代表嚴重程度。</li><li>主要定位點依固定規則選出，取這一組最早出現的 request。它只用來快速跳轉，不代表該位置比較嚴重、比較可疑，或比較接近故障原因。</li></ul></section>
+<h2>1 組候選檢查位置一覽</h2>
+<div class="table-wrap"><table><thead><tr><th>Finding</th><th>主要定位點</th><th>時間</th><th>標記</th><th>內容</th></tr></thead><tbody>
+<tr><td><a href="#finding-f001">F001</a></td><td><code>Packet 225043</code></td><td>9.512 sec</td><td><span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">1 Segments，跨 5 packets</span></td><td><code>CfgRd0</code> 同一組 key 再次出現</td></tr>
+</tbody></table></div>
+<h2>Findings</h2>
+<section class="card" id="finding-f001" data-finding="F001">
+<h3>Finding F001 <span class="badge b-key">同 key 再次出現</span><span class="badge b-seg">1 Segments，跨 5 packets</span></h3>
+<div class="grid">
+<div><div class="label">主要定位點</div><div><code>Packet 225043</code></div><div class="muted">依固定規則選出，只用來跳轉</div></div>
+<div><div class="label">觀察</div><ul><li><code>CfgRd0</code> 同一組 key 再次出現</li></ul></div>
+<div><div class="label">Segments</div><ul><li>Segment A（9.512 sec），定位 <code>Packet 225043</code></li></ul></div>
+</div>
+<details>
+<summary>展開完整證據</summary>
+<h4>主要定位點</h4><p><code>Packet 225043</code>，依固定規則選出的主要定位點（這一組最早出現的 request）。在 LeCroy 用 Go to Packet 跳過去。</p>
+<h4>觀察到什麼</h4><p>9.512 sec，<code>Packet 225043</code> 的 <code>CfgRd0</code>（<code>Tag 6</code>）送出後，還沒看到對應的 Completion，同一組 <code>RequesterId</code> + <code>Tag</code> 就在 <code>Packet 225048</code> 再次出現（9.512 sec，<code>CfgRd0</code>）。</p>
+<h4>相關位置</h4><h4>Segment A（9.512 sec）</h4><ul><li><code>Packet 225043</code>，<code>CfgRd0</code>，<code>Tag 6</code>，Requester <code>000:00.0</code></li><li><code>Packet 225048</code>，<code>CfgRd0</code>，<code>Tag 6</code>，Requester <code>000:00.0</code></li></ul>
+<h4>為什麼列出這一項</h4><ul><li>同一組 <code>RequesterId</code> + <code>Tag</code> 在看到 Completion 以前再次出現。</li></ul>
+<h4>目前還不能確定</h4><ul><li>這份 trace 的 ground truth 還沒確認（<code>UNKNOWN</code>），工具沒有判斷這裡是否異常。</li><li>同一組 key 再次出現，不代表 requester 重送、<code>Tag</code> 用法違規，或 Completion 落在 capture 範圍外。</li></ul>
+<h4>追溯</h4><p><code>findings.json</code> 的 <code>F001</code>，group <code>G001</code>，candidates <code>C001</code>。</p>
+</details>
+</section>
+<h2>報告用到的 PCIe 名詞</h2><ul><li><code>CfgRd0</code>，Type 0 Configuration Read request</li><li><code>SC</code>，Successful Completion，正常完成的 Completion status</li><li><code>Tag</code>，request 的編號，Completion 會帶回同一個 Tag</li><li><code>RequesterId</code>，送出 request 的裝置位址，格式 <code>bus:device.function</code></li><li><code>Go to Packet</code>，LeCroy PETracer 的 Search &gt; Go to Packet（Ctrl+G）</li><li><code>Segment</code>，同一組候選檢查位置裡位置相近的一段 packet</li></ul>
+<h2>資料來源</h2><ul><li><code>findings.json</code> SHA-256 <code>9FD24165518826726B422804A444CD01E28989EE6EA61C04B1842F10DA282BC9</code>，本報告的所有觀察都來自這個檔案。</li><li>Trace 檔名 <code>Disable ASPM--Insert SD7-hang.pex</code>，由產生報告時的命令列提供。</li><li>Converted analysis copy SHA-256 <code>C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD</code>，由命令列提供。</li><li>TLP 總數 704，由命令列提供，來自已驗證的 G1a 計數。</li></ul>
+</main></body></html>

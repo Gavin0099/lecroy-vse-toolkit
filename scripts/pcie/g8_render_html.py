@@ -32,6 +32,8 @@ WARNINGS = [
     g7.NAVIGATION_NOTE,
 ]
 
+PROVENANCE_LABEL = "Trace 來源與轉換"
+
 CSS = """
 :root{--bg:#f6f7f9;--panel:#fff;--ink:#1d2433;--muted:#5b6475;--line:#d9dee7;--warn-bg:#fff4d6;--warn-line:#e6c36a;
 --ur:#b3261e;--ur-bg:#fde8e7;--msg:#8a4b00;--msg-bg:#fff0dc;--key:#1f4e8c;--key-bg:#e6eefb;--seg:#4a4f5c;--seg-bg:#eceef2}
@@ -109,7 +111,8 @@ def render_card(finding: dict[str, Any]) -> str:
 </section>"""
 
 
-def render(findings_doc: dict[str, Any], trace_name: str, trace_sha256: str | None, tlp_count: int | None, findings_sha256: str) -> str:
+def render(findings_doc: dict[str, Any], trace_name: str, trace_sha256: str | None, tlp_count: int | None, findings_sha256: str,
+           provenance: dict[str, str] | None = None) -> str:
     findings = findings_doc["findings"]
     rows = []
     for f in findings:
@@ -122,14 +125,18 @@ def render(findings_doc: dict[str, Any], trace_name: str, trace_sha256: str | No
         )
     intro = "".join(f"<p>{inline(p)}</p>" for p in g7.intro_paragraphs(trace_name, tlp_count, len(findings))[:1])
     glossary = _list(g7.glossary_lines(findings))
-    sources = _list(g7.source_lines(trace_name, trace_sha256, tlp_count, findings_sha256))
+    sources = _list(g7.source_lines(trace_name, trace_sha256, tlp_count, findings_sha256, bool(provenance)))
+    origin = ""
+    if provenance:
+        origin = (f'<section class="warn" aria-label="{PROVENANCE_LABEL}"><strong>{PROVENANCE_LABEL}</strong>'
+                  f"{_list(g7.provenance_lines(trace_sha256, provenance))}</section>")
     cards = "\n".join(render_card(f) for f in findings)
     title = html.escape(f"{g7.REPORT_TITLE}（{trace_name}）")
     return f"""<!doctype html>
 <html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title><style>{CSS}</style></head><body><main>
 <h1>{title}</h1>
-{intro}
+{origin}{intro}
 <section class="warn" aria-label="閱讀前須知"><strong>閱讀前須知</strong>{_list(WARNINGS)}</section>
 <h2>{len(findings)} 組候選檢查位置一覽</h2>
 <div class="table-wrap"><table><thead><tr><th>Finding</th><th>主要定位點</th><th>時間</th><th>標記</th><th>內容</th></tr></thead><tbody>
@@ -161,8 +168,15 @@ class _Collector(HTMLParser):
                 self.external.append(value)
 
 
-def contract_check(document: str, findings_doc: dict[str, Any]) -> list[str]:
+def contract_check(document: str, findings_doc: dict[str, Any], provenance: dict[str, str] | None = None) -> list[str]:
     errors: list[str] = []
+    if provenance:
+        head = document.split('<section class="card" ')[0]
+        marker = f'aria-label="{PROVENANCE_LABEL}"'
+        block = html.unescape(re.sub(r"<[^>]+>", "", head.split(marker)[-1])) if marker in head else ""
+        for needed in (f"Original trace SHA-256 {provenance.get('original_sha256')}", "Converted analysis copy SHA-256", g7.PACKET_INDEX_NOTE):
+            if needed not in block:
+                errors.append(f"conversion provenance before the findings lacks: {needed}")
     collector = _Collector()
     collector.feed(document)
     if "script" in collector.tags:
@@ -207,6 +221,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--trace-file-name", required=True)
     parser.add_argument("--trace-sha256")
     parser.add_argument("--tlp-count", type=int)
+    g7.add_provenance_arguments(parser)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args(argv)
     try:
@@ -214,8 +229,9 @@ def main(argv: list[str] | None = None) -> int:
             raise G8Error(f"Refusing to overwrite existing report: {args.output}")
         raw = args.findings.read_bytes()
         doc = json.loads(raw.decode("utf-8"))
-        document = render(doc, args.trace_file_name, args.trace_sha256, args.tlp_count, hashlib.sha256(raw).hexdigest().upper())
-        errors = contract_check(document, doc)
+        provenance = g7.provenance_from_args(args)
+        document = render(doc, args.trace_file_name, args.trace_sha256, args.tlp_count, hashlib.sha256(raw).hexdigest().upper(), provenance)
+        errors = contract_check(document, doc, provenance)
         if errors:
             raise G8Error("HTML contract failed: " + "; ".join(errors))
     except (OSError, UnicodeDecodeError, json.JSONDecodeError, KeyError, g7.G7Error, G8Error) as exc:

@@ -1,0 +1,134 @@
+{
+  "schema_version": "pcie.g3c-nearby-messages/v2",
+  "inputs": {
+    "candidates": {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g3ab/candidates.json",
+      "sha256": "B7D8B7B483308A826ED250CFB1D25C43E14D5D3ADA1B3583B44E4E2E0C57E784"
+    },
+    "fields": {
+      "path": "E:/BackUp/Git_EE/lecroy-vse-toolkit/artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json",
+      "sha256": "DFC6FC2540B242A549D9F0CC84C1F9FA7C2385F8DF620A2FED0B01530657ACBC"
+    },
+    "messages": {
+      "path": "E:/BackUp/Git_EE/lecroy-vse-toolkit/artifacts/evidence/pcie-p4a-hang-20260914/g3c0/export/messages.json",
+      "sha256": "F5B4F1226CA023D617C3FB695E0C772E1FB8FF5EB463393BF4C4617E88E96A12"
+    }
+  },
+  "window": {
+    "unit": "TLP rows in capture order",
+    "rows_each_side": 8,
+    "max_abs_packet_gap": 64,
+    "rationale": "TLP-row window additionally bounded by vendor packet-index distance: v1 (rows only) attached messages that were row-adjacent but about 148000 packets away across a stretch without TLPs."
+  },
+  "ground_truth": "UNKNOWN",
+  "causality": "NOT_ESTABLISHED",
+  "candidates_with_nearby_messages": 0,
+  "candidates_total": 1,
+  "attachments_excluded_by_packet_bound": 4,
+  "messages_not_near_any_candidate": [
+    {
+      "packet": 3129,
+      "display_time": "8.277 sec",
+      "message_name": "PM_PME",
+      "routing": "TOROOTCOMPLEX",
+      "requester_id": 256
+    },
+    {
+      "packet": 1484399,
+      "display_time": "10.912 sec",
+      "message_name": "VENDOR1",
+      "routing": "LOCALTERMRECEIVER",
+      "requester_id": 0
+    },
+    {
+      "packet": 1484414,
+      "display_time": "10.912 sec",
+      "message_name": "SLOTPOWERLIMIT",
+      "routing": "LOCALTERMRECEIVER",
+      "requester_id": 0
+    }
+  ],
+  "candidates": [
+    {
+      "candidate_id": "C001",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_packet": 225043,
+      "candidate_time": "9.512 sec",
+      "window": {
+        "unit": "TLP rows in capture order",
+        "rows_each_side": 8,
+        "max_abs_packet_gap": 64,
+        "spans": [
+          {
+            "anchors": [
+              "first_request"
+            ],
+            "anchor_packets": [
+              225043
+            ],
+            "window_rows": [
+              693,
+              709
+            ]
+          },
+          {
+            "anchors": [
+              "repeated_request"
+            ],
+            "anchor_packets": [
+              225048
+            ],
+            "window_rows": [
+              694,
+              710
+            ]
+          }
+        ]
+      },
+      "nearby_messages": [],
+      "excluded_beyond_packet_bound": [
+        {
+          "span_anchors": [
+            "first_request"
+          ],
+          "packet": 1484399,
+          "message_name": "VENDOR1",
+          "tlp_row_gap": 2,
+          "packet_gap": 1259356,
+          "gap_reference_packet": 225043
+        },
+        {
+          "span_anchors": [
+            "first_request"
+          ],
+          "packet": 1484414,
+          "message_name": "SLOTPOWERLIMIT",
+          "tlp_row_gap": 3,
+          "packet_gap": 1259371,
+          "gap_reference_packet": 225043
+        },
+        {
+          "span_anchors": [
+            "repeated_request"
+          ],
+          "packet": 1484399,
+          "message_name": "VENDOR1",
+          "tlp_row_gap": 1,
+          "packet_gap": 1259351,
+          "gap_reference_packet": 225048
+        },
+        {
+          "span_anchors": [
+            "repeated_request"
+          ],
+          "packet": 1484414,
+          "message_name": "SLOTPOWERLIMIT",
+          "tlp_row_gap": 2,
+          "packet_gap": 1259366,
+          "gap_reference_packet": 225048
+        }
+      ],
+      "interpretation": "NOT_EVALUATED"
+    }
+  ]
+}

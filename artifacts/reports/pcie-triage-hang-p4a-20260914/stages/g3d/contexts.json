@@ -1,0 +1,467 @@
+{
+  "schema_version": "pcie.g3d-context-windows/v1",
+  "inputs": {
+    "fields": {
+      "path": "E:/BackUp/Git_EE/lecroy-vse-toolkit/artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json",
+      "sha256": "DFC6FC2540B242A549D9F0CC84C1F9FA7C2385F8DF620A2FED0B01530657ACBC"
+    },
+    "roles": {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g2b/roles.json",
+      "sha256": "07AB7227472E8C5146157FFC78707F3C51F30B3B3299D590B62B781123685F4D"
+    },
+    "associations": {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g2b/associations.json",
+      "sha256": "698712433C670F98DE3D427935123FFA616DAD67D3771E62296ADACD6E2985EB"
+    },
+    "candidates": {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g3ab/candidates.json",
+      "sha256": "B7D8B7B483308A826ED250CFB1D25C43E14D5D3ADA1B3583B44E4E2E0C57E784"
+    },
+    "nearby": {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g3c/nearby_messages.json",
+      "sha256": "DC0BF0ADAD6AC635915B6E5BEBB2F3F1B282D8086D49D96B1AB8BBEC2F10DF80"
+    }
+  },
+  "context_window": {
+    "unit": "TLP rows in capture order",
+    "rows_before": 5,
+    "rows_after": 5,
+    "status": "PRESENTATION_HEURISTIC"
+  },
+  "g3c_window_note": "Nearby messages are copied from G3c; its 64-packet bound is a prototype heuristic chosen after seeing v1 results, not a proven PCIe rule.",
+  "ground_truth": "UNKNOWN",
+  "ranking": "NONE",
+  "new_candidates": 0,
+  "candidates": [
+    {
+      "candidate_id": "C001",
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "candidate_anchor": {
+        "primary_goto_packet": 225043,
+        "secondary_packet": 225048,
+        "anchor_time_display": "9.512 sec",
+        "lecroy_hint": "LeCroy PETracer: Search > Go to Packet (Ctrl+G). The trace view also shows DLLP and other non-TLP packets between the TLP rows listed here."
+      },
+      "context_blocks": [
+        {
+          "block": "first_request",
+          "goto_packet": 225043,
+          "before": {
+            "status": "COMPLETE",
+            "rows": [
+              {
+                "row": 696,
+                "packet_index": 225027,
+                "packet_gap_from_previous_tlp_row": 3,
+                "time_display": "9.512 sec",
+                "channel": "Upstream",
+                "tlp_type_hex": "0x12",
+                "vendor_type_name": "CplD",
+                "role": "COMPLETION_CANDIDATE",
+                "requester_bdf": "000:00.0",
+                "tag": 10,
+                "completer_bdf": "001:00.0",
+                "compl_status": 0,
+                "compl_status_name": "SC",
+                "association": {
+                  "associated_request_packet": 225024
+                },
+                "markers": [],
+                "also_anchor_of_candidates": []
+              },
+              {
+                "row": 697,
+                "packet_index": 225029,
+                "packet_gap_from_previous_tlp_row": 2,
+                "time_display": "9.512 sec",
+                "channel": "Downstream",
+                "tlp_type_hex": "0x3",
+                "vendor_type_name": "MWr(32)",
+                "role": "POSTED_OR_OTHER",
+                "requester_bdf": "000:00.0",
+                "tag": 0,
+                "completer_bdf": null,
+                "compl_status": null,
+                "compl_status_name": null,
+                "association": null,
+                "markers": [],
+                "also_anchor_of_candidates": []
+              },
+              {
+                "row": 698,
+                "packet_index": 225031,
+                "packet_gap_from_previous_tlp_row": 2,
+                "time_display": "9.512 sec",
+                "channel": "Downstream",
+                "tlp_type_hex": "0x1",
+                "vendor_type_name": "MRd(32)",
+                "role": "NON_POSTED_REQUEST",
+                "requester_bdf": "000:00.0",
+                "tag": 1,
+                "completer_bdf": null,
+                "compl_status": null,
+                "compl_status_name": null,
+                "association": {
+                  "outcome": "COMPLETIONS_OBSERVED",
+                  "completion_packets": [
+                    225035
+                  ]
+                },
+                "markers": [],
+                "also_anchor_of_candidates": []
+              },
+              {
+                "row": 699,
+                "packet_index": 225035,
+                "packet_gap_from_previous_tlp_row": 4,
+                "time_display": "9.512 sec",
+                "channel": "Upstream",
+                "tlp_type_hex": "0x12",
+                "vendor_type_name": "CplD",
+                "role": "COMPLETION_CANDIDATE",
+                "requester_bdf": "000:00.0",
+                "tag": 1,
+                "completer_bdf": "001:00.0",
+                "compl_status": 0,
+                "compl_status_name": "SC",
+                "association": {
+                  "associated_request_packet": 225031
+                },
+                "markers": [],
+                "also_anchor_of_candidates": []
+              },
+              {
+                "row": 700,
+                "packet_index": 225037,
+                "packet_gap_from_previous_tlp_row": 2,
+                "time_display": "9.512 sec",
+                "channel": "Downstream",
+                "tlp_type_hex": "0x3",
+                "vendor_type_name": "MWr(32)",
+                "role": "POSTED_OR_OTHER",
+                "requester_bdf": "000:00.0",
+                "tag": 0,
+                "completer_bdf": null,
+                "compl_status": null,
+                "compl_status_name": null,
+                "association": null,
+                "markers": [],
+                "also_anchor_of_candidates": []
+              }
+            ]
+          },
+          "anchor": {
+            "rows": [
+              {
+                "row": 701,
+                "packet_index": 225043,
+                "packet_gap_from_previous_tlp_row": 6,
+                "time_display": "9.512 sec",
+                "channel": "Downstream",
+                "tlp_type_hex": "0x9",
+                "vendor_type_name": "CfgRd0",
+                "role": "NON_POSTED_REQUEST",
+                "requester_bdf": "000:00.0",
+                "tag": 6,
+                "completer_bdf": null,
+                "compl_status": null,
+                "compl_status_name": null,
+                "association": {
+                  "outcome": "SAME_KEY_REISSUED_BEFORE_ANY_COMPLETION_OBSERVED",
+                  "completion_packets": []
+                },
+                "markers": [
+                  "ANCHOR_FIRST_REQUEST"
+                ],
+                "also_anchor_of_candidates": []
+              }
+            ]
+          },
+          "after": {
+            "status": "TRUNCATED_AT_CAPTURE_BOUNDARY",
+            "rows": [
+              {
+                "row": 702,
+                "packet_index": 225048,
+                "packet_gap_from_previous_tlp_row": 5,
+                "time_display": "9.512 sec",
+                "channel": "Downstream",
+                "tlp_type_hex": "0x9",
+                "vendor_type_name": "CfgRd0",
+                "role": "NON_POSTED_REQUEST",
+                "requester_bdf": "000:00.0",
+                "tag": 6,
+                "completer_bdf": null,
+                "compl_status": null,
+                "compl_status_name": null,
+                "association": {
+                  "outcome": "NONE_OBSERVED_IN_CAPTURE",
+                  "completion_packets": []
+                },
+                "markers": [],
+                "also_anchor_of_candidates": []
+              },
+              {
+                "row": 703,
+                "packet_index": 1484399,
+                "packet_gap_from_previous_tlp_row": 1259351,
+                "time_display": "10.912 sec",
+                "channel": "Upstream",
+                "tlp_type_hex": "0xD",
+                "vendor_type_name": "Msg",
+                "role": "POSTED_OR_OTHER",
+                "requester_bdf": "000:00.0",
+                "tag": 0,
+                "completer_bdf": null,
+                "compl_status": null,
+                "compl_status_name": null,
+                "association": null,
+                "markers": [],
+                "also_anchor_of_candidates": []
+              },
+              {
+                "row": 704,
+                "packet_index": 1484414,
+                "packet_gap_from_previous_tlp_row": 15,
+                "time_display": "10.912 sec",
+                "channel": "Downstream",
+                "tlp_type_hex": "0xE",
+                "vendor_type_name": "MsgD",
+                "role": "POSTED_OR_OTHER",
+                "requester_bdf": "000:00.0",
+                "tag": 0,
+                "completer_bdf": null,
+                "compl_status": null,
+                "compl_status_name": null,
+                "association": null,
+                "markers": [],
+                "also_anchor_of_candidates": []
+              }
+            ]
+          }
+        },
+        {
+          "block": "repeated_request",
+          "goto_packet": 225048,
+          "before": {
+            "status": "COMPLETE",
+            "rows": [
+              {
+                "row": 697,
+                "packet_index": 225029,
+                "packet_gap_from_previous_tlp_row": 2,
+                "time_display": "9.512 sec",
+                "channel": "Downstream",
+                "tlp_type_hex": "0x3",
+                "vendor_type_name": "MWr(32)",
+                "role": "POSTED_OR_OTHER",
+                "requester_bdf": "000:00.0",
+                "tag": 0,
+                "completer_bdf": null,
+                "compl_status": null,
+                "compl_status_name": null,
+                "association": null,
+                "markers": [],
+                "also_anchor_of_candidates": []
+              },
+              {
+                "row": 698,
+                "packet_index": 225031,
+                "packet_gap_from_previous_tlp_row": 2,
+                "time_display": "9.512 sec",
+                "channel": "Downstream",
+                "tlp_type_hex": "0x1",
+                "vendor_type_name": "MRd(32)",
+                "role": "NON_POSTED_REQUEST",
+                "requester_bdf": "000:00.0",
+                "tag": 1,
+                "completer_bdf": null,
+                "compl_status": null,
+                "compl_status_name": null,
+                "association": {
+                  "outcome": "COMPLETIONS_OBSERVED",
+                  "completion_packets": [
+                    225035
+                  ]
+                },
+                "markers": [],
+                "also_anchor_of_candidates": []
+              },
+              {
+                "row": 699,
+                "packet_index": 225035,
+                "packet_gap_from_previous_tlp_row": 4,
+                "time_display": "9.512 sec",
+                "channel": "Upstream",
+                "tlp_type_hex": "0x12",
+                "vendor_type_name": "CplD",
+                "role": "COMPLETION_CANDIDATE",
+                "requester_bdf": "000:00.0",
+                "tag": 1,
+                "completer_bdf": "001:00.0",
+                "compl_status": 0,
+                "compl_status_name": "SC",
+                "association": {
+                  "associated_request_packet": 225031
+                },
+                "markers": [],
+                "also_anchor_of_candidates": []
+              },
+              {
+                "row": 700,
+                "packet_index": 225037,
+                "packet_gap_from_previous_tlp_row": 2,
+                "time_display": "9.512 sec",
+                "channel": "Downstream",
+                "tlp_type_hex": "0x3",
+                "vendor_type_name": "MWr(32)",
+                "role": "POSTED_OR_OTHER",
+                "requester_bdf": "000:00.0",
+                "tag": 0,
+                "completer_bdf": null,
+                "compl_status": null,
+                "compl_status_name": null,
+                "association": null,
+                "markers": [],
+                "also_anchor_of_candidates": []
+              },
+              {
+                "row": 701,
+                "packet_index": 225043,
+                "packet_gap_from_previous_tlp_row": 6,
+                "time_display": "9.512 sec",
+                "channel": "Downstream",
+                "tlp_type_hex": "0x9",
+                "vendor_type_name": "CfgRd0",
+                "role": "NON_POSTED_REQUEST",
+                "requester_bdf": "000:00.0",
+                "tag": 6,
+                "completer_bdf": null,
+                "compl_status": null,
+                "compl_status_name": null,
+                "association": {
+                  "outcome": "SAME_KEY_REISSUED_BEFORE_ANY_COMPLETION_OBSERVED",
+                  "completion_packets": []
+                },
+                "markers": [],
+                "also_anchor_of_candidates": []
+              }
+            ]
+          },
+          "anchor": {
+            "rows": [
+              {
+                "row": 702,
+                "packet_index": 225048,
+                "packet_gap_from_previous_tlp_row": 5,
+                "time_display": "9.512 sec",
+                "channel": "Downstream",
+                "tlp_type_hex": "0x9",
+                "vendor_type_name": "CfgRd0",
+                "role": "NON_POSTED_REQUEST",
+                "requester_bdf": "000:00.0",
+                "tag": 6,
+                "completer_bdf": null,
+                "compl_status": null,
+                "compl_status_name": null,
+                "association": {
+                  "outcome": "NONE_OBSERVED_IN_CAPTURE",
+                  "completion_packets": []
+                },
+                "markers": [
+                  "ANCHOR_REPEATED_REQUEST"
+                ],
+                "also_anchor_of_candidates": []
+              }
+            ]
+          },
+          "after": {
+            "status": "TRUNCATED_AT_CAPTURE_BOUNDARY",
+            "rows": [
+              {
+                "row": 703,
+                "packet_index": 1484399,
+                "packet_gap_from_previous_tlp_row": 1259351,
+                "time_display": "10.912 sec",
+                "channel": "Upstream",
+                "tlp_type_hex": "0xD",
+                "vendor_type_name": "Msg",
+                "role": "POSTED_OR_OTHER",
+                "requester_bdf": "000:00.0",
+                "tag": 0,
+                "completer_bdf": null,
+                "compl_status": null,
+                "compl_status_name": null,
+                "association": null,
+                "markers": [],
+                "also_anchor_of_candidates": []
+              },
+              {
+                "row": 704,
+                "packet_index": 1484414,
+                "packet_gap_from_previous_tlp_row": 15,
+                "time_display": "10.912 sec",
+                "channel": "Downstream",
+                "tlp_type_hex": "0xE",
+                "vendor_type_name": "MsgD",
+                "role": "POSTED_OR_OTHER",
+                "requester_bdf": "000:00.0",
+                "tag": 0,
+                "completer_bdf": null,
+                "compl_status": null,
+                "compl_status_name": null,
+                "association": null,
+                "markers": [],
+                "also_anchor_of_candidates": []
+              }
+            ]
+          }
+        }
+      ],
+      "nearby_messages_from_g3c": [],
+      "nearby_messages_excluded_by_g3c_bound": [
+        {
+          "span_anchors": [
+            "first_request"
+          ],
+          "packet": 1484399,
+          "message_name": "VENDOR1",
+          "tlp_row_gap": 2,
+          "packet_gap": 1259356,
+          "gap_reference_packet": 225043
+        },
+        {
+          "span_anchors": [
+            "first_request"
+          ],
+          "packet": 1484414,
+          "message_name": "SLOTPOWERLIMIT",
+          "tlp_row_gap": 3,
+          "packet_gap": 1259371,
+          "gap_reference_packet": 225043
+        },
+        {
+          "span_anchors": [
+            "repeated_request"
+          ],
+          "packet": 1484399,
+          "message_name": "VENDOR1",
+          "tlp_row_gap": 1,
+          "packet_gap": 1259351,
+          "gap_reference_packet": 225048
+        },
+        {
+          "span_anchors": [
+            "repeated_request"
+          ],
+          "packet": 1484414,
+          "message_name": "SLOTPOWERLIMIT",
+          "tlp_row_gap": 2,
+          "packet_gap": 1259366,
+          "gap_reference_packet": 225048
+        }
+      ],
+      "interpretation": "NOT_EVALUATED"
+    }
+  ]
+}
