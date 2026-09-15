@@ -1,0 +1,9 @@
+[
+ "\n------------------------------------------------------------------------------------",
+ "                                    C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\lecroy-vse-toolkit-poc-20260912-30e3b5c6\\b1a-link-fields.pevs",
+ "------------------------------------------------------------------------------------\n\n",
+ "Verification Script Parse Error: \nError in file 'C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\lecroy-vse-toolkit-poc-20260912-30e3b5c6\\b1a-link-fields.pevs' at line 46 : parse error, unexpected '-'\n",
+ "***************** Runtime Errors *****************",
+ "Found 1 runtime errors.\n\nError in file 'C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\lecroy-vse-toolkit-poc-20260912-30e3b5c6\\b1a-link-fields.pevs' at line 46 : parse error, unexpected '-'",
+ "**************************************************"
+]

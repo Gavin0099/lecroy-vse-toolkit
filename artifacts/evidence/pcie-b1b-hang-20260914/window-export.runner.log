@@ -1,0 +1,44 @@
+09:47:46.289 OpenFile returned after 19.7 s
+09:47:47.329 LaunchVScript returned; waiting for OnVScriptFinished
+09:48:14.857 finish event: {'script_name': 'C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\lecroy-vse-toolkit-poc-20260912-30e3b5c6\\b1b-window-export.pevs', 'result': 2, 'tag': 177, 'at': '09:48:13.627'}
+09:48:30.833 PETracer remaining pids after release: []
+{
+  "status": "COM_RUN_COMPLETE",
+  "identities_unchanged": true,
+  "steps": {
+    "create": {
+      "ok": true,
+      "seconds": 6.9
+    },
+    "open_file": {
+      "ok": true,
+      "seconds": 19.7
+    },
+    "get_engine": {
+      "ok": true,
+      "vscript_name": "C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\lecroy-vse-toolkit-poc-20260912-30e3b5c6\\b1b-window-export.pevs"
+    },
+    "finish_event": {
+      "ok": true,
+      "seconds": 27.5,
+      "event": {
+        "script_name": "C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\lecroy-vse-toolkit-poc-20260912-30e3b5c6\\b1b-window-export.pevs",
+        "result": 2,
+        "tag": 177,
+        "at": "09:48:13.627"
+      },
+      "result_name": "DONE"
+    },
+    "close": {
+      "ok": true
+    },
+    "process_exit": {
+      "ok": true,
+      "remaining_pids": []
+    }
+  },
+  "output": {
+    "report_events": 151,
+    "vse_output_sha256": "E6976E9F9A4F3566C578FBABED453BD51EB99AB55A7A6A747CB1F03FFB185E6F"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "status": "PASS_WINDOW_EXPORT",
+  "window": {
+    "start": 225041,
+    "end": 1484414
+  },
+  "totals": {
+    "events": 1259373,
+    "tlp": 4,
+    "err_any": 384993,
+    "segments": 33
+  },
+  "records_by_kind": {
+    "link_condition": 14,
+    "ltssm": 22,
+    "nak": 1,
+    "tlp": 4,
+    "speed_width": 2
+  },
+  "g1_tlp_crosscheck": "MATCHED",
+  "named_with_constants": true,
+  "log_sha256": "E6976E9F9A4F3566C578FBABED453BD51EB99AB55A7A6A747CB1F03FFB185E6F",
+  "timeline_json_sha256": "D612F674B9F10A620D98AFE1A7823F8C852EC5BEB9254C5E7841628A89C7FF41",
+  "not_established": [
+    "link health, expected MUX behaviour or any rule result (B1c-B1e)",
+    "GUI agreement of link-condition Up/Down wording",
+    "speed code labels (not probed)"
+  ]
+}

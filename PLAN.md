@@ -170,8 +170,100 @@ branch, including the comparison renderer, is retained as a side branch. The
 | PCIe-G9b | Fail-closed Contract | PASS (prototype, 2026-09-14): stops on missing or hash-mismatched inputs, non-PASS verifier summaries, messages verified against another fields.json, TLP count mismatch, existing output directory, or any stage failure; writes `run-manifest.json` with `failed_stage`. Tested for each case. |
 | PCIe-G9c | Engineer Review Package | PASS (prototype, 2026-09-14): package with report.html, report.md, findings.json, run-manifest.json (trace identity, input, script, stage and output SHA-256, parameters) and `使用說明.md` (Traditional Chinese usage, limits, feedback with run id and finding id). 1350 package `artifacts/reports/pcie-triage-1350-20260914/`. |
 | PCIe-G9 | Engineer Review Build | NOT STARTED; one real Fail-named trace, which first needs F0i open/extraction qualification. Its filename stays a hint until the engineer confirms the failure context. Owner direction 2026-09-14: engineer trial of the G8 prototype may start in parallel with G9a-G9c; the runner is not a gate. The 1350 package is outcome-unknown, so a real Fail trace is still required for this slice. |
-| PCIe-G10 | Signal Expansion | CONDITIONAL; LTSSM/DLLP or other signals only when G3/G9 evidence shows TLP-only rules are insufficient. |
-| PCIe-A1 | COM Automation Qualification | OPTIONAL / NOT STARTED; only if GUI focus seriously slows G1/G2, batch traces are needed, or G9 needs unattended runs. Scope limited to `OpenFile`, `RunVerificationScript` and their success/failure status; not coupled to extraction logic. |
+| PCIe-G10 | Signal Expansion | SUPERSEDED BY PCIe-B1 (2026-09-14): the trigger is met by engineer feedback on the hang package (TLP-only candidates do not answer RC-to-EP control or link questions). |
+| PCIe-A1 | COM Automation Qualification | PASS (2026-09-14, owner unfroze COM for this probe only): `CATC.PETracer` -> `OpenFile` -> `GetVScriptEngine` -> `LaunchVScript` with `OnVScriptFinished`/`OnVScriptReportUpdated` events ran the existing `g1a-tlp-count` on a read-only 1350 copy with no GUI input; semantic result equals the GUI route (938 TLP, 1944516 -> 2121703, no runtime error), the G1a log verifier also accepts the event text, trace/source SHA unchanged, PETracer exited after `Close`. run1 was A1_PARTIAL only because the probe joined events without line breaks. COM is NOT part of the formal flow; GUI route stays the fallback. Not tested: hidden window, hang/legacy conversion, batch, G2/G3 scripts, export APIs. Next candidate slice A2 (hidden/background execution) needs an owner decision. See [A1 evidence](docs/pcie-a1-com-evidence.md). |
+
+### PCIe Failure Timeline direction (owner decision 2026-09-14)
+
+Engineer feedback on the hang package: the report "only says a Tag reappeared";
+engineers need (1) whether RC control of the EP is reasonable and (2) whether
+the link shows abnormal behaviour, e.g. before the BSOD at the end of the hang
+trace. Decision: stop adding generic G3 candidate detectors; keep G2/G3/G7-G9 as
+the generic TLP triage layer and add two analysis lines that end in one timeline:
+
+- RC/EP register timeline (B2): trace values plus engineer-defined expectations
+  give deterministic findings. AI may draft watchlists from engineer requests or
+  permitted datasheets and may explain deterministic findings; it never produces
+  register values, offsets or bit definitions, never calls something unreasonable
+  without an explicit rule, and never claims root cause.
+- Link/Data Link timeline (B1): LTSSM, link conditions, speed/width, DLLP
+  ACK/NAK/PM, ordered sets, error flags, with objective rules only.
+
+Field availability is taken from the installed VSE manual and `VS_constants.inc`
+(`in.LtssmState`, `_PKT_LINK_CONDITION`/`in.LinkConditionType`, `in.Speed`,
+`in.LinkWidth`, `_PKT_DLLP`/`in.DLLPType`/`in.AckNak_SeqNum`, `_PKT_ORDERED_SET`/
+`in.OrderedSetType`, `_PKT_EIE_EVENT`, error flags such as `in.BadLCRC`, and
+`in.Register`/`in.RegisterData`); none is verified on a real trace yet. Rule
+first: probe evidence before parser or rule design.
+
+| Slice | Name | Status and acceptance |
+| --- | --- | --- |
+| PCIe-B1a | Link Field Probe | PASS (2026-09-14, evidence `docs/pcie-b1a-evidence.md`): COM run on the hang converted copy, verifier `PASS_LINK_FIELD_PROBE_OUTPUT`, TLP count matches G1a (704). DLLP type/AckNak seq, ordered set type, link condition type, `LtssmState`, speed, width and `HasErrors` are populated; EIE delivered nothing. Window 225049-1484398 (TLP-free stretch) holds 21 LTSSM changes, 13 link-condition records, 2 speed/width changes and all 50 sampled error events; one NAK at 225042. Field verification only; codes not yet named. Route COM (`scripts/pcie/com_run_vse.py`); run1 failed on a VSE parse error and is kept. |
+| PCIe-B1b | Case Window Extraction | PASS (2026-09-15, evidence `docs/pcie-b1b-evidence.md`): step 0 probed 52 engine constants; COM window export 225041-1484414 verified (`PASS_WINDOW_EXPORT`: 1,259,373 events in 33 segments, 22 LTSSM changes, 14 link conditions, 1 NAK, 4 TLPs equal to the G1 export). Reconstructed: Upstream LINK_DOWN at 9.512 sec; Downstream Recovery with LINK_UP/DOWN records to 9.575 sec; Downstream Polling (not valid) with 382,842 error-flagged TS1 to 9.600 sec; no delivered event 9.600-10.912 sec; Upstream LINK_UP, Polling, Configuration, Recovery and L0 on both channels at 10.912 sec before the last TLPs. Open: which error type `HasErrors` reflects (no individual flag set), per-channel counts, GUI cross-check of Up/Down wording, speed code labels. No MUX interpretation (B1d). |
+| PCIe-B1c | Link Training Timeline | NEXT; input is the B1b timeline.json. Condense raw link events into a readable state flow per direction (Detect, Polling, Configuration, Recovery, L0, loops) with packet/time anchors. Description only. |
+| PCIe-B1d | MUX-aware Rules | NOT STARTED; after B1c. Product context becomes an explicit rule input: Link Down during SD/SDE insertion/removal is expected and not reported as abnormal. |
+| PCIe-B1e | Link Findings | NOT STARTED; after B1d. Objective observations such as no return to L0, repeated Recovery, NAK/replay, CRC errors, speed/width change after retraining, worded as inconsistent with the expected flow; no root cause. |
+| PCIe-B2a | Register Field Probe | NOT STARTED; after B1. On a real trace: `in.Register` (byte offset or register index), `in.RegisterData`, byte enables, CfgWr data, CfgRd with CplD returned data. Manual reading is inference until probed. |
+| PCIe-B2b | Config Access Log | NOT STARTED; every CfgRd/CfgWr: time, packet, BDF, type, register, value, byte enable, completion. |
+| PCIe-B2c | Capability / Register Resolution | NOT STARTED; map offsets to Command, PCIe Capability, Link Control, PMCSR, L1SS per device from observed capability-list reads; no fixed capability offsets assumed. |
+| PCIe-B2d | Observed Config State | NOT STARTED; replay the access log into the last observed value per register at any packet. Named observed state, not a hardware snapshot; never-observed registers are UNKNOWN, never 0. |
+| PCIe-B2e | Snapshot Query | NOT STARTED; config space of a BDF at a given packet, each value with its last evidence packet or UNKNOWN. |
+| PCIe-B2f | Snapshot Diff | NOT STARTED; observed state at two points (e.g. before vs after a MUX switch) with changed registers and decoded fields. |
+| PCIe-B2g | Register Decode + Watchlist | NOT STARTED; engineer expectations with source provenance (e.g. Disable ASPM means LinkControl.ASPMControl == 0) evaluated deterministically. |
+| PCIe-B2h | Vendor Registers | CONDITIONAL; only with engineer-supplied GL9767 offsets, bit definitions and expectations permitted for tool use. No guessing. |
+| PCIe-B3a | Unified Event Contract | NOT STARTED; common event shape: packet, time, layer, type, device, details, evidence. |
+| PCIe-B3b | Unified Timeline | NOT STARTED; RC config, TLP request/completion, DLLP and LTSSM/link events in one ordered timeline. |
+| PCIe-B3c | Objective Findings | NOT STARTED; rule-backed only: expected MUX Link Down not reported; no L0 after Link Down, repeated Recovery, ASPM enabled under Disable ASPM, NAK/replay pattern, config sequence against the watchlist become candidates. |
+| PCIe-B3d | Engineer Report | NOT STARTED; G7/G8 reports upgraded to three sections: RC/EP control timeline, link timeline, candidate findings. Completes Milestone 1 (Engineering Analyzer). |
+
+Open questions to the engineer (asked before B2): BSOD stop code; which
+registers/bits are checked when judging RC control order; device BDF; case-
+specific registers for this trace; a register definition the tool may use.
+
+Milestones (owner direction 2026-09-14): Milestone 1 Engineering Analyzer ends at
+PCIe-B3d and tells engineers objectively what the RC did, how the EP answered and
+how the link changed, without AI. Milestone 2 AI-assisted Analyzer covers C and D.
+Existing TLP extraction, association, reports, offline runner and COM automation
+are kept. Order: B1a, then B1b; no full AI layer or full register parser before
+real evidence shows what the data looks like.
+
+### Three-layer target and AI Research layer (owner direction 2026-09-14)
+
+Engineer expectation, relayed by the owner: the tool organizes objective trace
+facts, then AI researches PCIe, Root Complex/Root Port, Windows/WHEA, AER and
+driver recovery material to point out where observations differ from normal
+behaviour and which directions are worth checking. Target shape:
+
+1. Evidence layer (VSE + Python, deterministic): RC-to-EP actions, register
+   values, request/completion, DLLP ACK/NAK, LTSSM/link events, ERR_COR/AER.
+2. Rule layer (deterministic): explicit rules and engineer-defined expectations
+   only, qualified by product context.
+3. AI Research/Hypothesis layer: reads layer 1/2 outputs plus product context,
+   consults cited external sources, proposes candidate explanations labelled as
+   hypotheses and lists the evidence still missing. Engineers decide root cause.
+
+This supersedes the earlier blanket "no AI root-cause" freeze only as far as
+cited hypotheses go: AI still never asserts root cause, never generates trace
+values, and every hypothesis must cite evidence records and external sources.
+The G9 offline runner keeps excluding AI; layer 3 is a separate stage.
+
+Product context recorded as stated by the engineer (via owner, 2026-09-14), not
+verified from a trace: on SD/SDE insertion or removal a MUX switches the PCIe
+path, the old link goes down and a new link trains. Rules therefore must not
+flag Link Down alone as abnormal for this product; what matters is whether the
+link returns to L0 and whether Root Port/OS error recovery starts (PCIe-B1d). Whether
+the hang trace shows this sequence is open until B1b/B1c; B1a does not interpret it.
+
+| Slice | Name | Status and acceptance |
+| --- | --- | --- |
+| PCIe-C0 | Data Boundary | NOT STARTED; must precede every AI step. Candidate allowed for external AI/web: LTSSM sequences, standard PCIe registers, error codes, anonymized timelines, Windows stop codes. Candidate excluded: complete .pex, customer names, NDA register definitions, customer platform identity, internal confidential data. Owner/company policy decision. |
+| PCIe-C1 | Evidence Packet | NOT STARTED; Python-built minimal packet (product context records with source/date/who stated, trace link evidence, RC activity, register changes, errors); AI never receives the .pex. |
+| PCIe-C2 | Source Policy | NOT STARTED; fixed allowed sources (PCIe material, PCI-SIG authorized source if available, Microsoft WHEA/Windows docs, Root Port/AER docs, permitted internal knowledge); every hypothesis cites sources. |
+| PCIe-C3 | AI Research | NOT STARTED; per investigation direction: reason, trace evidence ids, external sources, still unknown. Uncited hypotheses or root-cause claims fail a contract check. |
+| PCIe-C4 | Hypothesis Report | NOT STARTED; report section of AI investigation directions, labelled hypothesis only. |
+| PCIe-D1 | Case Manifest | NOT STARTED; engineer-supplied trace, scenario (operation, mux_switch_expected), expectations (e.g. aspm disabled), device BDF. |
+| PCIe-D2 | Copilot Orchestration | NOT STARTED; one request runs trace check, converted disposable copy when needed, COM/VSE, B1, B2, B3, deterministic findings, C1, C3, MD/HTML. |
+| PCIe-D3 | Engineer Review | NOT STARTED; engineer receives facts, rule results, AI investigation directions and citations, and decides root cause. Completes Milestone 2 (AI-assisted Analyzer). |
 
 G1 status (owner decision 2026-09-14): CLOSED. G1a-G1d PASS for 1350: all 938 TLP callbacks of the subscription exported, reproducible, GUI-sampled.
 

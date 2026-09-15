@@ -1,0 +1,95 @@
+{
+  "schema": "pcie.com-vse-run/v1",
+  "started_utc": "2026-09-14T09:59:31+00:00",
+  "input_sent_to_gui": "none",
+  "window_hidden": false,
+  "steps": {
+    "create": {
+      "ok": true,
+      "seconds": 8.9
+    },
+    "open_file": {
+      "ok": true,
+      "seconds": 19.3
+    },
+    "get_engine": {
+      "ok": true,
+      "vscript_name": "C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\lecroy-vse-toolkit-poc-20260912-30e3b5c6\\b1a-link-fields.pevs"
+    },
+    "finish_event": {
+      "ok": true,
+      "seconds": 593.6,
+      "event": {
+        "script_name": "C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\lecroy-vse-toolkit-poc-20260912-30e3b5c6\\b1a-link-fields.pevs",
+        "result": -3,
+        "tag": 177,
+        "at": "18:09:52.824"
+      },
+      "result_name": "FEATURE_NOT_LICENSED"
+    },
+    "close": {
+      "ok": true
+    },
+    "process_exit": {
+      "ok": true,
+      "remaining_pids": []
+    }
+  },
+  "pre": {
+    "files": [
+      {
+        "path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\pcie-p4a-hang-20260914-dcea0027\\Disable ASPM--Insert SD7-hang.pex",
+        "bytes": 126565918,
+        "mtime_ns": 1789375908544974500,
+        "sha256": "C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD"
+      },
+      {
+        "path": "E:\\Kent\\ASUS NV CRB_20260604\\GL9767\\Disable ASPM--Insert SD7-hang.pex",
+        "bytes": 126339103,
+        "mtime_ns": 1780626326139983300,
+        "sha256": "F21FCDEB86F8BE1927951C8DE9D169E2DE8AAD404D7336C721A0B21BDDC02CD6"
+      },
+      {
+        "path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\pcie-hang-20260914-1ec2caab\\Disable ASPM--Insert SD7-hang.pex",
+        "bytes": 126339103,
+        "mtime_ns": 1780626326139983300,
+        "sha256": "F21FCDEB86F8BE1927951C8DE9D169E2DE8AAD404D7336C721A0B21BDDC02CD6"
+      }
+    ],
+    "script": {
+      "path": "C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\lecroy-vse-toolkit-poc-20260912-30e3b5c6\\b1a-link-fields.pevs",
+      "bytes": 9094,
+      "mtime_ns": 1789379769044654400,
+      "sha256": "7FAB3B89984ED5A75303E532357CE0A727A15F5B2F427BFA001ABE015A4C5EEF"
+    }
+  },
+  "output": {
+    "report_events": 7,
+    "vse_output_sha256": "6308687F098721E14AE2894E85723F3ABDC3D416BDF82FA4DC99D945A6112BFF"
+  },
+  "post": {
+    "files": [
+      {
+        "path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\pcie-p4a-hang-20260914-dcea0027\\Disable ASPM--Insert SD7-hang.pex",
+        "bytes": 126565918,
+        "mtime_ns": 1789375908544974500,
+        "sha256": "C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD"
+      },
+      {
+        "path": "E:\\Kent\\ASUS NV CRB_20260604\\GL9767\\Disable ASPM--Insert SD7-hang.pex",
+        "bytes": 126339103,
+        "mtime_ns": 1780626326139983300,
+        "sha256": "F21FCDEB86F8BE1927951C8DE9D169E2DE8AAD404D7336C721A0B21BDDC02CD6"
+      },
+      {
+        "path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\pcie-hang-20260914-1ec2caab\\Disable ASPM--Insert SD7-hang.pex",
+        "bytes": 126339103,
+        "mtime_ns": 1780626326139983300,
+        "sha256": "F21FCDEB86F8BE1927951C8DE9D169E2DE8AAD404D7336C721A0B21BDDC02CD6"
+      }
+    ]
+  },
+  "identities_unchanged": true,
+  "status": "COM_RUN_FAILED",
+  "finished_utc": "2026-09-14T10:10:09+00:00"
+}

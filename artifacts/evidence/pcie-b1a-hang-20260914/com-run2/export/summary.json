@@ -1,0 +1,62 @@
+{
+  "status": "PASS_LINK_FIELD_PROBE_OUTPUT",
+  "events": 3457131,
+  "counts": {
+    "tlp": 704,
+    "dllp": 2147145,
+    "ordered_set": 1309169,
+    "link_condition": 113,
+    "eie": 0,
+    "other_event": 0,
+    "dllp_ack": 754,
+    "dllp_nak": 1,
+    "dllp_fc": 2145658,
+    "dllp_pm": 682,
+    "dllp_other": 50,
+    "dllp_bad_crc": 0,
+    "tlp_bad_lcrc": 0,
+    "os_ts1": 1265844,
+    "os_ts2": 18475,
+    "os_eios": 92,
+    "os_eieos": 24758,
+    "os_skip": 0,
+    "os_other": 0,
+    "os_compressed": 0,
+    "error_events": 384993,
+    "ltssm_present": 3457128,
+    "ltssm_changes": 119,
+    "speed_present": 3457131,
+    "width_present": 3457131,
+    "speed_width_changes": 6
+  },
+  "caps": {
+    "ltssm": 500,
+    "linkcond": 200,
+    "speedwidth": 100,
+    "nak": 50,
+    "err": 50
+  },
+  "samples": {
+    "ltssm": 119,
+    "linkcond": 113,
+    "speedwidth": 6,
+    "nak": 1,
+    "err": 50
+  },
+  "sample_truncated": {
+    "ltssm": false,
+    "linkcond": false,
+    "speedwidth": false,
+    "nak": false,
+    "err": true
+  },
+  "g1a_tlp_crosscheck": "MATCHED",
+  "log_sha256": "77E20987D70D2EA37869D36DFB01F2882C843F0F788CD768C40A5D61C2C2FA0D",
+  "records_json_sha256": "64B27D0C3A28DF0E6103B8C69C9A078ECAF2CF20984B6C0805152AA54295D2FD",
+  "not_established": [
+    "link health or any rule result (B1c)",
+    "meaning of LTSSM numeric codes against the vendor constants (decoded in B1b)",
+    "GUI agreement for sampled records",
+    "events outside the subscribed packet types (TLP, DLLP, ordered set, link condition, EIE)"
+  ]
+}

@@ -1,0 +1,277 @@
+# PCIe-B1a link-layer field probe v1: which link/data-link fields are populated in this trace.
+# Counts DLLP, ordered set, link condition, electrical-idle-enter and TLP packet events, and reports
+# capped samples of LTSSM changes, link conditions, speed/width changes, NAK DLLPs and error packets.
+# Field and constant names follow the installed VSE manual and vendor examples
+# (examp_ltssm.pevs, examp_dllps.pevs, examp_link_events.pevs, examp_ordered_sets.pevs). No rules.
+# v1 run 1 stopped on a VSE parse error for negative literals in `set` (line 46); the not-yet-seen
+# sentinel is 1000, which no LTSSM state, speed code (255 = undefined) or link width uses.
+set ModuleType = "Verification Script";
+set OutputType = "VS";
+set InputType = "VS";
+set DecoderDesc = "PCIe B1a link-layer field probe - v1";
+
+%include "VSTools.inc"
+
+const CAP_LTSSM = 500;
+const CAP_LINKCOND = 200;
+const CAP_SPEEDWIDTH = 100;
+const CAP_NAK = 50;
+const CAP_ERR = 50;
+
+set Events = 0;
+set Tlp = 0;
+set Dllp = 0;
+set Os = 0;
+set LinkCond = 0;
+set Eie = 0;
+set OtherEvent = 0;
+set DllpAck = 0;
+set DllpNak = 0;
+set DllpFc = 0;
+set DllpPm = 0;
+set DllpOther = 0;
+set DllpBadCrc = 0;
+set TlpBadLcrc = 0;
+set OsTs1 = 0;
+set OsTs2 = 0;
+set OsEios = 0;
+set OsEieos = 0;
+set OsSkip = 0;
+set OsOther = 0;
+set OsCompressed = 0;
+set ErrEvents = 0;
+set LtssmPresent = 0;
+set LtssmChanges = 0;
+set SpeedPresent = 0;
+set WidthPresent = 0;
+set SpeedWidthChanges = 0;
+set PrevS0_1 = 1000;
+set PrevS1_1 = 1000;
+set PrevS3_1 = 1000;
+set PrevS0_2 = 1000;
+set PrevS1_2 = 1000;
+set PrevS3_2 = 1000;
+set PrevSpeed1 = 1000;
+set PrevWidth1 = 1000;
+set PrevSpeed2 = 1000;
+set PrevWidth2 = 1000;
+set EndSent = 0;
+
+OnStartScript()
+{
+    ScriptForDisplayOnly();
+    ReportText(FormatEx("PCIE_B1A_LINK_FIELDS_V1 caps=ltssm:%u,linkcond:%u,speedwidth:%u,nak:%u,err:%u",
+        CAP_LTSSM, CAP_LINKCOND, CAP_SPEEDWIDTH, CAP_NAK, CAP_ERR));
+    SendAllChannels();
+    SendTraceEventOnly(_PKT_TLP);
+    SendTraceEvent(_PKT_DLLP);
+    SendTraceEvent(_PKT_ORDERED_SET);
+    SendTraceEvent(_PKT_LINK_CONDITION);
+    SendTraceEvent(_PKT_EIE_EVENT);
+    SendTlpType(_ANY_TYPE);
+    SendDllpType(_ANY_TYPE);
+    SendLtssm();
+    EndSent = 0;
+}
+
+ProcessEvent()
+{
+    Events++;
+    event = in.TraceEvent;
+    select
+    {
+        event == _PKT_TLP            : Tlp++;
+        event == _PKT_DLLP           : Dllp++;
+        event == _PKT_ORDERED_SET    : Os++;
+        event == _PKT_LINK_CONDITION : LinkCond++;
+        event == _PKT_EIE_EVENT      : Eie++;
+        default                      : OtherEvent++;
+    };
+
+    if (event == _PKT_DLLP)
+    {
+        dtype = in.DLLPType;
+        select
+        {
+            dtype == DLLP_TYPE_ACK : DllpAck++;
+            dtype == DLLP_TYPE_NAK : DllpNak++;
+            dtype == DLLP_TYPE_INIT_FC1_P || dtype == DLLP_TYPE_INIT_FC1_NP || dtype == DLLP_TYPE_INIT_FC1_CPL ||
+            dtype == DLLP_TYPE_INIT_FC2_P || dtype == DLLP_TYPE_INIT_FC2_NP || dtype == DLLP_TYPE_INIT_FC2_CPL ||
+            dtype == DLLP_TYPE_UPDATE_FC_P || dtype == DLLP_TYPE_UPDATE_FC_NP || dtype == DLLP_TYPE_UPDATE_FC_CPL : DllpFc++;
+            dtype == DLLP_TYPE_PM_ENTER_L1 || dtype == DLLP_TYPE_PM_ENTER_L23 ||
+            dtype == DLLP_TYPE_PM_ACT_STATE_REQUEST_L1 || dtype == DLLP_TYPE_PM_REQUEST_ACK : DllpPm++;
+            default : DllpOther++;
+        };
+        if (dtype == DLLP_TYPE_NAK && DllpNak <= CAP_NAK)
+        {
+            seq = "NA";
+            if (in.AckNak_SeqNum != null)
+            {
+                seq = FormatEx("%u", in.AckNak_SeqNum);
+            }
+            ReportText(FormatEx("PCIE_B1A_NAK|%u|%s|%s|%s", in.Index, TimeToText(in.Time), GetChannelName(), seq));
+        }
+        if (in.BadCRC != null && in.BadCRC != 0)
+        {
+            DllpBadCrc++;
+        }
+    }
+
+    if (event == _PKT_TLP && in.BadLCRC != null && in.BadLCRC != 0)
+    {
+        TlpBadLcrc++;
+    }
+
+    if (event == _PKT_ORDERED_SET)
+    {
+        otype = in.OrderedSetType;
+        select
+        {
+            otype == ORDSET_TYPE_TS1 || otype == ORDSET_TYPE_TS1_MOD : OsTs1++;
+            otype == ORDSET_TYPE_TS2 || otype == ORDSET_TYPE_TS2_MOD : OsTs2++;
+            otype == ORDSET_TYPE_EIOS  : OsEios++;
+            otype == ORDSET_TYPE_EIEOS : OsEieos++;
+            otype == ORDSET_TYPE_SKIP  : OsSkip++;
+            default                    : OsOther++;
+        };
+        if (in.HasCompression != null && in.HasCompression != 0)
+        {
+            OsCompressed++;
+        }
+    }
+
+    if (event == _PKT_LINK_CONDITION)
+    {
+        if (LinkCond <= CAP_LINKCOND)
+        {
+            ctype = "NA";
+            if (in.LinkConditionType != null)
+            {
+                ctype = FormatEx("%u", in.LinkConditionType);
+            }
+            ReportText(FormatEx("PCIE_B1A_LINKCOND|%u|%s|%s|%s", in.Index, TimeToText(in.Time), GetChannelName(), ctype));
+        }
+    }
+
+    if (in.HasErrors != null && in.HasErrors != 0)
+    {
+        ErrEvents++;
+        if (ErrEvents <= CAP_ERR)
+        {
+            ReportText(FormatEx("PCIE_B1A_ERR|%u|%s|%s|%u", in.Index, TimeToText(in.Time), GetChannelName(), event));
+        }
+    }
+
+    ltssm = in.LtssmState;
+    if (ltssm != null)
+    {
+        LtssmPresent++;
+        changed = 0;
+        if (in.Channel == _CHANNEL_1)
+        {
+            if (ltssm[0] != PrevS0_1 || ltssm[1] != PrevS1_1 || ltssm[3] != PrevS3_1)
+            {
+                changed = 1;
+                PrevS0_1 = ltssm[0];
+                PrevS1_1 = ltssm[1];
+                PrevS3_1 = ltssm[3];
+            }
+        }
+        else
+        {
+            if (ltssm[0] != PrevS0_2 || ltssm[1] != PrevS1_2 || ltssm[3] != PrevS3_2)
+            {
+                changed = 1;
+                PrevS0_2 = ltssm[0];
+                PrevS1_2 = ltssm[1];
+                PrevS3_2 = ltssm[3];
+            }
+        }
+        if (changed == 1)
+        {
+            LtssmChanges++;
+            if (LtssmChanges <= CAP_LTSSM)
+            {
+                ReportText(FormatEx("PCIE_B1A_LTSSM|%u|%s|%s|%u|%u|%u|%u|%u",
+                    in.Index, TimeToText(in.Time), GetChannelName(), event, ltssm[0], ltssm[1], ltssm[3], ltssm[2]));
+            }
+        }
+    }
+
+    speed = in.Speed;
+    width = in.LinkWidth;
+    if (speed != null)
+    {
+        SpeedPresent++;
+    }
+    if (width != null)
+    {
+        WidthPresent++;
+    }
+    if (speed != null && width != null && speed != _SPEED_UNDEFINED && width != _LINK_WIDTH_UNDEFINED)
+    {
+        swchanged = 0;
+        if (in.Channel == _CHANNEL_1)
+        {
+            if (speed != PrevSpeed1 || width != PrevWidth1)
+            {
+                swchanged = 1;
+                PrevSpeed1 = speed;
+                PrevWidth1 = width;
+            }
+        }
+        else
+        {
+            if (speed != PrevSpeed2 || width != PrevWidth2)
+            {
+                swchanged = 1;
+                PrevSpeed2 = speed;
+                PrevWidth2 = width;
+            }
+        }
+        if (swchanged == 1)
+        {
+            SpeedWidthChanges++;
+            if (SpeedWidthChanges <= CAP_SPEEDWIDTH)
+            {
+                ReportText(FormatEx("PCIE_B1A_SPEEDWIDTH|%u|%s|%s|%u|%u|%u", in.Index, TimeToText(in.Time), GetChannelName(), event, speed, width));
+            }
+        }
+    }
+    return Complete();
+}
+
+OnFinishScript()
+{
+    if (EndSent == 0)
+    {
+        ReportText(FormatEx("PCIE_B1A_COUNT|tlp=%u", Tlp));
+        ReportText(FormatEx("PCIE_B1A_COUNT|dllp=%u", Dllp));
+        ReportText(FormatEx("PCIE_B1A_COUNT|ordered_set=%u", Os));
+        ReportText(FormatEx("PCIE_B1A_COUNT|link_condition=%u", LinkCond));
+        ReportText(FormatEx("PCIE_B1A_COUNT|eie=%u", Eie));
+        ReportText(FormatEx("PCIE_B1A_COUNT|other_event=%u", OtherEvent));
+        ReportText(FormatEx("PCIE_B1A_COUNT|dllp_ack=%u", DllpAck));
+        ReportText(FormatEx("PCIE_B1A_COUNT|dllp_nak=%u", DllpNak));
+        ReportText(FormatEx("PCIE_B1A_COUNT|dllp_fc=%u", DllpFc));
+        ReportText(FormatEx("PCIE_B1A_COUNT|dllp_pm=%u", DllpPm));
+        ReportText(FormatEx("PCIE_B1A_COUNT|dllp_other=%u", DllpOther));
+        ReportText(FormatEx("PCIE_B1A_COUNT|dllp_bad_crc=%u", DllpBadCrc));
+        ReportText(FormatEx("PCIE_B1A_COUNT|tlp_bad_lcrc=%u", TlpBadLcrc));
+        ReportText(FormatEx("PCIE_B1A_COUNT|os_ts1=%u", OsTs1));
+        ReportText(FormatEx("PCIE_B1A_COUNT|os_ts2=%u", OsTs2));
+        ReportText(FormatEx("PCIE_B1A_COUNT|os_eios=%u", OsEios));
+        ReportText(FormatEx("PCIE_B1A_COUNT|os_eieos=%u", OsEieos));
+        ReportText(FormatEx("PCIE_B1A_COUNT|os_skip=%u", OsSkip));
+        ReportText(FormatEx("PCIE_B1A_COUNT|os_other=%u", OsOther));
+        ReportText(FormatEx("PCIE_B1A_COUNT|os_compressed=%u", OsCompressed));
+        ReportText(FormatEx("PCIE_B1A_COUNT|error_events=%u", ErrEvents));
+        ReportText(FormatEx("PCIE_B1A_COUNT|ltssm_present=%u", LtssmPresent));
+        ReportText(FormatEx("PCIE_B1A_COUNT|ltssm_changes=%u", LtssmChanges));
+        ReportText(FormatEx("PCIE_B1A_COUNT|speed_present=%u", SpeedPresent));
+        ReportText(FormatEx("PCIE_B1A_COUNT|width_present=%u", WidthPresent));
+        ReportText(FormatEx("PCIE_B1A_COUNT|speed_width_changes=%u", SpeedWidthChanges));
+        ReportText(FormatEx("PCIE_B1A_END|events=%u|reason=trace_end", Events));
+        EndSent = 1;
+    }
+}
