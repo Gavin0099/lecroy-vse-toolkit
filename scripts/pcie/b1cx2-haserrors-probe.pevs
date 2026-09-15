@@ -1,0 +1,1566 @@
+# PCIe-B1c-x2 HasErrors subtype probe v1 (generated from a fixed flag list; edit the list, not the lines).
+# Inside the B1b window only. Ranges: R1 225041-1096917 (Recovery and link-condition phases), R2 1096918-1479759
+# (Downstream Polling phase), R3 1479760-1484414 (after the 1.312 sec gap). Channels: C1 = _CHANNEL_1, C2 = _CHANNEL_2,
+# C3 = any other. For every candidate error member from the VSE manual it counts presence (non-null) over all events and
+# set (non-zero) over HasErrors events per range and channel. Descriptive only; no rule.
+set ModuleType = "Verification Script";
+set OutputType = "VS";
+set InputType = "VS";
+set DecoderDesc = "PCIe B1c-x2 HasErrors subtype probe - v1";
+
+%include "VSTools.inc"
+
+const WIN_START = 225041;
+const WIN_END = 1484414;
+const R1_END = 1096917;
+const R2_END = 1479759;
+const SAMPLE_CAP = 10;
+
+set Events = 0;
+set HasErr = 0;
+set Unexplained = 0;
+set HeTlp = 0;
+set HeDllp = 0;
+set HeOs = 0;
+set HeOther = 0;
+set S1 = 0;
+set S2 = 0;
+set S3 = 0;
+set EndSent = 0;
+set P_ErrorDisparity = 0;
+set P_ErrorSymbol = 0;
+set P_ErrorWrongSymbol = 0;
+set P_ErrorDelimiter = 0;
+set P_ErrorEndBad = 0;
+set P_ErrorAlignment = 0;
+set P_ErrorAllignment = 0;
+set P_ErrorLength = 0;
+set P_BadLCRC = 0;
+set P_BadECRC = 0;
+set P_BadCRC = 0;
+set P_MsgErrorG3LenCheck = 0;
+set P_TsErrorDataRate = 0;
+set P_TsErrorFormat = 0;
+set P_TsErrorParity = 0;
+set P_TsErrorRsrvField = 0;
+set P_G3ErrorFraming = 0;
+set P_InvalidEncoding = 0;
+set P_RsvdField = 0;
+set P_ErrorRsvdFld = 0;
+set P_HasIdleErrors = 0;
+set P_IdleErrorDisparity = 0;
+set P_IdleErrorSymbol = 0;
+set P_IdleErrorSkip = 0;
+set P_IdleErrorData = 0;
+set P_FCError = 0;
+set R1_E = 0;
+set R1_T1 = 0;
+set R1_T2 = 0;
+set R1_H = 0;
+set R1_U = 0;
+set R2_E = 0;
+set R2_T1 = 0;
+set R2_T2 = 0;
+set R2_H = 0;
+set R2_U = 0;
+set R3_E = 0;
+set R3_T1 = 0;
+set R3_T2 = 0;
+set R3_H = 0;
+set R3_U = 0;
+set C1_E = 0;
+set C1_T1 = 0;
+set C1_T2 = 0;
+set C1_H = 0;
+set C1_U = 0;
+set C2_E = 0;
+set C2_T1 = 0;
+set C2_T2 = 0;
+set C2_H = 0;
+set C2_U = 0;
+set C3_E = 0;
+set C3_T1 = 0;
+set C3_T2 = 0;
+set C3_H = 0;
+set C3_U = 0;
+set R1_ErrorDisparity = 0;
+set R1_ErrorSymbol = 0;
+set R1_ErrorWrongSymbol = 0;
+set R1_ErrorDelimiter = 0;
+set R1_ErrorEndBad = 0;
+set R1_ErrorAlignment = 0;
+set R1_ErrorAllignment = 0;
+set R1_ErrorLength = 0;
+set R1_BadLCRC = 0;
+set R1_BadECRC = 0;
+set R1_BadCRC = 0;
+set R1_MsgErrorG3LenCheck = 0;
+set R1_TsErrorDataRate = 0;
+set R1_TsErrorFormat = 0;
+set R1_TsErrorParity = 0;
+set R1_TsErrorRsrvField = 0;
+set R1_G3ErrorFraming = 0;
+set R1_InvalidEncoding = 0;
+set R1_RsvdField = 0;
+set R1_ErrorRsvdFld = 0;
+set R1_HasIdleErrors = 0;
+set R1_IdleErrorDisparity = 0;
+set R1_IdleErrorSymbol = 0;
+set R1_IdleErrorSkip = 0;
+set R1_IdleErrorData = 0;
+set R1_FCError = 0;
+set R2_ErrorDisparity = 0;
+set R2_ErrorSymbol = 0;
+set R2_ErrorWrongSymbol = 0;
+set R2_ErrorDelimiter = 0;
+set R2_ErrorEndBad = 0;
+set R2_ErrorAlignment = 0;
+set R2_ErrorAllignment = 0;
+set R2_ErrorLength = 0;
+set R2_BadLCRC = 0;
+set R2_BadECRC = 0;
+set R2_BadCRC = 0;
+set R2_MsgErrorG3LenCheck = 0;
+set R2_TsErrorDataRate = 0;
+set R2_TsErrorFormat = 0;
+set R2_TsErrorParity = 0;
+set R2_TsErrorRsrvField = 0;
+set R2_G3ErrorFraming = 0;
+set R2_InvalidEncoding = 0;
+set R2_RsvdField = 0;
+set R2_ErrorRsvdFld = 0;
+set R2_HasIdleErrors = 0;
+set R2_IdleErrorDisparity = 0;
+set R2_IdleErrorSymbol = 0;
+set R2_IdleErrorSkip = 0;
+set R2_IdleErrorData = 0;
+set R2_FCError = 0;
+set R3_ErrorDisparity = 0;
+set R3_ErrorSymbol = 0;
+set R3_ErrorWrongSymbol = 0;
+set R3_ErrorDelimiter = 0;
+set R3_ErrorEndBad = 0;
+set R3_ErrorAlignment = 0;
+set R3_ErrorAllignment = 0;
+set R3_ErrorLength = 0;
+set R3_BadLCRC = 0;
+set R3_BadECRC = 0;
+set R3_BadCRC = 0;
+set R3_MsgErrorG3LenCheck = 0;
+set R3_TsErrorDataRate = 0;
+set R3_TsErrorFormat = 0;
+set R3_TsErrorParity = 0;
+set R3_TsErrorRsrvField = 0;
+set R3_G3ErrorFraming = 0;
+set R3_InvalidEncoding = 0;
+set R3_RsvdField = 0;
+set R3_ErrorRsvdFld = 0;
+set R3_HasIdleErrors = 0;
+set R3_IdleErrorDisparity = 0;
+set R3_IdleErrorSymbol = 0;
+set R3_IdleErrorSkip = 0;
+set R3_IdleErrorData = 0;
+set R3_FCError = 0;
+set C1_ErrorDisparity = 0;
+set C1_ErrorSymbol = 0;
+set C1_ErrorWrongSymbol = 0;
+set C1_ErrorDelimiter = 0;
+set C1_ErrorEndBad = 0;
+set C1_ErrorAlignment = 0;
+set C1_ErrorAllignment = 0;
+set C1_ErrorLength = 0;
+set C1_BadLCRC = 0;
+set C1_BadECRC = 0;
+set C1_BadCRC = 0;
+set C1_MsgErrorG3LenCheck = 0;
+set C1_TsErrorDataRate = 0;
+set C1_TsErrorFormat = 0;
+set C1_TsErrorParity = 0;
+set C1_TsErrorRsrvField = 0;
+set C1_G3ErrorFraming = 0;
+set C1_InvalidEncoding = 0;
+set C1_RsvdField = 0;
+set C1_ErrorRsvdFld = 0;
+set C1_HasIdleErrors = 0;
+set C1_IdleErrorDisparity = 0;
+set C1_IdleErrorSymbol = 0;
+set C1_IdleErrorSkip = 0;
+set C1_IdleErrorData = 0;
+set C1_FCError = 0;
+set C2_ErrorDisparity = 0;
+set C2_ErrorSymbol = 0;
+set C2_ErrorWrongSymbol = 0;
+set C2_ErrorDelimiter = 0;
+set C2_ErrorEndBad = 0;
+set C2_ErrorAlignment = 0;
+set C2_ErrorAllignment = 0;
+set C2_ErrorLength = 0;
+set C2_BadLCRC = 0;
+set C2_BadECRC = 0;
+set C2_BadCRC = 0;
+set C2_MsgErrorG3LenCheck = 0;
+set C2_TsErrorDataRate = 0;
+set C2_TsErrorFormat = 0;
+set C2_TsErrorParity = 0;
+set C2_TsErrorRsrvField = 0;
+set C2_G3ErrorFraming = 0;
+set C2_InvalidEncoding = 0;
+set C2_RsvdField = 0;
+set C2_ErrorRsvdFld = 0;
+set C2_HasIdleErrors = 0;
+set C2_IdleErrorDisparity = 0;
+set C2_IdleErrorSymbol = 0;
+set C2_IdleErrorSkip = 0;
+set C2_IdleErrorData = 0;
+set C2_FCError = 0;
+set C3_ErrorDisparity = 0;
+set C3_ErrorSymbol = 0;
+set C3_ErrorWrongSymbol = 0;
+set C3_ErrorDelimiter = 0;
+set C3_ErrorEndBad = 0;
+set C3_ErrorAlignment = 0;
+set C3_ErrorAllignment = 0;
+set C3_ErrorLength = 0;
+set C3_BadLCRC = 0;
+set C3_BadECRC = 0;
+set C3_BadCRC = 0;
+set C3_MsgErrorG3LenCheck = 0;
+set C3_TsErrorDataRate = 0;
+set C3_TsErrorFormat = 0;
+set C3_TsErrorParity = 0;
+set C3_TsErrorRsrvField = 0;
+set C3_G3ErrorFraming = 0;
+set C3_InvalidEncoding = 0;
+set C3_RsvdField = 0;
+set C3_ErrorRsvdFld = 0;
+set C3_HasIdleErrors = 0;
+set C3_IdleErrorDisparity = 0;
+set C3_IdleErrorSymbol = 0;
+set C3_IdleErrorSkip = 0;
+set C3_IdleErrorData = 0;
+set C3_FCError = 0;
+set X11_E = 0;
+set X11_T1 = 0;
+set X11_H = 0;
+set X12_E = 0;
+set X12_T1 = 0;
+set X12_H = 0;
+set X13_E = 0;
+set X13_T1 = 0;
+set X13_H = 0;
+set X21_E = 0;
+set X21_T1 = 0;
+set X21_H = 0;
+set X22_E = 0;
+set X22_T1 = 0;
+set X22_H = 0;
+set X23_E = 0;
+set X23_T1 = 0;
+set X23_H = 0;
+set X31_E = 0;
+set X31_T1 = 0;
+set X31_H = 0;
+set X32_E = 0;
+set X32_T1 = 0;
+set X32_H = 0;
+set X33_E = 0;
+set X33_T1 = 0;
+set X33_H = 0;
+
+Flag(v)
+{
+    if (v != null)
+    {
+        if (v != 0)
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+OnStartScript()
+{
+    ScriptForDisplayOnly();
+    ReportText(FormatEx("PCIE_B1CX2_HASERRORS_V1 start=%u end=%u r1_end=%u r2_end=%u cap=%u", WIN_START, WIN_END, R1_END, R2_END, SAMPLE_CAP));
+    SendAllChannels();
+    SendTraceEventOnly(_PKT_TLP);
+    SendTraceEvent(_PKT_DLLP);
+    SendTraceEvent(_PKT_ORDERED_SET);
+    SendTraceEvent(_PKT_LINK_CONDITION);
+    SendTraceEvent(_PKT_EIE_EVENT);
+    SendTlpType(_ANY_TYPE);
+    SendDllpType(_ANY_TYPE);
+    SendLtssm();
+    EndSent = 0;
+}
+
+ProcessEvent()
+{
+    idx = in.Index;
+    if (idx < WIN_START || idx > WIN_END)
+    {
+        return Complete();
+    }
+    r = 3;
+    if (idx <= R1_END)
+    {
+        r = 1;
+    }
+    else if (idx <= R2_END)
+    {
+        r = 2;
+    }
+    c = 3;
+    if (in.Channel == _CHANNEL_1)
+    {
+        c = 1;
+    }
+    else if (in.Channel == _CHANNEL_2)
+    {
+        c = 2;
+    }
+    event = in.TraceEvent;
+    ts1 = 0;
+    ts2 = 0;
+    ordset = "NA";
+    if (event == _PKT_ORDERED_SET)
+    {
+        ot = in.OrderedSetType;
+        ordset = FormatEx("%u", ot);
+        if (ot == ORDSET_TYPE_TS1 || ot == ORDSET_TYPE_TS1_MOD)
+        {
+            ts1 = 1;
+        }
+        if (ot == ORDSET_TYPE_TS2 || ot == ORDSET_TYPE_TS2_MOD)
+        {
+            ts2 = 1;
+        }
+    }
+    Events++;
+    he = Flag(in.HasErrors);
+    if (in.ErrorDisparity != null)
+    {
+        P_ErrorDisparity++;
+    }
+    if (in.ErrorSymbol != null)
+    {
+        P_ErrorSymbol++;
+    }
+    if (in.ErrorWrongSymbol != null)
+    {
+        P_ErrorWrongSymbol++;
+    }
+    if (in.ErrorDelimiter != null)
+    {
+        P_ErrorDelimiter++;
+    }
+    if (in.ErrorEndBad != null)
+    {
+        P_ErrorEndBad++;
+    }
+    if (in.ErrorAlignment != null)
+    {
+        P_ErrorAlignment++;
+    }
+    if (in.ErrorAllignment != null)
+    {
+        P_ErrorAllignment++;
+    }
+    if (in.ErrorLength != null)
+    {
+        P_ErrorLength++;
+    }
+    if (in.BadLCRC != null)
+    {
+        P_BadLCRC++;
+    }
+    if (in.BadECRC != null)
+    {
+        P_BadECRC++;
+    }
+    if (in.BadCRC != null)
+    {
+        P_BadCRC++;
+    }
+    if (in.MsgErrorG3LenCheck != null)
+    {
+        P_MsgErrorG3LenCheck++;
+    }
+    if (in.TsErrorDataRate != null)
+    {
+        P_TsErrorDataRate++;
+    }
+    if (in.TsErrorFormat != null)
+    {
+        P_TsErrorFormat++;
+    }
+    if (in.TsErrorParity != null)
+    {
+        P_TsErrorParity++;
+    }
+    if (in.TsErrorRsrvField != null)
+    {
+        P_TsErrorRsrvField++;
+    }
+    if (in.G3ErrorFraming != null)
+    {
+        P_G3ErrorFraming++;
+    }
+    if (in.InvalidEncoding != null)
+    {
+        P_InvalidEncoding++;
+    }
+    if (in.RsvdField != null)
+    {
+        P_RsvdField++;
+    }
+    if (in.ErrorRsvdFld != null)
+    {
+        P_ErrorRsvdFld++;
+    }
+    if (in.HasIdleErrors != null)
+    {
+        P_HasIdleErrors++;
+    }
+    if (in.IdleErrorDisparity != null)
+    {
+        P_IdleErrorDisparity++;
+    }
+    if (in.IdleErrorSymbol != null)
+    {
+        P_IdleErrorSymbol++;
+    }
+    if (in.IdleErrorSkip != null)
+    {
+        P_IdleErrorSkip++;
+    }
+    if (in.IdleErrorData != null)
+    {
+        P_IdleErrorData++;
+    }
+    if (in.FCError != null)
+    {
+        P_FCError++;
+    }
+    anyflag = 0;
+    flags = "";
+    if (he == 1)
+    {
+        if (Flag(in.ErrorDisparity) == 1)
+        {
+            anyflag = 1;
+            flags += "ErrorDisparity,";
+            if (r == 1)
+            {
+                R1_ErrorDisparity++;
+            }
+            else if (r == 2)
+            {
+                R2_ErrorDisparity++;
+            }
+            else
+            {
+                R3_ErrorDisparity++;
+            }
+            if (c == 1)
+            {
+                C1_ErrorDisparity++;
+            }
+            else if (c == 2)
+            {
+                C2_ErrorDisparity++;
+            }
+            else
+            {
+                C3_ErrorDisparity++;
+            }
+        }
+        if (Flag(in.ErrorSymbol) == 1)
+        {
+            anyflag = 1;
+            flags += "ErrorSymbol,";
+            if (r == 1)
+            {
+                R1_ErrorSymbol++;
+            }
+            else if (r == 2)
+            {
+                R2_ErrorSymbol++;
+            }
+            else
+            {
+                R3_ErrorSymbol++;
+            }
+            if (c == 1)
+            {
+                C1_ErrorSymbol++;
+            }
+            else if (c == 2)
+            {
+                C2_ErrorSymbol++;
+            }
+            else
+            {
+                C3_ErrorSymbol++;
+            }
+        }
+        if (Flag(in.ErrorWrongSymbol) == 1)
+        {
+            anyflag = 1;
+            flags += "ErrorWrongSymbol,";
+            if (r == 1)
+            {
+                R1_ErrorWrongSymbol++;
+            }
+            else if (r == 2)
+            {
+                R2_ErrorWrongSymbol++;
+            }
+            else
+            {
+                R3_ErrorWrongSymbol++;
+            }
+            if (c == 1)
+            {
+                C1_ErrorWrongSymbol++;
+            }
+            else if (c == 2)
+            {
+                C2_ErrorWrongSymbol++;
+            }
+            else
+            {
+                C3_ErrorWrongSymbol++;
+            }
+        }
+        if (Flag(in.ErrorDelimiter) == 1)
+        {
+            anyflag = 1;
+            flags += "ErrorDelimiter,";
+            if (r == 1)
+            {
+                R1_ErrorDelimiter++;
+            }
+            else if (r == 2)
+            {
+                R2_ErrorDelimiter++;
+            }
+            else
+            {
+                R3_ErrorDelimiter++;
+            }
+            if (c == 1)
+            {
+                C1_ErrorDelimiter++;
+            }
+            else if (c == 2)
+            {
+                C2_ErrorDelimiter++;
+            }
+            else
+            {
+                C3_ErrorDelimiter++;
+            }
+        }
+        if (Flag(in.ErrorEndBad) == 1)
+        {
+            anyflag = 1;
+            flags += "ErrorEndBad,";
+            if (r == 1)
+            {
+                R1_ErrorEndBad++;
+            }
+            else if (r == 2)
+            {
+                R2_ErrorEndBad++;
+            }
+            else
+            {
+                R3_ErrorEndBad++;
+            }
+            if (c == 1)
+            {
+                C1_ErrorEndBad++;
+            }
+            else if (c == 2)
+            {
+                C2_ErrorEndBad++;
+            }
+            else
+            {
+                C3_ErrorEndBad++;
+            }
+        }
+        if (Flag(in.ErrorAlignment) == 1)
+        {
+            anyflag = 1;
+            flags += "ErrorAlignment,";
+            if (r == 1)
+            {
+                R1_ErrorAlignment++;
+            }
+            else if (r == 2)
+            {
+                R2_ErrorAlignment++;
+            }
+            else
+            {
+                R3_ErrorAlignment++;
+            }
+            if (c == 1)
+            {
+                C1_ErrorAlignment++;
+            }
+            else if (c == 2)
+            {
+                C2_ErrorAlignment++;
+            }
+            else
+            {
+                C3_ErrorAlignment++;
+            }
+        }
+        if (Flag(in.ErrorAllignment) == 1)
+        {
+            anyflag = 1;
+            flags += "ErrorAllignment,";
+            if (r == 1)
+            {
+                R1_ErrorAllignment++;
+            }
+            else if (r == 2)
+            {
+                R2_ErrorAllignment++;
+            }
+            else
+            {
+                R3_ErrorAllignment++;
+            }
+            if (c == 1)
+            {
+                C1_ErrorAllignment++;
+            }
+            else if (c == 2)
+            {
+                C2_ErrorAllignment++;
+            }
+            else
+            {
+                C3_ErrorAllignment++;
+            }
+        }
+        if (Flag(in.ErrorLength) == 1)
+        {
+            anyflag = 1;
+            flags += "ErrorLength,";
+            if (r == 1)
+            {
+                R1_ErrorLength++;
+            }
+            else if (r == 2)
+            {
+                R2_ErrorLength++;
+            }
+            else
+            {
+                R3_ErrorLength++;
+            }
+            if (c == 1)
+            {
+                C1_ErrorLength++;
+            }
+            else if (c == 2)
+            {
+                C2_ErrorLength++;
+            }
+            else
+            {
+                C3_ErrorLength++;
+            }
+        }
+        if (Flag(in.BadLCRC) == 1)
+        {
+            anyflag = 1;
+            flags += "BadLCRC,";
+            if (r == 1)
+            {
+                R1_BadLCRC++;
+            }
+            else if (r == 2)
+            {
+                R2_BadLCRC++;
+            }
+            else
+            {
+                R3_BadLCRC++;
+            }
+            if (c == 1)
+            {
+                C1_BadLCRC++;
+            }
+            else if (c == 2)
+            {
+                C2_BadLCRC++;
+            }
+            else
+            {
+                C3_BadLCRC++;
+            }
+        }
+        if (Flag(in.BadECRC) == 1)
+        {
+            anyflag = 1;
+            flags += "BadECRC,";
+            if (r == 1)
+            {
+                R1_BadECRC++;
+            }
+            else if (r == 2)
+            {
+                R2_BadECRC++;
+            }
+            else
+            {
+                R3_BadECRC++;
+            }
+            if (c == 1)
+            {
+                C1_BadECRC++;
+            }
+            else if (c == 2)
+            {
+                C2_BadECRC++;
+            }
+            else
+            {
+                C3_BadECRC++;
+            }
+        }
+        if (Flag(in.BadCRC) == 1)
+        {
+            anyflag = 1;
+            flags += "BadCRC,";
+            if (r == 1)
+            {
+                R1_BadCRC++;
+            }
+            else if (r == 2)
+            {
+                R2_BadCRC++;
+            }
+            else
+            {
+                R3_BadCRC++;
+            }
+            if (c == 1)
+            {
+                C1_BadCRC++;
+            }
+            else if (c == 2)
+            {
+                C2_BadCRC++;
+            }
+            else
+            {
+                C3_BadCRC++;
+            }
+        }
+        if (Flag(in.MsgErrorG3LenCheck) == 1)
+        {
+            anyflag = 1;
+            flags += "MsgErrorG3LenCheck,";
+            if (r == 1)
+            {
+                R1_MsgErrorG3LenCheck++;
+            }
+            else if (r == 2)
+            {
+                R2_MsgErrorG3LenCheck++;
+            }
+            else
+            {
+                R3_MsgErrorG3LenCheck++;
+            }
+            if (c == 1)
+            {
+                C1_MsgErrorG3LenCheck++;
+            }
+            else if (c == 2)
+            {
+                C2_MsgErrorG3LenCheck++;
+            }
+            else
+            {
+                C3_MsgErrorG3LenCheck++;
+            }
+        }
+        if (Flag(in.TsErrorDataRate) == 1)
+        {
+            anyflag = 1;
+            flags += "TsErrorDataRate,";
+            if (r == 1)
+            {
+                R1_TsErrorDataRate++;
+            }
+            else if (r == 2)
+            {
+                R2_TsErrorDataRate++;
+            }
+            else
+            {
+                R3_TsErrorDataRate++;
+            }
+            if (c == 1)
+            {
+                C1_TsErrorDataRate++;
+            }
+            else if (c == 2)
+            {
+                C2_TsErrorDataRate++;
+            }
+            else
+            {
+                C3_TsErrorDataRate++;
+            }
+        }
+        if (Flag(in.TsErrorFormat) == 1)
+        {
+            anyflag = 1;
+            flags += "TsErrorFormat,";
+            if (r == 1)
+            {
+                R1_TsErrorFormat++;
+            }
+            else if (r == 2)
+            {
+                R2_TsErrorFormat++;
+            }
+            else
+            {
+                R3_TsErrorFormat++;
+            }
+            if (c == 1)
+            {
+                C1_TsErrorFormat++;
+            }
+            else if (c == 2)
+            {
+                C2_TsErrorFormat++;
+            }
+            else
+            {
+                C3_TsErrorFormat++;
+            }
+        }
+        if (Flag(in.TsErrorParity) == 1)
+        {
+            anyflag = 1;
+            flags += "TsErrorParity,";
+            if (r == 1)
+            {
+                R1_TsErrorParity++;
+            }
+            else if (r == 2)
+            {
+                R2_TsErrorParity++;
+            }
+            else
+            {
+                R3_TsErrorParity++;
+            }
+            if (c == 1)
+            {
+                C1_TsErrorParity++;
+            }
+            else if (c == 2)
+            {
+                C2_TsErrorParity++;
+            }
+            else
+            {
+                C3_TsErrorParity++;
+            }
+        }
+        if (Flag(in.TsErrorRsrvField) == 1)
+        {
+            anyflag = 1;
+            flags += "TsErrorRsrvField,";
+            if (r == 1)
+            {
+                R1_TsErrorRsrvField++;
+            }
+            else if (r == 2)
+            {
+                R2_TsErrorRsrvField++;
+            }
+            else
+            {
+                R3_TsErrorRsrvField++;
+            }
+            if (c == 1)
+            {
+                C1_TsErrorRsrvField++;
+            }
+            else if (c == 2)
+            {
+                C2_TsErrorRsrvField++;
+            }
+            else
+            {
+                C3_TsErrorRsrvField++;
+            }
+        }
+        if (Flag(in.G3ErrorFraming) == 1)
+        {
+            anyflag = 1;
+            flags += "G3ErrorFraming,";
+            if (r == 1)
+            {
+                R1_G3ErrorFraming++;
+            }
+            else if (r == 2)
+            {
+                R2_G3ErrorFraming++;
+            }
+            else
+            {
+                R3_G3ErrorFraming++;
+            }
+            if (c == 1)
+            {
+                C1_G3ErrorFraming++;
+            }
+            else if (c == 2)
+            {
+                C2_G3ErrorFraming++;
+            }
+            else
+            {
+                C3_G3ErrorFraming++;
+            }
+        }
+        if (Flag(in.InvalidEncoding) == 1)
+        {
+            anyflag = 1;
+            flags += "InvalidEncoding,";
+            if (r == 1)
+            {
+                R1_InvalidEncoding++;
+            }
+            else if (r == 2)
+            {
+                R2_InvalidEncoding++;
+            }
+            else
+            {
+                R3_InvalidEncoding++;
+            }
+            if (c == 1)
+            {
+                C1_InvalidEncoding++;
+            }
+            else if (c == 2)
+            {
+                C2_InvalidEncoding++;
+            }
+            else
+            {
+                C3_InvalidEncoding++;
+            }
+        }
+        if (Flag(in.RsvdField) == 1)
+        {
+            anyflag = 1;
+            flags += "RsvdField,";
+            if (r == 1)
+            {
+                R1_RsvdField++;
+            }
+            else if (r == 2)
+            {
+                R2_RsvdField++;
+            }
+            else
+            {
+                R3_RsvdField++;
+            }
+            if (c == 1)
+            {
+                C1_RsvdField++;
+            }
+            else if (c == 2)
+            {
+                C2_RsvdField++;
+            }
+            else
+            {
+                C3_RsvdField++;
+            }
+        }
+        if (Flag(in.ErrorRsvdFld) == 1)
+        {
+            anyflag = 1;
+            flags += "ErrorRsvdFld,";
+            if (r == 1)
+            {
+                R1_ErrorRsvdFld++;
+            }
+            else if (r == 2)
+            {
+                R2_ErrorRsvdFld++;
+            }
+            else
+            {
+                R3_ErrorRsvdFld++;
+            }
+            if (c == 1)
+            {
+                C1_ErrorRsvdFld++;
+            }
+            else if (c == 2)
+            {
+                C2_ErrorRsvdFld++;
+            }
+            else
+            {
+                C3_ErrorRsvdFld++;
+            }
+        }
+        if (Flag(in.HasIdleErrors) == 1)
+        {
+            anyflag = 1;
+            flags += "HasIdleErrors,";
+            if (r == 1)
+            {
+                R1_HasIdleErrors++;
+            }
+            else if (r == 2)
+            {
+                R2_HasIdleErrors++;
+            }
+            else
+            {
+                R3_HasIdleErrors++;
+            }
+            if (c == 1)
+            {
+                C1_HasIdleErrors++;
+            }
+            else if (c == 2)
+            {
+                C2_HasIdleErrors++;
+            }
+            else
+            {
+                C3_HasIdleErrors++;
+            }
+        }
+        if (Flag(in.IdleErrorDisparity) == 1)
+        {
+            anyflag = 1;
+            flags += "IdleErrorDisparity,";
+            if (r == 1)
+            {
+                R1_IdleErrorDisparity++;
+            }
+            else if (r == 2)
+            {
+                R2_IdleErrorDisparity++;
+            }
+            else
+            {
+                R3_IdleErrorDisparity++;
+            }
+            if (c == 1)
+            {
+                C1_IdleErrorDisparity++;
+            }
+            else if (c == 2)
+            {
+                C2_IdleErrorDisparity++;
+            }
+            else
+            {
+                C3_IdleErrorDisparity++;
+            }
+        }
+        if (Flag(in.IdleErrorSymbol) == 1)
+        {
+            anyflag = 1;
+            flags += "IdleErrorSymbol,";
+            if (r == 1)
+            {
+                R1_IdleErrorSymbol++;
+            }
+            else if (r == 2)
+            {
+                R2_IdleErrorSymbol++;
+            }
+            else
+            {
+                R3_IdleErrorSymbol++;
+            }
+            if (c == 1)
+            {
+                C1_IdleErrorSymbol++;
+            }
+            else if (c == 2)
+            {
+                C2_IdleErrorSymbol++;
+            }
+            else
+            {
+                C3_IdleErrorSymbol++;
+            }
+        }
+        if (Flag(in.IdleErrorSkip) == 1)
+        {
+            anyflag = 1;
+            flags += "IdleErrorSkip,";
+            if (r == 1)
+            {
+                R1_IdleErrorSkip++;
+            }
+            else if (r == 2)
+            {
+                R2_IdleErrorSkip++;
+            }
+            else
+            {
+                R3_IdleErrorSkip++;
+            }
+            if (c == 1)
+            {
+                C1_IdleErrorSkip++;
+            }
+            else if (c == 2)
+            {
+                C2_IdleErrorSkip++;
+            }
+            else
+            {
+                C3_IdleErrorSkip++;
+            }
+        }
+        if (Flag(in.IdleErrorData) == 1)
+        {
+            anyflag = 1;
+            flags += "IdleErrorData,";
+            if (r == 1)
+            {
+                R1_IdleErrorData++;
+            }
+            else if (r == 2)
+            {
+                R2_IdleErrorData++;
+            }
+            else
+            {
+                R3_IdleErrorData++;
+            }
+            if (c == 1)
+            {
+                C1_IdleErrorData++;
+            }
+            else if (c == 2)
+            {
+                C2_IdleErrorData++;
+            }
+            else
+            {
+                C3_IdleErrorData++;
+            }
+        }
+        if (Flag(in.FCError) == 1)
+        {
+            anyflag = 1;
+            flags += "FCError,";
+            if (r == 1)
+            {
+                R1_FCError++;
+            }
+            else if (r == 2)
+            {
+                R2_FCError++;
+            }
+            else
+            {
+                R3_FCError++;
+            }
+            if (c == 1)
+            {
+                C1_FCError++;
+            }
+            else if (c == 2)
+            {
+                C2_FCError++;
+            }
+            else
+            {
+                C3_FCError++;
+            }
+        }
+        HasErr++;
+        if (event == _PKT_TLP)
+        {
+            HeTlp++;
+        }
+        else if (event == _PKT_DLLP)
+        {
+            HeDllp++;
+        }
+        else if (event == _PKT_ORDERED_SET)
+        {
+            HeOs++;
+        }
+        else
+        {
+            HeOther++;
+        }
+        if (anyflag == 0)
+        {
+            Unexplained++;
+            flags = "NONE";
+        }
+    }
+    un = 0;
+    if (he == 1 && anyflag == 0)
+    {
+        un = 1;
+    }
+    if (r == 1)
+    {
+        R1_E++;
+        R1_T1 += ts1;
+        R1_T2 += ts2;
+        R1_H += he;
+        R1_U += un;
+    }
+    if (r == 2)
+    {
+        R2_E++;
+        R2_T1 += ts1;
+        R2_T2 += ts2;
+        R2_H += he;
+        R2_U += un;
+    }
+    if (r == 3)
+    {
+        R3_E++;
+        R3_T1 += ts1;
+        R3_T2 += ts2;
+        R3_H += he;
+        R3_U += un;
+    }
+    if (c == 1)
+    {
+        C1_E++;
+        C1_T1 += ts1;
+        C1_T2 += ts2;
+        C1_H += he;
+        C1_U += un;
+    }
+    if (c == 2)
+    {
+        C2_E++;
+        C2_T1 += ts1;
+        C2_T2 += ts2;
+        C2_H += he;
+        C2_U += un;
+    }
+    if (c == 3)
+    {
+        C3_E++;
+        C3_T1 += ts1;
+        C3_T2 += ts2;
+        C3_H += he;
+        C3_U += un;
+    }
+    if (r == 1 && c == 1)
+    {
+        X11_E++;
+        X11_T1 += ts1;
+        X11_H += he;
+    }
+    if (r == 1 && c == 2)
+    {
+        X12_E++;
+        X12_T1 += ts1;
+        X12_H += he;
+    }
+    if (r == 1 && c == 3)
+    {
+        X13_E++;
+        X13_T1 += ts1;
+        X13_H += he;
+    }
+    if (r == 2 && c == 1)
+    {
+        X21_E++;
+        X21_T1 += ts1;
+        X21_H += he;
+    }
+    if (r == 2 && c == 2)
+    {
+        X22_E++;
+        X22_T1 += ts1;
+        X22_H += he;
+    }
+    if (r == 2 && c == 3)
+    {
+        X23_E++;
+        X23_T1 += ts1;
+        X23_H += he;
+    }
+    if (r == 3 && c == 1)
+    {
+        X31_E++;
+        X31_T1 += ts1;
+        X31_H += he;
+    }
+    if (r == 3 && c == 2)
+    {
+        X32_E++;
+        X32_T1 += ts1;
+        X32_H += he;
+    }
+    if (r == 3 && c == 3)
+    {
+        X33_E++;
+        X33_T1 += ts1;
+        X33_H += he;
+    }
+    if (he == 1)
+    {
+        state = "NA";
+        ltssm = in.LtssmState;
+        if (ltssm != null)
+        {
+            state = FormatEx("%u.%u", ltssm[0], ltssm[1]);
+        }
+        if (r == 1 && S1 < SAMPLE_CAP)
+        {
+            S1++;
+            ReportText(FormatEx("PCIE_B1CX2_SAMPLE|%u|%s|%s|%u|%u|%u|%s|%s|%s", idx, TimeToText(in.Time), GetChannelName(), c, r, event, ordset, state, flags));
+        }
+        if (r == 2 && S2 < SAMPLE_CAP)
+        {
+            S2++;
+            ReportText(FormatEx("PCIE_B1CX2_SAMPLE|%u|%s|%s|%u|%u|%u|%s|%s|%s", idx, TimeToText(in.Time), GetChannelName(), c, r, event, ordset, state, flags));
+        }
+        if (r == 3 && S3 < SAMPLE_CAP)
+        {
+            S3++;
+            ReportText(FormatEx("PCIE_B1CX2_SAMPLE|%u|%s|%s|%u|%u|%u|%s|%s|%s", idx, TimeToText(in.Time), GetChannelName(), c, r, event, ordset, state, flags));
+        }
+    }
+    return Complete();
+}
+
+OnFinishScript()
+{
+    if (EndSent == 0)
+    {
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|ErrorDisparity=%u", P_ErrorDisparity));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|ErrorSymbol=%u", P_ErrorSymbol));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|ErrorWrongSymbol=%u", P_ErrorWrongSymbol));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|ErrorDelimiter=%u", P_ErrorDelimiter));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|ErrorEndBad=%u", P_ErrorEndBad));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|ErrorAlignment=%u", P_ErrorAlignment));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|ErrorAllignment=%u", P_ErrorAllignment));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|ErrorLength=%u", P_ErrorLength));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|BadLCRC=%u", P_BadLCRC));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|BadECRC=%u", P_BadECRC));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|BadCRC=%u", P_BadCRC));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|MsgErrorG3LenCheck=%u", P_MsgErrorG3LenCheck));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|TsErrorDataRate=%u", P_TsErrorDataRate));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|TsErrorFormat=%u", P_TsErrorFormat));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|TsErrorParity=%u", P_TsErrorParity));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|TsErrorRsrvField=%u", P_TsErrorRsrvField));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|G3ErrorFraming=%u", P_G3ErrorFraming));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|InvalidEncoding=%u", P_InvalidEncoding));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|RsvdField=%u", P_RsvdField));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|ErrorRsvdFld=%u", P_ErrorRsvdFld));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|HasIdleErrors=%u", P_HasIdleErrors));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|IdleErrorDisparity=%u", P_IdleErrorDisparity));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|IdleErrorSymbol=%u", P_IdleErrorSymbol));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|IdleErrorSkip=%u", P_IdleErrorSkip));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|IdleErrorData=%u", P_IdleErrorData));
+        ReportText(FormatEx("PCIE_B1CX2_PRESENT|FCError=%u", P_FCError));
+        ReportText(FormatEx("PCIE_B1CX2_SCOPE|R1|%u|%u|%u|%u|%u", R1_E, R1_T1, R1_T2, R1_H, R1_U));
+        ReportText(FormatEx("PCIE_B1CX2_SCOPE|R2|%u|%u|%u|%u|%u", R2_E, R2_T1, R2_T2, R2_H, R2_U));
+        ReportText(FormatEx("PCIE_B1CX2_SCOPE|R3|%u|%u|%u|%u|%u", R3_E, R3_T1, R3_T2, R3_H, R3_U));
+        ReportText(FormatEx("PCIE_B1CX2_SCOPE|C1|%u|%u|%u|%u|%u", C1_E, C1_T1, C1_T2, C1_H, C1_U));
+        ReportText(FormatEx("PCIE_B1CX2_SCOPE|C2|%u|%u|%u|%u|%u", C2_E, C2_T1, C2_T2, C2_H, C2_U));
+        ReportText(FormatEx("PCIE_B1CX2_SCOPE|C3|%u|%u|%u|%u|%u", C3_E, C3_T1, C3_T2, C3_H, C3_U));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|ErrorDisparity=%u", R1_ErrorDisparity));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|ErrorSymbol=%u", R1_ErrorSymbol));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|ErrorWrongSymbol=%u", R1_ErrorWrongSymbol));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|ErrorDelimiter=%u", R1_ErrorDelimiter));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|ErrorEndBad=%u", R1_ErrorEndBad));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|ErrorAlignment=%u", R1_ErrorAlignment));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|ErrorAllignment=%u", R1_ErrorAllignment));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|ErrorLength=%u", R1_ErrorLength));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|BadLCRC=%u", R1_BadLCRC));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|BadECRC=%u", R1_BadECRC));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|BadCRC=%u", R1_BadCRC));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|MsgErrorG3LenCheck=%u", R1_MsgErrorG3LenCheck));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|TsErrorDataRate=%u", R1_TsErrorDataRate));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|TsErrorFormat=%u", R1_TsErrorFormat));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|TsErrorParity=%u", R1_TsErrorParity));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|TsErrorRsrvField=%u", R1_TsErrorRsrvField));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|G3ErrorFraming=%u", R1_G3ErrorFraming));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|InvalidEncoding=%u", R1_InvalidEncoding));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|RsvdField=%u", R1_RsvdField));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|ErrorRsvdFld=%u", R1_ErrorRsvdFld));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|HasIdleErrors=%u", R1_HasIdleErrors));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|IdleErrorDisparity=%u", R1_IdleErrorDisparity));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|IdleErrorSymbol=%u", R1_IdleErrorSymbol));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|IdleErrorSkip=%u", R1_IdleErrorSkip));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|IdleErrorData=%u", R1_IdleErrorData));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R1|FCError=%u", R1_FCError));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|ErrorDisparity=%u", R2_ErrorDisparity));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|ErrorSymbol=%u", R2_ErrorSymbol));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|ErrorWrongSymbol=%u", R2_ErrorWrongSymbol));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|ErrorDelimiter=%u", R2_ErrorDelimiter));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|ErrorEndBad=%u", R2_ErrorEndBad));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|ErrorAlignment=%u", R2_ErrorAlignment));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|ErrorAllignment=%u", R2_ErrorAllignment));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|ErrorLength=%u", R2_ErrorLength));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|BadLCRC=%u", R2_BadLCRC));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|BadECRC=%u", R2_BadECRC));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|BadCRC=%u", R2_BadCRC));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|MsgErrorG3LenCheck=%u", R2_MsgErrorG3LenCheck));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|TsErrorDataRate=%u", R2_TsErrorDataRate));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|TsErrorFormat=%u", R2_TsErrorFormat));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|TsErrorParity=%u", R2_TsErrorParity));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|TsErrorRsrvField=%u", R2_TsErrorRsrvField));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|G3ErrorFraming=%u", R2_G3ErrorFraming));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|InvalidEncoding=%u", R2_InvalidEncoding));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|RsvdField=%u", R2_RsvdField));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|ErrorRsvdFld=%u", R2_ErrorRsvdFld));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|HasIdleErrors=%u", R2_HasIdleErrors));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|IdleErrorDisparity=%u", R2_IdleErrorDisparity));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|IdleErrorSymbol=%u", R2_IdleErrorSymbol));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|IdleErrorSkip=%u", R2_IdleErrorSkip));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|IdleErrorData=%u", R2_IdleErrorData));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R2|FCError=%u", R2_FCError));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|ErrorDisparity=%u", R3_ErrorDisparity));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|ErrorSymbol=%u", R3_ErrorSymbol));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|ErrorWrongSymbol=%u", R3_ErrorWrongSymbol));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|ErrorDelimiter=%u", R3_ErrorDelimiter));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|ErrorEndBad=%u", R3_ErrorEndBad));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|ErrorAlignment=%u", R3_ErrorAlignment));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|ErrorAllignment=%u", R3_ErrorAllignment));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|ErrorLength=%u", R3_ErrorLength));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|BadLCRC=%u", R3_BadLCRC));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|BadECRC=%u", R3_BadECRC));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|BadCRC=%u", R3_BadCRC));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|MsgErrorG3LenCheck=%u", R3_MsgErrorG3LenCheck));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|TsErrorDataRate=%u", R3_TsErrorDataRate));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|TsErrorFormat=%u", R3_TsErrorFormat));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|TsErrorParity=%u", R3_TsErrorParity));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|TsErrorRsrvField=%u", R3_TsErrorRsrvField));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|G3ErrorFraming=%u", R3_G3ErrorFraming));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|InvalidEncoding=%u", R3_InvalidEncoding));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|RsvdField=%u", R3_RsvdField));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|ErrorRsvdFld=%u", R3_ErrorRsvdFld));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|HasIdleErrors=%u", R3_HasIdleErrors));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|IdleErrorDisparity=%u", R3_IdleErrorDisparity));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|IdleErrorSymbol=%u", R3_IdleErrorSymbol));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|IdleErrorSkip=%u", R3_IdleErrorSkip));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|IdleErrorData=%u", R3_IdleErrorData));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|R3|FCError=%u", R3_FCError));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|ErrorDisparity=%u", C1_ErrorDisparity));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|ErrorSymbol=%u", C1_ErrorSymbol));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|ErrorWrongSymbol=%u", C1_ErrorWrongSymbol));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|ErrorDelimiter=%u", C1_ErrorDelimiter));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|ErrorEndBad=%u", C1_ErrorEndBad));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|ErrorAlignment=%u", C1_ErrorAlignment));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|ErrorAllignment=%u", C1_ErrorAllignment));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|ErrorLength=%u", C1_ErrorLength));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|BadLCRC=%u", C1_BadLCRC));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|BadECRC=%u", C1_BadECRC));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|BadCRC=%u", C1_BadCRC));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|MsgErrorG3LenCheck=%u", C1_MsgErrorG3LenCheck));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|TsErrorDataRate=%u", C1_TsErrorDataRate));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|TsErrorFormat=%u", C1_TsErrorFormat));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|TsErrorParity=%u", C1_TsErrorParity));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|TsErrorRsrvField=%u", C1_TsErrorRsrvField));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|G3ErrorFraming=%u", C1_G3ErrorFraming));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|InvalidEncoding=%u", C1_InvalidEncoding));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|RsvdField=%u", C1_RsvdField));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|ErrorRsvdFld=%u", C1_ErrorRsvdFld));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|HasIdleErrors=%u", C1_HasIdleErrors));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|IdleErrorDisparity=%u", C1_IdleErrorDisparity));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|IdleErrorSymbol=%u", C1_IdleErrorSymbol));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|IdleErrorSkip=%u", C1_IdleErrorSkip));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|IdleErrorData=%u", C1_IdleErrorData));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C1|FCError=%u", C1_FCError));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|ErrorDisparity=%u", C2_ErrorDisparity));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|ErrorSymbol=%u", C2_ErrorSymbol));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|ErrorWrongSymbol=%u", C2_ErrorWrongSymbol));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|ErrorDelimiter=%u", C2_ErrorDelimiter));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|ErrorEndBad=%u", C2_ErrorEndBad));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|ErrorAlignment=%u", C2_ErrorAlignment));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|ErrorAllignment=%u", C2_ErrorAllignment));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|ErrorLength=%u", C2_ErrorLength));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|BadLCRC=%u", C2_BadLCRC));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|BadECRC=%u", C2_BadECRC));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|BadCRC=%u", C2_BadCRC));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|MsgErrorG3LenCheck=%u", C2_MsgErrorG3LenCheck));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|TsErrorDataRate=%u", C2_TsErrorDataRate));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|TsErrorFormat=%u", C2_TsErrorFormat));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|TsErrorParity=%u", C2_TsErrorParity));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|TsErrorRsrvField=%u", C2_TsErrorRsrvField));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|G3ErrorFraming=%u", C2_G3ErrorFraming));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|InvalidEncoding=%u", C2_InvalidEncoding));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|RsvdField=%u", C2_RsvdField));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|ErrorRsvdFld=%u", C2_ErrorRsvdFld));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|HasIdleErrors=%u", C2_HasIdleErrors));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|IdleErrorDisparity=%u", C2_IdleErrorDisparity));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|IdleErrorSymbol=%u", C2_IdleErrorSymbol));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|IdleErrorSkip=%u", C2_IdleErrorSkip));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|IdleErrorData=%u", C2_IdleErrorData));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C2|FCError=%u", C2_FCError));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|ErrorDisparity=%u", C3_ErrorDisparity));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|ErrorSymbol=%u", C3_ErrorSymbol));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|ErrorWrongSymbol=%u", C3_ErrorWrongSymbol));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|ErrorDelimiter=%u", C3_ErrorDelimiter));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|ErrorEndBad=%u", C3_ErrorEndBad));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|ErrorAlignment=%u", C3_ErrorAlignment));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|ErrorAllignment=%u", C3_ErrorAllignment));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|ErrorLength=%u", C3_ErrorLength));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|BadLCRC=%u", C3_BadLCRC));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|BadECRC=%u", C3_BadECRC));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|BadCRC=%u", C3_BadCRC));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|MsgErrorG3LenCheck=%u", C3_MsgErrorG3LenCheck));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|TsErrorDataRate=%u", C3_TsErrorDataRate));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|TsErrorFormat=%u", C3_TsErrorFormat));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|TsErrorParity=%u", C3_TsErrorParity));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|TsErrorRsrvField=%u", C3_TsErrorRsrvField));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|G3ErrorFraming=%u", C3_G3ErrorFraming));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|InvalidEncoding=%u", C3_InvalidEncoding));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|RsvdField=%u", C3_RsvdField));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|ErrorRsvdFld=%u", C3_ErrorRsvdFld));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|HasIdleErrors=%u", C3_HasIdleErrors));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|IdleErrorDisparity=%u", C3_IdleErrorDisparity));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|IdleErrorSymbol=%u", C3_IdleErrorSymbol));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|IdleErrorSkip=%u", C3_IdleErrorSkip));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|IdleErrorData=%u", C3_IdleErrorData));
+        ReportText(FormatEx("PCIE_B1CX2_FLAGSET|C3|FCError=%u", C3_FCError));
+        ReportText(FormatEx("PCIE_B1CX2_CELL|1|1|%u|%u|%u", X11_E, X11_T1, X11_H));
+        ReportText(FormatEx("PCIE_B1CX2_CELL|1|2|%u|%u|%u", X12_E, X12_T1, X12_H));
+        ReportText(FormatEx("PCIE_B1CX2_CELL|1|3|%u|%u|%u", X13_E, X13_T1, X13_H));
+        ReportText(FormatEx("PCIE_B1CX2_CELL|2|1|%u|%u|%u", X21_E, X21_T1, X21_H));
+        ReportText(FormatEx("PCIE_B1CX2_CELL|2|2|%u|%u|%u", X22_E, X22_T1, X22_H));
+        ReportText(FormatEx("PCIE_B1CX2_CELL|2|3|%u|%u|%u", X23_E, X23_T1, X23_H));
+        ReportText(FormatEx("PCIE_B1CX2_CELL|3|1|%u|%u|%u", X31_E, X31_T1, X31_H));
+        ReportText(FormatEx("PCIE_B1CX2_CELL|3|2|%u|%u|%u", X32_E, X32_T1, X32_H));
+        ReportText(FormatEx("PCIE_B1CX2_CELL|3|3|%u|%u|%u", X33_E, X33_T1, X33_H));
+        ReportText(FormatEx("PCIE_B1CX2_HEEVENT|tlp=%u|dllp=%u|ordered_set=%u|other=%u", HeTlp, HeDllp, HeOs, HeOther));
+        ReportText(FormatEx("PCIE_B1CX2_END|events=%u|has_errors=%u|unexplained=%u|reason=trace_end", Events, HasErr, Unexplained));
+        EndSent = 1;
+    }
+}

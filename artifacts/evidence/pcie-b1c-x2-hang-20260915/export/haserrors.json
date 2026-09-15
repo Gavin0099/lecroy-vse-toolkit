@@ -1,0 +1,596 @@
+{
+ "header": {
+  "start": 225041,
+  "end": 1484414,
+  "r1_end": 1096917,
+  "r2_end": 1479759,
+  "cap": 10
+ },
+ "end": {
+  "events": 1259373,
+  "has_errors": 384993,
+  "unexplained": 384993
+ },
+ "has_errors_by_event": {
+  "tlp": 0,
+  "dllp": 0,
+  "ordered_set": 384993,
+  "other": 0
+ },
+ "present": {
+  "ErrorDisparity": 1259373,
+  "ErrorSymbol": 1259373,
+  "ErrorWrongSymbol": 1259373,
+  "ErrorDelimiter": 1259373,
+  "ErrorEndBad": 1259373,
+  "ErrorAlignment": 1259373,
+  "ErrorAllignment": 0,
+  "ErrorLength": 1259373,
+  "BadLCRC": 4,
+  "BadECRC": 4,
+  "BadCRC": 147,
+  "MsgErrorG3LenCheck": 4,
+  "TsErrorDataRate": 0,
+  "TsErrorFormat": 0,
+  "TsErrorParity": 0,
+  "TsErrorRsrvField": 0,
+  "G3ErrorFraming": 0,
+  "InvalidEncoding": 151,
+  "RsvdField": 0,
+  "ErrorRsvdFld": 151,
+  "HasIdleErrors": 1259373,
+  "IdleErrorDisparity": 1259373,
+  "IdleErrorSymbol": 1259373,
+  "IdleErrorSkip": 1259373,
+  "IdleErrorData": 1259373,
+  "FCError": 105
+ },
+ "scopes": {
+  "R1": {
+   "events": 871876,
+   "ts1": 848648,
+   "ts2": 0,
+   "has_errors": 2,
+   "unexplained": 2
+  },
+  "R2": {
+   "events": 382842,
+   "ts1": 382842,
+   "ts2": 0,
+   "has_errors": 382842,
+   "unexplained": 382842
+  },
+  "R3": {
+   "events": 4655,
+   "ts1": 3201,
+   "ts2": 1311,
+   "has_errors": 2149,
+   "unexplained": 2149
+  },
+  "C1": {
+   "events": 2289,
+   "ts1": 994,
+   "ts2": 1241,
+   "has_errors": 0,
+   "unexplained": 0
+  },
+  "C2": {
+   "events": 1257084,
+   "ts1": 1233697,
+   "ts2": 70,
+   "has_errors": 384993,
+   "unexplained": 384993
+  },
+  "C3": {
+   "events": 0,
+   "ts1": 0,
+   "ts2": 0,
+   "has_errors": 0,
+   "unexplained": 0
+  }
+ },
+ "flags_set": {
+  "ErrorDisparity": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "ErrorSymbol": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "ErrorWrongSymbol": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "ErrorDelimiter": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "ErrorEndBad": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "ErrorAlignment": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "ErrorAllignment": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "ErrorLength": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "BadLCRC": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "BadECRC": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "BadCRC": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "MsgErrorG3LenCheck": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "TsErrorDataRate": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "TsErrorFormat": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "TsErrorParity": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "TsErrorRsrvField": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "G3ErrorFraming": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "InvalidEncoding": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "RsvdField": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "ErrorRsvdFld": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "HasIdleErrors": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "IdleErrorDisparity": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "IdleErrorSymbol": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "IdleErrorSkip": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "IdleErrorData": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  },
+  "FCError": {
+   "R1": 0,
+   "R2": 0,
+   "R3": 0,
+   "C1": 0,
+   "C2": 0,
+   "C3": 0
+  }
+ },
+ "cells": {
+  "R1C1": {
+   "events": 1,
+   "ts1": 0,
+   "has_errors": 0
+  },
+  "R1C2": {
+   "events": 871875,
+   "ts1": 848648,
+   "has_errors": 2
+  },
+  "R1C3": {
+   "events": 0,
+   "ts1": 0,
+   "has_errors": 0
+  },
+  "R2C1": {
+   "events": 0,
+   "ts1": 0,
+   "has_errors": 0
+  },
+  "R2C2": {
+   "events": 382842,
+   "ts1": 382842,
+   "has_errors": 382842
+  },
+  "R2C3": {
+   "events": 0,
+   "ts1": 0,
+   "has_errors": 0
+  },
+  "R3C1": {
+   "events": 2288,
+   "ts1": 994,
+   "has_errors": 0
+  },
+  "R3C2": {
+   "events": 2367,
+   "ts1": 2207,
+   "has_errors": 2149
+  },
+  "R3C3": {
+   "events": 0,
+   "ts1": 0,
+   "has_errors": 0
+  }
+ },
+ "channel_names": {
+  "C2": "Downstream"
+ },
+ "samples": [
+  {
+   "packet_index": 990799,
+   "time_display": "9.552 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 1,
+   "event": 5,
+   "ordset": "2",
+   "state": "5.12",
+   "flags": []
+  },
+  {
+   "packet_index": 1096917,
+   "time_display": "9.575 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 1,
+   "event": 5,
+   "ordset": "2",
+   "state": "5.12",
+   "flags": []
+  },
+  {
+   "packet_index": 1096918,
+   "time_display": "9.575 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 2,
+   "event": 5,
+   "ordset": "2",
+   "state": "2.0",
+   "flags": []
+  },
+  {
+   "packet_index": 1096919,
+   "time_display": "9.575 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 2,
+   "event": 5,
+   "ordset": "2",
+   "state": "2.0",
+   "flags": []
+  },
+  {
+   "packet_index": 1096920,
+   "time_display": "9.575 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 2,
+   "event": 5,
+   "ordset": "2",
+   "state": "2.0",
+   "flags": []
+  },
+  {
+   "packet_index": 1096921,
+   "time_display": "9.575 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 2,
+   "event": 5,
+   "ordset": "2",
+   "state": "2.0",
+   "flags": []
+  },
+  {
+   "packet_index": 1096922,
+   "time_display": "9.575 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 2,
+   "event": 5,
+   "ordset": "2",
+   "state": "2.0",
+   "flags": []
+  },
+  {
+   "packet_index": 1096923,
+   "time_display": "9.575 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 2,
+   "event": 5,
+   "ordset": "2",
+   "state": "2.0",
+   "flags": []
+  },
+  {
+   "packet_index": 1096924,
+   "time_display": "9.575 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 2,
+   "event": 5,
+   "ordset": "2",
+   "state": "2.0",
+   "flags": []
+  },
+  {
+   "packet_index": 1096925,
+   "time_display": "9.575 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 2,
+   "event": 5,
+   "ordset": "2",
+   "state": "2.0",
+   "flags": []
+  },
+  {
+   "packet_index": 1096926,
+   "time_display": "9.575 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 2,
+   "event": 5,
+   "ordset": "2",
+   "state": "2.0",
+   "flags": []
+  },
+  {
+   "packet_index": 1096927,
+   "time_display": "9.575 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 2,
+   "event": 5,
+   "ordset": "2",
+   "state": "2.0",
+   "flags": []
+  },
+  {
+   "packet_index": 1479761,
+   "time_display": "10.912 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 3,
+   "event": 5,
+   "ordset": "2",
+   "state": "2.0",
+   "flags": []
+  },
+  {
+   "packet_index": 1479762,
+   "time_display": "10.912 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 3,
+   "event": 5,
+   "ordset": "2",
+   "state": "2.0",
+   "flags": []
+  },
+  {
+   "packet_index": 1479763,
+   "time_display": "10.912 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 3,
+   "event": 5,
+   "ordset": "2",
+   "state": "2.0",
+   "flags": []
+  },
+  {
+   "packet_index": 1479764,
+   "time_display": "10.912 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 3,
+   "event": 5,
+   "ordset": "2",
+   "state": "2.0",
+   "flags": []
+  },
+  {
+   "packet_index": 1479765,
+   "time_display": "10.912 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 3,
+   "event": 5,
+   "ordset": "2",
+   "state": "2.0",
+   "flags": []
+  },
+  {
+   "packet_index": 1479766,
+   "time_display": "10.912 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 3,
+   "event": 5,
+   "ordset": "2",
+   "state": "2.0",
+   "flags": []
+  },
+  {
+   "packet_index": 1479767,
+   "time_display": "10.912 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 3,
+   "event": 5,
+   "ordset": "2",
+   "state": "2.0",
+   "flags": []
+  },
+  {
+   "packet_index": 1479768,
+   "time_display": "10.912 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 3,
+   "event": 5,
+   "ordset": "2",
+   "state": "2.0",
+   "flags": []
+  },
+  {
+   "packet_index": 1479769,
+   "time_display": "10.912 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 3,
+   "event": 5,
+   "ordset": "2",
+   "state": "2.0",
+   "flags": []
+  },
+  {
+   "packet_index": 1479770,
+   "time_display": "10.912 sec",
+   "channel": "Downstream",
+   "c": 2,
+   "r": 3,
+   "event": 5,
+   "ordset": "2",
+   "state": "2.0",
+   "flags": []
+  }
+ ]
+}
