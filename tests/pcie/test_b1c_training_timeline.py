@@ -111,5 +111,70 @@ class B1cTests(unittest.TestCase):
             self.assertEqual(b1c.main(args), 2)
 
 
+def r1_timeline():
+    rows = timeline()
+    for row in rows:
+        if row["kind"] == "segment" and row["seg"] == 7:
+            row["err_any"] = 20
+    return rows
+
+
+X2 = {
+    "header": {"start": 100, "end": 480, "r1_end": 203, "r2_end": 400, "cap": 10},
+    "scopes": {"R1": {"has_errors": 0}, "R2": {"has_errors": 197}, "R3": {"has_errors": 20}},
+    "cells": {"R1C1": {"events": 1, "ts1": 0, "has_errors": 0}, "R1C2": {"events": 102, "ts1": 90, "has_errors": 0}, "R1C3": {"events": 0, "ts1": 0, "has_errors": 0},
+              "R2C1": {"events": 0, "ts1": 0, "has_errors": 0}, "R2C2": {"events": 197, "ts1": 197, "has_errors": 197}, "R2C3": {"events": 0, "ts1": 0, "has_errors": 0},
+              "R3C1": {"events": 40, "ts1": 20, "has_errors": 0}, "R3C2": {"events": 40, "ts1": 30, "has_errors": 20}, "R3C3": {"events": 0, "ts1": 0, "has_errors": 0}},
+    "channel_names": {"C2": "Downstream"},
+}
+GUI = {"link_events": [{"packet_index": 100, "gui_text": "Link Down", "vse_constant": "LINK_DOWN"}],
+       "ts1_error_samples": [{"packet_index": 410, "direction_arrow": "R→", "speed": "2.5", "width": "x1", "gui_error_labels": ["TSRsrvErr"]}]}
+
+
+def r1_meta():
+    return {"timeline_sha256": "A" * 64, "window": {"start": 100, "end": 480}, "gap_seconds": "0.1", "r1": True, "x2_sha256": "B" * 64,
+            "gui_sha256": "C" * 64, "link_events": GUI["link_events"], "ranges": b1c.channel_ranges(X2), "cells": X2["cells"],
+            "channel_labels": {cid: b1c.channel_label(X2, cid) for cid in (1, 2, 3)}}
+
+
+class B1cR1Tests(unittest.TestCase):
+    def test_carried_state_channel_and_sample_after_gap(self):
+        phases = b1c.build(r1_timeline(), Decimal("0.1"), X2, GUI)
+        after_gap = phases[5]
+        self.assertEqual(after_gap["kind"], "LINK_CONDITION")
+        self.assertEqual(after_gap["channels"], ["Upstream"])
+        self.assertEqual(after_gap["ltssm_at_start"]["Downstream"]["state"], "POLLING")
+        self.assertEqual(after_gap["ltssm_at_start"]["Upstream"]["state"], "DETECT")
+        self.assertEqual(after_gap["has_errors_channel"]["channel"], "Downstream")
+        self.assertEqual(after_gap["error_subtype"], "UNKNOWN")
+        self.assertEqual([s["packet_index"] for s in after_gap["gui_samples"]], [410])
+        self.assertIn("link condition ×1（起點 Upstream；HasErrors 在 Downstream，Downstream 仍為 Polling）", b1c.flow_line(phases, True))
+
+    def test_r1_markdown_passes_contract_and_marks_samples(self):
+        phases = b1c.build(r1_timeline(), Decimal("0.1"), X2, GUI)
+        md = b1c.render_markdown(phases, r1_meta())
+        self.assertEqual(b1c.contract_check(md, phases, True), [])
+        self.assertIn("僅代表此 sample", md)
+        self.assertIn("依據 B1c-x2 R3", md)
+        self.assertIn("Link Event「Link Down」", md)
+        for unknown in b1c.UNKNOWNS_R1:
+            self.assertIn(unknown, md)
+
+    def test_r1_contract_rejects_unmarked_label_and_missing_basis(self):
+        phases = b1c.build(r1_timeline(), Decimal("0.1"), X2, GUI)
+        md = b1c.render_markdown(phases, r1_meta())
+        self.assertTrue(any("sample-only" in e for e in b1c.contract_check(md + "\n空白後的 TS1 都是 `TSRsrvErr`。\n", phases, True)))
+        stripped = md.replace("依據 B1c-x2 R3", "範圍 R3")
+        self.assertTrue(any("without its basis" in e for e in b1c.contract_check(stripped, phases, True)))
+
+    def test_range_sum_mismatch_and_orphan_sample_are_rejected(self):
+        bad = {**X2, "scopes": {**X2["scopes"], "R3": {"has_errors": 21}}}
+        with self.assertRaisesRegex(b1c.B1cError, "B1c-x2 reports 21"):
+            b1c.build(r1_timeline(), Decimal("0.1"), bad, GUI)
+        orphan = {"ts1_error_samples": [{**GUI["ts1_error_samples"][0], "packet_index": 999}]}
+        with self.assertRaisesRegex(b1c.B1cError, "exactly one phase"):
+            b1c.build(r1_timeline(), Decimal("0.1"), X2, orphan)
+
+
 if __name__ == "__main__":
     unittest.main()
