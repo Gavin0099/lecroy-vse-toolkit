@@ -26,7 +26,8 @@ def associate_config(metadata, fields):
         if role['role']==g2b.NON_POSTED_REQUEST:
             previous=pending.get(key)
             if previous:
-                previous['outcome']=g2b.REISSUED
+                previous['outcome']=('PENDING_KEY_REUSED_WITH_UNQUALIFIED_COMPLETIONS'
+                                     if previous['completions'] else g2b.REISSUED)
                 ambiguous.add(previous['packet_index']);ambiguous.add(row['packet_index'])
             q={**row,'vendor_type_name':role['vendor_type_name'],'outcome':g2b.NONE_OBSERVED,'completions':[]}
             pending[key]=q;requests.append(q)

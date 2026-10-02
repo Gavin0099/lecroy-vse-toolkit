@@ -26,6 +26,8 @@ class ConfigTests(unittest.TestCase):
         for i,row in enumerate(m):row['row']=i+1
         p['tlps']=5
         d=b2b.build(p,m,3200,4000)
+        self.assertEqual(d['accesses'][0]['association_outcome'],
+                         'PENDING_KEY_REUSED_WITH_UNQUALIFIED_COMPLETIONS')
         for r in d['accesses'][:2]:
             self.assertEqual(r['value_status'],'AMBIGUOUS_KEY_REUSE')
             self.assertIsNone(r['read_value'])

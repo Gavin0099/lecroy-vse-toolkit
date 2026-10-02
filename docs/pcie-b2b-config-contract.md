@@ -29,3 +29,7 @@ requests with unqualified Completion candidates. Such candidates do not establis
 returned value or retire a key. Locked Completion types 19/20 not probed by B2a keep
 metadata with `field_status=NOT_CAPTURED_BY_B2A`; no payload/register data is inferred.
 They remain candidates or unmatched observations and do not close the pending key.
+
+A reused key with existing unqualified candidates reports
+`PENDING_KEY_REUSED_WITH_UNQUALIFIED_COMPLETIONS`. The legacy before-any-Completion
+outcome applies only when the earlier request has no candidates.
