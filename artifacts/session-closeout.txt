@@ -55,3 +55,13 @@ CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
 OPEN_RISKS: Legacy nearest-preceding associations are candidates, not returned config data or complete transactions; B2b implements a separate strategy. No timeout/fault/root cause. Nonrequired inherited governance-drift missing checker deferred.
 NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
 RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b2b delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 57 clean-slice PCIe tests PASS, no skips; two real offline replays match historical current r2-run1 output byte-for-byte
+FILES_TOUCHED: scripts/pcie/b2b_config_access.py, tests/pcie/test_b2b_config_access.py, docs/pcie-b2b-config-contract.md, artifacts/evidence/pcie-b2b-hang-20260930, docs/pcie-b2b-evidence.md, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: B1c did not carry a cryptographic capture hash: overlap packets, basename and matching metadata are the stated binding. No applied state, timeout, memory split completeness or new-SDE initialization claim. Inherited nonrequired governance-drift missing checker deferred outside scope.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE

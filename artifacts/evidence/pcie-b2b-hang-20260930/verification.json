@@ -1,0 +1,27 @@
+{
+  "status": "PASS_B2B_CONFIG_ACCESS_LOG",
+  "byte_identical": true,
+  "tests_passed": 7,
+  "output_sha256": {
+    "accesses.json": "7B54AAF6DE5FB29EBA12BD99F59316E31A14DA040A594BC958124BDEF8075373",
+    "accesses.md": "9ACE017E3293F07407C0DBDE3A8F2F9633BC2094EBDC11379CA076D4F548D081"
+  },
+  "summary": {
+    "config_requests": 61,
+    "reads": 32,
+    "writes": 29,
+    "observed_read_returns": 30,
+    "after_reconnect_requests": 0
+  },
+  "superseded": [
+    "run1",
+    "r1-run1"
+  ],
+  "input": {
+    "probe_sha256": "AB40E8CB481377F84CEB271D1EAEB693A912D6D07D8DD4A863B793DE3D9891BD",
+    "metadata_sha256": "DFC6FC2540B242A549D9F0CC84C1F9FA7C2385F8DF620A2FED0B01530657ACBC",
+    "b1d_evaluation_sha256": "22ED4A80E2917FE547693D6BD43AF82CD496C34FFAA5B882DA699622C3EC240A",
+    "training_sha256": "161FCF9EF28E78D4EAAE7BCB6381A8AEC8A19587FD37964B7B854E8FB366FBD3",
+    "trace_binding": "same probe/G2a rows, matching B1c window TLPs, basename; B1c did not carry a trace hash"
+  }
+}
