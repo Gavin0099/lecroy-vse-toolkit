@@ -255,3 +255,11 @@ CHECKS_RUN: python -X utf8 -B -m unittest discover -s tests/pcie -p test_b3a*.py
 OPEN_RISKS: Extension text is opaque, not a validated fact; source authenticity and inherited nonrequired drift check unavailable.
 NOT_DONE: Final capability review/merge; W2+W3, W4+W5; product ASPM policy.
 RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Close W1 final review as one bounded batch.
+WORK_COMPLETED: 125 tests PASS, milestone id/summary guard added; arbitrary opaque-prose semantics P2 deferred explicitly.
+FILES_TOUCHED: scripts/pcie/b3a_event_contract.py, tests/pcie/test_b3a_event_contract.py, docs/pcie-observation-timeline-contract.md, docs/pcie-observation-timeline-contract-v1.json, artifacts/evidence/pcie-w1-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: python -X utf8 -B -m unittest discover -s tests/pcie -v; latest bounded invariant adversarial review; real representative fixture validator.
+OPEN_RISKS: Not an arbitrary JSON semantic classifier or source authenticity verifier; nonrequired drift check missing.
+NOT_DONE: PR merge pending; W2+W3 and W4+W5; engineer ASPM policy.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE

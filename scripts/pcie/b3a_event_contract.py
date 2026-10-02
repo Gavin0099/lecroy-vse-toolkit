@@ -208,6 +208,8 @@ def validate(doc, source_bytes):
     for milestone in doc['milestones']:
         fields(milestone, 'milestone')
         refs(milestone)
+        require(all(isinstance(milestone[key], str) and bool(milestone[key]) for key in ('id', 'summary')),
+                'Milestone identity and summary must be non-empty strings')
         require(milestone['status'] in STATES, 'Invalid milestone status')
         require(milestone['basis'] in {'B1D_EXISTING_RULE', 'B1D_OBSERVATION_MILESTONE'}, 'Unsourced product expectation')
     require(isinstance(doc['coverage'], list) and isinstance(doc['limitations'], list), 'Missing coverage or limits')

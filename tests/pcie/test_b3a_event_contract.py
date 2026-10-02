@@ -13,6 +13,12 @@ FIXTURE = ROOT / 'artifacts/evidence/pcie-w1-20261002/representative.json'
 
 
 class EventContractTests(unittest.TestCase):
+    def test_milestone_identity_and_summary_types(self):
+        item={'id':'fixture-milestone','summary':'sourced context','status':'INCONCLUSIVE',
+              'basis':'B1D_OBSERVATION_MILESTONE','evidence':[contract.evidence('training','/phases/7')]}
+        for field,value in [('id',[]),('summary',{}),('id','')]:
+            doc=copy.deepcopy(self.doc);doc['milestones']=[{**item,field:value}]
+            with self.assertRaises(ValueError): contract.validate(doc,self.sources)
     def test_source_alias_cannot_bypass_count_and_gap_consistency(self):
         self.doc['sources']['link_alias']=copy.deepcopy(self.doc['sources']['link'])
         self.sources['link_alias']=self.sources['link']
