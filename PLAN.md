@@ -382,3 +382,5 @@ B2g product policy remains waiting for engineer Who / When / What / Proof answer
 - fix(pcie): format BDF bus and device as hexadecimal: 79 PCIe tests PASS (7 helper tests); literal 0x1F58 regression fails before fix and passes after; two real role/association/orphan replays byte-identical. Scope: Formatting only; no physical device continuity, transaction qualification or policy inference. Inherited nonrequired governance-drift missing checker deferred.
 
 - fix(pcie): bound relative registers to their config spaces: 81 PCIe tests PASS without skips; negative regression reproduced before fix; two real replays equal historical output byte-for-byte. Scope: Observed evidence only, no applied state, product policy or root cause. Inherited nonrequired governance-drift missing checker deferred outside scope.
+
+- docs(pcie): distinguish current B2d checks from historical evidence: 6 focused B2d tests and 81 clean-slice PCIe tests PASS; fresh UTF-8 logs, source commit/blob IDs and log hashes retained. Scope: Source-test evidence only; no new hardware/runtime/policy/root-cause proof. Nonrequired inherited governance-drift checker missing and deferred.
