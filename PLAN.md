@@ -360,3 +360,5 @@ qualify extraction or add product rules. B1d and B2 delivery follow independentl
 B2g product policy remains waiting for engineer Who / When / What / Proof answers.
 
 - feat(pcie): deliver engineer-sourced B1d MUX rules: 30 clean-slice PCIe tests PASS (21 B1d); two real B1d replay JSON/MD byte-identical to historical r2; source document and input hash binding verified. Scope: No overall case PASS/FAIL, electrical MUX measurement, persistent Gen1, initialization completion or root cause. B2g rules still await engineer answers. Existing nonrequired governance-drift checker missing on main; deferred outside this slice.
+
+- feat(pcie): deliver bounded B1e link findings: 37 clean-slice PCIe tests PASS (7 B1e); two real replay JSON/MD match historical run1 byte-for-byte; tampered evaluations and changed training rejected. Scope: No new product rules, replay inference from NAK, global CRC health, full Recovery entry count or root cause. Existing nonrequired governance-drift checker missing on main; deferred outside this slice.
