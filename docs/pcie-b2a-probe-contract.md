@@ -38,3 +38,10 @@ qualification requires all raw bytes needed for the first DWORD; historical
 16-byte inputs can only pass the library consistency checks for legacy replay.
 `payload_dwords_checked` on a historical artifact describes decoder consistency,
 not independent full raw-DWORD validation. New CLI output labels its basis.
+
+Payload length is first cross-checked with raw TLP DW0: format distinguishes data
+from no-data, and the 10-bit length supplies DWORD count (encoded zero is 1024
+for data formats). Primary implementation reference: [cocotbext-pcie TLP decoder,
+commit 6e6081d](https://github.com/alexforencich/cocotbext-pcie/blob/6e6081d441debac7512b25fd4b7bc92f137e95a3/cocotbext/pcie/core/tlp.py#L505).
+This is a layout reference, not complete PCIe spec/product verification.
+Decoded lengths 0 or 1 cannot bypass a raw one-DWORD data header.

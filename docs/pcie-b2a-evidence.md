@@ -46,11 +46,16 @@ raw bytes were synthesized. Source/old copies are hash-only; protected identitie
 and analysis-copy read-only state remain unchanged.
 
 Current evidence: `artifacts/evidence/pcie-b2a-raw-dword-20261002/verification.json`,
-`full-verified1/fields.json` and `full-verified2/fields.json`; 10 focused tests and
-76 clean-slice tests PASS at this revision, with log hash in verification.
+`length-verified1/fields.json` and `length-verified2/fields.json`; 11 focused tests and
+77 clean-slice tests PASS at this revision, with log hash in verification.
 The CLI rejects short legacy proof for new qualification. Downstream historical
 replays still use their preserved inputs; the equality bridge above validates
 their decoded values for this capture, without changing their source hashes.
 
 Scope remains PETracer 13.26 / converted non-Flit capture only. This does not
 prove register writes applied, product ASPM policy, or hang/BSOD causality.
+
+Review also reproduced decoded payload lengths 0/1 bypassing the raw DWORD gate.
+The verifier now rejects a length inconsistent with the raw TLP format/length
+header before comparing bytes. Fresh raw outputs are replayed through this gate;
+the same 59 RegisterData DWORDs pass.

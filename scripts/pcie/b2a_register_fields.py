@@ -69,6 +69,10 @@ def verify(rows, end, metadata, *, require_full_payload=False):
         if f[0] != 0xFB or f[3] != {9: 4, 10: 0x44, 11: 5, 12: 0x45, 17: 0xA, 18: 0x4A}[typ]: raise ValueError("Unsupported frame layout")
         plen = r["payload_length"]
         if plen is None or plen < 0: raise ValueError("Missing payload length")
+        # TLP DW0 format/10-bit length; see pinned primary implementation in contract.
+        raw_dwords=int.from_bytes(f[5:7], 'big') & 0x3FF
+        raw_payload_length=((raw_dwords or 1024)*4) if f[3] & 0x40 else 0
+        if plen != raw_payload_length: raise ValueError("Raw header/payload length mismatch")
         p = bytes.fromhex(r["payload_prefix"]) if r["payload_prefix"] else b""
         if len(p) != min(plen, 16): raise ValueError("Payload prefix length mismatch")
         if plen:

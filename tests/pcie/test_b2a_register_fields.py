@@ -39,6 +39,15 @@ class ProbeTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'Full raw'):
             b2a.verify(rows,end,meta,require_full_payload=True)
 
+    def test_decoder_length_cannot_shrink_raw_data_dword(self):
+        for length,prefix in ((0,None),(1,'01')):
+            rows,end,meta=fixture()
+            rows[1]['frame_prefix']+='00C3F7'
+            rows[2]['frame_prefix']+='800000'
+            rows[1].update(payload_length=length,payload_prefix=prefix,register_data=0x12345678)
+            with self.subTest(length=length), self.assertRaisesRegex(ValueError,'Raw header/payload length'):
+                b2a.verify(rows,end,meta,require_full_payload=True)
+
     def test_fresh_raw_evidence_and_legacy_cli_gate(self):
         root=Path(__file__).resolve().parents[2]
         metadata=root/'artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json'

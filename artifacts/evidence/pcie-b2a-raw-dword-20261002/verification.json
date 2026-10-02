@@ -6,8 +6,8 @@
     "completions": 272,
     "payload_dwords_checked": 59
   },
-  "tests_passed": 76,
-  "focused_tests": 10,
+  "tests_passed": 77,
+  "focused_tests": 11,
   "raw_runs_byte_identical": true,
   "legacy_rows_except_frame_prefix_equal": true,
   "legacy_prefixes_match": true,
@@ -17,7 +17,7 @@
     "3CF03EA1E84ED47120339D105ADB231B45B494AEA3C0180AB9AEF261669C0B34"
   ],
   "raw_output_sha256": "630D4A53ADA438A9E881C8E8D92221361283A9CBABFC699C7D24EE8133A2833B",
-  "tests_log_sha256": "3E660D693BA61F479CB6D7E5A4CFF60038ACBBAF674BB49A5DC001F730D7D63C",
+  "tests_log_sha256": "0F54029B6D111A4A4B0B80A50CB02BBC1B7B522D9746BD812474DAD2B8605B15",
   "analysis_copy_read_only_preserved": true,
   "protected_identity_unchanged": true,
   "claim_scope": "PETracer 13.26 converted non-Flit capture only; no applied state/policy/root cause"

@@ -40,7 +40,7 @@ test_r1_markdown_passes_contract_and_marks_samples (test_b1c_training_timeline.B
 test_range_sum_mismatch_and_orphan_sample_are_rejected (test_b1c_training_timeline.B1cR1Tests.test_range_sum_mismatch_and_orphan_sample_are_rejected) ... ok
 test_straddled_phase_still_validates_channel_totals (test_b1c_training_timeline.B1cR1Tests.test_straddled_phase_still_validates_channel_totals) ... ok
 test_cli_requires_matching_pass_summary (test_b1c_training_timeline.B1cTests.test_cli_requires_matching_pass_summary) ... B1c training timeline not produced: B1b summary does not describe this timeline.json
-B1c training timeline not produced: Refusing to reuse existing output directory: C:\Users\reiko\AppData\Local\Temp\tmp_0w8ccf7\out
+B1c training timeline not produced: Refusing to reuse existing output directory: C:\Users\reiko\AppData\Local\Temp\tmpjjqcarin\out
 ok
 test_contract_rejects_judgement_wording_and_hidden_unknown (test_b1c_training_timeline.B1cTests.test_contract_rejects_judgement_wording_and_hidden_unknown) ... ok
 test_markdown_keeps_unknowns_and_passes_contract (test_b1c_training_timeline.B1cTests.test_markdown_keeps_unknowns_and_passes_contract) ... ok
@@ -80,6 +80,7 @@ test_real_hang_focus_is_after_l0_without_created_anomalies (test_b1e_link_findin
 test_tampered_evaluation_status_source_or_evidence_is_rejected (test_b1e_link_findings.B1eTests.test_tampered_evaluation_status_source_or_evidence_is_rejected) ... ok
 test_width_mismatch_is_a_finding_but_not_an_overall_verdict (test_b1e_link_findings.B1eTests.test_width_mismatch_is_a_finding_but_not_an_overall_verdict) ... ok
 test_capture_metadata_and_unsupported_frame_rejected (test_b2a_register_fields.ProbeTests.test_capture_metadata_and_unsupported_frame_rejected) ... ok
+test_decoder_length_cannot_shrink_raw_data_dword (test_b2a_register_fields.ProbeTests.test_decoder_length_cannot_shrink_raw_data_dword) ... ok
 test_endian_and_frame_payload_mismatch (test_b2a_register_fields.ProbeTests.test_endian_and_frame_payload_mismatch) ... ok
 test_fresh_raw_evidence_and_legacy_cli_gate (test_b2a_register_fields.ProbeTests.test_fresh_raw_evidence_and_legacy_cli_gate) ... Full raw DWORD/payload bytes required for qualification
 ok
@@ -118,6 +119,6 @@ test_split_completions_accumulate_on_one_request (test_g2b_associate.Association
 test_roles_follow_vendor_constants_and_field_shape (test_g2b_associate.ClassificationTests.test_roles_follow_vendor_constants_and_field_shape) ... ok
 
 ----------------------------------------------------------------------
-Ran 76 tests in 0.159s
+Ran 77 tests in 0.204s
 
 OK
