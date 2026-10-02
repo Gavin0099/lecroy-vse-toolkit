@@ -388,3 +388,9 @@ B2g product policy remains waiting for engineer Who / When / What / Proof answer
 - feat(pcie): deliver B2E snapshot query: 87 clean-slice PCIe tests PASS (6 focused); pointer reserved-byte/marker regression fails before fix and passes after; two fresh real snapshot JSON/Markdown replays byte-identical; after-reconnect views remain UNKNOWN. Scope: Observed evidence query, not actual hardware snapshot; old mapping/state not inherited by SDE. Inherited nonrequired governance-drift missing checker deferred outside scope.
 
 - feat(pcie): deliver B2F snapshot diff: 93 clean-slice PCIe tests PASS, no skips; two fresh real diffs byte-identical using current B2e snapshots (pointer width corrected); old artifacts remain historical; stale snapshot regression rejects the earlier pointer width before creating output. Scope: No hardware-change/physical-identity/root-cause claim; same BDF/VID-DID cannot make epochs comparable. Inherited nonrequired governance-drift missing checker deferred outside scope.
+
+- feat(pcie): deliver B2G watchlist prepare: 98 clean-slice PCIe tests PASS, no skips; two real offline replays match historical current r1-run1 output byte-for-byte. Scope: No engineer product expectations supplied; L1_ENABLE_WRITE_INTENT cannot prove register applied, system ASPM enabled, policy violation or BSOD causality. Inherited nonrequired governance-drift missing checker deferred outside scope.
+
+B2g review repair: 101 PCIe tests PASS (8 focused); two real replays identical; two old readback regressions fail before fix; delivered questionnaire hashes freshly bound. Read-back candidates require request and completion after this write and before the next overlapping write in the same device epoch; effective/expected UNKNOWN. Historical questionnaire identity record marked superseded.
+
+B2g read-back repair: completion must remain in the write device epoch; 102 suite tests PASS, 9 focused.

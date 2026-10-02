@@ -165,3 +165,25 @@ CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
 OPEN_RISKS: No hardware-change/physical-identity/root-cause claim; same BDF/VID-DID cannot make epochs comparable. Inherited nonrequired governance-drift missing checker deferred outside scope.
 NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
 RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b2g delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 98 clean-slice PCIe tests PASS, no skips; two real offline replays match historical current r1-run1 output byte-for-byte
+FILES_TOUCHED: scripts/pcie/b2g_watchlist_prepare.py, tests/pcie/test_b2g_watchlist_prepare.py, docs/pcie-b2g-observation-contract.md, artifacts/evidence/pcie-b2g-hang-20260930, docs/pcie-b2g-engineer-questions.md, docs/pcie-b1e-b2-progress-20260930.md, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: No engineer product expectations supplied; L1_ENABLE_WRITE_INTENT cannot prove register applied, system ASPM enabled, policy violation or BSOD causality. Inherited nonrequired governance-drift missing checker deferred outside scope.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+B2g review repair: 101 PCIe tests PASS (8 focused); two real replays identical; two old readback regressions fail before fix; delivered questionnaire hashes freshly bound. Read-back candidates require request and completion after this write and before the next overlapping write in the same device epoch; effective/expected UNKNOWN. Historical questionnaire identity record marked superseded.
+
+
+2026-10-02 B2g latest-head review repair
+TASK_INTENT: Fix read-back provenance and current engineer document identity before merging B2g preparation.
+WORK_COMPLETED: 102 PCIe tests PASS (9 focused); deterministic real replay; superseded-write, early-request, overlap and cross-disconnect completion regressions; current questionnaire hashes bound; effective/expected UNKNOWN, policy NOT_EVALUATED.
+FILES_TOUCHED: scripts/pcie/b2g_watchlist_prepare.py, tests/pcie/test_b2g_watchlist_prepare.py, docs/pcie-b2g-observation-contract.md, artifacts/evidence/pcie-b2g-hang-20260930, docs/pcie-b2g-engineer-questions.md, docs/pcie-b1e-b2-progress-20260930.md, artifacts/evidence/pcie-b2g-delivery-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: python -X utf8 -B -m unittest discover -s tests/pcie -v; source-bound B2g replay twice; git show HEAD document byte hashes.
+OPEN_RISKS: Product ASPM policy awaits Who/When/What/Proof; inherited nonrequired drift checker absent.
+NOT_DONE: Latest repair review/merge pending; W1-W5 and product policy not implemented.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE

@@ -1,0 +1,23 @@
+{
+  "status": "SUPERSEDED_DOCUMENT_IDENTITY_CLARIFICATION",
+  "change_class": "docs only",
+  "four_question_groups_retained": true,
+  "q4_completion_proof_definition_retained": true,
+  "runtime_and_test_code_unchanged": true,
+  "schema_v2_outputs_unchanged": true,
+  "prior_regression_result": {
+    "tests_passed": 183,
+    "source": "verification-r1.json",
+    "rerun_this_revision": false
+  },
+  "replay_result": "prior r1 2/2 unchanged; not rerun for document-only changes",
+  "document_sha256": {
+    "docs\\pcie-b2g-engineer-questions.md": "D9464854C7E051A432E2EC8BE4CB67E62E71BFCEA6BA94CD4FAB4B00CF62DC1A",
+    "docs\\pcie-b2g-observation-contract.md": "1AD662FD6EDD559016948375E3498F913DCD5C1D226B1ED7A946D919532C886B",
+    "PLAN.md": "3FD51968832E123A1D62CB9EA05E6B07C34F85FCFBC5D2452D9777C0D2762B1D"
+  },
+  "product_evaluation": "WAITING FOR SOURCE/SCOPE",
+  "delivery": "local only; no commit/push/PR/merge",
+  "superseded_by": "artifacts/evidence/pcie-b2g-delivery-20261002/verification.json",
+  "limitation": "Historical document hashes predate final questionnaire wording; do not identify delivered files."
+}
