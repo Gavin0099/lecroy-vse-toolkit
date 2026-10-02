@@ -1,0 +1,428 @@
+{
+  "schema": "pcie.b2c-capability-map/v1",
+  "device_id": 256,
+  "bdf": "001:00.0",
+  "packet_index": 225040,
+  "epoch": "before_disconnect",
+  "header_type": 0,
+  "registers": {
+    "VendorDeviceID": {
+      "byte_offset": 0,
+      "layout_source": "https://raw.githubusercontent.com/torvalds/linux/v6.12/include/uapi/linux/pci_regs.h",
+      "capability_evidence": []
+    },
+    "Command": {
+      "byte_offset": 4,
+      "layout_source": "https://raw.githubusercontent.com/torvalds/linux/v6.12/include/uapi/linux/pci_regs.h",
+      "capability_evidence": []
+    },
+    "HeaderTypeDWORD": {
+      "byte_offset": 12,
+      "layout_source": "https://raw.githubusercontent.com/torvalds/linux/v6.12/include/uapi/linux/pci_regs.h",
+      "capability_evidence": []
+    },
+    "CapabilityPointer": {
+      "byte_offset": 52,
+      "layout_source": "https://raw.githubusercontent.com/torvalds/linux/v6.12/include/uapi/linux/pci_regs.h",
+      "capability_evidence": []
+    },
+    "BAR0": {
+      "byte_offset": 16,
+      "layout_source": "https://raw.githubusercontent.com/torvalds/linux/v6.12/include/uapi/linux/pci_regs.h",
+      "capability_evidence": [
+        {
+          "value": 0,
+          "request_packet": 3286,
+          "completion_packet": 3288,
+          "access_id": "B2B-017"
+        }
+      ]
+    },
+    "BAR1": {
+      "byte_offset": 20,
+      "layout_source": "https://raw.githubusercontent.com/torvalds/linux/v6.12/include/uapi/linux/pci_regs.h",
+      "capability_evidence": [
+        {
+          "value": 0,
+          "request_packet": 3286,
+          "completion_packet": 3288,
+          "access_id": "B2B-017"
+        }
+      ]
+    },
+    "BAR2": {
+      "byte_offset": 24,
+      "layout_source": "https://raw.githubusercontent.com/torvalds/linux/v6.12/include/uapi/linux/pci_regs.h",
+      "capability_evidence": [
+        {
+          "value": 0,
+          "request_packet": 3286,
+          "completion_packet": 3288,
+          "access_id": "B2B-017"
+        }
+      ]
+    },
+    "BAR3": {
+      "byte_offset": 28,
+      "layout_source": "https://raw.githubusercontent.com/torvalds/linux/v6.12/include/uapi/linux/pci_regs.h",
+      "capability_evidence": [
+        {
+          "value": 0,
+          "request_packet": 3286,
+          "completion_packet": 3288,
+          "access_id": "B2B-017"
+        }
+      ]
+    },
+    "BAR4": {
+      "byte_offset": 32,
+      "layout_source": "https://raw.githubusercontent.com/torvalds/linux/v6.12/include/uapi/linux/pci_regs.h",
+      "capability_evidence": [
+        {
+          "value": 0,
+          "request_packet": 3286,
+          "completion_packet": 3288,
+          "access_id": "B2B-017"
+        }
+      ]
+    },
+    "BAR5": {
+      "byte_offset": 36,
+      "layout_source": "https://raw.githubusercontent.com/torvalds/linux/v6.12/include/uapi/linux/pci_regs.h",
+      "capability_evidence": [
+        {
+          "value": 0,
+          "request_packet": 3286,
+          "completion_packet": 3288,
+          "access_id": "B2B-017"
+        }
+      ]
+    },
+    "PMCSR": {
+      "byte_offset": 252,
+      "layout_source": "https://raw.githubusercontent.com/torvalds/linux/v6.12/include/uapi/linux/pci_regs.h",
+      "capability_evidence": [
+        {
+          "value": 1,
+          "request_packet": 3320,
+          "completion_packet": 3322,
+          "access_id": "B2B-023"
+        },
+        {
+          "value": 0,
+          "request_packet": 3320,
+          "completion_packet": 3322,
+          "access_id": "B2B-023"
+        }
+      ]
+    },
+    "LinkControl": {
+      "byte_offset": 144,
+      "layout_source": "https://raw.githubusercontent.com/torvalds/linux/v6.12/include/uapi/linux/pci_regs.h",
+      "capability_evidence": [
+        {
+          "value": 16,
+          "request_packet": 3246,
+          "completion_packet": 3250,
+          "access_id": "B2B-010"
+        },
+        {
+          "value": 224,
+          "request_packet": 3246,
+          "completion_packet": 3250,
+          "access_id": "B2B-010"
+        }
+      ]
+    },
+    "LinkStatus": {
+      "byte_offset": 146,
+      "layout_source": "https://raw.githubusercontent.com/torvalds/linux/v6.12/include/uapi/linux/pci_regs.h",
+      "capability_evidence": [
+        {
+          "value": 16,
+          "request_packet": 3246,
+          "completion_packet": 3250,
+          "access_id": "B2B-010"
+        },
+        {
+          "value": 224,
+          "request_packet": 3246,
+          "completion_packet": 3250,
+          "access_id": "B2B-010"
+        }
+      ]
+    },
+    "L1SSControl1": {
+      "byte_offset": 280,
+      "layout_source": "https://raw.githubusercontent.com/torvalds/linux/v6.12/include/uapi/linux/pci_regs.h",
+      "capability_evidence": [
+        {
+          "value": 30,
+          "request_packet": 3279,
+          "completion_packet": 3281,
+          "access_id": "B2B-016"
+        },
+        {
+          "value": 0,
+          "request_packet": 3279,
+          "completion_packet": 3281,
+          "access_id": "B2B-016"
+        },
+        {
+          "value": 129,
+          "request_packet": 3279,
+          "completion_packet": 3281,
+          "access_id": "B2B-016"
+        },
+        {
+          "value": 18,
+          "request_packet": 3279,
+          "completion_packet": 3281,
+          "access_id": "B2B-016"
+        }
+      ]
+    },
+    "L1SSControl2": {
+      "byte_offset": 284,
+      "layout_source": "https://raw.githubusercontent.com/torvalds/linux/v6.12/include/uapi/linux/pci_regs.h",
+      "capability_evidence": [
+        {
+          "value": 30,
+          "request_packet": 3279,
+          "completion_packet": 3281,
+          "access_id": "B2B-016"
+        },
+        {
+          "value": 0,
+          "request_packet": 3279,
+          "completion_packet": 3281,
+          "access_id": "B2B-016"
+        },
+        {
+          "value": 129,
+          "request_packet": 3279,
+          "completion_packet": 3281,
+          "access_id": "B2B-016"
+        },
+        {
+          "value": 18,
+          "request_packet": 3279,
+          "completion_packet": 3281,
+          "access_id": "B2B-016"
+        }
+      ]
+    }
+  },
+  "conventional_chain": {
+    "nodes": [
+      {
+        "byte_offset": 128,
+        "capability_id": 16,
+        "next_byte_offset": 224,
+        "evidence": [
+          {
+            "value": 16,
+            "request_packet": 3246,
+            "completion_packet": 3250,
+            "access_id": "B2B-010"
+          },
+          {
+            "value": 224,
+            "request_packet": 3246,
+            "completion_packet": 3250,
+            "access_id": "B2B-010"
+          }
+        ]
+      },
+      {
+        "byte_offset": 224,
+        "capability_id": 5,
+        "next_byte_offset": 248,
+        "evidence": [
+          {
+            "value": 5,
+            "request_packet": 8742,
+            "completion_packet": 8744,
+            "access_id": "B2B-053"
+          },
+          {
+            "value": 248,
+            "request_packet": 8742,
+            "completion_packet": 8744,
+            "access_id": "B2B-053"
+          }
+        ]
+      },
+      {
+        "byte_offset": 248,
+        "capability_id": 1,
+        "next_byte_offset": 0,
+        "evidence": [
+          {
+            "value": 1,
+            "request_packet": 3320,
+            "completion_packet": 3322,
+            "access_id": "B2B-023"
+          },
+          {
+            "value": 0,
+            "request_packet": 3320,
+            "completion_packet": 3322,
+            "access_id": "B2B-023"
+          }
+        ]
+      }
+    ],
+    "complete": true,
+    "gap": null,
+    "pointer_evidence": [
+      {
+        "value": 128,
+        "request_packet": 3235,
+        "completion_packet": 3237,
+        "access_id": "B2B-008"
+      }
+    ]
+  },
+  "extended_chain": {
+    "nodes": [
+      {
+        "byte_offset": 256,
+        "capability_id": 11,
+        "next_byte_offset": 264,
+        "evidence": [
+          {
+            "value": 11,
+            "request_packet": 3258,
+            "completion_packet": 3260,
+            "access_id": "B2B-012"
+          },
+          {
+            "value": 0,
+            "request_packet": 3258,
+            "completion_packet": 3260,
+            "access_id": "B2B-012"
+          },
+          {
+            "value": 129,
+            "request_packet": 3258,
+            "completion_packet": 3260,
+            "access_id": "B2B-012"
+          },
+          {
+            "value": 16,
+            "request_packet": 3258,
+            "completion_packet": 3260,
+            "access_id": "B2B-012"
+          }
+        ]
+      },
+      {
+        "byte_offset": 264,
+        "capability_id": 24,
+        "next_byte_offset": 272,
+        "evidence": [
+          {
+            "value": 24,
+            "request_packet": 3268,
+            "completion_packet": 3270,
+            "access_id": "B2B-014"
+          },
+          {
+            "value": 0,
+            "request_packet": 3268,
+            "completion_packet": 3270,
+            "access_id": "B2B-014"
+          },
+          {
+            "value": 1,
+            "request_packet": 3268,
+            "completion_packet": 3270,
+            "access_id": "B2B-014"
+          },
+          {
+            "value": 17,
+            "request_packet": 3268,
+            "completion_packet": 3270,
+            "access_id": "B2B-014"
+          }
+        ]
+      },
+      {
+        "byte_offset": 272,
+        "capability_id": 30,
+        "next_byte_offset": 296,
+        "evidence": [
+          {
+            "value": 30,
+            "request_packet": 3279,
+            "completion_packet": 3281,
+            "access_id": "B2B-016"
+          },
+          {
+            "value": 0,
+            "request_packet": 3279,
+            "completion_packet": 3281,
+            "access_id": "B2B-016"
+          },
+          {
+            "value": 129,
+            "request_packet": 3279,
+            "completion_packet": 3281,
+            "access_id": "B2B-016"
+          },
+          {
+            "value": 18,
+            "request_packet": 3279,
+            "completion_packet": 3281,
+            "access_id": "B2B-016"
+          }
+        ]
+      },
+      {
+        "byte_offset": 296,
+        "capability_id": 14,
+        "next_byte_offset": 512,
+        "evidence": [
+          {
+            "value": 14,
+            "request_packet": 3291,
+            "completion_packet": 3293,
+            "access_id": "B2B-018"
+          },
+          {
+            "value": 0,
+            "request_packet": 3291,
+            "completion_packet": 3293,
+            "access_id": "B2B-018"
+          },
+          {
+            "value": 1,
+            "request_packet": 3291,
+            "completion_packet": 3293,
+            "access_id": "B2B-018"
+          },
+          {
+            "value": 32,
+            "request_packet": 3291,
+            "completion_packet": 3293,
+            "access_id": "B2B-018"
+          }
+        ]
+      }
+    ],
+    "complete": false,
+    "gap": "HEADER_NOT_OBSERVED_0x200"
+  },
+  "gaps": [],
+  "not_established": [
+    "unobserved capability absence",
+    "full capability chain when gap remains",
+    "hardware state or writes applied",
+    "vendor register definitions"
+  ],
+  "input": {
+    "log_sha256": "7B54AAF6DE5FB29EBA12BD99F59316E31A14DA040A594BC958124BDEF8075373",
+    "reference_sha256": "ABCF2E410D6E92EC58D093601FED9B3A1DB3F1BDA8E6D71423F922E7CFE76918"
+  }
+}

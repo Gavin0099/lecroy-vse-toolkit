@@ -4,3 +4,6 @@ artifacts/evidence/** -text
 
 # Engineer source document is SHA-bound to product context.
 docs/pcie-b1d-engineer-questions.md -text
+
+# Byte-bound register layout reference.
+docs/pcie-register-reference.json -text
