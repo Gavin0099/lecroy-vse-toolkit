@@ -374,3 +374,5 @@ B2g product policy remains waiting for engineer Who / When / What / Proof answer
 - feat(pcie): deliver B2D observed state: 68 clean-slice PCIe tests PASS, no skips; two real offline replays match historical current before-run1 output byte-for-byte. Scope: No effective hardware state, W1C effects, zero-fill, or continuity override across epochs. Inherited nonrequired governance-drift missing checker deferred outside scope.
 
 - fix(pcie): validate B1c direction totals and GUI link agreement: 71 PCIe tests PASS (12 B1c); eight negative cases reproduced before fix; two real CLI replays equal historical training JSON/Markdown byte-for-byte. Scope: No new product policy or runtime qualification. Inherited nonrequired governance-drift missing checker remains outside this slice.
+
+- fix(pcie): preserve ambiguity and unknown completion fields: 73 PCIe tests PASS without skips; negative regression reproduced before fix; two real replays equal historical output byte-for-byte. Scope: Observed evidence only, no applied state, product policy or root cause. Inherited nonrequired governance-drift missing checker deferred outside scope.
