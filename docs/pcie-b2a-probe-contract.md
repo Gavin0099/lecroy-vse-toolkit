@@ -45,3 +45,10 @@ for data formats). Primary implementation reference: [cocotbext-pcie TLP decoder
 commit 6e6081d](https://github.com/alexforencich/cocotbext-pcie/blob/6e6081d441debac7512b25fd4b7bc92f137e95a3/cocotbext/pcie/core/tlp.py#L505).
 This is a layout reference, not complete PCIe spec/product verification.
 Decoded lengths 0 or 1 cannot bypass a raw one-DWORD data header.
+
+Counts distinguish `raw_payload_dwords_checked` (independent payload bytes),
+`payload_dwords_checked` (non-NA RegisterData consistency), and
+`register_data_payloads_unknown` (preserved NA). PASS is field-probe validation
+within these counts, not proof that every CplD supplies a decoded register value.
+Missing CplD RegisterData remains unknown and cannot yield a B2b read return;
+missing CfgWr RegisterData is still rejected by the mandatory write-field gate.

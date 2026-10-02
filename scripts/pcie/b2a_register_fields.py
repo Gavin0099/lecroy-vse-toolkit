@@ -57,6 +57,8 @@ def verify(rows, end, metadata, *, require_full_payload=False):
     wanted = [r for r in metadata if int(r["tlp_type_hex"], 16) in CFG | {17, 18}]
     if end["tlps"] != len(metadata) or len(rows) != len(wanted): raise ValueError("Coverage differs from G2a")
     counts = {"config_reads": 0, "config_writes": 0, "completions": 0, "payload_dwords_checked": 0}
+    if require_full_payload:
+        counts.update(raw_payload_dwords_checked=0,register_data_payloads_unknown=0)
     for r, old in zip(rows, wanted):
         for key in ("packet_index", "time_display", "channel", "requester_id", "tag", "completer_id", "compl_status"):
             if r[key] != old[key]: raise ValueError(f"G2a mismatch {key} at {r['packet_index']}")
@@ -80,6 +82,9 @@ def verify(rows, end, metadata, *, require_full_payload=False):
             if require_full_payload and len(f)<15+needed: raise ValueError("Full raw DWORD/payload bytes required for qualification")
             available=min(needed,len(f)-15)
             if f[15:15+available] != p[:available]: raise ValueError("Frame/payload mismatch")
+            if require_full_payload and plen >= 4:
+                counts['raw_payload_dwords_checked']+=1
+                if r['register_data'] is None:counts['register_data_payloads_unknown']+=1
             if plen >= 4 and r["register_data"] is not None:
                 if r["register_data"] != int.from_bytes(p[:4], "little"): raise ValueError("RegisterData/payload mismatch")
                 counts["payload_dwords_checked"] += 1
@@ -111,7 +116,8 @@ def main(argv=None):
         rows, end = parse(raw.read_text(encoding="utf-8")); counts = verify(rows, end, json.loads(a.metadata.read_text(encoding="utf-8")), require_full_payload=True)
         out = {"schema": SCHEMA, "status": "PASS_REGISTER_FIELD_PROBE", "input": {"com_run_sha256": sha(a.com_run / "com-run.json"), "vse_output_sha256": sha(raw), "metadata_sha256": sha(a.metadata), "trace": run["pre"]["files"][0]}, "units": {"register": "byte offset (qualified on this capture)", "register_data": "little-endian DWORD from payload; not a CfgRd request value", "byte_enable": "first/last DWORD byte mask", "payload_length": "bytes"}, "counts": counts, "tlps": end["tlps"], "rows": rows, "not_established": ["all versions/framing modes", "CplD is config data without request association", "vendor register meaning", "post-switch initialization beyond capture end"]}
         a.output_dir.mkdir(parents=True)
-        out['validation_basis']={'frame_prefix_bytes':19,'payload_proof':'first payload DWORD compared independently with raw frame bytes 15..18',
+        out['validation_basis']={'frame_prefix_bytes':19,'payload_proof':'raw_payload_dwords_checked: first payload DWORD independently matches frame bytes 15..18',
+                                 'register_data_proof':'payload_dwords_checked: only non-NA RegisterData values match payload; NA remains UNKNOWN and is separately counted, not a proved register value',
                                  'legacy_16_byte_prefix':'historical consistency checks only; cannot qualify a new payload DWORD'}
         (a.output_dir / "fields.json").write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
         print(json.dumps({"status": out["status"], **counts}))

@@ -22,7 +22,9 @@
     "config_reads": 32,
     "config_writes": 29,
     "completions": 272,
-    "payload_dwords_checked": 59
+    "payload_dwords_checked": 59,
+    "raw_payload_dwords_checked": 270,
+    "register_data_payloads_unknown": 211
   },
   "tlps": 704,
   "rows": [
@@ -7028,7 +7030,8 @@
   ],
   "validation_basis": {
     "frame_prefix_bytes": 19,
-    "payload_proof": "first payload DWORD compared independently with raw frame bytes 15..18",
+    "payload_proof": "raw_payload_dwords_checked: first payload DWORD independently matches frame bytes 15..18",
+    "register_data_proof": "payload_dwords_checked: only non-NA RegisterData values match payload; NA remains UNKNOWN and is separately counted, not a proved register value",
     "legacy_16_byte_prefix": "historical consistency checks only; cannot qualify a new payload DWORD"
   }
 }

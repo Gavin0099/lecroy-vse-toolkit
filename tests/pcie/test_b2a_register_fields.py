@@ -48,12 +48,25 @@ class ProbeTests(unittest.TestCase):
             with self.subTest(length=length), self.assertRaisesRegex(ValueError,'Raw header/payload length'):
                 b2a.verify(rows,end,meta,require_full_payload=True)
 
+    def test_missing_cpld_register_data_is_explicit_unknown_not_dword_proof(self):
+        rows,end,meta=fixture()
+        rows[1]['frame_prefix']+='00C3F7'
+        rows[2]['frame_prefix']+='800000'
+        rows[1]['register_data']=None
+        counts=b2a.verify(rows,end,meta,require_full_payload=True)
+        self.assertEqual(counts['raw_payload_dwords_checked'],2)
+        self.assertEqual(counts['payload_dwords_checked'],1)
+        self.assertEqual(counts['register_data_payloads_unknown'],1)
+        self.assertIsNone(rows[1]['register_data'])
+
     def test_fresh_raw_evidence_and_legacy_cli_gate(self):
         root=Path(__file__).resolve().parents[2]
         metadata=root/'artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json'
         rows,end=b2a.parse((root/'artifacts/evidence/pcie-b2a-raw-dword-20261002/com-run1/vse-output.txt').read_text())
         counts=b2a.verify(rows,end,json.loads(metadata.read_text()),require_full_payload=True)
         self.assertEqual(counts['payload_dwords_checked'],59)
+        self.assertEqual(counts['raw_payload_dwords_checked'],270)
+        self.assertEqual(counts['register_data_payloads_unknown'],211)
         self.assertEqual(bytes.fromhex(next(r['frame_prefix'] for r in rows if r['packet_index']==3150))[15:19],bytes.fromhex('0100C3F7'))
         with tempfile.TemporaryDirectory() as t:
             dest=Path(t)/'out'

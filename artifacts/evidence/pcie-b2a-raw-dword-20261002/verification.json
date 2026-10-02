@@ -4,20 +4,22 @@
     "config_reads": 32,
     "config_writes": 29,
     "completions": 272,
-    "payload_dwords_checked": 59
+    "payload_dwords_checked": 59,
+    "raw_payload_dwords_checked": 270,
+    "register_data_payloads_unknown": 211
   },
-  "tests_passed": 77,
-  "focused_tests": 11,
+  "tests_passed": 78,
+  "focused_tests": 12,
   "raw_runs_byte_identical": true,
   "legacy_rows_except_frame_prefix_equal": true,
   "legacy_prefixes_match": true,
   "legacy_fields_sha256": "AB40E8CB481377F84CEB271D1EAEB693A912D6D07D8DD4A863B793DE3D9891BD",
   "new_fields_sha256": [
-    "1934D0222717D7C99D1415876D1C901C29927FBAC90FBCF70F3E586415F57C52",
-    "3CF03EA1E84ED47120339D105ADB231B45B494AEA3C0180AB9AEF261669C0B34"
+    "9661B3CFB84089FFD416444D773BD43ACED14C35A471987087A02B1BCD4548FD",
+    "6F8A81831188CB40D11E8D7E0436A6F3C71676199171086550AB78BA9360BEF0"
   ],
   "raw_output_sha256": "630D4A53ADA438A9E881C8E8D92221361283A9CBABFC699C7D24EE8133A2833B",
-  "tests_log_sha256": "0F54029B6D111A4A4B0B80A50CB02BBC1B7B522D9746BD812474DAD2B8605B15",
+  "tests_log_sha256": "1C323E67C855E45CEF046652AB5D36D4BBC47510237A8572069D52393E24BA03",
   "analysis_copy_read_only_preserved": true,
   "protected_identity_unchanged": true,
   "claim_scope": "PETracer 13.26 converted non-Flit capture only; no applied state/policy/root cause"

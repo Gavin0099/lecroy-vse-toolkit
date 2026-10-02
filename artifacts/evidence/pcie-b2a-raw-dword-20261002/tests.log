@@ -40,7 +40,7 @@ test_r1_markdown_passes_contract_and_marks_samples (test_b1c_training_timeline.B
 test_range_sum_mismatch_and_orphan_sample_are_rejected (test_b1c_training_timeline.B1cR1Tests.test_range_sum_mismatch_and_orphan_sample_are_rejected) ... ok
 test_straddled_phase_still_validates_channel_totals (test_b1c_training_timeline.B1cR1Tests.test_straddled_phase_still_validates_channel_totals) ... ok
 test_cli_requires_matching_pass_summary (test_b1c_training_timeline.B1cTests.test_cli_requires_matching_pass_summary) ... B1c training timeline not produced: B1b summary does not describe this timeline.json
-B1c training timeline not produced: Refusing to reuse existing output directory: C:\Users\reiko\AppData\Local\Temp\tmpjjqcarin\out
+B1c training timeline not produced: Refusing to reuse existing output directory: C:\Users\reiko\AppData\Local\Temp\tmp0jjqfpuz\out
 ok
 test_contract_rejects_judgement_wording_and_hidden_unknown (test_b1c_training_timeline.B1cTests.test_contract_rejects_judgement_wording_and_hidden_unknown) ... ok
 test_markdown_keeps_unknowns_and_passes_contract (test_b1c_training_timeline.B1cTests.test_markdown_keeps_unknowns_and_passes_contract) ... ok
@@ -87,6 +87,7 @@ ok
 test_full_raw_dword_independent_of_decoder_fields (test_b2a_register_fields.ProbeTests.test_full_raw_dword_independent_of_decoder_fields) ... ok
 test_historical_prefix_cannot_qualify_full_dword (test_b2a_register_fields.ProbeTests.test_historical_prefix_cannot_qualify_full_dword) ... ok
 test_literal_sample_bytes_and_masks (test_b2a_register_fields.ProbeTests.test_literal_sample_bytes_and_masks) ... ok
+test_missing_cpld_register_data_is_explicit_unknown_not_dword_proof (test_b2a_register_fields.ProbeTests.test_missing_cpld_register_data_is_explicit_unknown_not_dword_proof) ... ok
 test_missing_end_duplicate_order_and_bad_numeric (test_b2a_register_fields.ProbeTests.test_missing_end_duplicate_order_and_bad_numeric) ... ok
 test_offset_index_and_mask_mismatch_rejected (test_b2a_register_fields.ProbeTests.test_offset_index_and_mask_mismatch_rejected) ... ok
 test_read_request_must_not_be_returned_value (test_b2a_register_fields.ProbeTests.test_read_request_must_not_be_returned_value) ... ok
@@ -119,6 +120,6 @@ test_split_completions_accumulate_on_one_request (test_g2b_associate.Association
 test_roles_follow_vendor_constants_and_field_shape (test_g2b_associate.ClassificationTests.test_roles_follow_vendor_constants_and_field_shape) ... ok
 
 ----------------------------------------------------------------------
-Ran 77 tests in 0.204s
+Ran 78 tests in 0.153s
 
 OK

@@ -46,8 +46,8 @@ raw bytes were synthesized. Source/old copies are hash-only; protected identitie
 and analysis-copy read-only state remain unchanged.
 
 Current evidence: `artifacts/evidence/pcie-b2a-raw-dword-20261002/verification.json`,
-`length-verified1/fields.json` and `length-verified2/fields.json`; 11 focused tests and
-77 clean-slice tests PASS at this revision, with log hash in verification.
+`final-verified1/fields.json` and `final-verified2/fields.json`; 12 focused tests and
+78 clean-slice tests PASS at this revision, with log hash in verification.
 The CLI rejects short legacy proof for new qualification. Downstream historical
 replays still use their preserved inputs; the equality bridge above validates
 their decoded values for this capture, without changing their source hashes.
@@ -59,3 +59,12 @@ Review also reproduced decoded payload lengths 0/1 bypassing the raw DWORD gate.
 The verifier now rejects a length inconsistent with the raw TLP format/length
 header before comparing bytes. Fresh raw outputs are replayed through this gate;
 the same 59 RegisterData DWORDs pass.
+
+Full raw-payload proof and decoded RegisterData proof are separate: the capture
+has 270 first payload DWORDs independently matched to raw frame bytes, 59 non-NA
+RegisterData values checked against those bytes, and 211 data-bearing CplD rows
+with RegisterData=NA. NA remains UNKNOWN and is never counted as a proved value.
+A missing field in Packet 3150 similarly reduces the available-value count and
+increases the explicit unknown count; B2b cannot produce a read return from it.
+Rejecting every CplD NA would reject legitimate existing rows or require invented
+config meanings before request association, contrary to this contract.
