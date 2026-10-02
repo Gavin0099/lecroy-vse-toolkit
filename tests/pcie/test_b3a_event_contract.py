@@ -13,6 +13,17 @@ FIXTURE = ROOT / 'artifacts/evidence/pcie-w1-20261002/representative.json'
 
 
 class EventContractTests(unittest.TestCase):
+    def test_gap_cannot_cover_same_source_segment_counts(self):
+        self.doc['gaps']=[{'after_index':225040,'before_index':225051,
+                          'after_time':'9.511 sec','before_time':'9.513 sec',
+                          'after_display_quantum_seconds':'0.001','before_display_quantum_seconds':'0.001',
+                          'display_duration_seconds':'0.002','claim':'NO_OBSERVED_EVENTS_IN_SOURCE_WINDOW',
+                          'evidence':[contract.evidence('link','/0')]}]
+        with self.assertRaises(ValueError): contract.validate(self.doc,self.sources)
+
+    def test_duplicate_segment_counts_cannot_inflate_intervals(self):
+        self.doc['intervals'].append(copy.deepcopy(self.doc['intervals'][0]))
+        with self.assertRaises(ValueError): contract.validate(self.doc,self.sources)
     def test_nested_identity_claims_are_rejected(self):
         for field,value in [('device_identity','KNOWN'),('identity_continuity_proof','same BDF')]:
             for target in ('details','extensions'):

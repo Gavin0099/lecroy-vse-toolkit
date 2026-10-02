@@ -404,3 +404,5 @@ W1 extension claim bypass repaired; 118 suite / 16 focused tests PASS, current r
 W1 interval count / source-gap consistency repaired: 120 tests PASS, 18 focused.
 
 W1 nested identity ceiling repaired: 121 suite / 19 focused tests PASS.
+
+W1 gap/interval overlap and duplicate segment guards added: 123 suite / 21 focused tests PASS.

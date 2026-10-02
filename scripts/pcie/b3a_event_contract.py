@@ -161,6 +161,7 @@ def validate(doc, source_bytes):
         require(isinstance(event['details'], dict), 'Invalid event details')
         detail_claims(event['details'])
     require(ordering == sorted(ordering), 'Events must use packet order with stable observation tie order')
+    previous_intervals = []
     for interval in doc['intervals']:
         fields(interval, 'interval')
         refs(interval); packet(interval['first_index']); packet(interval['last_index'])
@@ -178,6 +179,12 @@ def validate(doc, source_bytes):
                 'Segment total must match its contiguous packet range')
         require(all(v <= total for v in interval['counts'].values()), 'Category count exceeds segment total')
         require(isinstance(interval['details'], dict), 'Interval details must be an object')
+        sources = {ref['source_id'] for ref in interval['evidence']}
+        for previous in previous_intervals:
+            same_source = sources & {ref['source_id'] for ref in previous['evidence']}
+            overlaps = max(interval['first_index'], previous['first_index']) <= min(interval['last_index'], previous['last_index'])
+            require(not (same_source and overlaps), 'Duplicate or overlapping same-source segment counts')
+        previous_intervals.append(interval)
     for gap in doc['gaps']:
         fields(gap, 'gap')
         refs(gap); packet(gap['after_index']); packet(gap['before_index'])
@@ -192,6 +199,10 @@ def validate(doc, source_bytes):
             same_source = gap_sources & {ref['source_id'] for ref in event['evidence']}
             require(not (same_source and gap['after_index'] < event['packet_index'] < gap['before_index']),
                     'Source gap contradicts an observed packet')
+        for interval in doc['intervals']:
+            same_source = gap_sources & {ref['source_id'] for ref in interval['evidence']}
+            overlaps = max(interval['first_index'], gap['after_index'] + 1) <= min(interval['last_index'], gap['before_index'] - 1)
+            require(not (same_source and overlaps), 'Source gap contradicts observed interval counts')
     for milestone in doc['milestones']:
         fields(milestone, 'milestone')
         refs(milestone)
