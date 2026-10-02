@@ -25,13 +25,23 @@ def associate_config(metadata, fields):
         role=g2b.classify(row);key=(row['requester_id'],row['tag'])
         if role['role']==g2b.NON_POSTED_REQUEST:
             previous=pending.get(key)
-            if previous and not previous['completions']:
-                previous['outcome']=g2b.REISSUED
+            if previous:
+                previous['outcome']=('PENDING_KEY_REUSED_WITH_UNQUALIFIED_COMPLETIONS'
+                                     if previous['completions'] else g2b.REISSUED)
                 ambiguous.add(previous['packet_index']);ambiguous.add(row['packet_index'])
             q={**row,'vendor_type_name':role['vendor_type_name'],'outcome':g2b.NONE_OBSERVED,'completions':[]}
             pending[key]=q;requests.append(q)
         elif role['role']==g2b.COMPLETION_CANDIDATE:
-            q=pending.get(key);c=fields[row['packet_index']]
+            q=pending.get(key);c=fields.get(row['packet_index'])
+            if c is None:
+                c={**row,'tlp_type':int(row['tlp_type_hex'],16),'register_data':None,
+                   'payload_length':None,'byte_count':None,'lower_addr':None,
+                   'field_status':'NOT_CAPTURED_BY_B2A'}
+                if q:
+                    q['completions'].append(c)
+                    if q['outcome']!=g2b.REISSUED:q['outcome']=g2b.COMPLETIONS_OBSERVED
+                else:unmatched.append(c)
+                continue
             if not q:unmatched.append(c);continue
             q['completions'].append(c)
             if q['outcome']!=g2b.REISSUED:q['outcome']=g2b.COMPLETIONS_OBSERVED

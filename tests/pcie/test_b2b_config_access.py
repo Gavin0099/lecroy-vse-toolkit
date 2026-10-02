@@ -15,6 +15,38 @@ def inputs():
 
 
 class ConfigTests(unittest.TestCase):
+    def test_reuse_after_invalid_completion_cannot_return_successor_value(self):
+        p,m=inputs()
+        original=copy.deepcopy(p['rows'])
+        p['rows'][1]['completer_id']=512
+        f=bytearray.fromhex(p['rows'][1]['frame_prefix']);f[7:9]=bytes.fromhex('0200')
+        p['rows'][1]['frame_prefix']=f.hex().upper();m[1]['completer_id']=512
+        p['rows'][2:2]=[{**original[0],'packet_index':3160}, {**original[1],'packet_index':3170}]
+        m[2:2]=[{**m[0],'packet_index':3160}, {**m[1],'packet_index':3170,'completer_id':256}]
+        for i,row in enumerate(m):row['row']=i+1
+        p['tlps']=5
+        d=b2b.build(p,m,3200,4000)
+        self.assertEqual(d['accesses'][0]['association_outcome'],
+                         'PENDING_KEY_REUSED_WITH_UNQUALIFIED_COMPLETIONS')
+        for r in d['accesses'][:2]:
+            self.assertEqual(r['value_status'],'AMBIGUOUS_KEY_REUSE')
+            self.assertIsNone(r['read_value'])
+
+    def test_unprobed_locked_completions_remain_unknown(self):
+        for typ in ('0x13','0x14'):
+            p,m=inputs();fields={r['packet_index']:r for r in p['rows']}
+            m[1]['tlp_type_hex']=typ;del fields[3150]
+            q,amb,unmatched=b2b.associate_config(m,fields)
+            self.assertEqual(q[0]['completions'][0]['field_status'],'NOT_CAPTURED_BY_B2A')
+            self.assertIsNone(q[0]['completions'][0]['register_data'])
+            self.assertEqual(unmatched,[])
+            del p['rows'][1]
+            d=b2b.build(p,m,3200,4000)
+            self.assertIsNone(d['accesses'][0]['read_value'])
+            self.assertEqual(d['accesses'][0]['value_status'],'UNKNOWN')
+            q,amb,unmatched=b2b.associate_config(m[1:],fields)
+            self.assertEqual(unmatched[0]['field_status'],'NOT_CAPTURED_BY_B2A')
+
     def test_read_and_partial_write_are_different_evidence(self):
         p,m=inputs();d=b2b.build(p,m,3200,4000)
         read,write=d['accesses']

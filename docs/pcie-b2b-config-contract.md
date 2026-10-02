@@ -21,3 +21,15 @@ disconnect_interval、after_reconnect 各自保留，絕不把舊 BDF state 帶�
 
 驗收：正向 read/write、partial write masks、非 config CplD 排除、錯 target／失敗
 completion 不補值、Tag collision、不完整 coverage／hash 拒絕、真實重播兩次一致。
+
+## 2026-10-02 review closure
+
+Every still-pending requester/tag collision marks both requests ambiguous, including
+requests with unqualified Completion candidates. Such candidates do not establish a
+returned value or retire a key. Locked Completion types 19/20 not probed by B2a keep
+metadata with `field_status=NOT_CAPTURED_BY_B2A`; no payload/register data is inferred.
+They remain candidates or unmatched observations and do not close the pending key.
+
+A reused key with existing unqualified candidates reports
+`PENDING_KEY_REUSED_WITH_UNQUALIFIED_COMPLETIONS`. The legacy before-any-Completion
+outcome applies only when the earlier request has no candidates.
