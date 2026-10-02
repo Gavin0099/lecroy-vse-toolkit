@@ -16,9 +16,9 @@ BINDINGS = {'CAPTURE_DECLARED', 'DERIVED_VIA_PROBE', 'CORROBORATED_LEGACY'}
 UNKNOWN_CLAIMS = {'effective_state': 'UNKNOWN', 'expected_state': 'UNKNOWN',
                   'policy_result': 'NOT_EVALUATED'}
 FIELDS = {
-    'document': 'schema capture_sha256 anchors ordering sources events intervals gaps milestones coverage limitations',
+    'document': 'schema capture_sha256 anchors ordering sources events intervals gaps milestones coverage limitations extensions',
     'event': 'event_id packet_index time_display display_quantum_seconds layer kind direction routing_bdf device_epoch device_identity identity_continuity_proof classification state_claims details evidence',
-    'interval': 'kind first_index last_index first_time last_time first_display_quantum_seconds last_display_quantum_seconds direction counts evidence',
+    'interval': 'kind first_index last_index first_time last_time first_display_quantum_seconds last_display_quantum_seconds direction counts details evidence',
     'gap': 'after_index before_index after_time before_time after_display_quantum_seconds before_display_quantum_seconds display_duration_seconds claim evidence',
     'milestone': 'id status basis summary evidence',
     'source': 'path sha256 capture_sha256 binding',
@@ -85,7 +85,7 @@ def new_document(capture_sha, anchors):
     return {'schema': SCHEMA, 'capture_sha256': capture_sha, 'anchors': anchors,
             'ordering': 'packet order; equal display times do not establish finer timing or causation',
             'sources': {}, 'events': [], 'intervals': [], 'gaps': [], 'milestones': [],
-            'coverage': [], 'limitations': []}
+            'coverage': [], 'limitations': [], 'extensions': {}}
 
 
 def validate(doc, source_bytes):
@@ -95,7 +95,7 @@ def validate(doc, source_bytes):
     upstream lineage and recompute their facts before calling this validator.
     """
     def fields(record, kind):
-        require(isinstance(record, dict) and set(FIELDS[kind].split()) <= record.keys(), 'Missing ' + kind + ' fields')
+        require(isinstance(record, dict) and set(FIELDS[kind].split()) == record.keys(), 'Missing or undeclared ' + kind + ' fields')
     fields(doc, 'document')
     require(isinstance(doc['sources'], dict), 'Sources must be an object')
     require(all(isinstance(doc[key], list) for key in ('events', 'intervals', 'gaps', 'milestones', 'coverage', 'limitations')),
@@ -137,6 +137,8 @@ def validate(doc, source_bytes):
         elif isinstance(value, list):
             for item in value:
                 detail_claims(item)
+    require(isinstance(doc['extensions'], dict), 'Extensions must be an object')
+    detail_claims(doc)
     for event in doc['events']:
         fields(event, 'event')
         packet(event['packet_index']); display(event); refs(event)

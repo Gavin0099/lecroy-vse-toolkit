@@ -37,3 +37,5 @@ Fixture 來自已交付 B2g v2 的兩筆真實 write intent，源檔以 hash/poi
 負面測試涵蓋錯 capture、缺 source、修改 byte、失效 pointer、epoch/identity 推測、
 相同時間下倒序、重複 observation、錯 precision、policy 升級與路徑逸出。
 此 slice 不產生完整 timeline，也不新增產品或 PCIe spec 規則。
+
+契約欄位集合固定；未宣告欄位拒絕。額外 provenance／coverage 資料使用 `extensions` 或 record `details`，所有深度的 reserved state/policy keys 同樣保持 UNKNOWN／NOT_EVALUATED。

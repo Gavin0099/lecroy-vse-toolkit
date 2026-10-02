@@ -12,7 +12,8 @@
     "gaps",
     "milestones",
     "coverage",
-    "limitations"
+    "limitations",
+    "extensions"
   ],
   "packet_observation_fields": [
     "event_id",
@@ -41,6 +42,7 @@
     "last_display_quantum_seconds",
     "direction",
     "counts",
+    "details",
     "evidence"
   ],
   "gap_fields": [

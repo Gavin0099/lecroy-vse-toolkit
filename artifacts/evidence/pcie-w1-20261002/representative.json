@@ -177,7 +177,8 @@
           "source_id": "link",
           "json_pointer": "/0"
         }
-      ]
+      ],
+      "details": {}
     }
   ],
   "gaps": [
@@ -204,5 +205,6 @@
   ],
   "limitations": [
     "Device identity unknown; product policy awaits engineer source/scope."
-  ]
+  ],
+  "extensions": {}
 }

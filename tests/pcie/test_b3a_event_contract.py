@@ -13,6 +13,12 @@ FIXTURE = ROOT / 'artifacts/evidence/pcie-w1-20261002/representative.json'
 
 
 class EventContractTests(unittest.TestCase):
+    def test_undeclared_claim_fields_and_extensions_are_checked(self):
+        for field,value in [('effective_state','L1'),('policy_result','FAIL')]:
+            doc=copy.deepcopy(self.doc);doc['events'][0][field]=value
+            with self.assertRaises(ValueError): contract.validate(doc,self.sources)
+            doc=copy.deepcopy(self.doc);doc['extensions']={'nested':[{field:value}]}
+            with self.assertRaises(ValueError): contract.validate(doc,self.sources)
     def test_details_cannot_promote_claims_at_any_depth(self):
         for field,value in [('effective_state','L1'),('expected_state','DISABLED'),('policy_result','FAIL')]:
             for detail in [{field:value},{'nested':[{field:value}]}]:

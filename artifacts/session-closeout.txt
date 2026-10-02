@@ -215,3 +215,11 @@ CHECKS_RUN: Three regression tests against old module; python -X utf8 -B -m unit
 OPEN_RISKS: Inherited nonrequired drift checker missing; no source-authenticity claim.
 NOT_DONE: Latest-head review/merge pending; W2-W5.
 RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Close extension-field state claim bypass in W1.
+WORK_COMPLETED: 118 tests PASS; added regression fails on prior head; record fields fixed, extension claims guarded recursively.
+FILES_TOUCHED: scripts/pcie/b3a_event_contract.py, tests/pcie/test_b3a_event_contract.py, docs/pcie-observation-timeline-contract.md, docs/pcie-observation-timeline-contract-v1.json, artifacts/evidence/pcie-w1-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: prior-head extension regression; python -X utf8 -B -m unittest discover -s tests/pcie -v.
+OPEN_RISKS: Structural checks do not authenticate sources; inherited nonrequired drift checker absent.
+NOT_DONE: Latest-head review/merge pending; W2-W5 and product policy.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE

@@ -1,0 +1,14 @@
+F
+======================================================================
+FAIL: test_undeclared_claim_fields_and_extensions_are_checked (test_b3a_event_contract.EventContractTests.test_undeclared_claim_fields_and_extensions_are_checked)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\reiko\.codex\worktrees\pcie-slice-delivery\lecroy-vse-toolkit\tests\pcie\test_b3a_event_contract.py", line 19, in test_undeclared_claim_fields_and_extensions_are_checked
+    with self.assertRaises(ValueError): contract.validate(doc,self.sources)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.011s
+
+FAILED (failures=1)

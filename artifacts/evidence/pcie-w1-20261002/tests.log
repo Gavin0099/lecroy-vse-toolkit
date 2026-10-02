@@ -41,7 +41,7 @@ test_r1_markdown_passes_contract_and_marks_samples (test_b1c_training_timeline.B
 test_range_sum_mismatch_and_orphan_sample_are_rejected (test_b1c_training_timeline.B1cR1Tests.test_range_sum_mismatch_and_orphan_sample_are_rejected) ... ok
 test_straddled_phase_still_validates_channel_totals (test_b1c_training_timeline.B1cR1Tests.test_straddled_phase_still_validates_channel_totals) ... ok
 test_cli_requires_matching_pass_summary (test_b1c_training_timeline.B1cTests.test_cli_requires_matching_pass_summary) ... B1c training timeline not produced: B1b summary does not describe this timeline.json
-B1c training timeline not produced: Refusing to reuse existing output directory: C:\Users\reiko\AppData\Local\Temp\tmpxjhl2dwd\out
+B1c training timeline not produced: Refusing to reuse existing output directory: C:\Users\reiko\AppData\Local\Temp\tmpxfmbopw9\out
 ok
 test_contract_rejects_judgement_wording_and_hidden_unknown (test_b1c_training_timeline.B1cTests.test_contract_rejects_judgement_wording_and_hidden_unknown) ... ok
 test_markdown_keeps_unknowns_and_passes_contract (test_b1c_training_timeline.B1cTests.test_markdown_keeps_unknowns_and_passes_contract) ... ok
@@ -154,6 +154,7 @@ test_real_representative_fixture_preserves_intent_and_precision (test_b3a_event_
 test_same_display_time_uses_packet_order_not_causation (test_b3a_event_contract.EventContractTests.test_same_display_time_uses_packet_order_not_causation) ... ok
 test_sources_array_is_controlled_cli_error (test_b3a_event_contract.EventContractTests.test_sources_array_is_controlled_cli_error) ... ok
 test_time_precision_and_packet_type (test_b3a_event_contract.EventContractTests.test_time_precision_and_packet_type) ... ok
+test_undeclared_claim_fields_and_extensions_are_checked (test_b3a_event_contract.EventContractTests.test_undeclared_claim_fields_and_extensions_are_checked) ... ok
 test_wrong_capture_and_changed_source_are_rejected (test_b3a_event_contract.EventContractTests.test_wrong_capture_and_changed_source_are_rejected) ... ok
 test_key_uses_requester_and_tag_only_and_completion_must_follow (test_g2b_associate.AssociationTests.test_key_uses_requester_and_tag_only_and_completion_must_follow) ... ok
 test_no_completion_is_not_called_timeout (test_g2b_associate.AssociationTests.test_no_completion_is_not_called_timeout) ... ok
@@ -164,6 +165,6 @@ test_bdf_uses_hex_bus_and_device_with_existing_padding (test_g2b_associate.Class
 test_roles_follow_vendor_constants_and_field_shape (test_g2b_associate.ClassificationTests.test_roles_follow_vendor_constants_and_field_shape) ... ok
 
 ----------------------------------------------------------------------
-Ran 117 tests in 0.355s
+Ran 118 tests in 0.451s
 
 OK

@@ -398,3 +398,5 @@ B2g read-back repair: completion must remain in the write device epoch; 102 suit
 - feat(pcie): add W1 bounded observation event contract: 114 PCIe tests PASS (12 focused); real packet/segment/gap fixture and 4 explicit negative fixtures executed by validator; source, epoch, identity, time, count and policy boundaries tested. Scope: Structural provenance checks are not source authenticity; adapters must recompute lineage. No complete timeline, applied state, ASPM policy, physical identity or root cause. Inherited nonrequired governance-drift checker absent; deferred.
 
 W1 contract review repair: 117 PCIe tests PASS (15 focused); explicit positive/negative source fixtures; nested details policy, alias-duplicate and malformed sources CLI regressions. No product state or identity continuity added.
+
+W1 extension claim bypass repaired; 118 suite / 16 focused tests PASS, current review pending.
