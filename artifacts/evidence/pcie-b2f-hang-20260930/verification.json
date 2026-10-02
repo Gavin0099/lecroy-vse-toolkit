@@ -1,0 +1,7 @@
+{
+  "status": "PASS_B2F_OBSERVED_DIFF",
+  "tests_passed": 5,
+  "replay_byte_identical": true,
+  "diff_sha256": "CB771EB21CC06D819EB9056BF9C176C0911EDECB5DE7C59AB5EC2923A0DBBDCC",
+  "comparable_device_epoch": false
+}
