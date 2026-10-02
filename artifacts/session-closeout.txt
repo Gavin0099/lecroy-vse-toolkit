@@ -25,3 +25,13 @@ CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
 OPEN_RISKS: No overall case PASS/FAIL, electrical MUX measurement, persistent Gen1, initialization completion or root cause. B2g rules still await engineer answers. Existing nonrequired governance-drift checker missing on main; deferred outside this slice.
 NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
 RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b1e delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 37 clean-slice PCIe tests PASS (7 B1e); two real replay JSON/MD match historical run1 byte-for-byte; tampered evaluations and changed training rejected
+FILES_TOUCHED: scripts/pcie/b1e_link_findings.py, tests/pcie/test_b1e_link_findings.py, docs/pcie-b1e-evidence.md, docs/pcie-b1e-findings-contract.md, artifacts/evidence/pcie-b1e-hang-20260930, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: No new product rules, replay inference from NAK, global CRC health, full Recovery entry count or root cause. Existing nonrequired governance-drift checker missing on main; deferred outside this slice.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
