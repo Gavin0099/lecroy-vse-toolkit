@@ -1,0 +1,8 @@
+{
+  "status": "PASS_B2D_OBSERVED_STATE",
+  "tests_passed": 4,
+  "before_replay_byte_identical": true,
+  "before_sha256": "28C7487BA2C996985CA96488674CE0840907D11ACDFBC86C7C5C84DAD7FADBBF",
+  "after_sha256": "186FAC4A73715A65DD2F02DD0728C8EADBEF344AA415ABE324E126CE67E7389D",
+  "initial_test_correction": "Synthetic read fixture missing write_value=null fixed; incorrect expectation that real 0x42 ASPM bits were 0 replaced with reviewed literal 0x42/packet10354. Production byte extraction unchanged."
+}
