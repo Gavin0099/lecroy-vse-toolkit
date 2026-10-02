@@ -11,3 +11,9 @@ B2b 只沿用 type/BDF helpers，另有自己的 config completion retirement。
 型別定義來源與 hash 在 script 常數註解；GUI_CONFIRMED 表示該 code 曾在
 歷史 1350 capture 核對，不表示每個新 packet 都經 GUI 核對。
 沒有交付 G1/G2 extractor、完整 transaction completeness、timeout 或根因。
+
+2026-10-02 PR6 review repair: BDF bus/device components now use uppercase hex,
+retaining repository padding (three bus digits, two device digits, no domain).
+Literal requester/device ID 0x1F58 renders `01F:0B.0`; 0xFFFF renders `0FF:1F.7`.
+The existing 0x0100 sample remains `001:00.0`. This corrects display identity;
+request association keys still use numeric RequesterId/Tag and epochs are unchanged.

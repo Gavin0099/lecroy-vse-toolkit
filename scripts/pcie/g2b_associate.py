@@ -55,7 +55,7 @@ class G2bError(ValueError):
 def bdf(value: int | None) -> str | None:
     if value is None:
         return None
-    return f"{value >> 8:03d}:{(value >> 3) & 0x1F:02d}.{value & 0x7}"
+    return f"{value >> 8:03X}:{(value >> 3) & 0x1F:02X}.{value & 0x7}"
 
 
 def classify(row: dict[str, Any]) -> dict[str, Any]:
