@@ -60,6 +60,26 @@ class ObservationReportTests(unittest.TestCase):
                             r['observation']['expected_state']=='UNKNOWN' and
                             r['observation']['policy_result']=='NOT_EVALUATED' for r in self.model['intents']))
 
+    def test_rule_title_reference_matches_rule_identity(self):
+        source=json.loads((ROOT/self.model['sources']['findings']['path']).read_bytes())
+        for rule in self.model['rules']:
+            refs=[r for r in rule['evidence'] if r['source_id']=='findings']
+            self.assertEqual(len(refs),1)
+            finding=report.contract.pointer_value(source,refs[0]['json_pointer'])
+            self.assertEqual(finding['rule_id'],rule['id'])
+            self.assertEqual(finding['title'],rule['title'])
+
+    def test_statuses_come_from_cited_source_and_rendered_model(self):
+        source=json.loads((ROOT/self.model['sources']['watchlist']['path']).read_bytes())
+        self.assertEqual(self.model['watchlist_status'],source['status'])
+        self.assertEqual(self.model['product_rule_evaluation'],source['product_rule_evaluation'])
+        self.assertEqual([r['json_pointer'] for r in self.model['watchlist_status_evidence']],['/status','/product_rule_evaluation'])
+        m=copy.deepcopy(self.model);m['watchlist_status']='SOURCE_STATUS_SENTINEL'
+        for rendered in [report.render_markdown(m,'../../../..'),report.render_html(m,'../../../..')]:
+            self.assertIn('SOURCE_STATUS_SENTINEL',rendered.replace('\\_','_'))
+            self.assertNotIn('SOURCE_SCOPE_GATE',rendered.replace('\\_','_'))
+            self.assertNotIn('B2h conditional',rendered)
+
     def test_opaque_extensions_not_report_facts(self):
         doc=copy.deepcopy(self.doc);doc['extensions']['root_cause']='UNTRUSTED_CAUSAL_SENTINEL'
         model=report.build_model(doc,ROOT)

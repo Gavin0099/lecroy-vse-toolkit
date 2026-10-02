@@ -14,7 +14,7 @@ ASPM disabled; SD7 inserted; device not visible after switching; system hang; BS
 Crash dump verified: False；其他測試的 0x124, 0xA0 不當成本 capture 的 stop code。
 [evaluation:/product\_context/case](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fproduct_context%2Fcase)
 
-B1d COMPLETE；B2g product policy 仍 SOURCE_SCOPE_GATE；B2h conditional。沒有建立 BSOD root cause。
+B2g: SOURCE\_SCOPE\_GATE；product rule evaluation: NOT\_EVALUATED。沒有建立 BSOD root cause。 [watchlist:/status](../../../../artifacts/evidence/pcie-b2g-delivery-20261002/run1/watchlist-preparation.json#%2Fstatus); [watchlist:/product\_rule\_evaluation](../../../../artifacts/evidence/pcie-b2g-delivery-20261002/run1/watchlist-preparation.json#%2Fproduct_rule_evaluation)
 
 ## Coverage
 
@@ -31,78 +31,78 @@ B1d COMPLETE；B2g product policy 仍 SOURCE_SCOPE_GATE；B2h conditional。沒�
 
 | 項目 | Status | 觀察／解讀 | Evidence |
 | --- | --- | --- | --- |
-| SWITCH\_LINK\_DOWN | PASS | 指定切換起點出現 Link Down，符合工程師描述的切換情境。 | [evaluation:/evaluations/0](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F0) |
-| DISCONNECT\_ACTIVITY | PASS | 接通前已觀察的 Recovery／Polling／無事件區間，屬產品允許出現的現象。 | [evaluation:/evaluations/1](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F1) |
-| MUX\_CONNECTIVITY | PASS | 接通 anchor 後有雙向有效 training，支持工程師的 MUX 已接通判斷。 | [evaluation:/evaluations/2](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F2) |
-| BIDIRECTIONAL\_L0 | PASS | 接通後兩方向均有有效 L0 紀錄。 | [evaluation:/evaluations/3](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F3) |
-| LINK\_WIDTH\_SAMPLES | PASS | 接通後已觀察的 width 樣本符合 x1。 | [evaluation:/evaluations/4](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F4) |
-| INITIAL\_GEN1\_SAMPLE | INCONCLUSIVE | 首次有效 L0 前的 GUI 樣本觀察到 2.5 GT/s x1；本項只記錄觀察。 | [evaluation:/evaluations/5](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F5) |
-| TARGET\_SPEED\_OBSERVED | INCONCLUSIVE | 目前僅確認未在既有 GUI speed 樣本中觀察到 target 8.0 GT/s；window 缺少後續升速證據，不能判定後續是否完成升速。 | [evaluation:/evaluations/6](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F6) |
-| MUX\_DISCONNECT\_DURATION | NOT_EVALUATED | 切換 Link Down 到 reconnect Link Up 的 display-time 差為 1.400 sec，工程師參考值約 1.4 sec。 | [evaluation:/evaluations/7](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F7) |
-| TRAINING\_TIMEOUT | NOT_EVALUATED | 適用 spec、training 起算條件及 timeout 上限未提供。 | [evaluation:/evaluations/8](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F8) |
-| TS\_ERROR\_TOLERANCE | NOT_EVALUATED | 輸入 window 共 384,993 筆 HasErrors，保留各段供檢查；容許門檻未定。 | [evaluation:/evaluations/9](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F9) |
-| HOTPLUG\_INIT\_ACTIVITY | INCONCLUSIVE | 雙向 L0 後在輸入 window 未觀察到 config request，後續初始化仍不確定。 | [evaluation:/evaluations/10](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F10) |
-| DEVICE\_INITIALIZATION\_COMPLETED | NOT_EVALUATED | 初始化／enumeration 完成事件、register 清單與時限未提供。 | [evaluation:/evaluations/11](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F11) |
+| SWITCH\_LINK\_DOWN | PASS | 指定切換起點出現 Link Down，符合工程師描述的切換情境。 | [evaluation:/evaluations/0](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F0); [findings:/findings/0](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F0) |
+| DISCONNECT\_ACTIVITY | PASS | 接通前已觀察的 Recovery／Polling／無事件區間，屬產品允許出現的現象。 | [evaluation:/evaluations/1](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F1); [findings:/findings/1](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F1) |
+| MUX\_CONNECTIVITY | PASS | 接通 anchor 後有雙向有效 training，支持工程師的 MUX 已接通判斷。 | [evaluation:/evaluations/2](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F2); [findings:/findings/2](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F2) |
+| BIDIRECTIONAL\_L0 | PASS | 接通後兩方向均有有效 L0 紀錄。 | [evaluation:/evaluations/3](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F3); [findings:/findings/3](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F3) |
+| LINK\_WIDTH\_SAMPLES | PASS | 接通後已觀察的 width 樣本符合 x1。 | [evaluation:/evaluations/4](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F4); [findings:/findings/4](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F4) |
+| INITIAL\_GEN1\_SAMPLE | INCONCLUSIVE | 首次有效 L0 前的 GUI 樣本觀察到 2.5 GT/s x1；本項只記錄觀察。 | [evaluation:/evaluations/5](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F5); [findings:/findings/5](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F5) |
+| TARGET\_SPEED\_OBSERVED | INCONCLUSIVE | 目前僅確認未在既有 GUI speed 樣本中觀察到 target 8.0 GT/s；window 缺少後續升速證據，不能判定後續是否完成升速。 | [evaluation:/evaluations/6](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F6); [findings:/findings/6](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F6) |
+| MUX\_DISCONNECT\_DURATION | NOT_EVALUATED | 切換 Link Down 到 reconnect Link Up 的 display-time 差為 1.400 sec，工程師參考值約 1.4 sec。 | [evaluation:/evaluations/7](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F7); [findings:/findings/7](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F7) |
+| TRAINING\_TIMEOUT | NOT_EVALUATED | 適用 spec、training 起算條件及 timeout 上限未提供。 | [evaluation:/evaluations/8](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F8); [findings:/findings/8](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F8) |
+| TS\_ERROR\_TOLERANCE | NOT_EVALUATED | 輸入 window 共 384,993 筆 HasErrors，保留各段供檢查；容許門檻未定。 | [evaluation:/evaluations/9](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F9); [findings:/findings/9](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F9) |
+| HOTPLUG\_INIT\_ACTIVITY | INCONCLUSIVE | 雙向 L0 後在輸入 window 未觀察到 config request，後續初始化仍不確定。 | [evaluation:/evaluations/10](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F10); [findings:/findings/10](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F10) |
+| DEVICE\_INITIALIZATION\_COMPLETED | NOT_EVALUATED | 初始化／enumeration 完成事件、register 清單與時限未提供。 | [evaluation:/evaluations/11](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F11); [findings:/findings/11](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F11) |
 
 ### 切換起點 Link Down：PASS
 
 此事件本身不證明後續接通或初始化成功。
-[evaluation:/evaluations/0](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F0); [training:/phases/0/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F0%2Fsteps%2F0)
+[evaluation:/evaluations/0](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F0); [findings:/findings/0](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F0); [training:/phases/0/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F0%2Fsteps%2F0)
 
 ### 接通前的 link 行為：PASS
 
 不驗證整段 LTSSM 的規範合法性或時間；invalid-state 標記原樣保留。
-[evaluation:/evaluations/1](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F1); [training:/phases/1/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F1%2Fsteps%2F0); [training:/phases/1/steps/2](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F1%2Fsteps%2F2); [training:/phases/3/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F3%2Fsteps%2F0); [training:/phases/3/steps/2](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F3%2Fsteps%2F2); [training:/phases/5/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F5%2Fsteps%2F0); [training:/phases/6/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F6%2Fsteps%2F0); [training:/phases/7](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F7)
+[evaluation:/evaluations/1](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F1); [findings:/findings/1](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F1); [training:/phases/1/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F1%2Fsteps%2F0); [training:/phases/1/steps/2](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F1%2Fsteps%2F2); [training:/phases/3/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F3%2Fsteps%2F0); [training:/phases/3/steps/2](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F3%2Fsteps%2F2); [training:/phases/5/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F5%2Fsteps%2F0); [training:/phases/6/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F6%2Fsteps%2F0); [training:/phases/7](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F7)
 
 ### MUX 接通證據：PASS
 
 Q7 的依據是雙向有效 training，不要求雙向 L0；未直接量測 MUX 電氣狀態，未證明裝置初始化。
-[evaluation:/evaluations/2](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F2); [training:/phases/9/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F9%2Fsteps%2F0); [training:/phases/10/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F0); [training:/phases/10/steps/1](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F1); [training:/phases/10/steps/2](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F2); [training:/phases/10/steps/3](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F3); [training:/phases/10/steps/4](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F4); [training:/phases/10/steps/5](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F5); [training:/phases/10/steps/6](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F6); [training:/phases/10/steps/7](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F7); [training:/phases/11/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F11%2Fsteps%2F0); [training:/phases/11/steps/1](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F11%2Fsteps%2F1); [training:/phases/11/steps/2](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F11%2Fsteps%2F2); [training:/phases/11/steps/3](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F11%2Fsteps%2F3)
+[evaluation:/evaluations/2](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F2); [findings:/findings/2](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F2); [training:/phases/9/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F9%2Fsteps%2F0); [training:/phases/10/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F0); [training:/phases/10/steps/1](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F1); [training:/phases/10/steps/2](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F2); [training:/phases/10/steps/3](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F3); [training:/phases/10/steps/4](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F4); [training:/phases/10/steps/5](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F5); [training:/phases/10/steps/6](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F6); [training:/phases/10/steps/7](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F7); [training:/phases/11/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F11%2Fsteps%2F0); [training:/phases/11/steps/1](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F11%2Fsteps%2F1); [training:/phases/11/steps/2](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F11%2Fsteps%2F2); [training:/phases/11/steps/3](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F11%2Fsteps%2F3)
 
 ### 雙向 L0 觀察里程碑：PASS
 
 本項是兩方向明確有效 L0 的觀察里程碑；Q2 提供後續初始化情境，不取代 Q7 的 training 接通依據。缺少 L0 不自動判 FAIL，沒有 timeout 上限。
-[evaluation:/evaluations/3](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F3); [training:/phases/12/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F12%2Fsteps%2F0); [training:/phases/12/steps/1](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F12%2Fsteps%2F1)
+[evaluation:/evaluations/3](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F3); [findings:/findings/3](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F3); [training:/phases/12/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F12%2Fsteps%2F0); [training:/phases/12/steps/1](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F12%2Fsteps%2F1)
 
 ### 連線 width 樣本：PASS
 
 僅限已記錄的 speed\_width／GUI 樣本，未確認完整後續連線。
-[evaluation:/evaluations/4](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F4); [training:/phases/9/inner\_records/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F9%2Finner_records%2F0); [training:/phases/8/gui\_samples/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F8%2Fgui_samples%2F0)
+[evaluation:/evaluations/4](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F4); [findings:/findings/4](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F4); [training:/phases/9/inner\_records/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F9%2Finner_records%2F0); [training:/phases/8/gui\_samples/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F8%2Fgui_samples%2F0)
 
 ### 首次 L0 前速率樣本：INCONCLUSIVE
 
 工程師只定義 target Gen3 x1 與持續停留 Gen1 不符合預期，未提供初始 Gen1 接受規則；本版未驗證 PCIe spec，不判本項 PASS／FAIL。
-[evaluation:/evaluations/5](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F5); [training:/phases/8/gui\_samples/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F8%2Fgui_samples%2F0)
+[evaluation:/evaluations/5](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F5); [findings:/findings/5](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F5); [training:/phases/8/gui\_samples/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F8%2Fgui_samples%2F0)
 
 ### 目標 Gen3 樣本：INCONCLUSIVE
 
 樣本未見 target rate 不等同後續未升速或持續停在 Gen1；升速完成終點／時限未提供，raw speed code 的標示尚未 probe。
-[evaluation:/evaluations/6](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F6)
+[evaluation:/evaluations/6](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F6); [findings:/findings/6](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F6)
 
 ### 切換事件時間差：NOT_EVALUATED
 
 這是兩個事件間的時間，非直接量測 MUX dead-time；約 1.4 sec 不作 timeout 或接受門檻。
-[evaluation:/evaluations/7](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F7); [training:/phases/0/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F0%2Fsteps%2F0); [training:/phases/8/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F8%2Fsteps%2F0)
+[evaluation:/evaluations/7](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F7); [findings:/findings/7](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F7); [training:/phases/0/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F0%2Fsteps%2F0); [training:/phases/8/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F8%2Fsteps%2F0)
 
 ### Training 時限：NOT_EVALUATED
 
 不自訂 Recovery 次數或 training 上限。
-[evaluation:/evaluations/8](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F8); [training:/phases/12/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F12%2Fsteps%2F0); [training:/phases/12/steps/1](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F12%2Fsteps%2F1)
+[evaluation:/evaluations/8](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F8); [findings:/findings/8](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F8); [training:/phases/12/steps/0](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F12%2Fsteps%2F0); [training:/phases/12/steps/1](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F12%2Fsteps%2F1)
 
 ### TS-error 接受度：NOT_EVALUATED
 
 未自訂 transient／persistent 數值分類；GUI subtype 僅代表已抽樣的紀錄。
-[evaluation:/evaluations/9](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F9); [training:/phases/3](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F3); [training:/phases/5](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F5); [training:/phases/6](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F6); [training:/phases/8](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F8); [training:/phases/9](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F9)
+[evaluation:/evaluations/9](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F9); [findings:/findings/9](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F9); [training:/phases/3](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F3); [training:/phases/5](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F5); [training:/phases/6](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F6); [training:/phases/8](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F8); [training:/phases/9](../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F9)
 
 ### L0 後初始化活動：INCONCLUSIVE
 
 看到 request 不證明 Completion、BAR 寫入或 enumeration 完成；未看到也不推定 window 外不存在。
-[evaluation:/evaluations/10](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F10)
+[evaluation:/evaluations/10](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F10); [findings:/findings/10](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F10)
 
 ### 裝置初始化完成條件：NOT_EVALUATED
 
 與 MUX 接通狀態獨立；單一 config request 不構成初始化完成。
-[evaluation:/evaluations/11](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F11)
+[evaluation:/evaluations/11](../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F11); [findings:/findings/11](../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#%2Ffindings%2F11)
 
 ## LinkControl write intent
 

@@ -17,11 +17,14 @@ def build_model(doc, root):
     raw=contract.load_sources(doc,root); contract.validate(doc,raw)
     data={k:json.loads(v) for k,v in raw.items()}
     evaluation, findings=data['evaluation'],data['findings']
+    findings_by_rule={f['rule_id']:(i,f) for i,f in enumerate(findings['findings'])}
     rules=[]
     for i,r in enumerate(evaluation['evaluations']):
-        rules.append({'id':r['rule_id'],'title':findings['findings'][i]['title'],
+        finding_index,finding=findings_by_rule[r['rule_id']]
+        rules.append({'id':r['rule_id'],'title':finding['title'],
                       'status':r['status'],'summary':r['summary'],'limitation':r['limitation'],
-                      'evidence':[contract.evidence('evaluation',f'/evaluations/{i}')] +
+                      'evidence':[contract.evidence('evaluation',f'/evaluations/{i}'),
+                                  contract.evidence('findings',f'/findings/{finding_index}')] +
                                  [contract.evidence('training',e['source']) for e in r['evidence']]})
     returns={}
     for event in doc['events']:
@@ -45,6 +48,9 @@ def build_model(doc, root):
         'capture_sha256':doc['capture_sha256'],'trace':evaluation['product_context']['case']['trace_basename'],
         'focus':findings['investigation_focus'],'focus_evidence':[contract.evidence('findings','/investigation_focus')],
         'case':evaluation['product_context']['case'],'case_evidence':[contract.evidence('evaluation','/product_context/case')],
+        'watchlist_status':data['watchlist']['status'],
+        'product_rule_evaluation':data['watchlist']['product_rule_evaluation'],
+        'watchlist_status_evidence':[contract.evidence('watchlist','/status'),contract.evidence('watchlist','/product_rule_evaluation')],
         'metrics':{'packet_observations':len(doc['events']),'distinct_packet_anchors':len({r['packet_index'] for r in doc['events']}),
                    'config_requests':len(config),'observed_read_returns':sum(len(v) for v in returns.values()),
                    'interval_summaries':len(doc['intervals']),'has_errors':sum(r['counts']['err_any'] for r in doc['intervals'])},
@@ -94,13 +100,13 @@ def render_markdown(m, prefix):
            '## 工程師回報與觀察邊界','',
            f"Ground truth: {md(case['reported_outcome'])}（工程師回報，非 trace 自動判定）。",md(case['reported_symptom']),
            f"Crash dump verified: {case['crash_dump_verified']}；其他測試的 {md(', '.join(case['other_tests_bsod']))} 不當成本 capture 的 stop code。",refs(m['case_evidence']),'',
-           'B1d COMPLETE；B2g product policy 仍 SOURCE_SCOPE_GATE；B2h conditional。沒有建立 BSOD root cause。','',
+           f"B2g: {md(m['watchlist_status'])}；product rule evaluation: {md(m['product_rule_evaluation'])}。沒有建立 BSOD root cause。 {refs(m['watchlist_status_evidence'])}",'',
            '## Coverage','',f"{stats['packet_observations']} observations / {stats['distinct_packet_anchors']} distinct packet anchors；這不是 capture packet 總數。",
            f"{stats['config_requests']} config requests / {stats['observed_read_returns']} observed read returns / {stats['interval_summaries']} interval summaries / {stats['has_errors']:,} HasErrors。",'']
     lines += [f'- {md(x)}' for x in m['coverage']]
     lines += ['',f"雙向 L0 到尾端 display-time 差：{m['observations']['post_l0_observed_seconds']} sec；顯示時間無差不代表物理時間為零。 {refs(m['observation_evidence'])}"]
     lines += ['', '## 既有里程碑與產品規則','', '| 項目 | Status | 觀察／解讀 | Evidence |','| --- | --- | --- | --- |']
-    for r in m['rules']:lines.append(f"| {md(r['id'])} | {r['status']} | {md(r['summary'])} | {refs(r['evidence'][:1])} |")
+    for r in m['rules']:lines.append(f"| {md(r['id'])} | {r['status']} | {md(r['summary'])} | {refs(r['evidence'][:2])} |")
     for r in m['rules']:lines += ['',f"### {md(r['title'])}：{r['status']}",'',md(r['limitation']),refs(r['evidence'])]
     lines += ['', '## LinkControl write intent','', '| Packet | Time | Epoch / BDF | Write intent | ASPM intent | Effective / Expected / Policy | Evidence |', '| --- | --- | --- | --- | --- | --- | --- |']
     for item in m['intents']:
@@ -148,7 +154,7 @@ def render_html(m,prefix):
            f'<header><h1>{e(m["title"])}</h1><div>{e(m["trace"])}</div><p>{e(m["focus"]["question"])}</p><div>{e(m["focus"]["limitation"])}</div><p class="capture">Capture SHA-256: {e(m["capture_sha256"])}</p></header>',
            '<nav><a href="#milestones">既有規則</a><a href="#intents">寫入意圖</a><a href="#link">Link / DLLP</a><a href="#config">RC config</a><a href="#coverage">Coverage</a><a href="#sources">來源</a></nav><div class="stats">']
     for label,key in [('Packet observations','packet_observations'),('不同 packet anchors','distinct_packet_anchors'),('Config requests','config_requests'),('Observed read returns','observed_read_returns'),('Interval summaries','interval_summaries'),('HasErrors（window）','has_errors')]:parts.append(f'<div class="stat"><b>{stats[key]:,}</b>{label}</div>')
-    parts += ['</div>',f'<div class="card"><h3>工程師回報{badge(case["reported_outcome"])}</h3><p>{e(case["reported_symptom"])}</p><p class="muted">Ground truth 來自工程師，不是 trace 自動判定。Crash dump verified: {e(case["crash_dump_verified"])}；其他測試的 {e(", ".join(case["other_tests_bsod"]))} 不當成本 capture 的 stop code。</p>{refs(m["case_evidence"])}<p>B1d COMPLETE · B2g SOURCE_SCOPE_GATE · B2h conditional · Root cause UNKNOWN</p></div>',
+    parts += ['</div>',f'<div class="card"><h3>工程師回報{badge(case["reported_outcome"])}</h3><p>{e(case["reported_symptom"])}</p><p class="muted">Ground truth 來自工程師，不是 trace 自動判定。Crash dump verified: {e(case["crash_dump_verified"])}；其他測試的 {e(", ".join(case["other_tests_bsod"]))} 不當成本 capture 的 stop code。</p>{refs(m["case_evidence"])}<p>B2g: {e(m["watchlist_status"])} · Product rule evaluation: {e(m["product_rule_evaluation"])} · Root cause UNKNOWN</p>{refs(m["watchlist_status_evidence"])}</div>',
               '<section id="milestones"><h2>既有里程碑與產品規則</h2><p>雙向 valid training 支持 MUX connectivity；雙向有效 L0 是獨立觀察。缺觀察不改 FAIL，缺 threshold 不改 PASS。</p>']
     for r in m['rules']:
         parts.append(f'<details><summary>{e(r["title"])}{badge(r["status"])} <span class="muted">{e(r["id"])}</span></summary><p>{e(r["summary"])}</p><p class="muted">{e(r["limitation"])}</p><div class="source">{refs(r["evidence"])}</div></details>')

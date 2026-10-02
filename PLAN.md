@@ -428,3 +428,5 @@ contract. B3c, full B3d, new capture/runtime qualification and root cause remain
 outside these completed capabilities. Original dirty checkout is preserved.
 
 - feat(pcie): render W4 and W5 observation reports: 147 PCIe tests PASS (8 focused); two real report replays have equal MD and HTML SHA-256; isolated Edge screenshots inspected; local bounded adversarial review completed before PR. Scope: B2g product policy awaits engineer Who/When/What/Proof; B2h conditional. Legacy link capture binding corroborated; no applied state, root cause, full TS/DLLP export or complete B3d. Inherited nonrequired governance-drift checker missing, deferred.
+
+W4+W5 final bounded repair: source-derived/cited B2g status; unsupported B2h report status omitted; rule titles matched by rule ID with findings refs. 149 suite / 10 focused tests PASS; both regressions fail on the reviewed head and pass after. Two final MD/HTML replay hashes match; final HTML visual inspection PASS. One GitHub review round completed; latest-head local repair gate before conditional merge.

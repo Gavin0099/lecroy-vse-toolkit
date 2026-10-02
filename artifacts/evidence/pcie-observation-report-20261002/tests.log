@@ -41,7 +41,7 @@ test_r1_markdown_passes_contract_and_marks_samples (test_b1c_training_timeline.B
 test_range_sum_mismatch_and_orphan_sample_are_rejected (test_b1c_training_timeline.B1cR1Tests.test_range_sum_mismatch_and_orphan_sample_are_rejected) ... ok
 test_straddled_phase_still_validates_channel_totals (test_b1c_training_timeline.B1cR1Tests.test_straddled_phase_still_validates_channel_totals) ... ok
 test_cli_requires_matching_pass_summary (test_b1c_training_timeline.B1cTests.test_cli_requires_matching_pass_summary) ... B1c training timeline not produced: B1b summary does not describe this timeline.json
-B1c training timeline not produced: Refusing to reuse existing output directory: C:\Users\reiko\AppData\Local\Temp\tmpv5neejxx\out
+B1c training timeline not produced: Refusing to reuse existing output directory: C:\Users\reiko\AppData\Local\Temp\tmpxccu7xns\out
 ok
 test_contract_rejects_judgement_wording_and_hidden_unknown (test_b1c_training_timeline.B1cTests.test_contract_rejects_judgement_wording_and_hidden_unknown) ... ok
 test_markdown_keeps_unknowns_and_passes_contract (test_b1c_training_timeline.B1cTests.test_markdown_keeps_unknowns_and_passes_contract) ... ok
@@ -185,6 +185,8 @@ test_hostile_text_is_escaped_not_active_markup (test_b3d_observation_report.Obse
 test_html_is_offline_and_packet_anchors_unique (test_b3d_observation_report.ObservationReportTests.test_html_is_offline_and_packet_anchors_unique) ... ok
 test_markdown_and_html_preserve_rule_states_and_key_values (test_b3d_observation_report.ObservationReportTests.test_markdown_and_html_preserve_rule_states_and_key_values) ... ok
 test_opaque_extensions_not_report_facts (test_b3d_observation_report.ObservationReportTests.test_opaque_extensions_not_report_facts) ... ok
+test_rule_title_reference_matches_rule_identity (test_b3d_observation_report.ObservationReportTests.test_rule_title_reference_matches_rule_identity) ... ok
+test_statuses_come_from_cited_source_and_rendered_model (test_b3d_observation_report.ObservationReportTests.test_statuses_come_from_cited_source_and_rendered_model) ... ok
 test_key_uses_requester_and_tag_only_and_completion_must_follow (test_g2b_associate.AssociationTests.test_key_uses_requester_and_tag_only_and_completion_must_follow) ... ok
 test_no_completion_is_not_called_timeout (test_g2b_associate.AssociationTests.test_no_completion_is_not_called_timeout) ... ok
 test_reissued_key_before_completion_is_not_guessed (test_g2b_associate.AssociationTests.test_reissued_key_before_completion_is_not_guessed) ... ok
@@ -194,6 +196,6 @@ test_bdf_uses_hex_bus_and_device_with_existing_padding (test_g2b_associate.Class
 test_roles_follow_vendor_constants_and_field_shape (test_g2b_associate.ClassificationTests.test_roles_follow_vendor_constants_and_field_shape) ... ok
 
 ----------------------------------------------------------------------
-Ran 147 tests in 2.054s
+Ran 149 tests in 2.193s
 
 OK

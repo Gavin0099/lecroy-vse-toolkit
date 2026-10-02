@@ -15,6 +15,7 @@ GUI samples 與來源 SHA／JSON pointer。HTML 使用原生 details，沒有外
 | Read return 保留 Completion anchor | request 不提前宣告讀回；歧義或缺 Completion 不判 timeout |
 | 時間／population 不擴張 | 1.312 sec 是 display gap；GUI sample 無 timestamp；segment counts 不加入逐筆 observation 數 |
 | 可追溯 | 規則、intent、config、link 與 segment 的來源 pointer 可解析，source bytes 已由 upstream 重驗 |
+| 狀態／標題也要有來源 | B2g status／evaluation 讀 watchlist typed fields；B2h 無 report source 就省略。Rule title 依 rule ID 配對 findings 並引用該 record |
 | 工程師 ground truth 不變成 root cause | device 不可見／BSOD 為回報，crash dump 未驗證 |
 | Opaque extension 不變成 report facts | 報告不解讀 extension prose；CLI 仍拒絕非 canonical timeline |
 | 離線文字安全 | HTML escaping、Markdown markup escaping、唯一 packet anchors、沒有 remote/script resources |
