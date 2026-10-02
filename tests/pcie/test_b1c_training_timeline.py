@@ -1,4 +1,5 @@
 import hashlib
+import copy
 import json
 import sys
 import tempfile
@@ -138,6 +139,21 @@ def r1_meta():
 
 
 class B1cR1Tests(unittest.TestCase):
+    def test_channel_cells_must_match_scope_before_attribution(self):
+        for count in (196, 198, -197):
+            bad = copy.deepcopy(X2)
+            bad['cells']['R2C2']['has_errors'] = count
+            with self.subTest(count=count), self.assertRaises(b1c.B1cError):
+                b1c.build(r1_timeline(), Decimal('0.1'), bad, GUI)
+
+    def test_gui_link_claim_requires_matching_timeline_packet_and_text(self):
+        for update in ({'vse_constant': 'LINK_UP', 'gui_text': 'Link Up'},
+                       {'packet_index': 999}, {'gui_text': 'Link Up'}):
+            bad = copy.deepcopy(GUI)
+            bad['link_events'][0].update(update)
+            with self.subTest(update=update), self.assertRaises(b1c.B1cError):
+                b1c.build(r1_timeline(), Decimal('0.1'), X2, bad)
+
     def test_carried_state_channel_and_sample_after_gap(self):
         phases = b1c.build(r1_timeline(), Decimal("0.1"), X2, GUI)
         after_gap = phases[5]
