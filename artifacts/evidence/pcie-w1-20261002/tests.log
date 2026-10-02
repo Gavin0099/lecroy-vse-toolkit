@@ -41,7 +41,7 @@ test_r1_markdown_passes_contract_and_marks_samples (test_b1c_training_timeline.B
 test_range_sum_mismatch_and_orphan_sample_are_rejected (test_b1c_training_timeline.B1cR1Tests.test_range_sum_mismatch_and_orphan_sample_are_rejected) ... ok
 test_straddled_phase_still_validates_channel_totals (test_b1c_training_timeline.B1cR1Tests.test_straddled_phase_still_validates_channel_totals) ... ok
 test_cli_requires_matching_pass_summary (test_b1c_training_timeline.B1cTests.test_cli_requires_matching_pass_summary) ... B1c training timeline not produced: B1b summary does not describe this timeline.json
-B1c training timeline not produced: Refusing to reuse existing output directory: C:\Users\reiko\AppData\Local\Temp\tmpp519zl8e\out
+B1c training timeline not produced: Refusing to reuse existing output directory: C:\Users\reiko\AppData\Local\Temp\tmpxjhl2dwd\out
 ok
 test_contract_rejects_judgement_wording_and_hidden_unknown (test_b1c_training_timeline.B1cTests.test_contract_rejects_judgement_wording_and_hidden_unknown) ... ok
 test_markdown_keeps_unknowns_and_passes_contract (test_b1c_training_timeline.B1cTests.test_markdown_keeps_unknowns_and_passes_contract) ... ok
@@ -164,6 +164,6 @@ test_bdf_uses_hex_bus_and_device_with_existing_padding (test_g2b_associate.Class
 test_roles_follow_vendor_constants_and_field_shape (test_g2b_associate.ClassificationTests.test_roles_follow_vendor_constants_and_field_shape) ... ok
 
 ----------------------------------------------------------------------
-Ran 117 tests in 0.403s
+Ran 117 tests in 0.355s
 
 OK

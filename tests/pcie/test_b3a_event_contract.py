@@ -21,7 +21,7 @@ class EventContractTests(unittest.TestCase):
 
     def test_alias_cannot_duplicate_observation(self):
         event=copy.deepcopy(self.doc['events'][0]);event['event_id']='arbitrary-second-id'
-        self.doc['events'].insert(1,event)
+        self.doc['events'].insert(0,event)  # Alias keeps the old lexicographic ordering valid.
         with self.assertRaises(ValueError): contract.validate(self.doc,self.sources)
 
     def test_sources_array_is_controlled_cli_error(self):

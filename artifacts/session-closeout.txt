@@ -207,3 +207,11 @@ CHECKS_RUN: python -X utf8 -B -m unittest discover -s tests/pcie -v; representat
 OPEN_RISKS: Structural validator does not authenticate sources or recompute facts; inherited nonrequired drift checker missing.
 NOT_DONE: Latest head review/merge pending; W2-W5 and product policy remain.
 RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Verify alias regression isolates ID validation.
+WORK_COMPLETED: All three review regressions fail on old head; 117 tests pass on current implementation.
+FILES_TOUCHED: tests/pcie/test_b3a_event_contract.py, artifacts/evidence/pcie-w1-20261002/before-repair-tests.log, artifacts/evidence/pcie-w1-20261002/tests.log, artifacts/session-closeout.txt
+CHECKS_RUN: Three regression tests against old module; python -X utf8 -B -m unittest discover -s tests/pcie -v.
+OPEN_RISKS: Inherited nonrequired drift checker missing; no source-authenticity claim.
+NOT_DONE: Latest-head review/merge pending; W2-W5.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE

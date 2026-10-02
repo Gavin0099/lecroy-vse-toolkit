@@ -1,4 +1,4 @@
-F.E
+FFE
 ======================================================================
 ERROR: test_sources_array_is_controlled_cli_error (test_b3a_event_contract.EventContractTests.test_sources_array_is_controlled_cli_error)
 ----------------------------------------------------------------------
@@ -20,7 +20,16 @@ Traceback (most recent call last):
          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
 AssertionError: ValueError not raised
 
+======================================================================
+FAIL: test_alias_cannot_duplicate_observation (test_b3a_event_contract.EventContractTests.test_alias_cannot_duplicate_observation)
 ----------------------------------------------------------------------
-Ran 3 tests in 0.008s
+Traceback (most recent call last):
+  File "C:\Users\reiko\.codex\worktrees\pcie-slice-delivery\lecroy-vse-toolkit\tests\pcie\test_b3a_event_contract.py", line 25, in test_alias_cannot_duplicate_observation
+    with self.assertRaises(ValueError): contract.validate(self.doc,self.sources)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
 
-FAILED (failures=1, errors=1)
+----------------------------------------------------------------------
+Ran 3 tests in 0.006s
+
+FAILED (failures=2, errors=1)
