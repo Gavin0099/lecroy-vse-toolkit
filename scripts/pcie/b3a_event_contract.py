@@ -15,6 +15,8 @@ STATES = {'PASS', 'FAIL', 'INCONCLUSIVE', 'NOT_EVALUATED'}
 BINDINGS = {'CAPTURE_DECLARED', 'DERIVED_VIA_PROBE', 'CORROBORATED_LEGACY'}
 UNKNOWN_CLAIMS = {'effective_state': 'UNKNOWN', 'expected_state': 'UNKNOWN',
                   'policy_result': 'NOT_EVALUATED'}
+RESERVED_CLAIMS = {**UNKNOWN_CLAIMS, 'device_identity': 'UNKNOWN',
+                   'identity_continuity_proof': None}
 FIELDS = {
     'document': 'schema capture_sha256 anchors ordering sources events intervals gaps milestones coverage limitations extensions',
     'event': 'event_id packet_index time_display display_quantum_seconds layer kind direction routing_bdf device_epoch device_identity identity_continuity_proof classification state_claims details evidence',
@@ -131,8 +133,8 @@ def validate(doc, source_bytes):
     def detail_claims(value):
         if isinstance(value, dict):
             for key, item in value.items():
-                if key in UNKNOWN_CLAIMS:
-                    require(item == UNKNOWN_CLAIMS[key], 'Details cannot promote state or policy')
+                if key in RESERVED_CLAIMS:
+                    require(item == RESERVED_CLAIMS[key], 'Extensions cannot promote state, policy or physical identity')
                 detail_claims(item)
         elif isinstance(value, list):
             for item in value:

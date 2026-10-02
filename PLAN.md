@@ -402,3 +402,5 @@ W1 contract review repair: 117 PCIe tests PASS (15 focused); explicit positive/n
 W1 extension claim bypass repaired; 118 suite / 16 focused tests PASS, current review pending.
 
 W1 interval count / source-gap consistency repaired: 120 tests PASS, 18 focused.
+
+W1 nested identity ceiling repaired: 121 suite / 19 focused tests PASS.

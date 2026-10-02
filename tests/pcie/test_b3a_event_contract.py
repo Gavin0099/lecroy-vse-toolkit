@@ -13,6 +13,13 @@ FIXTURE = ROOT / 'artifacts/evidence/pcie-w1-20261002/representative.json'
 
 
 class EventContractTests(unittest.TestCase):
+    def test_nested_identity_claims_are_rejected(self):
+        for field,value in [('device_identity','KNOWN'),('identity_continuity_proof','same BDF')]:
+            for target in ('details','extensions'):
+                doc=copy.deepcopy(self.doc)
+                if target=='details':doc['events'][0]['details']={'nested':[{field:value}]}
+                else:doc['extensions']={'nested':[{field:value}]}
+                with self.assertRaises(ValueError): contract.validate(doc,self.sources)
     def test_segment_total_and_category_bounds(self):
         for mode in ('missing','category','span'):
             doc=copy.deepcopy(self.doc);counts=doc['intervals'][0]['counts']

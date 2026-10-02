@@ -231,3 +231,11 @@ CHECKS_RUN: two prior-head regressions; python -X utf8 -B -m unittest discover -
 OPEN_RISKS: Structural checks do not authenticate sources; inherited nonrequired drift checker missing.
 NOT_DONE: Latest-head review/merge pending; W2-W5 and product policy.
 RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Extend recursive v1 identity ceiling to nested data.
+WORK_COMPLETED: 121 PCIe tests PASS (19 focused), 5 explicit negative fixtures; all review regressions fail before fix; recursive state/policy/identity ceilings and interval/source-gap consistency.
+FILES_TOUCHED: scripts/pcie/b3a_event_contract.py, tests/pcie/test_b3a_event_contract.py, docs/pcie-observation-timeline-contract.md, docs/pcie-observation-timeline-contract-v1.json, artifacts/evidence/pcie-w1-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: prior-head nested identity regression; python -X utf8 -B -m unittest discover -s tests/pcie -v.
+OPEN_RISKS: Structural checks do not authenticate sources; inherited nonrequired drift checker missing.
+NOT_DONE: Latest-head review/merge pending; W2-W5 and product policy.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
