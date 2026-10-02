@@ -281,3 +281,11 @@ CHECKS_RUN: run1/run2 byte equality already verified; scoped source/destination 
 OPEN_RISKS: Legacy link binding corroborated; nonrequired drift checker unavailable.
 NOT_DONE: Final PR review/merge; report capability and ASPM policy.
 RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Finish unified timeline final review as one bounded batch.
+WORK_COMPLETED: 139 tests PASS, byte-canonical/duplicate-key regression fails before fix; canonical timeline unchanged.
+FILES_TOUCHED: scripts/pcie/b3b_unified_timeline.py, tests/pcie/test_b3b_unified_timeline.py, docs/pcie-unified-timeline.md, artifacts/evidence/pcie-unified-timeline-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: prior-head byte regression; python -X utf8 -B -m unittest discover -s tests/pcie -v; verified_timeline canonical-source replay.
+OPEN_RISKS: Legacy link binding corroborated; source authenticity not claimed; inherited nonrequired drift checker missing.
+NOT_DONE: PR merge pending; W4+W5 report; engineer ASPM policy.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE

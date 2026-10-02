@@ -412,3 +412,5 @@ Owner workflow correction 2026-10-02: freeze W1 invariants; GitHub review is fin
 W1 final bounded review: milestone id/summary basic string guard; 125 tests PASS. GitHub final feedback disposed; no further speculative parser-hardening loop.
 
 - feat(pcie): unify W2 and W3 config and link evidence timeline: 138 PCIe tests PASS (13 focused); two real CLI replays byte-identical; W1 validator PASS; local bounded adversarial integration review completed before PR. Scope: Legacy link capture binding remains corroborated, not a direct hash. Opaque prose is not an authoritative fact. ASPM policy awaits engineer; no root cause/full DLLP export. Inherited nonrequired drift checker missing, deferred.
+
+W2+W3 final bounded repair: canonical-byte consumer comparison enforced, 139 tests PASS; canonical timeline SHA unchanged.

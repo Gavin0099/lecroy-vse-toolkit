@@ -14,6 +14,15 @@ MANIFEST=ROOT/'artifacts/evidence/pcie-unified-timeline-20261002/inputs.json'
 
 
 class UnifiedTimelineTests(unittest.TestCase):
+    def test_consumer_requires_canonical_bytes_and_rejects_duplicate_keys(self):
+        with tempfile.TemporaryDirectory() as temp:
+            p=Path(temp)/'timeline.json'
+            canonical=(MANIFEST.parent/'run1/timeline.json').read_bytes()
+            p.write_bytes(canonical);adapter.verified_timeline(p,ROOT)
+            for raw in [json.dumps(self.doc).encode('utf-8'),
+                        canonical.replace(b'{\n',b'{\n  "schema": "untrusted-first-value",\n',1)]:
+                p.write_bytes(raw)
+                with self.assertRaises(ValueError):adapter.verified_timeline(p,ROOT)
     def test_unmatched_and_missing_completion_do_not_become_read_state(self):
         unmatched=[r for r in self.doc['events'] if r['details'].get('unmatched_completion_candidate')]
         self.assertEqual(len(unmatched),44)

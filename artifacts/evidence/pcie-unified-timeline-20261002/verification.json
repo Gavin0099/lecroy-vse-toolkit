@@ -1,7 +1,7 @@
 {
   "status": "PASS_UNIFIED_OBSERVATION_TIMELINE",
-  "suite_tests": 138,
-  "focused_tests": 13,
+  "suite_tests": 139,
+  "focused_tests": 14,
   "deterministic_replay": "MATCHED",
   "timeline_sha256": "171FC79F4D86E1702EAD5C9B255462D0B0B4F2F2CAA9A0B0FD525193047C4C43",
   "packet_observations": 743,
@@ -17,5 +17,6 @@
   ],
   "replay1_sha256": "171FC79F4D86E1702EAD5C9B255462D0B0B4F2F2CAA9A0B0FD525193047C4C43",
   "replay2_sha256": "171FC79F4D86E1702EAD5C9B255462D0B0B4F2F2CAA9A0B0FD525193047C4C43",
-  "stored_output": "run1/timeline.json (single canonical output); second output retained in ignored runtime"
+  "stored_output": "run1/timeline.json (single canonical output); second output retained in ignored runtime",
+  "canonical_byte_regression": "FAIL before fix / PASS after fix; existing canonical bytes unchanged"
 }

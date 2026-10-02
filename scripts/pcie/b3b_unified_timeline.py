@@ -226,13 +226,17 @@ def build(root, manifest_path):
 
 def verified_timeline(path, root):
     """Consumers verify canonical bytes by recomputing the adapter, not trusting prose."""
-    doc = json.loads(Path(path).read_bytes())
+    raw = Path(path).read_bytes(); doc = json.loads(raw)
     producer = doc['extensions']['producer']
     require(producer['adapter'] == 'b3b_unified_timeline', 'Unsupported timeline producer')
     root = Path(root).resolve(); manifest = (root / producer['manifest_path']).resolve()
     require(manifest.is_relative_to(root) and contract.sha(manifest.read_bytes()) == producer['manifest_sha256'], 'Changed/outside manifest')
-    require(doc == build(root,manifest), 'Timeline differs from source-bound adapter replay')
+    require(raw == canonical_bytes(build(root,manifest)), 'Timeline bytes differ from canonical source-bound adapter replay')
     return doc
+
+
+def canonical_bytes(doc):
+    return (json.dumps(doc,ensure_ascii=False,indent=2)+'\n').encode('utf-8')
 
 
 def main(argv=None):
@@ -243,7 +247,7 @@ def main(argv=None):
         require(not args.output_dir.exists(), 'Refusing existing output')
         doc = build(args.source_root,args.manifest)
         args.output_dir.mkdir(parents=True)
-        (args.output_dir/'timeline.json').write_text(json.dumps(doc,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
+        (args.output_dir/'timeline.json').write_bytes(canonical_bytes(doc))
         print(json.dumps({'status':'PASS_UNIFIED_OBSERVATION_TIMELINE','observations':len(doc['events']),
                           'distinct_observed_packets':len({r['packet_index'] for r in doc['events']}),
                           'intervals':len(doc['intervals']),'gaps':len(doc['gaps'])}))
