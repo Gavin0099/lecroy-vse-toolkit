@@ -13,6 +13,23 @@ FIXTURE = ROOT / 'artifacts/evidence/pcie-w1-20261002/representative.json'
 
 
 class EventContractTests(unittest.TestCase):
+    def test_segment_total_and_category_bounds(self):
+        for mode in ('missing','category','span'):
+            doc=copy.deepcopy(self.doc);counts=doc['intervals'][0]['counts']
+            if mode=='missing':del counts['events']
+            elif mode=='category':counts['tlp']=11
+            else:counts['events']=9
+            with self.assertRaises(ValueError): contract.validate(doc,self.sources)
+
+    def test_gap_cannot_contain_event_from_same_source(self):
+        self.doc['gaps']=[{'after_index':8600,'before_index':9000,
+                          'after_time':'8.313 sec','before_time':'8.315 sec',
+                          'after_display_quantum_seconds':'0.001','before_display_quantum_seconds':'0.001',
+                          'display_duration_seconds':'0.002','claim':'NO_OBSERVED_EVENTS_IN_SOURCE_WINDOW',
+                          'evidence':[contract.evidence('watchlist','')]}]
+        with self.assertRaises(ValueError): contract.validate(self.doc,self.sources)
+        self.doc['gaps'][0]['evidence']=[contract.evidence('training','/phases/7')]
+        contract.validate(self.doc,self.sources)  # Other-source coverage is not silently expanded.
     def test_undeclared_claim_fields_and_extensions_are_checked(self):
         for field,value in [('effective_state','L1'),('policy_result','FAIL')]:
             doc=copy.deepcopy(self.doc);doc['events'][0][field]=value

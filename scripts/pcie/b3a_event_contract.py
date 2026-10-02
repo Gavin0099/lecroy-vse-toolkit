@@ -171,6 +171,11 @@ def validate(doc, source_bytes):
         require(time_parts(interval['first_time'])[0] <= time_parts(interval['last_time'])[0], 'Reversed display interval')
         require(isinstance(interval['counts'], dict), 'Invalid interval counts')
         require(all(type(v) is int and v >= 0 for v in interval['counts'].values()), 'Invalid interval count')
+        total = interval['counts'].get('events')
+        require(type(total) is int and total == interval['last_index'] - interval['first_index'] + 1,
+                'Segment total must match its contiguous packet range')
+        require(all(v <= total for v in interval['counts'].values()), 'Category count exceeds segment total')
+        require(isinstance(interval['details'], dict), 'Interval details must be an object')
     for gap in doc['gaps']:
         fields(gap, 'gap')
         refs(gap); packet(gap['after_index']); packet(gap['before_index'])
@@ -180,6 +185,11 @@ def validate(doc, source_bytes):
         display(gap, 'before_time', 'before_display_quantum_seconds')
         require(end >= start and Decimal(gap['display_duration_seconds']) == end - start, 'Invalid display gap')
         require(gap['claim'] == 'NO_OBSERVED_EVENTS_IN_SOURCE_WINDOW', 'Gap cannot prove electrical silence')
+        gap_sources = {ref['source_id'] for ref in gap['evidence']}
+        for event in doc['events']:
+            same_source = gap_sources & {ref['source_id'] for ref in event['evidence']}
+            require(not (same_source and gap['after_index'] < event['packet_index'] < gap['before_index']),
+                    'Source gap contradicts an observed packet')
     for milestone in doc['milestones']:
         fields(milestone, 'milestone')
         refs(milestone)

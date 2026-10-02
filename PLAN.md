@@ -400,3 +400,5 @@ B2g read-back repair: completion must remain in the write device epoch; 102 suit
 W1 contract review repair: 117 PCIe tests PASS (15 focused); explicit positive/negative source fixtures; nested details policy, alias-duplicate and malformed sources CLI regressions. No product state or identity continuity added.
 
 W1 extension claim bypass repaired; 118 suite / 16 focused tests PASS, current review pending.
+
+W1 interval count / source-gap consistency repaired: 120 tests PASS, 18 focused.

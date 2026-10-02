@@ -1,6 +1,6 @@
 {
-  "suite_tests": 118,
-  "focused_tests": 16,
+  "suite_tests": 120,
+  "focused_tests": 18,
   "representative_fixture_validation": {
     "status": "PASS_OBSERVATION_CONTRACT",
     "packet_observations": 2,
@@ -14,5 +14,6 @@
     "alias duplicate observation",
     "malformed sources controlled CLI error"
   ],
-  "extension_claim_regression": "FAIL before fix / PASS after fix"
+  "extension_claim_regression": "FAIL before fix / PASS after fix",
+  "interval_gap_regressions": "two fail before fix / pass after fix"
 }
