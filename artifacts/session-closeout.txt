@@ -115,3 +115,13 @@ CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
 OPEN_RISKS: Qualified only on this converted PETracer 13.26 non-Flit capture. Historical artifacts are retained, not relabelled as fresh qualification. No applied state/product ASPM policy/causality. Inherited nonrequired governance-drift checker absent and deferred.
 NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
 RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 g2b-fix delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 79 PCIe tests PASS (7 helper tests); literal 0x1F58 regression fails before fix and passes after; two real role/association/orphan replays byte-identical
+FILES_TOUCHED: scripts/pcie/g2b_associate.py, tests/pcie/test_g2b_associate.py, docs/pcie-g2b-helper-delivery.md, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: Formatting only; no physical device continuity, transaction qualification or policy inference. Inherited nonrequired governance-drift missing checker deferred.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
