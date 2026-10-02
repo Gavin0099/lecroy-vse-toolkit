@@ -392,3 +392,5 @@ B2g product policy remains waiting for engineer Who / When / What / Proof answer
 - feat(pcie): deliver B2G watchlist prepare: 98 clean-slice PCIe tests PASS, no skips; two real offline replays match historical current r1-run1 output byte-for-byte. Scope: No engineer product expectations supplied; L1_ENABLE_WRITE_INTENT cannot prove register applied, system ASPM enabled, policy violation or BSOD causality. Inherited nonrequired governance-drift missing checker deferred outside scope.
 
 B2g review repair: 101 PCIe tests PASS (8 focused); two real replays identical; two old readback regressions fail before fix; delivered questionnaire hashes freshly bound. Read-back candidates require request and completion after this write and before the next overlapping write in the same device epoch; effective/expected UNKNOWN. Historical questionnaire identity record marked superseded.
+
+B2g read-back repair: completion must remain in the write device epoch; 102 suite tests PASS, 9 focused.

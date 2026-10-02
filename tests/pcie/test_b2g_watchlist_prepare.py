@@ -10,6 +10,15 @@ EV={'product_context':{'provenance':{'source_kind':'fixture'},'case':{'reported_
 
 
 class PreparationTests(unittest.TestCase):
+    def test_read_completion_crossing_disconnect_is_not_readback(self):
+        log=fixture();template=log['accesses'][0]
+        write={**template,'packet_index':50,'read_value':None,'write_value':2,
+               'register_byte_offset':0x70,'first_be':3,'target_bdf':'001:00.0',
+               'completions':[],'time_display':'1.000 sec'}
+        log['accesses'] += [write,{**write,'packet_index':98,'read_value':2,
+                                  'write_value':None,'first_be':15,
+                                  'completions':[{'packet_index':101}]}]
+        self.assertEqual(b2g.build(log,REF,EV)['observations'][0]['read_back_evidence_packets'],[])
     def test_readback_excludes_old_requests_and_superseded_writes(self):
         log=fixture();template=log['accesses'][0]
         def write(p,value=2):

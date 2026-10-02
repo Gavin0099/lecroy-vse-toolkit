@@ -41,7 +41,7 @@ test_r1_markdown_passes_contract_and_marks_samples (test_b1c_training_timeline.B
 test_range_sum_mismatch_and_orphan_sample_are_rejected (test_b1c_training_timeline.B1cR1Tests.test_range_sum_mismatch_and_orphan_sample_are_rejected) ... ok
 test_straddled_phase_still_validates_channel_totals (test_b1c_training_timeline.B1cR1Tests.test_straddled_phase_still_validates_channel_totals) ... ok
 test_cli_requires_matching_pass_summary (test_b1c_training_timeline.B1cTests.test_cli_requires_matching_pass_summary) ... B1c training timeline not produced: B1b summary does not describe this timeline.json
-B1c training timeline not produced: Refusing to reuse existing output directory: C:\Users\reiko\AppData\Local\Temp\tmpptn_7_cv\out
+B1c training timeline not produced: Refusing to reuse existing output directory: C:\Users\reiko\AppData\Local\Temp\tmps8qa1sy0\out
 ok
 test_contract_rejects_judgement_wording_and_hidden_unknown (test_b1c_training_timeline.B1cTests.test_contract_rejects_judgement_wording_and_hidden_unknown) ... ok
 test_markdown_keeps_unknowns_and_passes_contract (test_b1c_training_timeline.B1cTests.test_markdown_keeps_unknowns_and_passes_contract) ... ok
@@ -135,6 +135,7 @@ test_disabled_and_both_enabled_remain_unassessed_without_policy (test_b2g_watchl
 test_enabled_intent_is_observation_not_product_fail (test_b2g_watchlist_prepare.PreparationTests.test_enabled_intent_is_observation_not_product_fail) ... ok
 test_partial_word_does_not_promote_unselected_bytes (test_b2g_watchlist_prepare.PreparationTests.test_partial_word_does_not_promote_unselected_bytes) ... ok
 test_read_completion_after_overlapping_write_is_not_candidate (test_b2g_watchlist_prepare.PreparationTests.test_read_completion_after_overlapping_write_is_not_candidate) ... ok
+test_read_completion_crossing_disconnect_is_not_readback (test_b2g_watchlist_prepare.PreparationTests.test_read_completion_crossing_disconnect_is_not_readback) ... ok
 test_readback_does_not_cross_epoch_or_device (test_b2g_watchlist_prepare.PreparationTests.test_readback_does_not_cross_epoch_or_device) ... ok
 test_readback_excludes_old_requests_and_superseded_writes (test_b2g_watchlist_prepare.PreparationTests.test_readback_excludes_old_requests_and_superseded_writes) ... ok
 test_readback_requires_return_after_write (test_b2g_watchlist_prepare.PreparationTests.test_readback_requires_return_after_write) ... ok
@@ -148,6 +149,6 @@ test_bdf_uses_hex_bus_and_device_with_existing_padding (test_g2b_associate.Class
 test_roles_follow_vendor_constants_and_field_shape (test_g2b_associate.ClassificationTests.test_roles_follow_vendor_constants_and_field_shape) ... ok
 
 ----------------------------------------------------------------------
-Ran 101 tests in 0.206s
+Ran 102 tests in 0.176s
 
 OK

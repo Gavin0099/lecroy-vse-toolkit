@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 import b2a_register_fields as b2a
 import b2e_snapshot_query as b2e
+import b2c_capability_resolution as b2c
 
 SCHEMA = 'pcie.b2g-watchlist-preparation/v2'
 INTENTS = {0: 'DISABLED', 1: 'L0S', 2: 'L1', 3: 'L0S_AND_L1'}
@@ -38,7 +39,8 @@ def readback_candidates(log, write, offset):
                 and write['packet_index'] < r['packet_index'] < next_write
                 and len(r['completions']) == 1):
             packet = r['completions'][0]['packet_index']
-            if r['packet_index'] < packet < next_write:
+            if (r['packet_index'] < packet < next_write
+                    and b2c.epoch_at(log,packet) == write['epoch']):
                 packets.append(packet)
     return sorted(set(packets))
 

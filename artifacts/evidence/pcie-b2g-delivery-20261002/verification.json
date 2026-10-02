@@ -1,6 +1,6 @@
 {
-  "suite_tests": 101,
-  "focused_tests": 8,
+  "suite_tests": 102,
+  "focused_tests": 9,
   "old_readback_regressions_failed": 2,
   "deterministic_replay": "MATCHED",
   "document_sha256": {
@@ -9,5 +9,6 @@
   },
   "effective_state": "UNKNOWN",
   "expected_state": "UNKNOWN",
-  "policy_result": "NOT_EVALUATED"
+  "policy_result": "NOT_EVALUATED",
+  "completion_epoch_boundary_regression": "request 98 / completion 101 / disconnect 100: no read-back candidate"
 }
