@@ -47,27 +47,44 @@ def parse(text):
     return rows, end
 
 
-def verify(rows, end, metadata):
+def verify(rows, end, metadata, *, require_full_payload=False):
+    """Check fields; legacy 16-byte inputs get consistency checks only.
+
+    Fresh CLI qualification requires independent raw bytes for the first DWORD.
+    Historical downstream replay may retain the narrower legacy evidence scope.
+    """
     if any(r.get('row')!=i+1 for i,r in enumerate(metadata)) or any(b['packet_index']<=a['packet_index'] for a,b in zip(metadata,metadata[1:])): raise ValueError('Invalid G2a row order')
     wanted = [r for r in metadata if int(r["tlp_type_hex"], 16) in CFG | {17, 18}]
     if end["tlps"] != len(metadata) or len(rows) != len(wanted): raise ValueError("Coverage differs from G2a")
     counts = {"config_reads": 0, "config_writes": 0, "completions": 0, "payload_dwords_checked": 0}
+    if require_full_payload:
+        counts.update(raw_payload_dwords_checked=0,register_data_payloads_unknown=0)
     for r, old in zip(rows, wanted):
         for key in ("packet_index", "time_display", "channel", "requester_id", "tag", "completer_id", "compl_status"):
             if r[key] != old[key]: raise ValueError(f"G2a mismatch {key} at {r['packet_index']}")
         typ = r["tlp_type"]
         if typ != int(old["tlp_type_hex"], 16): raise ValueError("Type mismatch")
-        if r["frame_prefix"] is None or not re.fullmatch(r"[0-9A-F]{32}", r["frame_prefix"]): raise ValueError("Missing frame prefix")
+        if r["frame_prefix"] is None or not re.fullmatch(r"(?:[0-9A-F]{32}|[0-9A-F]{38})", r["frame_prefix"]): raise ValueError("Missing frame prefix")
         f = bytes.fromhex(r["frame_prefix"])
         # Qualified on this capture only: FB + two sequence bytes + 3-DW header.
         # Unsupported framing is rejected, not decoded using this layout.
         if f[0] != 0xFB or f[3] != {9: 4, 10: 0x44, 11: 5, 12: 0x45, 17: 0xA, 18: 0x4A}[typ]: raise ValueError("Unsupported frame layout")
         plen = r["payload_length"]
         if plen is None or plen < 0: raise ValueError("Missing payload length")
+        # TLP DW0 format/10-bit length; see pinned primary implementation in contract.
+        raw_dwords=int.from_bytes(f[5:7], 'big') & 0x3FF
+        raw_payload_length=((raw_dwords or 1024)*4) if f[3] & 0x40 else 0
+        if plen != raw_payload_length: raise ValueError("Raw header/payload length mismatch")
         p = bytes.fromhex(r["payload_prefix"]) if r["payload_prefix"] else b""
         if len(p) != min(plen, 16): raise ValueError("Payload prefix length mismatch")
         if plen:
-            if f[15] != p[0]: raise ValueError("Frame/payload mismatch")
+            needed=min(plen,4)
+            if require_full_payload and len(f)<15+needed: raise ValueError("Full raw DWORD/payload bytes required for qualification")
+            available=min(needed,len(f)-15)
+            if f[15:15+available] != p[:available]: raise ValueError("Frame/payload mismatch")
+            if require_full_payload and plen >= 4:
+                counts['raw_payload_dwords_checked']+=1
+                if r['register_data'] is None:counts['register_data_payloads_unknown']+=1
             if plen >= 4 and r["register_data"] is not None:
                 if r["register_data"] != int.from_bytes(p[:4], "little"): raise ValueError("RegisterData/payload mismatch")
                 counts["payload_dwords_checked"] += 1
@@ -96,9 +113,12 @@ def main(argv=None):
         run = json.loads((a.com_run / "com-run.json").read_text(encoding="utf-8"))
         raw = a.com_run / "vse-output.txt"
         if run["status"] != "COM_RUN_COMPLETE" or run.get('steps',{}).get('finish_event',{}).get('result_name')!='DONE' or not run["identities_unchanged"] or sha(raw) != run["output"]["vse_output_sha256"]: raise ValueError("Unqualified COM evidence")
-        rows, end = parse(raw.read_text(encoding="utf-8")); counts = verify(rows, end, json.loads(a.metadata.read_text(encoding="utf-8")))
+        rows, end = parse(raw.read_text(encoding="utf-8")); counts = verify(rows, end, json.loads(a.metadata.read_text(encoding="utf-8")), require_full_payload=True)
         out = {"schema": SCHEMA, "status": "PASS_REGISTER_FIELD_PROBE", "input": {"com_run_sha256": sha(a.com_run / "com-run.json"), "vse_output_sha256": sha(raw), "metadata_sha256": sha(a.metadata), "trace": run["pre"]["files"][0]}, "units": {"register": "byte offset (qualified on this capture)", "register_data": "little-endian DWORD from payload; not a CfgRd request value", "byte_enable": "first/last DWORD byte mask", "payload_length": "bytes"}, "counts": counts, "tlps": end["tlps"], "rows": rows, "not_established": ["all versions/framing modes", "CplD is config data without request association", "vendor register meaning", "post-switch initialization beyond capture end"]}
         a.output_dir.mkdir(parents=True)
+        out['validation_basis']={'frame_prefix_bytes':19,'payload_proof':'raw_payload_dwords_checked: first payload DWORD independently matches frame bytes 15..18',
+                                 'register_data_proof':'payload_dwords_checked: only non-NA RegisterData values match payload; NA remains UNKNOWN and is separately counted, not a proved register value',
+                                 'legacy_16_byte_prefix':'historical consistency checks only; cannot qualify a new payload DWORD'}
         (a.output_dir / "fields.json").write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
         print(json.dumps({"status": out["status"], **counts}))
     except (ValueError, OSError, KeyError, TypeError) as e:
