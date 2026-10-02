@@ -348,3 +348,13 @@ The C1 result is recorded in
 it does not prove Agent behavior. One separate fresh-context sub-agent case
 passed on 2026-09-11; review and delivery are recorded with the scoped Git change. This controlled observation
 does not establish universal natural-session recovery.
+
+
+## PCIe slice delivery (2026-10-02)
+
+Owner authorized one capability per PR, latest-head review, then conditional merge
+before the next dependent slice. B1c offline timeline is the first missing dependency
+on main, delivered separately from B1d and the older checkpoint branch. This slice
+replays named B1b window / x2 counters / GUI observation records only; it does not
+qualify extraction or add product rules. B1d and B2 delivery follow independently.
+B2g product policy remains waiting for engineer Who / When / What / Proof answers.

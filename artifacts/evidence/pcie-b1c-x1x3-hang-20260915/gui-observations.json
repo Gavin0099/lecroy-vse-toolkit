@@ -1,0 +1,85 @@
+{
+ "schema": "pcie.gui-observations/v1",
+ "trace_sha256": "C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD",
+ "method": "PETracer 13.26 GUI, Search > Go to Packet, screenshot read by eye; values transcribed from the screenshot",
+ "scope_note": "Each entry describes only the viewed packet; it is a sample, not a population result.",
+ "link_events": [
+  {
+   "packet_index": 225041,
+   "gui_text": "Link Down",
+   "vse_constant": "LINK_DOWN",
+   "screenshot": "gui-pkt-225041.png",
+   "screenshot_sha256": "4C7C7508C88FF31ED0AE3341E3E4D76AC94356CBD41203DB6D194A61EB21C40B"
+  },
+  {
+   "packet_index": 1479760,
+   "gui_text": "Link Up",
+   "vse_constant": "LINK_UP",
+   "screenshot": "gui-pkt-1479760.png",
+   "screenshot_sha256": "FF67B5163EBD2BB8016434A59E4C82247B9A7845713FE7CC667AC2D5A7AA23BA"
+  }
+ ],
+ "ts1_error_samples": [
+  {
+   "packet_index": 990799,
+   "direction_arrow": "R→",
+   "speed": "2.5",
+   "width": "x1",
+   "gui_error_labels": [
+    "TSDataRateErr",
+    "TSRsrvErr",
+    "TSLaneErr",
+    "TSTrainingControlErr"
+   ],
+   "fields": {
+    "link": "4",
+    "lane": "64",
+    "n_fts": "74",
+    "rsvd": "0, 1",
+    "data_rate": "2.5 GT/s, 8.0 GT/s, Reserved",
+    "rsvd_2": "2",
+    "training_control": "0 1 0 0 1 0 1 0"
+   },
+   "screenshot": "gui-pkt-990799.png",
+   "screenshot_sha256": "9A64BD520D8BC9B7C772C7E397EE552E6F86EAE5873AC10E32CB4036274BD6B6"
+  },
+  {
+   "packet_index": 1096918,
+   "direction_arrow": "R→",
+   "speed": "2.5",
+   "width": "x1",
+   "gui_error_labels": [
+    "TSRsrvErr"
+   ],
+   "fields": {
+    "link": "PAD",
+    "lane": "PAD",
+    "n_fts": "254",
+    "rsvd": "0, 1, 0",
+    "data_rate": "2.5 GT/s, 5.0 GT/s, 8.0 GT/s, 16.0 GT/s, Reserved",
+    "training_control": "0 0 0 0 0 0 0 0"
+   },
+   "screenshot": "gui-pkt-1096918.png",
+   "screenshot_sha256": "76992A5A70D9D86E293A3FC35238A84DBBE12E72049581D6D8124C77206B1E06"
+  },
+  {
+   "packet_index": 1479761,
+   "direction_arrow": "R→",
+   "speed": "2.5",
+   "width": "x1",
+   "gui_error_labels": [
+    "TSRsrvErr"
+   ],
+   "fields": {
+    "link": "PAD",
+    "lane": "PAD",
+    "n_fts": "254",
+    "rsvd": "0, 1, 0",
+    "data_rate": "2.5 GT/s, 5.0 GT/s, 8.0 GT/s, 16.0 GT/s, Reserved",
+    "training_control": "0 0 0 0 0 0 0 0"
+   },
+   "screenshot": "gui-pkt-1479761.png",
+   "screenshot_sha256": "5274A30BCAEFF0AAFA6EA6698337C4D149DE3253C2740B46252AA0231496C898"
+  }
+ ]
+}

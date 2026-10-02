@@ -1,0 +1,1256 @@
+{
+ "schema": "pcie.b1c-training-timeline/v2",
+ "input": {
+  "timeline_sha256": "D612F674B9F10A620D98AFE1A7823F8C852EC5BEB9254C5E7841628A89C7FF41",
+  "window": {
+   "start": 225041,
+   "end": 1484414
+  },
+  "gap_seconds": "0.1",
+  "x2_sha256": "84BF5F768D986558E942CAF36E685C2B7D0589A2E319D993C972196248F6B9BF",
+  "gui_sha256": "1D6A2D7448AF00E69B87F7DE7D9403E6658AE743D573CC6A4D0290F2F9049566",
+  "summary_status": "PASS_WINDOW_EXPORT"
+ },
+ "parameters": {
+  "gap_seconds": "0.1",
+  "gap_is": "presentation threshold, not a PCIe rule"
+ },
+ "unknowns": [
+  "`HasErrors` 在 GUI 抽樣中對應 analyzer 的 Training Sequence Error，但只看了 3 筆；各階段 `HasErrors` 的子類型分布為 `UNKNOWN`。",
+  "單一階段內的 TS1、TS2、DLLP 等計數沒有按方向拆開；方向拆分只到 B1c-x2 的 R1、R2、R3 範圍層級。",
+  "speed code 的 GT/s 標示來自 VSE 手冊文字，未經 probe 驗證。",
+  "B1c-x2 樣本沒有出現 `_CHANNEL_1` 的名稱，範圍統計以 channel id 列出。"
+ ],
+ "phases": [
+  {
+   "kind": "DETECT",
+   "first_index": 225041,
+   "first_time": "9.512 sec",
+   "last_index": 225050,
+   "last_time": "9.512 sec",
+   "segments": [
+    1
+   ],
+   "events": 10,
+   "counts": {
+    "tlp": 2,
+    "dllp_ack": 0,
+    "dllp_nak": 1,
+    "dllp_fc": 6,
+    "dllp_pm": 0,
+    "dllp_other": 0,
+    "os_ts1": 0,
+    "os_ts2": 0,
+    "os_eios": 0,
+    "os_eieos": 0,
+    "os_skip": 0,
+    "os_other": 0
+   },
+   "err_any": 0,
+   "err_subflags": {
+    "disparity": 0,
+    "symbol": 0,
+    "wrong_symbol": 0,
+    "delimiter": 0,
+    "end_bad": 0,
+    "alignment": 0,
+    "idle": 0,
+    "ts_data_rate": 0,
+    "ts_format": 0,
+    "ts_parity": 0,
+    "ts_reserved": 0,
+    "tlp_bad_lcrc": 0,
+    "dllp_bad_crc": 0
+   },
+   "steps": [
+    {
+     "kind": "link_condition",
+     "packet_index": 225041,
+     "time_display": "9.512 sec",
+     "channel": "Upstream",
+     "type_name": "LINK_DOWN"
+    },
+    {
+     "kind": "ltssm",
+     "packet_index": 225041,
+     "time_display": "9.512 sec",
+     "channel": "Upstream",
+     "state": "DETECT",
+     "substate": null,
+     "state_valid": 0
+    }
+   ],
+   "inner_records": [
+    {
+     "kind": "nak",
+     "packet_index": 225042,
+     "time_display": "9.512 sec",
+     "channel": "Downstream",
+     "seq": 1682
+    },
+    {
+     "kind": "tlp",
+     "packet_index": 225043,
+     "time_display": "9.512 sec",
+     "channel": "Downstream",
+     "tlp_type": 9
+    },
+    {
+     "kind": "tlp",
+     "packet_index": 225048,
+     "time_display": "9.512 sec",
+     "channel": "Downstream",
+     "tlp_type": 9
+    }
+   ],
+   "ltssm_at_start": {},
+   "error_subtype": null,
+   "channels": [
+    "Upstream"
+   ],
+   "has_errors_channel": null,
+   "gui_samples": []
+  },
+  {
+   "kind": "RECOVERY",
+   "first_index": 225051,
+   "first_time": "9.512 sec",
+   "last_index": 990789,
+   "last_time": "9.538 sec",
+   "segments": [
+    2,
+    3
+   ],
+   "events": 765738,
+   "counts": {
+    "tlp": 0,
+    "dllp_ack": 0,
+    "dllp_nak": 0,
+    "dllp_fc": 0,
+    "dllp_pm": 0,
+    "dllp_other": 0,
+    "os_ts1": 742531,
+    "os_ts2": 0,
+    "os_eios": 1,
+    "os_eieos": 23205,
+    "os_skip": 0,
+    "os_other": 0
+   },
+   "err_any": 0,
+   "err_subflags": {
+    "disparity": 0,
+    "symbol": 0,
+    "wrong_symbol": 0,
+    "delimiter": 0,
+    "end_bad": 0,
+    "alignment": 0,
+    "idle": 0,
+    "ts_data_rate": 0,
+    "ts_format": 0,
+    "ts_parity": 0,
+    "ts_reserved": 0,
+    "tlp_bad_lcrc": 0,
+    "dllp_bad_crc": 0
+   },
+   "steps": [
+    {
+     "kind": "ltssm",
+     "packet_index": 225051,
+     "time_display": "9.512 sec",
+     "channel": "Downstream",
+     "state": "RECOVERY",
+     "substate": "RCVRLOCK",
+     "state_valid": 1
+    },
+    {
+     "kind": "link_condition",
+     "packet_index": 990789,
+     "time_display": "9.538 sec",
+     "channel": "Downstream",
+     "type_name": "LINK_DOWN"
+    },
+    {
+     "kind": "ltssm",
+     "packet_index": 990789,
+     "time_display": "9.538 sec",
+     "channel": "Downstream",
+     "state": "RECOVERY",
+     "substate": "RCVRSPD",
+     "state_valid": 1
+    }
+   ],
+   "inner_records": [],
+   "ltssm_at_start": {
+    "Upstream": {
+     "state": "DETECT",
+     "substate": null,
+     "state_valid": 0,
+     "packet_index": 225041
+    }
+   },
+   "error_subtype": null,
+   "channels": [
+    "Downstream"
+   ],
+   "has_errors_channel": null,
+   "gui_samples": []
+  },
+  {
+   "kind": "LINK_CONDITION",
+   "first_index": 990790,
+   "first_time": "9.538 sec",
+   "last_index": 990798,
+   "last_time": "9.552 sec",
+   "segments": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "events": 9,
+   "counts": {
+    "tlp": 0,
+    "dllp_ack": 0,
+    "dllp_nak": 0,
+    "dllp_fc": 0,
+    "dllp_pm": 0,
+    "dllp_other": 0,
+    "os_ts1": 0,
+    "os_ts2": 0,
+    "os_eios": 0,
+    "os_eieos": 0,
+    "os_skip": 0,
+    "os_other": 0
+   },
+   "err_any": 0,
+   "err_subflags": {
+    "disparity": 0,
+    "symbol": 0,
+    "wrong_symbol": 0,
+    "delimiter": 0,
+    "end_bad": 0,
+    "alignment": 0,
+    "idle": 0,
+    "ts_data_rate": 0,
+    "ts_format": 0,
+    "ts_parity": 0,
+    "ts_reserved": 0,
+    "tlp_bad_lcrc": 0,
+    "dllp_bad_crc": 0
+   },
+   "steps": [
+    {
+     "kind": "link_condition",
+     "packet_index": 990790,
+     "time_display": "9.538 sec",
+     "channel": "Downstream",
+     "type_name": "LINK_UP"
+    },
+    {
+     "kind": "link_condition",
+     "packet_index": 990791,
+     "time_display": "9.541 sec",
+     "channel": "Downstream",
+     "type_name": "LINK_DOWN"
+    },
+    {
+     "kind": "link_condition",
+     "packet_index": 990792,
+     "time_display": "9.541 sec",
+     "channel": "Downstream",
+     "type_name": "LINK_UP"
+    },
+    {
+     "kind": "link_condition",
+     "packet_index": 990793,
+     "time_display": "9.545 sec",
+     "channel": "Downstream",
+     "type_name": "LINK_DOWN"
+    },
+    {
+     "kind": "link_condition",
+     "packet_index": 990794,
+     "time_display": "9.545 sec",
+     "channel": "Downstream",
+     "type_name": "LINK_UP"
+    },
+    {
+     "kind": "link_condition",
+     "packet_index": 990795,
+     "time_display": "9.548 sec",
+     "channel": "Downstream",
+     "type_name": "LINK_DOWN"
+    },
+    {
+     "kind": "link_condition",
+     "packet_index": 990796,
+     "time_display": "9.548 sec",
+     "channel": "Downstream",
+     "type_name": "LINK_UP"
+    },
+    {
+     "kind": "link_condition",
+     "packet_index": 990797,
+     "time_display": "9.552 sec",
+     "channel": "Downstream",
+     "type_name": "LINK_DOWN"
+    },
+    {
+     "kind": "link_condition",
+     "packet_index": 990798,
+     "time_display": "9.552 sec",
+     "channel": "Downstream",
+     "type_name": "LINK_UP"
+    }
+   ],
+   "inner_records": [],
+   "ltssm_at_start": {
+    "Upstream": {
+     "state": "DETECT",
+     "substate": null,
+     "state_valid": 0,
+     "packet_index": 225041
+    },
+    "Downstream": {
+     "state": "RECOVERY",
+     "substate": "RCVRSPD",
+     "state_valid": 1,
+     "packet_index": 990789
+    }
+   },
+   "error_subtype": null,
+   "channels": [
+    "Downstream"
+   ],
+   "has_errors_channel": null,
+   "gui_samples": []
+  },
+  {
+   "kind": "RECOVERY",
+   "first_index": 990799,
+   "first_time": "9.552 sec",
+   "last_index": 1096915,
+   "last_time": "9.563 sec",
+   "segments": [
+    13,
+    14
+   ],
+   "events": 106117,
+   "counts": {
+    "tlp": 0,
+    "dllp_ack": 0,
+    "dllp_nak": 0,
+    "dllp_fc": 0,
+    "dllp_pm": 0,
+    "dllp_other": 0,
+    "os_ts1": 106116,
+    "os_ts2": 0,
+    "os_eios": 0,
+    "os_eieos": 0,
+    "os_skip": 0,
+    "os_other": 0
+   },
+   "err_any": 1,
+   "err_subflags": {
+    "disparity": 0,
+    "symbol": 0,
+    "wrong_symbol": 0,
+    "delimiter": 0,
+    "end_bad": 0,
+    "alignment": 0,
+    "idle": 0,
+    "ts_data_rate": 0,
+    "ts_format": 0,
+    "ts_parity": 0,
+    "ts_reserved": 0,
+    "tlp_bad_lcrc": 0,
+    "dllp_bad_crc": 0
+   },
+   "steps": [
+    {
+     "kind": "ltssm",
+     "packet_index": 990799,
+     "time_display": "9.552 sec",
+     "channel": "Downstream",
+     "state": "RECOVERY",
+     "substate": "RCVRLOCK",
+     "state_valid": 1
+    },
+    {
+     "kind": "link_condition",
+     "packet_index": 1096915,
+     "time_display": "9.563 sec",
+     "channel": "Downstream",
+     "type_name": "LINK_DOWN"
+    },
+    {
+     "kind": "ltssm",
+     "packet_index": 1096915,
+     "time_display": "9.563 sec",
+     "channel": "Downstream",
+     "state": "RECOVERY",
+     "substate": "RCVRSPD",
+     "state_valid": 1
+    }
+   ],
+   "inner_records": [
+    {
+     "kind": "speed_width",
+     "packet_index": 990799,
+     "time_display": "9.552 sec",
+     "channel": "Downstream",
+     "event": 5,
+     "speed": 0,
+     "width": 1,
+     "event_name": "ORDERED_SET"
+    }
+   ],
+   "ltssm_at_start": {
+    "Upstream": {
+     "state": "DETECT",
+     "substate": null,
+     "state_valid": 0,
+     "packet_index": 225041
+    },
+    "Downstream": {
+     "state": "RECOVERY",
+     "substate": "RCVRSPD",
+     "state_valid": 1,
+     "packet_index": 990789
+    }
+   },
+   "error_subtype": "UNKNOWN",
+   "channels": [
+    "Downstream"
+   ],
+   "has_errors_channel": {
+    "channel": "Downstream",
+    "range": "R1",
+    "range_first": 225041,
+    "range_last": 1096917,
+    "range_has_errors": 2
+   },
+   "gui_samples": [
+    {
+     "packet_index": 990799,
+     "direction_arrow": "R→",
+     "speed": "2.5",
+     "width": "x1",
+     "gui_error_labels": [
+      "TSDataRateErr",
+      "TSRsrvErr",
+      "TSLaneErr",
+      "TSTrainingControlErr"
+     ],
+     "fields": {
+      "link": "4",
+      "lane": "64",
+      "n_fts": "74",
+      "rsvd": "0, 1",
+      "data_rate": "2.5 GT/s, 8.0 GT/s, Reserved",
+      "rsvd_2": "2",
+      "training_control": "0 1 0 0 1 0 1 0"
+     },
+     "screenshot": "gui-pkt-990799.png",
+     "screenshot_sha256": "9A64BD520D8BC9B7C772C7E397EE552E6F86EAE5873AC10E32CB4036274BD6B6"
+    }
+   ]
+  },
+  {
+   "kind": "LINK_CONDITION",
+   "first_index": 1096916,
+   "first_time": "9.575 sec",
+   "last_index": 1096916,
+   "last_time": "9.575 sec",
+   "segments": [
+    15
+   ],
+   "events": 1,
+   "counts": {
+    "tlp": 0,
+    "dllp_ack": 0,
+    "dllp_nak": 0,
+    "dllp_fc": 0,
+    "dllp_pm": 0,
+    "dllp_other": 0,
+    "os_ts1": 0,
+    "os_ts2": 0,
+    "os_eios": 0,
+    "os_eieos": 0,
+    "os_skip": 0,
+    "os_other": 0
+   },
+   "err_any": 0,
+   "err_subflags": {
+    "disparity": 0,
+    "symbol": 0,
+    "wrong_symbol": 0,
+    "delimiter": 0,
+    "end_bad": 0,
+    "alignment": 0,
+    "idle": 0,
+    "ts_data_rate": 0,
+    "ts_format": 0,
+    "ts_parity": 0,
+    "ts_reserved": 0,
+    "tlp_bad_lcrc": 0,
+    "dllp_bad_crc": 0
+   },
+   "steps": [
+    {
+     "kind": "link_condition",
+     "packet_index": 1096916,
+     "time_display": "9.575 sec",
+     "channel": "Downstream",
+     "type_name": "LINK_UP"
+    }
+   ],
+   "inner_records": [],
+   "ltssm_at_start": {
+    "Upstream": {
+     "state": "DETECT",
+     "substate": null,
+     "state_valid": 0,
+     "packet_index": 225041
+    },
+    "Downstream": {
+     "state": "RECOVERY",
+     "substate": "RCVRSPD",
+     "state_valid": 1,
+     "packet_index": 1096915
+    }
+   },
+   "error_subtype": null,
+   "channels": [
+    "Downstream"
+   ],
+   "has_errors_channel": null,
+   "gui_samples": []
+  },
+  {
+   "kind": "RECOVERY",
+   "first_index": 1096917,
+   "first_time": "9.575 sec",
+   "last_index": 1096917,
+   "last_time": "9.575 sec",
+   "segments": [
+    16
+   ],
+   "events": 1,
+   "counts": {
+    "tlp": 0,
+    "dllp_ack": 0,
+    "dllp_nak": 0,
+    "dllp_fc": 0,
+    "dllp_pm": 0,
+    "dllp_other": 0,
+    "os_ts1": 1,
+    "os_ts2": 0,
+    "os_eios": 0,
+    "os_eieos": 0,
+    "os_skip": 0,
+    "os_other": 0
+   },
+   "err_any": 1,
+   "err_subflags": {
+    "disparity": 0,
+    "symbol": 0,
+    "wrong_symbol": 0,
+    "delimiter": 0,
+    "end_bad": 0,
+    "alignment": 0,
+    "idle": 0,
+    "ts_data_rate": 0,
+    "ts_format": 0,
+    "ts_parity": 0,
+    "ts_reserved": 0,
+    "tlp_bad_lcrc": 0,
+    "dllp_bad_crc": 0
+   },
+   "steps": [
+    {
+     "kind": "ltssm",
+     "packet_index": 1096917,
+     "time_display": "9.575 sec",
+     "channel": "Downstream",
+     "state": "RECOVERY",
+     "substate": "RCVRLOCK",
+     "state_valid": 1
+    }
+   ],
+   "inner_records": [],
+   "ltssm_at_start": {
+    "Upstream": {
+     "state": "DETECT",
+     "substate": null,
+     "state_valid": 0,
+     "packet_index": 225041
+    },
+    "Downstream": {
+     "state": "RECOVERY",
+     "substate": "RCVRSPD",
+     "state_valid": 1,
+     "packet_index": 1096915
+    }
+   },
+   "error_subtype": "UNKNOWN",
+   "channels": [
+    "Downstream"
+   ],
+   "has_errors_channel": {
+    "channel": "Downstream",
+    "range": "R1",
+    "range_first": 225041,
+    "range_last": 1096917,
+    "range_has_errors": 2
+   },
+   "gui_samples": []
+  },
+  {
+   "kind": "POLLING",
+   "first_index": 1096918,
+   "first_time": "9.575 sec",
+   "last_index": 1479759,
+   "last_time": "9.600 sec",
+   "segments": [
+    17
+   ],
+   "events": 382842,
+   "counts": {
+    "tlp": 0,
+    "dllp_ack": 0,
+    "dllp_nak": 0,
+    "dllp_fc": 0,
+    "dllp_pm": 0,
+    "dllp_other": 0,
+    "os_ts1": 382842,
+    "os_ts2": 0,
+    "os_eios": 0,
+    "os_eieos": 0,
+    "os_skip": 0,
+    "os_other": 0
+   },
+   "err_any": 382842,
+   "err_subflags": {
+    "disparity": 0,
+    "symbol": 0,
+    "wrong_symbol": 0,
+    "delimiter": 0,
+    "end_bad": 0,
+    "alignment": 0,
+    "idle": 0,
+    "ts_data_rate": 0,
+    "ts_format": 0,
+    "ts_parity": 0,
+    "ts_reserved": 0,
+    "tlp_bad_lcrc": 0,
+    "dllp_bad_crc": 0
+   },
+   "steps": [
+    {
+     "kind": "ltssm",
+     "packet_index": 1096918,
+     "time_display": "9.575 sec",
+     "channel": "Downstream",
+     "state": "POLLING",
+     "substate": null,
+     "state_valid": 0
+    }
+   ],
+   "inner_records": [],
+   "ltssm_at_start": {
+    "Upstream": {
+     "state": "DETECT",
+     "substate": null,
+     "state_valid": 0,
+     "packet_index": 225041
+    },
+    "Downstream": {
+     "state": "RECOVERY",
+     "substate": "RCVRLOCK",
+     "state_valid": 1,
+     "packet_index": 1096917
+    }
+   },
+   "error_subtype": "UNKNOWN",
+   "channels": [
+    "Downstream"
+   ],
+   "has_errors_channel": {
+    "channel": "Downstream",
+    "range": "R2",
+    "range_first": 1096918,
+    "range_last": 1479759,
+    "range_has_errors": 382842
+   },
+   "gui_samples": [
+    {
+     "packet_index": 1096918,
+     "direction_arrow": "R→",
+     "speed": "2.5",
+     "width": "x1",
+     "gui_error_labels": [
+      "TSRsrvErr"
+     ],
+     "fields": {
+      "link": "PAD",
+      "lane": "PAD",
+      "n_fts": "254",
+      "rsvd": "0, 1, 0",
+      "data_rate": "2.5 GT/s, 5.0 GT/s, 8.0 GT/s, 16.0 GT/s, Reserved",
+      "training_control": "0 0 0 0 0 0 0 0"
+     },
+     "screenshot": "gui-pkt-1096918.png",
+     "screenshot_sha256": "76992A5A70D9D86E293A3FC35238A84DBBE12E72049581D6D8124C77206B1E06"
+    }
+   ]
+  },
+  {
+   "kind": "NO_OBSERVED_EVENTS",
+   "after_index": 1479759,
+   "after_time": "9.600 sec",
+   "before_index": 1479760,
+   "before_time": "10.912 sec",
+   "duration_seconds": "1.312"
+  },
+  {
+   "kind": "LINK_CONDITION",
+   "first_index": 1479760,
+   "first_time": "10.912 sec",
+   "last_index": 1479844,
+   "last_time": "10.912 sec",
+   "segments": [
+    18
+   ],
+   "events": 85,
+   "counts": {
+    "tlp": 0,
+    "dllp_ack": 0,
+    "dllp_nak": 0,
+    "dllp_fc": 0,
+    "dllp_pm": 0,
+    "dllp_other": 0,
+    "os_ts1": 84,
+    "os_ts2": 0,
+    "os_eios": 0,
+    "os_eieos": 0,
+    "os_skip": 0,
+    "os_other": 0
+   },
+   "err_any": 84,
+   "err_subflags": {
+    "disparity": 0,
+    "symbol": 0,
+    "wrong_symbol": 0,
+    "delimiter": 0,
+    "end_bad": 0,
+    "alignment": 0,
+    "idle": 0,
+    "ts_data_rate": 0,
+    "ts_format": 0,
+    "ts_parity": 0,
+    "ts_reserved": 0,
+    "tlp_bad_lcrc": 0,
+    "dllp_bad_crc": 0
+   },
+   "steps": [
+    {
+     "kind": "link_condition",
+     "packet_index": 1479760,
+     "time_display": "10.912 sec",
+     "channel": "Upstream",
+     "type_name": "LINK_UP"
+    }
+   ],
+   "inner_records": [],
+   "ltssm_at_start": {
+    "Upstream": {
+     "state": "DETECT",
+     "substate": null,
+     "state_valid": 0,
+     "packet_index": 225041
+    },
+    "Downstream": {
+     "state": "POLLING",
+     "substate": null,
+     "state_valid": 0,
+     "packet_index": 1096918
+    }
+   },
+   "error_subtype": "UNKNOWN",
+   "channels": [
+    "Upstream"
+   ],
+   "has_errors_channel": {
+    "channel": "Downstream",
+    "range": "R3",
+    "range_first": 1479760,
+    "range_last": 1484414,
+    "range_has_errors": 2149
+   },
+   "gui_samples": [
+    {
+     "packet_index": 1479761,
+     "direction_arrow": "R→",
+     "speed": "2.5",
+     "width": "x1",
+     "gui_error_labels": [
+      "TSRsrvErr"
+     ],
+     "fields": {
+      "link": "PAD",
+      "lane": "PAD",
+      "n_fts": "254",
+      "rsvd": "0, 1, 0",
+      "data_rate": "2.5 GT/s, 5.0 GT/s, 8.0 GT/s, 16.0 GT/s, Reserved",
+      "training_control": "0 0 0 0 0 0 0 0"
+     },
+     "screenshot": "gui-pkt-1479761.png",
+     "screenshot_sha256": "5274A30BCAEFF0AAFA6EA6698337C4D149DE3253C2740B46252AA0231496C898"
+    }
+   ]
+  },
+  {
+   "kind": "POLLING",
+   "first_index": 1479845,
+   "first_time": "10.912 sec",
+   "last_index": 1484024,
+   "last_time": "10.912 sec",
+   "segments": [
+    19
+   ],
+   "events": 4180,
+   "counts": {
+    "tlp": 0,
+    "dllp_ack": 0,
+    "dllp_nak": 0,
+    "dllp_fc": 0,
+    "dllp_pm": 0,
+    "dllp_other": 0,
+    "os_ts1": 2984,
+    "os_ts2": 1196,
+    "os_eios": 0,
+    "os_eieos": 0,
+    "os_skip": 0,
+    "os_other": 0
+   },
+   "err_any": 2065,
+   "err_subflags": {
+    "disparity": 0,
+    "symbol": 0,
+    "wrong_symbol": 0,
+    "delimiter": 0,
+    "end_bad": 0,
+    "alignment": 0,
+    "idle": 0,
+    "ts_data_rate": 0,
+    "ts_format": 0,
+    "ts_parity": 0,
+    "ts_reserved": 0,
+    "tlp_bad_lcrc": 0,
+    "dllp_bad_crc": 0
+   },
+   "steps": [
+    {
+     "kind": "ltssm",
+     "packet_index": 1479845,
+     "time_display": "10.912 sec",
+     "channel": "Upstream",
+     "state": "POLLING",
+     "substate": null,
+     "state_valid": 1
+    }
+   ],
+   "inner_records": [
+    {
+     "kind": "speed_width",
+     "packet_index": 1479845,
+     "time_display": "10.912 sec",
+     "channel": "Upstream",
+     "event": 5,
+     "speed": 0,
+     "width": 1,
+     "event_name": "ORDERED_SET"
+    }
+   ],
+   "ltssm_at_start": {
+    "Upstream": {
+     "state": "DETECT",
+     "substate": null,
+     "state_valid": 0,
+     "packet_index": 225041
+    },
+    "Downstream": {
+     "state": "POLLING",
+     "substate": null,
+     "state_valid": 0,
+     "packet_index": 1096918
+    }
+   },
+   "error_subtype": "UNKNOWN",
+   "channels": [
+    "Upstream"
+   ],
+   "has_errors_channel": {
+    "channel": "Downstream",
+    "range": "R3",
+    "range_first": 1479760,
+    "range_last": 1484414,
+    "range_has_errors": 2149
+   },
+   "gui_samples": []
+  },
+  {
+   "kind": "CONFIG",
+   "first_index": 1484025,
+   "first_time": "10.912 sec",
+   "last_index": 1484185,
+   "last_time": "10.912 sec",
+   "segments": [
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+   ],
+   "events": 161,
+   "counts": {
+    "tlp": 0,
+    "dllp_ack": 0,
+    "dllp_nak": 0,
+    "dllp_fc": 0,
+    "dllp_pm": 0,
+    "dllp_other": 0,
+    "os_ts1": 97,
+    "os_ts2": 64,
+    "os_eios": 0,
+    "os_eieos": 0,
+    "os_skip": 0,
+    "os_other": 0
+   },
+   "err_any": 0,
+   "err_subflags": {
+    "disparity": 0,
+    "symbol": 0,
+    "wrong_symbol": 0,
+    "delimiter": 0,
+    "end_bad": 0,
+    "alignment": 0,
+    "idle": 0,
+    "ts_data_rate": 0,
+    "ts_format": 0,
+    "ts_parity": 0,
+    "ts_reserved": 0,
+    "tlp_bad_lcrc": 0,
+    "dllp_bad_crc": 0
+   },
+   "steps": [
+    {
+     "kind": "ltssm",
+     "packet_index": 1484025,
+     "time_display": "10.912 sec",
+     "channel": "Downstream",
+     "state": "CONFIG",
+     "substate": "LINKWIDTH_STRT",
+     "state_valid": 1
+    },
+    {
+     "kind": "ltssm",
+     "packet_index": 1484046,
+     "time_display": "10.912 sec",
+     "channel": "Upstream",
+     "state": "CONFIG",
+     "substate": "LINKWIDTH_STRT",
+     "state_valid": 1
+    },
+    {
+     "kind": "ltssm",
+     "packet_index": 1484050,
+     "time_display": "10.912 sec",
+     "channel": "Upstream",
+     "state": "CONFIG",
+     "substate": "LINKWIDTH_ACPT",
+     "state_valid": 1
+    },
+    {
+     "kind": "ltssm",
+     "packet_index": 1484053,
+     "time_display": "10.912 sec",
+     "channel": "Downstream",
+     "state": "CONFIG",
+     "substate": "LINKWIDTH_ACPT",
+     "state_valid": 1
+    },
+    {
+     "kind": "ltssm",
+     "packet_index": 1484072,
+     "time_display": "10.912 sec",
+     "channel": "Downstream",
+     "state": "CONFIG",
+     "substate": "LANENUM_WAIT_ACPT",
+     "state_valid": 1
+    },
+    {
+     "kind": "ltssm",
+     "packet_index": 1484097,
+     "time_display": "10.912 sec",
+     "channel": "Upstream",
+     "state": "CONFIG",
+     "substate": "LANENUM_WAIT_ACPT",
+     "state_valid": 1
+    },
+    {
+     "kind": "ltssm",
+     "packet_index": 1484118,
+     "time_display": "10.912 sec",
+     "channel": "Downstream",
+     "state": "CONFIG",
+     "substate": "COMPLETE",
+     "state_valid": 1
+    },
+    {
+     "kind": "ltssm",
+     "packet_index": 1484147,
+     "time_display": "10.912 sec",
+     "channel": "Upstream",
+     "state": "CONFIG",
+     "substate": "COMPLETE",
+     "state_valid": 1
+    }
+   ],
+   "inner_records": [],
+   "ltssm_at_start": {
+    "Upstream": {
+     "state": "POLLING",
+     "substate": null,
+     "state_valid": 1,
+     "packet_index": 1479845
+    },
+    "Downstream": {
+     "state": "POLLING",
+     "substate": null,
+     "state_valid": 0,
+     "packet_index": 1096918
+    }
+   },
+   "error_subtype": null,
+   "channels": [
+    "Downstream",
+    "Upstream"
+   ],
+   "has_errors_channel": null,
+   "gui_samples": []
+  },
+  {
+   "kind": "RECOVERY",
+   "first_index": 1484186,
+   "first_time": "10.912 sec",
+   "last_index": 1484272,
+   "last_time": "10.912 sec",
+   "segments": [
+    28,
+    29,
+    30,
+    31
+   ],
+   "events": 87,
+   "counts": {
+    "tlp": 0,
+    "dllp_ack": 0,
+    "dllp_nak": 0,
+    "dllp_fc": 0,
+    "dllp_pm": 0,
+    "dllp_other": 0,
+    "os_ts1": 36,
+    "os_ts2": 51,
+    "os_eios": 0,
+    "os_eieos": 0,
+    "os_skip": 0,
+    "os_other": 0
+   },
+   "err_any": 0,
+   "err_subflags": {
+    "disparity": 0,
+    "symbol": 0,
+    "wrong_symbol": 0,
+    "delimiter": 0,
+    "end_bad": 0,
+    "alignment": 0,
+    "idle": 0,
+    "ts_data_rate": 0,
+    "ts_format": 0,
+    "ts_parity": 0,
+    "ts_reserved": 0,
+    "tlp_bad_lcrc": 0,
+    "dllp_bad_crc": 0
+   },
+   "steps": [
+    {
+     "kind": "ltssm",
+     "packet_index": 1484186,
+     "time_display": "10.912 sec",
+     "channel": "Downstream",
+     "state": "RECOVERY",
+     "substate": "RCVRLOCK",
+     "state_valid": 1
+    },
+    {
+     "kind": "ltssm",
+     "packet_index": 1484200,
+     "time_display": "10.912 sec",
+     "channel": "Upstream",
+     "state": "RECOVERY",
+     "substate": "RCVRLOCK",
+     "state_valid": 1
+    },
+    {
+     "kind": "ltssm",
+     "packet_index": 1484216,
+     "time_display": "10.912 sec",
+     "channel": "Upstream",
+     "state": "RECOVERY",
+     "substate": "RCVRCFG",
+     "state_valid": 1
+    },
+    {
+     "kind": "ltssm",
+     "packet_index": 1484229,
+     "time_display": "10.912 sec",
+     "channel": "Downstream",
+     "state": "RECOVERY",
+     "substate": "RCVRCFG",
+     "state_valid": 1
+    }
+   ],
+   "inner_records": [],
+   "ltssm_at_start": {
+    "Upstream": {
+     "state": "CONFIG",
+     "substate": "COMPLETE",
+     "state_valid": 1,
+     "packet_index": 1484147
+    },
+    "Downstream": {
+     "state": "CONFIG",
+     "substate": "COMPLETE",
+     "state_valid": 1,
+     "packet_index": 1484118
+    }
+   },
+   "error_subtype": null,
+   "channels": [
+    "Downstream",
+    "Upstream"
+   ],
+   "has_errors_channel": null,
+   "gui_samples": []
+  },
+  {
+   "kind": "L0",
+   "first_index": 1484273,
+   "first_time": "10.912 sec",
+   "last_index": 1484414,
+   "last_time": "10.912 sec",
+   "segments": [
+    32,
+    33
+   ],
+   "events": 142,
+   "counts": {
+    "tlp": 2,
+    "dllp_ack": 0,
+    "dllp_nak": 0,
+    "dllp_fc": 99,
+    "dllp_pm": 0,
+    "dllp_other": 41,
+    "os_ts1": 0,
+    "os_ts2": 0,
+    "os_eios": 0,
+    "os_eieos": 0,
+    "os_skip": 0,
+    "os_other": 0
+   },
+   "err_any": 0,
+   "err_subflags": {
+    "disparity": 0,
+    "symbol": 0,
+    "wrong_symbol": 0,
+    "delimiter": 0,
+    "end_bad": 0,
+    "alignment": 0,
+    "idle": 0,
+    "ts_data_rate": 0,
+    "ts_format": 0,
+    "ts_parity": 0,
+    "ts_reserved": 0,
+    "tlp_bad_lcrc": 0,
+    "dllp_bad_crc": 0
+   },
+   "steps": [
+    {
+     "kind": "ltssm",
+     "packet_index": 1484273,
+     "time_display": "10.912 sec",
+     "channel": "Downstream",
+     "state": "L0",
+     "substate": null,
+     "state_valid": 1
+    },
+    {
+     "kind": "ltssm",
+     "packet_index": 1484298,
+     "time_display": "10.912 sec",
+     "channel": "Upstream",
+     "state": "L0",
+     "substate": null,
+     "state_valid": 1
+    }
+   ],
+   "inner_records": [
+    {
+     "kind": "tlp",
+     "packet_index": 1484399,
+     "time_display": "10.912 sec",
+     "channel": "Upstream",
+     "tlp_type": 13
+    },
+    {
+     "kind": "tlp",
+     "packet_index": 1484414,
+     "time_display": "10.912 sec",
+     "channel": "Downstream",
+     "tlp_type": 14
+    }
+   ],
+   "ltssm_at_start": {
+    "Upstream": {
+     "state": "RECOVERY",
+     "substate": "RCVRCFG",
+     "state_valid": 1,
+     "packet_index": 1484216
+    },
+    "Downstream": {
+     "state": "RECOVERY",
+     "substate": "RCVRCFG",
+     "state_valid": 1,
+     "packet_index": 1484229
+    }
+   },
+   "error_subtype": null,
+   "channels": [
+    "Downstream",
+    "Upstream"
+   ],
+   "has_errors_channel": null,
+   "gui_samples": []
+  }
+ ]
+}
