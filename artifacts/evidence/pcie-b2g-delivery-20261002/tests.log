@@ -1,0 +1,153 @@
+{
+  "status": "PASS_TRAINING_TIMELINE",
+  "revision": "base",
+  "phases": 8,
+  "flow": "Detect（Upstream） → Recovery（Downstream） → link condition ×2 → Polling（Downstream） → 沒有觀察到事件（1.312 sec） → link condition ×1 → Configuration（Downstream、Upstream） → L0（Downstream）",
+  "training_md_sha256": "BFC0243BC0AEB5B9CC234A501D478CB8D39C0B85646C38953DF95031829980C9"
+}
+{
+  "status": "PASS_B1D_RULE_EVALUATION_BUILD",
+  "overall_verdict": "NOT_CLAIMED",
+  "states": {
+    "mux_switch": {
+      "state": "MUX_SWITCH_COMPLETED",
+      "status": "PASS",
+      "basis": "engineer Q7 bidirectional-training evidence criterion"
+    },
+    "link_l0": {
+      "state": "BIDIRECTIONAL_L0_OBSERVED",
+      "status": "PASS",
+      "basis": "explicit valid L0 records on both directions; independent of Q7 connectivity"
+    },
+    "hotplug_activity": {
+      "state": "HOTPLUG_INIT_NOT_OBSERVED",
+      "status": "INCONCLUSIVE"
+    },
+    "device_initialization": {
+      "state": "DEVICE_INITIALIZATION_COMPLETION_NOT_ESTABLISHED",
+      "status": "NOT_EVALUATED",
+      "value": null
+    }
+  },
+  "evaluation_md_sha256": "6FC04066285B4B359C5CE73299C6E9F84DB53FF0495FB4A8C46DB897DD5B6A8C"
+}
+{"status": "PASS_B1E_FINDINGS_BUILD", "findings": 12, "rule_mismatches": 0, "focus": "AFTER_BIDIRECTIONAL_L0"}
+{"registers": 19, "comparable_device_epoch": false}
+test_carried_state_channel_and_sample_after_gap (test_b1c_training_timeline.B1cR1Tests.test_carried_state_channel_and_sample_after_gap) ... ok
+test_channel_cells_must_match_scope_before_attribution (test_b1c_training_timeline.B1cR1Tests.test_channel_cells_must_match_scope_before_attribution) ... ok
+test_gui_link_claim_requires_matching_timeline_packet_and_text (test_b1c_training_timeline.B1cR1Tests.test_gui_link_claim_requires_matching_timeline_packet_and_text) ... ok
+test_r1_contract_rejects_unmarked_label_and_missing_basis (test_b1c_training_timeline.B1cR1Tests.test_r1_contract_rejects_unmarked_label_and_missing_basis) ... ok
+test_r1_markdown_passes_contract_and_marks_samples (test_b1c_training_timeline.B1cR1Tests.test_r1_markdown_passes_contract_and_marks_samples) ... ok
+test_range_sum_mismatch_and_orphan_sample_are_rejected (test_b1c_training_timeline.B1cR1Tests.test_range_sum_mismatch_and_orphan_sample_are_rejected) ... ok
+test_straddled_phase_still_validates_channel_totals (test_b1c_training_timeline.B1cR1Tests.test_straddled_phase_still_validates_channel_totals) ... ok
+test_cli_requires_matching_pass_summary (test_b1c_training_timeline.B1cTests.test_cli_requires_matching_pass_summary) ... B1c training timeline not produced: B1b summary does not describe this timeline.json
+B1c training timeline not produced: Refusing to reuse existing output directory: C:\Users\reiko\AppData\Local\Temp\tmpptn_7_cv\out
+ok
+test_contract_rejects_judgement_wording_and_hidden_unknown (test_b1c_training_timeline.B1cTests.test_contract_rejects_judgement_wording_and_hidden_unknown) ... ok
+test_markdown_keeps_unknowns_and_passes_contract (test_b1c_training_timeline.B1cTests.test_markdown_keeps_unknowns_and_passes_contract) ... ok
+test_phases_merge_same_state_and_link_conditions_and_show_gap (test_b1c_training_timeline.B1cTests.test_phases_merge_same_state_and_link_conditions_and_show_gap) ... ok
+test_rejects_record_outside_its_segment (test_b1c_training_timeline.B1cTests.test_rejects_record_outside_its_segment) ... ok
+test_bad_evidence_and_unattributed_context_are_rejected (test_b1d_mux_rules.B1dTests.test_bad_evidence_and_unattributed_context_are_rejected) ... ok
+test_bilateral_training_is_supported_but_initialization_remains_unknown (test_b1d_mux_rules.B1dTests.test_bilateral_training_is_supported_but_initialization_remains_unknown) ... ok
+test_cli_rejects_changed_training_or_engineer_source_before_writing (test_b1d_mux_rules.B1dTests.test_cli_rejects_changed_training_or_engineer_source_before_writing) ... B1d evaluation not produced: Product context does not describe this training.json
+B1d evaluation not produced: Engineer source document differs from context provenance
+ok
+test_cli_writes_traceable_outputs_and_refuses_overwrite (test_b1d_mux_rules.B1dTests.test_cli_writes_traceable_outputs_and_refuses_overwrite) ... B1d evaluation not produced: Refusing to reuse existing output directory
+ok
+test_config_before_l0_or_in_wrong_direction_does_not_satisfy_activity (test_b1d_mux_rules.B1dTests.test_config_before_l0_or_in_wrong_direction_does_not_satisfy_activity) ... ok
+test_config_request_is_activity_not_initialization_completion (test_b1d_mux_rules.B1dTests.test_config_request_is_activity_not_initialization_completion) ... ok
+test_every_record_pointer_resolves_to_the_original_input (test_b1d_mux_rules.B1dTests.test_every_record_pointer_resolves_to_the_original_input) ... ok
+test_gen1_sample_after_l0_is_not_mislabeled_as_initial_training (test_b1d_mux_rules.B1dTests.test_gen1_sample_after_l0_is_not_mislabeled_as_initial_training) ... ok
+test_gui_gen3_speed_is_observed_without_using_capability_data_rate (test_b1d_mux_rules.B1dTests.test_gui_gen3_speed_is_observed_without_using_capability_data_rate) ... ok
+test_initial_gen1_is_observation_without_an_engineer_acceptance_rule (test_b1d_mux_rules.B1dTests.test_initial_gen1_is_observation_without_an_engineer_acceptance_rule) ... ok
+test_invalid_and_carried_states_cannot_supply_training_evidence (test_b1d_mux_rules.B1dTests.test_invalid_and_carried_states_cannot_supply_training_evidence) ... ok
+test_l0_alone_does_not_replace_the_q7_training_criterion (test_b1d_mux_rules.B1dTests.test_l0_alone_does_not_replace_the_q7_training_criterion) ... ok
+test_mux_connectivity_can_pass_without_any_l0 (test_b1d_mux_rules.B1dTests.test_mux_connectivity_can_pass_without_any_l0) ... ok
+test_no_numeric_thresholds_are_invented_for_time_or_errors (test_b1d_mux_rules.B1dTests.test_no_numeric_thresholds_are_invented_for_time_or_errors) ... ok
+test_no_width_sample_is_inconclusive (test_b1d_mux_rules.B1dTests.test_no_width_sample_is_inconclusive) ... ok
+test_one_sided_training_does_not_claim_mux_failure_or_completion (test_b1d_mux_rules.B1dTests.test_one_sided_training_does_not_claim_mux_failure_or_completion) ... ok
+test_only_one_valid_l0_cannot_start_bilateral_initialization_check (test_b1d_mux_rules.B1dTests.test_only_one_valid_l0_cannot_start_bilateral_initialization_check) ... ok
+test_real_hang_evidence_has_scoped_results_without_reopening_b1c (test_b1d_mux_rules.B1dTests.test_real_hang_evidence_has_scoped_results_without_reopening_b1c) ... ok
+test_target_speed_wording_distinguishes_absent_and_present_samples (test_b1d_mux_rules.B1dTests.test_target_speed_wording_distinguishes_absent_and_present_samples) ... ok
+test_unprobed_raw_speed_code_cannot_prove_gen3 (test_b1d_mux_rules.B1dTests.test_unprobed_raw_speed_code_cannot_prove_gen3) ... ok
+test_width_mismatch_is_fail_even_when_other_samples_are_x1 (test_b1d_mux_rules.B1dTests.test_width_mismatch_is_fail_even_when_other_samples_are_x1) ... ok
+test_cli_hash_gates_and_output_preserve_inputs (test_b1e_link_findings.B1eTests.test_cli_hash_gates_and_output_preserve_inputs) ... B1e findings not produced: Refusing to reuse existing output directory
+B1e findings not produced: Evaluation and training identity differ
+ok
+test_crc_missing_is_unknown_and_nonzero_crc_or_nak_is_not_a_product_fail (test_b1e_link_findings.B1eTests.test_crc_missing_is_unknown_and_nonzero_crc_or_nak_is_not_a_product_fail) ... ok
+test_no_l0_does_not_reopen_supported_mux_connectivity (test_b1e_link_findings.B1eTests.test_no_l0_does_not_reopen_supported_mux_connectivity) ... ok
+test_preserves_rule_status_evidence_and_milestone_scope (test_b1e_link_findings.B1eTests.test_preserves_rule_status_evidence_and_milestone_scope) ... ok
+test_real_hang_focus_is_after_l0_without_created_anomalies (test_b1e_link_findings.B1eTests.test_real_hang_focus_is_after_l0_without_created_anomalies) ... ok
+test_tampered_evaluation_status_source_or_evidence_is_rejected (test_b1e_link_findings.B1eTests.test_tampered_evaluation_status_source_or_evidence_is_rejected) ... ok
+test_width_mismatch_is_a_finding_but_not_an_overall_verdict (test_b1e_link_findings.B1eTests.test_width_mismatch_is_a_finding_but_not_an_overall_verdict) ... ok
+test_capture_metadata_and_unsupported_frame_rejected (test_b2a_register_fields.ProbeTests.test_capture_metadata_and_unsupported_frame_rejected) ... ok
+test_decoder_length_cannot_shrink_raw_data_dword (test_b2a_register_fields.ProbeTests.test_decoder_length_cannot_shrink_raw_data_dword) ... ok
+test_endian_and_frame_payload_mismatch (test_b2a_register_fields.ProbeTests.test_endian_and_frame_payload_mismatch) ... ok
+test_fresh_raw_evidence_and_legacy_cli_gate (test_b2a_register_fields.ProbeTests.test_fresh_raw_evidence_and_legacy_cli_gate) ... Full raw DWORD/payload bytes required for qualification
+ok
+test_full_raw_dword_independent_of_decoder_fields (test_b2a_register_fields.ProbeTests.test_full_raw_dword_independent_of_decoder_fields) ... ok
+test_historical_prefix_cannot_qualify_full_dword (test_b2a_register_fields.ProbeTests.test_historical_prefix_cannot_qualify_full_dword) ... ok
+test_literal_sample_bytes_and_masks (test_b2a_register_fields.ProbeTests.test_literal_sample_bytes_and_masks) ... ok
+test_missing_cpld_register_data_is_explicit_unknown_not_dword_proof (test_b2a_register_fields.ProbeTests.test_missing_cpld_register_data_is_explicit_unknown_not_dword_proof) ... ok
+test_missing_end_duplicate_order_and_bad_numeric (test_b2a_register_fields.ProbeTests.test_missing_end_duplicate_order_and_bad_numeric) ... ok
+test_offset_index_and_mask_mismatch_rejected (test_b2a_register_fields.ProbeTests.test_offset_index_and_mask_mismatch_rejected) ... ok
+test_read_request_must_not_be_returned_value (test_b2a_register_fields.ProbeTests.test_read_request_must_not_be_returned_value) ... ok
+test_real_run_fields (test_b2a_register_fields.ProbeTests.test_real_run_fields) ... ok
+test_anchor_and_coverage_failures (test_b2b_config_access.ConfigTests.test_anchor_and_coverage_failures) ... ok
+test_late_completion_does_not_attach_to_closed_config (test_b2b_config_access.ConfigTests.test_late_completion_does_not_attach_to_closed_config) ... ok
+test_memory_request_reserves_key (test_b2b_config_access.ConfigTests.test_memory_request_reserves_key) ... ok
+test_read_and_partial_write_are_different_evidence (test_b2b_config_access.ConfigTests.test_read_and_partial_write_are_different_evidence) ... ok
+test_real_case_old_identity_and_no_post_reconnect_cfg (test_b2b_config_access.ConfigTests.test_real_case_old_identity_and_no_post_reconnect_cfg) ... ok
+test_reissue_no_return_is_ambiguous_for_both (test_b2b_config_access.ConfigTests.test_reissue_no_return_is_ambiguous_for_both) ... ok
+test_reuse_after_invalid_completion_cannot_return_successor_value (test_b2b_config_access.ConfigTests.test_reuse_after_invalid_completion_cannot_return_successor_value) ... ok
+test_unprobed_locked_completions_remain_unknown (test_b2b_config_access.ConfigTests.test_unprobed_locked_completions_remain_unknown) ... ok
+test_wrong_target_status_or_direction_never_returns_value (test_b2b_config_access.ConfigTests.test_wrong_target_status_or_direction_never_returns_value) ... ok
+test_conventional_relative_registers_stay_below_0x100 (test_b2c_capability_resolution.CapabilityTests.test_conventional_relative_registers_stay_below_0x100) ... ok
+test_extended_whole_register_span_cannot_cross_0x1000 (test_b2c_capability_resolution.CapabilityTests.test_extended_whole_register_span_cannot_cross_0x1000) ... ok
+test_header_unknown_and_other_bdf_no_map (test_b2c_capability_resolution.CapabilityTests.test_header_unknown_and_other_bdf_no_map) ... ok
+test_missing_node_cycle_invalid_pointer_and_duplicate_id (test_b2c_capability_resolution.CapabilityTests.test_missing_node_cycle_invalid_pointer_and_duplicate_id) ... ok
+test_no_future_completion_or_new_epoch_leak (test_b2c_capability_resolution.CapabilityTests.test_no_future_completion_or_new_epoch_leak) ... ok
+test_real_chain (test_b2c_capability_resolution.CapabilityTests.test_real_chain) ... ok
+test_relative_offsets_and_incomplete_ext_chain (test_b2c_capability_resolution.CapabilityTests.test_relative_offsets_and_incomplete_ext_chain) ... ok
+test_epoch_and_bdf_isolation_and_crossing_completion (test_b2d_observed_state.StateTests.test_epoch_and_bdf_isolation_and_crossing_completion) ... ok
+test_last_read_follows_completion_order_not_request_order (test_b2d_observed_state.StateTests.test_last_read_follows_completion_order_not_request_order) ... ok
+test_partial_write_does_not_replace_reads_or_fill_other_bytes (test_b2d_observed_state.StateTests.test_partial_write_does_not_replace_reads_or_fill_other_bytes) ... ok
+test_read_not_available_before_completion (test_b2d_observed_state.StateTests.test_read_not_available_before_completion) ... ok
+test_real_old_zero_and_new_unknown (test_b2d_observed_state.StateTests.test_real_old_zero_and_new_unknown) ... ok
+test_same_bdf_offset_and_vid_did_do_not_prove_epoch_continuity (test_b2d_observed_state.StateTests.test_same_bdf_offset_and_vid_did_do_not_prove_epoch_continuity) ... ok
+test_capability_pointer_excludes_reserved_bytes_and_their_writes (test_b2e_snapshot_query.QueryTests.test_capability_pointer_excludes_reserved_bytes_and_their_writes) ... ok
+test_new_epoch_no_inherited_name_or_value_and_invalid_query (test_b2e_snapshot_query.QueryTests.test_new_epoch_no_inherited_name_or_value_and_invalid_query) ... ok
+test_partial_intent_and_later_write_keeps_read (test_b2e_snapshot_query.QueryTests.test_partial_intent_and_later_write_keeps_read) ... ok
+test_real_link_control_is_intent_not_readback (test_b2e_snapshot_query.QueryTests.test_real_link_control_is_intent_not_readback) ... ok
+test_same_bdf_and_vid_did_do_not_inherit_snapshot_names_or_intent (test_b2e_snapshot_query.QueryTests.test_same_bdf_and_vid_did_do_not_inherit_snapshot_names_or_intent) ... ok
+test_zero_unknown_and_read_completion_boundary (test_b2e_snapshot_query.QueryTests.test_zero_unknown_and_read_completion_boundary) ... ok
+test_cli_rejects_tamper_and_identity_then_produces_diff (test_b2f_snapshot_diff.DiffTests.test_cli_rejects_tamper_and_identity_then_produces_diff) ... Snapshot differs from source evidence
+Different input identities
+Refusing existing output
+ok
+test_cross_epoch_and_bdf_never_changed_or_zero (test_b2f_snapshot_diff.DiffTests.test_cross_epoch_and_bdf_never_changed_or_zero) ... ok
+test_earlier_pointer_width_snapshot_is_not_current_source_replay (test_b2f_snapshot_diff.DiffTests.test_earlier_pointer_width_snapshot_is_not_current_source_replay) ... Snapshot differs from source evidence
+ok
+test_real_before_after_epoch_boundary (test_b2f_snapshot_diff.DiffTests.test_real_before_after_epoch_boundary) ... ok
+test_reversed_order (test_b2f_snapshot_diff.DiffTests.test_reversed_order) ... ok
+test_same_epoch_observed_change_and_unknown (test_b2f_snapshot_diff.DiffTests.test_same_epoch_observed_change_and_unknown) ... ok
+test_disabled_and_both_enabled_remain_unassessed_without_policy (test_b2g_watchlist_prepare.PreparationTests.test_disabled_and_both_enabled_remain_unassessed_without_policy) ... ok
+test_enabled_intent_is_observation_not_product_fail (test_b2g_watchlist_prepare.PreparationTests.test_enabled_intent_is_observation_not_product_fail) ... ok
+test_partial_word_does_not_promote_unselected_bytes (test_b2g_watchlist_prepare.PreparationTests.test_partial_word_does_not_promote_unselected_bytes) ... ok
+test_read_completion_after_overlapping_write_is_not_candidate (test_b2g_watchlist_prepare.PreparationTests.test_read_completion_after_overlapping_write_is_not_candidate) ... ok
+test_readback_does_not_cross_epoch_or_device (test_b2g_watchlist_prepare.PreparationTests.test_readback_does_not_cross_epoch_or_device) ... ok
+test_readback_excludes_old_requests_and_superseded_writes (test_b2g_watchlist_prepare.PreparationTests.test_readback_excludes_old_requests_and_superseded_writes) ... ok
+test_readback_requires_return_after_write (test_b2g_watchlist_prepare.PreparationTests.test_readback_requires_return_after_write) ... ok
+test_real_three_writes_and_no_new_sde_state_claim (test_b2g_watchlist_prepare.PreparationTests.test_real_three_writes_and_no_new_sde_state_claim) ... ok
+test_key_uses_requester_and_tag_only_and_completion_must_follow (test_g2b_associate.AssociationTests.test_key_uses_requester_and_tag_only_and_completion_must_follow) ... ok
+test_no_completion_is_not_called_timeout (test_g2b_associate.AssociationTests.test_no_completion_is_not_called_timeout) ... ok
+test_reissued_key_before_completion_is_not_guessed (test_g2b_associate.AssociationTests.test_reissued_key_before_completion_is_not_guessed) ... ok
+test_rejects_out_of_order_rows_and_existing_output (test_g2b_associate.AssociationTests.test_rejects_out_of_order_rows_and_existing_output) ... ok
+test_split_completions_accumulate_on_one_request (test_g2b_associate.AssociationTests.test_split_completions_accumulate_on_one_request) ... ok
+test_bdf_uses_hex_bus_and_device_with_existing_padding (test_g2b_associate.ClassificationTests.test_bdf_uses_hex_bus_and_device_with_existing_padding) ... ok
+test_roles_follow_vendor_constants_and_field_shape (test_g2b_associate.ClassificationTests.test_roles_follow_vendor_constants_and_field_shape) ... ok
+
+----------------------------------------------------------------------
+Ran 101 tests in 0.206s
+
+OK

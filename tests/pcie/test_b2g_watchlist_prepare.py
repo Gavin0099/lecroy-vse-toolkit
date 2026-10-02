@@ -10,6 +10,38 @@ EV={'product_context':{'provenance':{'source_kind':'fixture'},'case':{'reported_
 
 
 class PreparationTests(unittest.TestCase):
+    def test_readback_excludes_old_requests_and_superseded_writes(self):
+        log=fixture();template=log['accesses'][0]
+        def write(p,value=2):
+            return {**template,'packet_index':p,'read_value':None,'write_value':value,
+                    'register_byte_offset':0x70,'first_be':3,'target_bdf':'001:00.0',
+                    'completions':[],'time_display':'1.000 sec'}
+        def read(p,c):
+            return {**write(p),'read_value':2,'write_value':None,'first_be':15,
+                    'completions':[{'packet_index':c}]}
+        log['accesses'] += [read(45,55),write(50),write(60),read(70,71)]
+        rows=b2g.build(log,REF,EV)['observations']
+        self.assertEqual([r['read_back_evidence_packets'] for r in rows],[[],[71]])
+
+    def test_read_completion_after_overlapping_write_is_not_candidate(self):
+        log=fixture();template=log['accesses'][0]
+        write={**template,'packet_index':50,'read_value':None,'write_value':2,
+               'register_byte_offset':0x70,'first_be':3,'target_bdf':'001:00.0',
+               'completions':[],'time_display':'1.000 sec'}
+        log['accesses'] += [write,{**write,'packet_index':55,'read_value':2,
+                                  'write_value':None,'first_be':15,'completions':[{'packet_index':65}]},
+                            {**write,'packet_index':60,'first_be':2}]
+        self.assertFalse(b2g.build(log,REF,EV)['observations'][0]['read_back_observed'])
+
+    def test_readback_does_not_cross_epoch_or_device(self):
+        log=fixture();template=log['accesses'][0]
+        write={**template,'packet_index':50,'read_value':None,'write_value':2,
+               'register_byte_offset':0x70,'first_be':3,'target_bdf':'001:00.0',
+               'completions':[],'time_display':'1.000 sec'}
+        log['accesses'] += [write,{**write,'packet_index':60,'read_value':2,
+                                  'write_value':None,'first_be':15,'epoch':'after_reconnect',
+                                  'completions':[{'packet_index':61}]}]
+        self.assertFalse(b2g.build(log,REF,EV)['observations'][0]['read_back_observed'])
     def test_enabled_intent_is_observation_not_product_fail(self):
         log=fixture();log['accesses'].append({**log['accesses'][0],'packet_index':50,'read_value':None,'write_value':2,'register_byte_offset':0x70,'target_bdf':'001:00.0','completions':[],'time_display':'1.000 sec'})
         d=b2g.build(log,REF,EV)

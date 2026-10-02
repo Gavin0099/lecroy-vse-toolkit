@@ -18,6 +18,31 @@ REQUIRED_INPUTS = [
 ]
 
 
+def readback_candidates(log, write, offset):
+    """Candidate reads bounded by this write and the next overlapping intent.
+
+    Both request and completion must be in that interval. These candidates do
+    not establish application of the write or select a product proof rule.
+    """
+    peers = [r for r in log['accesses'] if r['device_id'] == write['device_id']
+             and r['epoch'] == write['epoch']]
+    def selected(r):
+        return {r['register_byte_offset'] + i for i in range(4) if r['first_be'] & (1 << i)}
+    span = {offset, offset + 1}
+    next_write = min((r['packet_index'] for r in peers
+                      if r['write_value'] is not None and r['packet_index'] > write['packet_index']
+                      and selected(r) & span), default=float('inf'))
+    packets = []
+    for r in peers:
+        if (r['read_value'] is not None and span <= selected(r)
+                and write['packet_index'] < r['packet_index'] < next_write
+                and len(r['completions']) == 1):
+            packet = r['completions'][0]['packet_index']
+            if r['packet_index'] < packet < next_write:
+                packets.append(packet)
+    return sorted(set(packets))
+
+
 def build(log,ref,evaluation):
     cut=log['anchors']['disconnect_packet']-1
     observations=[]
@@ -30,9 +55,10 @@ def build(log,ref,evaluation):
             if r['device_id']==device_id and r['epoch']=='before_disconnect' and r['register_byte_offset']==offset and r['write_value'] is not None and r['first_be'] & 1:
                 bits=r['write_value'] & ref['masks']['ASPMControl']
                 if bits not in INTENTS:raise ValueError('Unsupported ASPM control layout')
-                readback=matches[0]['read_value'] is not None and any(p>r['packet_index'] for p in matches[0]['read_evidence_packets'])
+                read_packets=readback_candidates(log,r,offset)
+                readback=bool(read_packets)
                 kind='L1_ENABLE_WRITE_INTENT' if bits&2 else ('L0S_ENABLE_WRITE_INTENT' if bits&1 else 'ASPM_DISABLE_WRITE_INTENT')
-                observations.append({'packet_index':r['packet_index'],'time_display':r['time_display'],'register':'PCI_EXP_LNKCTL','bdf':r['target_bdf'],'target_bdf':r['target_bdf'],'epoch':r['epoch'],'register_byte_offset':offset,'observation_kind':kind,'write_value':r['write_value'],'observed_write_intent':r['write_value']&0xFFFF if r['first_be']&3==3 else None,'first_be':r['first_be'],'aspm_control_requested_bits':bits,'aspm_control_intent':INTENTS[bits],'l0s_enable_requested':bool(bits&1),'l1_enable_requested':bool(bits&2),'completion_packets':[c['packet_index'] for c in r['completions']],'read_back_observed':readback,'read_back_evidence_packets':[p for p in matches[0]['read_evidence_packets'] if readback and p>r['packet_index']],'effective_state':'UNKNOWN','expected_state':'UNKNOWN','policy_result':'NOT_EVALUATED','mapping_basis':'retrospective observed capability map at pre-disconnect cut, not knowledge at write time','evidence_access_id':r['access_id']})
+                observations.append({'packet_index':r['packet_index'],'time_display':r['time_display'],'register':'PCI_EXP_LNKCTL','bdf':r['target_bdf'],'target_bdf':r['target_bdf'],'epoch':r['epoch'],'register_byte_offset':offset,'observation_kind':kind,'write_value':r['write_value'],'observed_write_intent':r['write_value']&0xFFFF if r['first_be']&3==3 else None,'first_be':r['first_be'],'aspm_control_requested_bits':bits,'aspm_control_intent':INTENTS[bits],'l0s_enable_requested':bool(bits&1),'l1_enable_requested':bool(bits&2),'completion_packets':[c['packet_index'] for c in r['completions']],'read_back_observed':readback,'read_back_evidence_packets':read_packets,'effective_state':'UNKNOWN','expected_state':'UNKNOWN','policy_result':'NOT_EVALUATED','mapping_basis':'retrospective observed capability map at pre-disconnect cut, not knowledge at write time','evidence_access_id':r['access_id']})
     return {'schema':SCHEMA,'status':'SOURCE_SCOPE_GATE','product_rule_evaluation':'NOT_EVALUATED','implemented_product_watchlist_rules':[],'product_policy':{'target_sides':None,'bdfs':None,'phases':None,'register_expectations':None,'acceptance_basis':None},'test_condition_source':{'engineer_question':8,'provenance':evaluation['product_context']['provenance'],'case_condition':evaluation['product_context']['case']['reported_symptom'],'scope_definition':None},'layout_source':ref['source'],'observations':observations,'required_inputs':list(REQUIRED_INPUTS),'not_established':['system ASPM enabled from endpoint write alone','register write applied without qualified effective-state proof','violation of unspecified product rule','new SDE identity or initialization state','hang/BSOD root cause'],'preserved_milestones':['B1d COMPLETE','MUX_CONNECTIVITY PASS','BIDIRECTIONAL_L0 PASS'],'b1d_validation_debt_blocks_v1':False}
 
 

@@ -1,5 +1,5 @@
 {
-  "status": "PASS_DOCUMENT_IDENTITY_CLARIFICATION",
+  "status": "SUPERSEDED_DOCUMENT_IDENTITY_CLARIFICATION",
   "change_class": "docs only",
   "four_question_groups_retained": true,
   "q4_completion_proof_definition_retained": true,
@@ -17,5 +17,7 @@
     "PLAN.md": "3FD51968832E123A1D62CB9EA05E6B07C34F85FCFBC5D2452D9777C0D2762B1D"
   },
   "product_evaluation": "WAITING FOR SOURCE/SCOPE",
-  "delivery": "local only; no commit/push/PR/merge"
+  "delivery": "local only; no commit/push/PR/merge",
+  "superseded_by": "artifacts/evidence/pcie-b2g-delivery-20261002/verification.json",
+  "limitation": "Historical document hashes predate final questionnaire wording; do not identify delivered files."
 }
