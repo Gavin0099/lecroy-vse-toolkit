@@ -1,0 +1,208 @@
+{
+  "schema": "pcie.observation-timeline/v1",
+  "capture_sha256": "C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD",
+  "anchors": {
+    "disconnect_packet": 225041,
+    "reconnect_packet": 1479760,
+    "basis": "B1d context; source hashes in input"
+  },
+  "ordering": "packet order; equal display times do not establish finer timing or causation",
+  "sources": {
+    "watchlist": {
+      "path": "artifacts/evidence/pcie-b2g-delivery-20261002/run1/watchlist-preparation.json",
+      "sha256": "1D3AEBA87B6BD91FE9AA6E7BC601D7ACA04154CCF3DBAD39ACE08922ECD5C068",
+      "capture_sha256": "C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD",
+      "binding": "DERIVED_VIA_PROBE"
+    },
+    "link": {
+      "path": "artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json",
+      "sha256": "D612F674B9F10A620D98AFE1A7823F8C852EC5BEB9254C5E7841628A89C7FF41",
+      "capture_sha256": "C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD",
+      "binding": "CORROBORATED_LEGACY"
+    },
+    "training": {
+      "path": "artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json",
+      "sha256": "161FCF9EF28E78D4EAAE7BCB6381A8AEC8A19587FD37964B7B854E8FB366FBD3",
+      "capture_sha256": "C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD",
+      "binding": "CORROBORATED_LEGACY"
+    }
+  },
+  "events": [
+    {
+      "event_id": "packet:8658:TLP:L1_ENABLE_WRITE_INTENT",
+      "packet_index": 8658,
+      "time_display": "8.314 sec",
+      "display_quantum_seconds": "0.001",
+      "layer": "TLP",
+      "kind": "L1_ENABLE_WRITE_INTENT",
+      "direction": "Downstream",
+      "routing_bdf": "001:00.0",
+      "device_epoch": "before_disconnect",
+      "device_identity": "UNKNOWN",
+      "identity_continuity_proof": null,
+      "classification": "WRITE_INTENT",
+      "state_claims": {
+        "effective_state": "UNKNOWN",
+        "expected_state": "UNKNOWN",
+        "policy_result": "NOT_EVALUATED"
+      },
+      "details": {
+        "packet_index": 8658,
+        "time_display": "8.314 sec",
+        "register": "PCI_EXP_LNKCTL",
+        "bdf": "001:00.0",
+        "target_bdf": "001:00.0",
+        "epoch": "before_disconnect",
+        "register_byte_offset": 144,
+        "observation_kind": "L1_ENABLE_WRITE_INTENT",
+        "write_value": 66,
+        "observed_write_intent": 66,
+        "first_be": 3,
+        "aspm_control_requested_bits": 2,
+        "aspm_control_intent": "L1",
+        "l0s_enable_requested": false,
+        "l1_enable_requested": true,
+        "completion_packets": [
+          8660
+        ],
+        "read_back_observed": false,
+        "read_back_evidence_packets": [],
+        "effective_state": "UNKNOWN",
+        "expected_state": "UNKNOWN",
+        "policy_result": "NOT_EVALUATED",
+        "mapping_basis": "retrospective observed capability map at pre-disconnect cut, not knowledge at write time",
+        "evidence_access_id": "B2B-038"
+      },
+      "evidence": [
+        {
+          "source_id": "watchlist",
+          "json_pointer": "/observations/0"
+        }
+      ]
+    },
+    {
+      "event_id": "packet:10354:TLP:L1_ENABLE_WRITE_INTENT",
+      "packet_index": 10354,
+      "time_display": "8.314 sec",
+      "display_quantum_seconds": "0.001",
+      "layer": "TLP",
+      "kind": "L1_ENABLE_WRITE_INTENT",
+      "direction": "Downstream",
+      "routing_bdf": "001:00.0",
+      "device_epoch": "before_disconnect",
+      "device_identity": "UNKNOWN",
+      "identity_continuity_proof": null,
+      "classification": "WRITE_INTENT",
+      "state_claims": {
+        "effective_state": "UNKNOWN",
+        "expected_state": "UNKNOWN",
+        "policy_result": "NOT_EVALUATED"
+      },
+      "details": {
+        "packet_index": 10354,
+        "time_display": "8.314 sec",
+        "register": "PCI_EXP_LNKCTL",
+        "bdf": "001:00.0",
+        "target_bdf": "001:00.0",
+        "epoch": "before_disconnect",
+        "register_byte_offset": 144,
+        "observation_kind": "L1_ENABLE_WRITE_INTENT",
+        "write_value": 66,
+        "observed_write_intent": 66,
+        "first_be": 3,
+        "aspm_control_requested_bits": 2,
+        "aspm_control_intent": "L1",
+        "l0s_enable_requested": false,
+        "l1_enable_requested": true,
+        "completion_packets": [
+          10358
+        ],
+        "read_back_observed": false,
+        "read_back_evidence_packets": [],
+        "effective_state": "UNKNOWN",
+        "expected_state": "UNKNOWN",
+        "policy_result": "NOT_EVALUATED",
+        "mapping_basis": "retrospective observed capability map at pre-disconnect cut, not knowledge at write time",
+        "evidence_access_id": "B2B-059"
+      },
+      "evidence": [
+        {
+          "source_id": "watchlist",
+          "json_pointer": "/observations/2"
+        }
+      ]
+    }
+  ],
+  "intervals": [
+    {
+      "kind": "SEGMENT_COUNTS",
+      "first_index": 225041,
+      "last_index": 225050,
+      "first_time": "9.512 sec",
+      "last_time": "9.512 sec",
+      "first_display_quantum_seconds": "0.001",
+      "last_display_quantum_seconds": "0.001",
+      "direction": "UNKNOWN",
+      "counts": {
+        "events": 10,
+        "tlp": 2,
+        "dllp_ack": 0,
+        "dllp_nak": 1,
+        "dllp_fc": 6,
+        "dllp_pm": 0,
+        "dllp_other": 0,
+        "os_ts1": 0,
+        "os_ts2": 0,
+        "os_eios": 0,
+        "os_eieos": 0,
+        "os_skip": 0,
+        "os_other": 0,
+        "err_any": 0,
+        "disparity": 0,
+        "symbol": 0,
+        "wrong_symbol": 0,
+        "delimiter": 0,
+        "end_bad": 0,
+        "alignment": 0,
+        "idle": 0,
+        "ts_data_rate": 0,
+        "ts_format": 0,
+        "ts_parity": 0,
+        "ts_reserved": 0,
+        "tlp_bad_lcrc": 0,
+        "dllp_bad_crc": 0
+      },
+      "evidence": [
+        {
+          "source_id": "link",
+          "json_pointer": "/0"
+        }
+      ]
+    }
+  ],
+  "gaps": [
+    {
+      "after_index": 1479759,
+      "before_index": 1479760,
+      "after_time": "9.600 sec",
+      "before_time": "10.912 sec",
+      "after_display_quantum_seconds": "0.001",
+      "before_display_quantum_seconds": "0.001",
+      "display_duration_seconds": "1.312",
+      "claim": "NO_OBSERVED_EVENTS_IN_SOURCE_WINDOW",
+      "evidence": [
+        {
+          "source_id": "training",
+          "json_pointer": "/phases/7"
+        }
+      ]
+    }
+  ],
+  "milestones": [],
+  "coverage": [
+    "Representative fixture: two pre-disconnect LinkControl write intents, not complete capture."
+  ],
+  "limitations": [
+    "Device identity unknown; product policy awaits engineer source/scope."
+  ]
+}

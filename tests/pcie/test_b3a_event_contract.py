@@ -1,0 +1,96 @@
+import copy
+import json
+from pathlib import Path
+import sys
+import unittest
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'scripts/pcie'))
+import b3a_event_contract as contract
+
+ROOT = Path(__file__).resolve().parents[2]
+FIXTURE = ROOT / 'artifacts/evidence/pcie-w1-20261002/representative.json'
+
+
+class EventContractTests(unittest.TestCase):
+    def test_negative_fixture_cases_execute_validator(self):
+        cases=json.loads((FIXTURE.parent/'negative-cases.json').read_text())
+        for case in cases:
+            doc=copy.deepcopy(self.doc)
+            prefix,key=case['path'].rsplit('/',1)
+            parent=contract.pointer_value(doc,prefix)
+            parent[int(key) if isinstance(parent,list) else key]=case['value']
+            with self.subTest(reason=case['reason']):
+                with self.assertRaises(ValueError): contract.validate(doc,self.sources)
+    def setUp(self):
+        self.doc = json.loads(FIXTURE.read_text(encoding='utf-8'))
+        self.sources = contract.load_sources(self.doc, ROOT)
+
+    def test_real_representative_fixture_preserves_intent_and_precision(self):
+        result = contract.validate(self.doc, self.sources)
+        self.assertEqual(result['packet_observations'], 2)
+        self.assertEqual([r['packet_index'] for r in self.doc['events']], [8658, 10354])
+        self.assertEqual(self.doc['events'][1]['details']['observed_write_intent'], 0x42)
+        self.assertEqual(self.doc['events'][1]['display_quantum_seconds'], '0.001')
+        self.assertEqual(self.doc['events'][1]['state_claims'], contract.UNKNOWN_CLAIMS)
+
+    def test_wrong_capture_and_changed_source_are_rejected(self):
+        self.doc['sources']['watchlist']['capture_sha256'] = 'A' * 64
+        with self.assertRaises(ValueError): contract.validate(self.doc, self.sources)
+        self.setUp(); self.sources['watchlist'] += b' '
+        with self.assertRaises(ValueError): contract.validate(self.doc, self.sources)
+
+    def test_missing_source_or_pointer_rejected(self):
+        with self.assertRaises(ValueError): contract.validate(self.doc, {})
+        self.doc['events'][0]['evidence'][0]['json_pointer'] = '/observations/10000'
+        with self.assertRaises(ValueError): contract.validate(self.doc, self.sources)
+
+    def test_epoch_and_identity_are_not_inferred_from_bdf(self):
+        self.doc['events'][0]['device_epoch'] = 'after_reconnect'
+        with self.assertRaises(ValueError): contract.validate(self.doc, self.sources)
+        self.setUp(); self.doc['events'][0]['identity_continuity_proof'] = 'same BDF/VID-DID'
+        with self.assertRaises(ValueError): contract.validate(self.doc, self.sources)
+
+    def test_same_display_time_uses_packet_order_not_causation(self):
+        self.assertEqual(self.doc['events'][0]['time_display'], self.doc['events'][1]['time_display'])
+        self.doc['events'].reverse()
+        with self.assertRaises(ValueError): contract.validate(self.doc, self.sources)
+        self.setUp(); self.doc['events'].append(copy.deepcopy(self.doc['events'][-1]))
+        with self.assertRaises(ValueError): contract.validate(self.doc, self.sources)
+
+    def test_no_observation_to_effective_or_policy_promotion(self):
+        for field, value in [('effective_state', 'L1'), ('expected_state', 'DISABLED'), ('policy_result', 'FAIL')]:
+            doc = copy.deepcopy(self.doc); doc['events'][0]['state_claims'][field] = value
+            with self.assertRaises(ValueError): contract.validate(doc, self.sources)
+
+    def test_time_precision_and_packet_type(self):
+        self.doc['events'][0]['display_quantum_seconds'] = '0.000001'
+        with self.assertRaises(ValueError): contract.validate(self.doc, self.sources)
+        self.setUp(); self.doc['events'][0]['packet_index'] = True
+        with self.assertRaises(ValueError): contract.validate(self.doc, self.sources)
+
+    def test_path_escape_rejected(self):
+        self.doc['sources']['watchlist']['path'] = '../outside.json'
+        with self.assertRaises(ValueError): contract.load_sources(self.doc, ROOT)
+
+    def test_interval_and_gap_do_not_invent_packets_or_direction(self):
+        self.assertEqual(self.doc['intervals'][0]['counts']['dllp_nak'], 1)
+        self.assertEqual(self.doc['gaps'][0]['display_duration_seconds'], '1.312')
+        self.doc['intervals'][0]['direction'] = 'Downstream'
+        with self.assertRaises(ValueError): contract.validate(self.doc, self.sources)
+        self.setUp(); self.doc['gaps'][0]['packet_index'] = 1479759
+        with self.assertRaises(ValueError): contract.validate(self.doc, self.sources)
+
+    def test_missing_field_and_negative_counts_rejected(self):
+        del self.doc['coverage']
+        with self.assertRaises(ValueError): contract.validate(self.doc, self.sources)
+        self.setUp(); self.doc['intervals'][0]['counts']['dllp_nak'] = -1
+        with self.assertRaises(ValueError): contract.validate(self.doc, self.sources)
+
+    def test_machine_field_contract_matches_executable_validator(self):
+        d=json.loads((ROOT/'docs/pcie-observation-timeline-contract-v1.json').read_text())
+        names={'document':'document_fields','event':'packet_observation_fields',
+               'interval':'interval_fields','gap':'gap_fields','milestone':'milestone_fields',
+               'source':'source_fields','evidence':'evidence_fields'}
+        for kind,name in names.items(): self.assertEqual(d[name],contract.FIELDS[kind].split())
+
+
+if __name__ == '__main__': unittest.main()

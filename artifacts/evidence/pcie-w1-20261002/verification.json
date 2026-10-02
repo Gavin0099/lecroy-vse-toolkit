@@ -1,0 +1,12 @@
+{
+  "suite_tests": 114,
+  "focused_tests": 12,
+  "representative_fixture_validation": {
+    "status": "PASS_OBSERVATION_CONTRACT",
+    "packet_observations": 2,
+    "distinct_observed_packets": 2,
+    "interval_summaries": 1,
+    "gaps": 1
+  },
+  "negative_fixture_cases_executed": 4
+}

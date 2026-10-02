@@ -1,0 +1,80 @@
+{
+  "schema": "pcie.observation-timeline/v1",
+  "validator": "scripts/pcie/b3a_event_contract.py",
+  "document_fields": [
+    "schema",
+    "capture_sha256",
+    "anchors",
+    "ordering",
+    "sources",
+    "events",
+    "intervals",
+    "gaps",
+    "milestones",
+    "coverage",
+    "limitations"
+  ],
+  "packet_observation_fields": [
+    "event_id",
+    "packet_index",
+    "time_display",
+    "display_quantum_seconds",
+    "layer",
+    "kind",
+    "direction",
+    "routing_bdf",
+    "device_epoch",
+    "device_identity",
+    "identity_continuity_proof",
+    "classification",
+    "state_claims",
+    "details",
+    "evidence"
+  ],
+  "interval_fields": [
+    "kind",
+    "first_index",
+    "last_index",
+    "first_time",
+    "last_time",
+    "first_display_quantum_seconds",
+    "last_display_quantum_seconds",
+    "direction",
+    "counts",
+    "evidence"
+  ],
+  "gap_fields": [
+    "after_index",
+    "before_index",
+    "after_time",
+    "before_time",
+    "after_display_quantum_seconds",
+    "before_display_quantum_seconds",
+    "display_duration_seconds",
+    "claim",
+    "evidence"
+  ],
+  "milestone_fields": [
+    "id",
+    "status",
+    "basis",
+    "summary",
+    "evidence"
+  ],
+  "source_fields": [
+    "path",
+    "sha256",
+    "capture_sha256",
+    "binding"
+  ],
+  "evidence_fields": [
+    "source_id",
+    "json_pointer"
+  ],
+  "observation_state_claims": {
+    "effective_state": "UNKNOWN",
+    "expected_state": "UNKNOWN",
+    "policy_result": "NOT_EVALUATED"
+  },
+  "claim_ceiling": "Structure, byte hashes and JSON pointer existence; adapter verifies lineage and recomputes facts. No policy, physical identity continuity, timer accuracy or causal inference."
+}
