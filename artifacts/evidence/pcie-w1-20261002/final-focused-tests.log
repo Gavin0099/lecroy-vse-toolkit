@@ -1,0 +1,27 @@
+test_alias_cannot_duplicate_observation (test_b3a_event_contract.EventContractTests.test_alias_cannot_duplicate_observation) ... ok
+test_details_cannot_promote_claims_at_any_depth (test_b3a_event_contract.EventContractTests.test_details_cannot_promote_claims_at_any_depth) ... ok
+test_duplicate_segment_counts_cannot_inflate_intervals (test_b3a_event_contract.EventContractTests.test_duplicate_segment_counts_cannot_inflate_intervals) ... ok
+test_epoch_and_identity_are_not_inferred_from_bdf (test_b3a_event_contract.EventContractTests.test_epoch_and_identity_are_not_inferred_from_bdf) ... ok
+test_gap_cannot_contain_event_from_same_source (test_b3a_event_contract.EventContractTests.test_gap_cannot_contain_event_from_same_source) ... ok
+test_gap_cannot_cover_same_source_segment_counts (test_b3a_event_contract.EventContractTests.test_gap_cannot_cover_same_source_segment_counts) ... ok
+test_interval_and_gap_do_not_invent_packets_or_direction (test_b3a_event_contract.EventContractTests.test_interval_and_gap_do_not_invent_packets_or_direction) ... ok
+test_machine_field_contract_matches_executable_validator (test_b3a_event_contract.EventContractTests.test_machine_field_contract_matches_executable_validator) ... ok
+test_missing_field_and_negative_counts_rejected (test_b3a_event_contract.EventContractTests.test_missing_field_and_negative_counts_rejected) ... ok
+test_missing_source_or_pointer_rejected (test_b3a_event_contract.EventContractTests.test_missing_source_or_pointer_rejected) ... ok
+test_negative_fixture_cases_execute_validator (test_b3a_event_contract.EventContractTests.test_negative_fixture_cases_execute_validator) ... ok
+test_nested_identity_claims_are_rejected (test_b3a_event_contract.EventContractTests.test_nested_identity_claims_are_rejected) ... ok
+test_no_observation_to_effective_or_policy_promotion (test_b3a_event_contract.EventContractTests.test_no_observation_to_effective_or_policy_promotion) ... ok
+test_path_escape_rejected (test_b3a_event_contract.EventContractTests.test_path_escape_rejected) ... ok
+test_real_representative_fixture_preserves_intent_and_precision (test_b3a_event_contract.EventContractTests.test_real_representative_fixture_preserves_intent_and_precision) ... ok
+test_same_display_time_uses_packet_order_not_causation (test_b3a_event_contract.EventContractTests.test_same_display_time_uses_packet_order_not_causation) ... ok
+test_segment_total_and_category_bounds (test_b3a_event_contract.EventContractTests.test_segment_total_and_category_bounds) ... ok
+test_source_alias_cannot_bypass_count_and_gap_consistency (test_b3a_event_contract.EventContractTests.test_source_alias_cannot_bypass_count_and_gap_consistency) ... ok
+test_sources_array_is_controlled_cli_error (test_b3a_event_contract.EventContractTests.test_sources_array_is_controlled_cli_error) ... ok
+test_time_precision_and_packet_type (test_b3a_event_contract.EventContractTests.test_time_precision_and_packet_type) ... ok
+test_undeclared_claim_fields_and_extensions_are_checked (test_b3a_event_contract.EventContractTests.test_undeclared_claim_fields_and_extensions_are_checked) ... ok
+test_wrong_capture_and_changed_source_are_rejected (test_b3a_event_contract.EventContractTests.test_wrong_capture_and_changed_source_are_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.800s
+
+OK

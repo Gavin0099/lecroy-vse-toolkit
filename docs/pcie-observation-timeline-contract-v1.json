@@ -78,5 +78,5 @@
     "expected_state": "UNKNOWN",
     "policy_result": "NOT_EVALUATED"
   },
-  "claim_ceiling": "Structure, byte hashes and JSON pointer existence; adapter verifies lineage and recomputes facts. No policy, physical identity continuity, timer accuracy or causal inference."
+  "claim_ceiling": "Validate named structural invariants and five reserved state/policy/identity fields. Opaque extension text is not a validated fact. Adapters recompute facts; reports use typed fields only. Pipeline produces no timer accuracy, causal inference or root cause conclusion."
 }

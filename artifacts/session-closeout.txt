@@ -247,3 +247,11 @@ CHECKS_RUN: two prior-head interval regressions; python -X utf8 -B -m unittest d
 OPEN_RISKS: Structural checks do not authenticate sources; inherited nonrequired drift checker missing.
 NOT_DONE: Latest-head review/merge pending; W2-W5 and product policy.
 RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Converge W1 and reduce delivery ceremony per owner correction.
+WORK_COMPLETED: W1 invariants frozen; byte-identical source aliases rejected; 22 focused tests PASS; remaining semantic-prose P2 explicitly scoped/deferred.
+FILES_TOUCHED: scripts/pcie/b3a_event_contract.py, tests/pcie/test_b3a_event_contract.py, docs/pcie-observation-timeline-contract.md, docs/pcie-observation-timeline-contract-v1.json, artifacts/evidence/pcie-w1-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: python -X utf8 -B -m unittest discover -s tests/pcie -p test_b3a*.py -v; local bounded adversarial review.
+OPEN_RISKS: Extension text is opaque, not a validated fact; source authenticity and inherited nonrequired drift check unavailable.
+NOT_DONE: Final capability review/merge; W2+W3, W4+W5; product ASPM policy.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE

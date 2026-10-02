@@ -406,3 +406,5 @@ W1 interval count / source-gap consistency repaired: 120 tests PASS, 18 focused.
 W1 nested identity ceiling repaired: 121 suite / 19 focused tests PASS.
 
 W1 gap/interval overlap and duplicate segment guards added: 123 suite / 21 focused tests PASS.
+
+Owner workflow correction 2026-10-02: freeze W1 invariants; GitHub review is final adversarial gate, not spec discovery. W2+W3 one capability PR, W4+W5 one capability PR; focused development checks, final capability suite/replay. Source-alias loophole fixed; arbitrary extension prose semantic checking explicitly outside W1.

@@ -41,3 +41,16 @@ Fixture 來自已交付 B2g v2 的兩筆真實 write intent，源檔以 hash/poi
 契約欄位集合固定；未宣告欄位拒絕。額外 provenance／coverage 資料使用 `extensions` 或 record `details`，所有深度的 reserved state/policy keys 同樣保持 UNKNOWN／NOT_EVALUATED。
 
 Segment total 必須等於其連續 packet span，類別及 error counts 各自不得超過 total；error flags 可能重疊，不相加當事件總數。Gap 僅對宣告的 source coverage 生效，拒絕同來源的區間內事件；不將其他 source 的 coverage 偷擴張過來。
+
+## W1 定稿範圍（owner 流程收斂，2026-10-02）
+
+W1 保證以下可機器驗證的 invariants：固定 record 欄位與核心型別、source bytes/pointer/capture 宣告一致、byte-identical source 唯一、packet observation ID 唯一與 packet order、segment total/count/dedup/gap 一致、依 anchor 分 epoch，以及五個 reserved state/policy/identity 欄位的 UNKNOWN preservation。
+
+`extensions`／`details` 的其他文字是 opaque provenance，不是已驗證的產品結論。
+W1 不替任意 key 或自然語言辨識 timer accuracy、因果或 root cause；也不驗證來源真實性。
+Adapter 必須重算 facts，report 必須只採用已定義的 typed observation／milestone 欄位。
+No timer accuracy / causal inference 的 claim ceiling 表示本 pipeline 不產生、不授權這些結論，並非聲稱 validator 能識別任意文字中的暗示。
+任意新 key、極端 JSON 深度／尺寸、所有非核心型別 fuzzing，留給未來獨立 schema/parser hardening，不能無限擴張 W1。
+
+Local adversarial review 的界線先定稿；GitHub review 作最後 gate。P2/P3 須有處置，產品資料正確性或上述明確 invariant 被破壞仍要修正。
+後續交付收斂為 W2+W3 unified timeline capability、W4+W5 observation report capability；focused tests 在開發時執行，full suite/replay 集中在 capability final gate。

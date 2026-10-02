@@ -13,6 +13,14 @@ FIXTURE = ROOT / 'artifacts/evidence/pcie-w1-20261002/representative.json'
 
 
 class EventContractTests(unittest.TestCase):
+    def test_source_alias_cannot_bypass_count_and_gap_consistency(self):
+        self.doc['sources']['link_alias']=copy.deepcopy(self.doc['sources']['link'])
+        self.sources['link_alias']=self.sources['link']
+        interval=copy.deepcopy(self.doc['intervals'][0]);interval['evidence'][0]['source_id']='link_alias'
+        self.doc['intervals'].append(interval)
+        with self.assertRaises(ValueError): contract.validate(self.doc,self.sources)
+        self.doc['intervals'].pop()
+        with self.assertRaises(ValueError): contract.validate(self.doc,self.sources)
     def test_gap_cannot_cover_same_source_segment_counts(self):
         self.doc['gaps']=[{'after_index':225040,'before_index':225051,
                           'after_time':'9.511 sec','before_time':'9.513 sec',

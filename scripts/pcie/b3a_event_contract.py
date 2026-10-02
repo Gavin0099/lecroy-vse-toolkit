@@ -108,12 +108,14 @@ def validate(doc, source_bytes):
     a, b = anchors['disconnect_packet'], anchors['reconnect_packet']
     require(type(a) is int and type(b) is int and 0 <= a < b, 'Invalid anchors')
     require(doc['ordering'] == new_document(doc['capture_sha256'], anchors)['ordering'], 'Unsupported ordering claim')
-    payloads = {}
+    payloads, source_identities = {}, set()
     for name, src in doc['sources'].items():
         fields(src, 'source')
         require(src['capture_sha256'] == doc['capture_sha256'], 'Different capture source')
         require(src['binding'] in BINDINGS, 'Unsupported capture binding')
         require(name in source_bytes and sha(source_bytes[name]) == src['sha256'], 'Missing or changed source bytes')
+        require(src['sha256'] not in source_identities, 'Duplicate byte-identical evidence source alias')
+        source_identities.add(src['sha256'])
         payloads[name] = json.loads(source_bytes[name])
     require(bool(payloads), 'No evidence sources')
     def refs(record):
