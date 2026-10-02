@@ -1,0 +1,29 @@
+{
+  "source": "https://raw.githubusercontent.com/torvalds/linux/v6.12/include/uapi/linux/pci_regs.h",
+  "source_sha256": "4850D40E384251DB73CE01D65B991AF2A019032D7AA20F735C6D47AC9B5E0D95",
+  "matched_constants": {
+    "PCI_VENDOR_ID": 0,
+    "PCI_COMMAND": 4,
+    "PCI_CACHE_LINE_SIZE": 12,
+    "PCI_CAPABILITY_LIST": 52,
+    "PCI_EXP_LNKCTL": 16,
+    "PCI_EXP_LNKSTA": 18,
+    "PCI_PM_CTRL": 4,
+    "PCI_L1SS_CTL1": 8,
+    "PCI_L1SS_CTL2": 12,
+    "PCI_EXP_LNKCTL_ASPMC": 3,
+    "PCI_COMMAND_MEMORY": 2,
+    "PCI_COMMAND_MASTER": 4,
+    "PCI_PM_CTRL_STATE_MASK": 3,
+    "PCI_CAP_ID_PM": 1,
+    "PCI_CAP_ID_EXP": 16,
+    "PCI_EXT_CAP_ID_L1SS": 30,
+    "PCI_BASE_ADDRESS_0": 16,
+    "PCI_BASE_ADDRESS_1": 20,
+    "PCI_BASE_ADDRESS_2": 24,
+    "PCI_BASE_ADDRESS_3": 28,
+    "PCI_BASE_ADDRESS_4": 32,
+    "PCI_BASE_ADDRESS_5": 36
+  },
+  "status": "PASS_LAYOUT_REFERENCE_VALUES"
+}
