@@ -146,6 +146,15 @@ class B1cR1Tests(unittest.TestCase):
             with self.subTest(count=count), self.assertRaises(b1c.B1cError):
                 b1c.build(r1_timeline(), Decimal('0.1'), bad, GUI)
 
+    def test_straddled_phase_still_validates_channel_totals(self):
+        bad = copy.deepcopy(X2)
+        bad['header']['r1_end'] = 300
+        for name in ('R1C2', 'R2C2'):
+            broken = copy.deepcopy(bad)
+            broken['cells'][name]['has_errors'] = -1
+            with self.subTest(name=name), self.assertRaises(b1c.B1cError):
+                b1c.build(r1_timeline(), Decimal('0.1'), broken, GUI)
+
     def test_gui_link_claim_requires_matching_timeline_packet_and_text(self):
         for update in ({'vse_constant': 'LINK_UP', 'gui_text': 'Link Up'},
                        {'packet_index': 999}, {'gui_text': 'Link Up'}):
@@ -185,7 +194,7 @@ class B1cR1Tests(unittest.TestCase):
 
     def test_range_sum_mismatch_and_orphan_sample_are_rejected(self):
         bad = {**X2, "scopes": {**X2["scopes"], "R3": {"has_errors": 21}}}
-        with self.assertRaisesRegex(b1c.B1cError, "B1c-x2 reports 21"):
+        with self.assertRaisesRegex(b1c.B1cError, "range total 21"):
             b1c.build(r1_timeline(), Decimal("0.1"), bad, GUI)
         orphan = {"ts1_error_samples": [{**GUI["ts1_error_samples"][0], "packet_index": 999}]}
         with self.assertRaisesRegex(b1c.B1cError, "exactly one phase"):
