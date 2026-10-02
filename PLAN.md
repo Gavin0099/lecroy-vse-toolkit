@@ -394,3 +394,19 @@ B2g product policy remains waiting for engineer Who / When / What / Proof answer
 B2g review repair: 101 PCIe tests PASS (8 focused); two real replays identical; two old readback regressions fail before fix; delivered questionnaire hashes freshly bound. Read-back candidates require request and completion after this write and before the next overlapping write in the same device epoch; effective/expected UNKNOWN. Historical questionnaire identity record marked superseded.
 
 B2g read-back repair: completion must remain in the write device epoch; 102 suite tests PASS, 9 focused.
+
+- feat(pcie): add W1 bounded observation event contract: 114 PCIe tests PASS (12 focused); real packet/segment/gap fixture and 4 explicit negative fixtures executed by validator; source, epoch, identity, time, count and policy boundaries tested. Scope: Structural provenance checks are not source authenticity; adapters must recompute lineage. No complete timeline, applied state, ASPM policy, physical identity or root cause. Inherited nonrequired governance-drift checker absent; deferred.
+
+W1 contract review repair: 117 PCIe tests PASS (15 focused); explicit positive/negative source fixtures; nested details policy, alias-duplicate and malformed sources CLI regressions. No product state or identity continuity added.
+
+W1 extension claim bypass repaired; 118 suite / 16 focused tests PASS, current review pending.
+
+W1 interval count / source-gap consistency repaired: 120 tests PASS, 18 focused.
+
+W1 nested identity ceiling repaired: 121 suite / 19 focused tests PASS.
+
+W1 gap/interval overlap and duplicate segment guards added: 123 suite / 21 focused tests PASS.
+
+Owner workflow correction 2026-10-02: freeze W1 invariants; GitHub review is final adversarial gate, not spec discovery. W2+W3 one capability PR, W4+W5 one capability PR; focused development checks, final capability suite/replay. Source-alias loophole fixed; arbitrary extension prose semantic checking explicitly outside W1.
+
+W1 final bounded review: milestone id/summary basic string guard; 125 tests PASS. GitHub final feedback disposed; no further speculative parser-hardening loop.

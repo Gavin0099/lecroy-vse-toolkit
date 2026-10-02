@@ -187,3 +187,79 @@ CHECKS_RUN: python -X utf8 -B -m unittest discover -s tests/pcie -v; source-boun
 OPEN_RISKS: Product ASPM policy awaits Who/When/What/Proof; inherited nonrequired drift checker absent.
 NOT_DONE: Latest repair review/merge pending; W1-W5 and product policy not implemented.
 RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 w1 delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 114 PCIe tests PASS (12 focused); real packet/segment/gap fixture and 4 explicit negative fixtures executed by validator; source, epoch, identity, time, count and policy boundaries tested
+FILES_TOUCHED: scripts/pcie/b3a_event_contract.py, tests/pcie/test_b3a_event_contract.py, docs/pcie-observation-timeline-contract.md, docs/pcie-observation-timeline-contract-v1.json, artifacts/evidence/pcie-w1-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: Structural provenance checks are not source authenticity; adapters must recompute lineage. No complete timeline, applied state, ASPM policy, physical identity or root cause. Inherited nonrequired governance-drift checker absent; deferred.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 W1 review repair
+TASK_INTENT: Fix three observation-contract review findings.
+WORK_COMPLETED: 117 PCIe tests PASS (15 focused); explicit positive/negative source fixtures; nested details policy, alias-duplicate and malformed sources CLI regressions.
+FILES_TOUCHED: scripts/pcie/b3a_event_contract.py, tests/pcie/test_b3a_event_contract.py, docs/pcie-observation-timeline-contract.md, docs/pcie-observation-timeline-contract-v1.json, artifacts/evidence/pcie-w1-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: python -X utf8 -B -m unittest discover -s tests/pcie -v; representative source-byte validation; controlled malformed-input subprocess.
+OPEN_RISKS: Structural validator does not authenticate sources or recompute facts; inherited nonrequired drift checker missing.
+NOT_DONE: Latest head review/merge pending; W2-W5 and product policy remain.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Verify alias regression isolates ID validation.
+WORK_COMPLETED: All three review regressions fail on old head; 117 tests pass on current implementation.
+FILES_TOUCHED: tests/pcie/test_b3a_event_contract.py, artifacts/evidence/pcie-w1-20261002/before-repair-tests.log, artifacts/evidence/pcie-w1-20261002/tests.log, artifacts/session-closeout.txt
+CHECKS_RUN: Three regression tests against old module; python -X utf8 -B -m unittest discover -s tests/pcie -v.
+OPEN_RISKS: Inherited nonrequired drift checker missing; no source-authenticity claim.
+NOT_DONE: Latest-head review/merge pending; W2-W5.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Close extension-field state claim bypass in W1.
+WORK_COMPLETED: 118 tests PASS; added regression fails on prior head; record fields fixed, extension claims guarded recursively.
+FILES_TOUCHED: scripts/pcie/b3a_event_contract.py, tests/pcie/test_b3a_event_contract.py, docs/pcie-observation-timeline-contract.md, docs/pcie-observation-timeline-contract-v1.json, artifacts/evidence/pcie-w1-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: prior-head extension regression; python -X utf8 -B -m unittest discover -s tests/pcie -v.
+OPEN_RISKS: Structural checks do not authenticate sources; inherited nonrequired drift checker absent.
+NOT_DONE: Latest-head review/merge pending; W2-W5 and product policy.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Enforce interval count and source-gap consistency before W1 merge.
+WORK_COMPLETED: 120 PCIe tests PASS (18 focused); positive/negative source fixtures; all review regressions fail before fix; source-gap consistency and segment totals bounded.
+FILES_TOUCHED: scripts/pcie/b3a_event_contract.py, tests/pcie/test_b3a_event_contract.py, docs/pcie-observation-timeline-contract.md, docs/pcie-observation-timeline-contract-v1.json, artifacts/evidence/pcie-w1-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: two prior-head regressions; python -X utf8 -B -m unittest discover -s tests/pcie -v.
+OPEN_RISKS: Structural checks do not authenticate sources; inherited nonrequired drift checker missing.
+NOT_DONE: Latest-head review/merge pending; W2-W5 and product policy.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Extend recursive v1 identity ceiling to nested data.
+WORK_COMPLETED: 121 PCIe tests PASS (19 focused), 5 explicit negative fixtures; all review regressions fail before fix; recursive state/policy/identity ceilings and interval/source-gap consistency.
+FILES_TOUCHED: scripts/pcie/b3a_event_contract.py, tests/pcie/test_b3a_event_contract.py, docs/pcie-observation-timeline-contract.md, docs/pcie-observation-timeline-contract-v1.json, artifacts/evidence/pcie-w1-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: prior-head nested identity regression; python -X utf8 -B -m unittest discover -s tests/pcie -v.
+OPEN_RISKS: Structural checks do not authenticate sources; inherited nonrequired drift checker missing.
+NOT_DONE: Latest-head review/merge pending; W2-W5 and product policy.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Enforce same-source gap/interval and interval dedup consistency.
+WORK_COMPLETED: 123 PCIe tests PASS (21 focused), 5 negative fixtures; all review regressions fail before fix; recursive claim ceilings, segment total/dedup and source gap consistency.
+FILES_TOUCHED: scripts/pcie/b3a_event_contract.py, tests/pcie/test_b3a_event_contract.py, docs/pcie-observation-timeline-contract.md, docs/pcie-observation-timeline-contract-v1.json, artifacts/evidence/pcie-w1-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: two prior-head interval regressions; python -X utf8 -B -m unittest discover -s tests/pcie -v.
+OPEN_RISKS: Structural checks do not authenticate sources; inherited nonrequired drift checker missing.
+NOT_DONE: Latest-head review/merge pending; W2-W5 and product policy.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Converge W1 and reduce delivery ceremony per owner correction.
+WORK_COMPLETED: W1 invariants frozen; byte-identical source aliases rejected; 22 focused tests PASS; remaining semantic-prose P2 explicitly scoped/deferred.
+FILES_TOUCHED: scripts/pcie/b3a_event_contract.py, tests/pcie/test_b3a_event_contract.py, docs/pcie-observation-timeline-contract.md, docs/pcie-observation-timeline-contract-v1.json, artifacts/evidence/pcie-w1-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: python -X utf8 -B -m unittest discover -s tests/pcie -p test_b3a*.py -v; local bounded adversarial review.
+OPEN_RISKS: Extension text is opaque, not a validated fact; source authenticity and inherited nonrequired drift check unavailable.
+NOT_DONE: Final capability review/merge; W2+W3, W4+W5; product ASPM policy.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Close W1 final review as one bounded batch.
+WORK_COMPLETED: 125 tests PASS, milestone id/summary guard added; arbitrary opaque-prose semantics P2 deferred explicitly.
+FILES_TOUCHED: scripts/pcie/b3a_event_contract.py, tests/pcie/test_b3a_event_contract.py, docs/pcie-observation-timeline-contract.md, docs/pcie-observation-timeline-contract-v1.json, artifacts/evidence/pcie-w1-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: python -X utf8 -B -m unittest discover -s tests/pcie -v; latest bounded invariant adversarial review; real representative fixture validator.
+OPEN_RISKS: Not an arbitrary JSON semantic classifier or source authenticity verifier; nonrequired drift check missing.
+NOT_DONE: PR merge pending; W2+W3 and W4+W5; engineer ASPM policy.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE

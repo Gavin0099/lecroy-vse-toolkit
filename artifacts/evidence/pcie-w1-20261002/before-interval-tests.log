@@ -1,0 +1,23 @@
+FF
+======================================================================
+FAIL: test_segment_total_and_category_bounds (test_b3a_event_contract.EventContractTests.test_segment_total_and_category_bounds)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\reiko\.codex\worktrees\pcie-slice-delivery\lecroy-vse-toolkit\tests\pcie\test_b3a_event_contract.py", line 22, in test_segment_total_and_category_bounds
+    with self.assertRaises(ValueError): contract.validate(doc,self.sources)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_gap_cannot_contain_event_from_same_source (test_b3a_event_contract.EventContractTests.test_gap_cannot_contain_event_from_same_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\reiko\.codex\worktrees\pcie-slice-delivery\lecroy-vse-toolkit\tests\pcie\test_b3a_event_contract.py", line 30, in test_gap_cannot_contain_event_from_same_source
+    with self.assertRaises(ValueError): contract.validate(self.doc,self.sources)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.006s
+
+FAILED (failures=2)
