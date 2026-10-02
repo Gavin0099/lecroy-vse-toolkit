@@ -165,3 +165,13 @@ CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
 OPEN_RISKS: No hardware-change/physical-identity/root-cause claim; same BDF/VID-DID cannot make epochs comparable. Inherited nonrequired governance-drift missing checker deferred outside scope.
 NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
 RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b2g delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 98 clean-slice PCIe tests PASS, no skips; two real offline replays match historical current r1-run1 output byte-for-byte
+FILES_TOUCHED: scripts/pcie/b2g_watchlist_prepare.py, tests/pcie/test_b2g_watchlist_prepare.py, docs/pcie-b2g-observation-contract.md, artifacts/evidence/pcie-b2g-hang-20260930, docs/pcie-b2g-engineer-questions.md, docs/pcie-b1e-b2-progress-20260930.md, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: No engineer product expectations supplied; L1_ENABLE_WRITE_INTENT cannot prove register applied, system ASPM enabled, policy violation or BSOD causality. Inherited nonrequired governance-drift missing checker deferred outside scope.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
