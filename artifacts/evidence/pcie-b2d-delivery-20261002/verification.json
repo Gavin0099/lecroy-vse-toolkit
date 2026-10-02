@@ -1,0 +1,19 @@
+{
+  "status": "PASS_CURRENT_B2D_TESTS",
+  "source_commit": "b84696299570cce7b52113d1d7897ec4312b3960",
+  "tests_passed": {
+    "focused": 6,
+    "suite": 81
+  },
+  "log_sha256": {
+    "focused": "D2A73ECD653A842C1CEBA7D47CEFC76FE96E1D09E0CA0A1F849A926D4F70CEEB",
+    "suite": "3C136A29FA66F6BFC93FF8FEE9BF6CC19FEC3775F7451E0D2843E40DE7FC96AA"
+  },
+  "source_blob_oid": {
+    "scripts/pcie/b2c_capability_resolution.py": "be91130fde5b95fb450a536998161a08fa6c991c",
+    "scripts/pcie/b2d_observed_state.py": "6048504e350ddf99e8101a74769dfd8e2ffd8680",
+    "tests/pcie/test_b2d_observed_state.py": "31044f1cfaf7281d7c0afab619da03908371a934"
+  },
+  "historical_verification": "artifacts/evidence/pcie-b2d-hang-20260930/verification.json (4 focused tests at that historical revision; retained unchanged)",
+  "claim_scope": "current source/tests only; no new COM/hardware/ASPM/root-cause qualification"
+}

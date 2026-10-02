@@ -135,3 +135,13 @@ CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
 OPEN_RISKS: Observed evidence only, no applied state, product policy or root cause. Inherited nonrequired governance-drift missing checker deferred outside scope.
 NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
 RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b2d-proof delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 6 focused B2d tests and 81 clean-slice PCIe tests PASS; fresh UTF-8 logs, source commit/blob IDs and log hashes retained
+FILES_TOUCHED: docs/pcie-b2d-evidence.md, artifacts/evidence/pcie-b2d-delivery-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: Source-test evidence only; no new hardware/runtime/policy/root-cause proof. Nonrequired inherited governance-drift checker missing and deferred.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE

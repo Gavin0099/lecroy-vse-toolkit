@@ -1,6 +1,6 @@
 # PCIe-B2d：Observed state 驗收
 
-2026-10-02 交付驗證：B2d 五項測試保留 state 的同 BDF／VID-DID epoch 隔離。
+2026-10-02 交付驗證：B2d 六項測試（含 Completion-order regression）保留 state 的同 BDF／VID-DID epoch 隔離。
 原 fixture 中額外的 snapshot／mapping 斷言歸入後續 B2e slice，讓 B2d 可在
 尚未安裝 B2e 的乾淨主線獨立驗證。這項測試切分不改 production state。
 
@@ -21,7 +21,7 @@ ASPM mask 0x3 解出 2，即 L1 enable intent；沒有 LinkControl read-back。
 
 ## 驗證
 
-- `python -X utf8 -B -m unittest discover -s tests/pcie -p test_b2d_observed_state.py -v`：4 tests PASS。
+- `python -X utf8 -B -m unittest discover -s tests/pcie -p test_b2d_observed_state.py -v`：目前 6 tests PASS；2026-09-30 歷史紀錄為 4 tests。
 - 初跑有兩個測試資料問題：共用 read fixture 缺少 write_value=null；真實 0x42
   被錯誤期待為 ASPM 0。補 fixture 欄位、改成獨立確認的 literal value／packet，
   沒有把 production extraction 改成迎合錯誤預期。
@@ -29,3 +29,11 @@ ASPM mask 0x3 解出 2，即 L1 enable intent；沒有 LinkControl read-back。
   未觀察 bytes／跨 epoch／BDF／跨 epoch completion 皆保留未知。
 - `artifacts/evidence/pcie-b2d-hang-20260930/verification.json` 保存兩次切換前重播
   與切換後 UNKNOWN view 的 hash；目前正式 before-run1，after 為另一 epoch。
+
+## Current versus historical test evidence
+
+`artifacts/evidence/pcie-b2d-hang-20260930/verification.json` is the immutable
+2026-09-30 historical four-test record. It is not current delivery validation.
+`artifacts/evidence/pcie-b2d-delivery-20261002/verification.json` binds the current
+six focused tests and 81-test clean-slice suite to source commit/blob IDs and log
+hashes. Code and historical state outputs are unchanged in this documentation slice.
