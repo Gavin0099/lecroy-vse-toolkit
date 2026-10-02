@@ -23,3 +23,16 @@ snapshot-specific same BDF/VID-DID epoch regression is now in B2e, leaving B2d
 independently testable without importing this module. New epoch VID/DID may be
 observed while LinkControl name/read/intent remain unknown. Real snapshot JSON
 and Markdown replay twice byte-identically to historical before-run1.
+
+## Delivery revision after pointer-width review
+
+CapabilityPointer at 0x34 is now a one-byte named span, consistent with the
+existing resolver and Linux layout (0x35..0x37 reserved). A separate unnamed
+raw DWORD preserves those bytes and their write evidence. A nonzero reserved
+byte or a later write to byte 0x35 cannot change the pointer value/marker.
+
+Current outputs: `artifacts/evidence/pcie-b2e-delivery-20261002/before-run1` and
+`after-run1`. Six focused tests and 87 suite tests pass; two before replays are
+byte-identical. The 2026-09-30 snapshots remain historical evidence with the
+earlier four-byte named pointer and must not be used as current B2f inputs.
+No hardware-state or product-policy conclusion is added.

@@ -10,3 +10,8 @@ Read 後有較晚 write 時標示 `read_has_later_write`，不把舊 read 當當
 DWORDs。也可明確查 raw offset/width（1/2/4 bytes），不因 query 就替未知
 offset 命名。沒有存取的 new SDE register 保持 UNKNOWN。
 驗證 query boundary、partial bytes、later-write marker、未知值及 epoch isolation。
+
+Named register widths: CapabilityPointer=1 byte; Command/LinkControl/LinkStatus/
+PMCSR=2 bytes; DWORD fields=4 bytes. Raw accessed DWORDs remain separate when
+a named field has smaller width. Reserved bytes cannot contribute to a named
+field value or its later-write marker.

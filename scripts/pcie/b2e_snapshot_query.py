@@ -10,7 +10,7 @@ import b2c_capability_resolution as b2c
 import b2d_observed_state as b2d
 
 SCHEMA='pcie.b2e-observed-snapshot/v1'
-WORD_NAMES={'Command','LinkControl','LinkStatus','PMCSR'}
+REGISTER_WIDTHS={'CapabilityPointer':1,'Command':2,'LinkControl':2,'LinkStatus':2,'PMCSR':2}
 
 
 def query_bytes(state,offset,width):
@@ -24,7 +24,7 @@ def query_bytes(state,offset,width):
 def build(log,reference,device_id,packet,requested=()):
     state=b2d.build(log,device_id,packet);mapping=b2c.resolve(log,reference,device_id,packet)
     spans={}
-    for name,r in mapping['registers'].items():spans.setdefault((r['byte_offset'],2 if name in WORD_NAMES else 4),[]).append(name)
+    for name,r in mapping['registers'].items():spans.setdefault((r['byte_offset'],REGISTER_WIDTHS.get(name,4)),[]).append(name)
     for a in log['accesses']:
         if a['device_id']==device_id and a['epoch']==state['epoch'] and a['packet_index']<=packet:spans.setdefault((a['register_byte_offset'],4),[])
     for offset,width in requested:spans.setdefault((offset,width),[])

@@ -9,6 +9,19 @@ from test_b2c_capability_resolution import fixture,ROOT,REF
 
 
 class QueryTests(unittest.TestCase):
+    def test_capability_pointer_excludes_reserved_bytes_and_their_writes(self):
+        log=fixture();log['accesses'][1]['read_value']=0x11223360
+        log['accesses'].append({**log['accesses'][1],'packet_index':30,'read_value':None,
+                                'write_value':0x44556600,'first_be':2})
+        d=b2e.build(log,REF,256,99)
+        pointer=next(r for r in d['registers'] if 'CapabilityPointer' in r['names'])
+        self.assertEqual(pointer['width_bytes'],1)
+        self.assertEqual(pointer['read_value'],0x60)
+        self.assertFalse(pointer['read_has_later_write'])
+        raw=next(r for r in d['registers'] if r['byte_offset']==0x34 and r['width_bytes']==4)
+        self.assertEqual(raw['read_value'],0x11223360)
+        self.assertEqual(raw['names'],[]);self.assertTrue(raw['read_has_later_write'])
+
     def test_same_bdf_and_vid_did_do_not_inherit_snapshot_names_or_intent(self):
         log=fixture();base=log['accesses'][0]
         log['accesses'].append({**base,'packet_index':30,'register_byte_offset':0,'read_value':0x976717A0,'completions':[{'packet_index':31}]})
