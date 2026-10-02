@@ -15,3 +15,13 @@ CHECKS_RUN: python -X utf8 -B -m unittest discover -s tests/pcie -v (9 PASS); B1
 OPEN_RISKS: Historical GUI verification is reused as observation records; raw extraction and full PCIe specification qualification are not claimed.
 NOT_DONE: B1d/B2/W slices, product ASPM evaluation, raw-trace/runtime rerun; PR/merge pending at this commit.
 RECOMMENDED_MEMORY_UPDATE: NO_UPDATE; G0 product state kept in PLAN/docs.
+
+
+2026-10-02 b1d delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 30 clean-slice PCIe tests PASS (21 B1d); two real B1d replay JSON/MD byte-identical to historical r2; source document and input hash binding verified
+FILES_TOUCHED: .gitattributes, scripts/pcie/b1d_mux_rules.py, tests/pcie/test_b1d_mux_rules.py, docs/pcie-b1d-engineer-questions.md, docs/pcie-b1d-rule-contract.md, docs/pcie-b1d-evidence.md, artifacts/evidence/pcie-b1d-hang-20260930, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: No overall case PASS/FAIL, electrical MUX measurement, persistent Gen1, initialization completion or root cause. B2g rules still await engineer answers. Existing nonrequired governance-drift checker missing on main; deferred outside this slice.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
