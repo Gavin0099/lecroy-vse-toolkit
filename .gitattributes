@@ -1,0 +1,3 @@
+
+# Preserve provenance artifact bytes across platforms.
+artifacts/evidence/** -text

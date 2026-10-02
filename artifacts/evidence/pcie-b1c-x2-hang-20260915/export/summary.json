@@ -1,0 +1,77 @@
+{
+  "status": "PASS_HASERRORS_PROBE_OUTPUT",
+  "b1b_totals_crosscheck": "MATCHED",
+  "end": {
+    "events": 1259373,
+    "has_errors": 384993,
+    "unexplained": 384993
+  },
+  "has_errors_by_event": {
+    "tlp": 0,
+    "dllp": 0,
+    "ordered_set": 384993,
+    "other": 0
+  },
+  "scopes": {
+    "R1": {
+      "events": 871876,
+      "ts1": 848648,
+      "ts2": 0,
+      "has_errors": 2,
+      "unexplained": 2
+    },
+    "R2": {
+      "events": 382842,
+      "ts1": 382842,
+      "ts2": 0,
+      "has_errors": 382842,
+      "unexplained": 382842
+    },
+    "R3": {
+      "events": 4655,
+      "ts1": 3201,
+      "ts2": 1311,
+      "has_errors": 2149,
+      "unexplained": 2149
+    },
+    "C1": {
+      "events": 2289,
+      "ts1": 994,
+      "ts2": 1241,
+      "has_errors": 0,
+      "unexplained": 0
+    },
+    "C2": {
+      "events": 1257084,
+      "ts1": 1233697,
+      "ts2": 70,
+      "has_errors": 384993,
+      "unexplained": 384993
+    },
+    "C3": {
+      "events": 0,
+      "ts1": 0,
+      "ts2": 0,
+      "has_errors": 0,
+      "unexplained": 0
+    }
+  },
+  "channel_names_from_samples": {
+    "C2": "Downstream"
+  },
+  "flags_set_nonzero": {},
+  "members_never_present": [
+    "ErrorAllignment",
+    "TsErrorDataRate",
+    "TsErrorFormat",
+    "TsErrorParity",
+    "TsErrorRsrvField",
+    "G3ErrorFraming",
+    "RsvdField"
+  ],
+  "log_sha256": "57FD808BA30636BF29B567840F5FB61F2DC75374A0D2FF2599396BF9F1AC8C36",
+  "not_established": [
+    "meaning of a set member beyond the VSE manual text",
+    "link health or any rule result"
+  ]
+}

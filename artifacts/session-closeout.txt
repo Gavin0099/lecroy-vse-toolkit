@@ -5,3 +5,13 @@ CHECKS_RUN: Windows PowerShell 5.1 parser and ASCII-source checks; WinPS 5.1 HTM
 OPEN_RISKS: C5 is qualified only on one trace pair; scoring thresholds, baseline behavior, and generalization to other failures are not established. Candidates remain triage suggestions, not root cause, severity, or automatic PASS/FAIL claims. HTML is presentation-only and the JSON remains canonical. Generated timeline and C5 output directories are large untracked artifacts. Existing unrelated working-tree changes remain uncommitted.
 NOT_DONE: No commit was created; the report generator is not integrated into run-demo.ps1; no second trace pair, new decoder, AI diagnosis, or Governance work was started. UI polish stops at DEMO-V7.
 RECOMMENDED_MEMORY_UPDATE: Record DEMO-V7 as a deterministic presentation-only refinement over the C5 known-pair qualification and keep the next product slice focused on a second independent PASS/FAIL pair before tuning the scorer.
+
+
+2026-10-02 B1c offline dependency delivery
+TASK_INTENT: Deliver the minimal B1c offline dependency before B1d as a separately reviewed PR.
+WORK_COMPLETED: Imported only offline B1c code, nine tests and derived replay inputs/results; full clean-slice suite passed and two replays match historical training JSON/Markdown byte-for-byte.
+FILES_TOUCHED: .gitattributes, PLAN.md, scripts/pcie/b1c_training_timeline.py, tests/pcie/test_b1c_training_timeline.py, docs/pcie-b1c-offline-delivery.md, selected B1b/B1c-x2/GUI-observation/r1 derived evidence, artifacts/session-closeout.txt
+CHECKS_RUN: python -X utf8 -B -m unittest discover -s tests/pcie -v (9 PASS); B1c CLI replay twice and historical byte comparison.
+OPEN_RISKS: Historical GUI verification is reused as observation records; raw extraction and full PCIe specification qualification are not claimed.
+NOT_DONE: B1d/B2/W slices, product ASPM evaluation, raw-trace/runtime rerun; PR/merge pending at this commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE; G0 product state kept in PLAN/docs.
