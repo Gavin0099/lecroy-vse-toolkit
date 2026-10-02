@@ -125,3 +125,13 @@ CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
 OPEN_RISKS: Formatting only; no physical device continuity, transaction qualification or policy inference. Inherited nonrequired governance-drift missing checker deferred.
 NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
 RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b2c-fix delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 81 PCIe tests PASS without skips; negative regression reproduced before fix; two real replays equal historical output byte-for-byte
+FILES_TOUCHED: scripts/pcie/b2c_capability_resolution.py, tests/pcie/test_b2c_capability_resolution.py, docs/pcie-b2c-resolution-contract.md, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: Observed evidence only, no applied state, product policy or root cause. Inherited nonrequired governance-drift missing checker deferred outside scope.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
