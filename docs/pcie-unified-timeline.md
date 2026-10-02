@@ -40,7 +40,7 @@ python -X utf8 -B scripts/pcie/b3b_unified_timeline.py --manifest artifacts/evid
 python -X utf8 -B scripts/pcie/b3a_event_contract.py --timeline <new-directory>/timeline.json --source-root .
 ```
 
-輸出既有目錄會拒絕。兩次真實 offline replay 保存於 evidence 的 run1/run2；
+輸出既有目錄會拒絕。兩次真實 offline replay 的 hash 保存於 verification.json；只提交一份 run1 canonical output，第二份留在 ignored runtime；
 來源 input manifest、source hashes／pointers 與 verification.json 足以重播。
 這裡重新驗證的是衍生資料，不會重新打開 .pex 或更動硬體。
 

@@ -273,3 +273,11 @@ CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
 OPEN_RISKS: Legacy link capture binding remains corroborated, not a direct hash. Opaque prose is not an authoritative fact. ASPM policy awaits engineer; no root cause/full DLLP export. Inherited nonrequired drift checker missing, deferred.
 NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
 RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Keep unified timeline delivery lightweight.
+WORK_COMPLETED: Removed duplicate committed generated output; one canonical timeline and two matching replay hashes retained; code and canonical bytes unchanged.
+FILES_TOUCHED: docs/pcie-unified-timeline.md, artifacts/evidence/pcie-unified-timeline-20261002, artifacts/session-closeout.txt
+CHECKS_RUN: run1/run2 byte equality already verified; scoped source/destination paths; latest-head generated diff inspection.
+OPEN_RISKS: Legacy link binding corroborated; nonrequired drift checker unavailable.
+NOT_DONE: Final PR review/merge; report capability and ASPM policy.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
