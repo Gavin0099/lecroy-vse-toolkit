@@ -2,6 +2,8 @@ import copy
 import json
 from pathlib import Path
 import sys
+import subprocess
+import tempfile
 import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'scripts/pcie'))
 import b3a_event_contract as contract
@@ -11,6 +13,25 @@ FIXTURE = ROOT / 'artifacts/evidence/pcie-w1-20261002/representative.json'
 
 
 class EventContractTests(unittest.TestCase):
+    def test_details_cannot_promote_claims_at_any_depth(self):
+        for field,value in [('effective_state','L1'),('expected_state','DISABLED'),('policy_result','FAIL')]:
+            for detail in [{field:value},{'nested':[{field:value}]}]:
+                doc=copy.deepcopy(self.doc);doc['events'][0]['details']=detail
+                with self.assertRaises(ValueError): contract.validate(doc,self.sources)
+
+    def test_alias_cannot_duplicate_observation(self):
+        event=copy.deepcopy(self.doc['events'][0]);event['event_id']='arbitrary-second-id'
+        self.doc['events'].insert(1,event)
+        with self.assertRaises(ValueError): contract.validate(self.doc,self.sources)
+
+    def test_sources_array_is_controlled_cli_error(self):
+        self.doc['sources']=[]
+        with self.assertRaises(ValueError): contract.validate(self.doc,{})
+        with tempfile.TemporaryDirectory() as temp:
+            p=Path(temp)/'invalid.json';p.write_text(json.dumps(self.doc))
+            r=subprocess.run([sys.executable,'-B',str(ROOT/'scripts/pcie/b3a_event_contract.py'),
+                              '--timeline',str(p),'--source-root',str(ROOT)],capture_output=True,text=True)
+            self.assertEqual(r.returncode,2);self.assertNotIn('Traceback',r.stderr)
     def test_negative_fixture_cases_execute_validator(self):
         cases=json.loads((FIXTURE.parent/'negative-cases.json').read_text())
         for case in cases:

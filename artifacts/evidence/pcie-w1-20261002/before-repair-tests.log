@@ -1,0 +1,26 @@
+F.E
+======================================================================
+ERROR: test_sources_array_is_controlled_cli_error (test_b3a_event_contract.EventContractTests.test_sources_array_is_controlled_cli_error)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\reiko\.codex\worktrees\pcie-slice-delivery\lecroy-vse-toolkit\tests\pcie\test_b3a_event_contract.py", line 29, in test_sources_array_is_controlled_cli_error
+    with self.assertRaises(ValueError): contract.validate(self.doc,{})
+                                        ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\reiko\.codex\worktrees\pcie-slice-delivery\lecroy-vse-toolkit\artifacts\runtime\delivery\w1\old_contract.py", line 107, in validate
+    for name, src in doc['sources'].items():
+                     ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'items'
+
+======================================================================
+FAIL: test_details_cannot_promote_claims_at_any_depth (test_b3a_event_contract.EventContractTests.test_details_cannot_promote_claims_at_any_depth)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\reiko\.codex\worktrees\pcie-slice-delivery\lecroy-vse-toolkit\tests\pcie\test_b3a_event_contract.py", line 20, in test_details_cannot_promote_claims_at_any_depth
+    with self.assertRaises(ValueError): contract.validate(doc,self.sources)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.008s
+
+FAILED (failures=1, errors=1)

@@ -97,6 +97,9 @@ def validate(doc, source_bytes):
     def fields(record, kind):
         require(isinstance(record, dict) and set(FIELDS[kind].split()) <= record.keys(), 'Missing ' + kind + ' fields')
     fields(doc, 'document')
+    require(isinstance(doc['sources'], dict), 'Sources must be an object')
+    require(all(isinstance(doc[key], list) for key in ('events', 'intervals', 'gaps', 'milestones', 'coverage', 'limitations')),
+            'Timeline collections must be arrays')
     require(doc['schema'] == SCHEMA, 'Unsupported timeline schema')
     require(re.fullmatch(r'[0-9A-F]{64}', doc['capture_sha256']) is not None, 'Invalid capture identity')
     anchors = doc['anchors']
@@ -125,9 +128,20 @@ def validate(doc, source_bytes):
     def display(record, name='time_display', precision='display_quantum_seconds'):
         require(record[precision] == time_parts(record[name])[1], 'Wrong display precision')
     ids, ordering = set(), []
+    def detail_claims(value):
+        if isinstance(value, dict):
+            for key, item in value.items():
+                if key in UNKNOWN_CLAIMS:
+                    require(item == UNKNOWN_CLAIMS[key], 'Details cannot promote state or policy')
+                detail_claims(item)
+        elif isinstance(value, list):
+            for item in value:
+                detail_claims(item)
     for event in doc['events']:
         fields(event, 'event')
         packet(event['packet_index']); display(event); refs(event)
+        require(event['event_id'] == f"packet:{event['packet_index']}:{event['layer']}:{event['kind']}",
+                'Event ID must match observation identity')
         require(event['event_id'] not in ids, 'Duplicate observation identity')
         ids.add(event['event_id']); ordering.append((event['packet_index'], event['event_id']))
         require(event['layer'] in {'TLP', 'LINK', 'DLLP', 'TRAINING', 'GUI'}, 'Unknown event layer')
@@ -141,6 +155,7 @@ def validate(doc, source_bytes):
                 'Invalid routing BDF')
         require(event['state_claims'] == UNKNOWN_CLAIMS, 'Observation cannot establish applied/expected state or policy')
         require(isinstance(event['details'], dict), 'Invalid event details')
+        detail_claims(event['details'])
     require(ordering == sorted(ordering), 'Events must use packet order with stable observation tie order')
     for interval in doc['intervals']:
         fields(interval, 'interval')
@@ -177,7 +192,9 @@ def validate(doc, source_bytes):
 def load_sources(doc, root):
     root = Path(root).resolve()
     result = {}
+    require(isinstance(doc['sources'], dict), 'Sources must be an object')
     for name, source in doc['sources'].items():
+        require(isinstance(source, dict) and isinstance(source.get('path'), str), 'Invalid source path')
         path = (root / source['path']).resolve()
         require(path.is_relative_to(root), 'Source outside declared root')
         result[name] = path.read_bytes()

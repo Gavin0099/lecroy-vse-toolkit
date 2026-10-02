@@ -41,7 +41,7 @@ test_r1_markdown_passes_contract_and_marks_samples (test_b1c_training_timeline.B
 test_range_sum_mismatch_and_orphan_sample_are_rejected (test_b1c_training_timeline.B1cR1Tests.test_range_sum_mismatch_and_orphan_sample_are_rejected) ... ok
 test_straddled_phase_still_validates_channel_totals (test_b1c_training_timeline.B1cR1Tests.test_straddled_phase_still_validates_channel_totals) ... ok
 test_cli_requires_matching_pass_summary (test_b1c_training_timeline.B1cTests.test_cli_requires_matching_pass_summary) ... B1c training timeline not produced: B1b summary does not describe this timeline.json
-B1c training timeline not produced: Refusing to reuse existing output directory: C:\Users\reiko\AppData\Local\Temp\tmp7e33b2a4\out
+B1c training timeline not produced: Refusing to reuse existing output directory: C:\Users\reiko\AppData\Local\Temp\tmpp519zl8e\out
 ok
 test_contract_rejects_judgement_wording_and_hidden_unknown (test_b1c_training_timeline.B1cTests.test_contract_rejects_judgement_wording_and_hidden_unknown) ... ok
 test_markdown_keeps_unknowns_and_passes_contract (test_b1c_training_timeline.B1cTests.test_markdown_keeps_unknowns_and_passes_contract) ... ok
@@ -140,6 +140,8 @@ test_readback_does_not_cross_epoch_or_device (test_b2g_watchlist_prepare.Prepara
 test_readback_excludes_old_requests_and_superseded_writes (test_b2g_watchlist_prepare.PreparationTests.test_readback_excludes_old_requests_and_superseded_writes) ... ok
 test_readback_requires_return_after_write (test_b2g_watchlist_prepare.PreparationTests.test_readback_requires_return_after_write) ... ok
 test_real_three_writes_and_no_new_sde_state_claim (test_b2g_watchlist_prepare.PreparationTests.test_real_three_writes_and_no_new_sde_state_claim) ... ok
+test_alias_cannot_duplicate_observation (test_b3a_event_contract.EventContractTests.test_alias_cannot_duplicate_observation) ... ok
+test_details_cannot_promote_claims_at_any_depth (test_b3a_event_contract.EventContractTests.test_details_cannot_promote_claims_at_any_depth) ... ok
 test_epoch_and_identity_are_not_inferred_from_bdf (test_b3a_event_contract.EventContractTests.test_epoch_and_identity_are_not_inferred_from_bdf) ... ok
 test_interval_and_gap_do_not_invent_packets_or_direction (test_b3a_event_contract.EventContractTests.test_interval_and_gap_do_not_invent_packets_or_direction) ... ok
 test_machine_field_contract_matches_executable_validator (test_b3a_event_contract.EventContractTests.test_machine_field_contract_matches_executable_validator) ... ok
@@ -150,6 +152,7 @@ test_no_observation_to_effective_or_policy_promotion (test_b3a_event_contract.Ev
 test_path_escape_rejected (test_b3a_event_contract.EventContractTests.test_path_escape_rejected) ... ok
 test_real_representative_fixture_preserves_intent_and_precision (test_b3a_event_contract.EventContractTests.test_real_representative_fixture_preserves_intent_and_precision) ... ok
 test_same_display_time_uses_packet_order_not_causation (test_b3a_event_contract.EventContractTests.test_same_display_time_uses_packet_order_not_causation) ... ok
+test_sources_array_is_controlled_cli_error (test_b3a_event_contract.EventContractTests.test_sources_array_is_controlled_cli_error) ... ok
 test_time_precision_and_packet_type (test_b3a_event_contract.EventContractTests.test_time_precision_and_packet_type) ... ok
 test_wrong_capture_and_changed_source_are_rejected (test_b3a_event_contract.EventContractTests.test_wrong_capture_and_changed_source_are_rejected) ... ok
 test_key_uses_requester_and_tag_only_and_completion_must_follow (test_g2b_associate.AssociationTests.test_key_uses_requester_and_tag_only_and_completion_must_follow) ... ok
@@ -161,6 +164,6 @@ test_bdf_uses_hex_bus_and_device_with_existing_padding (test_g2b_associate.Class
 test_roles_follow_vendor_constants_and_field_shape (test_g2b_associate.ClassificationTests.test_roles_follow_vendor_constants_and_field_shape) ... ok
 
 ----------------------------------------------------------------------
-Ran 114 tests in 0.247s
+Ran 117 tests in 0.403s
 
 OK
