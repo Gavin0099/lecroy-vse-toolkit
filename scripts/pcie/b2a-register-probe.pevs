@@ -1,0 +1,58 @@
+set ModuleType = "Verification Script";
+set OutputType = "VS";
+set InputType = "VS";
+set DecoderDesc = "B2a raw configuration/register field probe";
+%include "VSTools.inc"
+
+set TlpCount = 0;
+set Emitted = 0;
+
+OnStartScript()
+{
+    ScriptForDisplayOnly();
+    SendAllChannels();
+    SendTraceEventOnly(_PKT_TLP);
+    SendTlpType(_ANY_TYPE);
+    ReportText("B2A_BEGIN|v1|index|time|channel|type|requester|tag|device|register|address|data|first_be|last_be|payload_len|payload_prefix|completer|status|byte_count|lower_addr|frame_prefix");
+}
+
+HexOrNA(v)
+{
+    if(v == null) return "NA";
+    return FormatEx("0x%X", v);
+}
+
+ProcessEvent()
+{
+    TlpCount++;
+    if(in.TLPType != 0x9 && in.TLPType != 0xA && in.TLPType != 0xB && in.TLPType != 0xC && in.TLPType != 0x11 && in.TLPType != 0x12)
+        return Complete();
+    payload = "NA";
+    if(in.PayloadLength != null && in.PayloadLength > 0)
+    {
+        payload = "";
+        GetNBits(in.Payload, 0, 0);
+        for(i = 0; i < in.PayloadLength && i < 16; i++)
+            payload += FormatEx("%02X", NextNBits(8));
+    }
+    frame = "NA";
+    if(in.Frame != null)
+    {
+        frame = "";
+        GetNBits(in.Frame, 0, 0);
+        for(i = 0; i < 16; i++) frame += FormatEx("%02X", NextNBits(8));
+    }
+    ReportText(FormatEx("B2A_ROW|%u|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s",
+        in.Index, TimeToText(in.Time), GetChannelName(), HexOrNA(in.TLPType),
+        HexOrNA(in.RequesterId), HexOrNA(in.Tag), HexOrNA(in.DeviceId),
+        HexOrNA(in.Register), HexOrNA(in.Address), HexOrNA(in.RegisterData),
+        HexOrNA(in.FirstDwBe), HexOrNA(in.LastDwBe), HexOrNA(in.PayloadLength), payload,
+        HexOrNA(in.CompleterId), HexOrNA(in.ComplStatus), HexOrNA(in.ByteCount), HexOrNA(in.LowerAddr), frame));
+    Emitted++;
+    return Complete();
+}
+
+OnFinishScript()
+{
+    ReportText(FormatEx("B2A_END|tlps=%u|rows=%u|reason=trace_end", TlpCount, Emitted));
+}

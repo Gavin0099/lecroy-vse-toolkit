@@ -35,3 +35,23 @@ CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
 OPEN_RISKS: No new product rules, replay inference from NAK, global CRC health, full Recovery entry count or root cause. Existing nonrequired governance-drift checker missing on main; deferred outside this slice.
 NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
 RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b2a delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 44 clean-slice PCIe tests PASS (7 B2a, no skipped real evidence test); two offline replays match historical verified1 fields.json byte-for-byte: 704 TLP, 333 rows, 32 reads, 29 writes, 59 payload DWORD checks
+FILES_TOUCHED: scripts/pcie/b2a-register-probe.pevs, scripts/pcie/b2a_register_fields.py, tests/pcie/test_b2a_register_fields.py, docs/pcie-b2a-evidence.md, docs/pcie-b2a-probe-contract.md, artifacts/evidence/pcie-b2a-hang-20260930, artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: Runtime qualification is historical PETracer 13.26 non-Flit evidence, no new COM/runtime session. No CplD config interpretation without association, register policy, vendor meaning or root cause. Existing nonrequired governance-drift missing checker deferred.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b2a delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 44 clean-slice PCIe tests PASS (7 B2a, no skipped real evidence test); two offline replays match historical verified1 fields.json byte-for-byte: 704 TLP, 333 rows, 32 reads, 29 writes, 59 payload DWORD checks
+FILES_TOUCHED: scripts/pcie/b2a-register-probe.pevs, scripts/pcie/b2a_register_fields.py, tests/pcie/test_b2a_register_fields.py, docs/pcie-b2a-evidence.md, docs/pcie-b2a-probe-contract.md, artifacts/evidence/pcie-b2a-hang-20260930, artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: Runtime qualification is historical PETracer 13.26 non-Flit evidence, no new COM/runtime session. No CplD config interpretation without association, register policy, vendor meaning or root cause. Existing nonrequired governance-drift missing checker deferred.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
