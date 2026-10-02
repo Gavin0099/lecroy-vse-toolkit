@@ -1,0 +1,73 @@
+{
+  "status": "PASS_B1D_BOUNDED_REPLAY",
+  "date": "2026-09-30",
+  "focused_tests": {
+    "command": "python -X utf8 -B -m unittest discover -s tests/pcie -p test_b1d_mux_rules.py -v",
+    "tests": 17,
+    "exit_code": 0
+  },
+  "regression_tests": {
+    "command": "python -X utf8 -B -m unittest discover -s tests/pcie -v",
+    "tests": 134,
+    "exit_code": 0
+  },
+  "input_hashes_before": {
+    "artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json": "161FCF9EF28E78D4EAAE7BCB6381A8AEC8A19587FD37964B7B854E8FB366FBD3",
+    "docs/pcie-b1d-engineer-questions.md": "B56BB5EB805FE1D21542972A4ADBEAD9DE162E9C9123A707CA9E1FC596059F32",
+    "artifacts/evidence/pcie-b1d-hang-20260930/product-context.json": "0750A7F47499F4F11257375DCD31634C7066B9549879FB5C3609A8D80ADD8C6C"
+  },
+  "input_hashes_after": {
+    "artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json": "161FCF9EF28E78D4EAAE7BCB6381A8AEC8A19587FD37964B7B854E8FB366FBD3",
+    "docs/pcie-b1d-engineer-questions.md": "B56BB5EB805FE1D21542972A4ADBEAD9DE162E9C9123A707CA9E1FC596059F32",
+    "artifacts/evidence/pcie-b1d-hang-20260930/product-context.json": "0750A7F47499F4F11257375DCD31634C7066B9549879FB5C3609A8D80ADD8C6C"
+  },
+  "input_integrity": "UNCHANGED",
+  "outputs": {
+    "evaluation.json": {
+      "run1_sha256": "F6F2310773B87F3EB262393B2D33C36770884023028F80F78F6B146C69DD3389",
+      "run2_sha256": "F6F2310773B87F3EB262393B2D33C36770884023028F80F78F6B146C69DD3389"
+    },
+    "evaluation.md": {
+      "run1_sha256": "6B04FA57B05A63BC0C0893067232571805065A1C595592D8935FF2E0FFCE0CC6",
+      "run2_sha256": "6B04FA57B05A63BC0C0893067232571805065A1C595592D8935FF2E0FFCE0CC6"
+    }
+  },
+  "repeatability": "BYTE_IDENTICAL",
+  "states": {
+    "mux_switch": {
+      "state": "MUX_SWITCH_COMPLETED",
+      "status": "PASS",
+      "basis": "engineer Q7 bidirectional-training evidence criterion"
+    },
+    "link_l0": {
+      "state": "BIDIRECTIONAL_L0_OBSERVED",
+      "status": "PASS"
+    },
+    "hotplug_activity": {
+      "state": "HOTPLUG_INIT_NOT_OBSERVED",
+      "status": "INCONCLUSIVE"
+    },
+    "device_initialization": {
+      "state": "DEVICE_INITIALIZATION_COMPLETION_NOT_ESTABLISHED",
+      "status": "NOT_EVALUATED",
+      "value": null
+    }
+  },
+  "observations": {
+    "switch_link_down_to_reconnect_seconds": "1.400",
+    "has_errors": 384993,
+    "last_observed_packet": 1484414,
+    "last_observed_time": "10.912 sec",
+    "post_l0_observed_seconds": "0.000",
+    "time_basis": "PETracer display time; 0 elapsed display seconds does not mean zero physical duration"
+  },
+  "not_established": [
+    "overall product PASS/FAIL",
+    "direct physical MUX measurement",
+    "persistent Gen1",
+    "enumeration completion",
+    "BSOD root cause",
+    "full-trace or multi-case coverage"
+  ],
+  "runtime_trace_execution": "NOT_RUN"
+}

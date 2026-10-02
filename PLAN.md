@@ -358,3 +358,5 @@ on main, delivered separately from B1d and the older checkpoint branch. This sli
 replays named B1b window / x2 counters / GUI observation records only; it does not
 qualify extraction or add product rules. B1d and B2 delivery follow independently.
 B2g product policy remains waiting for engineer Who / When / What / Proof answers.
+
+- feat(pcie): deliver engineer-sourced B1d MUX rules: 30 clean-slice PCIe tests PASS (21 B1d); two real B1d replay JSON/MD byte-identical to historical r2; source document and input hash binding verified. Scope: No overall case PASS/FAIL, electrical MUX measurement, persistent Gen1, initialization completion or root cause. B2g rules still await engineer answers. Existing nonrequired governance-drift checker missing on main; deferred outside this slice.
