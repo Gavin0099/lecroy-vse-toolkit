@@ -1,0 +1,18 @@
+{
+  "status": "PASS_UNIFIED_OBSERVATION_TIMELINE",
+  "suite_tests": 138,
+  "focused_tests": 13,
+  "deterministic_replay": "MATCHED",
+  "timeline_sha256": "171FC79F4D86E1702EAD5C9B255462D0B0B4F2F2CAA9A0B0FD525193047C4C43",
+  "packet_observations": 743,
+  "distinct_observed_packets": 738,
+  "intervals": 33,
+  "gaps": 1,
+  "source_binding": "config full raw proof; legacy link corroborated, not direct capture hash",
+  "local_adversarial_review": "PASS bounded invariants in docs/pcie-unified-timeline.md",
+  "not_claimed": [
+    "product ASPM evaluation",
+    "complete per-packet DLLP/TS export",
+    "root cause"
+  ]
+}
