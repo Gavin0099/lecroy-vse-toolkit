@@ -20,6 +20,34 @@ def fixture():
 
 
 class CapabilityTests(unittest.TestCase):
+    def test_conventional_relative_registers_stay_below_0x100(self):
+        for base,cap in ((0xFC,16),(0xFC,1),(0xEC,16)):
+            log=fixture();log['accesses'][1]['read_value']=base
+            log['accesses'][2].update(register_byte_offset=base,read_value=cap)
+            d=b2c.resolve(log,REF,256,99)
+            if base==0xEC:
+                self.assertEqual(d['registers']['LinkControl']['byte_offset'],0xFC)
+                self.assertEqual(d['registers']['LinkStatus']['byte_offset'],0xFE)
+            elif cap==16:
+                self.assertNotIn('LinkControl',d['registers'])
+                self.assertNotIn('LinkStatus',d['registers'])
+                self.assertIn('OUT_OF_RANGE_LinkControl',d['gaps'])
+            else:
+                self.assertNotIn('PMCSR',d['registers'])
+
+    def test_extended_whole_register_span_cannot_cross_0x1000(self):
+        log=fixture();log['accesses'][4]['read_value']=0xFF410001
+        log['accesses'].append({**log['accesses'][4],'packet_index':30,'completions':[{'packet_index':31}],
+                                'register_byte_offset':0xFF4,'read_value':0x1001E})
+        d=b2c.resolve(log,REF,256,99)
+        self.assertEqual(d['registers']['L1SSControl1']['byte_offset'],0xFFC)
+        self.assertNotIn('L1SSControl2',d['registers'])
+        # Modified reference tests the span guard; it is not a qualified layout.
+        ref=copy.deepcopy(REF);ref['relative_offsets']['L1SSControl2']=11
+        d=b2c.resolve(log,ref,256,99)
+        self.assertNotIn('L1SSControl2',d['registers'])
+        self.assertIn('OUT_OF_RANGE_L1SSControl2',d['gaps'])
+
     def test_relative_offsets_and_incomplete_ext_chain(self):
         d=b2c.resolve(fixture(),REF,256,99)
         self.assertEqual(d['registers']['LinkControl']['byte_offset'],0x70)

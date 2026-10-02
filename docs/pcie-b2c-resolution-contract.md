@@ -16,3 +16,11 @@ Header／中間 node 未觀察到則停在該 node，不猜其 capability ID 或
 完整鏈與可解析 register 各有獨立 coverage；unknown nodes 不阻擋已證明的 mapping。
 Vendor register 不在本版。驗證包含非固定 offset、鏈中缺口／cycle、Completion
 前不能使用值、header type unknown 不猜 BAR、跨 epoch 不沿用。
+
+2026-10-02 PR8 review repair: relative register spans must fit the capability
+address space. Conventional spans end at or before 0x100; extended spans end
+at or before 0x1000. LinkControl/LinkStatus/PMCSR are 2 bytes, L1SS controls
+4 bytes. Linux v6.12 reference defines PCI_CFG_SPACE_SIZE=256 and
+PCI_CFG_SPACE_EXP_SIZE=4096; [primary header](https://github.com/torvalds/linux/blob/v6.12/include/uapi/linux/pci_regs.h#L22).
+An observed conventional header at 0xFC remains a node observation; it cannot
+produce LinkControl at 0x10C. Out-of-range mappings retain explicit gaps.
