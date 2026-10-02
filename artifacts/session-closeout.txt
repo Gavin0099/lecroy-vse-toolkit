@@ -145,3 +145,13 @@ CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
 OPEN_RISKS: Source-test evidence only; no new hardware/runtime/policy/root-cause proof. Nonrequired inherited governance-drift checker missing and deferred.
 NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
 RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b2e delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 86 clean-slice PCIe tests PASS, no skips; two real offline replays match historical current before-run1 output byte-for-byte; snapshot identity regression moved from pre-delivery B2d fixture into B2e
+FILES_TOUCHED: scripts/pcie/b2e_snapshot_query.py, tests/pcie/test_b2e_snapshot_query.py, docs/pcie-b2e-query-contract.md, artifacts/evidence/pcie-b2e-hang-20260930, docs/pcie-b2e-evidence.md, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: Observed evidence query, not actual hardware snapshot; old mapping/state not inherited by SDE. Inherited nonrequired governance-drift missing checker deferred outside scope.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
