@@ -1,0 +1,119 @@
+{
+  "schema": "pcie.b2e-observed-snapshot/v1",
+  "device_id": 256,
+  "bdf": "001:00.0",
+  "packet_index": 1484414,
+  "epoch": "after_reconnect",
+  "registers": [
+    {
+      "byte_offset": 0,
+      "width_bytes": 4,
+      "read_value": null,
+      "write_intent_value": null,
+      "read_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "write_intent_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [],
+      "names": [
+        "VendorDeviceID"
+      ]
+    },
+    {
+      "byte_offset": 4,
+      "width_bytes": 2,
+      "read_value": null,
+      "write_intent_value": null,
+      "read_bytes": [
+        null,
+        null
+      ],
+      "write_intent_bytes": [
+        null,
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [],
+      "names": [
+        "Command"
+      ]
+    },
+    {
+      "byte_offset": 12,
+      "width_bytes": 4,
+      "read_value": null,
+      "write_intent_value": null,
+      "read_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "write_intent_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [],
+      "names": [
+        "HeaderTypeDWORD"
+      ]
+    },
+    {
+      "byte_offset": 52,
+      "width_bytes": 1,
+      "read_value": null,
+      "write_intent_value": null,
+      "read_bytes": [
+        null
+      ],
+      "write_intent_bytes": [
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [],
+      "names": [
+        "CapabilityPointer"
+      ]
+    }
+  ],
+  "capability_coverage": {
+    "conventional_chain": {
+      "nodes": [],
+      "complete": false,
+      "gap": "START_NOT_OBSERVED",
+      "pointer_evidence": []
+    },
+    "extended_chain": {
+      "nodes": [],
+      "complete": false,
+      "gap": "HEADER_NOT_OBSERVED_0x100"
+    },
+    "gaps": []
+  },
+  "not_established": [
+    "hardware current value or write applied",
+    "unobserved byte value",
+    "old device state after MUX reconnect",
+    "status/W1C register effects"
+  ],
+  "input": {
+    "log_sha256": "7B54AAF6DE5FB29EBA12BD99F59316E31A14DA040A594BC958124BDEF8075373",
+    "reference_sha256": "ABCF2E410D6E92EC58D093601FED9B3A1DB3F1BDA8E6D71423F922E7CFE76918"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "status": "PASS_B2E_DELIVERY",
+  "tests_passed": 87,
+  "focused_tests": 6,
+  "replay_byte_identical": true,
+  "snapshot_sha256": {
+    "before-run1": "DB886AEAE20667ED070FAF97F84851D4B1080C0BBB4ECE81791F2C4FAD439C09",
+    "before-run2": "DB886AEAE20667ED070FAF97F84851D4B1080C0BBB4ECE81791F2C4FAD439C09",
+    "after-run1": "E4B06DB9146394F9BB1AC1695E3A4F80774FA44292A4EACA78AFAF05DF31B8E2"
+  },
+  "tests_log_sha256": "B0DC0F7F03DC9FA3DF867577660326FF59AB7050A93212B955A00B145AB95FB2",
+  "change": "CapabilityPointer named span is one byte; raw DWORD remains separately available; historical 20260930 snapshots retain old width and are not current recomputation inputs"
+}
