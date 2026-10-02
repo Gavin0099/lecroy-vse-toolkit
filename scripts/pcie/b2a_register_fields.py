@@ -47,7 +47,12 @@ def parse(text):
     return rows, end
 
 
-def verify(rows, end, metadata):
+def verify(rows, end, metadata, *, require_full_payload=False):
+    """Check fields; legacy 16-byte inputs get consistency checks only.
+
+    Fresh CLI qualification requires independent raw bytes for the first DWORD.
+    Historical downstream replay may retain the narrower legacy evidence scope.
+    """
     if any(r.get('row')!=i+1 for i,r in enumerate(metadata)) or any(b['packet_index']<=a['packet_index'] for a,b in zip(metadata,metadata[1:])): raise ValueError('Invalid G2a row order')
     wanted = [r for r in metadata if int(r["tlp_type_hex"], 16) in CFG | {17, 18}]
     if end["tlps"] != len(metadata) or len(rows) != len(wanted): raise ValueError("Coverage differs from G2a")
@@ -57,7 +62,7 @@ def verify(rows, end, metadata):
             if r[key] != old[key]: raise ValueError(f"G2a mismatch {key} at {r['packet_index']}")
         typ = r["tlp_type"]
         if typ != int(old["tlp_type_hex"], 16): raise ValueError("Type mismatch")
-        if r["frame_prefix"] is None or not re.fullmatch(r"[0-9A-F]{32}", r["frame_prefix"]): raise ValueError("Missing frame prefix")
+        if r["frame_prefix"] is None or not re.fullmatch(r"(?:[0-9A-F]{32}|[0-9A-F]{38})", r["frame_prefix"]): raise ValueError("Missing frame prefix")
         f = bytes.fromhex(r["frame_prefix"])
         # Qualified on this capture only: FB + two sequence bytes + 3-DW header.
         # Unsupported framing is rejected, not decoded using this layout.
@@ -67,7 +72,10 @@ def verify(rows, end, metadata):
         p = bytes.fromhex(r["payload_prefix"]) if r["payload_prefix"] else b""
         if len(p) != min(plen, 16): raise ValueError("Payload prefix length mismatch")
         if plen:
-            if f[15] != p[0]: raise ValueError("Frame/payload mismatch")
+            needed=min(plen,4)
+            if require_full_payload and len(f)<15+needed: raise ValueError("Full raw DWORD/payload bytes required for qualification")
+            available=min(needed,len(f)-15)
+            if f[15:15+available] != p[:available]: raise ValueError("Frame/payload mismatch")
             if plen >= 4 and r["register_data"] is not None:
                 if r["register_data"] != int.from_bytes(p[:4], "little"): raise ValueError("RegisterData/payload mismatch")
                 counts["payload_dwords_checked"] += 1
@@ -96,9 +104,11 @@ def main(argv=None):
         run = json.loads((a.com_run / "com-run.json").read_text(encoding="utf-8"))
         raw = a.com_run / "vse-output.txt"
         if run["status"] != "COM_RUN_COMPLETE" or run.get('steps',{}).get('finish_event',{}).get('result_name')!='DONE' or not run["identities_unchanged"] or sha(raw) != run["output"]["vse_output_sha256"]: raise ValueError("Unqualified COM evidence")
-        rows, end = parse(raw.read_text(encoding="utf-8")); counts = verify(rows, end, json.loads(a.metadata.read_text(encoding="utf-8")))
+        rows, end = parse(raw.read_text(encoding="utf-8")); counts = verify(rows, end, json.loads(a.metadata.read_text(encoding="utf-8")), require_full_payload=True)
         out = {"schema": SCHEMA, "status": "PASS_REGISTER_FIELD_PROBE", "input": {"com_run_sha256": sha(a.com_run / "com-run.json"), "vse_output_sha256": sha(raw), "metadata_sha256": sha(a.metadata), "trace": run["pre"]["files"][0]}, "units": {"register": "byte offset (qualified on this capture)", "register_data": "little-endian DWORD from payload; not a CfgRd request value", "byte_enable": "first/last DWORD byte mask", "payload_length": "bytes"}, "counts": counts, "tlps": end["tlps"], "rows": rows, "not_established": ["all versions/framing modes", "CplD is config data without request association", "vendor register meaning", "post-switch initialization beyond capture end"]}
         a.output_dir.mkdir(parents=True)
+        out['validation_basis']={'frame_prefix_bytes':19,'payload_proof':'first payload DWORD compared independently with raw frame bytes 15..18',
+                                 'legacy_16_byte_prefix':'historical consistency checks only; cannot qualify a new payload DWORD'}
         (a.output_dir / "fields.json").write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
         print(json.dumps({"status": out["status"], **counts}))
     except (ValueError, OSError, KeyError, TypeError) as e:

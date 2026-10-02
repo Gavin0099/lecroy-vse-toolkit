@@ -12,7 +12,7 @@ RequesterId、Tag、CompleterId、status；原始 VSE 輸出兩次位元組一�
 | 欄位 | 本次確立的意思與證據 |
 | --- | --- |
 | Register | Byte offset。所有 61 個 config request 與原始 frame header 的 address bits 一致；225043、225048 = 0x200，與既有問答所引用 GUI 樣本一致。不得再乘 4。 |
-| RegisterData | Payload 的 little-endian DWORD；29 CfgWr、30 CplD 的 59 個值逐 byte 相符。3312 = 0x800B，payload `0B800000`；3150 = 0xF7C30001，payload `0100C3F7`。 |
+| RegisterData | Payload 的 little-endian DWORD；29 CfgWr、30 CplD 的 59 個值與 decoder payload 相符；當時 raw frame 只核對第一個 payload byte。3312 = 0x800B，payload `0B800000`；3150 = 0xF7C30001，payload `0100C3F7`。 |
 | FirstDwBe / LastDwBe | Header 的 first／last DWORD byte mask。3312 為 0x3／0x0；只表示 byte 0、1 被 request 選取，不宣告其他 bytes 被寫入。 |
 | CfgRd data | 32 個 request 沒有 payload／RegisterData；returned value 必須來自關聯的成功 CplD。 |
 | PayloadLength | Bytes，與保留的 payload prefix 長度相符。非 config 的 CplD 不因型別就當 config data。 |
@@ -31,3 +31,26 @@ RequesterId、Tag、CompleterId、status；原始 VSE 輸出兩次位元組一�
 - 正式欄位產物 `verified1/fields.json`；`verified2` 只有 COM run 身分不同，欄位內容一致。
 
 下一階段 B2b 建立逐筆 config log；本 gate 不解碼 register 意義、不判定初始化成功。
+
+## 2026-10-02 review repair: independent raw DWORD
+
+PR5 review exposed that the 16-byte frame prefix covered only the first payload
+byte. The 2026-09-30 result above is historical decoder consistency evidence,
+not full raw-DWORD proof. It is retained unchanged.
+
+Two fresh COM runs use the same read-only converted trace and a new 19-byte probe.
+Both finish DONE, exit normally, and produce byte-identical raw output. All 333
+rows match the old scalar/payload fields; each old frame prefix matches the new
+prefix. The 59 DWORDs now independently match raw frame bytes 15..18. No missing
+raw bytes were synthesized. Source/old copies are hash-only; protected identities
+and analysis-copy read-only state remain unchanged.
+
+Current evidence: `artifacts/evidence/pcie-b2a-raw-dword-20261002/verification.json`,
+`full-verified1/fields.json` and `full-verified2/fields.json`; 10 focused tests and
+76 clean-slice tests PASS at this revision, with log hash in verification.
+The CLI rejects short legacy proof for new qualification. Downstream historical
+replays still use their preserved inputs; the equality bridge above validates
+their decoded values for this capture, without changing their source hashes.
+
+Scope remains PETracer 13.26 / converted non-Flit capture only. This does not
+prove register writes applied, product ASPM policy, or hang/BSOD causality.

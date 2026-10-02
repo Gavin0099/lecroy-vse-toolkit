@@ -23,8 +23,18 @@ Register、Address、First/LastDwBe、RegisterData、Frame。
 ## 驗收與限制
 
 Probe 發出全 trace 的 config requests 與 completions，保留最多 16 bytes
-payload 與 16 bytes frame prefix；宣告 prefix，不冒稱完整 frame。
+payload 與 19 bytes frame prefix；宣告 prefix，不冒稱完整 frame。
 所有 TLP callback 計數與既有 704-row G2a log 對照；保留 NA，不補 0。
 驗收需要真實 CfgRd、CfgWr 與成功 CplD；逐 byte cross-check 不符先查明。
 輸入 hash、size、mtime 及 analysis-copy read-only 狀態必須保持。
 先完成此 gate 才建 B2b config access log；不解碼 vendor register 或根因。
+
+## 2026-10-02 full raw DWORD gate
+
+The fresh probe records 19 raw frame bytes. On the qualified FB/sequence/3-DW
+layout, raw bytes 15..18 independently verify the first payload DWORD. Coupled
+errors in Payload and RegisterData cannot substitute for this proof. New CLI
+qualification requires all raw bytes needed for the first DWORD; historical
+16-byte inputs can only pass the library consistency checks for legacy replay.
+`payload_dwords_checked` on a historical artifact describes decoder consistency,
+not independent full raw-DWORD validation. New CLI output labels its basis.
