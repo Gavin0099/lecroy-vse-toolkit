@@ -1,0 +1,32 @@
+{
+  "scope": "W4+W5 observation report only",
+  "timeline_sha256": "171FC79F4D86E1702EAD5C9B255462D0B0B4F2F2CAA9A0B0FD525193047C4C43",
+  "replay_hashes": [
+    {
+      "report.md": "667F9E4A24DD4D91FEE72700A711F3817D76FFF25183A45A30525EA9E680B402",
+      "report.html": "CC4F52643CD3C92F3A6AC019F8FD14E4FC14A7D33880208E2FD2C3D13D325268"
+    },
+    {
+      "report.md": "667F9E4A24DD4D91FEE72700A711F3817D76FFF25183A45A30525EA9E680B402",
+      "report.html": "CC4F52643CD3C92F3A6AC019F8FD14E4FC14A7D33880208E2FD2C3D13D325268"
+    }
+  ],
+  "deterministic": true,
+  "second_output": "ignored runtime/delivery/report/replay2; originally equal-depth run2",
+  "local_review": "typed facts/source pointers; state ceiling; unknown/time/epoch preservation; safe offline rendering; no new product policy",
+  "suite_tests": 147,
+  "focused_tests": 8,
+  "tests_log_sha256": "1462D9C6272112CF8B223C12C34EFF3367F0106FCCEC492CF8A45CB053F9587B",
+  "visual_qa": {
+    "renderer": "isolated headless Edge: 1440x1100 header and cropped 1440x7000 full viewport",
+    "inspected": [
+      "header metrics and rule summary",
+      "write intent cards and link table"
+    ],
+    "status": "PASS readable; no clipping in inspected sections",
+    "screenshots": {
+      "preview.png": "E3030FC4901ADDF100A7917843B8091D486F8ED032C7C3EAD27672C8A712A23C",
+      "intents-preview.png": "547D992D6A95E895825AA62660AE5F7E071CCB11243AE23A114FD37C31C63485"
+    }
+  }
+}

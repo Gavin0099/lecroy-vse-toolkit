@@ -414,3 +414,17 @@ W1 final bounded review: milestone id/summary basic string guard; 125 tests PASS
 - feat(pcie): unify W2 and W3 config and link evidence timeline: 138 PCIe tests PASS (13 focused); two real CLI replays byte-identical; W1 validator PASS; local bounded adversarial integration review completed before PR. Scope: Legacy link capture binding remains corroborated, not a direct hash. Opaque prose is not an authoritative fact. ASPM policy awaits engineer; no root cause/full DLLP export. Inherited nonrequired drift checker missing, deferred.
 
 W2+W3 final bounded repair: canonical-byte consumer comparison enforced, 139 tests PASS; canonical timeline SHA unchanged.
+
+## Waiting-period capability closeout
+
+W1 contract and W2+W3 unified timeline have passed bounded review and merged.
+W4+W5 report implementation is complete locally; final PR review/merge is the
+remaining delivery gate. The report keeps engineer-reported device visibility
+failure separate from observed MUX connectivity and bidirectional L0.
+
+No more waiting-period micro-slices are planned. B2g product evaluation awaits
+engineer Who/When/What/Proof answers; B2h awaits the register/address-space
+contract. B3c, full B3d, new capture/runtime qualification and root cause remain
+outside these completed capabilities. Original dirty checkout is preserved.
+
+- feat(pcie): render W4 and W5 observation reports: 147 PCIe tests PASS (8 focused); two real report replays have equal MD and HTML SHA-256; isolated Edge screenshots inspected; local bounded adversarial review completed before PR. Scope: B2g product policy awaits engineer Who/When/What/Proof; B2h conditional. Legacy link capture binding corroborated; no applied state, root cause, full TS/DLLP export or complete B3d. Inherited nonrequired governance-drift checker missing, deferred.

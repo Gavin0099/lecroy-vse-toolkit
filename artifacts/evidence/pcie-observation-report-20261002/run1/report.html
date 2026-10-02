@@ -1,0 +1,1166 @@
+<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PCIe 切換後觀察報告</title><style>body{margin:0;background:#f3f6fa;color:#182638;font:16px/1.6 system-ui,"Microsoft JhengHei",sans-serif}main{max-width:1250px;margin:auto;padding:32px}.capture{font:12px/1.5 Consolas,monospace;overflow-wrap:anywhere}header{background:#163955;color:white;border-radius:18px;padding:30px}h1{font-size:32px;margin:0 0 10px}h2{margin-top:38px}h3{margin:0}a{color:#1b6088;overflow-wrap:anywhere}nav{display:flex;flex-wrap:wrap;gap:20px;padding:20px 0}.card,details{background:white;border:1px solid #d8e1ec;border-radius:12px;padding:18px;margin:12px 0}summary{cursor:pointer;font-weight:650}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{background:white;border-radius:12px;padding:16px}.stat b{font-size:28px;display:block}.muted{color:#526479;font-size:14px}.badge{display:inline-block;padding:2px 9px;border-radius:8px;background:#e6ecf2;font-size:13px;font-weight:700;margin-left:8px}.PASS{background:#d6efdf;color:#145235}.FAIL{background:#fbe0dd;color:#922b24}.INCONCLUSIVE{background:#fff0c9;color:#745315}.scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;background:white;font-size:14px}th,td{text-align:left;vertical-align:top;border-bottom:1px solid #dde5ee;padding:10px}th{background:#e9f0f7}code,pre{font-family:Consolas,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;background:#f5f8fb;padding:12px}section{scroll-margin-top:15px}.source{font-size:12px;margin-top:9px}footer{padding:25px 0;color:#526479}@media(max-width:750px){main{padding:16px}header{padding:20px}.stats{grid-template-columns:repeat(2,1fr)}h1{font-size:25px}}</style><main>
+<header><h1>PCIe 切換後觀察報告</h1><div>Disable ASPM--Insert SD7-hang.pex</div><p>L0 建立後，是否完成目標升速與新 SDE 裝置初始化？</p><div>目前 capture 尾端不足，沒有判定哪一步造成裝置不可見；不重開已有支持的 MUX 接通。</div><p class="capture">Capture SHA-256: C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD</p></header>
+<nav><a href="#milestones">既有規則</a><a href="#intents">寫入意圖</a><a href="#link">Link / DLLP</a><a href="#config">RC config</a><a href="#coverage">Coverage</a><a href="#sources">來源</a></nav><div class="stats">
+<div class="stat"><b>743</b>Packet observations</div>
+<div class="stat"><b>738</b>不同 packet anchors</div>
+<div class="stat"><b>61</b>Config requests</div>
+<div class="stat"><b>30</b>Observed read returns</div>
+<div class="stat"><b>33</b>Interval summaries</div>
+<div class="stat"><b>384,993</b>HasErrors（window）</div>
+</div>
+<div class="card"><h3>工程師回報<span class="badge FAIL_OWNER_RELAYED">FAIL_OWNER_RELAYED</span></h3><p>ASPM disabled; SD7 inserted; device not visible after switching; system hang; BSOD 0x124</p><p class="muted">Ground truth 來自工程師，不是 trace 自動判定。Crash dump verified: False；其他測試的 0x124, 0xA0 不當成本 capture 的 stop code。</p><a href="../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fproduct_context%2Fcase">evaluation:/product_context/case</a><p>B1d COMPLETE · B2g SOURCE_SCOPE_GATE · B2h conditional · Root cause UNKNOWN</p></div>
+<section id="milestones"><h2>既有里程碑與產品規則</h2><p>雙向 valid training 支持 MUX connectivity；雙向有效 L0 是獨立觀察。缺觀察不改 FAIL，缺 threshold 不改 PASS。</p>
+<details><summary>切換起點 Link Down<span class="badge PASS">PASS</span> <span class="muted">SWITCH_LINK_DOWN</span></summary><p>指定切換起點出現 Link Down，符合工程師描述的切換情境。</p><p class="muted">此事件本身不證明後續接通或初始化成功。</p><div class="source"><a href="../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F0">evaluation:/evaluations/0</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F0%2Fsteps%2F0">training:/phases/0/steps/0</a></div></details>
+<details><summary>接通前的 link 行為<span class="badge PASS">PASS</span> <span class="muted">DISCONNECT_ACTIVITY</span></summary><p>接通前已觀察的 Recovery／Polling／無事件區間，屬產品允許出現的現象。</p><p class="muted">不驗證整段 LTSSM 的規範合法性或時間；invalid-state 標記原樣保留。</p><div class="source"><a href="../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F1">evaluation:/evaluations/1</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F1%2Fsteps%2F0">training:/phases/1/steps/0</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F1%2Fsteps%2F2">training:/phases/1/steps/2</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F3%2Fsteps%2F0">training:/phases/3/steps/0</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F3%2Fsteps%2F2">training:/phases/3/steps/2</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F5%2Fsteps%2F0">training:/phases/5/steps/0</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F6%2Fsteps%2F0">training:/phases/6/steps/0</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F7">training:/phases/7</a></div></details>
+<details><summary>MUX 接通證據<span class="badge PASS">PASS</span> <span class="muted">MUX_CONNECTIVITY</span></summary><p>接通 anchor 後有雙向有效 training，支持工程師的 MUX 已接通判斷。</p><p class="muted">Q7 的依據是雙向有效 training，不要求雙向 L0；未直接量測 MUX 電氣狀態，未證明裝置初始化。</p><div class="source"><a href="../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F2">evaluation:/evaluations/2</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F9%2Fsteps%2F0">training:/phases/9/steps/0</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F0">training:/phases/10/steps/0</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F1">training:/phases/10/steps/1</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F2">training:/phases/10/steps/2</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F3">training:/phases/10/steps/3</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F4">training:/phases/10/steps/4</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F5">training:/phases/10/steps/5</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F6">training:/phases/10/steps/6</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F10%2Fsteps%2F7">training:/phases/10/steps/7</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F11%2Fsteps%2F0">training:/phases/11/steps/0</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F11%2Fsteps%2F1">training:/phases/11/steps/1</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F11%2Fsteps%2F2">training:/phases/11/steps/2</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F11%2Fsteps%2F3">training:/phases/11/steps/3</a></div></details>
+<details><summary>雙向 L0 觀察里程碑<span class="badge PASS">PASS</span> <span class="muted">BIDIRECTIONAL_L0</span></summary><p>接通後兩方向均有有效 L0 紀錄。</p><p class="muted">本項是兩方向明確有效 L0 的觀察里程碑；Q2 提供後續初始化情境，不取代 Q7 的 training 接通依據。缺少 L0 不自動判 FAIL，沒有 timeout 上限。</p><div class="source"><a href="../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F3">evaluation:/evaluations/3</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F12%2Fsteps%2F0">training:/phases/12/steps/0</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F12%2Fsteps%2F1">training:/phases/12/steps/1</a></div></details>
+<details><summary>連線 width 樣本<span class="badge PASS">PASS</span> <span class="muted">LINK_WIDTH_SAMPLES</span></summary><p>接通後已觀察的 width 樣本符合 x1。</p><p class="muted">僅限已記錄的 speed_width／GUI 樣本，未確認完整後續連線。</p><div class="source"><a href="../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F4">evaluation:/evaluations/4</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F9%2Finner_records%2F0">training:/phases/9/inner_records/0</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F8%2Fgui_samples%2F0">training:/phases/8/gui_samples/0</a></div></details>
+<details><summary>首次 L0 前速率樣本<span class="badge INCONCLUSIVE">INCONCLUSIVE</span> <span class="muted">INITIAL_GEN1_SAMPLE</span></summary><p>首次有效 L0 前的 GUI 樣本觀察到 2.5 GT/s x1；本項只記錄觀察。</p><p class="muted">工程師只定義 target Gen3 x1 與持續停留 Gen1 不符合預期，未提供初始 Gen1 接受規則；本版未驗證 PCIe spec，不判本項 PASS／FAIL。</p><div class="source"><a href="../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F5">evaluation:/evaluations/5</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F8%2Fgui_samples%2F0">training:/phases/8/gui_samples/0</a></div></details>
+<details><summary>目標 Gen3 樣本<span class="badge INCONCLUSIVE">INCONCLUSIVE</span> <span class="muted">TARGET_SPEED_OBSERVED</span></summary><p>目前僅確認未在既有 GUI speed 樣本中觀察到 target 8.0 GT/s；window 缺少後續升速證據，不能判定後續是否完成升速。</p><p class="muted">樣本未見 target rate 不等同後續未升速或持續停在 Gen1；升速完成終點／時限未提供，raw speed code 的標示尚未 probe。</p><div class="source"><a href="../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F6">evaluation:/evaluations/6</a></div></details>
+<details><summary>切換事件時間差<span class="badge NOT_EVALUATED">NOT_EVALUATED</span> <span class="muted">MUX_DISCONNECT_DURATION</span></summary><p>切換 Link Down 到 reconnect Link Up 的 display-time 差為 1.400 sec，工程師參考值約 1.4 sec。</p><p class="muted">這是兩個事件間的時間，非直接量測 MUX dead-time；約 1.4 sec 不作 timeout 或接受門檻。</p><div class="source"><a href="../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F7">evaluation:/evaluations/7</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F0%2Fsteps%2F0">training:/phases/0/steps/0</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F8%2Fsteps%2F0">training:/phases/8/steps/0</a></div></details>
+<details><summary>Training 時限<span class="badge NOT_EVALUATED">NOT_EVALUATED</span> <span class="muted">TRAINING_TIMEOUT</span></summary><p>適用 spec、training 起算條件及 timeout 上限未提供。</p><p class="muted">不自訂 Recovery 次數或 training 上限。</p><div class="source"><a href="../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F8">evaluation:/evaluations/8</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F12%2Fsteps%2F0">training:/phases/12/steps/0</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F12%2Fsteps%2F1">training:/phases/12/steps/1</a></div></details>
+<details><summary>TS-error 接受度<span class="badge NOT_EVALUATED">NOT_EVALUATED</span> <span class="muted">TS_ERROR_TOLERANCE</span></summary><p>輸入 window 共 384,993 筆 HasErrors，保留各段供檢查；容許門檻未定。</p><p class="muted">未自訂 transient／persistent 數值分類；GUI subtype 僅代表已抽樣的紀錄。</p><div class="source"><a href="../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F9">evaluation:/evaluations/9</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F3">training:/phases/3</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F5">training:/phases/5</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F6">training:/phases/6</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F8">training:/phases/8</a> · <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F9">training:/phases/9</a></div></details>
+<details><summary>L0 後初始化活動<span class="badge INCONCLUSIVE">INCONCLUSIVE</span> <span class="muted">HOTPLUG_INIT_ACTIVITY</span></summary><p>雙向 L0 後在輸入 window 未觀察到 config request，後續初始化仍不確定。</p><p class="muted">看到 request 不證明 Completion、BAR 寫入或 enumeration 完成；未看到也不推定 window 外不存在。</p><div class="source"><a href="../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F10">evaluation:/evaluations/10</a></div></details>
+<details><summary>裝置初始化完成條件<span class="badge NOT_EVALUATED">NOT_EVALUATED</span> <span class="muted">DEVICE_INITIALIZATION_COMPLETED</span></summary><p>初始化／enumeration 完成事件、register 清單與時限未提供。</p><p class="muted">與 MUX 接通狀態獨立；單一 config request 不構成初始化完成。</p><div class="source"><a href="../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fevaluations%2F11">evaluation:/evaluations/11</a></div></details>
+</section><section id="intents"><h2>LinkControl write intent</h2><p>Write＋Completion 不建立 applied state、System ASPM、產品違規或 BSOD 因果。</p>
+<div class="card" id="packet-8658"><h3>Packet 8658 · L1_ENABLE_WRITE_INTENT<span class="badge NOT_EVALUATED">NOT_EVALUATED</span></h3><p>8.314 sec · before_disconnect · 001:00.0 · Write intent 0x42 · ASPM intent L1</p><p>Effective: UNKNOWN · Expected: UNKNOWN · Policy: NOT_EVALUATED</p><a href="../../../../artifacts/evidence/pcie-b2g-delivery-20261002/run1/watchlist-preparation.json#%2Fobservations%2F0">watchlist:/observations/0</a></div>
+<div class="card" id="packet-9915"><h3>Packet 9915 · ASPM_DISABLE_WRITE_INTENT<span class="badge NOT_EVALUATED">NOT_EVALUATED</span></h3><p>8.314 sec · before_disconnect · 001:00.0 · Write intent 0x40 · ASPM intent DISABLED</p><p>Effective: UNKNOWN · Expected: UNKNOWN · Policy: NOT_EVALUATED</p><a href="../../../../artifacts/evidence/pcie-b2g-delivery-20261002/run1/watchlist-preparation.json#%2Fobservations%2F1">watchlist:/observations/1</a></div>
+<div class="card" id="packet-10354"><h3>Packet 10354 · L1_ENABLE_WRITE_INTENT<span class="badge NOT_EVALUATED">NOT_EVALUATED</span></h3><p>8.314 sec · before_disconnect · 001:00.0 · Write intent 0x42 · ASPM intent L1</p><p>Effective: UNKNOWN · Expected: UNKNOWN · Policy: NOT_EVALUATED</p><a href="../../../../artifacts/evidence/pcie-b2g-delivery-20261002/run1/watchlist-preparation.json#%2Fobservations%2F2">watchlist:/observations/2</a></div>
+</section><section id="link"><h2>Link / DLLP 逐筆觀察</h2><div class="scroll"><table><tr><th>Packet</th><th>Display time</th><th>Direction</th><th>Observation</th><th>Evidence</th></tr>
+<tr id="link-225041-link_condition"><td>225041</td><td>9.512 sec</td><td>Upstream</td><td>LINK_DOWN</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F1">link_timeline:/1</a></td></tr>
+<tr id="link-225041-ltssm"><td>225041</td><td>9.512 sec</td><td>Upstream</td><td>DETECT / UNKNOWN ; valid=0</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F2">link_timeline:/2</a></td></tr>
+<tr id="link-225042-nak"><td>225042</td><td>9.512 sec</td><td>Downstream</td><td>NAK seq=1682（不推定 replay）</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F3">link_timeline:/3</a></td></tr>
+<tr id="link-225051-ltssm"><td>225051</td><td>9.512 sec</td><td>Downstream</td><td>RECOVERY.RECOVERY_RCVRLOCK / UNKNOWN ; valid=1</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F7">link_timeline:/7</a></td></tr>
+<tr id="link-990789-link_condition"><td>990789</td><td>9.538 sec</td><td>Downstream</td><td>LINK_DOWN</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F9">link_timeline:/9</a></td></tr>
+<tr id="link-990789-ltssm"><td>990789</td><td>9.538 sec</td><td>Downstream</td><td>RECOVERY.RECOVERY_RCVRSPD / UNKNOWN ; valid=1</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F10">link_timeline:/10</a></td></tr>
+<tr id="link-990790-link_condition"><td>990790</td><td>9.538 sec</td><td>Downstream</td><td>LINK_UP</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F12">link_timeline:/12</a></td></tr>
+<tr id="link-990791-link_condition"><td>990791</td><td>9.541 sec</td><td>Downstream</td><td>LINK_DOWN</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F14">link_timeline:/14</a></td></tr>
+<tr id="link-990792-link_condition"><td>990792</td><td>9.541 sec</td><td>Downstream</td><td>LINK_UP</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F16">link_timeline:/16</a></td></tr>
+<tr id="link-990793-link_condition"><td>990793</td><td>9.545 sec</td><td>Downstream</td><td>LINK_DOWN</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F18">link_timeline:/18</a></td></tr>
+<tr id="link-990794-link_condition"><td>990794</td><td>9.545 sec</td><td>Downstream</td><td>LINK_UP</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F20">link_timeline:/20</a></td></tr>
+<tr id="link-990795-link_condition"><td>990795</td><td>9.548 sec</td><td>Downstream</td><td>LINK_DOWN</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F22">link_timeline:/22</a></td></tr>
+<tr id="link-990796-link_condition"><td>990796</td><td>9.548 sec</td><td>Downstream</td><td>LINK_UP</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F24">link_timeline:/24</a></td></tr>
+<tr id="link-990797-link_condition"><td>990797</td><td>9.552 sec</td><td>Downstream</td><td>LINK_DOWN</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F26">link_timeline:/26</a></td></tr>
+<tr id="link-990798-link_condition"><td>990798</td><td>9.552 sec</td><td>Downstream</td><td>LINK_UP</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F28">link_timeline:/28</a></td></tr>
+<tr id="link-990799-speed_width"><td>990799</td><td>9.552 sec</td><td>Downstream</td><td>raw speed code=0, width=1（不自行換算速率）</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F31">link_timeline:/31</a></td></tr>
+<tr id="link-990799-ltssm"><td>990799</td><td>9.552 sec</td><td>Downstream</td><td>RECOVERY.RECOVERY_RCVRLOCK / UNKNOWN ; valid=1</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F30">link_timeline:/30</a></td></tr>
+<tr id="link-1096915-link_condition"><td>1096915</td><td>9.563 sec</td><td>Downstream</td><td>LINK_DOWN</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F33">link_timeline:/33</a></td></tr>
+<tr id="link-1096915-ltssm"><td>1096915</td><td>9.563 sec</td><td>Downstream</td><td>RECOVERY.RECOVERY_RCVRSPD / UNKNOWN ; valid=1</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F34">link_timeline:/34</a></td></tr>
+<tr id="link-1096916-link_condition"><td>1096916</td><td>9.575 sec</td><td>Downstream</td><td>LINK_UP</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F36">link_timeline:/36</a></td></tr>
+<tr id="link-1096917-ltssm"><td>1096917</td><td>9.575 sec</td><td>Downstream</td><td>RECOVERY.RECOVERY_RCVRLOCK / UNKNOWN ; valid=1</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F38">link_timeline:/38</a></td></tr>
+<tr id="link-1096918-ltssm"><td>1096918</td><td>9.575 sec</td><td>Downstream</td><td>POLLING / UNKNOWN ; valid=0</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F40">link_timeline:/40</a></td></tr>
+<tr id="link-1479760-link_condition"><td>1479760</td><td>10.912 sec</td><td>Upstream</td><td>LINK_UP</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F42">link_timeline:/42</a></td></tr>
+<tr id="link-1479845-speed_width"><td>1479845</td><td>10.912 sec</td><td>Upstream</td><td>raw speed code=0, width=1（不自行換算速率）</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F45">link_timeline:/45</a></td></tr>
+<tr id="link-1479845-ltssm"><td>1479845</td><td>10.912 sec</td><td>Upstream</td><td>POLLING / UNKNOWN ; valid=1</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F44">link_timeline:/44</a></td></tr>
+<tr id="link-1484025-ltssm"><td>1484025</td><td>10.912 sec</td><td>Downstream</td><td>CONFIG.CFG_LINKWIDTH_STRT / UNKNOWN ; valid=1</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F47">link_timeline:/47</a></td></tr>
+<tr id="link-1484046-ltssm"><td>1484046</td><td>10.912 sec</td><td>Upstream</td><td>CONFIG.CFG_LINKWIDTH_STRT / UNKNOWN ; valid=1</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F49">link_timeline:/49</a></td></tr>
+<tr id="link-1484050-ltssm"><td>1484050</td><td>10.912 sec</td><td>Upstream</td><td>CONFIG.CFG_LINKWIDTH_ACPT / UNKNOWN ; valid=1</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F51">link_timeline:/51</a></td></tr>
+<tr id="link-1484053-ltssm"><td>1484053</td><td>10.912 sec</td><td>Downstream</td><td>CONFIG.CFG_LINKWIDTH_ACPT / UNKNOWN ; valid=1</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F53">link_timeline:/53</a></td></tr>
+<tr id="link-1484072-ltssm"><td>1484072</td><td>10.912 sec</td><td>Downstream</td><td>CONFIG.CFG_LANENUM_WAIT_ACPT / UNKNOWN ; valid=1</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F55">link_timeline:/55</a></td></tr>
+<tr id="link-1484097-ltssm"><td>1484097</td><td>10.912 sec</td><td>Upstream</td><td>CONFIG.CFG_LANENUM_WAIT_ACPT / UNKNOWN ; valid=1</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F57">link_timeline:/57</a></td></tr>
+<tr id="link-1484118-ltssm"><td>1484118</td><td>10.912 sec</td><td>Downstream</td><td>CONFIG.CFG_COMPLETE / UNKNOWN ; valid=1</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F59">link_timeline:/59</a></td></tr>
+<tr id="link-1484147-ltssm"><td>1484147</td><td>10.912 sec</td><td>Upstream</td><td>CONFIG.CFG_COMPLETE / UNKNOWN ; valid=1</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F61">link_timeline:/61</a></td></tr>
+<tr id="link-1484186-ltssm"><td>1484186</td><td>10.912 sec</td><td>Downstream</td><td>RECOVERY.RECOVERY_RCVRLOCK / UNKNOWN ; valid=1</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F63">link_timeline:/63</a></td></tr>
+<tr id="link-1484200-ltssm"><td>1484200</td><td>10.912 sec</td><td>Upstream</td><td>RECOVERY.RECOVERY_RCVRLOCK / UNKNOWN ; valid=1</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F65">link_timeline:/65</a></td></tr>
+<tr id="link-1484216-ltssm"><td>1484216</td><td>10.912 sec</td><td>Upstream</td><td>RECOVERY.RECOVERY_RCVRCFG / UNKNOWN ; valid=1</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F67">link_timeline:/67</a></td></tr>
+<tr id="link-1484229-ltssm"><td>1484229</td><td>10.912 sec</td><td>Downstream</td><td>RECOVERY.RECOVERY_RCVRCFG / UNKNOWN ; valid=1</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F69">link_timeline:/69</a></td></tr>
+<tr id="link-1484273-ltssm"><td>1484273</td><td>10.912 sec</td><td>Downstream</td><td>L0 / UNKNOWN ; valid=1</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F71">link_timeline:/71</a></td></tr>
+<tr id="link-1484298-ltssm"><td>1484298</td><td>10.912 sec</td><td>Upstream</td><td>L0 / UNKNOWN ; valid=1</td><td><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F73">link_timeline:/73</a></td></tr>
+</table></div></section><section id="config"><h2>RC config / Completion</h2><p>展開查看 request／Completion 關聯。讀回值附 Completion packet；Write DWORD 必須配合 BE，只代表意圖。</p>
+<details id="config-3148"><summary>Packet 3148 · CfgRd0 · 001:00.0 · offset 0xF8 <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0xF7C30001 @ 3150</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3150]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F1">metadata:/1</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F0">probe:/rows/0</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F0">raw_probe:/rows/0</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F0">accesses:/accesses/0</a></div></details>
+<details id="config-3153"><summary>Packet 3153 · CfgRd0 · 001:00.0 · offset 0xFC <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x810B @ 3155</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3155]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F3">metadata:/3</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F2">probe:/rows/2</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F2">raw_probe:/rows/2</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F1">accesses:/accesses/1</a></div></details>
+<details id="config-3207"><summary>Packet 3207 · CfgRd0 · 001:00.0 · offset 0x0 <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x976717A0 @ 3209</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3209]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F5">metadata:/5</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F4">probe:/rows/4</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F4">raw_probe:/rows/4</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F2">accesses:/accesses/2</a></div></details>
+<details id="config-3214"><summary>Packet 3214 · CfgRd0 · 001:00.0 · offset 0x0 <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x976717A0 @ 3216</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3216]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F7">metadata:/7</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F6">probe:/rows/6</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F6">raw_probe:/rows/6</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F3">accesses:/accesses/3</a></div></details>
+<details id="config-3219"><summary>Packet 3219 · CfgRd0 · 001:00.0 · offset 0x0 <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x976717A0 @ 3222</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3222]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F9">metadata:/9</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F8">probe:/rows/8</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F8">raw_probe:/rows/8</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F4">accesses:/accesses/4</a></div></details>
+<details id="config-3225"><summary>Packet 3225 · CfgRd0 · 001:00.0 · offset 0xC <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x0 @ 3227</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3227]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F11">metadata:/11</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F10">probe:/rows/10</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F10">raw_probe:/rows/10</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F5">accesses:/accesses/5</a></div></details>
+<details id="config-3230"><summary>Packet 3230 · CfgRd0 · 001:00.0 · offset 0x0 <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x976717A0 @ 3232</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3232]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F13">metadata:/13</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F12">probe:/rows/12</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F12">raw_probe:/rows/12</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F6">accesses:/accesses/6</a></div></details>
+<details id="config-3235"><summary>Packet 3235 · CfgRd0 · 001:00.0 · offset 0x34 <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x80 @ 3237</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3237]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F15">metadata:/15</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F14">probe:/rows/14</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F14">raw_probe:/rows/14</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F7">accesses:/accesses/7</a></div></details>
+<details id="config-3240"><summary>Packet 3240 · CfgRd0 · 001:00.0 · offset 0x8 <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x8050104 @ 3242</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3242]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F17">metadata:/17</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F16">probe:/rows/16</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F16">raw_probe:/rows/16</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F8">accesses:/accesses/8</a></div></details>
+<details id="config-3246"><summary>Packet 3246 · CfgRd0 · 001:00.0 · offset 0x80 <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x2E010 @ 3250</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3250]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F19">metadata:/19</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F18">probe:/rows/18</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F18">raw_probe:/rows/18</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F9">accesses:/accesses/9</a></div></details>
+<details id="config-3253"><summary>Packet 3253 · CfgRd0 · 001:00.0 · offset 0x8 <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x8050104 @ 3255</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3255]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F21">metadata:/21</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F20">probe:/rows/20</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F20">raw_probe:/rows/20</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F10">accesses:/accesses/10</a></div></details>
+<details id="config-3258"><summary>Packet 3258 · CfgRd0 · 001:00.0 · offset 0x100 <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x1081000B @ 3260</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3260]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F23">metadata:/23</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F22">probe:/rows/22</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F22">raw_probe:/rows/22</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F11">accesses:/accesses/11</a></div></details>
+<details id="config-3263"><summary>Packet 3263 · CfgRd0 · 001:00.0 · offset 0x8 <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x8050104 @ 3265</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3265]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F25">metadata:/25</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F24">probe:/rows/24</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F24">raw_probe:/rows/24</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F12">accesses:/accesses/12</a></div></details>
+<details id="config-3268"><summary>Packet 3268 · CfgRd0 · 001:00.0 · offset 0x108 <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x11010018 @ 3270</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3270]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F27">metadata:/27</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F26">probe:/rows/26</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F26">raw_probe:/rows/26</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F13">accesses:/accesses/13</a></div></details>
+<details id="config-3274"><summary>Packet 3274 · CfgRd0 · 001:00.0 · offset 0x8 <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x8050104 @ 3276</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3276]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F29">metadata:/29</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F28">probe:/rows/28</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F28">raw_probe:/rows/28</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F14">accesses:/accesses/14</a></div></details>
+<details id="config-3279"><summary>Packet 3279 · CfgRd0 · 001:00.0 · offset 0x110 <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x1281001E @ 3281</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3281]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F31">metadata:/31</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F30">probe:/rows/30</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F30">raw_probe:/rows/30</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F15">accesses:/accesses/15</a></div></details>
+<details id="config-3286"><summary>Packet 3286 · CfgRd0 · 001:00.0 · offset 0xC <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x0 @ 3288</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3288]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F33">metadata:/33</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F32">probe:/rows/32</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F32">raw_probe:/rows/32</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F16">accesses:/accesses/16</a></div></details>
+<details id="config-3291"><summary>Packet 3291 · CfgRd0 · 001:00.0 · offset 0x128 <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x2001000E @ 3293</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3293]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F35">metadata:/35</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F34">probe:/rows/34</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F34">raw_probe:/rows/34</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F17">accesses:/accesses/17</a></div></details>
+<details id="config-3296"><summary>Packet 3296 · CfgRd0 · 001:00.0 · offset 0x2C <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x976717A0 @ 3299</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3299]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F37">metadata:/37</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F36">probe:/rows/36</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F36">raw_probe:/rows/36</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F18">accesses:/accesses/18</a></div></details>
+<details id="config-3302"><summary>Packet 3302 · CfgRd0 · 001:00.0 · offset 0x2C <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x976717A0 @ 3304</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3304]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F39">metadata:/39</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F38">probe:/rows/38</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F38">raw_probe:/rows/38</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F19">accesses:/accesses/19</a></div></details>
+<details id="config-3307"><summary>Packet 3307 · CfgRd0 · 001:00.0 · offset 0xFC <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x810B @ 3309</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3309]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F41">metadata:/41</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F40">probe:/rows/40</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F40">raw_probe:/rows/40</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F20">accesses:/accesses/20</a></div></details>
+<details id="config-3312"><summary>Packet 3312 · CfgWr0 · 001:00.0 · offset 0xFC <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0x3/0x0 · Write intent 0x800B</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3314]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F43">metadata:/43</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F42">probe:/rows/42</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F42">raw_probe:/rows/42</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F21">accesses:/accesses/21</a></div></details>
+<details id="config-3320"><summary>Packet 3320 · CfgRd0 · 001:00.0 · offset 0xF8 <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0xF7C30001 @ 3322</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3322]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F45">metadata:/45</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F44">probe:/rows/44</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F44">raw_probe:/rows/44</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F22">accesses:/accesses/22</a></div></details>
+<details id="config-3325"><summary>Packet 3325 · CfgRd0 · 001:00.0 · offset 0xFC <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0xB @ 3327</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3327]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F47">metadata:/47</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F46">probe:/rows/46</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F46">raw_probe:/rows/46</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F23">accesses:/accesses/23</a></div></details>
+<details id="config-3330"><summary>Packet 3330 · CfgWr0 · 001:00.0 · offset 0xFC <span class="muted">8.277 sec</span></summary><p>Epoch: before_disconnect · BE 0x3/0x0 · Write intent 0x8</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [3332]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F49">metadata:/49</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F48">probe:/rows/48</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F48">raw_probe:/rows/48</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F24">accesses:/accesses/24</a></div></details>
+<details id="config-8594"><summary>Packet 8594 · CfgRd0 · 001:00.0 · offset 0xFC <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x8 @ 8596</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8596]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F51">metadata:/51</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F50">probe:/rows/50</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F50">raw_probe:/rows/50</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F25">accesses:/accesses/25</a></div></details>
+<details id="config-8599"><summary>Packet 8599 · CfgWr0 · 001:00.0 · offset 0x10 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent 0x6C1FF000</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8601]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F53">metadata:/53</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F52">probe:/rows/52</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F52">raw_probe:/rows/52</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F26">accesses:/accesses/26</a></div></details>
+<details id="config-8604"><summary>Packet 8604 · CfgWr0 · 001:00.0 · offset 0x14 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent 0x0</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8606]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F55">metadata:/55</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F54">probe:/rows/54</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F54">raw_probe:/rows/54</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F27">accesses:/accesses/27</a></div></details>
+<details id="config-8609"><summary>Packet 8609 · CfgWr0 · 001:00.0 · offset 0x18 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent 0x0</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8611]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F57">metadata:/57</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F56">probe:/rows/56</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F56">raw_probe:/rows/56</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F28">accesses:/accesses/28</a></div></details>
+<details id="config-8614"><summary>Packet 8614 · CfgWr0 · 001:00.0 · offset 0x1C <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent 0x0</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8617]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F59">metadata:/59</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F58">probe:/rows/58</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F58">raw_probe:/rows/58</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F29">accesses:/accesses/29</a></div></details>
+<details id="config-8620"><summary>Packet 8620 · CfgWr0 · 001:00.0 · offset 0x20 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent 0x0</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8622]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F61">metadata:/61</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F60">probe:/rows/60</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F60">raw_probe:/rows/60</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F30">accesses:/accesses/30</a></div></details>
+<details id="config-8625"><summary>Packet 8625 · CfgWr0 · 001:00.0 · offset 0x24 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent 0x0</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8627]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F63">metadata:/63</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F62">probe:/rows/62</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F62">raw_probe:/rows/62</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F31">accesses:/accesses/31</a></div></details>
+<details id="config-8630"><summary>Packet 8630 · CfgWr0 · 001:00.0 · offset 0x30 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent 0x0</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8634]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F65">metadata:/65</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F64">probe:/rows/64</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F64">raw_probe:/rows/64</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F32">accesses:/accesses/32</a></div></details>
+<details id="config-8637"><summary>Packet 8637 · CfgWr0 · 001:00.0 · offset 0x3C <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0x1/0x0 · Write intent 0x0</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8639]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F67">metadata:/67</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F66">probe:/rows/66</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F66">raw_probe:/rows/66</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F33">accesses:/accesses/33</a></div></details>
+<details id="config-8642"><summary>Packet 8642 · CfgWr0 · 001:00.0 · offset 0xC <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0x1/0x0 · Write intent 0x0</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8644]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F69">metadata:/69</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F68">probe:/rows/68</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F68">raw_probe:/rows/68</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F34">accesses:/accesses/34</a></div></details>
+<details id="config-8648"><summary>Packet 8648 · CfgWr0 · 001:00.0 · offset 0x4 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0x3/0x0 · Write intent 0x400</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8650]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F71">metadata:/71</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F70">probe:/rows/70</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F70">raw_probe:/rows/70</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F35">accesses:/accesses/35</a></div></details>
+<details id="config-8653"><summary>Packet 8653 · CfgWr0 · 001:00.0 · offset 0x88 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0x3/0x0 · Write intent 0x1137</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8655]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F73">metadata:/73</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F72">probe:/rows/72</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F72">raw_probe:/rows/72</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F36">accesses:/accesses/36</a></div></details>
+<details id="config-8658"><summary>Packet 8658 · CfgWr0 · 001:00.0 · offset 0x90 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0x3/0x0 · Write intent 0x42</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8660]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F75">metadata:/75</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F74">probe:/rows/74</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F74">raw_probe:/rows/74</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F37">accesses:/accesses/37</a> · <a href="../../../../artifacts/evidence/pcie-b2g-delivery-20261002/run1/watchlist-preparation.json#%2Fobservations%2F0">watchlist:/observations/0</a></div></details>
+<details id="config-8665"><summary>Packet 8665 · CfgWr0 · 001:00.0 · offset 0xB0 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0x3/0x0 · Write intent 0x2</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8667]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F77">metadata:/77</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F76">probe:/rows/76</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F76">raw_probe:/rows/76</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F38">accesses:/accesses/38</a></div></details>
+<details id="config-8671"><summary>Packet 8671 · CfgWr0 · 001:00.0 · offset 0x10C <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent 0x0</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8673]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F79">metadata:/79</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F78">probe:/rows/78</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F78">raw_probe:/rows/78</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F39">accesses:/accesses/39</a></div></details>
+<details id="config-8676"><summary>Packet 8676 · CfgRd0 · 001:00.0 · offset 0x118 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0xF @ 8678</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8678]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F81">metadata:/81</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F80">probe:/rows/80</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F80">raw_probe:/rows/80</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F40">accesses:/accesses/40</a></div></details>
+<details id="config-8681"><summary>Packet 8681 · CfgRd0 · 001:00.0 · offset 0x11C <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x28 @ 8683</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8683]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F83">metadata:/83</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F82">probe:/rows/82</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F82">raw_probe:/rows/82</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F41">accesses:/accesses/41</a></div></details>
+<details id="config-8686"><summary>Packet 8686 · CfgWr0 · 001:00.0 · offset 0x118 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent 0xF</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8688]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F85">metadata:/85</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F84">probe:/rows/84</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F84">raw_probe:/rows/84</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F42">accesses:/accesses/42</a></div></details>
+<details id="config-8691"><summary>Packet 8691 · CfgWr0 · 001:00.0 · offset 0x11C <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent 0x28</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8693]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F87">metadata:/87</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F86">probe:/rows/86</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F86">raw_probe:/rows/86</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F43">accesses:/accesses/43</a></div></details>
+<details id="config-8696"><summary>Packet 8696 · CfgWr0 · 001:00.0 · offset 0xA8 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0x3/0x0 · Write intent 0x0</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8698]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F89">metadata:/89</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F88">probe:/rows/88</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F88">raw_probe:/rows/88</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F44">accesses:/accesses/44</a></div></details>
+<details id="config-8702"><summary>Packet 8702 · CfgRd0 · 001:00.0 · offset 0x4 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x180400 @ 8704</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8704]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F91">metadata:/91</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F90">probe:/rows/90</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F90">raw_probe:/rows/90</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F45">accesses:/accesses/45</a></div></details>
+<details id="config-8709"><summary>Packet 8709 · CfgWr0 · 001:00.0 · offset 0x4 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0x3/0x0 · Write intent 0x406</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8711]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F93">metadata:/93</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F92">probe:/rows/92</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F92">raw_probe:/rows/92</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F46">accesses:/accesses/46</a></div></details>
+<details id="config-8714"><summary>Packet 8714 · CfgWr0 · 001:00.0 · offset 0x4 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xC/0x0 · Write intent 0xF9000000</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8716]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F95">metadata:/95</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F94">probe:/rows/94</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F94">raw_probe:/rows/94</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F47">accesses:/accesses/47</a></div></details>
+<details id="config-8719"><summary>Packet 8719 · CfgRd0 · 001:00.0 · offset 0x4 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x180406 @ 8721</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8721]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F97">metadata:/97</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F96">probe:/rows/96</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F96">raw_probe:/rows/96</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F48">accesses:/accesses/48</a></div></details>
+<details id="config-8725"><summary>Packet 8725 · CfgWr0 · 001:00.0 · offset 0x4 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0x3/0x0 · Write intent 0x406</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8727]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F99">metadata:/99</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F98">probe:/rows/98</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F98">raw_probe:/rows/98</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F49">accesses:/accesses/49</a></div></details>
+<details id="config-8730"><summary>Packet 8730 · CfgRd0 · 001:00.0 · offset 0xE0 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x80F805 @ 8732</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8732]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F101">metadata:/101</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F100">probe:/rows/100</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F100">raw_probe:/rows/100</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F50">accesses:/accesses/50</a></div></details>
+<details id="config-8737"><summary>Packet 8737 · CfgWr0 · 001:00.0 · offset 0xE0 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xC/0x0 · Write intent 0x800000</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8739]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F103">metadata:/103</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F102">probe:/rows/102</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F102">raw_probe:/rows/102</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F51">accesses:/accesses/51</a></div></details>
+<details id="config-8742"><summary>Packet 8742 · CfgRd0 · 001:00.0 · offset 0xE0 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: 0x80F805 @ 8744</p><p>READ_RETURN_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8744]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F105">metadata:/105</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F104">probe:/rows/104</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F104">raw_probe:/rows/104</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F52">accesses:/accesses/52</a></div></details>
+<details id="config-8748"><summary>Packet 8748 · CfgWr0 · 001:00.0 · offset 0xE4 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent 0x6850040</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8750]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F107">metadata:/107</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F106">probe:/rows/106</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F106">raw_probe:/rows/106</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F53">accesses:/accesses/53</a></div></details>
+<details id="config-8753"><summary>Packet 8753 · CfgWr0 · 001:00.0 · offset 0xE8 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xF/0x0 · Write intent 0x0</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8755]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F109">metadata:/109</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F108">probe:/rows/108</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F108">raw_probe:/rows/108</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F54">accesses:/accesses/54</a></div></details>
+<details id="config-8758"><summary>Packet 8758 · CfgWr0 · 001:00.0 · offset 0xEC <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0x3/0x0 · Write intent 0x0</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8760]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F111">metadata:/111</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F110">probe:/rows/110</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F110">raw_probe:/rows/110</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F55">accesses:/accesses/55</a></div></details>
+<details id="config-8763"><summary>Packet 8763 · CfgWr0 · 001:00.0 · offset 0xE0 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0xC/0x0 · Write intent 0x810000</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [8765]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F113">metadata:/113</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F112">probe:/rows/112</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F112">raw_probe:/rows/112</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F56">accesses:/accesses/56</a></div></details>
+<details id="config-9915"><summary>Packet 9915 · CfgWr0 · 001:00.0 · offset 0x90 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0x3/0x0 · Write intent 0x40</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [9918]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F115">metadata:/115</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F114">probe:/rows/114</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F114">raw_probe:/rows/114</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F57">accesses:/accesses/57</a> · <a href="../../../../artifacts/evidence/pcie-b2g-delivery-20261002/run1/watchlist-preparation.json#%2Fobservations%2F1">watchlist:/observations/1</a></div></details>
+<details id="config-10354"><summary>Packet 10354 · CfgWr0 · 001:00.0 · offset 0x90 <span class="muted">8.314 sec</span></summary><p>Epoch: before_disconnect · BE 0x3/0x0 · Write intent 0x42</p><p>Read return @ Completion: UNKNOWN</p><p>WRITE_REQUEST_OBSERVED · COMPLETIONS_OBSERVED · Cpl packets [10358]</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F117">metadata:/117</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F116">probe:/rows/116</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F116">raw_probe:/rows/116</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F58">accesses:/accesses/58</a> · <a href="../../../../artifacts/evidence/pcie-b2g-delivery-20261002/run1/watchlist-preparation.json#%2Fobservations%2F2">watchlist:/observations/2</a></div></details>
+<details id="config-225043"><summary>Packet 225043 · CfgRd0 · 001:00.0 · offset 0x200 <span class="muted">9.512 sec</span></summary><p>Epoch: disconnect_interval · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: UNKNOWN</p><p>AMBIGUOUS_KEY_REUSE · SAME_KEY_REISSUED_BEFORE_ANY_COMPLETION_OBSERVED · Cpl packets []</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F700">metadata:/700</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F331">probe:/rows/331</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F331">raw_probe:/rows/331</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F59">accesses:/accesses/59</a> · <a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F4">link_timeline:/4</a></div></details>
+<details id="config-225048"><summary>Packet 225048 · CfgRd0 · 001:00.0 · offset 0x200 <span class="muted">9.512 sec</span></summary><p>Epoch: disconnect_interval · BE 0xF/0x0 · Write intent UNKNOWN</p><p>Read return @ Completion: UNKNOWN</p><p>AMBIGUOUS_KEY_REUSE · NONE_OBSERVED_IN_CAPTURE · Cpl packets []</p><div class="source"><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#%2F701">metadata:/701</a> · <a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#%2Frows%2F332">probe:/rows/332</a> · <a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#%2Frows%2F332">raw_probe:/rows/332</a> · <a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#%2Faccesses%2F60">accesses:/accesses/60</a> · <a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F5">link_timeline:/5</a></div></details>
+</section><section id="coverage"><h2>Coverage、未觀察區間與 sample</h2><div class="card"><p>743 observations / 738 不同 packet anchors 是抽取 coverage，不是 capture packet 總數。顯示時間小數位不是 timer accuracy，沒有建立更細的先後因果。</p>
+<p>G2a TLP callback records: 704; not a full per-packet non-TLP export.</p>
+<p>Link window: 225041..1484414; 43 explicit link/DLLP/TLP records plus 33 segment count summaries.</p>
+<p>GUI TS error evidence: 3 samples only; no per-sample timestamps or population subtype distribution.</p>
+<p>雙向 L0 到尾端 display-time 差：0.000 sec；顯示時間無差不代表物理時間為零。 <a href="../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fobservations">evaluation:/observations</a></p>
+<p>9.600 sec..10.912 sec：1.312 sec display gap；packet 1479759 與 1479760 之間無虛構 packet、不證明電氣靜默。 <a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#%2Fphases%2F7">training:/phases/7</a> · <a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#">link_timeline:</a></p>
+</div><details><summary>33 個 segment count summaries（非逐筆 TS／DLLP）</summary>
+<details><summary>Packet 225041..225050 · 10 events · 0 HasErrors</summary><p>9.512 sec..9.512 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 10,
+  &quot;tlp&quot;: 2,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 1,
+  &quot;dllp_fc&quot;: 6,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 0,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F0">link_timeline:/0</a>
+</details>
+<details><summary>Packet 225051..990787 · 765,737 events · 0 HasErrors</summary><p>9.512 sec..9.538 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 765737,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 742531,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 1,
+  &quot;os_eieos&quot;: 23205,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F6">link_timeline:/6</a>
+</details>
+<details><summary>Packet 990789..990789 · 1 events · 0 HasErrors</summary><p>9.538 sec..9.538 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 1,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 0,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F8">link_timeline:/8</a>
+</details>
+<details><summary>Packet 990790..990790 · 1 events · 0 HasErrors</summary><p>9.538 sec..9.538 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 1,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 0,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F11">link_timeline:/11</a>
+</details>
+<details><summary>Packet 990791..990791 · 1 events · 0 HasErrors</summary><p>9.541 sec..9.541 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 1,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 0,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F13">link_timeline:/13</a>
+</details>
+<details><summary>Packet 990792..990792 · 1 events · 0 HasErrors</summary><p>9.541 sec..9.541 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 1,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 0,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F15">link_timeline:/15</a>
+</details>
+<details><summary>Packet 990793..990793 · 1 events · 0 HasErrors</summary><p>9.545 sec..9.545 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 1,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 0,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F17">link_timeline:/17</a>
+</details>
+<details><summary>Packet 990794..990794 · 1 events · 0 HasErrors</summary><p>9.545 sec..9.545 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 1,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 0,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F19">link_timeline:/19</a>
+</details>
+<details><summary>Packet 990795..990795 · 1 events · 0 HasErrors</summary><p>9.548 sec..9.548 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 1,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 0,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F21">link_timeline:/21</a>
+</details>
+<details><summary>Packet 990796..990796 · 1 events · 0 HasErrors</summary><p>9.548 sec..9.548 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 1,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 0,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F23">link_timeline:/23</a>
+</details>
+<details><summary>Packet 990797..990797 · 1 events · 0 HasErrors</summary><p>9.552 sec..9.552 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 1,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 0,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F25">link_timeline:/25</a>
+</details>
+<details><summary>Packet 990798..990798 · 1 events · 0 HasErrors</summary><p>9.552 sec..9.552 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 1,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 0,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F27">link_timeline:/27</a>
+</details>
+<details><summary>Packet 990799..1096914 · 106,116 events · 1 HasErrors</summary><p>9.552 sec..9.563 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 106116,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 106116,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 1,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F29">link_timeline:/29</a>
+<p>GUI sample Packet 990799 · TSDataRateErr, TSRsrvErr, TSLaneErr, TSTrainingControlErr · 2.5 GT/s x1 · Time UNKNOWN（僅代表此 sample） <a href="../../../../artifacts/evidence/pcie-b1c-x1x3-hang-20260915/gui-observations.json#%2Fts1_error_samples%2F0">gui:/ts1_error_samples/0</a></p>
+</details>
+<details><summary>Packet 1096915..1096915 · 1 events · 0 HasErrors</summary><p>9.563 sec..9.563 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 1,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 0,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F32">link_timeline:/32</a>
+</details>
+<details><summary>Packet 1096916..1096916 · 1 events · 0 HasErrors</summary><p>9.575 sec..9.575 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 1,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 0,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F35">link_timeline:/35</a>
+</details>
+<details><summary>Packet 1096917..1096917 · 1 events · 1 HasErrors</summary><p>9.575 sec..9.575 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 1,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 1,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 1,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F37">link_timeline:/37</a>
+</details>
+<details><summary>Packet 1096918..1479759 · 382,842 events · 382,842 HasErrors</summary><p>9.575 sec..9.600 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 382842,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 382842,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 382842,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F39">link_timeline:/39</a>
+<p>GUI sample Packet 1096918 · TSRsrvErr · 2.5 GT/s x1 · Time UNKNOWN（僅代表此 sample） <a href="../../../../artifacts/evidence/pcie-b1c-x1x3-hang-20260915/gui-observations.json#%2Fts1_error_samples%2F1">gui:/ts1_error_samples/1</a></p>
+</details>
+<details><summary>Packet 1479760..1479844 · 85 events · 84 HasErrors</summary><p>10.912 sec..10.912 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 85,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 84,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 84,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F41">link_timeline:/41</a>
+<p>GUI sample Packet 1479761 · TSRsrvErr · 2.5 GT/s x1 · Time UNKNOWN（僅代表此 sample） <a href="../../../../artifacts/evidence/pcie-b1c-x1x3-hang-20260915/gui-observations.json#%2Fts1_error_samples%2F2">gui:/ts1_error_samples/2</a></p>
+</details>
+<details><summary>Packet 1479845..1484024 · 4,180 events · 2,065 HasErrors</summary><p>10.912 sec..10.912 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 4180,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 2984,
+  &quot;os_ts2&quot;: 1196,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 2065,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F43">link_timeline:/43</a>
+</details>
+<details><summary>Packet 1484025..1484045 · 21 events · 0 HasErrors</summary><p>10.912 sec..10.912 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 21,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 11,
+  &quot;os_ts2&quot;: 10,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F46">link_timeline:/46</a>
+</details>
+<details><summary>Packet 1484046..1484049 · 4 events · 0 HasErrors</summary><p>10.912 sec..10.912 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 4,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 4,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F48">link_timeline:/48</a>
+</details>
+<details><summary>Packet 1484050..1484052 · 3 events · 0 HasErrors</summary><p>10.912 sec..10.912 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 3,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 3,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F50">link_timeline:/50</a>
+</details>
+<details><summary>Packet 1484053..1484071 · 19 events · 0 HasErrors</summary><p>10.912 sec..10.912 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 19,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 19,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F52">link_timeline:/52</a>
+</details>
+<details><summary>Packet 1484072..1484096 · 25 events · 0 HasErrors</summary><p>10.912 sec..10.912 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 25,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 25,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F54">link_timeline:/54</a>
+</details>
+<details><summary>Packet 1484097..1484117 · 21 events · 0 HasErrors</summary><p>10.912 sec..10.912 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 21,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 21,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F56">link_timeline:/56</a>
+</details>
+<details><summary>Packet 1484118..1484146 · 29 events · 0 HasErrors</summary><p>10.912 sec..10.912 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 29,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 14,
+  &quot;os_ts2&quot;: 15,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F58">link_timeline:/58</a>
+</details>
+<details><summary>Packet 1484147..1484185 · 39 events · 0 HasErrors</summary><p>10.912 sec..10.912 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 39,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 0,
+  &quot;os_ts2&quot;: 39,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F60">link_timeline:/60</a>
+</details>
+<details><summary>Packet 1484186..1484199 · 14 events · 0 HasErrors</summary><p>10.912 sec..10.912 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 14,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 14,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F62">link_timeline:/62</a>
+</details>
+<details><summary>Packet 1484200..1484215 · 16 events · 0 HasErrors</summary><p>10.912 sec..10.912 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 16,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 16,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F64">link_timeline:/64</a>
+</details>
+<details><summary>Packet 1484216..1484228 · 13 events · 0 HasErrors</summary><p>10.912 sec..10.912 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 13,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 6,
+  &quot;os_ts2&quot;: 7,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F66">link_timeline:/66</a>
+</details>
+<details><summary>Packet 1484229..1484272 · 44 events · 0 HasErrors</summary><p>10.912 sec..10.912 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 44,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 0,
+  &quot;os_ts1&quot;: 0,
+  &quot;os_ts2&quot;: 44,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F68">link_timeline:/68</a>
+</details>
+<details><summary>Packet 1484273..1484297 · 25 events · 0 HasErrors</summary><p>10.912 sec..10.912 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 25,
+  &quot;tlp&quot;: 0,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 0,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 25,
+  &quot;os_ts1&quot;: 0,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F70">link_timeline:/70</a>
+</details>
+<details><summary>Packet 1484298..1484414 · 117 events · 0 HasErrors</summary><p>10.912 sec..10.912 sec · Direction UNKNOWN</p><pre>{
+  &quot;events&quot;: 117,
+  &quot;tlp&quot;: 2,
+  &quot;dllp_ack&quot;: 0,
+  &quot;dllp_nak&quot;: 0,
+  &quot;dllp_fc&quot;: 99,
+  &quot;dllp_pm&quot;: 0,
+  &quot;dllp_other&quot;: 16,
+  &quot;os_ts1&quot;: 0,
+  &quot;os_ts2&quot;: 0,
+  &quot;os_eios&quot;: 0,
+  &quot;os_eieos&quot;: 0,
+  &quot;os_skip&quot;: 0,
+  &quot;os_other&quot;: 0,
+  &quot;err_any&quot;: 0,
+  &quot;disparity&quot;: 0,
+  &quot;symbol&quot;: 0,
+  &quot;wrong_symbol&quot;: 0,
+  &quot;delimiter&quot;: 0,
+  &quot;end_bad&quot;: 0,
+  &quot;alignment&quot;: 0,
+  &quot;idle&quot;: 0,
+  &quot;ts_data_rate&quot;: 0,
+  &quot;ts_format&quot;: 0,
+  &quot;ts_parity&quot;: 0,
+  &quot;ts_reserved&quot;: 0,
+  &quot;tlp_bad_lcrc&quot;: 0,
+  &quot;dllp_bad_crc&quot;: 0
+}</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#%2F72">link_timeline:/72</a>
+</details>
+</details><h2>後續需要的證據</h2><ul>
+<li>speed change / Gen3 convergence</li>
+<li>CfgRd/CfgWr and completions</li>
+<li>VID/DID, BAR and Command state</li>
+<li>device enable / driver-emulation interaction</li>
+<li>OS 裝置可見性、driver/emulation logs 與 crash dump；目前 crash dump 未驗證。</li></ul><h2>Validation debt（不阻擋 B1d）</h2><ul>
+<li>training_timeout<span class="badge NOT_EVALUATED">NOT_EVALUATED</span> · 適用 spec、training 起算條件及 timeout 上限未提供。</li>
+<li>ts_error_tolerance<span class="badge NOT_EVALUATED">NOT_EVALUATED</span> · TS-error 容許筆數、持續時間、起點與適用階段未提供。</li>
+<li>gen3_convergence<span class="badge NOT_EVALUATED">NOT_EVALUATED</span> · Gen3 升速完成的 milestone／觀察時限未提供。</li>
+<li>hotplug_completion<span class="badge NOT_EVALUATED">NOT_EVALUATED</span> · 初始化／enumeration 完成事件、register 清單與時限未提供。</li>
+</ul><a href="../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#%2Fvalidation_debt">evaluation:/validation_debt</a>
+<h2>限制</h2><ul>
+<li>Legacy B1 link files have no direct capture hash; binding is corroborated by GUI declared capture, source lineage and four matching TLP overlaps.</li>
+<li>Read returns become observations at Completion; cross-epoch returns cannot supply old-device state. Writes remain intent, Completion is not applied-state proof.</li>
+<li>Invalid LTSSM markers preserved; NAK does not establish replay; segment counts are not individual DLLP/TS packets.</li>
+<li>Post-L0 capture tail is short; missing config/speed observations cannot establish absence, policy violation or BSOD root cause.</li>
+</ul></section><section id="sources"><h2>Source registry</h2><p>來源 hash／pointer 可追溯；legacy link binding 是 corroborated，沒有冒充直接 capture hash。</p>
+<details><summary>accesses · DERIVED_VIA_PROBE</summary><p>artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json</p><pre>SHA-256 7B54AAF6DE5FB29EBA12BD99F59316E31A14DA040A594BC958124BDEF8075373</pre><a href="../../../../artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json#">accesses:</a></details>
+<details><summary>context · CORROBORATED_LEGACY</summary><p>artifacts/evidence/pcie-b1d-hang-20260930/product-context-r1.json</p><pre>SHA-256 78BDE038BCADEE0C12384F149247C5B22A8BD2FBBACFB0D06AC01CF4B3CBF691</pre><a href="../../../../artifacts/evidence/pcie-b1d-hang-20260930/product-context-r1.json#">context:</a></details>
+<details><summary>evaluation · CORROBORATED_LEGACY</summary><p>artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json</p><pre>SHA-256 22ED4A80E2917FE547693D6BD43AF82CD496C34FFAA5B882DA699622C3EC240A</pre><a href="../../../../artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json#">evaluation:</a></details>
+<details><summary>findings · CORROBORATED_LEGACY</summary><p>artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json</p><pre>SHA-256 5B2AEC0446F5580254B89FD5067017B9B9E7528D56F4DCF07F94EF551FB27F5F</pre><a href="../../../../artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json#">findings:</a></details>
+<details><summary>gui · CAPTURE_DECLARED</summary><p>artifacts/evidence/pcie-b1c-x1x3-hang-20260915/gui-observations.json</p><pre>SHA-256 1D6A2D7448AF00E69B87F7DE7D9403E6658AE743D573CC6A4D0290F2F9049566</pre><a href="../../../../artifacts/evidence/pcie-b1c-x1x3-hang-20260915/gui-observations.json#">gui:</a></details>
+<details><summary>haserrors · CORROBORATED_LEGACY</summary><p>artifacts/evidence/pcie-b1c-x2-hang-20260915/export/haserrors.json</p><pre>SHA-256 84BF5F768D986558E942CAF36E685C2B7D0589A2E319D993C972196248F6B9BF</pre><a href="../../../../artifacts/evidence/pcie-b1c-x2-hang-20260915/export/haserrors.json#">haserrors:</a></details>
+<details><summary>haserrors_summary · CORROBORATED_LEGACY</summary><p>artifacts/evidence/pcie-b1c-x2-hang-20260915/export/summary.json</p><pre>SHA-256 77C0633CF1741B138966BA4D9AECD89F276D7649985C68329D3D7104AB637FD7</pre><a href="../../../../artifacts/evidence/pcie-b1c-x2-hang-20260915/export/summary.json#">haserrors_summary:</a></details>
+<details><summary>link_summary · CORROBORATED_LEGACY</summary><p>artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/summary.json</p><pre>SHA-256 3F7BB24B33366B891EFA941A797481A3B5C0634D68B0096B3CDC38F05593DCED</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/summary.json#">link_summary:</a></details>
+<details><summary>link_timeline · CORROBORATED_LEGACY</summary><p>artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json</p><pre>SHA-256 D612F674B9F10A620D98AFE1A7823F8C852EC5BEB9254C5E7841628A89C7FF41</pre><a href="../../../../artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json#">link_timeline:</a></details>
+<details><summary>manifest · DERIVED_VIA_PROBE</summary><p>artifacts/evidence/pcie-unified-timeline-20261002/inputs.json</p><pre>SHA-256 E0E9F93D5DCC8654C5ACEE3E1121AF39934E352A5D6319490F215DF74668DAAF</pre><a href="../../../../artifacts/evidence/pcie-unified-timeline-20261002/inputs.json#">manifest:</a></details>
+<details><summary>metadata · DERIVED_VIA_PROBE</summary><p>artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json</p><pre>SHA-256 DFC6FC2540B242A549D9F0CC84C1F9FA7C2385F8DF620A2FED0B01530657ACBC</pre><a href="../../../../artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json#">metadata:</a></details>
+<details><summary>probe · CAPTURE_DECLARED</summary><p>artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json</p><pre>SHA-256 AB40E8CB481377F84CEB271D1EAEB693A912D6D07D8DD4A863B793DE3D9891BD</pre><a href="../../../../artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json#">probe:</a></details>
+<details><summary>raw_probe · CAPTURE_DECLARED</summary><p>artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json</p><pre>SHA-256 9661B3CFB84089FFD416444D773BD43ACED14C35A471987087A02B1BCD4548FD</pre><a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json#">raw_probe:</a></details>
+<details><summary>raw_run · CAPTURE_DECLARED</summary><p>artifacts/evidence/pcie-b2a-raw-dword-20261002/com-run1/com-run.json</p><pre>SHA-256 3F6DA9ED2B5A5599F3258DB403E62ECC3DA3A7A1C2B7B8F98AF065F07B425F36</pre><a href="../../../../artifacts/evidence/pcie-b2a-raw-dword-20261002/com-run1/com-run.json#">raw_run:</a></details>
+<details><summary>reference · DERIVED_VIA_PROBE</summary><p>docs/pcie-register-reference.json</p><pre>SHA-256 ABCF2E410D6E92EC58D093601FED9B3A1DB3F1BDA8E6D71423F922E7CFE76918</pre><a href="../../../../docs/pcie-register-reference.json#">reference:</a></details>
+<details><summary>training · CORROBORATED_LEGACY</summary><p>artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json</p><pre>SHA-256 161FCF9EF28E78D4EAAE7BCB6381A8AEC8A19587FD37964B7B854E8FB366FBD3</pre><a href="../../../../artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json#">training:</a></details>
+<details><summary>watchlist · DERIVED_VIA_PROBE</summary><p>artifacts/evidence/pcie-b2g-delivery-20261002/run1/watchlist-preparation.json</p><pre>SHA-256 1D3AEBA87B6BD91FE9AA6E7BC601D7ACA04154CCF3DBAD39ACE08922ECD5C068</pre><a href="../../../../artifacts/evidence/pcie-b2g-delivery-20261002/run1/watchlist-preparation.json#">watchlist:</a></details>
+</section><footer>離線 observation report · 無外部腳本／資源 · 尚未建立 root cause</footer></main></html>
