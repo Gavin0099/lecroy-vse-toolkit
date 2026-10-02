@@ -289,3 +289,22 @@ CHECKS_RUN: prior-head byte regression; python -X utf8 -B -m unittest discover -
 OPEN_RISKS: Legacy link binding corroborated; source authenticity not claimed; inherited nonrequired drift checker missing.
 NOT_DONE: PR merge pending; W4+W5 report; engineer ASPM policy.
 RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 report delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 147 PCIe tests PASS (8 focused); two real report replays have equal MD and HTML SHA-256; isolated Edge screenshots inspected; local bounded adversarial review completed before PR
+FILES_TOUCHED: scripts/pcie/b3d_observation_report.py, tests/pcie/test_b3d_observation_report.py, docs/pcie-observation-report.md, artifacts/evidence/pcie-observation-report-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: B2g product policy awaits engineer Who/When/What/Proof; B2h conditional. Legacy link capture binding corroborated; no applied state, root cause, full TS/DLLP export or complete B3d. Inherited nonrequired governance-drift checker missing, deferred.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+2026-10-02 report final repair
+TASK_INTENT: Complete bounded W4+W5 report capability after one GitHub final review.
+WORK_COMPLETED: Source-backed report status and rule-title provenance repaired; 149 tests PASS; two final report replays identical; final HTML screenshots inspected.
+FILES_TOUCHED: scripts/pcie/b3d_observation_report.py, tests/pcie/test_b3d_observation_report.py, docs/pcie-observation-report.md, artifacts/evidence/pcie-observation-report-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: python -X utf8 -B -m unittest discover -s tests/pcie -v; report CLI replay twice; two regressions against reviewed commit; headless Edge visual inspection; git diff --check.
+OPEN_RISKS: Nonrequired governance-drift checker absent; legacy link binding corroborated; short post-L0 tail.
+NOT_DONE: Merge pending at commit; B2g product policy awaits engineer; B2h register contract, full B3d and root cause not established.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
