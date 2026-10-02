@@ -2,7 +2,12 @@
 
 2026-10-02 交付驗證：B2d 五項測試保留 state 的同 BDF／VID-DID epoch 隔離。
 原 fixture 中額外的 snapshot／mapping 斷言歸入後續 B2e slice，讓 B2d 可在
-尚未安裝 B2e 的乾淨主線獨立驗證。Production state 及歷史輸出未更改。
+尚未安裝 B2e 的乾淨主線獨立驗證。這項測試切分不改 production state。
+
+交付 review 另重現 out-of-order Completion 的 last-read 問題：request 10 / completion 40
+與 request 20 / completion 30 讀同一 DWORD，cut 40 應保留 completion 40 的值。
+共用 B2c read-image helper 改依 Completion packet 更新，新增 B2d 回歸先 FAIL 後 PASS。
+這是 last-read 契約的修正；實際 capture 的 B2c mapping 與 B2d state 重播仍與歷史逐位元組一致。
 
 2026-09-30 本地 PASS，未 commit／push／PR／merge。
 

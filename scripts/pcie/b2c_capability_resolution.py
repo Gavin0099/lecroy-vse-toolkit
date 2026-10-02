@@ -17,8 +17,9 @@ def epoch_at(log,packet):
 
 def read_image(log,device_id,packet,epoch):
     image={}
-    for r in log['accesses']:
-        if r['device_id']!=device_id or r['epoch']!=epoch or r['read_value'] is None:continue
+    reads=[r for r in log['accesses'] if r['device_id']==device_id and r['epoch']==epoch and r['read_value'] is not None]
+    # A returned value becomes an observation at its Completion, not its request.
+    for r in sorted(reads,key=lambda r:r['completions'][0]['packet_index']):
         effective=r['completions'][0]['packet_index']
         if effective>packet or epoch_at(log,effective)!=epoch:continue
         for i in range(4):

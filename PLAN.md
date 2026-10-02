@@ -371,4 +371,4 @@ B2g product policy remains waiting for engineer Who / When / What / Proof answer
 
 - feat(pcie): deliver B2C capability resolution: 62 clean-slice PCIe tests PASS, no skips; two real offline replays match historical current run1 output byte-for-byte. Scope: Layout reference only, not complete PCIe spec verification; no vendor register meaning, absent capability inference or current hardware snapshot. Inherited nonrequired governance-drift missing checker deferred outside scope.
 
-- feat(pcie): deliver B2D observed state: 67 clean-slice PCIe tests PASS, no skips; two real offline replays match historical current before-run1 output byte-for-byte. Scope: No effective hardware state, W1C effects, zero-fill, or continuity override across epochs. Inherited nonrequired governance-drift missing checker deferred outside scope.
+- feat(pcie): deliver B2D observed state: 68 clean-slice PCIe tests PASS, no skips; two real offline replays match historical current before-run1 output byte-for-byte. Scope: No effective hardware state, W1C effects, zero-fill, or continuity override across epochs. Inherited nonrequired governance-drift missing checker deferred outside scope.

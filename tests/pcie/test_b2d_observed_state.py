@@ -9,6 +9,18 @@ from test_b2c_capability_resolution import fixture,ROOT,REF
 
 
 class StateTests(unittest.TestCase):
+    def test_last_read_follows_completion_order_not_request_order(self):
+        log=fixture();base=log['accesses'][0]
+        log['accesses']=[
+            {**base,'packet_index':10,'read_value':0x11223344,'access_id':'earlier-request-later-return','completions':[{'packet_index':40}]},
+            {**base,'packet_index':20,'read_value':0x55667788,'access_id':'later-request-earlier-return','completions':[{'packet_index':30}]},
+        ]
+        # The packet-30 return is available first; packet-40 is the last observation.
+        self.assertEqual(b2d.build(log,256,30)['read_bytes']['12']['value'],0x88)
+        last=b2d.build(log,256,40)['read_bytes']['12']
+        self.assertEqual(last['value'],0x44)
+        self.assertEqual(last['completion_packet'],40)
+
     def test_read_not_available_before_completion(self):
         log=fixture()
         self.assertEqual(b2d.build(log,256,10)['read_bytes'],{})
