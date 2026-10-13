@@ -1,0 +1,3597 @@
+{
+  "schema_version": "s01.trace-eligibility/v1",
+  "profiles": [
+    {
+      "slice_id": "P03-SAMPLED-ACK",
+      "protocol": "pcie",
+      "engineer_question": "ACK 序號可否由來源取回？",
+      "expected_observation": "原生 ACK 欄位樣本",
+      "modes": [
+        "non_flit",
+        "flit"
+      ],
+      "requirements": [
+        {
+          "kind": "field",
+          "id": "pcie.dllp.0.AckNak_SeqNum",
+          "expected": "available"
+        },
+        {
+          "kind": "event",
+          "id": "pcie.dllp.0",
+          "expected": "observed"
+        }
+      ]
+    },
+    {
+      "slice_id": "P04",
+      "protocol": "pcie",
+      "engineer_question": "是否足以評估 replay？",
+      "expected_observation": "同 epoch 雙向連續序號觀測",
+      "modes": [
+        "non_flit"
+      ],
+      "requirements": [
+        {
+          "kind": "field",
+          "id": "pcie.tlp.1.PSN",
+          "expected": "available"
+        },
+        {
+          "kind": "fact",
+          "id": "epoch",
+          "expected": "known"
+        },
+        {
+          "kind": "fact",
+          "id": "bidirectional",
+          "expected": true
+        },
+        {
+          "kind": "coverage",
+          "id": "pcie.dllp.0",
+          "expected": "complete"
+        }
+      ]
+    },
+    {
+      "slice_id": "P05",
+      "protocol": "pcie",
+      "engineer_question": "是否足以重建 credit？",
+      "expected_observation": "初始 credit 與同 epoch 雙向連續更新",
+      "modes": [
+        "non_flit"
+      ],
+      "requirements": [
+        {
+          "kind": "field",
+          "id": "pcie.dllp.4.HdrFC",
+          "expected": "available"
+        },
+        {
+          "kind": "fact",
+          "id": "epoch",
+          "expected": "known"
+        },
+        {
+          "kind": "fact",
+          "id": "bidirectional",
+          "expected": true
+        },
+        {
+          "kind": "coverage",
+          "id": "pcie.dllp.4",
+          "expected": "complete"
+        }
+      ]
+    },
+    {
+      "slice_id": "P11-STATE-POINTS",
+      "protocol": "pcie",
+      "engineer_question": "是否曾觀測到有效 Recovery state？",
+      "expected_observation": "附 packet source 的有效狀態點",
+      "modes": [
+        "non_flit",
+        "flit"
+      ],
+      "requirements": [
+        {
+          "kind": "field",
+          "id": "pcie.LtssmState",
+          "expected": "available"
+        },
+        {
+          "kind": "event",
+          "id": "pcie.ltssm.Recovery",
+          "expected": "observed"
+        }
+      ]
+    },
+    {
+      "slice_id": "P10-STANDARD-VIEW",
+      "protocol": "pcie",
+      "engineer_question": "能否分開看到原始 ClockPM 設定位元與讀回？",
+      "expected_observation": "有來源的 register evidence planes，不推生效",
+      "modes": [
+        "non_flit",
+        "flit"
+      ],
+      "requirements": [
+        {
+          "kind": "field",
+          "id": "pcie.LinkControl.EnableClockPowerManagement",
+          "expected": "available"
+        },
+        {
+          "kind": "event",
+          "id": "pcie.LinkControlSnapshot",
+          "expected": "observed"
+        }
+      ]
+    }
+  ],
+  "traces": [
+    {
+      "manifest": {
+        "schema_version": "s01.input-manifest/v1",
+        "manifest_id": "P03-CONVERTED-FIELD-SAMPLE",
+        "origin": "recorded",
+        "trace": {
+          "trace_id": "PCIE-P03-c6e9646be062",
+          "sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+          "protocol": "pcie",
+          "identity_evidence_refs": [
+            "dllp-before",
+            "tlp-before"
+          ],
+          "facts": {
+            "mode": {
+              "state": "unknown",
+              "value": null,
+              "evidence_refs": []
+            },
+            "bidirectional": {
+              "state": "unknown",
+              "value": null,
+              "evidence_refs": []
+            },
+            "capture_start": {
+              "state": "unknown",
+              "value": null,
+              "evidence_refs": []
+            },
+            "capture_end": {
+              "state": "unknown",
+              "value": null,
+              "evidence_refs": []
+            },
+            "epoch": {
+              "state": "unknown",
+              "value": null,
+              "evidence_refs": []
+            },
+            "filters": {
+              "state": "unknown",
+              "value": null,
+              "evidence_refs": []
+            }
+          }
+        },
+        "toolchain": {
+          "software_version": "13.26 (Build 43)",
+          "extractor_sha256": "816e44a617b1fc91413ca8fbbf933368e9563cbf6f70048586cd6ff08c2931b1",
+          "constants_sha256": "799311b51894b31b1b35b99294227d3cb770d28758b0eee4d915cad09e6a2e6d",
+          "evidence_refs": [
+            "dllp-before",
+            "tlp-before"
+          ]
+        },
+        "sources": [
+          {
+            "source_id": "LC-01",
+            "revision": "PCIe Protocol Analysis 13.26; generated 2026-01-08",
+            "locator": "C:\\Program Files\\LeCroy\\PCIe Protocol Suite\\Documents\\PETracerVSEManual.pdf",
+            "review_depth": "sections_reviewed",
+            "sections": [
+              "5.2.2",
+              "5.2.3"
+            ],
+            "applicability": "applicable",
+            "evidence_refs": [
+              "LC-01-DOC"
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "LC-01-DOC",
+            "kind": "document",
+            "locator": "C:\\Program Files\\LeCroy\\PCIe Protocol Suite\\Documents\\PETracerVSEManual.pdf",
+            "sha256": "4fbf6e664bd9cccfa66d6abad9be3828fa7bb202ec997117f956f719d433b105",
+            "note": "LC-01 5.2.2/5.2.3 selected field applicability; not numeric rule qualification."
+          },
+          {
+            "id": "dllp-observations",
+            "kind": "saved_output",
+            "locator": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\p03-serial-20261013\\dllp-a\\observations.json",
+            "sha256": "11004e65a2b3098883a872b976e2503f3555e8ce26494b2e34b9db0e522cb8f2",
+            "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+            "note": "Bounded sample and protected identity, no capture coverage proof."
+          },
+          {
+            "id": "dllp-before",
+            "kind": "saved_output",
+            "locator": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\p03-serial-20261013\\dllp-a\\before.json",
+            "sha256": "900a5d5d089ffa431432b4ae1ac81d6ddd3f63e69d510bc4ef8d4ea441308cf3",
+            "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+            "note": "Bounded sample and protected identity, no capture coverage proof."
+          },
+          {
+            "id": "tlp-observations",
+            "kind": "saved_output",
+            "locator": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\p03-serial-20261013\\tlp-a\\observations.json",
+            "sha256": "5eb42a6652b9a1b2b2d3490a8d8bd282272a1e7db3ac9469d405c827d7f205b3",
+            "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+            "note": "Bounded sample and protected identity, no capture coverage proof."
+          },
+          {
+            "id": "tlp-before",
+            "kind": "saved_output",
+            "locator": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\p03-serial-20261013\\tlp-a\\before.json",
+            "sha256": "0b5081ac3b0201b6f310dae213fe9a6a24e8bb216c6d6bfba49dad48851f69e2",
+            "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+            "note": "Bounded sample and protected identity, no capture coverage proof."
+          },
+          {
+            "id": "P11-POINTS",
+            "kind": "saved_output",
+            "locator": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\p03-serial-20261013\\p11-state-points-r3\\observations.json",
+            "sha256": "4cd54a7533dad9554f0f08fe4cd665ec375544df37050b468872b10db3b80bdb",
+            "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+            "note": "Saved valid state points, corroborated legacy source; no complete epoch/capture proof."
+          },
+          {
+            "id": "P10-VIEW",
+            "kind": "saved_output",
+            "locator": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\p03-serial-20261013\\p10-standard-view-r3\\observations.json",
+            "sha256": "f8da44fde5dcc12ce3b7cda9789d381ab031edf9f52c329a043256d4a418a46a",
+            "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+            "note": "Three evidence planes; native match on raw bits, not effective state."
+          }
+        ],
+        "capabilities": [
+          {
+            "id": "pcie.dllp.0.AckNak_SeqNum",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.0.VC_ID",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.0.HdrFC",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.0.DataFC",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.0.HdrScale",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.0.DataScale",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.0.BadCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.0.InvalidEncoding",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.0.FCError",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.1.AckNak_SeqNum",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.1.VC_ID",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.1.HdrFC",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.1.DataFC",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.1.HdrScale",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.1.DataScale",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.1.BadCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.1.InvalidEncoding",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.1.FCError",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.4.AckNak_SeqNum",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.4.VC_ID",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.4.HdrFC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.4.DataFC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.4.HdrScale",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.4.DataScale",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.4.BadCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.4.InvalidEncoding",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.4.FCError",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.5.AckNak_SeqNum",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.5.VC_ID",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.5.HdrFC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.5.DataFC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.5.HdrScale",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.5.DataScale",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.5.BadCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.5.InvalidEncoding",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.5.FCError",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.6.AckNak_SeqNum",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.6.VC_ID",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.6.HdrFC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.6.DataFC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.6.HdrScale",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.6.DataScale",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.6.BadCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.6.InvalidEncoding",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.6.FCError",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.12.AckNak_SeqNum",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.12.VC_ID",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.12.HdrFC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.12.DataFC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.12.HdrScale",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.12.DataScale",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.12.BadCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.12.InvalidEncoding",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.12.FCError",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.13.AckNak_SeqNum",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.13.VC_ID",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.13.HdrFC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.13.DataFC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.13.HdrScale",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.13.DataScale",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.13.BadCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.13.InvalidEncoding",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.13.FCError",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.14.AckNak_SeqNum",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.14.VC_ID",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.14.HdrFC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.14.DataFC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.14.HdrScale",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.14.DataScale",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.14.BadCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.14.InvalidEncoding",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.14.FCError",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.8.AckNak_SeqNum",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.8.VC_ID",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.8.HdrFC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.8.DataFC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.8.HdrScale",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.8.DataScale",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.8.BadCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.8.InvalidEncoding",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.8.FCError",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.9.AckNak_SeqNum",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.9.VC_ID",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.9.HdrFC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.9.DataFC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.9.HdrScale",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.9.DataScale",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.9.BadCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.9.InvalidEncoding",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.9.FCError",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.10.AckNak_SeqNum",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.10.VC_ID",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.10.HdrFC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.10.DataFC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.10.HdrScale",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.10.DataScale",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.10.BadCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.10.InvalidEncoding",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.dllp.10.FCError",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "dllp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.1.Type",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.1.Fmt",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.1.PSN",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.1.Length",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.1.ByteCount",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.1.LowerAddr",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.1.ComplStatus",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.1.BadLCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.1.BadECRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.1.ErrorLengthField",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.3.Type",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.3.Fmt",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.3.PSN",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.3.Length",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.3.ByteCount",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.3.LowerAddr",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.3.ComplStatus",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.3.BadLCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.3.BadECRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.3.ErrorLengthField",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.4.Type",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.4.Fmt",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.4.PSN",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.4.Length",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.4.ByteCount",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.4.LowerAddr",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.4.ComplStatus",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.4.BadLCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.4.BadECRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.4.ErrorLengthField",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.6.Type",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.6.Fmt",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.6.PSN",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.6.Length",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.6.ByteCount",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.6.LowerAddr",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.6.ComplStatus",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.6.BadLCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.6.BadECRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.6.ErrorLengthField",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.7.Type",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.7.Fmt",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.7.PSN",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.7.Length",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.7.ByteCount",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.7.LowerAddr",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.7.ComplStatus",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.7.BadLCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.7.BadECRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.7.ErrorLengthField",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.8.Type",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.8.Fmt",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.8.PSN",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.8.Length",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.8.ByteCount",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.8.LowerAddr",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.8.ComplStatus",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.8.BadLCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.8.BadECRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.8.ErrorLengthField",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.9.Type",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.9.Fmt",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.9.PSN",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.9.Length",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.9.ByteCount",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.9.LowerAddr",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.9.ComplStatus",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.9.BadLCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.9.BadECRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.9.ErrorLengthField",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.10.Type",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.10.Fmt",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.10.PSN",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.10.Length",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.10.ByteCount",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.10.LowerAddr",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.10.ComplStatus",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.10.BadLCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.10.BadECRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.10.ErrorLengthField",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.11.Type",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.11.Fmt",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.11.PSN",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.11.Length",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.11.ByteCount",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.11.LowerAddr",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.11.ComplStatus",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.11.BadLCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.11.BadECRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.11.ErrorLengthField",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.12.Type",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.12.Fmt",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.12.PSN",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.12.Length",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.12.ByteCount",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.12.LowerAddr",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.12.ComplStatus",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.12.BadLCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.12.BadECRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.12.ErrorLengthField",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.13.Type",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.13.Fmt",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.13.PSN",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.13.Length",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.13.ByteCount",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.13.LowerAddr",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.13.ComplStatus",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.13.BadLCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.13.BadECRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.13.ErrorLengthField",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.14.Type",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.14.Fmt",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.14.PSN",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.14.Length",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.14.ByteCount",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.14.LowerAddr",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.14.ComplStatus",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.14.BadLCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.14.BadECRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.14.ErrorLengthField",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.17.Type",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.17.Fmt",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.17.PSN",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.17.Length",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.17.ByteCount",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.17.LowerAddr",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.17.ComplStatus",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.17.BadLCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.17.BadECRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.17.ErrorLengthField",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.18.Type",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.18.Fmt",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.18.PSN",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.18.Length",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.18.ByteCount",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.18.LowerAddr",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.18.ComplStatus",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.18.BadLCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.18.BadECRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.18.ErrorLengthField",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.19.Type",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.19.Fmt",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.19.PSN",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.19.Length",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.19.ByteCount",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.19.LowerAddr",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.19.ComplStatus",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.19.BadLCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.19.BadECRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.19.ErrorLengthField",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.20.Type",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.20.Fmt",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.20.PSN",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.20.Length",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.20.ByteCount",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.20.LowerAddr",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.20.ComplStatus",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.20.BadLCRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.20.BadECRC",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.tlp.20.ErrorLengthField",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "unknown",
+            "evidence_refs": [
+              "LC-01-DOC",
+              "tlp-observations"
+            ]
+          },
+          {
+            "id": "pcie.LtssmState",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "P11-POINTS"
+            ]
+          },
+          {
+            "id": "pcie.LinkControl.ASPMControl",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "P10-VIEW"
+            ]
+          },
+          {
+            "id": "pcie.LinkControl.CommonClockConfig",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "P10-VIEW"
+            ]
+          },
+          {
+            "id": "pcie.LinkControl.EnableClockPowerManagement",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "P10-VIEW"
+            ]
+          }
+        ],
+        "observations": [
+          {
+            "event": "pcie.dllp.0",
+            "state": "observed",
+            "count": 8,
+            "evidence_refs": [
+              "dllp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "partial",
+              "start_index": 3133,
+              "end_index": 3215
+            }
+          },
+          {
+            "event": "pcie.dllp.1",
+            "state": "observed",
+            "count": 1,
+            "evidence_refs": [
+              "dllp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "complete",
+              "start_index": 225042,
+              "end_index": 225042
+            }
+          },
+          {
+            "event": "pcie.dllp.4",
+            "state": "observed",
+            "count": 8,
+            "evidence_refs": [
+              "dllp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "partial",
+              "start_index": 1484298,
+              "end_index": 1484333
+            }
+          },
+          {
+            "event": "pcie.dllp.5",
+            "state": "observed",
+            "count": 8,
+            "evidence_refs": [
+              "dllp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "partial",
+              "start_index": 1484300,
+              "end_index": 1484335
+            }
+          },
+          {
+            "event": "pcie.dllp.6",
+            "state": "observed",
+            "count": 8,
+            "evidence_refs": [
+              "dllp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "partial",
+              "start_index": 1484301,
+              "end_index": 1484337
+            }
+          },
+          {
+            "event": "pcie.dllp.12",
+            "state": "observed",
+            "count": 8,
+            "evidence_refs": [
+              "dllp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "partial",
+              "start_index": 1484345,
+              "end_index": 1484388
+            }
+          },
+          {
+            "event": "pcie.dllp.13",
+            "state": "observed",
+            "count": 8,
+            "evidence_refs": [
+              "dllp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "partial",
+              "start_index": 1484347,
+              "end_index": 1484390
+            }
+          },
+          {
+            "event": "pcie.dllp.14",
+            "state": "observed",
+            "count": 8,
+            "evidence_refs": [
+              "dllp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "partial",
+              "start_index": 1484349,
+              "end_index": 1484392
+            }
+          },
+          {
+            "event": "pcie.dllp.8",
+            "state": "observed",
+            "count": 8,
+            "evidence_refs": [
+              "dllp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "partial",
+              "start_index": 3131,
+              "end_index": 3144
+            }
+          },
+          {
+            "event": "pcie.dllp.9",
+            "state": "observed",
+            "count": 8,
+            "evidence_refs": [
+              "dllp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "partial",
+              "start_index": 3130,
+              "end_index": 3147
+            }
+          },
+          {
+            "event": "pcie.dllp.10",
+            "state": "unknown",
+            "count": 0,
+            "evidence_refs": [
+              "dllp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "complete",
+              "start_index": null,
+              "end_index": null
+            }
+          },
+          {
+            "event": "pcie.tlp.1",
+            "state": "observed",
+            "count": 8,
+            "evidence_refs": [
+              "tlp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "partial",
+              "start_index": 46820,
+              "end_index": 59993
+            }
+          },
+          {
+            "event": "pcie.tlp.3",
+            "state": "observed",
+            "count": 8,
+            "evidence_refs": [
+              "tlp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "partial",
+              "start_index": 57733,
+              "end_index": 60008
+            }
+          },
+          {
+            "event": "pcie.tlp.4",
+            "state": "unknown",
+            "count": 0,
+            "evidence_refs": [
+              "tlp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "complete",
+              "start_index": null,
+              "end_index": null
+            }
+          },
+          {
+            "event": "pcie.tlp.6",
+            "state": "unknown",
+            "count": 0,
+            "evidence_refs": [
+              "tlp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "complete",
+              "start_index": null,
+              "end_index": null
+            }
+          },
+          {
+            "event": "pcie.tlp.7",
+            "state": "unknown",
+            "count": 0,
+            "evidence_refs": [
+              "tlp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "complete",
+              "start_index": null,
+              "end_index": null
+            }
+          },
+          {
+            "event": "pcie.tlp.8",
+            "state": "unknown",
+            "count": 0,
+            "evidence_refs": [
+              "tlp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "complete",
+              "start_index": null,
+              "end_index": null
+            }
+          },
+          {
+            "event": "pcie.tlp.9",
+            "state": "observed",
+            "count": 8,
+            "evidence_refs": [
+              "tlp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "partial",
+              "start_index": 3148,
+              "end_index": 3235
+            }
+          },
+          {
+            "event": "pcie.tlp.10",
+            "state": "observed",
+            "count": 8,
+            "evidence_refs": [
+              "tlp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "partial",
+              "start_index": 3312,
+              "end_index": 8625
+            }
+          },
+          {
+            "event": "pcie.tlp.11",
+            "state": "unknown",
+            "count": 0,
+            "evidence_refs": [
+              "tlp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "complete",
+              "start_index": null,
+              "end_index": null
+            }
+          },
+          {
+            "event": "pcie.tlp.12",
+            "state": "unknown",
+            "count": 0,
+            "evidence_refs": [
+              "tlp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "complete",
+              "start_index": null,
+              "end_index": null
+            }
+          },
+          {
+            "event": "pcie.tlp.13",
+            "state": "observed",
+            "count": 2,
+            "evidence_refs": [
+              "tlp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "complete",
+              "start_index": 3129,
+              "end_index": 1484399
+            }
+          },
+          {
+            "event": "pcie.tlp.14",
+            "state": "observed",
+            "count": 1,
+            "evidence_refs": [
+              "tlp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "complete",
+              "start_index": 1484414,
+              "end_index": 1484414
+            }
+          },
+          {
+            "event": "pcie.tlp.17",
+            "state": "observed",
+            "count": 8,
+            "evidence_refs": [
+              "tlp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "partial",
+              "start_index": 3314,
+              "end_index": 8627
+            }
+          },
+          {
+            "event": "pcie.tlp.18",
+            "state": "observed",
+            "count": 8,
+            "evidence_refs": [
+              "tlp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "partial",
+              "start_index": 3150,
+              "end_index": 3237
+            }
+          },
+          {
+            "event": "pcie.tlp.19",
+            "state": "unknown",
+            "count": 0,
+            "evidence_refs": [
+              "tlp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "complete",
+              "start_index": null,
+              "end_index": null
+            }
+          },
+          {
+            "event": "pcie.tlp.20",
+            "state": "unknown",
+            "count": 0,
+            "evidence_refs": [
+              "tlp-observations"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "complete",
+              "start_index": null,
+              "end_index": null
+            }
+          },
+          {
+            "event": "pcie.ltssm.Recovery",
+            "state": "observed",
+            "count": 9,
+            "evidence_refs": [
+              "P11-POINTS"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "partial",
+              "start_index": 225051,
+              "end_index": 1484229
+            }
+          },
+          {
+            "event": "pcie.LinkControlSnapshot",
+            "state": "observed",
+            "count": 2,
+            "evidence_refs": [
+              "P10-VIEW"
+            ],
+            "coverage": {
+              "selection": "included",
+              "retention": "unknown",
+              "extraction": "partial",
+              "start_index": 3300,
+              "end_index": 10360
+            }
+          }
+        ],
+        "historical_claims": [],
+        "claim_boundary": "INPUT_METADATA_ONLY"
+      },
+      "assessments": [
+        {
+          "slice_id": "P03-SAMPLED-ACK",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "dllp-before",
+                "tlp-before"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "dllp-before",
+                "tlp-before"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "field:pcie.dllp.0.AckNak_SeqNum",
+              "status": "met",
+              "reason": "field supported, applicable and available",
+              "evidence_refs": [
+                "LC-01-DOC",
+                "dllp-observations"
+              ]
+            },
+            {
+              "requirement": "event:pcie.dllp.0",
+              "status": "met",
+              "reason": "observed state meets requirement",
+              "evidence_refs": [
+                "dllp-observations"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "P04",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "dllp-before",
+                "tlp-before"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "dllp-before",
+                "tlp-before"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "field:pcie.tlp.1.PSN",
+              "status": "met",
+              "reason": "field supported, applicable and available",
+              "evidence_refs": [
+                "LC-01-DOC",
+                "tlp-observations"
+              ]
+            },
+            {
+              "requirement": "fact:epoch",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:bidirectional",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "coverage:pcie.dllp.0",
+              "status": "missing",
+              "reason": "coverage is explicitly excluded, dropped or partial",
+              "evidence_refs": [
+                "dllp-observations"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "P05",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "dllp-before",
+                "tlp-before"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "dllp-before",
+                "tlp-before"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "field:pcie.dllp.4.HdrFC",
+              "status": "met",
+              "reason": "field supported, applicable and available",
+              "evidence_refs": [
+                "LC-01-DOC",
+                "dllp-observations"
+              ]
+            },
+            {
+              "requirement": "fact:epoch",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:bidirectional",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "coverage:pcie.dllp.4",
+              "status": "missing",
+              "reason": "coverage is explicitly excluded, dropped or partial",
+              "evidence_refs": [
+                "dllp-observations"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "P11-STATE-POINTS",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "dllp-before",
+                "tlp-before"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "dllp-before",
+                "tlp-before"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "field:pcie.LtssmState",
+              "status": "met",
+              "reason": "field supported, applicable and available",
+              "evidence_refs": [
+                "P11-POINTS"
+              ]
+            },
+            {
+              "requirement": "event:pcie.ltssm.Recovery",
+              "status": "met",
+              "reason": "observed state meets requirement",
+              "evidence_refs": [
+                "P11-POINTS"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "P10-STANDARD-VIEW",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "dllp-before",
+                "tlp-before"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "dllp-before",
+                "tlp-before"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "field:pcie.LinkControl.EnableClockPowerManagement",
+              "status": "met",
+              "reason": "field supported, applicable and available",
+              "evidence_refs": [
+                "P10-VIEW"
+              ]
+            },
+            {
+              "requirement": "event:pcie.LinkControlSnapshot",
+              "status": "met",
+              "reason": "observed state meets requirement",
+              "evidence_refs": [
+                "P10-VIEW"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        }
+      ]
+    }
+  ],
+  "claim_boundary": "INPUT_ELIGIBILITY_ONLY"
+}

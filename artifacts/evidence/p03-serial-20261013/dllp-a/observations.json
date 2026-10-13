@@ -1,0 +1,3818 @@
+{
+  "schema_version": "pcie.field-observation/v1",
+  "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+  "profile": "dllp",
+  "rows": [
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3130,
+      "level": 0,
+      "channel": 2,
+      "native_type": 9,
+      "time2": [
+        8,
+        276852512,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 20
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3131,
+      "level": 0,
+      "channel": 2,
+      "native_type": 8,
+      "time2": [
+        8,
+        276852528,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 192
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3132,
+      "level": 0,
+      "channel": 1,
+      "native_type": 8,
+      "time2": [
+        8,
+        276852602,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 95
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 119
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3133,
+      "level": 0,
+      "channel": 2,
+      "native_type": 0,
+      "time2": [
+        8,
+        276852792,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "available",
+          "value": 1405
+        },
+        "VC_ID": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "HdrFC": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "DataFC": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "HdrScale": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "DataScale": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "unknown",
+          "value": null
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3134,
+      "level": 0,
+      "channel": 1,
+      "native_type": 9,
+      "time2": [
+        8,
+        276852964,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 129
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 121
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3135,
+      "level": 0,
+      "channel": 2,
+      "native_type": 8,
+      "time2": [
+        8,
+        276852992,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 81
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 192
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3136,
+      "level": 0,
+      "channel": 2,
+      "native_type": 8,
+      "time2": [
+        8,
+        276874762,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 81
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 192
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3137,
+      "level": 0,
+      "channel": 2,
+      "native_type": 9,
+      "time2": [
+        8,
+        276874778,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 20
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3138,
+      "level": 0,
+      "channel": 1,
+      "native_type": 8,
+      "time2": [
+        8,
+        276876474,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 95
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 119
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3139,
+      "level": 0,
+      "channel": 1,
+      "native_type": 9,
+      "time2": [
+        8,
+        276876834,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 129
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 121
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3140,
+      "level": 0,
+      "channel": 1,
+      "native_type": 8,
+      "time2": [
+        8,
+        276900500,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 95
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 119
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3141,
+      "level": 0,
+      "channel": 1,
+      "native_type": 9,
+      "time2": [
+        8,
+        276900860,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 129
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 121
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3142,
+      "level": 0,
+      "channel": 2,
+      "native_type": 8,
+      "time2": [
+        8,
+        276907586,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 81
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 192
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3143,
+      "level": 0,
+      "channel": 2,
+      "native_type": 9,
+      "time2": [
+        8,
+        276907602,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 20
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3144,
+      "level": 0,
+      "channel": 1,
+      "native_type": 8,
+      "time2": [
+        8,
+        276924536,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 95
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 119
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3145,
+      "level": 0,
+      "channel": 1,
+      "native_type": 9,
+      "time2": [
+        8,
+        276924896,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 129
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 121
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3147,
+      "level": 0,
+      "channel": 2,
+      "native_type": 9,
+      "time2": [
+        8,
+        276940408,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 20
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3149,
+      "level": 0,
+      "channel": 1,
+      "native_type": 0,
+      "time2": [
+        8,
+        276942456,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "available",
+          "value": 1492
+        },
+        "VC_ID": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "HdrFC": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "DataFC": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "HdrScale": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "DataScale": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "unknown",
+          "value": null
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3152,
+      "level": 0,
+      "channel": 2,
+      "native_type": 0,
+      "time2": [
+        8,
+        276943776,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "available",
+          "value": 1406
+        },
+        "VC_ID": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "HdrFC": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "DataFC": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "HdrScale": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "DataScale": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "unknown",
+          "value": null
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3154,
+      "level": 0,
+      "channel": 1,
+      "native_type": 0,
+      "time2": [
+        8,
+        276944524,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "available",
+          "value": 1493
+        },
+        "VC_ID": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "HdrFC": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "DataFC": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "HdrScale": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "DataScale": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "unknown",
+          "value": null
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3157,
+      "level": 0,
+      "channel": 2,
+      "native_type": 0,
+      "time2": [
+        8,
+        276945828,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "available",
+          "value": 1407
+        },
+        "VC_ID": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "HdrFC": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "DataFC": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "HdrScale": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "DataScale": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "unknown",
+          "value": null
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3208,
+      "level": 0,
+      "channel": 1,
+      "native_type": 0,
+      "time2": [
+        8,
+        277298052,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "available",
+          "value": 1494
+        },
+        "VC_ID": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "HdrFC": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "DataFC": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "HdrScale": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "DataScale": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "unknown",
+          "value": null
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3211,
+      "level": 0,
+      "channel": 2,
+      "native_type": 0,
+      "time2": [
+        8,
+        277299394,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "available",
+          "value": 1408
+        },
+        "VC_ID": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "HdrFC": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "DataFC": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "HdrScale": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "DataScale": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "unknown",
+          "value": null
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 3215,
+      "level": 0,
+      "channel": 1,
+      "native_type": 0,
+      "time2": [
+        8,
+        277303624,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "available",
+          "value": 1495
+        },
+        "VC_ID": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "HdrFC": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "DataFC": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "HdrScale": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "DataScale": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "unknown",
+          "value": null
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 225042,
+      "level": 0,
+      "channel": 2,
+      "native_type": 1,
+      "time2": [
+        9,
+        512214052,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "available",
+          "value": 1682
+        },
+        "VC_ID": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "HdrFC": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "DataFC": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "HdrScale": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "DataScale": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "unknown",
+          "value": null
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484298,
+      "level": 0,
+      "channel": 1,
+      "native_type": 4,
+      "time2": [
+        10,
+        911828310,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 4
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 32
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484300,
+      "level": 0,
+      "channel": 1,
+      "native_type": 5,
+      "time2": [
+        10,
+        911828342,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 4
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 1
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484301,
+      "level": 0,
+      "channel": 1,
+      "native_type": 6,
+      "time2": [
+        10,
+        911828374,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 0
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484303,
+      "level": 0,
+      "channel": 1,
+      "native_type": 4,
+      "time2": [
+        10,
+        911828406,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 4
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 32
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484305,
+      "level": 0,
+      "channel": 1,
+      "native_type": 5,
+      "time2": [
+        10,
+        911828438,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 4
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 1
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484307,
+      "level": 0,
+      "channel": 1,
+      "native_type": 6,
+      "time2": [
+        10,
+        911828470,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 0
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484309,
+      "level": 0,
+      "channel": 1,
+      "native_type": 4,
+      "time2": [
+        10,
+        911828502,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 4
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 32
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484311,
+      "level": 0,
+      "channel": 1,
+      "native_type": 5,
+      "time2": [
+        10,
+        911828534,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 4
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 1
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484313,
+      "level": 0,
+      "channel": 1,
+      "native_type": 6,
+      "time2": [
+        10,
+        911828566,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 0
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484315,
+      "level": 0,
+      "channel": 1,
+      "native_type": 4,
+      "time2": [
+        10,
+        911828598,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 4
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 32
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484317,
+      "level": 0,
+      "channel": 1,
+      "native_type": 5,
+      "time2": [
+        10,
+        911828630,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 4
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 1
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484319,
+      "level": 0,
+      "channel": 1,
+      "native_type": 6,
+      "time2": [
+        10,
+        911828662,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 0
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484321,
+      "level": 0,
+      "channel": 1,
+      "native_type": 4,
+      "time2": [
+        10,
+        911828694,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 4
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 32
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484323,
+      "level": 0,
+      "channel": 1,
+      "native_type": 5,
+      "time2": [
+        10,
+        911828726,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 4
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 1
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484325,
+      "level": 0,
+      "channel": 1,
+      "native_type": 6,
+      "time2": [
+        10,
+        911828758,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 0
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484327,
+      "level": 0,
+      "channel": 1,
+      "native_type": 4,
+      "time2": [
+        10,
+        911828790,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 4
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 32
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484329,
+      "level": 0,
+      "channel": 1,
+      "native_type": 5,
+      "time2": [
+        10,
+        911828824,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 4
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 1
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484331,
+      "level": 0,
+      "channel": 1,
+      "native_type": 6,
+      "time2": [
+        10,
+        911828856,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 0
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484332,
+      "level": 0,
+      "channel": 2,
+      "native_type": 4,
+      "time2": [
+        10,
+        911828864,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 192
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484333,
+      "level": 0,
+      "channel": 1,
+      "native_type": 4,
+      "time2": [
+        10,
+        911828888,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 4
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 32
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484334,
+      "level": 0,
+      "channel": 2,
+      "native_type": 5,
+      "time2": [
+        10,
+        911828896,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 20
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484335,
+      "level": 0,
+      "channel": 1,
+      "native_type": 5,
+      "time2": [
+        10,
+        911828920,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 4
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 1
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484336,
+      "level": 0,
+      "channel": 2,
+      "native_type": 6,
+      "time2": [
+        10,
+        911828928,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 0
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484337,
+      "level": 0,
+      "channel": 1,
+      "native_type": 6,
+      "time2": [
+        10,
+        911828952,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 0
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484345,
+      "level": 0,
+      "channel": 2,
+      "native_type": 12,
+      "time2": [
+        10,
+        911829090,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 192
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484347,
+      "level": 0,
+      "channel": 2,
+      "native_type": 13,
+      "time2": [
+        10,
+        911829122,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 20
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484349,
+      "level": 0,
+      "channel": 2,
+      "native_type": 14,
+      "time2": [
+        10,
+        911829154,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 0
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484351,
+      "level": 0,
+      "channel": 2,
+      "native_type": 12,
+      "time2": [
+        10,
+        911829186,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 192
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484353,
+      "level": 0,
+      "channel": 2,
+      "native_type": 13,
+      "time2": [
+        10,
+        911829218,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 20
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484355,
+      "level": 0,
+      "channel": 2,
+      "native_type": 14,
+      "time2": [
+        10,
+        911829250,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 0
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484357,
+      "level": 0,
+      "channel": 2,
+      "native_type": 12,
+      "time2": [
+        10,
+        911829282,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 192
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484359,
+      "level": 0,
+      "channel": 2,
+      "native_type": 13,
+      "time2": [
+        10,
+        911829314,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 20
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484361,
+      "level": 0,
+      "channel": 2,
+      "native_type": 14,
+      "time2": [
+        10,
+        911829346,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 0
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484363,
+      "level": 0,
+      "channel": 2,
+      "native_type": 12,
+      "time2": [
+        10,
+        911829378,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 192
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484365,
+      "level": 0,
+      "channel": 2,
+      "native_type": 13,
+      "time2": [
+        10,
+        911829410,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 20
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484367,
+      "level": 0,
+      "channel": 2,
+      "native_type": 14,
+      "time2": [
+        10,
+        911829442,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 0
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484369,
+      "level": 0,
+      "channel": 2,
+      "native_type": 12,
+      "time2": [
+        10,
+        911829474,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 192
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484371,
+      "level": 0,
+      "channel": 2,
+      "native_type": 13,
+      "time2": [
+        10,
+        911829506,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 20
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484373,
+      "level": 0,
+      "channel": 2,
+      "native_type": 14,
+      "time2": [
+        10,
+        911829538,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 0
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484376,
+      "level": 0,
+      "channel": 2,
+      "native_type": 12,
+      "time2": [
+        10,
+        911829602,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 192
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484378,
+      "level": 0,
+      "channel": 2,
+      "native_type": 13,
+      "time2": [
+        10,
+        911829634,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 20
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484380,
+      "level": 0,
+      "channel": 2,
+      "native_type": 14,
+      "time2": [
+        10,
+        911829666,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 0
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484382,
+      "level": 0,
+      "channel": 2,
+      "native_type": 12,
+      "time2": [
+        10,
+        911829698,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 192
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484384,
+      "level": 0,
+      "channel": 2,
+      "native_type": 13,
+      "time2": [
+        10,
+        911829730,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 20
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484386,
+      "level": 0,
+      "channel": 2,
+      "native_type": 14,
+      "time2": [
+        10,
+        911829762,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 0
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484388,
+      "level": 0,
+      "channel": 2,
+      "native_type": 12,
+      "time2": [
+        10,
+        911829794,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 192
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484390,
+      "level": 0,
+      "channel": 2,
+      "native_type": 13,
+      "time2": [
+        10,
+        911829826,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 80
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 20
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    },
+    {
+      "kind": "p03-row",
+      "profile": "dllp",
+      "index": 1484392,
+      "level": 0,
+      "channel": 2,
+      "native_type": 14,
+      "time2": [
+        10,
+        911829858,
+        0
+      ],
+      "fields": {
+        "AckNak_SeqNum": {
+          "state": "not_applicable",
+          "value": null
+        },
+        "VC_ID": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrFC": {
+          "state": "available",
+          "value": 0
+        },
+        "DataFC": {
+          "state": "available",
+          "value": 0
+        },
+        "HdrScale": {
+          "state": "available",
+          "value": 0
+        },
+        "DataScale": {
+          "state": "available",
+          "value": 0
+        },
+        "BadCRC": {
+          "state": "available",
+          "value": 0
+        },
+        "InvalidEncoding": {
+          "state": "available",
+          "value": 0
+        },
+        "FCError": {
+          "state": "available",
+          "value": 0
+        }
+      }
+    }
+  ],
+  "counts": {
+    "0": {
+      "label": "ACK",
+      "visited": 754,
+      "sampled": 8,
+      "observation": "observed"
+    },
+    "1": {
+      "label": "NAK",
+      "visited": 1,
+      "sampled": 1,
+      "observation": "observed"
+    },
+    "4": {
+      "label": "INIT_FC1_P",
+      "visited": 18,
+      "sampled": 8,
+      "observation": "observed"
+    },
+    "5": {
+      "label": "INIT_FC1_NP",
+      "visited": 18,
+      "sampled": 8,
+      "observation": "observed"
+    },
+    "6": {
+      "label": "INIT_FC1_CPL",
+      "visited": 18,
+      "sampled": 8,
+      "observation": "observed"
+    },
+    "12": {
+      "label": "INIT_FC2_P",
+      "visited": 15,
+      "sampled": 8,
+      "observation": "observed"
+    },
+    "13": {
+      "label": "INIT_FC2_NP",
+      "visited": 15,
+      "sampled": 8,
+      "observation": "observed"
+    },
+    "14": {
+      "label": "INIT_FC2_CPL",
+      "visited": 15,
+      "sampled": 8,
+      "observation": "observed"
+    },
+    "8": {
+      "label": "UPDATE_FC_P",
+      "visited": 1072784,
+      "sampled": 8,
+      "observation": "observed"
+    },
+    "9": {
+      "label": "UPDATE_FC_NP",
+      "visited": 1072775,
+      "sampled": 8,
+      "observation": "observed"
+    },
+    "10": {
+      "label": "UPDATE_FC_CPL",
+      "visited": 0,
+      "sampled": 0,
+      "observation": "unknown"
+    }
+  },
+  "summary": {
+    "kind": "p03-end",
+    "visited": 2147145,
+    "known": 2146413,
+    "emitted": 73,
+    "mismatches": 0,
+    "native_level": 0
+  },
+  "coverage": {
+    "selection": "explicit_type_subscription",
+    "sample": "first_8_per_type",
+    "retention": "unknown",
+    "display_filters": "unknown",
+    "capture_bounds": "unknown",
+    "mode": "unknown",
+    "epoch": "unknown"
+  },
+  "scale_semantics": "raw_vendor_encoding_only",
+  "length_semantics": "raw_vendor_field_no_zero_normalization",
+  "qualification": "NOT_EVALUATED"
+}

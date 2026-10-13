@@ -1,0 +1,154 @@
+{
+    "schema_version":  "u01.selection-comparison/v1",
+    "trace_sha256":  "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+    "assessments":  [
+                        {
+                            "selection":  "packet-default",
+                            "transport":  "consistent",
+                            "callback_count":  3174680,
+                            "window_callback_count":  202,
+                            "exported_row_count":  202,
+                            "sample_truncated":  false,
+                            "native_level":  0,
+                            "delivered_index_bounds":  [
+                                                           0,
+                                                           200
+                                                       ],
+                            "effective_capture_range":  "unknown",
+                            "bad_crc_coverage":  "unknown",
+                            "incomplete_transfer_coverage":  "unknown",
+                            "qualification":  "NOT_EVALUATED"
+                        },
+                        {
+                            "selection":  "packet-crc-off",
+                            "transport":  "consistent",
+                            "callback_count":  3174680,
+                            "window_callback_count":  202,
+                            "exported_row_count":  202,
+                            "sample_truncated":  false,
+                            "native_level":  0,
+                            "delivered_index_bounds":  [
+                                                           0,
+                                                           200
+                                                       ],
+                            "effective_capture_range":  "unknown",
+                            "bad_crc_coverage":  "unknown",
+                            "incomplete_transfer_coverage":  "unknown",
+                            "qualification":  "NOT_EVALUATED"
+                        },
+                        {
+                            "selection":  "packet-crc-on",
+                            "transport":  "consistent",
+                            "callback_count":  3174690,
+                            "window_callback_count":  202,
+                            "exported_row_count":  202,
+                            "sample_truncated":  false,
+                            "native_level":  0,
+                            "delivered_index_bounds":  [
+                                                           0,
+                                                           200
+                                                       ],
+                            "effective_capture_range":  "unknown",
+                            "bad_crc_coverage":  "unknown",
+                            "incomplete_transfer_coverage":  "unknown",
+                            "qualification":  "NOT_EVALUATED"
+                        },
+                        {
+                            "selection":  "transaction-all",
+                            "transport":  "consistent",
+                            "callback_count":  300,
+                            "window_callback_count":  201,
+                            "exported_row_count":  201,
+                            "sample_truncated":  false,
+                            "native_level":  1,
+                            "delivered_index_bounds":  [
+                                                           0,
+                                                           200
+                                                       ],
+                            "effective_capture_range":  "unknown",
+                            "bad_crc_coverage":  "unknown",
+                            "incomplete_transfer_coverage":  "unknown",
+                            "qualification":  "NOT_EVALUATED"
+                        },
+                        {
+                            "selection":  "transfer-default",
+                            "transport":  "consistent",
+                            "callback_count":  138,
+                            "window_callback_count":  138,
+                            "exported_row_count":  138,
+                            "sample_truncated":  false,
+                            "native_level":  3,
+                            "delivered_index_bounds":  [
+                                                           0,
+                                                           137
+                                                       ],
+                            "effective_capture_range":  "unknown",
+                            "bad_crc_coverage":  "unknown",
+                            "incomplete_transfer_coverage":  "unknown",
+                            "qualification":  "NOT_EVALUATED"
+                        },
+                        {
+                            "selection":  "transfer-complete",
+                            "transport":  "consistent",
+                            "callback_count":  138,
+                            "window_callback_count":  138,
+                            "exported_row_count":  138,
+                            "sample_truncated":  false,
+                            "native_level":  3,
+                            "delivered_index_bounds":  [
+                                                           0,
+                                                           137
+                                                       ],
+                            "effective_capture_range":  "unknown",
+                            "bad_crc_coverage":  "unknown",
+                            "incomplete_transfer_coverage":  "unknown",
+                            "qualification":  "NOT_EVALUATED"
+                        },
+                        {
+                            "selection":  "transfer-incomplete",
+                            "transport":  "consistent",
+                            "callback_count":  0,
+                            "window_callback_count":  0,
+                            "exported_row_count":  0,
+                            "sample_truncated":  false,
+                            "native_level":  3,
+                            "delivered_index_bounds":  null,
+                            "effective_capture_range":  "unknown",
+                            "bad_crc_coverage":  "unknown",
+                            "incomplete_transfer_coverage":  "unknown",
+                            "qualification":  "NOT_EVALUATED"
+                        }
+                    ],
+    "comparisons":  [
+                        {
+                            "left":  "packet-default",
+                            "right":  "packet-crc-off",
+                            "window_callback_count_delta":  0,
+                            "exported_samples_equal":  true,
+                            "interpretation":  "callback comparison only; neither equality nor difference establishes event-class coverage"
+                        },
+                        {
+                            "left":  "packet-crc-off",
+                            "right":  "packet-crc-on",
+                            "window_callback_count_delta":  0,
+                            "exported_samples_equal":  true,
+                            "interpretation":  "callback comparison only; neither equality nor difference establishes event-class coverage"
+                        },
+                        {
+                            "left":  "transfer-default",
+                            "right":  "transfer-complete",
+                            "window_callback_count_delta":  0,
+                            "exported_samples_equal":  true,
+                            "interpretation":  "callback comparison only; neither equality nor difference establishes event-class coverage"
+                        },
+                        {
+                            "left":  "transfer-complete",
+                            "right":  "transfer-incomplete",
+                            "window_callback_count_delta":  -138,
+                            "exported_samples_equal":  false,
+                            "interpretation":  "callback comparison only; neither equality nor difference establishes event-class coverage"
+                        }
+                    ],
+    "engineer_observation":  "Selection settings and callback/sample denominators are explicit; bad-CRC and incomplete coverage still need independent known examples.",
+    "qualification":  "NOT_EVALUATED"
+}

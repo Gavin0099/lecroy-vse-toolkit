@@ -1,0 +1,143 @@
+{
+    "assessment":  {
+                       "selection":  "transfer-incomplete",
+                       "transport":  "consistent",
+                       "callback_count":  0,
+                       "window_callback_count":  0,
+                       "exported_row_count":  0,
+                       "sample_truncated":  false,
+                       "native_level":  3,
+                       "delivered_index_bounds":  null,
+                       "effective_capture_range":  "unknown",
+                       "bad_crc_coverage":  "unknown",
+                       "incomplete_transfer_coverage":  "unknown",
+                       "qualification":  "NOT_EVALUATED"
+                   },
+    "manifest":  {
+                     "schema_version":  "s01.input-manifest/v1",
+                     "manifest_id":  "U01-usb-demo-fail-known-source-transfer-incomplete",
+                     "origin":  "recorded",
+                     "trace":  {
+                                   "trace_id":  "usb-demo-fail-known-source:transfer-incomplete",
+                                   "sha256":  "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+                                   "protocol":  "usb",
+                                   "identity_evidence_refs":  [
+                                                                  "U01-OUTPUT"
+                                                              ],
+                                   "facts":  {
+                                                 "mode":  {
+                                                              "state":  "unknown",
+                                                              "value":  null,
+                                                              "evidence_refs":  [
+
+                                                                                ]
+                                                          },
+                                                 "bidirectional":  {
+                                                                       "state":  "unknown",
+                                                                       "value":  null,
+                                                                       "evidence_refs":  [
+
+                                                                                         ]
+                                                                   },
+                                                 "capture_start":  {
+                                                                       "state":  "unknown",
+                                                                       "value":  null,
+                                                                       "evidence_refs":  [
+
+                                                                                         ]
+                                                                   },
+                                                 "capture_end":  {
+                                                                     "state":  "unknown",
+                                                                     "value":  null,
+                                                                     "evidence_refs":  [
+
+                                                                                       ]
+                                                                 },
+                                                 "epoch":  {
+                                                               "state":  "unknown",
+                                                               "value":  null,
+                                                               "evidence_refs":  [
+
+                                                                                 ]
+                                                           },
+                                                 "filters":  {
+                                                                 "state":  "known",
+                                                                 "value":  "{\"range\": {\"end\": 200, \"namespace\": \"level_local_event_index\", \"start\": 0}, \"range_application\": \"post_dispatch_guard\", \"selection\": \"transfer-incomplete\"}",
+                                                                 "evidence_refs":  [
+                                                                                       "U01-OUTPUT"
+                                                                                   ]
+                                                             }
+                                             }
+                               },
+                     "toolchain":  {
+                                       "software_version":  "10, 40, 0, 6309",
+                                       "extractor_sha256":  "f9f3d35444723b80142593cd5061b4730924bbad350e2f369cfe45e820af8ea3",
+                                       "constants_sha256":  "e92d66548e1a61c727a34d5f251e3c742e469af0683b65c8d94569fb139729fb",
+                                       "evidence_refs":  [
+                                                             "U01-OUTPUT"
+                                                         ]
+                                   },
+                     "sources":  [
+                                     {
+                                         "source_id":  "LC-04",
+                                         "revision":  "Manual 9.12, July 2025, Suite 10.13+",
+                                         "locator":  "installed:USBProtocolSuiteVSEManual.pdf",
+                                         "review_depth":  "sections_reviewed",
+                                         "sections":  [
+                                                          "PDF19: input context",
+                                                          "PDF89: in.Completed",
+                                                          "PDF152: SendLevelOnly",
+                                                          "PDF157: SendAllChannels",
+                                                          "PDF161: SendAllTraceEvents",
+                                                          "PDF168: SendTransfer",
+                                                          "PDF170: SendPktsWithBadCRC"
+                                                      ],
+                                         "applicability":  "applicable",
+                                         "evidence_refs":  [
+                                                               "LC-04-DOC"
+                                                           ]
+                                     }
+                                 ],
+                     "evidence":  [
+                                      {
+                                          "id":  "U01-OUTPUT",
+                                          "kind":  "saved_output",
+                                          "locator":  "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\serial-slices-20261013\\u01-run-r3a\\transfer-incomplete\\result.json",
+                                          "sha256":  "d021595b9955f7ed94181f2b4a55560dc8668486587412471d091e8c3e5ed184",
+                                          "trace_sha256":  "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+                                          "note":  "Reconciled protected-copy callback sample, not independently qualified coverage."
+                                      },
+                                      {
+                                          "id":  "LC-04-DOC",
+                                          "kind":  "document",
+                                          "locator":  "installed:USBProtocolSuiteVSEManual.pdf",
+                                          "sha256":  "2e2d421164a2382f2634d0103582d973c7991c10957fa7a0d7f4858251dce2df",
+                                          "note":  "Selected installed manual sections only."
+                                      }
+                                  ],
+                     "capabilities":  [
+
+                                      ],
+                     "observations":  [
+                                          {
+                                              "event":  "usb.u01.transfer-incomplete.callbacks",
+                                              "state":  "unknown",
+                                              "count":  0,
+                                              "coverage":  {
+                                                               "selection":  "included",
+                                                               "retention":  "unknown",
+                                                               "extraction":  "complete",
+                                                               "start_index":  null,
+                                                               "end_index":  null
+                                                           },
+                                              "evidence_refs":  [
+                                                                    "U01-OUTPUT"
+                                                                ]
+                                          }
+                                      ],
+                     "historical_claims":  [
+
+                                           ],
+                     "claim_boundary":  "INPUT_METADATA_ONLY"
+                 }
+}

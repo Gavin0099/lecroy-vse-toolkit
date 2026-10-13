@@ -1,0 +1,9 @@
+{
+  "schema_version": "usb.field-plan/v1",
+  "slice": "U03",
+  "trace_sha256": "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+  "script": "u03.vse",
+  "script_sha256": "ff6138ad64c2c2e5eee2655e39740be11e210e95a44363fce83b68a28369c9a8",
+  "sample_limit": 128,
+  "qualification": "NOT_EVALUATED"
+}

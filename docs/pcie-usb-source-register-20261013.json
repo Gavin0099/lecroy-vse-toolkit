@@ -1,0 +1,4121 @@
+{
+  "schema_version": "pcie-usb-source-register-v1",
+  "research_as_of": "2026-10-13",
+  "scope": "Sources for PCIe non-Flit Gen1-5 and USB3/SuperSpeed evidence research, conditional USB2 and adjacent domains, installed LeCroy documentation/source and OS error/USB observation references.",
+  "artifact_kind": "research_source_register",
+  "counts": {
+    "sources": 102,
+    "source_families": {
+      "PCI": 53,
+      "USB": 25,
+      "LC": 16,
+      "OS": 8
+    },
+    "review_depths": {
+      "catalog_reviewed": 6,
+      "metadata_only": 57,
+      "sections_reviewed": 39
+    },
+    "bundle_members": 66,
+    "bundle_members_by_parent": {
+      "USB-02": 18,
+      "USB-04": 34,
+      "USB-07": 14
+    },
+    "same_url_groups": 5,
+    "independent_fulltext_document_count": "NOT_CLAIMED"
+  },
+  "review_depth_definition": {
+    "metadata_only": "Official metadata/summary, cover, contents or scope screening only. Obtaining or parsing a PDF/bundle does not imply substantive body review.",
+    "catalog_reviewed": "Catalog/program/access page read. No normative body review is claimed.",
+    "sections_reviewed": "Only the specific sections or source lines listed were inspected; this never means the entire source was read."
+  },
+  "claim_boundaries": [
+    "102 source records and 66 bundled-file inventory records are not 168 independent fully read documents.",
+    "No complete internet or historical-specification corpus coverage is claimed.",
+    "No hardware, analyzer COM/runtime, debugger, test tool, or conformance procedure was executed by this research.",
+    "Installed source files and documented APIs/fields are not runtime proof; preserve earlier bounded PASS results in their existing scope.",
+    "Public summaries do not authorize missing numeric thresholds, packet/field mappings, complete compliance rules, or root-cause claims.",
+    "Capture absence or truncation is not proof that an event did not occur; source validity and selection coverage precede evaluation.",
+    "TEMP extraction paths are transient provenance. Primary URLs, source file paths and recorded hashes anchor this register.",
+    "No PDF, standard body, or vendor source body is copied into this repository artifact."
+  ],
+  "access_policy": {
+    "public_material": "Public downloads, metadata and selected accessible sections were inspected as individually recorded.",
+    "restricted_material": "No login, payment, agreement acceptance, form/CAPTCHA submission or access-control bypass was performed.",
+    "pci_member_redirects": "Only rows with login_redirect_verified record an actually tested login redirect; other rows record the official download route.",
+    "code_and_id_exception": "PCI-35 has member and PCI-36 nonmember agreement routes. Fulltext remains unobtained in this audit.",
+    "future_gate": "A future rule needing unavailable body text requires a legally accessible applicable document and a separate rule-level review; present public/source work can proceed."
+  },
+  "version_boundaries": [
+    "USB3.2 overview Interop rev1.03 versus library/PDF rev1.04; retain rev1.04 as verified document.",
+    "USB2 bundle 2025 date is separate from base Revision2.0 2000-04-27.",
+    "USB3.2 base1.1 June2022, Link Test1.1 March2024, CV1.22 July2019 are separate version tracks.",
+    "USB3.2 bundled ECNs may already be incorporated in base1.1; verify at rule-level before adding overrides.",
+    "PCIe Gen6/7 Flit sources are current catalog context, not non-Flit Gen1-5 rule inputs.",
+    "PCIe public VSE manual 13.40 and installed 13.26 are separate versions; installed source shapes require runtime qualification.",
+    "USB VSE manual v9.12 describes Suite v10.13+; installed USB Suite 10.40 build6309 does not by itself qualify all documented fields.",
+    "Document edition date, catalog posting date, bundle date, download time and installed runtime version are separate facts."
+  ],
+  "normalization_corrections": [
+    {
+      "source_id": "PCI-35",
+      "correction": "Represent member and nonmember terms/submission routes separately; do not label all access member-only."
+    },
+    {
+      "source_id": "PCI-53",
+      "correction": "Set review_depth metadata_only; only cover/TOC read despite PDF availability."
+    },
+    {
+      "source_ids": [
+        "PCI-51",
+        "LC-02"
+      ],
+      "correction": "Separate unread web wrapper/body from installed manual selected-section review."
+    },
+    {
+      "source_family": "LC",
+      "correction": "Normalize source_id to id; preserve SHA, APIs, fields, sections, runtime/checkouts; all runtime_proof false."
+    },
+    {
+      "all_inputs": true,
+      "correction": "Remove supports and slice_candidates; drop obsolete input priority/slice identifiers. The integrated slice plan is separate."
+    }
+  ],
+  "duplicates_and_shared_entrypoints": [
+    {
+      "id": "URL-GROUP-01",
+      "source_ids": [
+        "PCI-41",
+        "OS-08"
+      ],
+      "normalized_url": "https://docs.kernel.org/PCI/pcieaer-howto.html",
+      "relationship": "same_document_independent_review",
+      "count_boundary": "Preserve separate source IDs and review scopes; do not count these as independent fully reviewed documents."
+    },
+    {
+      "id": "URL-GROUP-02",
+      "source_ids": [
+        "PCI-43",
+        "OS-02"
+      ],
+      "normalized_url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk/ns-ntddk-_whea_pciexpress_error_section",
+      "relationship": "same_document_independent_review",
+      "count_boundary": "Preserve separate source IDs and review scopes; do not count these as independent fully reviewed documents."
+    },
+    {
+      "id": "URL-GROUP-03",
+      "source_ids": [
+        "USB-01",
+        "USB-02"
+      ],
+      "normalized_url": "https://usb.org/document-library/usb-32-revision-11-june-2022",
+      "relationship": "shared_official_entrypoint_or_bundle",
+      "count_boundary": "Preserve separate source IDs and review scopes; do not count these as independent fully reviewed documents."
+    },
+    {
+      "id": "URL-GROUP-04",
+      "source_ids": [
+        "USB-03",
+        "USB-04"
+      ],
+      "normalized_url": "https://usb.org/document-library/usb-20-specification",
+      "relationship": "shared_official_entrypoint_or_bundle",
+      "count_boundary": "Preserve separate source IDs and review scopes; do not count these as independent fully reviewed documents."
+    },
+    {
+      "id": "URL-GROUP-05",
+      "source_ids": [
+        "USB-07",
+        "USB-08",
+        "USB-09",
+        "USB-10",
+        "USB-11",
+        "USB-24",
+        "USB-25"
+      ],
+      "normalized_url": "https://usb.org/document-library/usb3cv-and-xhcicv-compliance-test-specifications",
+      "relationship": "shared_official_entrypoint_or_bundle",
+      "count_boundary": "Preserve separate source IDs and review scopes; do not count these as independent fully reviewed documents."
+    }
+  ],
+  "research_inputs": [
+    {
+      "family": "USB",
+      "input_registry_path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\codex-usb-spec-gap-20261013\\usb-source-registry.json",
+      "sha256": "5e936c48859ca6cc3f0b20826f070ff8527ae835d43f0ca4a781b9001088fff5",
+      "role": "transient consolidation input, not a durable primary source"
+    },
+    {
+      "family": "PCI",
+      "input_registry_path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\lecroy-pcie-spec-research-20261013\\pcie-source-registry.json",
+      "sha256": "d67aae0724a32192c472504d800bfc8fc90135ee4495d72a36bd2fe877a1dcdb",
+      "role": "transient consolidation input, not a durable primary source"
+    },
+    {
+      "family": "LC",
+      "input_registry_path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\lecroy-source-audit-20261013\\lecroy-source-registry.json",
+      "sha256": "4dba1a1dbd60b9b5a7b04804bba377acb28e7e75a8c1f9900cd7d04860c67f3f",
+      "role": "transient consolidation input, not a durable primary source"
+    },
+    {
+      "family": "OS",
+      "input_registry_path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\codex-spec-plan-01a13339-20261013\\os-source-registry.json",
+      "sha256": "93a4227fea09d396c7392606b82340d61f03518667a5aea566186d4066833486",
+      "role": "transient consolidation input, not a durable primary source"
+    }
+  ],
+  "local_environment_observations": {
+    "observed_on": "2026-10-13",
+    "status": "Read-only version/checkout snapshot from the source audit; not a new post-document-write worktree check or runtime execution.",
+    "runtimes": [
+      {
+        "path": "C:\\Program Files\\LeCroy\\PCIe Protocol Suite\\PETracer.exe",
+        "product_version": "13.26 (Build 43)",
+        "file_version": "13, 26, 0, 43"
+      },
+      {
+        "path": "C:\\Program Files\\LeCroy\\USB Protocol Suite\\UsbSuite.exe",
+        "product_version": "10.40 (Build 6309)",
+        "file_version": "10, 40, 0, 6309"
+      }
+    ],
+    "checkouts": [
+      {
+        "path": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit",
+        "head": "c100ee1bba49c0e1956c726e287ff5158e70aec5",
+        "dirty": true,
+        "note": "Tracked G3 message extraction/correlation exists; untracked B2h config-space/sidecar exists. Preserve current work."
+      },
+      {
+        "path": "C:\\Users\\reiko\\.codex\\worktrees\\pcie-slice-delivery\\lecroy-vse-toolkit",
+        "head": "f417eecb340f56d09d6e4c0ca0b86f81e2977181",
+        "dirty": false,
+        "note": "W1-W5 report/timeline delivered; does not include local G3c message probe. No one checkout alone is complete capability inventory."
+      }
+    ],
+    "runtime_proof": false
+  },
+  "research_context": {
+    "pci_scope": "PCI-SIG官方catalog的non-Flit Gen1–5 Base/errata及相關ECN；current Base/Test索引；Config/LLTL/PHY tests；AER/DPC/ERR、ASPM/L1SS/LTR、reset/hotplug；Teledyne LeCroy/AMD/Linux/Microsoft第一手補充。",
+    "pci_normative_gate": "數值時限、完整completion/credit/replay規則與compliance verdict，需要適用版本Base+errata/ECN及test程序全文、capture前提及獨立fixture。公開摘要可支援界線和probe候選，不能補齊未讀規範。",
+    "usb_scope_statement": "Bounded official-source reconnaissance for lecroy-vse-toolkit; not all Internet data and not full normative review.",
+    "usb_supplement_precedence_warning": "USB3.2 ECNs in the June2022 package frequently declare application to Revision1.0. Determine whether each change is incorporated in Revision1.1 before treating it as an override."
+  },
+  "sources": [
+    {
+      "id": "PCI-01",
+      "title": "PCI-SIG Specifications Library",
+      "version": "live catalog",
+      "date": "checked 2026-10-13",
+      "url": "https://pcisig.com/specifications?PageSpeed=noscript&speclib=code",
+      "authority": "official_catalog",
+      "access": "公開可讀",
+      "review_depth": "catalog_reviewed",
+      "sections": [
+        "Base, ECN, Errata, Test, Firmware, Code & ID"
+      ],
+      "cannot_infer": "索引列出不等於已取得全文；新版本不等於適用現有 trace",
+      "access_class": "public_catalog_or_program",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "檢索並閱讀相關目錄列",
+      "limitations": [
+        "索引列出不等於已取得全文；新版本不等於適用現有 trace"
+      ],
+      "availability": "public_catalog_read"
+    },
+    {
+      "id": "PCI-02",
+      "title": "PCI Express Base Specification",
+      "version": "1.1",
+      "date": "2005-03-08",
+      "url": "https://pcisig.com/PCIExpress/Specs/Base/_1.1",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "metadata only"
+      ],
+      "cannot_infer": "未取得條文；不可由摘要形成 Gen1 normative verdict",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "未取得條文；不可由摘要形成 Gen1 normative verdict"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-03",
+      "title": "PCI Express Base Specification",
+      "version": "2.1",
+      "date": "2009-03-04",
+      "url": "https://pcisig.com/PCIExpress/Specs/Base/_2.1",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "metadata only"
+      ],
+      "cannot_infer": "未取得條文；不可由摘要形成 Gen2 normative verdict",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "未取得條文；不可由摘要形成 Gen2 normative verdict"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-04",
+      "title": "PCI Express Base Specification",
+      "version": "3.1a",
+      "date": "2015-12-07",
+      "url": "https://pcisig.com/PCIExpress/Specs/Base/_3.1a",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "metadata only"
+      ],
+      "cannot_infer": "未取得條文；Gen3 capability/ECN applicability 要另確認",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "未取得條文；Gen3 capability/ECN applicability 要另確認"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-05",
+      "title": "PCI Express Base Specification",
+      "version": "4.0 v1.0",
+      "date": "2017-10-05",
+      "url": "https://pcisig.com/PCIExpress/Specs/Base/_4.0_1.0",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "metadata only"
+      ],
+      "cannot_infer": "未取得條文；不能當數值時限 oracle",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "未取得條文；不能當數值時限 oracle"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-06",
+      "title": "PCI Express Base Specification",
+      "version": "5.0 v1.0",
+      "date": "2019-05-28",
+      "url": "https://pcisig.com/PCIExpress/Specs/Base/_5.0_1.0",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "metadata and related ECN list"
+      ],
+      "cannot_infer": "non-Flit 規範候選；全文未讀不得聲稱全 Base 審查",
+      "login_redirect_verified": true,
+      "member_document": "13005",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "non-Flit 規範候選；全文未讀不得聲稱全 Base 審查"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-07",
+      "title": "Errata for Base 3.1 / SR-IOV 1.1 / ATS 1.1 / M.2 1.0",
+      "version": "final against Base3.1a",
+      "date": "2018-01-05",
+      "url": "https://pcisig.com/PCIExpress/Errata/Base/_3.1_SingleRootIOVirtualizationandSharing_1.1_AddressTranslationandSharing_1.1_andM.2_1.0",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "release note only"
+      ],
+      "cannot_infer": "不能由發行摘要知道全部修正條文",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "不能由發行摘要知道全部修正條文"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-08",
+      "title": "PCI Express Base Specification Errata",
+      "version": "4.0 final",
+      "date": "2019-09-02",
+      "url": "https://pcisig.com/PCIExpress/Errata/Base/_4.0",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "release note only"
+      ],
+      "cannot_infer": "未逐條比對 errata",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "未逐條比對 errata"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-09",
+      "title": "PCI Express Base Specification Errata",
+      "version": "5.0",
+      "date": "2022-01-07",
+      "url": "https://pcisig.com/PCIExpress/Errata/Base/_5.0",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "release note: corresponds to errata included in Base6.0 v0.9/v1.0"
+      ],
+      "cannot_infer": "Base6 收錄舊版 errata 不代表 Flit 條文適用舊 trace",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "Base6 收錄舊版 errata 不代表 Flit 條文適用舊 trace"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-10",
+      "title": "PCI Express Base Specification",
+      "version": "6.5",
+      "date": "2026-09-17",
+      "url": "https://pcisig.com/specification/pci-express-base-specification-revision-65",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "metadata only"
+      ],
+      "cannot_infer": "現行目錄邊界；不納入 non-Flit Gen1-5 規則實作",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "現行目錄邊界；不納入 non-Flit Gen1-5 規則實作"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-11",
+      "title": "PCI Express Base Specification",
+      "version": "7.1",
+      "date": "2026-09-17",
+      "url": "https://pcisig.com/specification/pci-express-base-specification-revision-71",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "metadata only"
+      ],
+      "cannot_infer": "現行目錄邊界；不納入 non-Flit Gen1-5 規則實作",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "現行目錄邊界；不納入 non-Flit Gen1-5 規則實作"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-12",
+      "title": "PCI Express Architecture Configuration Space Test Specification",
+      "version": "5.0 v1.0",
+      "date": "2022-04-14",
+      "url": "https://pcisig.com/PCIExpress/Specs/Test/ArchitectureConfigurationSpaceTest_5.0_1.0",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "scope summary"
+      ],
+      "cannot_infer": "被動 configuration snapshot 不是 PCIECV conformance test",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "被動 configuration snapshot 不是 PCIECV conformance test"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-13",
+      "title": "PCI Express Architecture Link Layer and Transaction Layer Test Specification",
+      "version": "5.0 v1.0",
+      "date": "2022-04-14",
+      "url": "https://pcisig.com/PCIExpress/Specs/Test/ArchitectureLinkLayerandTransactionLayerTest_5.0_1.0",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "scope summary"
+      ],
+      "cannot_infer": "未取得 test algorithm/MOI；離線觀測不能稱 compliance",
+      "login_redirect_verified": true,
+      "member_document": "17030",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "未取得 test algorithm/MOI；離線觀測不能稱 compliance"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-14",
+      "title": "PCI Express Architecture PHY Test Specification",
+      "version": "5.1",
+      "date": "2024-05-03",
+      "url": "https://pcisig.com/PCIExpress/Spec/Test/ArchitecturePHYTest_5.1",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "scope and companion-document list"
+      ],
+      "cannot_infer": "電氣測試需實體量測；trace 不證明 eye/jitter/BER 合規",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "電氣測試需實體量測；trace 不證明 eye/jitter/BER 合規"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-15",
+      "title": "PCI Express Architecture Configuration Space Test Specification",
+      "version": "6.x",
+      "date": "2026-07-22",
+      "url": "https://pcisig.com/specification/pci-express-architecture-configuration-space-test-specification-revision-6x",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "scope and test fails/warns description"
+      ],
+      "cannot_infer": "current index only；不能跨版本套 fail/warn",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "current index only；不能跨版本套 fail/warn"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-16",
+      "title": "PCI Express Architecture Link Layer and Transaction Layer Test Specification",
+      "version": "6.x",
+      "date": "2026-07-22",
+      "url": "https://pcisig.com/specification/pci-express-architecture-link-layer-and-transaction-layer-test-specification-revision",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "scope and stated exclusions"
+      ],
+      "cannot_infer": "摘要明說非所有 LL/TL requirements 的完整 test set；不測 retimer 本體",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "摘要明說非所有 LL/TL requirements 的完整 test set；不測 retimer 本體"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-17",
+      "title": "PCI Express Architecture PHY Test Specification",
+      "version": "6.x",
+      "date": "2026-06-24",
+      "url": "https://pcisig.com/specification/pci-express-architecture-phy-test-specification-revision-6x",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "scope and companion-document list"
+      ],
+      "cannot_infer": "current index only；不得據此做舊 trace PHY verdict",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "current index only；不得據此做舊 trace PHY verdict"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-18",
+      "title": "PCIe 5.0 Protocol and Electrical Compliance Testing Deep Dive",
+      "version": "official webinar PDF",
+      "date": "URL dated 2023-01-25",
+      "url": "https://pcisig.com/sites/default/files/files/PCI-SIG%20PCIe%205.0%20Compliance%20Webinar_1.25.23_FINAL.pdf",
+      "authority": "official_educational_summary",
+      "access": "公开全文可讀",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "slides13-20,25-29"
+      ],
+      "cannot_infer": "教學簡報不是 normative algorithm；後續 ECN 可改變 test status",
+      "access_class": "public_fulltext_selected_review",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀選定正文與 test list",
+      "limitations": [
+        "教學簡報不是 normative algorithm；後續 ECN 可改變 test status"
+      ],
+      "availability": "public_body_obtained"
+    },
+    {
+      "id": "PCI-19",
+      "title": "Change Link and Transaction test case 54-20 to informative",
+      "version": "LL/TL5.0 v1.0 ECN",
+      "date": "2023-05-23",
+      "url": "https://pcisig.com/PCI%20Express/ECN/Test/ChangeLinkandTransactiontestcase54-20toinformative",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "public explanation"
+      ],
+      "cannot_infer": "Bad ECRC54-20 為 informative；不能照較早 list 一律稱 mandatory",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "Bad ECRC54-20 為 informative；不能照較早 list 一律稱 mandatory"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-20",
+      "title": "Downstream Port Containment (DPC)",
+      "version": "Base3.0 ECN",
+      "date": "2012-02-09",
+      "url": "https://pcisig.com/PCIExpress/ECN/Base/DownstreamPortContainment",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "public mechanism summary"
+      ],
+      "cannot_infer": "link down 不能單憑時序判 DPC；先證明 capability/status",
+      "login_redirect_verified": true,
+      "member_document": "12358",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "link down 不能單憑時序判 DPC；先證明 capability/status"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-21",
+      "title": "Enhanced DPC (eDPC)",
+      "version": "Base3.0+DPC ECN",
+      "date": "2012-11-15",
+      "url": "https://pcisig.com/PCIExpress/ECN/Base/EnhancedDPC",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "public RP extensions summary"
+      ],
+      "cannot_infer": "含 RP PIO control、Completion synthesis、software-trigger DPC；不能假定產品具備",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "含 RP PIO control、Completion synthesis、software-trigger DPC；不能假定產品具備"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-22",
+      "title": "Downstream Port Containment Related Enhancements",
+      "version": "Firmware3.2 ECN",
+      "date": "2019-02-14",
+      "url": "https://pcisig.com/PCIFirmware/ECN/Firmware/DownstreamPortContainmentRelatedEnhancements",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "affected sections4.5.1,4.5.2.4,4.6.12,4.6.13"
+      ],
+      "cannot_infer": "OS/FW ownership 需要平台證據；wire trace 不足",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "OS/FW ownership 需要平台證據；wire trace 不足"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-23",
+      "title": "Internal Error Reporting",
+      "version": "Base2.0 ECN",
+      "date": "2008-04-24",
+      "url": "https://pcisig.com/PCIExpress/ECN/Base/InternalErrorReporting",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "public scope and multiple error header summary"
+      ],
+      "cannot_infer": "PCIe相關 internal error 不代表所有 vendor component errors 可由 AER 解釋",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "PCIe相關 internal error 不代表所有 vendor component errors 可由 AER 解釋"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-24",
+      "title": "L1 PM Substates with CLKREQ",
+      "version": "rev1.0a ECN",
+      "date": "2013-05-30",
+      "url": "https://pcisig.com/PCIExpress/ECN/Base/L1PMSubstateswithCLKREQ_1.0a",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "public scope: ASPM/PCI-PM L1 and per-link CLKREQ"
+      ],
+      "cannot_infer": "LTSSM L1 不能單獨分辨實際 L1.1/L1.2 或功耗",
+      "login_redirect_verified": true,
+      "member_document": "12351",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "LTSSM L1 不能單獨分辨實際 L1.1/L1.2 或功耗"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-25",
+      "title": "ASPM Optionality",
+      "version": "Base2.1 ECN",
+      "date": "2009-08-20",
+      "url": "https://pcisig.com/PCIExpress/ECN/Base/ASPMOptionality",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "public support/enable/entry distinctions"
+      ],
+      "cannot_infer": "啟用 L0s 不等於必須觀察到 entry；form factor可能另有要求",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "啟用 L0s 不等於必須觀察到 entry；form factor可能另有要求"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-26",
+      "title": "Latency Tolerance Reporting",
+      "version": "Base2.0 ECN",
+      "date": "2008-08-14",
+      "url": "https://pcisig.com/PCIExpress/ECN/Base/LatencyToleranceReporting",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "public service-latency mechanism summary"
+      ],
+      "cannot_infer": "未讀 exact field encoding/aggregation/rate rules；不自行設 latency threshold",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "未讀 exact field encoding/aggregation/rate rules；不自行設 latency threshold"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-27",
+      "title": "LTR OS Guidance",
+      "version": "Firmware3.3 ECN",
+      "date": "2025-11-13",
+      "url": "https://pcisig.com/PCIExpress/ECN/Firmware/LTROSGuidance",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "public hierarchy configuration summary"
+      ],
+      "cannot_infer": "未讀正文；平台採用與適用性未知",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "未讀正文；平台採用與適用性未知"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-28",
+      "title": "LTR Enhancements for MFD",
+      "version": "Base6.3 ECN",
+      "date": "2025-06-11",
+      "url": "https://pcisig.com/PCIExpress/ECN/Base/LTREnhancementsforMFD",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "public capability/FLR summary"
+      ],
+      "cannot_infer": "新 capability 不可套於舊 trace/device；僅版本排除清單",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "新 capability 不可套於舊 trace/device；僅版本排除清單"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-29",
+      "title": "PCIe Link Activation",
+      "version": "Base4.0 ECN",
+      "date": "2017-12-07",
+      "url": "https://pcisig.com/PCIExpress/ECN/Base/PCIeLinkActivation",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "public software-initiated L1SS exit summary"
+      ],
+      "cannot_infer": "避免 PM stall 的機制存在不等於觀測產品採用",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "避免 PM stall 的機制存在不等於觀測產品採用"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-30",
+      "title": "Relaxed Detect Timing",
+      "version": "Base5.0 ECN",
+      "date": "2021-12-08",
+      "url": "https://pcisig.com/PCI%20Express/ECN/Base/RelaxedDetectTiming",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "public exact applicability statement"
+      ],
+      "cannot_infer": "20ms至100ms只針對支援>5GT/s元件的Fundamental Reset結束至Detect；不可當泛用training timeout",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "20ms至100ms只針對支援>5GT/s元件的Fundamental Reset結束至Detect；不可當泛用training timeout"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-31",
+      "title": "Readiness Notifications (RN)",
+      "version": "Base3.0 and companion specs ECN",
+      "date": "2013-08-29",
+      "url": "https://pcisig.com/PCIExpress/ECN/Base/ReadinessNotifications",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "public post-power/reset/PM configuration-readiness summary"
+      ],
+      "cannot_infer": "看不到 Configuration Request 不能直接判初始化失敗；RN capability與完整時間窗未知",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "看不到 Configuration Request 不能直接判初始化失敗；RN capability與完整時間窗未知"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-32",
+      "title": "Async Hot-Plug Updates",
+      "version": "Base4.0 ECN",
+      "date": "2018-12-12",
+      "url": "https://pcisig.com/PCIExpress/ECN/Base/AsyncHot-PlugUpdates",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "public bullets1-5"
+      ],
+      "cannot_infer": "ERR_COR可能有firmware-signaling subclass；不能把每個ERR_COR都當普通correctable link error",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "ERR_COR可能有firmware-signaling subclass；不能把每個ERR_COR都當普通correctable link error"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-33",
+      "title": "Power-up requirements for PCIe side bands (PERST#, etc.)",
+      "version": "M.2 v1.0 ECN",
+      "date": "2014-09-18",
+      "url": "https://pcisig.com/PCIExpress/ECN/M.2/Power-uprequirementsforPCIesidebandsPERST_etc.",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "public changes to former3.1.3.2.1"
+      ],
+      "cannot_infer": "M.2 reset timing有implementation-specific/recommended區別；不可跨form factor搬門檻",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "M.2 reset timing有implementation-specific/recommended區別；不可跨form factor搬門檻"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-34",
+      "title": "_HPX and PCIe Completion Timeout related _OSC Enhancements",
+      "version": "Firmware3.2 ECN",
+      "date": "2019-03-17",
+      "url": "https://pcisig.com/PCIFirmware/ECN/Firmware/_HPXandPCIeCompletionTimeoutrelated_OSCEnhancements",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "public affected4.5.1,4.5.2.4"
+      ],
+      "cannot_infer": "Completion Timeout control ownership不能從TLP或短capture推斷",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "Completion Timeout control ownership不能從TLP或短capture推斷"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-35",
+      "title": "PCI Code and ID Assignment Specification",
+      "version": "1.19",
+      "date": "2025-06-11",
+      "url": "https://pcisig.com/PCIExpress/Spec/Base/CodeandIDAssignment_1.19",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開主頁有會員下載入口；另有 PCI-36 nonmember agreement route；本次未取得全文。",
+      "review_depth": "metadata_only",
+      "sections": [
+        "public Class/Capability/Extended Capability ID scope"
+      ],
+      "cannot_infer": "尚未取得ID表全文；未讀header不可命名capability",
+      "access_class": "member_or_nonmember_terms_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "尚未取得ID表全文；未讀header不可命名capability",
+        "Do not classify the specification as member-only: the nonmember route has terms/submission gates that were not completed."
+      ],
+      "availability": "fulltext_not_obtained_two_official_access_routes_identified",
+      "access_routes": [
+        {
+          "kind": "member",
+          "entrypoint": "https://pcisig.com/PCIExpress/Spec/Base/CodeandIDAssignment_1.19",
+          "completed": false
+        },
+        {
+          "kind": "nonmember_terms_and_submission",
+          "source_id": "PCI-36",
+          "entrypoint": "https://pcisig.com/pci-code-and-id-assignment-specification-agreement",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "PCI-36",
+      "title": "PCI Code and ID Assignment Specification Agreement",
+      "version": "live access gate",
+      "date": "checked2026-10-13",
+      "url": "https://pcisig.com/pci-code-and-id-assignment-specification-agreement",
+      "authority": "official_access_terms",
+      "access": "需填資料、同意條款及CAPTCHA；未提交",
+      "review_depth": "catalog_reviewed",
+      "sections": [
+        "access form only"
+      ],
+      "cannot_infer": "不能將non-member free記為無條件已取得；需使用者自行提供合法可用文件或具體授權",
+      "access_class": "terms_and_submission_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀下載門檻與同意文字",
+      "limitations": [
+        "不能將non-member free記為無條件已取得；需使用者自行提供合法可用文件或具體授權"
+      ],
+      "availability": "terms_submission_not_completed"
+    },
+    {
+      "id": "PCI-37",
+      "title": "PCIe Protocol Analysis Verification Script Engine Reference Manual",
+      "version": "13.40",
+      "date": "2026-09-03",
+      "url": "https://cdn.teledynelecroy.com/files/manuals/petracer_vse_manual.pdf",
+      "authority": "vendor_implementation",
+      "access": "公開全文可讀",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "5.2.1-5.3,5.8-5.12,8.1-8.3; cover"
+      ],
+      "cannot_infer": "documented fields不證明安裝版可用；numeric event levels在不同表不一致，須用安裝版constants及fixture核對",
+      "local_version_note": "父代理提供本機13.26手冊§5.2.10/11與nativeexamples證據；本研究讀取網站13.40。先以安裝版常數/範例probe原生_LINK/_SPLIT，再與B2a/G2b交叉比對，不先重造split-completion decoder。",
+      "access_class": "public_fulltext_selected_review",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀選定正文",
+      "limitations": [
+        "documented fields不證明安裝版可用；numeric event levels在不同表不一致，須用安裝版constants及fixture核對"
+      ],
+      "availability": "public_body_obtained",
+      "related_sources": [
+        {
+          "id": "LC-01",
+          "relationship": "Same manual family, different versions: web 13.40 versus installed 13.26; do not merge field applicability."
+        }
+      ]
+    },
+    {
+      "id": "PCI-38",
+      "title": "PETracer Summit and Summit T2-16 User Manual",
+      "version": "software7.30",
+      "date": "2015-02-02",
+      "url": "https://cdn.teledynelecroy.com/files/manuals/pcie_summit_user_manual.pdf",
+      "authority": "vendor_implementation",
+      "access": "公開全文可讀",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "11.7 printed191"
+      ],
+      "cannot_infer": "舊工具版本；未捕捉InitFC需initial-credit evidence，不能從第一個UpdateFC推定絕對餘額",
+      "access_class": "public_fulltext_selected_review",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀選定FC正文",
+      "limitations": [
+        "舊工具版本；未捕捉InitFC需initial-credit evidence，不能從第一個UpdateFC推定絕對餘額"
+      ],
+      "availability": "public_body_obtained"
+    },
+    {
+      "id": "PCI-39",
+      "title": "Versal CPM PCIe Product Guide: Completer Completion Descriptor Format",
+      "version": "PG346 v3.3",
+      "date": "2023-05-16",
+      "url": "https://docs.amd.com/r/3.3-English/pg346-cpm-pcie/Completer-Completion-Descriptor-Format?contentId=pEh4XcohN3uFqiFePvYL_A",
+      "authority": "vendor_implementation",
+      "access": "公開全文可讀",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "Completer Completion Descriptor Fields"
+      ],
+      "cannot_infer": "AXI descriptor不是wire TLP layout；可支持coverage設計但不能替代適用Base規範",
+      "access_class": "public_fulltext_selected_review",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀該節Table1",
+      "limitations": [
+        "AXI descriptor不是wire TLP layout；可支持coverage設計但不能替代適用Base規範"
+      ],
+      "availability": "public_body_obtained"
+    },
+    {
+      "id": "PCI-40",
+      "title": "7 Series PCIe Product Guide: Flow Control Credit Information",
+      "version": "PG054 v3.3",
+      "date": null,
+      "url": "https://docs.amd.com/r/en-US/pg054-7series-pcie/Flow-Control-Credit-Information",
+      "authority": "vendor_implementation",
+      "access": "公開全文可讀",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "Flow Control Information Types; six credit pools"
+      ],
+      "cannot_infer": "IP interface values與wire encoding/實際平台不同；不可直接套用credit oracle",
+      "access_class": "public_fulltext_selected_review",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀該節正文",
+      "limitations": [
+        "IP interface values與wire encoding/實際平台不同；不可直接套用credit oracle"
+      ],
+      "availability": "public_body_obtained"
+    },
+    {
+      "id": "PCI-41",
+      "title": "Linux PCI Express AER Driver Guide",
+      "version": "live kernel docs",
+      "date": null,
+      "url": "https://docs.kernel.org/PCI/pcieaer-howto.html",
+      "authority": "OS_implementation",
+      "access": "公開全文可讀",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "8.1.2,8.2.2-8.2.5,8.3"
+      ],
+      "cannot_infer": "Linux ownership/logging不是Windows行為；未記錄不等於無錯誤",
+      "access_class": "public_fulltext_selected_review",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀相關正文",
+      "limitations": [
+        "Linux ownership/logging不是Windows行為；未記錄不等於無錯誤"
+      ],
+      "availability": "public_body_obtained",
+      "url_group": "URL-GROUP-01"
+    },
+    {
+      "id": "PCI-42",
+      "title": "Linux PCI Error Recovery",
+      "version": "live kernel docs",
+      "date": null,
+      "url": "https://docs.kernel.org/PCI/pci-error-recovery.html",
+      "authority": "OS_implementation",
+      "access": "公開全文可讀",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "7.1 error event, link reset, slot reset, resume"
+      ],
+      "cannot_infer": "platform/driver callback policy不等於wire invariant",
+      "access_class": "public_fulltext_selected_review",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀相關正文",
+      "limitations": [
+        "platform/driver callback policy不等於wire invariant"
+      ],
+      "availability": "public_body_obtained"
+    },
+    {
+      "id": "PCI-43",
+      "title": "WHEA_PCIEXPRESS_ERROR_SECTION",
+      "version": "WDK reference",
+      "date": null,
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk/ns-ntddk-_whea_pciexpress_error_section",
+      "authority": "OS_implementation",
+      "access": "公開全文可讀",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "Syntax, ValidBits, ExpressCapability, AerInfo"
+      ],
+      "cannot_infer": "無效欄位必須保留unknown；WHEA記錄不直接證明BSOD根因",
+      "access_class": "public_fulltext_selected_review",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀相關正文",
+      "limitations": [
+        "無效欄位必須保留unknown；WHEA記錄不直接證明BSOD根因"
+      ],
+      "availability": "public_body_obtained",
+      "url_group": "URL-GROUP-02"
+    },
+    {
+      "id": "PCI-44",
+      "title": "PCI_EXPRESS_AER_CAPABILITY",
+      "version": "WDK miniport.h reference",
+      "date": null,
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/miniport/ns-miniport-_pci_express_aer_capability",
+      "authority": "OS_implementation",
+      "access": "公開全文可讀",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "status/mask/severity/header log; port-type variants"
+      ],
+      "cannot_infer": "SDK型別不是所有裝置統一layout；文字有疑似copy錯誤，需對SDK及適用spec",
+      "access_class": "public_fulltext_selected_review",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀Syntax及Members",
+      "limitations": [
+        "SDK型別不是所有裝置統一layout；文字有疑似copy錯誤，需對SDK及適用spec"
+      ],
+      "availability": "public_body_obtained"
+    },
+    {
+      "id": "PCI-45",
+      "title": "PCI_EXPRESS_LINK_CONTROL_REGISTER",
+      "version": "WDK ntddk.h reference",
+      "date": null,
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk/ns-ntddk-_pci_express_link_control_register",
+      "authority": "OS_implementation",
+      "access": "公開全文可讀",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "ActiveStatePMControl, RetrainLink, LinkDisable, Clock PM"
+      ],
+      "cannot_infer": "值解碼不等於硬體生效，更不等於產品政策",
+      "access_class": "public_fulltext_selected_review",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀Syntax及Members",
+      "limitations": [
+        "值解碼不等於硬體生效，更不等於產品政策"
+      ],
+      "availability": "public_body_obtained"
+    },
+    {
+      "id": "PCI-46",
+      "title": "Teledyne LeCroy PCI Express Product Manuals",
+      "version": "live catalog",
+      "date": "checked2026-10-13",
+      "url": "https://www.teledynelecroy.com/protocolanalyzer/pci-express/resources/product-manuals",
+      "authority": "vendor_catalog",
+      "access": "公開可讀",
+      "review_depth": "catalog_reviewed",
+      "sections": [
+        "VSE, Automation, file-based decoder, Gen5 analyzer"
+      ],
+      "cannot_infer": "列出連結不代表安裝版或所有內容已核驗",
+      "access_class": "public_catalog_or_program",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀相關目錄",
+      "limitations": [
+        "列出連結不代表安裝版或所有內容已核驗"
+      ],
+      "availability": "public_catalog_read"
+    },
+    {
+      "id": "PCI-47",
+      "title": "PCI Express Architecture Platform Init/Config",
+      "version": "3.0",
+      "date": "2013-06-18",
+      "url": "https://pcisig.com/PCIExpress/Specs/Base/ArchitecturePlatformInitConfig_3.0",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "public scope summary"
+      ],
+      "cannot_infer": "historical firmware test scope；不是最新compliance全套",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "historical firmware test scope；不是最新compliance全套"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-48",
+      "title": "PCI-SIG Authorized Test Lab Program",
+      "version": "live program",
+      "date": "checked2026-10-13",
+      "url": "https://pcisig.com/developers/authorized-test-lab-program",
+      "authority": "official_program_summary",
+      "access": "公開可讀",
+      "review_depth": "catalog_reviewed",
+      "sections": [
+        "Gen4/5 up to32GT/s; approved MOI/equipment"
+      ],
+      "cannot_infer": "offline checker PASS不等於實驗室compliance/Integrators List",
+      "access_class": "public_catalog_or_program",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀program scope",
+      "limitations": [
+        "offline checker PASS不等於實驗室compliance/Integrators List"
+      ],
+      "availability": "public_catalog_read"
+    },
+    {
+      "id": "PCI-49",
+      "title": "PCI Express Card Electromechanical Specification",
+      "version": "5.0",
+      "date": "2021-06-18",
+      "url": "https://pcisig.com/PCIExpress/Specs/CEM/CardElectromechanical_5.0",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "public scope summary"
+      ],
+      "cannot_infer": "form factor與sideband/electrical要求不能只靠Base或protocol trace",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "form factor與sideband/electrical要求不能只靠Base或protocol trace"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-50",
+      "title": "PCI Firmware Specification",
+      "version": "3.3",
+      "date": "2021-02-11",
+      "url": "https://pcisig.com/PCIConventional/Specs/Firmware/_3.3",
+      "authority": "official_summary_of_normative_document",
+      "access": "公開摘要；全文會員下載連結",
+      "review_depth": "metadata_only",
+      "sections": [
+        "public scope summary"
+      ],
+      "cannot_infer": "FW/OS ownership與policy全文尚未取得",
+      "access_class": "public_summary_member_fulltext_gate",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已讀官方入口 metadata 與公開說明；未讀受限全文",
+      "limitations": [
+        "FW/OS ownership與policy全文尚未取得"
+      ],
+      "availability": "member_fulltext_not_obtained"
+    },
+    {
+      "id": "PCI-51",
+      "title": "PCIe Automation API Manual",
+      "version": "not yet extracted",
+      "date": null,
+      "url": "https://www.teledynelecroy.com/doc/docview.aspx?id=13898",
+      "authority": "vendor_implementation",
+      "access": "官方wrapper可開；內容未取出",
+      "review_depth": "metadata_only",
+      "sections": [
+        "not reviewed"
+      ],
+      "cannot_infer": "未讀API本文；不得據此新增COM呼叫",
+      "access_class": "located_body_not_reviewed",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "只有官方目錄與wrapper",
+      "limitations": [
+        "未讀API本文；不得據此新增COM呼叫"
+      ],
+      "availability": "official_entrypoint_verified_body_not_reviewed",
+      "related_sources": [
+        {
+          "id": "LC-02",
+          "relationship": "Installed manual selected body sections reviewed separately; wrapper access and document version are separate evidence."
+        }
+      ]
+    },
+    {
+      "id": "PCI-52",
+      "title": "PCIe Gen5 Protocol Analyzer User Manual",
+      "version": "not extracted",
+      "date": null,
+      "url": "https://cdn.teledynelecroy.com/files/manuals/pciegen5_protocolanalyzer_usermanual.pdf",
+      "authority": "vendor_implementation",
+      "access": "公開PDF已定位；web讀取大小限制，未取得正文",
+      "review_depth": "metadata_only",
+      "sections": [
+        "not reviewed"
+      ],
+      "cannot_infer": "只有定位文件，不能宣稱正文已讀或功能在安裝版可用",
+      "wrapper_url": "https://www.teledynelecroy.com/doc/docview.aspx?id=13868",
+      "access_class": "located_body_not_reviewed",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "官方產品手冊目錄與下載URL已核對；web回報66,531,107 bytes超過可讀大小",
+      "limitations": [
+        "只有定位文件，不能宣稱正文已讀或功能在安裝版可用"
+      ],
+      "availability": "official_entrypoint_verified_body_not_reviewed"
+    },
+    {
+      "id": "PCI-53",
+      "title": "File-Based Decoding Manual",
+      "version": "PCI Express Protocol Analysis 11.37",
+      "date": "generated 2020-03-10 09:11",
+      "url": "https://cdn.teledynelecroy.com/files/manuals/petracer-file-based-decoding-manual.pdf",
+      "authority": "vendor_implementation",
+      "access": "公開全文可讀",
+      "review_depth": "metadata_only",
+      "sections": [
+        "Cover and table of contents only"
+      ],
+      "cannot_infer": "沒有讀decoder本文；不據此重啟.pecfgdec路徑、不推定native API或目前13.26支援",
+      "wrapper_url": "https://www.teledynelecroy.com/doc/docview.aspx?id=13897",
+      "access_class": "public_pdf_obtained_metadata_only_review",
+      "family": "PCI",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "已取得98頁PDF解析內容；只閱封面與目錄",
+      "limitations": [
+        "沒有讀decoder本文；不據此重啟.pecfgdec路徑、不推定native API或目前13.26支援",
+        "A parsed 98-page PDF is available, but no substantive body section was reviewed in this audit."
+      ],
+      "availability": "public_pdf_obtained",
+      "related_sources": [
+        {
+          "id": "LC-03",
+          "relationship": "Different file/version and review depth; public cover/TOC does not stand in for installed selected section."
+        }
+      ]
+    },
+    {
+      "id": "USB-01",
+      "title": "USB 3.2 base specification",
+      "version": "Revision 1.1",
+      "date": "June 2022; catalog 2022-06-03",
+      "url": "https://www.usb.org/document-library/usb-32-revision-11-june-2022",
+      "type": "base_spec",
+      "access": "official_zip_downloaded",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "6.9.1 Table 6-30",
+        "6.9.2 Figure 6-33 / Table 6-31",
+        "7.2.4.1.2-.3",
+        "7.5 (selected states via link-test cross-reference)",
+        "8.5.2-.3",
+        "8.10.1-.3",
+        "9.1.2",
+        "9.4.6-.7",
+        "9.6.7"
+      ],
+      "scope": "Current SuperSpeed/Enhanced SuperSpeed research; actual operating mode and analyzer field mapping still required",
+      "notes": "569 PDF pages; LFPS figure/footnotes visually checked. Reading is selective, not full-document or compliance review.",
+      "download_url": "https://www.usb.org/sites/default/files/usb_32_202206_0.zip",
+      "verified_on": "2026-10-13",
+      "access_observation": "official_zip_downloaded",
+      "public_access_status": "See access_observation for exact fetched surface",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "sections_reviewed",
+      "limitations": [
+        "569 PDF pages; LFPS figure/footnotes visually checked. Reading is selective, not full-document or compliance review."
+      ],
+      "availability": "public_bundle_downloaded",
+      "url_group": "URL-GROUP-03"
+    },
+    {
+      "id": "USB-02",
+      "title": "USB 3.2 bundled ECNs and Appendix E redline",
+      "version": "Per-file; not normalized",
+      "date": "Bundle June 2022; individual dates not fully verified",
+      "url": "https://www.usb.org/document-library/usb-32-revision-11-june-2022",
+      "type": "ecn_bundle",
+      "access": "official_zip_downloaded",
+      "review_depth": "metadata_only",
+      "sections": [],
+      "scope": "Retimer/polling, training symbols, LFPS, CRC, PHY scope screening",
+      "notes": "18 files under USB 3.2 ECNs; includes changes applied to base 1.0 and an Appendix E redline. Do not assume every bundled ECN is additional to base 1.1; incorporation and precedence need a rule-level check.",
+      "download_url": "https://www.usb.org/sites/default/files/usb_32_202206_0.zip",
+      "verified_on": "2026-10-13",
+      "access_observation": "official_zip_downloaded",
+      "public_access_status": "See access_observation for exact fetched surface",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "metadata_only",
+      "limitations": [
+        "18 files under USB 3.2 ECNs; includes changes applied to base 1.0 and an Appendix E redline. Do not assume every bundled ECN is additional to base 1.1; incorporation and precedence need a rule-level check."
+      ],
+      "availability": "public_bundle_downloaded",
+      "url_group": "URL-GROUP-03"
+    },
+    {
+      "id": "USB-03",
+      "title": "USB 2.0 base specification",
+      "version": "Revision 2.0",
+      "date": "2000-04-27; catalog/bundle 2025-06-03",
+      "url": "https://www.usb.org/document-library/usb-20-specification",
+      "type": "base_spec",
+      "access": "official_zip_downloaded",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "7.1.7.5 Reset",
+        "7.1.7.6 Suspend",
+        "7.1.7.7 Resume",
+        "9.1.2 Enumeration"
+      ],
+      "scope": "Conditional USB2 LS/FS/HS branch only; not a rule source for current _USB3_* events",
+      "notes": "650 PDF pages. Bundle date does not create a new base revision.",
+      "download_url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+      "verified_on": "2026-10-13",
+      "access_observation": "official_zip_downloaded",
+      "public_access_status": "See access_observation for exact fetched surface",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "sections_reviewed",
+      "limitations": [
+        "650 PDF pages. Bundle date does not create a new base revision."
+      ],
+      "availability": "public_bundle_downloaded",
+      "url_group": "URL-GROUP-04"
+    },
+    {
+      "id": "USB-04",
+      "title": "USB 2.0 bundle ECNs, errata and supplements",
+      "version": "Per-file; not normalized",
+      "date": "Catalog/bundle 2025-06-03",
+      "url": "https://www.usb.org/document-library/usb-20-specification",
+      "type": "ecn_errata_bundle",
+      "access": "official_zip_downloaded",
+      "review_depth": "metadata_only",
+      "sections": [],
+      "scope": "USB2 LPM, reset/connect, SOF, descriptors; electrical supplements only with electrical evidence",
+      "notes": "Complete PDF inventory of downloaded bundle recorded separately. First-page scope sampled for LPM errata, DCR, Connect Timing, Suspend Current and 2000/2002 errata. Normative changes not yet evaluated. HSIC/ICUSB/OTG/Micro-USB documents are conditional, not automatically in current scope.",
+      "download_url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+      "verified_on": "2026-10-13",
+      "access_observation": "official_zip_downloaded",
+      "public_access_status": "See access_observation for exact fetched surface",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "metadata_only",
+      "limitations": [
+        "Complete PDF inventory of downloaded bundle recorded separately. First-page scope sampled for LPM errata, DCR, Connect Timing, Suspend Current and 2000/2002 errata. Normative changes not yet evaluated. HSIC/ICUSB/OTG/Micro-USB documents are conditional, not automatically in current scope."
+      ],
+      "availability": "public_bundle_downloaded",
+      "url_group": "URL-GROUP-04"
+    },
+    {
+      "id": "USB-05",
+      "title": "USB 3.2 Link Layer Test Specification",
+      "version": "Revision 1.1",
+      "date": "2024-03-03; catalog 2024-03-04",
+      "url": "https://usb.org/document-library/usb-32-link-layer-test-specification",
+      "type": "test_spec",
+      "access": "public_pdf_opened",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "TD6.5",
+        "TD7.1",
+        "TD7.13-.17",
+        "TD7.23-.29",
+        "selected assertions for 7.5 / power states"
+      ],
+      "scope": "SuperSpeed/SSP link sequences; test-port role, Gen/lane mode, retimer applicability",
+      "notes": "106 pages. Test specification revision is independent of USB3.2 base revision. Exerciser test results cannot be inferred from passive capture.",
+      "download_url": "https://www.usb.org/sites/default/files/USB%203%202%20Link%20Layer%20Test%20Specification%202024%2003%2003.pdf",
+      "verified_on": "2026-10-13",
+      "access_observation": "public_pdf_opened",
+      "public_access_status": "See access_observation for exact fetched surface",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "sections_reviewed",
+      "limitations": [
+        "106 pages. Test specification revision is independent of USB3.2 base revision. Exerciser test results cannot be inferred from passive capture."
+      ],
+      "availability": "public_pdf_obtained"
+    },
+    {
+      "id": "USB-06",
+      "title": "SuperSpeed Hub LVS Test Specification",
+      "version": "Revision 1.15",
+      "date": "2019-11-21; catalog 2020-06-02",
+      "url": "https://www.usb.org/document-library/usb-3-hub-lvs-test-specification",
+      "type": "test_spec",
+      "access": "public_pdf_opened",
+      "review_depth": "metadata_only",
+      "sections": [
+        "Scope/contents only: TD10.101-.130"
+      ],
+      "scope": "Hubs and compound devices with exposed downstream ports",
+      "notes": "57 pages; cover says USB3.1 although filed under USB3.2. Different document from Hub CV CTS. Body retains legacy/incomplete assertion notes; do not use as all-rules authority.",
+      "download_url": "https://usb.org/sites/default/files/SSHUB%20LVS%20Specification%202019_11_21.pdf",
+      "verified_on": "2026-10-13",
+      "access_observation": "public_pdf_opened",
+      "public_access_status": "See access_observation for exact fetched surface",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "metadata_only",
+      "limitations": [
+        "57 pages; cover says USB3.1 although filed under USB3.2. Different document from Hub CV CTS. Body retains legacy/incomplete assertion notes; do not use as all-rules authority."
+      ],
+      "availability": "public_pdf_obtained"
+    },
+    {
+      "id": "USB-07",
+      "title": "USB3CV and XHCICV CTS package",
+      "version": "Package August 2025",
+      "date": "Catalog 2025-08-06",
+      "url": "https://www.usb.org/document-library/usb3cv-and-xhcicv-compliance-test-specifications",
+      "type": "test_spec_bundle",
+      "access": "official_zip_downloaded",
+      "review_depth": "metadata_only",
+      "sections": [],
+      "scope": "Document source bundle only",
+      "notes": "14 PDFs; tool version and package date are not individual CTS revision dates. No installer downloaded or executed.",
+      "download_url": "https://www.usb.org/sites/default/files/USB3CV_XHCICV_CTSs_August_2025%201_0.zip",
+      "verified_on": "2026-10-13",
+      "access_observation": "official_zip_downloaded",
+      "public_access_status": "See access_observation for exact fetched surface",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "metadata_only",
+      "limitations": [
+        "14 PDFs; tool version and package date are not individual CTS revision dates. No installer downloaded or executed."
+      ],
+      "availability": "public_bundle_downloaded",
+      "url_group": "URL-GROUP-05"
+    },
+    {
+      "id": "USB-08",
+      "title": "USB Command Verifier CTS for USB 3.2 Architecture",
+      "version": "Revision 1.22",
+      "date": "Cover 2019-07-10; history entry 2019-02-28",
+      "url": "https://www.usb.org/document-library/usb3cv-and-xhcicv-compliance-test-specifications",
+      "type": "test_spec",
+      "access": "official_zip_downloaded",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "TD9.6 Endpoint Companion",
+        "TD9.7 BOS (opening test steps)",
+        "TD9.23 Reset Device",
+        "TD9.24 U1/U2 (selected steps)"
+      ],
+      "scope": "Descriptor/EP0 and power-feature observation candidates",
+      "notes": "60 pages; physical connector shared USB2/SS fallback in TD9.23 needs both buses/port evidence. Do not apply a lab scenario's timing as generic passive-trace threshold.",
+      "download_url": "https://www.usb.org/sites/default/files/USB3CV_XHCICV_CTSs_August_2025%201_0.zip",
+      "verified_on": "2026-10-13",
+      "access_observation": "official_zip_downloaded",
+      "public_access_status": "See access_observation for exact fetched surface",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "sections_reviewed",
+      "limitations": [
+        "60 pages; physical connector shared USB2/SS fallback in TD9.23 needs both buses/port evidence. Do not apply a lab scenario's timing as generic passive-trace threshold."
+      ],
+      "availability": "public_bundle_downloaded",
+      "url_group": "URL-GROUP-05"
+    },
+    {
+      "id": "USB-09",
+      "title": "USB 3.2 Hub Compliance Test Specification",
+      "version": "Revision 1.21",
+      "date": "Cover 2019-07-10; history 2019-02-07",
+      "url": "https://www.usb.org/document-library/usb3cv-and-xhcicv-compliance-test-specifications",
+      "type": "test_spec",
+      "access": "official_zip_downloaded",
+      "review_depth": "metadata_only",
+      "sections": [
+        "Contents only: TD10.1-.25 etc."
+      ],
+      "scope": "Conditional hub descriptor, port-feature/status/change-bit support",
+      "notes": "91 pages; public bundle body calls itself intermediate draft. Preserve source status; applicability needs review.",
+      "download_url": "https://www.usb.org/sites/default/files/USB3CV_XHCICV_CTSs_August_2025%201_0.zip",
+      "verified_on": "2026-10-13",
+      "access_observation": "official_zip_downloaded",
+      "public_access_status": "See access_observation for exact fetched surface",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "metadata_only",
+      "limitations": [
+        "91 pages; public bundle body calls itself intermediate draft. Preserve source status; applicability needs review."
+      ],
+      "availability": "public_bundle_downloaded",
+      "url_group": "URL-GROUP-05"
+    },
+    {
+      "id": "USB-10",
+      "title": "USB Command Verifier CTS for USB 2.0",
+      "version": "Revision 1.42",
+      "date": "Cover 2019-06-19; running header 2019-07-10",
+      "url": "https://www.usb.org/document-library/usb3cv-and-xhcicv-compliance-test-specifications",
+      "type": "test_spec",
+      "access": "official_zip_downloaded",
+      "review_depth": "metadata_only",
+      "sections": [
+        "Introduction only: Chapters 9 / 11 scope"
+      ],
+      "scope": "Conditional USB2 descriptors/standard commands/hubs",
+      "notes": "78 pages; not a full USB-IF test universe.",
+      "download_url": "https://www.usb.org/sites/default/files/USB3CV_XHCICV_CTSs_August_2025%201_0.zip",
+      "verified_on": "2026-10-13",
+      "access_observation": "official_zip_downloaded",
+      "public_access_status": "See access_observation for exact fetched surface",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "metadata_only",
+      "limitations": [
+        "78 pages; not a full USB-IF test universe."
+      ],
+      "availability": "public_bundle_downloaded",
+      "url_group": "URL-GROUP-05"
+    },
+    {
+      "id": "USB-11",
+      "title": "xHCI Compliance Test Specification",
+      "version": "Revision 1.20",
+      "date": "Cover August 2025; history change 2025-01-09",
+      "url": "https://www.usb.org/document-library/usb3cv-and-xhcicv-compliance-test-specifications",
+      "type": "test_spec",
+      "access": "official_zip_downloaded",
+      "review_depth": "metadata_only",
+      "sections": [
+        "Scope/revision history only"
+      ],
+      "scope": "Conditional host-controller register/ring evidence",
+      "notes": "143-page clean and 144-page redline; scope lists xHCI 0.96/1.0/1.1/1.2. Not a substitute for observed wire traffic or blanket xHCI2.0 applicability.",
+      "download_url": "https://www.usb.org/sites/default/files/USB3CV_XHCICV_CTSs_August_2025%201_0.zip",
+      "verified_on": "2026-10-13",
+      "access_observation": "official_zip_downloaded",
+      "public_access_status": "See access_observation for exact fetched surface",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "metadata_only",
+      "limitations": [
+        "143-page clean and 144-page redline; scope lists xHCI 0.96/1.0/1.1/1.2. Not a substitute for observed wire traffic or blanket xHCI2.0 applicability."
+      ],
+      "availability": "public_bundle_downloaded",
+      "url_group": "URL-GROUP-05"
+    },
+    {
+      "id": "USB-12",
+      "title": "xHCI Interoperability Test Procedures for Peripherals, Hubs and Hosts",
+      "version": "Revision 1.04",
+      "date": "June 2025; catalog 2025-06-03",
+      "url": "https://www.usb.org/document-library/xhci-interoperability-test-procedures-peripherals-hubs-and-hosts",
+      "type": "interoperability_test_spec",
+      "access": "public_pdf_opened",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "Cover/revision history",
+        "1.1 Equipment",
+        "1.2 Software",
+        "1.3 logistical overview"
+      ],
+      "scope": "Scenario coverage: topology, reconnect, power states, device operation",
+      "notes": "147 pages. USB3.2 overview page stale Rev1.03; current library page + PDF agree Rev1.04. Remaining scenario chapters metadata_only; no lab actions executed.",
+      "download_url": "https://www.usb.org/sites/default/files/3.2%20Interoperability%20Testing%20v1.04%20w%20USB%20Type-C.pdf",
+      "verified_on": "2026-10-13",
+      "access_observation": "public_pdf_opened",
+      "public_access_status": "See access_observation for exact fetched surface",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "sections_reviewed",
+      "limitations": [
+        "147 pages. USB3.2 overview page stale Rev1.03; current library page + PDF agree Rev1.04. Remaining scenario chapters metadata_only; no lab actions executed."
+      ],
+      "availability": "public_pdf_obtained"
+    },
+    {
+      "id": "USB-13",
+      "title": "USB 3.2 Electrical Compliance Test Specification",
+      "version": "Revision 1.8",
+      "date": "Catalog 2026-07-28; overview says 2026-06-30",
+      "url": "https://www.usb.org/document-library/usb-32-electrical-compliance-test-specification",
+      "type": "electrical_test_spec",
+      "access": "public_pdf_opened",
+      "review_depth": "metadata_only",
+      "sections": [
+        "Cover/metadata only"
+      ],
+      "scope": "Electrical boundary catalog; scope/BERT/fixtures required",
+      "notes": "57 pages; no current capture electrical compliance claim. Cover date not separately transcribed; preserve catalog/overview dates separately.",
+      "download_url": "https://www.usb.org/sites/default/files/USB3.2_Electrical_Compliance_Test_Specification.pdf",
+      "verified_on": "2026-10-13",
+      "access_observation": "public_pdf_opened",
+      "public_access_status": "See access_observation for exact fetched surface",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "metadata_only",
+      "limitations": [
+        "57 pages; no current capture electrical compliance claim. Cover date not separately transcribed; preserve catalog/overview dates separately."
+      ],
+      "availability": "public_pdf_obtained"
+    },
+    {
+      "id": "USB-14",
+      "title": "USB 2.0 Electrical Compliance Test Specification",
+      "version": "Version 1.08",
+      "date": "Cover April 2026; history 2026-04-17; catalog 2026-04-21",
+      "url": "https://www.usb.org/document-library/usb-20-electrical-compliance-test-specification",
+      "type": "electrical_test_spec",
+      "access": "public_pdf_opened",
+      "review_depth": "metadata_only",
+      "sections": [
+        "Summary/scope; headings only"
+      ],
+      "scope": "USB2 electrical boundary catalog",
+      "notes": "12 pages. Includes DCR ECN updates; physical-layer tests not inferable from decoded packets.",
+      "download_url": "https://www.usb.org/sites/default/files/USB2%20Electrical%20Compliance%20Specification%20v1.08.pdf",
+      "verified_on": "2026-10-13",
+      "access_observation": "public_pdf_opened",
+      "public_access_status": "See access_observation for exact fetched surface",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "metadata_only",
+      "limitations": [
+        "12 pages. Includes DCR ECN updates; physical-layer tests not inferable from decoded packets."
+      ],
+      "availability": "public_pdf_obtained"
+    },
+    {
+      "id": "USB-15",
+      "title": "USB-IF Compliance Tools catalog",
+      "version": "USB3CV 3.4.1.0 / XHCICV 3.3.0.0 / USBET20 2.20.00 as listed",
+      "date": "USB3CV 2026-08-24; XHCICV 2026-07-28",
+      "url": "https://www.usb.org/compliancetools",
+      "type": "tool_catalog",
+      "access": "public_html_read",
+      "review_depth": "catalog_reviewed",
+      "sections": [
+        "USB3CV",
+        "XHCICV",
+        "USB xHSETT",
+        "SigTest",
+        "USBET20"
+      ],
+      "scope": "Find current CTS/tool entrypoints; no installation or execution",
+      "notes": "USB3CV covers USB2 and USB3.2. Catalog lists intrusive controller takeover/setup; source search does not authorize those actions.",
+      "download_url": null,
+      "verified_on": "2026-10-13",
+      "access_observation": "public_html_read",
+      "public_access_status": "See access_observation for exact fetched surface",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "catalog_reviewed",
+      "limitations": [
+        "USB3CV covers USB2 and USB3.2. Catalog lists intrusive controller takeover/setup; source search does not authorize those actions."
+      ],
+      "availability": "public_catalog_read"
+    },
+    {
+      "id": "USB-16",
+      "title": "USB-IF USB3.2 / USB2 compliance program and test matrices",
+      "version": "Catalog entrypoint",
+      "date": "Checked 2026-10-13",
+      "url": "https://www.usb.org/usb-32",
+      "type": "test_program_catalog",
+      "access": "public_html_read",
+      "review_depth": "catalog_reviewed",
+      "sections": [
+        "Test specifications / approved equipment"
+      ],
+      "scope": "Scope/equipment screening only",
+      "notes": "Related USB2 entrypoint https://www.usb.org/usb2 ; matrices discovered, not read. Do not equate listed tests with repo qualification.",
+      "download_url": null,
+      "verified_on": "2026-10-13",
+      "access_observation": "public_html_read",
+      "public_access_status": "See access_observation for exact fetched surface",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "catalog_reviewed",
+      "limitations": [
+        "Related USB2 entrypoint https://www.usb.org/usb2 ; matrices discovered, not read. Do not equate listed tests with repo qualification."
+      ],
+      "availability": "public_catalog_read"
+    },
+    {
+      "id": "USB-17",
+      "title": "USB4 Specification",
+      "version": "Version 2.0",
+      "date": "Catalog 2026-04-02; linked package November 2025",
+      "url": "https://usb.org/document-library/usb4r-specification-v20",
+      "type": "base_spec",
+      "access": "public_metadata_only",
+      "review_depth": "metadata_only",
+      "sections": [],
+      "scope": "Deferred: only if USB4 router/tunnel events and product need established",
+      "notes": "No USB4 body/ZIP downloaded.",
+      "download_url": "https://www.usb.org/sites/default/files/USB4%20Specification%20November%202025.zip",
+      "verified_on": "2026-10-13",
+      "access_observation": "public_metadata_only",
+      "public_access_status": "Public official metadata/entrypoint verified; body availability not independently tested",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "metadata_only",
+      "limitations": [
+        "No USB4 body/ZIP downloaded."
+      ],
+      "availability": "official_metadata_verified_body_access_not_tested"
+    },
+    {
+      "id": "USB-18",
+      "title": "USB Type-C Cable and Connector Specification",
+      "version": "Release 2.5",
+      "date": "Catalog 2026-04-08",
+      "url": "https://www.usb.org/document-library/usb-type-cr-cable-and-connector-specification-release-25",
+      "type": "connector_spec",
+      "access": "public_metadata_only",
+      "review_depth": "metadata_only",
+      "sections": [],
+      "scope": "Deferred: only if CC/orientation/cable/attach evidence is in target scope",
+      "notes": "No body/ZIP downloaded; USB Type-C connector does not establish USB4 or PD behavior.",
+      "download_url": null,
+      "verified_on": "2026-10-13",
+      "access_observation": "public_metadata_only",
+      "public_access_status": "Public official metadata/entrypoint verified; body availability not independently tested",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "metadata_only",
+      "limitations": [
+        "No body/ZIP downloaded; USB Type-C connector does not establish USB4 or PD behavior."
+      ],
+      "availability": "official_metadata_verified_body_access_not_tested"
+    },
+    {
+      "id": "USB-19",
+      "title": "USB Power Delivery Specification",
+      "version": "Revision 3.2 Version 1.2 (catalog)",
+      "date": "Catalog 2026-09-14",
+      "url": "https://www.usb.org/document-library/usb-power-delivery",
+      "type": "base_spec",
+      "access": "public_metadata_only",
+      "review_depth": "metadata_only",
+      "sections": [],
+      "scope": "Deferred: only if PD/CC decoded messages and a power-negotiation question exist",
+      "notes": "No body/ZIP downloaded. Version from official document-library listing, not inferred from bus data.",
+      "download_url": null,
+      "verified_on": "2026-10-13",
+      "access_observation": "public_metadata_only",
+      "public_access_status": "Public official metadata/entrypoint verified; body availability not independently tested",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "metadata_only",
+      "limitations": [
+        "No body/ZIP downloaded. Version from official document-library listing, not inferred from bus data."
+      ],
+      "availability": "official_metadata_verified_body_access_not_tested"
+    },
+    {
+      "id": "USB-20",
+      "title": "Intel xHCI specifications",
+      "version": "Rev1.2c and Rev2.0 listed",
+      "date": "Catalog checked 2026-10-13; issue dates not verified",
+      "url": "https://www.intel.com/content/www/us/en/products/docs/io/universal-serial-bus/universal-serial-bus-specifications.html",
+      "type": "host_interface_spec",
+      "access": "public_catalog; 1.2c PDF opened; 2.0 web fetch error",
+      "review_depth": "metadata_only",
+      "sections": [
+        "1.2c cover/contents only"
+      ],
+      "scope": "Deferred cross-layer register/TRB/host evidence; not field definition for LeCroy wire events",
+      "notes": "1.2c document 868295, 600 pages. Version choice must match actual HCIVERSION/capabilities; latest does not automatically apply.",
+      "download_url": "https://cdrdv2.intel.com/v1/dl/getContent/868295",
+      "verified_on": "2026-10-13",
+      "access_observation": "public_catalog; 1.2c PDF opened; 2.0 web fetch error",
+      "public_access_status": "See access_observation for exact fetched surface",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "metadata_only",
+      "limitations": [
+        "1.2c document 868295, 600 pages. Version choice must match actual HCIVERSION/capabilities; latest does not automatically apply."
+      ],
+      "availability": "public_1_2c_pdf_obtained_2_0_fetch_failed"
+    },
+    {
+      "id": "USB-21",
+      "title": "USB Mass Storage Bulk-Only Transport",
+      "version": "Revision 1.0",
+      "date": "Catalog 1999-09-30",
+      "url": "https://www.usb.org/document-library/mass-storage-bulk-only-10",
+      "type": "class_transport_spec",
+      "access": "public_metadata_and_pdf_entry",
+      "review_depth": "metadata_only",
+      "sections": [],
+      "scope": "Deferred until interface protocol and BOT selection are observed",
+      "notes": "BOT is not implied by SSD filename. No class evaluator yet; class commands distinct from USB link/transaction recovery.",
+      "download_url": "https://www.usb.org/sites/default/files/usbmassbulk_10.pdf",
+      "verified_on": "2026-10-13",
+      "access_observation": "public_metadata_and_pdf_entry",
+      "public_access_status": "See access_observation for exact fetched surface",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "metadata_only",
+      "limitations": [
+        "BOT is not implied by SSD filename. No class evaluator yet; class commands distinct from USB link/transaction recovery."
+      ],
+      "availability": "public_metadata_and_pdf_entry_verified_body_not_reviewed"
+    },
+    {
+      "id": "USB-22",
+      "title": "USB Mass Storage UASP Bootability and Adopters Agreement",
+      "version": "Version 1.0",
+      "date": "Catalog 2013-03-04",
+      "url": "https://www.usb.org/document-library/usb-mass-storage-class-specification-uasp-bootability-v10-and-adopters-agreement",
+      "type": "class_bootability_spec",
+      "access": "public_metadata_only",
+      "review_depth": "metadata_only",
+      "sections": [],
+      "scope": "Deferred only if UASP boot path is a real requirement",
+      "notes": "Bootability document is not the complete UAS transport standard.",
+      "download_url": null,
+      "verified_on": "2026-10-13",
+      "access_observation": "public_metadata_only",
+      "public_access_status": "Public official metadata/entrypoint verified; body availability not independently tested",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "metadata_only",
+      "limitations": [
+        "Bootability document is not the complete UAS transport standard."
+      ],
+      "availability": "official_metadata_verified_body_access_not_tested"
+    },
+    {
+      "id": "USB-23",
+      "title": "T10 USB Attached SCSI / USB Attached SCSI-3",
+      "version": "INCITS 471-2010; INCITS 572-2021",
+      "date": "UAS draft r04 2010-03-09; UAS3 r05 2020-11-07",
+      "url": "https://www.t10.org/pubs.htm",
+      "type": "class_transport_standard_catalog",
+      "access": "public_metadata; final draft access restricted per T10 catalog",
+      "review_depth": "metadata_only",
+      "sections": [],
+      "scope": "Deferred pending observed UAS interface and authorized source access",
+      "notes": "Official project pages https://t10.org/members/w_uas-.htm and https://t10.org/members/w_uas3.htm . No gated file request/bypass. UASP CTS/bootability cannot replace transport standard.",
+      "download_url": null,
+      "verified_on": "2026-10-13",
+      "access_observation": "public_metadata; final draft access restricted per T10 catalog",
+      "public_access_status": "Official public catalog verified; final working drafts identified as member-restricted; no restricted fetch attempted",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "metadata_only",
+      "limitations": [
+        "Official project pages https://t10.org/members/w_uas-.htm and https://t10.org/members/w_uas3.htm . No gated file request/bypass. UASP CTS/bootability cannot replace transport standard."
+      ],
+      "availability": "public_catalog_read_final_draft_restricted_not_fetched"
+    },
+    {
+      "id": "USB-24",
+      "title": "USB Mass Storage Class Compliance Test Specification",
+      "version": "Cover Rev1.1; history Rev1.1a",
+      "date": "2014-06-13",
+      "url": "https://www.usb.org/document-library/usb3cv-and-xhcicv-compliance-test-specifications",
+      "type": "class_test_spec",
+      "access": "official_zip_downloaded",
+      "review_depth": "metadata_only",
+      "sections": [
+        "Cover/revision history only"
+      ],
+      "scope": "Deferred conditional BOT/class tests",
+      "notes": "Filename MSC-compliance-1.1a.pdf; preserve cover/history variation.",
+      "download_url": "https://www.usb.org/sites/default/files/USB3CV_XHCICV_CTSs_August_2025%201_0.zip",
+      "verified_on": "2026-10-13",
+      "access_observation": "official_zip_downloaded",
+      "public_access_status": "See access_observation for exact fetched surface",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "metadata_only",
+      "limitations": [
+        "Filename MSC-compliance-1.1a.pdf; preserve cover/history variation."
+      ],
+      "availability": "public_bundle_downloaded",
+      "url_group": "URL-GROUP-05"
+    },
+    {
+      "id": "USB-25",
+      "title": "UASP Testing for High Speed and SuperSpeed Devices",
+      "version": "Rev0.9b",
+      "date": "2012-06-06",
+      "url": "https://www.usb.org/document-library/usb3cv-and-xhcicv-compliance-test-specifications",
+      "type": "class_test_spec",
+      "access": "official_zip_downloaded",
+      "review_depth": "metadata_only",
+      "sections": [
+        "Cover/revision history only"
+      ],
+      "scope": "Deferred conditional UAS class tests",
+      "notes": "Public CTS bundle contains this working draft; do not label normative current UAS standard or copy body into repo.",
+      "download_url": "https://www.usb.org/sites/default/files/USB3CV_XHCICV_CTSs_August_2025%201_0.zip",
+      "verified_on": "2026-10-13",
+      "access_observation": "official_zip_downloaded",
+      "public_access_status": "See access_observation for exact fetched surface",
+      "family": "USB",
+      "reviewed_on": "2026-10-13",
+      "runtime_proof": false,
+      "review_depth_detail": "metadata_only",
+      "limitations": [
+        "Public CTS bundle contains this working draft; do not label normative current UAS standard or copy body into repo."
+      ],
+      "availability": "public_bundle_downloaded",
+      "url_group": "URL-GROUP-05"
+    },
+    {
+      "path": "C:\\Program Files\\LeCroy\\PCIe Protocol Suite\\Documents\\PETracerVSEManual.pdf",
+      "sha256": "4fbf6e664bd9cccfa66d6abad9be3828fa7bb202ec997117f956f719d433b105",
+      "pages": 270,
+      "document_version": "PCIe Protocol Analysis 13.26; generated 2026-01-08",
+      "evidence_class": "installed_vendor_document",
+      "runtime_proof": false,
+      "sections": [
+        "5.2.2 DLLP-specific (PDF21-22 / printed16-17)",
+        "5.2.3 TLP-specific (PDF23-26 / printed18-21)",
+        "5.2.10 Link transactions (PDF36 / printed31)",
+        "5.2.11 Split transactions (PDF37 / printed32)"
+      ],
+      "fields": [
+        "DLLPType",
+        "AckNak_SeqNum",
+        "VC_ID",
+        "HdrFC",
+        "DataFC",
+        "HdrScale",
+        "DataScale",
+        "FCError",
+        "BadCRC",
+        "PSN",
+        "Length",
+        "EP",
+        "BCM",
+        "ByteCount",
+        "LowerAddr",
+        "MessageCode",
+        "MessageRoute",
+        "TransactionStatus",
+        "CompletionStatus",
+        "Metric_NumOfPackets",
+        "Metric_ResponseTime",
+        "Metric_LatencyTime",
+        "Metric_PayloadBytes"
+      ],
+      "caution": "Different event levels have different field applicability. Native split section contains Link-transaction wording; use named constants and verify runtime shape.",
+      "id": "LC-01",
+      "family": "LC",
+      "reviewed_on": "2026-10-13",
+      "review_depth_detail": "Installed source selected sections/lines inspected; no runtime execution.",
+      "limitations": [
+        "Different event levels have different field applicability. Native split section contains Link-transaction wording; use named constants and verify runtime shape.",
+        "Source-only evidence; APIs, fields, constants and examples do not prove runtime extraction or evaluator correctness."
+      ],
+      "local_path": "C:\\Program Files\\LeCroy\\PCIe Protocol Suite\\Documents\\PETracerVSEManual.pdf",
+      "title": "PETracerVSEManual.pdf",
+      "version": "PCIe Protocol Analysis 13.26; generated 2026-01-08",
+      "date": null,
+      "authority": "vendor_documentation",
+      "access": "installed_local_file_read",
+      "access_class": "local_document_or_source_selected_review",
+      "availability": "installed_local_source_obtained",
+      "review_depth": "sections_reviewed",
+      "documented_surface_status": "source_documented_not_runtime_qualified_by_this_audit",
+      "transient_provenance": {
+        "extraction_path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\lecroy-source-audit-20261013\\PETracerVSEManual.pages.json",
+        "durable_source": false
+      },
+      "related_sources": [
+        {
+          "id": "PCI-37",
+          "relationship": "Different public manual version; installed source and runtime qualification must remain distinct."
+        }
+      ]
+    },
+    {
+      "path": "C:\\Program Files\\LeCroy\\PCIe Protocol Suite\\Documents\\PCIeAutomationManual.pdf",
+      "sha256": "ce053542fcfb5b1501b462fbf102e2c346281420573243c8d30dc22529e2c5d6",
+      "pages": 1178,
+      "document_version": "PCIe Protocol Analysis 13.26; generated 2026-01-08",
+      "evidence_class": "installed_vendor_document",
+      "runtime_proof": false,
+      "sections": [
+        "BuildConfigurationSpace PDF340 / printed292",
+        "ExportToText PDF366-367 / printed318-319",
+        "ExportToText2 PDF436 / printed388",
+        "GetConfigurationSpace PDF461 / printed413",
+        "PEConfigurationSpace PDF951+ / printed903+"
+      ],
+      "apis": [
+        "IPETraceForScript11::GetConfigurationSpace(bdf,packet_number)",
+        "IPEAnalyzer61::BuildConfigurationSpace(config_space_data,config_space_bitset)",
+        "ITrace::ExportToText(file_name,packet_from,packet_to)",
+        "IPETraceForScript3::ExportToText2(file_name,index_from,index_to,level)"
+      ],
+      "caution": "ExportToText excludes display-hidden packets and auto-adjusts invalid range. Existing local GetConfigurationSpace probe is sampled PASS; BuildConfigurationSpace is excluded from main line by owner decision.",
+      "id": "LC-02",
+      "family": "LC",
+      "reviewed_on": "2026-10-13",
+      "review_depth_detail": "Installed source selected sections/lines inspected; no runtime execution.",
+      "limitations": [
+        "ExportToText excludes display-hidden packets and auto-adjusts invalid range. Existing local GetConfigurationSpace probe is sampled PASS; BuildConfigurationSpace is excluded from main line by owner decision.",
+        "Source-only evidence; APIs, fields, constants and examples do not prove runtime extraction or evaluator correctness."
+      ],
+      "local_path": "C:\\Program Files\\LeCroy\\PCIe Protocol Suite\\Documents\\PCIeAutomationManual.pdf",
+      "title": "PCIeAutomationManual.pdf",
+      "version": "PCIe Protocol Analysis 13.26; generated 2026-01-08",
+      "date": null,
+      "authority": "vendor_documentation",
+      "access": "installed_local_file_read",
+      "access_class": "local_document_or_source_selected_review",
+      "availability": "installed_local_source_obtained",
+      "review_depth": "sections_reviewed",
+      "documented_surface_status": "source_documented_not_runtime_qualified_by_this_audit",
+      "transient_provenance": {
+        "extraction_path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\lecroy-source-audit-20261013\\PCIeAutomationManual.pages.json",
+        "durable_source": false
+      },
+      "related_sources": [
+        {
+          "id": "PCI-51",
+          "relationship": "Public wrapper only; does not negate the installed manual selected-section review."
+        }
+      ]
+    },
+    {
+      "path": "C:\\Program Files\\LeCroy\\PCIe Protocol Suite\\Documents\\PETracerFileBasedDecodingManual.pdf",
+      "sha256": "cb5acf98ed220c65fdefdaee366a4f49035ed62817e717b17c762ba03aaf269c",
+      "pages": 89,
+      "document_version": "Installed file; PDF metadata 2026-01-08",
+      "evidence_class": "installed_vendor_document",
+      "runtime_proof": false,
+      "sections": [
+        "Configuration Space discussion PDF76"
+      ],
+      "caution": "File-based decode reference only. No renewed .pecfgdec/CFG.dec install scope.",
+      "id": "LC-03",
+      "family": "LC",
+      "reviewed_on": "2026-10-13",
+      "review_depth_detail": "Installed source selected sections/lines inspected; no runtime execution.",
+      "limitations": [
+        "File-based decode reference only. No renewed .pecfgdec/CFG.dec install scope.",
+        "Source-only evidence; APIs, fields, constants and examples do not prove runtime extraction or evaluator correctness."
+      ],
+      "local_path": "C:\\Program Files\\LeCroy\\PCIe Protocol Suite\\Documents\\PETracerFileBasedDecodingManual.pdf",
+      "title": "PETracerFileBasedDecodingManual.pdf",
+      "version": "Installed file; PDF metadata 2026-01-08",
+      "date": null,
+      "authority": "vendor_documentation",
+      "access": "installed_local_file_read",
+      "access_class": "local_document_or_source_selected_review",
+      "availability": "installed_local_source_obtained",
+      "review_depth": "sections_reviewed",
+      "documented_surface_status": "source_documented_not_runtime_qualified_by_this_audit",
+      "transient_provenance": {
+        "extraction_path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\lecroy-source-audit-20261013\\PETracerFileBasedDecodingManual.pages.json",
+        "durable_source": false
+      }
+    },
+    {
+      "path": "C:\\Program Files\\LeCroy\\USB Protocol Suite\\Documents\\USBProtocolSuiteVSEManual.pdf",
+      "sha256": "2e2d421164a2382f2634d0103582d973c7991c10957fa7a0d7f4858251dce2df",
+      "pages": 271,
+      "document_version": "Manual v9.12; USB Protocol Suite v10.13+; July 2025",
+      "evidence_class": "installed_vendor_document",
+      "runtime_proof": false,
+      "sections": [
+        "5.2.1.3.3 LFPS PDF30-31",
+        "5.2.1.3.6 Link Command PDF32",
+        "5.2.2 Transaction PDF86-87",
+        "5.2.4 Transfer PDF89",
+        "Packet events PDF145",
+        "Transfer event types PDF149",
+        "8.18 SendTransfer PDF168",
+        "8.21 SendPktsWithBadCRC PDF170",
+        "9.1-9.4 decoded packet/script fields PDF171-174"
+      ],
+      "fields": [
+        "LnkCmd",
+        "LinkCmdInfo",
+        "CRC5",
+        "LinkCmdInfo_2",
+        "CRC5_2",
+        "Type",
+        "Duration",
+        "DurationSec",
+        "DurationNS",
+        "PatternType",
+        "StartsPattern",
+        "TraToken",
+        "TraCompletionFlag",
+        "Complete",
+        "XferType",
+        "Addr",
+        "Endp",
+        "FirstInXfer",
+        "LastInXfer",
+        "Completed",
+        "Halted",
+        "CtrlDirection",
+        "ReqType",
+        "ReqRecipient",
+        "bRequest",
+        "wIndex",
+        "wValue",
+        "wLength",
+        "PayloadLength"
+      ],
+      "apis": [
+        "SendTransfer",
+        "SendTransaction",
+        "SendPktsWithBadCRC",
+        "GetDecodedPktField",
+        "GetHexPktField",
+        "GetDecodedScriptField",
+        "GetHexScriptField"
+      ],
+      "caution": "No dedicated USB LTSSM state member found; event _USB3_LTSSM_STATE listed only. Generic packet field lookup needs exact observed field name. SendTransfer defaults completed=1; bad CRC packets are excluded by default per manual. Transaction fields include USB2-specific PID semantics; USB3 applicability requires probe.",
+      "id": "LC-04",
+      "family": "LC",
+      "reviewed_on": "2026-10-13",
+      "review_depth_detail": "Installed source selected sections/lines inspected; no runtime execution.",
+      "limitations": [
+        "No dedicated USB LTSSM state member found; event _USB3_LTSSM_STATE listed only. Generic packet field lookup needs exact observed field name. SendTransfer defaults completed=1; bad CRC packets are excluded by default per manual. Transaction fields include USB2-specific PID semantics; USB3 applicability requires probe.",
+        "Source-only evidence; APIs, fields, constants and examples do not prove runtime extraction or evaluator correctness."
+      ],
+      "local_path": "C:\\Program Files\\LeCroy\\USB Protocol Suite\\Documents\\USBProtocolSuiteVSEManual.pdf",
+      "title": "USBProtocolSuiteVSEManual.pdf",
+      "version": "Manual v9.12; USB Protocol Suite v10.13+; July 2025",
+      "date": null,
+      "authority": "vendor_documentation",
+      "access": "installed_local_file_read",
+      "access_class": "local_document_or_source_selected_review",
+      "availability": "installed_local_source_obtained",
+      "review_depth": "sections_reviewed",
+      "documented_surface_status": "source_documented_not_runtime_qualified_by_this_audit",
+      "transient_provenance": {
+        "extraction_path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\lecroy-source-audit-20261013\\USBProtocolSuiteVSEManual.pages.json",
+        "durable_source": false
+      }
+    },
+    {
+      "path": "C:\\Program Files\\LeCroy\\USB Protocol Suite\\Documents\\USBAnalyzerAutomationManual.pdf",
+      "sha256": "0f76e5264eca6c11f424de053db3c6a2d38176f77cf7ee358dca8efcc34556ba",
+      "pages": 251,
+      "document_version": "Last update 2026-06-24; suite version not asserted by cover",
+      "evidence_class": "installed_vendor_document",
+      "runtime_proof": false,
+      "sections": [
+        "ExportToText PDF112-113 / printed108-109",
+        "GetPacket PDF122-125 / printed118-121"
+      ],
+      "apis": [
+        "ITrace::ExportToText",
+        "ITrace::GetPacket"
+      ],
+      "caution": "GetPacket returns raw packet, not native transfer grouping. No TransferParser/GetTransfer API name found in installed manual text.",
+      "id": "LC-05",
+      "family": "LC",
+      "reviewed_on": "2026-10-13",
+      "review_depth_detail": "Installed source selected sections/lines inspected; no runtime execution.",
+      "limitations": [
+        "GetPacket returns raw packet, not native transfer grouping. No TransferParser/GetTransfer API name found in installed manual text.",
+        "Source-only evidence; APIs, fields, constants and examples do not prove runtime extraction or evaluator correctness."
+      ],
+      "local_path": "C:\\Program Files\\LeCroy\\USB Protocol Suite\\Documents\\USBAnalyzerAutomationManual.pdf",
+      "title": "USBAnalyzerAutomationManual.pdf",
+      "version": "Last update 2026-06-24; suite version not asserted by cover",
+      "date": null,
+      "authority": "vendor_documentation",
+      "access": "installed_local_file_read",
+      "access_class": "local_document_or_source_selected_review",
+      "availability": "installed_local_source_obtained",
+      "review_depth": "sections_reviewed",
+      "documented_surface_status": "source_documented_not_runtime_qualified_by_this_audit",
+      "transient_provenance": {
+        "extraction_path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\lecroy-source-audit-20261013\\USBAnalyzerAutomationManual.pages.json",
+        "durable_source": false
+      }
+    },
+    {
+      "path": "C:\\Program Files\\LeCroy\\USB Protocol Suite\\Documents\\USBScriptDecodeManual.pdf",
+      "sha256": "ee7ec4273a52277111526154e4ee4c680ccb91560d2f918d44ec8f57fdca930a",
+      "pages": 90,
+      "document_version": "CSL Reference Manual; PDF metadata 2019-12-03",
+      "evidence_class": "installed_vendor_document",
+      "runtime_proof": false,
+      "sections": [
+        "CSL decode functions / bit fields; general reference"
+      ],
+      "caution": "No TransferParser name found; native transfer extraction is documented in VSE LC-04, not assumed here.",
+      "id": "LC-06",
+      "family": "LC",
+      "reviewed_on": "2026-10-13",
+      "review_depth_detail": "Installed source selected sections/lines inspected; no runtime execution.",
+      "limitations": [
+        "No TransferParser name found; native transfer extraction is documented in VSE LC-04, not assumed here.",
+        "Source-only evidence; APIs, fields, constants and examples do not prove runtime extraction or evaluator correctness."
+      ],
+      "local_path": "C:\\Program Files\\LeCroy\\USB Protocol Suite\\Documents\\USBScriptDecodeManual.pdf",
+      "title": "USBScriptDecodeManual.pdf",
+      "version": "CSL Reference Manual; PDF metadata 2019-12-03",
+      "date": null,
+      "authority": "vendor_documentation",
+      "access": "installed_local_file_read",
+      "access_class": "local_document_or_source_selected_review",
+      "availability": "installed_local_source_obtained",
+      "review_depth": "sections_reviewed",
+      "documented_surface_status": "source_documented_not_runtime_qualified_by_this_audit",
+      "transient_provenance": {
+        "extraction_path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\lecroy-source-audit-20261013\\USBScriptDecodeManual.pages.json",
+        "durable_source": false
+      }
+    },
+    {
+      "path": "C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\VS_constants.inc",
+      "sha256": "799311b51894b31b1b35b99294227d3cb770d28758b0eee4d915cad09e6a2e6d",
+      "evidence_class": "installed_vendor_source",
+      "runtime_proof": false,
+      "reference": "DLLP codes lines43-67; message codes201-220; named constants may be engine-defined/commented",
+      "id": "LC-07",
+      "family": "LC",
+      "reviewed_on": "2026-10-13",
+      "review_depth_detail": "Installed source selected sections/lines inspected; no runtime execution.",
+      "limitations": [
+        "Source-only evidence; APIs, fields, constants and examples do not prove runtime extraction or evaluator correctness."
+      ],
+      "local_path": "C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\VS_constants.inc",
+      "title": "VS_constants.inc",
+      "version": "Installed vendor source; exact file identified by SHA-256",
+      "date": null,
+      "authority": "vendor_source",
+      "access": "installed_local_file_read",
+      "access_class": "local_document_or_source_selected_review",
+      "availability": "installed_local_source_obtained",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "DLLP codes lines43-67; message codes201-220; named constants may be engine-defined/commented"
+      ],
+      "documented_surface_status": "source_documented_not_runtime_qualified_by_this_audit"
+    },
+    {
+      "path": "C:\\Users\\Public\\Documents\\LeCroy\\USB Protocol Suite\\Scripts\\VFScripts\\VS_constants.inc",
+      "sha256": "e92d66548e1a61c727a34d5f251e3c742e469af0683b65c8d94569fb139729fb",
+      "evidence_class": "installed_vendor_source",
+      "runtime_proof": false,
+      "reference": "Link command values lines93-139",
+      "id": "LC-08",
+      "family": "LC",
+      "reviewed_on": "2026-10-13",
+      "review_depth_detail": "Installed source selected sections/lines inspected; no runtime execution.",
+      "limitations": [
+        "Source-only evidence; APIs, fields, constants and examples do not prove runtime extraction or evaluator correctness."
+      ],
+      "local_path": "C:\\Users\\Public\\Documents\\LeCroy\\USB Protocol Suite\\Scripts\\VFScripts\\VS_constants.inc",
+      "title": "VS_constants.inc",
+      "version": "Installed vendor source; exact file identified by SHA-256",
+      "date": null,
+      "authority": "vendor_source",
+      "access": "installed_local_file_read",
+      "access_class": "local_document_or_source_selected_review",
+      "availability": "installed_local_source_obtained",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "Link command values lines93-139"
+      ],
+      "documented_surface_status": "source_documented_not_runtime_qualified_by_this_audit"
+    },
+    {
+      "path": "C:\\Users\\Public\\Documents\\LeCroy\\USB Protocol Suite\\Scripts\\VFScripts\\VSTools.inc",
+      "sha256": "77e4d6a91dc6396866794fe095977f2719391c789be2ed4b752e6ea1e3ae2699",
+      "evidence_class": "installed_vendor_source",
+      "runtime_proof": false,
+      "reference": "ReportTraEventInfo389; ReportXferEventInfo528; GetLfpsDesc1003-1021; GetUsb3LnkCmdDesc1051; Report link1137-1140",
+      "id": "LC-09",
+      "family": "LC",
+      "reviewed_on": "2026-10-13",
+      "review_depth_detail": "Installed source selected sections/lines inspected; no runtime execution.",
+      "limitations": [
+        "Source-only evidence; APIs, fields, constants and examples do not prove runtime extraction or evaluator correctness."
+      ],
+      "local_path": "C:\\Users\\Public\\Documents\\LeCroy\\USB Protocol Suite\\Scripts\\VFScripts\\VSTools.inc",
+      "title": "VSTools.inc",
+      "version": "Installed vendor source; exact file identified by SHA-256",
+      "date": null,
+      "authority": "vendor_source",
+      "access": "installed_local_file_read",
+      "access_class": "local_document_or_source_selected_review",
+      "availability": "installed_local_source_obtained",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "ReportTraEventInfo389; ReportXferEventInfo528; GetLfpsDesc1003-1021; GetUsb3LnkCmdDesc1051; Report link1137-1140"
+      ],
+      "documented_surface_status": "source_documented_not_runtime_qualified_by_this_audit"
+    },
+    {
+      "path": "C:\\Users\\Public\\Documents\\LeCroy\\USB Protocol Suite\\Scripts\\VFScripts\\Examples\\zExampleXfer.vse",
+      "sha256": "03f53a435dce3dd5d073d028f19207380e682abba4fcc44c0d19225f18aa8ce9",
+      "evidence_class": "installed_vendor_source",
+      "runtime_proof": false,
+      "reference": "SendLevelOnly(_XFER), ReportXferEventInfo, GetDecodedScriptField/GetHexScriptField",
+      "id": "LC-10",
+      "family": "LC",
+      "reviewed_on": "2026-10-13",
+      "review_depth_detail": "Installed source selected sections/lines inspected; no runtime execution.",
+      "limitations": [
+        "Source-only evidence; APIs, fields, constants and examples do not prove runtime extraction or evaluator correctness."
+      ],
+      "local_path": "C:\\Users\\Public\\Documents\\LeCroy\\USB Protocol Suite\\Scripts\\VFScripts\\Examples\\zExampleXfer.vse",
+      "title": "zExampleXfer.vse",
+      "version": "Installed vendor source; exact file identified by SHA-256",
+      "date": null,
+      "authority": "vendor_source",
+      "access": "installed_local_file_read",
+      "access_class": "local_document_or_source_selected_review",
+      "availability": "installed_local_source_obtained",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "SendLevelOnly(_XFER), ReportXferEventInfo, GetDecodedScriptField/GetHexScriptField"
+      ],
+      "documented_surface_status": "source_documented_not_runtime_qualified_by_this_audit"
+    },
+    {
+      "path": "C:\\Users\\Public\\Documents\\LeCroy\\USB Protocol Suite\\Scripts\\VFScripts\\Examples\\zExampleTra.vse",
+      "sha256": "8b04a36e4c90428e42595e641e4fe7d0b35ce98477b9aa1fdc4dfd64005aae99",
+      "evidence_class": "installed_vendor_source",
+      "runtime_proof": false,
+      "reference": "SendLevelOnly(_TRA), ReportTraEventInfo",
+      "id": "LC-11",
+      "family": "LC",
+      "reviewed_on": "2026-10-13",
+      "review_depth_detail": "Installed source selected sections/lines inspected; no runtime execution.",
+      "limitations": [
+        "Source-only evidence; APIs, fields, constants and examples do not prove runtime extraction or evaluator correctness."
+      ],
+      "local_path": "C:\\Users\\Public\\Documents\\LeCroy\\USB Protocol Suite\\Scripts\\VFScripts\\Examples\\zExampleTra.vse",
+      "title": "zExampleTra.vse",
+      "version": "Installed vendor source; exact file identified by SHA-256",
+      "date": null,
+      "authority": "vendor_source",
+      "access": "installed_local_file_read",
+      "access_class": "local_document_or_source_selected_review",
+      "availability": "installed_local_source_obtained",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "SendLevelOnly(_TRA), ReportTraEventInfo"
+      ],
+      "documented_surface_status": "source_documented_not_runtime_qualified_by_this_audit"
+    },
+    {
+      "path": "C:\\Users\\Public\\Documents\\LeCroy\\USB Protocol Suite\\Scripts\\VFScripts\\Examples\\zUsb3_Example.vse",
+      "sha256": "907e5125449e914379c1a40ab83c733b645af850f23059456fd8ea6695f88297",
+      "evidence_class": "installed_vendor_source",
+      "runtime_proof": false,
+      "reference": "USB3 Link command raw fields around195-201",
+      "id": "LC-12",
+      "family": "LC",
+      "reviewed_on": "2026-10-13",
+      "review_depth_detail": "Installed source selected sections/lines inspected; no runtime execution.",
+      "limitations": [
+        "Source-only evidence; APIs, fields, constants and examples do not prove runtime extraction or evaluator correctness."
+      ],
+      "local_path": "C:\\Users\\Public\\Documents\\LeCroy\\USB Protocol Suite\\Scripts\\VFScripts\\Examples\\zUsb3_Example.vse",
+      "title": "zUsb3_Example.vse",
+      "version": "Installed vendor source; exact file identified by SHA-256",
+      "date": null,
+      "authority": "vendor_source",
+      "access": "installed_local_file_read",
+      "access_class": "local_document_or_source_selected_review",
+      "availability": "installed_local_source_obtained",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "USB3 Link command raw fields around195-201"
+      ],
+      "documented_surface_status": "source_documented_not_runtime_qualified_by_this_audit"
+    },
+    {
+      "path": "C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\Examples\\examp_link_transactions.pevs",
+      "sha256": "cb7029f2d97af75f48aac37b87c40f74f2a00f599eaef161ee55e54383f33370",
+      "evidence_class": "installed_vendor_source",
+      "runtime_proof": false,
+      "reference": "SendLevelOnly(_LINK)61; in.TransactionStatus97",
+      "id": "LC-13",
+      "family": "LC",
+      "reviewed_on": "2026-10-13",
+      "review_depth_detail": "Installed source selected sections/lines inspected; no runtime execution.",
+      "limitations": [
+        "Source-only evidence; APIs, fields, constants and examples do not prove runtime extraction or evaluator correctness."
+      ],
+      "local_path": "C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\Examples\\examp_link_transactions.pevs",
+      "title": "examp_link_transactions.pevs",
+      "version": "Installed vendor source; exact file identified by SHA-256",
+      "date": null,
+      "authority": "vendor_source",
+      "access": "installed_local_file_read",
+      "access_class": "local_document_or_source_selected_review",
+      "availability": "installed_local_source_obtained",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "SendLevelOnly(_LINK)61; in.TransactionStatus97"
+      ],
+      "documented_surface_status": "source_documented_not_runtime_qualified_by_this_audit"
+    },
+    {
+      "path": "C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\Examples\\examp_split_transactions.pevs",
+      "sha256": "e29d69b65d8e947b050c84e4ef5d9c7f85ea81c1179f9f8e7b538680d5c3040b",
+      "evidence_class": "installed_vendor_source",
+      "runtime_proof": false,
+      "reference": "SendLevelOnly(_SPLIT)61; in.CompletionStatus97",
+      "id": "LC-14",
+      "family": "LC",
+      "reviewed_on": "2026-10-13",
+      "review_depth_detail": "Installed source selected sections/lines inspected; no runtime execution.",
+      "limitations": [
+        "Source-only evidence; APIs, fields, constants and examples do not prove runtime extraction or evaluator correctness."
+      ],
+      "local_path": "C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\Examples\\examp_split_transactions.pevs",
+      "title": "examp_split_transactions.pevs",
+      "version": "Installed vendor source; exact file identified by SHA-256",
+      "date": null,
+      "authority": "vendor_source",
+      "access": "installed_local_file_read",
+      "access_class": "local_document_or_source_selected_review",
+      "availability": "installed_local_source_obtained",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "SendLevelOnly(_SPLIT)61; in.CompletionStatus97"
+      ],
+      "documented_surface_status": "source_documented_not_runtime_qualified_by_this_audit"
+    },
+    {
+      "path": "C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\Examples\\examp_dllps.pevs",
+      "sha256": "58d89daffd3d7644a6d9214a2460f1a01dcb18ab3ac833d8d5d54bb3ae0eb26d",
+      "evidence_class": "installed_vendor_source",
+      "runtime_proof": false,
+      "reference": "Vendor DLLP example",
+      "id": "LC-15",
+      "family": "LC",
+      "reviewed_on": "2026-10-13",
+      "review_depth_detail": "Installed source selected sections/lines inspected; no runtime execution.",
+      "limitations": [
+        "Source-only evidence; APIs, fields, constants and examples do not prove runtime extraction or evaluator correctness."
+      ],
+      "local_path": "C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\Examples\\examp_dllps.pevs",
+      "title": "examp_dllps.pevs",
+      "version": "Installed vendor source; exact file identified by SHA-256",
+      "date": null,
+      "authority": "vendor_source",
+      "access": "installed_local_file_read",
+      "access_class": "local_document_or_source_selected_review",
+      "availability": "installed_local_source_obtained",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "Vendor DLLP example"
+      ],
+      "documented_surface_status": "source_documented_not_runtime_qualified_by_this_audit"
+    },
+    {
+      "path": "C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\Examples\\examp_ltssm.pevs",
+      "sha256": "3e775afee6f7cffb2f3a812dcdc85824011ae8a2c651943f6fdb57fc087ed9c7",
+      "evidence_class": "installed_vendor_source",
+      "runtime_proof": false,
+      "reference": "Vendor PCIe LTSSM example",
+      "id": "LC-16",
+      "family": "LC",
+      "reviewed_on": "2026-10-13",
+      "review_depth_detail": "Installed source selected sections/lines inspected; no runtime execution.",
+      "limitations": [
+        "Source-only evidence; APIs, fields, constants and examples do not prove runtime extraction or evaluator correctness."
+      ],
+      "local_path": "C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\Examples\\examp_ltssm.pevs",
+      "title": "examp_ltssm.pevs",
+      "version": "Installed vendor source; exact file identified by SHA-256",
+      "date": null,
+      "authority": "vendor_source",
+      "access": "installed_local_file_read",
+      "access_class": "local_document_or_source_selected_review",
+      "availability": "installed_local_source_obtained",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "Vendor PCIe LTSSM example"
+      ],
+      "documented_surface_status": "source_documented_not_runtime_qualified_by_this_audit"
+    },
+    {
+      "id": "OS-01",
+      "title": "WHEA 0x124 error-source parameters",
+      "version": "Microsoft documentation; retrieved 2026-10-13",
+      "authority": "os_implementation",
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/bug-check-0x124---whea-uncorrectable-error",
+      "access": "public_body",
+      "review_depth": "sections_reviewed",
+      "reviewed_sections": "Parameters / Remarks",
+      "limitations": [
+        "確認 error-source 類型與記錄入口；0x124 本身不等同 PCIe 根因。"
+      ],
+      "reviewed_on": "2026-10-13",
+      "family": "OS",
+      "runtime_proof": false,
+      "review_depth_detail": "selected_sections_read",
+      "availability": "public_body_obtained",
+      "sections": [
+        "Parameters / Remarks"
+      ],
+      "date": null
+    },
+    {
+      "id": "OS-02",
+      "title": "WHEA PCI Express error section",
+      "version": "ntddk.h documentation; retrieved 2026-10-13",
+      "authority": "os_implementation",
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk/ns-ntddk-_whea_pciexpress_error_section",
+      "access": "public_body",
+      "review_depth": "sections_reviewed",
+      "reviewed_sections": "Members: ValidBits, DeviceId, ExpressCapability, AerInfo",
+      "limitations": [
+        "只解讀有效欄位；欄位存在不證明當次錯誤記錄含有效 PCIe 資料。"
+      ],
+      "reviewed_on": "2026-10-13",
+      "family": "OS",
+      "runtime_proof": false,
+      "review_depth_detail": "selected_sections_read",
+      "availability": "public_body_obtained",
+      "sections": [
+        "Members: ValidBits, DeviceId, ExpressCapability, AerInfo"
+      ],
+      "date": null,
+      "url_group": "URL-GROUP-02"
+    },
+    {
+      "id": "OS-03",
+      "title": "WinDbg !errrec",
+      "version": "Microsoft documentation; retrieved 2026-10-13",
+      "authority": "os_implementation",
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/-errrec",
+      "access": "public_body",
+      "review_depth": "sections_reviewed",
+      "reviewed_sections": "Parameters / example error record",
+      "limitations": [
+        "離線錯誤記錄輸入參考；本輪未執行 debugger、未開 dump。"
+      ],
+      "reviewed_on": "2026-10-13",
+      "family": "OS",
+      "runtime_proof": false,
+      "review_depth_detail": "selected_sections_read",
+      "availability": "public_body_obtained",
+      "sections": [
+        "Parameters / example error record"
+      ],
+      "date": null
+    },
+    {
+      "id": "OS-04",
+      "title": "UEFI Common Platform Error Record",
+      "version": "UEFI 2.11 Appendix N",
+      "authority": "normative",
+      "url": "https://uefi.org/specs/UEFI/2.11/Apx_N_Common_Platform_Error_Record.html",
+      "access": "public_body",
+      "review_depth": "sections_reviewed",
+      "reviewed_sections": "N.2.1 / N.2.2 / N.2.7 Table N.34",
+      "limitations": [
+        "適用 record revision 與 ValidBits 須核對；collection timestamp 不一定是錯誤发生時刻。"
+      ],
+      "reviewed_on": "2026-10-13",
+      "family": "OS",
+      "runtime_proof": false,
+      "review_depth_detail": "selected_sections_read",
+      "availability": "public_body_obtained",
+      "sections": [
+        "N.2.1 / N.2.2 / N.2.7 Table N.34"
+      ],
+      "date": null
+    },
+    {
+      "id": "OS-05",
+      "title": "USB Event Tracing for Windows",
+      "version": "Microsoft documentation; retrieved 2026-10-13",
+      "authority": "os_implementation",
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/usbcon/usb-event-tracing-for-windows",
+      "access": "public_body",
+      "review_depth": "sections_reviewed",
+      "reviewed_sections": "USB ETW support: Hub3 / UCX / xHCI",
+      "limitations": [
+        "用於 Host 軟體層觀察；不能當成 USB 線上每個封包或電氣證據。"
+      ],
+      "reviewed_on": "2026-10-13",
+      "family": "OS",
+      "runtime_proof": false,
+      "review_depth_detail": "selected_sections_read",
+      "availability": "public_body_obtained",
+      "sections": [
+        "USB ETW support: Hub3 / UCX / xHCI"
+      ],
+      "date": null
+    },
+    {
+      "id": "OS-06",
+      "title": "USB ETW activity IDs",
+      "version": "Microsoft documentation; retrieved 2026-10-13",
+      "authority": "os_implementation",
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/usbcon/using-usb-etw",
+      "access": "public_body",
+      "review_depth": "sections_reviewed",
+      "reviewed_sections": "Activity ID association across providers",
+      "limitations": [
+        "OS 事件可依 Activity ID 關聯；不能直接等同 CATC packet 或跨來源時間同步。"
+      ],
+      "reviewed_on": "2026-10-13",
+      "family": "OS",
+      "runtime_proof": false,
+      "review_depth_detail": "selected_sections_read",
+      "availability": "public_body_obtained",
+      "sections": [
+        "Activity ID association across providers"
+      ],
+      "date": null
+    },
+    {
+      "id": "OS-07",
+      "title": "Linux usbmon",
+      "version": "Kernel documentation; retrieved 2026-10-13",
+      "authority": "os_implementation",
+      "url": "https://docs.kernel.org/usb/usbmon.html",
+      "access": "public_body",
+      "review_depth": "sections_reviewed",
+      "reviewed_sections": "Introduction / Text API / Binary API",
+      "limitations": [
+        "HCD request-level 觀察可能不精確等同 bus transaction；不供 LFPS/電氣判定。"
+      ],
+      "reviewed_on": "2026-10-13",
+      "family": "OS",
+      "runtime_proof": false,
+      "review_depth_detail": "selected_sections_read",
+      "availability": "public_body_obtained",
+      "sections": [
+        "Introduction / Text API / Binary API"
+      ],
+      "date": null
+    },
+    {
+      "id": "OS-08",
+      "title": "Linux PCIe AER guide",
+      "version": "Kernel documentation; retrieved 2026-10-13",
+      "authority": "os_implementation",
+      "url": "https://docs.kernel.org/PCI/pcieaer-howto.html",
+      "access": "public_body",
+      "review_depth": "sections_reviewed",
+      "reviewed_sections": "8.1 / 8.2 / 8.3",
+      "limitations": [
+        "AER severity、status/mask、header 與 recovery 的補充實作；不替代 PCI-SIG 條款或 Windows 行為。"
+      ],
+      "reviewed_on": "2026-10-13",
+      "family": "OS",
+      "runtime_proof": false,
+      "review_depth_detail": "selected_sections_read",
+      "availability": "public_body_obtained",
+      "sections": [
+        "8.1 / 8.2 / 8.3"
+      ],
+      "date": null,
+      "url_group": "URL-GROUP-01"
+    }
+  ],
+  "bundle_inventory": {
+    "count": 66,
+    "by_parent": {
+      "USB-02": 18,
+      "USB-04": 34,
+      "USB-07": 14
+    },
+    "boundary": "Members recorded from the three downloaded official bundles; filename identity/hash inventory is not body review. Refer to top-level source rows for selected reviewed PDFs. No standard PDF contents should be committed to repository.",
+    "members": [
+      {
+        "id": "USB-02-F01",
+        "parent_source": "USB-02",
+        "title": "USB 3 2 ECN Gen 1x2 SKP OS Correction.pdf",
+        "member_path": "usb_32_202206/USB 3.2 ECNs/USB 3 2 ECN Gen 1x2 SKP OS Correction.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_32_202206_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "3e5caa4cda31ec9263a1af1d20f2c027d1971a2693a345ea672eccc74f043889",
+        "bytes": 183127,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-02-F02",
+        "parent_source": "USB-02",
+        "title": "USB 3.2 ECN BLR JTF - Jitter Gain limit change .pdf",
+        "member_path": "usb_32_202206/USB 3.2 ECNs/USB 3.2 ECN BLR JTF - Jitter Gain limit change .pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_32_202206_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "c7ca6301c1337e743b0ebd0fc061f7e030a82c0b770d64801abcee3f798109e1",
+        "bytes": 219980,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-02-F03",
+        "parent_source": "USB-02",
+        "title": "USB 3.2 ECN Gen1 Passthrough Loopback.pdf",
+        "member_path": "usb_32_202206/USB 3.2 ECNs/USB 3.2 ECN Gen1 Passthrough Loopback.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_32_202206_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "a6d00fef0148a387bd30142769273bf0d7c5ec2060129800af96dae09639a67a",
+        "bytes": 170055,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-02-F04",
+        "parent_source": "USB-02",
+        "title": "USB 3.2 ECN Gen1 SSCdf_dt Limit.pdf",
+        "member_path": "usb_32_202206/USB 3.2 ECNs/USB 3.2 ECN Gen1 SSCdf_dt Limit.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_32_202206_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "0b2a07273db08b2489e9f0288c20b8c837238a9fcc41d675301ea7bdc05e471c",
+        "bytes": 173649,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-02-F05",
+        "parent_source": "USB-02",
+        "title": "USB 3.2 ECN Gen2 SKP OS Insertion in PollingRxEQ.pdf",
+        "member_path": "usb_32_202206/USB 3.2 ECNs/USB 3.2 ECN Gen2 SKP OS Insertion in PollingRxEQ.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_32_202206_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "7fda9bd33ebe50b7bfd86a4aa6c013d60d227298d3dd73f1e0221777390c20d3",
+        "bytes": 70781,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-02-F06",
+        "parent_source": "USB-02",
+        "title": "USB 3.2 ECN Re-timer tPollingSCDLFPSTimeout Timer Update.pdf",
+        "member_path": "usb_32_202206/USB 3.2 ECNs/USB 3.2 ECN Re-timer tPollingSCDLFPSTimeout Timer Update.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_32_202206_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "9784f0ac1ff1985fba333a96926db8bef3110efbc124b00ec9f8d94d5b2f2014",
+        "bytes": 198306,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-02-F07",
+        "parent_source": "USB-02",
+        "title": "USB 3.2 ECN Remove WiMax Friendly SSC.pdf",
+        "member_path": "usb_32_202206/USB 3.2 ECNs/USB 3.2 ECN Remove WiMax Friendly SSC.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_32_202206_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "afc33fa4bd0c722f9f483149e3803a5b35f05cac69127fa70dffceacb372ef2c",
+        "bytes": 169275,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-02-F08",
+        "parent_source": "USB-02",
+        "title": "USB 3.2 ECN Retimer Gen1 Clock Switch SSCdf dt.pdf",
+        "member_path": "usb_32_202206/USB 3.2 ECNs/USB 3.2 ECN Retimer Gen1 Clock Switch SSCdf dt.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_32_202206_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "eef1c88e14bedc7a136378dc00bee0e2202f069f5dd3c13c7783339c82a7e0c7",
+        "bytes": 458804,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-02-F09",
+        "parent_source": "USB-02",
+        "title": "USB 3.2 ECN Retimer tPollingSCDLFPSTimeout timer.pdf",
+        "member_path": "usb_32_202206/USB 3.2 ECNs/USB 3.2 ECN Retimer tPollingSCDLFPSTimeout timer.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_32_202206_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "2730a34ac6facdb49cb8a0a1b5509607aafb5f43dd056f2a3f3caf5405087e1b",
+        "bytes": 237058,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-02-F10",
+        "parent_source": "USB-02",
+        "title": "USB 3.2 ECN RetimerEditorial.pdf",
+        "member_path": "usb_32_202206/USB 3.2 ECNs/USB 3.2 ECN RetimerEditorial.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_32_202206_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "b5c641746d13665e06114be4e44a4f891ef59d31c47cece2587b906ce29a13ec",
+        "bytes": 59377,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-02-F11",
+        "parent_source": "USB-02",
+        "title": "USB 3.2 ECN SSP Partially Nullified DPP CRC32.pdf",
+        "member_path": "usb_32_202206/USB 3.2 ECNs/USB 3.2 ECN SSP Partially Nullified DPP CRC32.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_32_202206_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "84fac333a24c7b5fd62f199bf694f641a3dd50d982274420e6c76dc57ee73932",
+        "bytes": 66072,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-02-F12",
+        "parent_source": "USB-02",
+        "title": "USB 3.2 ECN System RFI spec_add CP0.pdf",
+        "member_path": "usb_32_202206/USB 3.2 ECNs/USB 3.2 ECN System RFI spec_add CP0.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_32_202206_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "d63bc2a03e41efbb5e80589a29ea71ed102e0a939345fb10a90f1dc2b51bf88e",
+        "bytes": 160133,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-02-F13",
+        "parent_source": "USB-02",
+        "title": "USB 3.2 ECN TSx Symbols14_15 No_Check.pdf",
+        "member_path": "usb_32_202206/USB 3.2 ECNs/USB 3.2 ECN TSx Symbols14_15 No_Check.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_32_202206_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "b1b28bf73d3dd8f08c1eb8e9954edebff25c389dca60690d7577999494deab9c",
+        "bytes": 227152,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-02-F14",
+        "parent_source": "USB-02",
+        "title": "USB 3.2 ECN TxEQ Equalization Settings.pdf",
+        "member_path": "usb_32_202206/USB 3.2 ECNs/USB 3.2 ECN TxEQ Equalization Settings.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_32_202206_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "3f55a43d43caebc45db552e609cce35503e6aede524d8d26e4fa4181aa036087",
+        "bytes": 119460,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-02-F15",
+        "parent_source": "USB-02",
+        "title": "USB 3.2 ECN UFP Exit Condition Clarification.pdf",
+        "member_path": "usb_32_202206/USB 3.2 ECNs/USB 3.2 ECN UFP Exit Condition Clarification.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_32_202206_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "5a828675ec546e573de44fe4cf9489d9851285f57867e072b07c6930bdf30d0b",
+        "bytes": 175435,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-02-F16",
+        "parent_source": "USB-02",
+        "title": "USB 3.2 ECN USB FW Update.pdf",
+        "member_path": "usb_32_202206/USB 3.2 ECNs/USB 3.2 ECN USB FW Update.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_32_202206_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "1d41b5732d816aa259e19211c39c833bcc37f0ecec516adcdb16aa53191818b5",
+        "bytes": 44972,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-02-F17",
+        "parent_source": "USB-02",
+        "title": "USB 3.2 ECN VCM & TXDetect.pdf",
+        "member_path": "usb_32_202206/USB 3.2 ECNs/USB 3.2 ECN VCM & TXDetect.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_32_202206_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "8a34489b54fb47ef70d0730ccd8675f5d55280c4ac8b26c0f31cf9f3a932244c",
+        "bytes": 205561,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-02-F18",
+        "parent_source": "USB-02",
+        "title": "USB 3.2 Updated Appendix E REDLINE.pdf",
+        "member_path": "usb_32_202206/USB 3.2 ECNs/USB 3.2 Updated Appendix E REDLINE.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_32_202206_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "0cdc39985b220274a627b2c9dbe60066cd657841d2a307d4f1d0cd7ebd8579d6",
+        "bytes": 1968106,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F01",
+        "parent_source": "USB-04",
+        "title": "2002_05_28_errata.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/2002_05_28_errata.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "0d5d8aa0128ae08c78928765da3ab10d6ec913732e13f5357ed085a5ceabf481",
+        "bytes": 176056,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F02",
+        "parent_source": "USB-04",
+        "title": "5V Short Circuit Withstand ECN.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/5V Short Circuit Withstand ECN.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "db641c18e53c776feae8856d8cbf4e6c43c5edc97286ea53861ae8376106577a",
+        "bytes": 25950,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F03",
+        "parent_source": "USB-04",
+        "title": "Connect Timing ECN.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/Connect Timing ECN.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "31528541e9d829b1401fd0c747829012c56e6d6d6b12d8f1591ff4cb6549b73b",
+        "bytes": 171397,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F04",
+        "parent_source": "USB-04",
+        "title": "Device Capacitance ECN.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/Device Capacitance ECN.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "a6a8213b57001e3397e9376a287c09c882d9870ac1ef465465104321385a24d1",
+        "bytes": 14057,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F05",
+        "parent_source": "USB-04",
+        "title": "Disconnect_Supplement_HSIC_v1.0_18Sep2013.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/Disconnect_Supplement_HSIC_v1.0_18Sep2013.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "d4b8c631a398500b7dca32eb9aa8bcce1fc207d49b8629eb15c28b6f67b3e658",
+        "bytes": 79646,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F06",
+        "parent_source": "USB-04",
+        "title": "ECN for Core Spec TEST_MODE selector values.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/ECN for Core Spec TEST_MODE selector values.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "12fe237ad69f8d217892f4b48a7f64d022f2f73e71fce8996e8638b5058cc68b",
+        "bytes": 23174,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F07",
+        "parent_source": "USB-04",
+        "title": "ecn1-usb20-miniB-revd.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/ecn1-usb20-miniB-revd.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "051d8c81b51c31663af21c2fab1ce5e4610cd2d9348d3f46d97691351a3cfbc8",
+        "bytes": 981022,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F08",
+        "parent_source": "USB-04",
+        "title": "errata-092800-1207001.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/errata-092800-1207001.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "1b94cd1cf303bdf0aba75a76d6a9333a357fa4ad626a57a76d6f132cb1498f23",
+        "bytes": 138383,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F09",
+        "parent_source": "USB-04",
+        "title": "High Speed Inter-Chip_1_0 final.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/High Speed Inter-Chip_1_0 final.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "78d0ba51e31ee86fdfb572c78baaabcb9999468a4e8b39aa805b28b59d2e8e74",
+        "bytes": 157694,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F10",
+        "parent_source": "USB-04",
+        "title": "HSIC_ECN_21May2012.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/HSIC_ECN_21May2012.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "952820684e44974256cafdb551f9e75ba32360ac2346f84e1da41c91ded65120",
+        "bytes": 89452,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F11",
+        "parent_source": "USB-04",
+        "title": "Inter-Chip USB Supplement to the USB 2.0 Specification_1.0.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/Inter-Chip USB Supplement to the USB 2.0 Specification_1.0.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "7ebdc280f47cf61bc1e44b2dc41f043d22d3715d510027acaea20a6e72329468",
+        "bytes": 353949,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F12",
+        "parent_source": "USB-04",
+        "title": "InterfaceAssociationDescriptor_ecn.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/InterfaceAssociationDescriptor_ecn.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "494239252b46aed214ef4a22828c0a623b0ec0dac812ef249dc49a1d995c08a7",
+        "bytes": 142347,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F13",
+        "parent_source": "USB-04",
+        "title": "Clarification on the Chamfer on USB 2 0 Micro Connectors ECN .pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/Micro-USB_final/Clarification on the Chamfer on USB 2 0 Micro Connectors ECN .pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "ef89fce875fdd83eab3b61dd1e5b50e064a3b2210f1de884dc3725fc58d96220",
+        "bytes": 134738,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F14",
+        "parent_source": "USB-04",
+        "title": "Maximum Unmating Force Value Definition to USB 2 0 Micro Connectors ECN.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/Micro-USB_final/Maximum Unmating Force Value Definition to USB 2 0 Micro Connectors ECN.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "6898cc4b19ea3b95fd5a2d5de3e5933ebfe6f85f6857f082d442174121eb7b55",
+        "bytes": 61931,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F15",
+        "parent_source": "USB-04",
+        "title": "Micro-USB ECN for Cable R3.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/Micro-USB_final/Micro-USB ECN for Cable R3.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "e71ada26e09018a1aa679ef0184dc0443a38e9b09a43a4d0df263597c1781635",
+        "bytes": 39511,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F16",
+        "parent_source": "USB-04",
+        "title": "Micro-USB_1_01.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/Micro-USB_final/Micro-USB_1_01.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "64157f55767eb32ab0d999e0ddff637744d0feaf316f05203826e7e0b0a9d883",
+        "bytes": 1231932,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F17",
+        "parent_source": "USB-04",
+        "title": "MicroUSB ECN.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/Micro-USB_final/MicroUSB ECN.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "23e28803f42b533ea46c118d8e1c7a24ea654ca2301631a441cd517ef46ab16f",
+        "bytes": 44936,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F18",
+        "parent_source": "USB-04",
+        "title": "XV-4687C ECN Proposal for Micro USB.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/Micro-USB_final/XV-4687C ECN Proposal for Micro USB.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "3393cf4a7eaae39f291d8342f9bed78354e1be597f614d14a4af0f522737850e",
+        "bytes": 415253,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F19",
+        "parent_source": "USB-04",
+        "title": "XV-4687C_Supplement Quad cable R1.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/Micro-USB_final/XV-4687C_Supplement Quad cable R1.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "531c5f79b57afe8d17df641f5d05e93da716c845873e29a8845313e6f029e35b",
+        "bytes": 268535,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F20",
+        "parent_source": "USB-04",
+        "title": "resistor_ecn.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/resistor_ecn.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "7d54e297fd8b79706a37912a899d20dca08d01861b940f4ebe2c11498d492e51",
+        "bytes": 135192,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F21",
+        "parent_source": "USB-04",
+        "title": "rnd_chmfr_ECNFINAL.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/rnd_chmfr_ECNFINAL.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "03eb52b6603db492c4e543440aea0a0fe03b294fc99c3a24723abeaf90400d91",
+        "bytes": 62267,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F22",
+        "parent_source": "USB-04",
+        "title": "Suspend Current ECN.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/Suspend Current ECN.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "1e3375761a72c37eebd198e48bccf528a4bd153bc56cc124e1f88c72722d5019",
+        "bytes": 71263,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F23",
+        "parent_source": "USB-04",
+        "title": "UnicodeECN.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/UnicodeECN.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "5964609e49fbd08d25deeceafdf4fe1e1cc0c6699493df3691e780010c73f7c1",
+        "bytes": 86055,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F24",
+        "parent_source": "USB-04",
+        "title": "USB 2 0 Material Change ECN.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/USB 2 0 Material Change ECN.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "464ce303e918e5a7ab4dbcf34c8e2e7684549e2d083c7dcac2a3750a4a65dba3",
+        "bytes": 16296,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F25",
+        "parent_source": "USB-04",
+        "title": "USB 2.0 DCR ECN.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/USB 2.0 DCR ECN.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "af334155f70cf12ac9abe69b587b9144dab310da46962cbc2c211cd521c57825",
+        "bytes": 925068,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F26",
+        "parent_source": "USB-04",
+        "title": "USB 2.0 Double Isochronous IN ECN.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/USB 2.0 Double Isochronous IN ECN.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "687989bdf0b7be4076ff29e3094ccefb9600467e513791998a15b3d043df9771",
+        "bytes": 328798,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F27",
+        "parent_source": "USB-04",
+        "title": "USB 2.0 ECN VBUS Max Limit.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/USB 2.0 ECN VBUS Max Limit.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "9ea1f49b46f295e71e175d950ffaebd9edfd82f831787c40e74c2486d7773767",
+        "bytes": 49944,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F28",
+        "parent_source": "USB-04",
+        "title": "USB 2.0 eUSB2 Repeater ECN.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/USB 2.0 eUSB2 Repeater ECN.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "1c382e61b389ef545c358517df297c687528ff21358eac11f0ed815d69818d04",
+        "bytes": 245754,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F29",
+        "parent_source": "USB-04",
+        "title": "USB 2.0 Phase-Locked SOFs ECN.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/USB 2.0 Phase-Locked SOFs ECN.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "f466459b6af8dd7c3f2d6947fa94077da5c2f23882f32dc638971f74c211fb68",
+        "bytes": 14199,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F30",
+        "parent_source": "USB-04",
+        "title": "USB OTGEH ECN Maximum Vbus Voltage OTGEH2.0.1.1A.001.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/USB OTG and Embedded Host/USB OTG ECN/USB OTGEH ECN Maximum Vbus Voltage OTGEH2.0.1.1A.001.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "b5198de9e7af2bfd5a708b6e5259bf69fb728c529d96518a10a99bcc9a611278",
+        "bytes": 63548,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F31",
+        "parent_source": "USB-04",
+        "title": "USB OTG v2.0_ Amendment final_052609.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/USB OTG and Embedded Host/USB OTG v2.0_ Amendment final_052609.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "39bf293cdde1edc2b86734715a057593dfa9db7ea851b5eec765ca735d01855e",
+        "bytes": 12537,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F32",
+        "parent_source": "USB-04",
+        "title": "USB_OTG_and_EH_2-0-version 1_1a.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/USB OTG and Embedded Host/USB_OTG_and_EH_2-0-version 1_1a.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "8498707ad9d0820cf0b58f0fd9298548c6633162c0594907efe7305a849cc5bc",
+        "bytes": 1587151,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F33",
+        "parent_source": "USB-04",
+        "title": "USB2-LPM-Errata-final.pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/USB2-LPM-Errata-final.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "824c06e7cc05cc189a8e0039d3c8dc39f82caf32f603c63363cb24a6efe205f7",
+        "bytes": 506487,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-04-F34",
+        "parent_source": "USB-04",
+        "title": "USB2_LinkPowerMangement_ECN[final].pdf",
+        "member_path": "usb_20_20250603/usb_20_20240927/usb_20_20240927/USB2_LinkPowerMangement_ECN[final].pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/usb_20_20250603.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "9774dc93323695b44c7781d2bc18bdd4dddefb936c185eea9fa792d92a3bd75d",
+        "bytes": 991241,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-07-F01",
+        "parent_source": "USB-07",
+        "title": "Billboard Class CV Compliance Tests-ver 1.1.pdf",
+        "member_path": "Billboard Class CV Compliance Tests-ver 1.1.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/USB3CV_XHCICV_CTSs_August_2025%201_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "f8fa0fcfc7e04bb1e2be7b07f268ef0de28a784bbef370a2d24a3a5ce30e16df",
+        "bytes": 293822,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-07-F02",
+        "parent_source": "USB-07",
+        "title": "MSC-compliance-1.1a.pdf",
+        "member_path": "MSC-compliance-1.1a.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/USB3CV_XHCICV_CTSs_August_2025%201_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "f31b080ec372bb8913d96d2b378b1fef82987f56c1393284c6cd730be9fed3c8",
+        "bytes": 1039486,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-07-F03",
+        "parent_source": "USB-07",
+        "title": "UAC3-ComplianceTestSpec-v1.10.pdf",
+        "member_path": "UAC3-ComplianceTestSpec-v1.10.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/USB3CV_XHCICV_CTSs_August_2025%201_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "b3c95bd02a02f2dce8a0ab9276284af2bf53d699328ee47274e9bdf5937b177c",
+        "bytes": 1085872,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-07-F04",
+        "parent_source": "USB-07",
+        "title": "UASP-ComplianceTestSpec-v0.9b.pdf",
+        "member_path": "UASP-ComplianceTestSpec-v0.9b.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/USB3CV_XHCICV_CTSs_August_2025%201_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "4933f873140a2c64fbdce0228ace14626e2a66ca84a3e388e8a7dd7fba045790",
+        "bytes": 675549,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-07-F05",
+        "parent_source": "USB-07",
+        "title": "USB 3.2 CV Compliance Tests-ver 1.22.pdf",
+        "member_path": "USB 3.2 CV Compliance Tests-ver 1.22.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/USB3CV_XHCICV_CTSs_August_2025%201_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "03728df284fb938c1edc10cb68e8ff4d67df4381dacc3764ba3801c145317bdc",
+        "bytes": 746803,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-07-F06",
+        "parent_source": "USB-07",
+        "title": "USB 3.2 Hub Compliance Tests-ver 1.21.pdf",
+        "member_path": "USB 3.2 Hub Compliance Tests-ver 1.21.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/USB3CV_XHCICV_CTSs_August_2025%201_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "5db9f2cc32a5db572d118bf40d4343e436d09e4e62533edd678716b592ed0cf5",
+        "bytes": 1229709,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-07-F07",
+        "parent_source": "USB-07",
+        "title": "USB Connector Type Tests-v0.73.pdf",
+        "member_path": "USB Connector Type Tests-v0.73.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/USB3CV_XHCICV_CTSs_August_2025%201_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "7a858990e3c6ccf252e9a0713b55def60a39b578a80d19c053c1a855365831c3",
+        "bytes": 481899,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-07-F08",
+        "parent_source": "USB-07",
+        "title": "USB_Video_Class_Compliance_1 1.pdf",
+        "member_path": "USB_Video_Class_Compliance_1 1.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/USB3CV_XHCICV_CTSs_August_2025%201_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "745e43c58ce1e819ebba7da95a9f10992c0ae8a898362c9c73b29cd63a620db1",
+        "bytes": 2447782,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-07-F09",
+        "parent_source": "USB-07",
+        "title": "USB_Video_Class_Compliance_UVC_1.5_Addendum_M1.pdf",
+        "member_path": "USB_Video_Class_Compliance_UVC_1.5_Addendum_M1.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/USB3CV_XHCICV_CTSs_August_2025%201_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "0513f979ddbfd54cc2832bca034faad9859b3b20a8f2f1391424323ba80fa794",
+        "bytes": 824096,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-07-F10",
+        "parent_source": "USB-07",
+        "title": "USBCVSpec.pdf",
+        "member_path": "USBCVSpec.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/USB3CV_XHCICV_CTSs_August_2025%201_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "004249ded0795b413598519e0e88c75ac3329bc578e46e210b65971adb9ad813",
+        "bytes": 722463,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-07-F11",
+        "parent_source": "USB-07",
+        "title": "USBTypeCAuthentication-ComplianceTestSpec-v0.9.pdf",
+        "member_path": "USBTypeCAuthentication-ComplianceTestSpec-v0.9.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/USB3CV_XHCICV_CTSs_August_2025%201_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "f188c1c25b2d3a6fe1e72a536d7ea0768d50fda4637ba6b6693687fd27cd72f5",
+        "bytes": 1576430,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-07-F12",
+        "parent_source": "USB-07",
+        "title": "USBTypeCBridge-ComplianceTestSpec-v1.02.pdf",
+        "member_path": "USBTypeCBridge-ComplianceTestSpec-v1.02.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/USB3CV_XHCICV_CTSs_August_2025%201_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "d2b8306d5079d431e63a38b8ca2a43bfef6345e78296948d77f4433628bb1e01",
+        "bytes": 1061417,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-07-F13",
+        "parent_source": "USB-07",
+        "title": "xHCI-ComplianceTestSpec-r1_20 CLEAN.pdf",
+        "member_path": "xHCI-ComplianceTestSpec-r1_20 CLEAN.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/USB3CV_XHCICV_CTSs_August_2025%201_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "12d57993563bf6116991fb2c2951146fa74c7a5cf8824d87de1526d6aba1ce66",
+        "bytes": 2223606,
+        "runtime_proof": false,
+        "inventory_only": true
+      },
+      {
+        "id": "USB-07-F14",
+        "parent_source": "USB-07",
+        "title": "xHCI-ComplianceTestSpec-r1_20 REDLINE.pdf",
+        "member_path": "xHCI-ComplianceTestSpec-r1_20 REDLINE.pdf",
+        "version": "NOT_TRANSCRIBED",
+        "document_date": "NOT_VERIFIED",
+        "url": "https://www.usb.org/sites/default/files/USB3CV_XHCICV_CTSs_August_2025%201_0.zip",
+        "type": "bundle_member",
+        "access": "downloaded_public_official_bundle",
+        "review_depth": "metadata_only",
+        "sections": [],
+        "scope": "Screen for applicability; not automatically adopted",
+        "sha256": "454f2a6e68c171af1324635be3ced4039d343f6b554ed09770a3e16d9640cee4",
+        "bytes": 2229696,
+        "runtime_proof": false,
+        "inventory_only": true
+      }
+    ]
+  },
+  "research_stop_condition": "The scoped official source families and installed tool/OS surfaces have been inventoried, selected sections that change the initial plan have been read, and unavailable/unread/version-dependent surfaces are explicit. This is sufficient to define bounded probe/adapter/evaluator slices; it is not an exhaustive web search or complete conformance review.",
+  "next_artifact": "docs/pcie-usb-spec-slices-20261013.md"
+}

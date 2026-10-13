@@ -1,0 +1,40 @@
+﻿{
+    "trace_sha256":  "A5568248D1C3D04F3CC16D6D3649F1303BE0D15FFA1A734E2057D73564836CAE",
+    "source_unchanged":  true,
+    "working_unchanged":  true,
+    "working_readonly":  true,
+    "packet_records":  [
+                           {
+                               "index":  8,
+                               "number_of_bits":  64,
+                               "bytes":  [
+                                             75,
+                                             75,
+                                             75,
+                                             54,
+                                             11,
+                                             32,
+                                             11,
+                                             32
+                                         ],
+                               "hex":  "4B 4B 4B 36 0B 20 0B 20"
+                           },
+                           {
+                               "index":  9,
+                               "number_of_bits":  64,
+                               "bytes":  [
+                                             75,
+                                             75,
+                                             75,
+                                             54,
+                                             128,
+                                             160,
+                                             128,
+                                             160
+                                         ],
+                               "hex":  "4B 4B 4B 36 80 A0 80 A0"
+                           }
+                       ],
+    "wire_layout_verified":  false,
+    "crc_correctness":  "NOT_EVALUATED"
+}

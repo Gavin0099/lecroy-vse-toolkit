@@ -1,0 +1,16 @@
+{
+  "status": "FAILED_PATH_ARGUMENT_BEFORE_TRACE_OPEN",
+  "trace_opened": false,
+  "error": "CATC.PETracer OpenFile rejected relative artifacts/evidence/p03-serial-20261013/tlp-b/working.pex as incorrect path",
+  "successful_absolute_path_retry": "p11-constants-native-b/com-run.json",
+  "intermediate_repeat_refused_by_guard": "PETracer is already running; a COM run needs a clean start",
+  "owned_main_pid": 20984,
+  "owned_client_pid": 55764,
+  "owned_child_pid": 9464,
+  "cleanup": "main/client stopped after exact ownership checks; child Stop-Process access denied then exited; no remaining owned PETracer process",
+  "current_tasklist": "INFO: No tasks are running which match the specified criteria.",
+  "source_sha256_preserved": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+  "working_sha256_preserved": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+  "p11_implementation": "BOUNDED_STATE_POINTS_COMPLETE",
+  "p11_qualification": "NOT_EVALUATED"
+}

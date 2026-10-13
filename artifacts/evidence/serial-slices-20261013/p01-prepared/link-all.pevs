@@ -1,0 +1,39 @@
+# P01: LC-01 input context / selection, LC-13/14/15 named constants.
+set ModuleType = "Verification Script";
+set OutputType = "VS";
+set InputType = "VS";
+set DecoderDesc = "P01 bounded PCIe selection observation";
+set Visited = 0;
+set Selected = 0;
+set Emitted = 0;
+set Mismatches = 0;
+%include "VSTools.inc"
+OnStartScript()
+{
+    ScriptForDisplayOnly();
+    EnableOutput();
+    SendAllChannels();
+    SendLevelOnly(_LINK);
+    SendAllTraceEvents();
+}
+ProcessEvent()
+{
+    Visited++;
+    if (in.Level != _LINK) Mismatches++;
+    if (in.Index >= 0 && in.Index <= 200)
+    {
+        Selected++;
+        if (Emitted < 256)
+        {
+            ReportText(FormatEx("{\"kind\":\"p01-row\",\"index\":%d,\"level\":%d,\"channel\":%d,\"event_raw\":%d,\"time2\":[%d,%d,%d]}",
+                in.Index,in.Level,in.Channel,in.TraceEvent,in.Time2[0],in.Time2[1],in.Time2[2]));
+            Emitted++;
+        }
+    }
+    return Complete();
+}
+OnFinishScript()
+{
+    ReportText(FormatEx("{\"kind\":\"p01-end\",\"visited\":%d,\"selected\":%d,\"emitted\":%d,\"mismatches\":%d,\"native_level\":%d}",
+        Visited,Selected,Emitted,Mismatches,_LINK));
+}

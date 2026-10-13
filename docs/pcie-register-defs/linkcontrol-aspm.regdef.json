@@ -1,0 +1,29 @@
+{
+  "schema": "pcie.catc-regdef/v1",
+  "name": "PCIe Link Control ASPM (standard, fixture)",
+  "space": "cfg",
+  "match": {},
+  "provenance": {
+    "source": "Linux v6.12 include/uapi/linux/pci_regs.h (see docs/pcie-register-reference.json); ASPM Control mask 0x3 at capability base + 0x10",
+    "who": "repository reference, not an engineer product rule",
+    "date": "2026-09-30",
+    "permitted_for_tool_use": true
+  },
+  "registers": [
+    {
+      "name": "LinkControl",
+      "offset": "0x90",
+      "width_bits": 16,
+      "fields": [
+        {
+          "name": "ASPM Control",
+          "lsb": 0,
+          "width": 2,
+          "access": "RW",
+          "description": "Active State Power Management Control.",
+          "values": {"0": "Disabled", "1": "L0s Entry Enabled", "2": "L1 Entry Enabled", "3": "L0s and L1 Entry Enabled"}
+        }
+      ]
+    }
+  ]
+}

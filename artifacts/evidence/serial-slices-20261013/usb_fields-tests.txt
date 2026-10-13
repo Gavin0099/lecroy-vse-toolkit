@@ -1,0 +1,19 @@
+test_changed_plan_and_existing_output_rejected (test_usb_field_probe.FieldTests.test_changed_plan_and_existing_output_rejected) ... ok
+test_doc_widths_and_timestamp_boundaries_are_independent (test_usb_field_probe.FieldTests.test_doc_widths_and_timestamp_boundaries_are_independent) ... ok
+test_handwritten_rows_boundaries_and_packet_references (test_usb_field_probe.FieldTests.test_handwritten_rows_boundaries_and_packet_references) ... ok
+test_manifest_keeps_capture_mode_epoch_and_retention_unknown (test_usb_field_probe.FieldTests.test_manifest_keeps_capture_mode_epoch_and_retention_unknown) ... ok
+test_missing_toolchain_metadata_cannot_create_a_supported_manifest (test_usb_field_probe.FieldTests.test_missing_toolchain_metadata_cannot_create_a_supported_manifest) ... ok
+test_missing_truncated_or_duplicate_rows_fail_closed (test_usb_field_probe.FieldTests.test_missing_truncated_or_duplicate_rows_fail_closed) ... ok
+test_unknown_mode_does_not_get_guessed_fields (test_usb_field_probe.FieldTests.test_unknown_mode_does_not_get_guessed_fields) ... ok
+test_unknown_name_remains_raw_and_is_not_unsupported (test_usb_field_probe.FieldTests.test_unknown_name_remains_raw_and_is_not_unsupported) ... ok
+test_wrong_binding_integrity_finished_marker_and_hidden_verdict_rejected (test_usb_field_probe.FieldTests.test_wrong_binding_integrity_finished_marker_and_hidden_verdict_rejected) ... ok
+test_zero_sample_is_unknown_not_protocol_pass (test_usb_field_probe.FieldTests.test_zero_sample_is_unknown_not_protocol_pass) ... ok
+test_empty_sample_does_not_establish_pattern_or_wake_success (test_usb_field_probe.LfpsTests.test_empty_sample_does_not_establish_pattern_or_wake_success) ... ok
+test_missing_negative_duration_bad_flag_and_remainder_are_rejected (test_usb_field_probe.LfpsTests.test_missing_negative_duration_bad_flag_and_remainder_are_rejected) ... ok
+test_raw_name_units_pattern_flag_and_unknown_resolution_preserved (test_usb_field_probe.LfpsTests.test_raw_name_units_pattern_flag_and_unknown_resolution_preserved) ... ok
+test_unknown_type_is_not_guessed_from_duration (test_usb_field_probe.LfpsTests.test_unknown_type_is_not_guessed_from_duration) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.039s
+
+OK

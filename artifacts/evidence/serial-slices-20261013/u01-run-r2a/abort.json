@@ -1,0 +1,6 @@
+{
+  "status": "ABORTED_NO_RETURN",
+  "reason": "Unary negative scalar initializer also did not compile; replaced by explicit NOT_APPLICABLE wire token",
+  "source_hash": "A5568248D1C3D04F3CC16D6D3649F1303BE0D15FFA1A734E2057D73564836CAE",
+  "work_hash": "A5568248D1C3D04F3CC16D6D3649F1303BE0D15FFA1A734E2057D73564836CAE"
+}

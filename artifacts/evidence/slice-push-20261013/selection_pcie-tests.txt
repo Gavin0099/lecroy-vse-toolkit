@@ -1,0 +1,12 @@
+test_altered_plan_flags_script_path_or_verdict_are_rejected (test_pcie_selection_probe.PcieSelectionTests.test_altered_plan_flags_script_path_or_verdict_are_rejected) ... ok
+test_boolean_range_wrong_namespace_and_time_components_rejected (test_pcie_selection_probe.PcieSelectionTests.test_boolean_range_wrong_namespace_and_time_components_rejected) ... ok
+test_empty_window_is_unknown_not_absence (test_pcie_selection_probe.PcieSelectionTests.test_empty_window_is_unknown_not_absence) ... ok
+test_failed_integrity_or_finish_cannot_qualify (test_pcie_selection_probe.PcieSelectionTests.test_failed_integrity_or_finish_cannot_qualify) ... ok
+test_handwritten_callback_denominators_time2_and_unknown_accuracy (test_pcie_selection_probe.PcieSelectionTests.test_handwritten_callback_denominators_time2_and_unknown_accuracy) ... ok
+test_missing_duplicate_end_and_forged_counts_are_rejected (test_pcie_selection_probe.PcieSelectionTests.test_missing_duplicate_end_and_forged_counts_are_rejected) ... ok
+test_named_levels_and_event_selectors_are_not_magic_numbers (test_pcie_selection_probe.PcieSelectionTests.test_named_levels_and_event_selectors_are_not_magic_numbers) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.046s
+
+OK

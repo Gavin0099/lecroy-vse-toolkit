@@ -1,0 +1,22 @@
+2026-10-13T05:04:47.0904526Z activate
+2026-10-13T05:04:50.7592467Z open
+2026-10-13T05:04:55.0008315Z engine
+2026-10-13T05:04:55.0434453Z advise
+2026-10-13T05:04:55.0655213Z run
+2026-10-13T05:04:55.0849025Z report 
+------------------------------------------------------------------------------------
+2026-10-13T05:04:55.0849025Z report                                     E:\BackUp\Git_EE\lecroy-vse-toolkit\artifacts\evidence\serial-slices-20261013\diagnostic.vse
+2026-10-13T05:04:55.0849025Z report ------------------------------------------------------------------------------------
+
+
+2026-10-13T05:04:55.0917784Z report Running verification script...
+...
+
+2026-10-13T05:04:55.0917784Z report Test Description : 
+2026-10-13T05:04:55.0917784Z report U01-DIAG before all channels
+2026-10-13T05:04:55.0917784Z report U01-DIAG before level only
+2026-10-13T05:04:55.0917784Z report U01-DIAG before all events
+2026-10-13T05:05:00.4522604Z finished 2
+2026-10-13T05:05:00.4522604Z run_returned
+2026-10-13T05:05:00.4522604Z cleanup
+2026-10-13T05:05:00.9717709Z complete

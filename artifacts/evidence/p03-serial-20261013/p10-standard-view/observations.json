@@ -1,0 +1,361 @@
+{
+  "schema": "pcie.aspm-register-profile/v1",
+  "slice": "P10",
+  "queries": [
+    {
+      "schema": "pcie.aspm-register-observations/v1",
+      "slice": "P10",
+      "device_id": 256,
+      "register_view": {
+        "schema": "pcie.b2h2-sidecar/v1",
+        "binding": {
+          "trace": {
+            "path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\pcie-p4a-hang-20260914-dcea0027\\Disable ASPM--Insert SD7-hang.pex",
+            "bytes": 126565918,
+            "mtime_ns": 1789375908544974500,
+            "sha256": "C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD"
+          },
+          "petracer": {
+            "path": "C:\\Program Files\\LeCroy\\PCIe Protocol Suite\\PETracer.exe",
+            "bytes": 78978944,
+            "mtime_ns": 1768832144000000000,
+            "sha256": "160A542BF369701DF00466E744C9981FA9C530265AC237D81C0343C8F732E118",
+            "file_version": "13.26.0.43"
+          },
+          "bdf": 256,
+          "snapshot_position_packet": 3300,
+          "epoch": "before_disconnect",
+          "regdef": {
+            "name": "P10 LinkControl observed bits - case offset 0x90",
+            "provenance": {
+              "source": "PCI-45 WDK ntddk.h LinkControl layout, Microsoft Learn last updated 2026-06-29, reviewed 2026-10-13; capability-relative +0x10 from existing Linux v6.12 reference; case offset must be verified by B2c",
+              "who": "primary implementation layout; observed bits only, no product rule or hardware effectiveness claim",
+              "date": "2026-10-13",
+              "permitted_for_tool_use": true
+            }
+          },
+          "hashes": {}
+        },
+        "snapshot_position_note": "snapshot_position_packet is where CATC was queried; it is not the packet of the last update of any field",
+        "normalization": {
+          "known_bytes": 48,
+          "partial_byte_offsets": []
+        },
+        "rows": [
+          {
+            "register": "LinkControl",
+            "offset": 144,
+            "field": "ASPM Control",
+            "lsb": 0,
+            "width": 2,
+            "catc_merged": {
+              "value": null,
+              "label": null,
+              "status": "UNKNOWN_BITS_NOT_KNOWN"
+            },
+            "last_write_intent": {
+              "value": null,
+              "label": null,
+              "status": "UNKNOWN_BITS_NOT_KNOWN",
+              "evidence_request_packets": []
+            },
+            "last_read_back": {
+              "value": null,
+              "label": null,
+              "status": "UNKNOWN_BITS_NOT_KNOWN",
+              "evidence_completion_packets": []
+            },
+            "native_catc": {
+              "name": "Active State PM Control",
+              "register": "Link Control",
+              "value": null
+            },
+            "native_comparison": "NOT_COMPARABLE_UNKNOWN"
+          },
+          {
+            "register": "LinkControl",
+            "offset": 144,
+            "field": "CommonClockConfig",
+            "lsb": 6,
+            "width": 1,
+            "catc_merged": {
+              "value": null,
+              "label": null,
+              "status": "UNKNOWN_BITS_NOT_KNOWN"
+            },
+            "last_write_intent": {
+              "value": null,
+              "label": null,
+              "status": "UNKNOWN_BITS_NOT_KNOWN",
+              "evidence_request_packets": []
+            },
+            "last_read_back": {
+              "value": null,
+              "label": null,
+              "status": "UNKNOWN_BITS_NOT_KNOWN",
+              "evidence_completion_packets": []
+            },
+            "native_catc": {
+              "name": "Common Clock Configuration",
+              "register": "Link Control",
+              "value": null
+            },
+            "native_comparison": "NOT_COMPARABLE_UNKNOWN"
+          },
+          {
+            "register": "LinkControl",
+            "offset": 144,
+            "field": "EnableClockPowerManagement",
+            "lsb": 8,
+            "width": 1,
+            "catc_merged": {
+              "value": null,
+              "label": null,
+              "status": "UNKNOWN_BITS_NOT_KNOWN"
+            },
+            "last_write_intent": {
+              "value": null,
+              "label": null,
+              "status": "UNKNOWN_BITS_NOT_KNOWN",
+              "evidence_request_packets": []
+            },
+            "last_read_back": {
+              "value": null,
+              "label": null,
+              "status": "UNKNOWN_BITS_NOT_KNOWN",
+              "evidence_completion_packets": []
+            },
+            "native_catc": {
+              "name": "Enable Clock Power Management",
+              "register": "Link Control",
+              "value": null
+            },
+            "native_comparison": "NOT_COMPARABLE_UNKNOWN"
+          }
+        ],
+        "differences": [],
+        "not_established": [
+          "catc_merged combines reads and writes (possibly from different times) and is not a hardware readback",
+          "last_write_intent is what was sent, not the applied hardware state",
+          "last_read_back is per byte, latest completion data; it can predate later writes",
+          "scope: one trace, one device, epoch before_disconnect only; other epochs are refused, not inherited",
+          "definition correctness rests on its stated provenance"
+        ]
+      },
+      "source_ids": [
+        "PCI-45",
+        "LC-02",
+        "Linux-v6.12-pci_regs"
+      ],
+      "device_role": "unknown",
+      "rc_observations": "unknown",
+      "wire_ltssm_pm_observations": "unknown",
+      "wire_scope_reason": "saved LTSSM window starts at225041; queries here precede disconnect and have no eligible state-point source",
+      "l1ss_named_fields": "not_qualified",
+      "clkreq_electrical_action": "unknown",
+      "effective_state": "UNKNOWN",
+      "expected_state": "UNKNOWN",
+      "policy_result": "NOT_EVALUATED",
+      "qualification": "NOT_EVALUATED",
+      "claim_boundary": "standard register bit observations only; no applied state, L1 entry, clock/sideband or Disable-ASPM policy verdict"
+    },
+    {
+      "schema": "pcie.aspm-register-observations/v1",
+      "slice": "P10",
+      "device_id": 256,
+      "register_view": {
+        "schema": "pcie.b2h2-sidecar/v1",
+        "binding": {
+          "trace": {
+            "path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\pcie-p4a-hang-20260914-dcea0027\\Disable ASPM--Insert SD7-hang.pex",
+            "bytes": 126565918,
+            "mtime_ns": 1789375908544974500,
+            "sha256": "C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD"
+          },
+          "petracer": {
+            "path": "C:\\Program Files\\LeCroy\\PCIe Protocol Suite\\PETracer.exe",
+            "bytes": 78978944,
+            "mtime_ns": 1768832144000000000,
+            "sha256": "160A542BF369701DF00466E744C9981FA9C530265AC237D81C0343C8F732E118",
+            "file_version": "13.26.0.43"
+          },
+          "bdf": 256,
+          "snapshot_position_packet": 10360,
+          "epoch": "before_disconnect",
+          "regdef": {
+            "name": "P10 LinkControl observed bits - case offset 0x90",
+            "provenance": {
+              "source": "PCI-45 WDK ntddk.h LinkControl layout, Microsoft Learn last updated 2026-06-29, reviewed 2026-10-13; capability-relative +0x10 from existing Linux v6.12 reference; case offset must be verified by B2c",
+              "who": "primary implementation layout; observed bits only, no product rule or hardware effectiveness claim",
+              "date": "2026-10-13",
+              "permitted_for_tool_use": true
+            }
+          },
+          "hashes": {}
+        },
+        "snapshot_position_note": "snapshot_position_packet is where CATC was queried; it is not the packet of the last update of any field",
+        "normalization": {
+          "known_bytes": 115,
+          "partial_byte_offsets": []
+        },
+        "rows": [
+          {
+            "register": "LinkControl",
+            "offset": 144,
+            "field": "ASPM Control",
+            "lsb": 0,
+            "width": 2,
+            "catc_merged": {
+              "value": 2,
+              "label": "L1 Entry Enabled",
+              "status": "DECODED"
+            },
+            "last_write_intent": {
+              "value": 2,
+              "label": "L1 Entry Enabled",
+              "status": "DECODED",
+              "evidence_request_packets": [
+                10354
+              ]
+            },
+            "last_read_back": {
+              "value": null,
+              "label": null,
+              "status": "UNKNOWN_BITS_NOT_KNOWN",
+              "evidence_completion_packets": []
+            },
+            "native_catc": {
+              "name": "Active State PM Control",
+              "register": "Link Control",
+              "value": 2
+            },
+            "native_comparison": "MATCH"
+          },
+          {
+            "register": "LinkControl",
+            "offset": 144,
+            "field": "CommonClockConfig",
+            "lsb": 6,
+            "width": 1,
+            "catc_merged": {
+              "value": 1,
+              "label": "Set",
+              "status": "DECODED"
+            },
+            "last_write_intent": {
+              "value": 1,
+              "label": "Set",
+              "status": "DECODED",
+              "evidence_request_packets": [
+                10354
+              ]
+            },
+            "last_read_back": {
+              "value": null,
+              "label": null,
+              "status": "UNKNOWN_BITS_NOT_KNOWN",
+              "evidence_completion_packets": []
+            },
+            "native_catc": {
+              "name": "Common Clock Configuration",
+              "register": "Link Control",
+              "value": 1
+            },
+            "native_comparison": "MATCH"
+          },
+          {
+            "register": "LinkControl",
+            "offset": 144,
+            "field": "EnableClockPowerManagement",
+            "lsb": 8,
+            "width": 1,
+            "catc_merged": {
+              "value": 0,
+              "label": "Clear",
+              "status": "DECODED"
+            },
+            "last_write_intent": {
+              "value": 0,
+              "label": "Clear",
+              "status": "DECODED",
+              "evidence_request_packets": [
+                10354
+              ]
+            },
+            "last_read_back": {
+              "value": null,
+              "label": null,
+              "status": "UNKNOWN_BITS_NOT_KNOWN",
+              "evidence_completion_packets": []
+            },
+            "native_catc": {
+              "name": "Enable Clock Power Management",
+              "register": "Link Control",
+              "value": 0
+            },
+            "native_comparison": "MATCH"
+          }
+        ],
+        "differences": [],
+        "not_established": [
+          "catc_merged combines reads and writes (possibly from different times) and is not a hardware readback",
+          "last_write_intent is what was sent, not the applied hardware state",
+          "last_read_back is per byte, latest completion data; it can predate later writes",
+          "scope: one trace, one device, epoch before_disconnect only; other epochs are refused, not inherited",
+          "definition correctness rests on its stated provenance"
+        ]
+      },
+      "source_ids": [
+        "PCI-45",
+        "LC-02",
+        "Linux-v6.12-pci_regs"
+      ],
+      "device_role": "unknown",
+      "rc_observations": "unknown",
+      "wire_ltssm_pm_observations": "unknown",
+      "wire_scope_reason": "saved LTSSM window starts at225041; queries here precede disconnect and have no eligible state-point source",
+      "l1ss_named_fields": "not_qualified",
+      "clkreq_electrical_action": "unknown",
+      "effective_state": "UNKNOWN",
+      "expected_state": "UNKNOWN",
+      "policy_result": "NOT_EVALUATED",
+      "qualification": "NOT_EVALUATED",
+      "claim_boundary": "standard register bit observations only; no applied state, L1 entry, clock/sideband or Disable-ASPM policy verdict"
+    }
+  ],
+  "sources": {
+    "snapshot": {
+      "path": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\pcie-b2h1-cfgspace-20261005\\run3-full\\config-space.json",
+      "sha256": "5a0e1d5edb510cbb928c9e0657ad022c1fddf1fc7372db7c646e0957ad916fc4"
+    },
+    "accesses": {
+      "path": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\pcie-b2b-hang-20260930\\r2-run1\\accesses.json",
+      "sha256": "7b54aaf6de5fb29eba12bd99f59316e31a14da040a594bc958124bdef8075373"
+    },
+    "capabilities": {
+      "path": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\pcie-b2c-hang-20260930\\run1\\capabilities.json",
+      "sha256": "51282fc75259191c23e197ef9b159b851d8f91e095d0545ff980ef2e48f94bf2"
+    },
+    "definition": {
+      "path": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\docs\\pcie-register-defs\\linkcontrol-observation.regdef.json",
+      "sha256": "ec3501dd8974c375c4ba6bf9a79d8783abb2666dc9f110915b81505699bab9e5"
+    }
+  },
+  "dependencies": {
+    "b2h2_sidecar": {
+      "path": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\scripts\\pcie\\b2h2_sidecar.py",
+      "sha256": "9fad21df1bc9dd803dcbc54d6bf162f908ec4517934654a973b1d2cead4c520b",
+      "state": "existing_current_checkout_working_file"
+    },
+    "b2d_observed_state": {
+      "path": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\scripts\\pcie\\b2d_observed_state.py",
+      "sha256": "4d69b4e56a58350932480f873fdb51437c68676e53efbdfcb95a19f0083d62aa",
+      "state": "existing_current_checkout_working_file"
+    },
+    "catc_regdef": {
+      "path": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\scripts\\pcie\\catc_regdef.py",
+      "sha256": "7914133b7935a829facefa436a21c565b91c46d772c3f94b4c7e1ba57612f1f8",
+      "state": "existing_current_checkout_working_file"
+    }
+  }
+}

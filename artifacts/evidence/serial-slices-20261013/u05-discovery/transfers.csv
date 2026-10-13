@@ -1,0 +1,4 @@
+,Transfer,Left,Sp,Bulk,Ad,Ep,Route String,Bytes Transferred,Time,Time Stamp,Stream ID
+,0,"Left",G2,Bulk:OUT,2,4,1,32, 21.932 us,6.305710764,
+,1,"Left",G2,Bulk:IN,2,3,1,16,  2.118 us,6.306988932,0x0002
+,2,"Left",G2,Bulk:OUT,2,4,1,32, 14.758 us,7.793179476,

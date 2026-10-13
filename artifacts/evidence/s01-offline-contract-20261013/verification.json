@@ -1,0 +1,267 @@
+{
+  "schema_version": "s01.local-verification/v1",
+  "checked_on": "2026-10-13",
+  "status": "PASS_LOCAL_OFFLINE_CONTRACT",
+  "claim_boundary": "S01 metadata consistency only; no trace/protocol qualification, pipeline integration or runtime execution.",
+  "tests": {
+    "command": [
+      "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "-X",
+      "utf8",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/s01",
+      "-p",
+      "test_*.py",
+      "-v"
+    ],
+    "count": 42,
+    "exit_code": 0,
+    "output": "tests.txt",
+    "sha256": "55d2628fe1950a2bed44c75494045793c46bba9d1c3dedbc1349783a7d179d73",
+    "fixture_json_count": 12,
+    "handwritten_readiness_cases": 64
+  },
+  "synthetic_matrix": {
+    "path": "synthetic-eligibility.json",
+    "sha256": "92e88fe7d107eb0482d57e05e33244ae125d549570fba1a8305b6ac63f8b0cf8",
+    "trace_rows": 8,
+    "profiles": 8,
+    "qualification": "NOT_EVALUATED",
+    "not_real_trace_qualification": true
+  },
+  "legacy_compatibility": [
+    {
+      "path": "samples/pcie/triage-input-hang-p4a.json",
+      "legacy_format": "pcie.triage-input/v1",
+      "before_sha256": "4ac6553753d8d982da3ea430b2cfa25152759dff686bfff1b13bb87e21da30f3",
+      "after_sha256": "4ac6553753d8d982da3ea430b2cfa25152759dff686bfff1b13bb87e21da30f3",
+      "bytes_unchanged": true,
+      "decoded_original_equal": true,
+      "trace_identities": [
+        {
+          "role": "analysis_trace",
+          "json_pointer": "/trace/sha256",
+          "sha256": "C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD"
+        },
+        {
+          "role": "original_trace",
+          "json_pointer": "/trace/provenance/original_sha256",
+          "sha256": "F21FCDEB86F8BE1927951C8DE9D169E2DE8AAD404D7336C721A0B21BDDC02CD6"
+        }
+      ],
+      "artifact_hash_is_separate_from_trace_identities": true,
+      "coverage": "unknown",
+      "qualification": "NOT_EVALUATED",
+      "raw_trace_access": "not_checked",
+      "historical_scope_preservation": "Original document unchanged; S01 did not rerun or enlarge historical PASS."
+    },
+    {
+      "path": "c4-demo-regression-20260911/source-integrity.json",
+      "legacy_format": "usb.demo-source-integrity",
+      "before_sha256": "49b12f71ad273f153f804861acba8f0147ef20f9c172a6606e8528e432d56dfe",
+      "after_sha256": "49b12f71ad273f153f804861acba8f0147ef20f9c172a6606e8528e432d56dfe",
+      "bytes_unchanged": true,
+      "decoded_original_equal": true,
+      "trace_identities": [
+        {
+          "role": "source_pass_before",
+          "json_pointer": "/pass/before/sha256",
+          "sha256": "8D6B434C5AD0544C4DE57CB4C0B4111B75B8D57DD7B0F5F207626E4B938DFD77"
+        },
+        {
+          "role": "working_copy_pass_before",
+          "json_pointer": "/working_copy/pass/before/sha256",
+          "sha256": "8D6B434C5AD0544C4DE57CB4C0B4111B75B8D57DD7B0F5F207626E4B938DFD77"
+        },
+        {
+          "role": "source_pass_after",
+          "json_pointer": "/pass/after/sha256",
+          "sha256": "8D6B434C5AD0544C4DE57CB4C0B4111B75B8D57DD7B0F5F207626E4B938DFD77"
+        },
+        {
+          "role": "working_copy_pass_after",
+          "json_pointer": "/working_copy/pass/after/sha256",
+          "sha256": "8D6B434C5AD0544C4DE57CB4C0B4111B75B8D57DD7B0F5F207626E4B938DFD77"
+        },
+        {
+          "role": "source_fail_before",
+          "json_pointer": "/fail/before/sha256",
+          "sha256": "A5568248D1C3D04F3CC16D6D3649F1303BE0D15FFA1A734E2057D73564836CAE"
+        },
+        {
+          "role": "working_copy_fail_before",
+          "json_pointer": "/working_copy/fail/before/sha256",
+          "sha256": "A5568248D1C3D04F3CC16D6D3649F1303BE0D15FFA1A734E2057D73564836CAE"
+        },
+        {
+          "role": "source_fail_after",
+          "json_pointer": "/fail/after/sha256",
+          "sha256": "A5568248D1C3D04F3CC16D6D3649F1303BE0D15FFA1A734E2057D73564836CAE"
+        },
+        {
+          "role": "working_copy_fail_after",
+          "json_pointer": "/working_copy/fail/after/sha256",
+          "sha256": "A5568248D1C3D04F3CC16D6D3649F1303BE0D15FFA1A734E2057D73564836CAE"
+        }
+      ],
+      "artifact_hash_is_separate_from_trace_identities": true,
+      "coverage": "unknown",
+      "qualification": "NOT_EVALUATED",
+      "raw_trace_access": "not_checked",
+      "historical_scope_preservation": "Original document unchanged; S01 did not rerun or enlarge historical PASS."
+    }
+  ],
+  "preservation": {
+    "pre_existing_files_unchanged": 229,
+    "unexpected_changed_paths": [],
+    "append_only_prefixes": {
+      "PLAN.md": {
+        "preserved_prefix_sha256": "0c5abbe814611428697bccfce44fb31545fc08ab43b3495b04d946465301bc84",
+        "preserved_bytes": 89092,
+        "appended_bytes": 2340
+      },
+      "artifacts/session-closeout.txt": {
+        "preserved_prefix_sha256": "5789b2ddd0b8fa217df94d8a3a755407fadec6cfacda130c9f6a270d86e35fee",
+        "preserved_bytes": 29852,
+        "appended_bytes": 3275
+      }
+    },
+    "working_checkout_head": "c100ee1bba49c0e1956c726e287ff5158e70aec5",
+    "delivery_checkout_head": "f417eecb340f56d09d6e4c0ca0b86f81e2977181",
+    "delivery_checkout_clean": true,
+    "w1_w5_file_sha256": {
+      "scripts/pcie/b3a_event_contract.py": "3883ab3f248a8d0dcbb6b6405b5ef505f6f9647c99b1e6c2be582bc41e9b75cc",
+      "scripts/pcie/b3b_unified_timeline.py": "eb68a984f54ea8730f6ad58ae6a8d1aeb3c6a46a4f8f4f9a00f661ce01821ede",
+      "scripts/pcie/b3d_observation_report.py": "da2b81d8bd2468913d6d81e4095b154af48fd569c1ae69644fb1d1ff66b5037b",
+      "docs/pcie-observation-timeline-contract-v1.json": "d2e0e44a6486f3cf3ff2838bd830646b14865a874f2cd80cc23ebb7058bdf917"
+    }
+  },
+  "checks": {
+    "local_markdown_links": 40,
+    "roadmap_slices": 29,
+    "whitespace": "PASS",
+    "json_parse": "PASS",
+    "new_schema_semantics": "executed by focused tests",
+    "git_diff_check": "PASS (line-ending notices only)",
+    "tested_code_schema_fixture_hashes_unchanged_at_closeout": true,
+    "focused_review": {
+      "findings": 3,
+      "resolved": 3,
+      "scope": "Original in-memory counterexamples only; no source-content authentication."
+    }
+  },
+  "files": {
+    "tools\\s01_contract.py": {
+      "sha256": "dd540dc48f0e6653ae71397034b5084a14be4463cf3f8e4837908ebd2858e5ef",
+      "bytes": 25362
+    },
+    "schemas\\s01-input-manifest-v1.schema.json": {
+      "sha256": "152fb3ef6d6ced6a49c90552924b0b1a9fbc0a1a4ce1ad043a52fa3f9d7754d0",
+      "bytes": 11999
+    },
+    "schemas\\s01-trace-eligibility-v1.schema.json": {
+      "sha256": "343d1896c2e676e77253f965d1d56293ec8ae8d863611b530dfddeabd92dc3e0",
+      "bytes": 5226
+    },
+    "docs\\s01-offline-contract.md": {
+      "sha256": "c3e84d54218b60b8c8d750124c9b369a81d55abdf25c89d5f759925f9d7adb8e",
+      "bytes": 12794
+    },
+    "docs\\pcie-usb-spec-slices-20261013.md": {
+      "sha256": "2cbb62cc9dd40e0efe451fe8d3fa457988ba817759d4483de634f1c067eb7fd2",
+      "bytes": 46954
+    },
+    "tests\\s01\\fixture-oracles.md": {
+      "sha256": "c6ebd4fc084625c5421dba32b2a784ed4bb929f437cfc429fbd9dfbd180cb08c",
+      "bytes": 16953
+    },
+    "tests\\s01\\fixtures\\all-unknown.json": {
+      "sha256": "d75ab37b1976c554e29d376596e70df7b669242b4a8ecc56931326fdca406ecf",
+      "bytes": 1945
+    },
+    "tests\\s01\\fixtures\\complete-pcie.json": {
+      "sha256": "f70f6c86710707cac79662845696a5f6fec403e547e3b63924b40abe23e38f70",
+      "bytes": 3098
+    },
+    "tests\\s01\\fixtures\\complete-usb.json": {
+      "sha256": "d8e438dbc40379a969de2e7921e9fefbe98f9c5c79295b11f63faa6a230f30b7",
+      "bytes": 3093
+    },
+    "tests\\s01\\fixtures\\expected-readiness.json": {
+      "sha256": "b5017b0376941ed3dbb82aca1356b395c9560dba1b932d0f7e2b0c5babef799f",
+      "bytes": 2784
+    },
+    "tests\\s01\\fixtures\\inapplicable.json": {
+      "sha256": "e577964f23cd29b22e2fc80357480cd1a608b92ca2df7a042c62c7f0423619b9",
+      "bytes": 3149
+    },
+    "tests\\s01\\fixtures\\legacy-pcie.json": {
+      "sha256": "a74f136cd0a463ee371d6957da7450c48159c783e4bebb76fee21543002069dc",
+      "bytes": 859
+    },
+    "tests\\s01\\fixtures\\legacy-usb.json": {
+      "sha256": "eca42768b8aeeb7e59867f9730f9f3d639efdd0428c804fbc61d4e0b0b45e9d2",
+      "bytes": 2573
+    },
+    "tests\\s01\\fixtures\\missing-epoch.json": {
+      "sha256": "0667d71960bb95c5e61955195cfbc7edee0dbeeed5ca091c482bf280def92ee7",
+      "bytes": 3057
+    },
+    "tests\\s01\\fixtures\\missing-mode.json": {
+      "sha256": "ee5519970066c00001f84628168ef1c67882f0086f9b191701e38ebee211488e",
+      "bytes": 3064
+    },
+    "tests\\s01\\fixtures\\partial-capture.json": {
+      "sha256": "2c0d11c9541c11dd327fc89649316bff8540b1816c98059d69ae1ea4fddada61",
+      "bytes": 3101
+    },
+    "tests\\s01\\fixtures\\profiles.json": {
+      "sha256": "37b411c26c0c42a14416c0da40fa5d5daffb5fcda88243c5e7e28f616e38a610",
+      "bytes": 3871
+    },
+    "tests\\s01\\fixtures\\unknown-filter.json": {
+      "sha256": "46342ae3901d835c5431f0f0d35ab860193af5319849c5d76bce8b3aca13c200",
+      "bytes": 3032
+    },
+    "tests\\s01\\test_s01_contract.py": {
+      "sha256": "5f033ceeb921efc0bef5d207beda853ce8ce2977a949f78e98da029cf21400eb",
+      "bytes": 30249
+    }
+  },
+  "not_run": [
+    "LeCroy",
+    "COM",
+    "VSE",
+    "GUI",
+    "hardware probe",
+    "U01",
+    "P01",
+    "existing extraction/scoring pipelines"
+  ],
+  "delivery": {
+    "commit_created": false,
+    "push": false,
+    "merge": false
+  },
+  "limitations": [
+    "References and hashes are declarations; evidence contents are not independently authenticated.",
+    "Synthetic eligibility is not actual trace eligibility.",
+    "Legacy reader supports only two explicit formats; it does not rerun their original validators.",
+    "Schema walker implements only bundled S01 vocabulary; unknown versions/keywords/references fail closed.",
+    "Full PCIe/USB conformance and product-policy rules remain outside S01."
+  ],
+  "closeout_files": {
+    "PLAN.md": {
+      "sha256": "040e6305807dfaf4e512978f0fb324d256a7f4cb9c09fc455ecece9b1fed3466",
+      "bytes": 91432
+    },
+    "artifacts/session-closeout.txt": {
+      "sha256": "ef9003c8b98ccfd062a6a7ce216f6b156f07aa18627a848c21e4795df9a62b00",
+      "bytes": 33127
+    }
+  }
+}

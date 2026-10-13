@@ -1,0 +1,9 @@
+  File E:\BackUp\Git_EE\lecroy-vse-toolkit\artifacts\evidence\p03-serial-20261013\tlp-b\working.pex.
+  From Packet #225042 to Packet #225042.
+
+Packet#
+_______|_______________________________________________________________________Filtered Traffic 
+Packet(225042) Downstream 5.0(x1) DLLP NAK 
+_______| AckNak_Seq_Num(1682) CRC 16(0x8019) Idle( 22.802 us) 
+_______| Time Stamp(0009.512214052000s) 
+_______|_______________________________________________________________________

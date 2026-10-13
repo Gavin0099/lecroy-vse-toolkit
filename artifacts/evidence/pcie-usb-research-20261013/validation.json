@@ -1,0 +1,123 @@
+{
+  "checked_on": "2026-10-13",
+  "scope": "Documentation consistency and existing-work preservation only; not protocol/runtime validation.",
+  "status": "PASS",
+  "source_records": 102,
+  "slice_count": 29,
+  "slice_dependencies": {
+    "S01": [],
+    "P01": [
+      "S01"
+    ],
+    "P02": [
+      "P01"
+    ],
+    "P03": [
+      "P01"
+    ],
+    "P04": [
+      "P03"
+    ],
+    "P05": [
+      "P03"
+    ],
+    "P06": [
+      "P02",
+      "P03"
+    ],
+    "P07": [
+      "S01"
+    ],
+    "P08": [
+      "S01"
+    ],
+    "P09": [
+      "P07",
+      "P08"
+    ],
+    "P10": [
+      "S01"
+    ],
+    "P11": [
+      "P01"
+    ],
+    "U01": [
+      "S01"
+    ],
+    "U02": [
+      "U01"
+    ],
+    "U03": [
+      "U01"
+    ],
+    "U04": [
+      "U01"
+    ],
+    "U05": [
+      "U01"
+    ],
+    "U06": [
+      "U02",
+      "U03"
+    ],
+    "U07": [
+      "U05"
+    ],
+    "U08": [
+      "U07"
+    ],
+    "U09": [
+      "U05"
+    ],
+    "U10": [
+      "U09"
+    ],
+    "U11": [
+      "U01"
+    ],
+    "O01": [
+      "S01"
+    ],
+    "O02": [
+      "S01"
+    ],
+    "I01": [
+      "S01"
+    ],
+    "I02": [
+      "S01"
+    ],
+    "G01": [
+      "P10"
+    ],
+    "G02": [
+      "S01"
+    ]
+  },
+  "dependency_graph_acyclic": true,
+  "referenced_source_ids_resolve": true,
+  "local_markdown_links_checked": 41,
+  "pre_existing_workspace_files_unchanged": 227,
+  "append_only_prefixes": {
+    "PLAN.md": {
+      "preserved_bytes": 87100,
+      "preserved_prefix_sha256": "7034709337203a83803f659139abfc1d772473d9d9549346c099a35e32a15211",
+      "appended_bytes": 1992
+    },
+    "artifacts/session-closeout.txt": {
+      "preserved_bytes": 26836,
+      "preserved_prefix_sha256": "bd9dd4746817b09be5e6aa425feb6fb1d2c001e1e74e0f86e46c85918959ff28",
+      "appended_bytes": 3016
+    }
+  },
+  "document_sha256": {
+    "docs/pcie-usb-source-map-20261013.md": "e3f4f253d64d3af60ebfb4b23faccc0cad8846187b95f0f2695cb11a8a612f2a",
+    "docs/pcie-usb-source-register-20261013.json": "cce86278115b08f37191a32a9c7816d7a70fc3a92b97ac41d10607af5bcc0928",
+    "docs/pcie-usb-spec-slices-20261013.md": "1c9dad5c9193bb3a196c74073873d75b533dfa7902d5a9d8f331487256dcea89"
+  },
+  "not_run": [
+    "product tests",
+    "LeCroy COM/VSE/GUI",
+    "hardware or compliance tools"
+  ]
+}

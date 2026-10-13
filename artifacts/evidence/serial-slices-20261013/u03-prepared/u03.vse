@@ -1,0 +1,42 @@
+# U03: LC-04 PDF30-31, LC-09 GetLfpsDesc, existing M2 raw contract.
+set Visited = 0;
+set KnownModeCount = 0;
+set UnknownModeCount = 0;
+set Emitted = 0;
+set Mismatches = 0;
+%include "VSTools.inc"
+OnStartScript()
+{
+    SendAllChannels();
+    SendLevelOnly(_PKT);
+    SendTraceEventOnly(_USB3_LFPS);
+    SendPktsWithBadCRC(1);
+    ScriptForDisplayOnly();
+}
+ProcessEvent()
+{
+    Visited++;
+    if (in.Level != _PKT || in.TraceEvent != _USB3_LFPS) Mismatches++;
+    if (in.Speed == _SS || in.Speed == _SSP)
+    {
+        KnownModeCount++;
+        if (Emitted < 128)
+        {
+            ModeName = "SS";
+            if (in.Speed == _SSP) ModeName = "SSP";
+            ReportText(FormatEx("U03|%d|%d|%d|%d|%d|%d|%d|%d|%d|%d|%d|%s|%s",
+                in.Index, in.Time[0], in.Time[1], in.Channel, in.Speed, in.Type,
+                in.Duration, in.DurationSec, in.DurationNS, in.PatternType, in.StartsPattern,
+                GetLfpsDesc(in.Type), ModeName));
+            Emitted++;
+        }
+    }
+    else UnknownModeCount++;
+    return Complete();
+}
+OnFinishScript()
+{
+    ReportText(FormatEx("U03-UNSUPPORTED-MODE|%d", UnknownModeCount));
+    NotifyClient(2502, ["U01-END", Visited, KnownModeCount, Emitted, Mismatches, _PKT]);
+    return 0;
+}

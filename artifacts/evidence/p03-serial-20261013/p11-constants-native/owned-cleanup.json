@@ -1,0 +1,14 @@
+{
+  "reason": "Owned COM activation rejected relative OpenFile path; no trace opened",
+  "main": {
+    "ProcessId": 20984,
+    "ParentProcessId": 1780,
+    "CreationDate": "2026-10-13T15:03:51.778761+08:00",
+    "CommandLine": "\"C:\\Program Files\\LeCroy\\PCIe Protocol Suite\\PETracer.exe\" -Embedding"
+  },
+  "child": {
+    "ProcessId": 9464,
+    "ParentProcessId": 20984,
+    "CreationDate": "2026-10-13T15:03:55.219087+08:00"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "pass": {
+    "before": {
+      "path": "__S01_DO_NOT_OPEN_TRACE__/legacy-pass.usb",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "size": 16,
+      "mtime_utc": "2020-01-01T00:00:00.0000000Z",
+      "is_readonly": true
+    },
+    "after": {
+      "path": "__S01_DO_NOT_OPEN_TRACE__/legacy-pass.usb",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "size": 16,
+      "mtime_utc": "2020-01-01T00:00:00.0000000Z",
+      "is_readonly": true
+    },
+    "unchanged": true
+  },
+  "fail": {
+    "before": {
+      "path": "__S01_DO_NOT_OPEN_TRACE__/legacy-fail.usb",
+      "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+      "size": 16,
+      "mtime_utc": "2020-01-01T00:00:00.0000000Z",
+      "is_readonly": true
+    },
+    "after": {
+      "path": "__S01_DO_NOT_OPEN_TRACE__/legacy-fail.usb",
+      "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+      "size": 16,
+      "mtime_utc": "2020-01-01T00:00:00.0000000Z",
+      "is_readonly": true
+    },
+    "unchanged": true
+  },
+  "working_copy": {
+    "pass": {
+      "before": {
+        "path": "__S01_DO_NOT_OPEN_TRACE__/working-pass.usb",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "size": 16,
+        "mtime_utc": "2020-01-01T00:00:00.0000000Z",
+        "is_readonly": true
+      },
+      "after": {
+        "path": "__S01_DO_NOT_OPEN_TRACE__/working-pass.usb",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "size": 16,
+        "mtime_utc": "2020-01-01T00:00:00.0000000Z",
+        "is_readonly": true
+      },
+      "unchanged": true
+    },
+    "fail": {
+      "before": {
+        "path": "__S01_DO_NOT_OPEN_TRACE__/working-fail.usb",
+        "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+        "size": 16,
+        "mtime_utc": "2020-01-01T00:00:00.0000000Z",
+        "is_readonly": true
+      },
+      "after": {
+        "path": "__S01_DO_NOT_OPEN_TRACE__/working-fail.usb",
+        "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+        "size": 16,
+        "mtime_utc": "2020-01-01T00:00:00.0000000Z",
+        "is_readonly": true
+      },
+      "unchanged": true
+    }
+  },
+  "source_evidence_integrity": true,
+  "working_copy_integrity": true,
+  "analysis_input_integrity": true,
+  "claim_boundary": "Synthetic historical integrity PASS for this fixture scope only; universal immutability is not claimed."
+}

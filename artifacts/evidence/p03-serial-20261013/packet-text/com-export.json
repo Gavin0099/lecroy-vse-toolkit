@@ -1,0 +1,201 @@
+{
+  "schema": "pcie.com-export-text/v1",
+  "started_utc": "2026-10-13T06:45:15+00:00",
+  "input_sent_to_gui": "none",
+  "pre": [
+    {
+      "path": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\p03-serial-20261013\\tlp-b\\working.pex",
+      "bytes": 126565918,
+      "mtime_ns": 1789375908544974500,
+      "sha256": "C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD"
+    },
+    {
+      "path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\pcie-p4a-hang-20260914-dcea0027\\Disable ASPM--Insert SD7-hang.pex",
+      "bytes": 126565918,
+      "mtime_ns": 1789375908544974500,
+      "sha256": "C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD"
+    }
+  ],
+  "exports": [
+    {
+      "range": [
+        3130,
+        3130
+      ],
+      "file": "packets-3130-3130.txt",
+      "ok": true,
+      "bytes": 517
+    },
+    {
+      "range": [
+        3131,
+        3131
+      ],
+      "file": "packets-3131-3131.txt",
+      "ok": true,
+      "bytes": 507
+    },
+    {
+      "range": [
+        3133,
+        3133
+      ],
+      "file": "packets-3133-3133.txt",
+      "ok": true,
+      "bytes": 483
+    },
+    {
+      "range": [
+        225042,
+        225042
+      ],
+      "file": "packets-225042-225042.txt",
+      "ok": true,
+      "bytes": 483
+    },
+    {
+      "range": [
+        1484298,
+        1484298
+      ],
+      "file": "packets-1484298-1484298.txt",
+      "ok": true,
+      "bytes": 511
+    },
+    {
+      "range": [
+        1484300,
+        1484300
+      ],
+      "file": "packets-1484300-1484300.txt",
+      "ok": true,
+      "bytes": 504
+    },
+    {
+      "range": [
+        1484301,
+        1484301
+      ],
+      "file": "packets-1484301-1484301.txt",
+      "ok": true,
+      "bytes": 512
+    },
+    {
+      "range": [
+        1484345,
+        1484345
+      ],
+      "file": "packets-1484345-1484345.txt",
+      "ok": true,
+      "bytes": 515
+    },
+    {
+      "range": [
+        1484347,
+        1484347
+      ],
+      "file": "packets-1484347-1484347.txt",
+      "ok": true,
+      "bytes": 515
+    },
+    {
+      "range": [
+        1484349,
+        1484349
+      ],
+      "file": "packets-1484349-1484349.txt",
+      "ok": true,
+      "bytes": 514
+    },
+    {
+      "range": [
+        3129,
+        3129
+      ],
+      "file": "packets-3129-3129.txt",
+      "ok": true,
+      "bytes": 555
+    },
+    {
+      "range": [
+        3148,
+        3148
+      ],
+      "file": "packets-3148-3148.txt",
+      "ok": true,
+      "bytes": 585
+    },
+    {
+      "range": [
+        3150,
+        3150
+      ],
+      "file": "packets-3150-3150.txt",
+      "ok": true,
+      "bytes": 663
+    },
+    {
+      "range": [
+        3312,
+        3312
+      ],
+      "file": "packets-3312-3312.txt",
+      "ok": true,
+      "bytes": 658
+    },
+    {
+      "range": [
+        3314,
+        3314
+      ],
+      "file": "packets-3314-3314.txt",
+      "ok": true,
+      "bytes": 576
+    },
+    {
+      "range": [
+        46820,
+        46820
+      ],
+      "file": "packets-46820-46820.txt",
+      "ok": true,
+      "bytes": 569
+    },
+    {
+      "range": [
+        57733,
+        57733
+      ],
+      "file": "packets-57733-57733.txt",
+      "ok": true,
+      "bytes": 607
+    },
+    {
+      "range": [
+        1484414,
+        1484414
+      ],
+      "file": "packets-1484414-1484414.txt",
+      "ok": true,
+      "bytes": 581
+    }
+  ],
+  "open_seconds": 3.9,
+  "process_exit_ok": true,
+  "post": [
+    {
+      "path": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\p03-serial-20261013\\tlp-b\\working.pex",
+      "bytes": 126565918,
+      "mtime_ns": 1789375908544974500,
+      "sha256": "C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD"
+    },
+    {
+      "path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\pcie-p4a-hang-20260914-dcea0027\\Disable ASPM--Insert SD7-hang.pex",
+      "bytes": 126565918,
+      "mtime_ns": 1789375908544974500,
+      "sha256": "C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD"
+    }
+  ],
+  "identities_unchanged": true,
+  "status": "COM_EXPORT_COMPLETE"
+}

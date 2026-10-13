@@ -1,0 +1,9 @@
+  File E:\BackUp\Git_EE\lecroy-vse-toolkit\artifacts\evidence\serial-slices-20261013\u04-discovery\working.usb.
+  From Packet #629247 to Packet #629247.
+
+Packet#
+_______|_______________________________________________________________________Power State R 
+Packet(629247) Right("Right") Dir G2(x1) LC 
+_______| LAU(0x4B 0x4B 0x4B 0x36 0x80 0xF2 0x80 0xF2 ) Duration(6.610 ns) 
+_______| Time(254.000 ns) Time Stamp(7 . 838 869 896) 
+_______|_______________________________________________________________________

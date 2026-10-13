@@ -1,0 +1,70 @@
+{
+  "schema": "slice-dependency-delivery/v1",
+  "origin_main": "f417eecb340f56d09d6e4c0ca0b86f81e2977181",
+  "dependencies": [
+    {
+      "path": "scripts/pcie/b1d_mux_rules.py",
+      "source": "existing current checkout working file; not copied",
+      "current_git_object": "1a25924e63d5925b0fa3c2d0fc959246394c2b27",
+      "main_git_object": "1a25924e63d5925b0fa3c2d0fc959246394c2b27",
+      "comparison": "same",
+      "scope": "required by delivered bounded slices; main integration not performed"
+    },
+    {
+      "path": "scripts/pcie/b2a_register_fields.py",
+      "source": "existing current checkout working file; not copied",
+      "current_git_object": "f25143da33347bafc529bb4df53e4dafd61cb2e8",
+      "main_git_object": "9ff90909096e5eed77fe56270742cd4cf6971723",
+      "comparison": "differs",
+      "scope": "required by delivered bounded slices; main integration not performed"
+    },
+    {
+      "path": "scripts/pcie/b2b_config_access.py",
+      "source": "existing current checkout working file; not copied",
+      "current_git_object": "0c7d4c65d315476461c3ac8cd01b52a83254edbb",
+      "main_git_object": "5f1c98e4e8d47ece3a967dd9d99b8138b7afe28d",
+      "comparison": "differs",
+      "scope": "required by delivered bounded slices; main integration not performed"
+    },
+    {
+      "path": "scripts/pcie/b2c_capability_resolution.py",
+      "source": "existing current checkout working file; not copied",
+      "current_git_object": "750c2a3e3f78800aa5c1701aeffdf406b790c931",
+      "main_git_object": "be91130fde5b95fb450a536998161a08fa6c991c",
+      "comparison": "differs",
+      "scope": "required by delivered bounded slices; main integration not performed"
+    },
+    {
+      "path": "scripts/pcie/b2d_observed_state.py",
+      "source": "existing current checkout working file; not copied",
+      "current_git_object": "6048504e350ddf99e8101a74769dfd8e2ffd8680",
+      "main_git_object": "6048504e350ddf99e8101a74769dfd8e2ffd8680",
+      "comparison": "same",
+      "scope": "required by delivered bounded slices; main integration not performed"
+    },
+    {
+      "path": "scripts/pcie/b2h2_sidecar.py",
+      "source": "existing current checkout working file; not copied",
+      "current_git_object": "243316a2dcb15432f608fd635205d84804a42a14",
+      "main_git_object": null,
+      "comparison": "not_present",
+      "scope": "required by delivered bounded slices; main integration not performed"
+    },
+    {
+      "path": "scripts/pcie/catc_regdef.py",
+      "source": "existing current checkout working file; not copied",
+      "current_git_object": "c69e3a5daea1f9bf9bf70690fadb7ac3e2cb8228",
+      "main_git_object": null,
+      "comparison": "not_present",
+      "scope": "required by delivered bounded slices; main integration not performed"
+    },
+    {
+      "path": "scripts/pcie/com_export_text.py",
+      "source": "existing current checkout working file; not copied",
+      "current_git_object": "b63d04d277a5e33cbfff75c806e9fa891923d81d",
+      "main_git_object": null,
+      "comparison": "not_present",
+      "scope": "required by delivered bounded slices; main integration not performed"
+    }
+  ]
+}

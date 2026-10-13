@@ -1,0 +1,24 @@
+set Visited = 0;
+%include "VSTools.inc"
+OnStartScript()
+{
+    ReportText("U01-DIAG before all channels");
+    SendAllChannels();
+    ReportText("U01-DIAG before level only");
+    SendLevelOnly(_PKT);
+    ReportText("U01-DIAG before all events");
+    SendAllTraceEvents();
+    ScriptForDisplayOnly();
+    ReportText("U01-DIAG start done");
+}
+ProcessEvent()
+{
+    Visited++;
+    if (Visited == 1) ReportText("U01-DIAG first event");
+    return Complete();
+}
+OnFinishScript()
+{
+    ReportText(FormatEx("U01-DIAG end count %d", Visited));
+    return 0;
+}

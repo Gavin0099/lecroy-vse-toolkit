@@ -1,0 +1,19 @@
+test_bad_callback_fields_do_not_get_silently_coerced (test_u01_selection.U01Tests.test_bad_callback_fields_do_not_get_silently_coerced) ... ok
+test_cli_assessment_stdout_and_input_preservation (test_u01_selection.U01Tests.test_cli_assessment_stdout_and_input_preservation) ... ok
+test_comparison_rejects_missing_mode_source_drift_and_namespace_mismatch (test_u01_selection.U01Tests.test_comparison_rejects_missing_mode_source_drift_and_namespace_mismatch) ... ok
+test_counts_range_and_manifest_have_handwritten_expected_results (test_u01_selection.U01Tests.test_counts_range_and_manifest_have_handwritten_expected_results) ... ok
+test_each_identity_and_integrity_guard_is_required (test_u01_selection.U01Tests.test_each_identity_and_integrity_guard_is_required) ... ok
+test_empty_success_is_unknown_and_does_not_prove_bad_crc_absence (test_u01_selection.U01Tests.test_empty_success_is_unknown_and_does_not_prove_bad_crc_absence) ... ok
+test_like_level_comparison_preserves_unknown_coverage_and_handwritten_delta (test_u01_selection.U01Tests.test_like_level_comparison_preserves_unknown_coverage_and_handwritten_delta) ... ok
+test_missing_end_marker_false_run_and_partial_delivery_fail (test_u01_selection.U01Tests.test_missing_end_marker_false_run_and_partial_delivery_fail) ... ok
+test_negative_inapplicable_sentinel_uses_explicit_wire_token (test_u01_selection.U01Tests.test_negative_inapplicable_sentinel_uses_explicit_wire_token) ... ok
+test_plan_rejects_changed_flags_hash_level_namespaces_and_extra_keys (test_u01_selection.U01Tests.test_plan_rejects_changed_flags_hash_level_namespaces_and_extra_keys) ... ok
+test_prepare_refuses_overwrite_and_invalid_inputs_before_writing (test_u01_selection.U01Tests.test_prepare_refuses_overwrite_and_invalid_inputs_before_writing) ... ok
+test_sample_limit_is_explicit_partial_not_complete (test_u01_selection.U01Tests.test_sample_limit_is_explicit_partial_not_complete) ... ok
+test_seven_named_selections_use_reviewed_flags_and_native_names (test_u01_selection.U01Tests.test_seven_named_selections_use_reviewed_flags_and_native_names) ... ok
+test_transfer_completion_is_checked_without_packet_index_claim (test_u01_selection.U01Tests.test_transfer_completion_is_checked_without_packet_index_claim) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.318s
+
+OK

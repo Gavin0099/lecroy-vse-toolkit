@@ -1,0 +1,8 @@
+﻿{
+    "trace_sha256":  "A5568248D1C3D04F3CC16D6D3649F1303BE0D15FFA1A734E2057D73564836CAE",
+    "source_unchanged":  true,
+    "working_unchanged":  true,
+    "working_readonly":  true,
+    "method":  "ExportToCsv levels1/3, native unit indices0..2; filters/effective range not independently verified",
+    "qualification":  "NOT_EVALUATED"
+}

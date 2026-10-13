@@ -1,0 +1,23 @@
+﻿{
+    "run_result":  2,
+    "error":  "",
+    "reports":  [
+                    "\n------------------------------------------------------------------------------------",
+                    "                                    E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\serial-slices-20261013\\diagnostic.vse",
+                    "------------------------------------------------------------------------------------\n\n",
+                    "Running verification script...\n...\n",
+                    "Test Description : ",
+                    "U01-DIAG before all channels",
+                    "U01-DIAG before level only",
+                    "U01-DIAG before all events",
+                    "U01-DIAG start done",
+                    "U01-DIAG first event",
+                    "U01-DIAG end count 3174680",
+                    "\n\n------- D O N E !!! -------"
+                ],
+    "finished":  2,
+    "source_hash":  "A5568248D1C3D04F3CC16D6D3649F1303BE0D15FFA1A734E2057D73564836CAE",
+    "working_hash":  "A5568248D1C3D04F3CC16D6D3649F1303BE0D15FFA1A734E2057D73564836CAE",
+    "working_readonly":  true,
+    "qualification":  "NOT_EVALUATED"
+}

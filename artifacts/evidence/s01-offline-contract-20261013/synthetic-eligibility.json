@@ -1,0 +1,3835 @@
+{
+  "schema_version": "s01.trace-eligibility/v1",
+  "profiles": [
+    {
+      "slice_id": "R-MODE",
+      "engineer_question": "Which explicitly declared input prerequisites have metadata evidence?",
+      "expected_observation": "Input readiness only; runtime and protocol qualification are not evaluated.",
+      "requirements": [
+        {
+          "kind": "fact",
+          "id": "bidirectional",
+          "expected": true
+        }
+      ],
+      "protocol": "pcie",
+      "modes": [
+        "non-Flit"
+      ]
+    },
+    {
+      "slice_id": "R-EPOCH",
+      "engineer_question": "Which explicitly declared input prerequisites have metadata evidence?",
+      "expected_observation": "Input readiness only; runtime and protocol qualification are not evaluated.",
+      "requirements": [
+        {
+          "kind": "fact",
+          "id": "epoch",
+          "expected": "known"
+        }
+      ],
+      "protocol": "pcie",
+      "modes": [
+        "non-Flit"
+      ]
+    },
+    {
+      "slice_id": "R-FULL",
+      "engineer_question": "Which explicitly declared input prerequisites have metadata evidence?",
+      "expected_observation": "Input readiness only; runtime and protocol qualification are not evaluated.",
+      "requirements": [
+        {
+          "kind": "fact",
+          "id": "capture_start",
+          "expected": "complete"
+        },
+        {
+          "kind": "fact",
+          "id": "capture_end",
+          "expected": "complete"
+        }
+      ],
+      "protocol": "pcie",
+      "modes": [
+        "non-Flit"
+      ]
+    },
+    {
+      "slice_id": "R-WINDOW",
+      "engineer_question": "Which explicitly declared input prerequisites have metadata evidence?",
+      "expected_observation": "Input readiness only; runtime and protocol qualification are not evaluated.",
+      "requirements": [
+        {
+          "kind": "coverage",
+          "id": "pcie.NAK",
+          "expected": "complete"
+        },
+        {
+          "kind": "event",
+          "id": "pcie.NAK",
+          "expected": "not_observed_in_coverage"
+        }
+      ],
+      "protocol": "pcie",
+      "modes": [
+        "non-Flit"
+      ]
+    },
+    {
+      "slice_id": "R-FIELD",
+      "engineer_question": "Which explicitly declared input prerequisites have metadata evidence?",
+      "expected_observation": "Input readiness only; runtime and protocol qualification are not evaluated.",
+      "requirements": [
+        {
+          "kind": "field",
+          "id": "pcie.AckNak_SeqNum",
+          "expected": "available"
+        }
+      ],
+      "protocol": "pcie",
+      "modes": [
+        "non-Flit"
+      ]
+    },
+    {
+      "slice_id": "R-POSITIVE",
+      "engineer_question": "Which explicitly declared input prerequisites have metadata evidence?",
+      "expected_observation": "Input readiness only; runtime and protocol qualification are not evaluated.",
+      "requirements": [
+        {
+          "kind": "event",
+          "id": "pcie.ACK",
+          "expected": "observed"
+        }
+      ],
+      "protocol": "pcie",
+      "modes": [
+        "non-Flit"
+      ]
+    },
+    {
+      "slice_id": "R-BIDIRECTIONAL",
+      "engineer_question": "Which explicitly declared input prerequisites have metadata evidence?",
+      "expected_observation": "Input readiness only; runtime and protocol qualification are not evaluated.",
+      "requirements": [
+        {
+          "kind": "fact",
+          "id": "bidirectional",
+          "expected": true
+        }
+      ],
+      "protocol": "pcie",
+      "modes": [
+        "non-Flit"
+      ]
+    },
+    {
+      "slice_id": "R-USB",
+      "engineer_question": "Which explicitly declared input prerequisites have metadata evidence?",
+      "expected_observation": "Input readiness only; runtime and protocol qualification are not evaluated.",
+      "requirements": [
+        {
+          "kind": "fact",
+          "id": "mode",
+          "expected": "USB3-SS"
+        },
+        {
+          "kind": "field",
+          "id": "usb.LnkCmd",
+          "expected": "available"
+        },
+        {
+          "kind": "event",
+          "id": "usb.LINK_CMD",
+          "expected": "observed"
+        }
+      ],
+      "protocol": "usb",
+      "modes": [
+        "USB3-SS"
+      ]
+    }
+  ],
+  "traces": [
+    {
+      "manifest": {
+        "schema_version": "s01.input-manifest/v1",
+        "manifest_id": "SYN-S01-COMPLETE-PCIE",
+        "origin": "synthetic",
+        "trace": {
+          "trace_id": "synthetic-complete-pcie",
+          "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+          "protocol": "pcie",
+          "identity_evidence_refs": [
+            "EV-S01"
+          ],
+          "facts": {
+            "mode": {
+              "state": "known",
+              "value": "non-Flit",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "bidirectional": {
+              "state": "known",
+              "value": true,
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "capture_start": {
+              "state": "known",
+              "value": "complete",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "capture_end": {
+              "state": "known",
+              "value": "complete",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "epoch": {
+              "state": "known",
+              "value": "synthetic-epoch-1",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "filters": {
+              "state": "known",
+              "value": "all-events-in-effective-window",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          }
+        },
+        "toolchain": {
+          "software_version": "synthetic-only-13.26",
+          "extractor_sha256": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+          "constants_sha256": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+          "evidence_refs": [
+            "EV-S01"
+          ]
+        },
+        "sources": [
+          {
+            "source_id": "SYN-S01-ORACLE",
+            "revision": "fixture-v1",
+            "locator": "fixture-oracles.md#獨立依據",
+            "review_depth": "sections_reviewed",
+            "sections": [
+              "O-USER",
+              "O-QP"
+            ],
+            "applicability": "applicable",
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "EV-S01",
+            "kind": "synthetic",
+            "locator": "fixture://s01/handwritten-metadata",
+            "sha256": null,
+            "note": "Synthetic metadata only. No raw trace exists; no runtime or qualification is asserted."
+          }
+        ],
+        "capabilities": [
+          {
+            "id": "pcie.AckNak_SeqNum",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "observations": [
+          {
+            "event": "pcie.ACK",
+            "state": "observed",
+            "count": 1,
+            "coverage": {
+              "selection": "included",
+              "retention": "retained",
+              "extraction": "complete",
+              "start_index": 10,
+              "end_index": 20
+            },
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          },
+          {
+            "event": "pcie.NAK",
+            "state": "not_observed_in_coverage",
+            "count": 0,
+            "coverage": {
+              "selection": "included",
+              "retention": "retained",
+              "extraction": "complete",
+              "start_index": 10,
+              "end_index": 20
+            },
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "historical_claims": [],
+        "claim_boundary": "INPUT_METADATA_ONLY"
+      },
+      "assessments": [
+        {
+          "slice_id": "R-MODE",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:bidirectional",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-EPOCH",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:epoch",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-FULL",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:capture_start",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:capture_end",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-WINDOW",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "coverage:pcie.NAK",
+              "status": "met",
+              "reason": "known coverage within inclusive index window",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "event:pcie.NAK",
+              "status": "met",
+              "reason": "observed state meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-FIELD",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "field:pcie.AckNak_SeqNum",
+              "status": "met",
+              "reason": "field supported, applicable and available",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-POSITIVE",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "event:pcie.ACK",
+              "status": "met",
+              "reason": "observed state meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-BIDIRECTIONAL",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:bidirectional",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-USB",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "missing",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "known fact does not meet requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "field:usb.LnkCmd",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "event:usb.LINK_CMD",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        }
+      ]
+    },
+    {
+      "manifest": {
+        "schema_version": "s01.input-manifest/v1",
+        "manifest_id": "SYN-S01-COMPLETE-USB",
+        "origin": "synthetic",
+        "trace": {
+          "trace_id": "synthetic-complete-usb",
+          "sha256": "7777777777777777777777777777777777777777777777777777777777777777",
+          "protocol": "usb",
+          "identity_evidence_refs": [
+            "EV-S01"
+          ],
+          "facts": {
+            "mode": {
+              "state": "known",
+              "value": "USB3-SS",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "bidirectional": {
+              "state": "known",
+              "value": true,
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "capture_start": {
+              "state": "known",
+              "value": "complete",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "capture_end": {
+              "state": "known",
+              "value": "complete",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "epoch": {
+              "state": "known",
+              "value": "synthetic-epoch-1",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "filters": {
+              "state": "known",
+              "value": "all-events-in-effective-window",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          }
+        },
+        "toolchain": {
+          "software_version": "synthetic-only-13.26",
+          "extractor_sha256": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+          "constants_sha256": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+          "evidence_refs": [
+            "EV-S01"
+          ]
+        },
+        "sources": [
+          {
+            "source_id": "SYN-S01-ORACLE",
+            "revision": "fixture-v1",
+            "locator": "fixture-oracles.md#獨立依據",
+            "review_depth": "sections_reviewed",
+            "sections": [
+              "O-USER",
+              "O-QP"
+            ],
+            "applicability": "applicable",
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "EV-S01",
+            "kind": "synthetic",
+            "locator": "fixture://s01/handwritten-metadata",
+            "sha256": null,
+            "note": "Synthetic metadata only. No raw trace exists; no runtime or qualification is asserted."
+          }
+        ],
+        "capabilities": [
+          {
+            "id": "usb.LnkCmd",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "observations": [
+          {
+            "event": "usb.LINK_CMD",
+            "state": "observed",
+            "count": 1,
+            "coverage": {
+              "selection": "included",
+              "retention": "retained",
+              "extraction": "complete",
+              "start_index": 10,
+              "end_index": 20
+            },
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          },
+          {
+            "event": "usb.BAD_CRC",
+            "state": "not_observed_in_coverage",
+            "count": 0,
+            "coverage": {
+              "selection": "included",
+              "retention": "retained",
+              "extraction": "complete",
+              "start_index": 10,
+              "end_index": 20
+            },
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "historical_claims": [],
+        "claim_boundary": "INPUT_METADATA_ONLY"
+      },
+      "assessments": [
+        {
+          "slice_id": "R-MODE",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "missing",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:bidirectional",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-EPOCH",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "missing",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:epoch",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-FULL",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "missing",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:capture_start",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:capture_end",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-WINDOW",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "missing",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "coverage:pcie.NAK",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "event:pcie.NAK",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-FIELD",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "missing",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "field:pcie.AckNak_SeqNum",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-POSITIVE",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "missing",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "event:pcie.ACK",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-BIDIRECTIONAL",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "missing",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:bidirectional",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-USB",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "field:usb.LnkCmd",
+              "status": "met",
+              "reason": "field supported, applicable and available",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "event:usb.LINK_CMD",
+              "status": "met",
+              "reason": "observed state meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        }
+      ]
+    },
+    {
+      "manifest": {
+        "schema_version": "s01.input-manifest/v1",
+        "manifest_id": "SYN-S01-MISSING-MODE",
+        "origin": "synthetic",
+        "trace": {
+          "trace_id": "synthetic-missing-mode",
+          "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+          "protocol": "pcie",
+          "identity_evidence_refs": [
+            "EV-S01"
+          ],
+          "facts": {
+            "mode": {
+              "state": "unknown",
+              "value": null,
+              "evidence_refs": []
+            },
+            "bidirectional": {
+              "state": "known",
+              "value": true,
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "capture_start": {
+              "state": "known",
+              "value": "complete",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "capture_end": {
+              "state": "known",
+              "value": "complete",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "epoch": {
+              "state": "known",
+              "value": "synthetic-epoch-1",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "filters": {
+              "state": "known",
+              "value": "all-events-in-effective-window",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          }
+        },
+        "toolchain": {
+          "software_version": "synthetic-only-13.26",
+          "extractor_sha256": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+          "constants_sha256": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+          "evidence_refs": [
+            "EV-S01"
+          ]
+        },
+        "sources": [
+          {
+            "source_id": "SYN-S01-ORACLE",
+            "revision": "fixture-v1",
+            "locator": "fixture-oracles.md#獨立依據",
+            "review_depth": "sections_reviewed",
+            "sections": [
+              "O-USER",
+              "O-QP"
+            ],
+            "applicability": "applicable",
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "EV-S01",
+            "kind": "synthetic",
+            "locator": "fixture://s01/handwritten-metadata",
+            "sha256": null,
+            "note": "Synthetic metadata only. No raw trace exists; no runtime or qualification is asserted."
+          }
+        ],
+        "capabilities": [
+          {
+            "id": "pcie.AckNak_SeqNum",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "observations": [
+          {
+            "event": "pcie.ACK",
+            "state": "observed",
+            "count": 1,
+            "coverage": {
+              "selection": "included",
+              "retention": "retained",
+              "extraction": "complete",
+              "start_index": 10,
+              "end_index": 20
+            },
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          },
+          {
+            "event": "pcie.NAK",
+            "state": "not_observed_in_coverage",
+            "count": 0,
+            "coverage": {
+              "selection": "included",
+              "retention": "retained",
+              "extraction": "complete",
+              "start_index": 10,
+              "end_index": 20
+            },
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "historical_claims": [],
+        "claim_boundary": "INPUT_METADATA_ONLY"
+      },
+      "assessments": [
+        {
+          "slice_id": "R-MODE",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:bidirectional",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-EPOCH",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:epoch",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-FULL",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:capture_start",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:capture_end",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-WINDOW",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "coverage:pcie.NAK",
+              "status": "met",
+              "reason": "known coverage within inclusive index window",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "event:pcie.NAK",
+              "status": "met",
+              "reason": "observed state meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-FIELD",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "field:pcie.AckNak_SeqNum",
+              "status": "met",
+              "reason": "field supported, applicable and available",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-POSITIVE",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "event:pcie.ACK",
+              "status": "met",
+              "reason": "observed state meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-BIDIRECTIONAL",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:bidirectional",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-USB",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "missing",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "field:usb.LnkCmd",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "event:usb.LINK_CMD",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        }
+      ]
+    },
+    {
+      "manifest": {
+        "schema_version": "s01.input-manifest/v1",
+        "manifest_id": "SYN-S01-MISSING-EPOCH",
+        "origin": "synthetic",
+        "trace": {
+          "trace_id": "synthetic-missing-epoch",
+          "sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+          "protocol": "pcie",
+          "identity_evidence_refs": [
+            "EV-S01"
+          ],
+          "facts": {
+            "mode": {
+              "state": "known",
+              "value": "non-Flit",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "bidirectional": {
+              "state": "known",
+              "value": true,
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "capture_start": {
+              "state": "known",
+              "value": "complete",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "capture_end": {
+              "state": "known",
+              "value": "complete",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "epoch": {
+              "state": "unknown",
+              "value": null,
+              "evidence_refs": []
+            },
+            "filters": {
+              "state": "known",
+              "value": "all-events-in-effective-window",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          }
+        },
+        "toolchain": {
+          "software_version": "synthetic-only-13.26",
+          "extractor_sha256": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+          "constants_sha256": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+          "evidence_refs": [
+            "EV-S01"
+          ]
+        },
+        "sources": [
+          {
+            "source_id": "SYN-S01-ORACLE",
+            "revision": "fixture-v1",
+            "locator": "fixture-oracles.md#獨立依據",
+            "review_depth": "sections_reviewed",
+            "sections": [
+              "O-USER",
+              "O-QP"
+            ],
+            "applicability": "applicable",
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "EV-S01",
+            "kind": "synthetic",
+            "locator": "fixture://s01/handwritten-metadata",
+            "sha256": null,
+            "note": "Synthetic metadata only. No raw trace exists; no runtime or qualification is asserted."
+          }
+        ],
+        "capabilities": [
+          {
+            "id": "pcie.AckNak_SeqNum",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "observations": [
+          {
+            "event": "pcie.ACK",
+            "state": "observed",
+            "count": 1,
+            "coverage": {
+              "selection": "included",
+              "retention": "retained",
+              "extraction": "complete",
+              "start_index": 10,
+              "end_index": 20
+            },
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          },
+          {
+            "event": "pcie.NAK",
+            "state": "not_observed_in_coverage",
+            "count": 0,
+            "coverage": {
+              "selection": "included",
+              "retention": "retained",
+              "extraction": "complete",
+              "start_index": 10,
+              "end_index": 20
+            },
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "historical_claims": [],
+        "claim_boundary": "INPUT_METADATA_ONLY"
+      },
+      "assessments": [
+        {
+          "slice_id": "R-MODE",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:bidirectional",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-EPOCH",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:epoch",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-FULL",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:capture_start",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:capture_end",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-WINDOW",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "coverage:pcie.NAK",
+              "status": "met",
+              "reason": "known coverage within inclusive index window",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "event:pcie.NAK",
+              "status": "met",
+              "reason": "observed state meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-FIELD",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "field:pcie.AckNak_SeqNum",
+              "status": "met",
+              "reason": "field supported, applicable and available",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-POSITIVE",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "event:pcie.ACK",
+              "status": "met",
+              "reason": "observed state meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-BIDIRECTIONAL",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:bidirectional",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-USB",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "missing",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "known fact does not meet requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "field:usb.LnkCmd",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "event:usb.LINK_CMD",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        }
+      ]
+    },
+    {
+      "manifest": {
+        "schema_version": "s01.input-manifest/v1",
+        "manifest_id": "SYN-S01-PARTIAL-CAPTURE",
+        "origin": "synthetic",
+        "trace": {
+          "trace_id": "synthetic-partial-capture",
+          "sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+          "protocol": "pcie",
+          "identity_evidence_refs": [
+            "EV-S01"
+          ],
+          "facts": {
+            "mode": {
+              "state": "known",
+              "value": "non-Flit",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "bidirectional": {
+              "state": "known",
+              "value": true,
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "capture_start": {
+              "state": "known",
+              "value": "partial",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "capture_end": {
+              "state": "known",
+              "value": "complete",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "epoch": {
+              "state": "known",
+              "value": "synthetic-epoch-1",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "filters": {
+              "state": "known",
+              "value": "all-events-in-effective-window",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          }
+        },
+        "toolchain": {
+          "software_version": "synthetic-only-13.26",
+          "extractor_sha256": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+          "constants_sha256": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+          "evidence_refs": [
+            "EV-S01"
+          ]
+        },
+        "sources": [
+          {
+            "source_id": "SYN-S01-ORACLE",
+            "revision": "fixture-v1",
+            "locator": "fixture-oracles.md#獨立依據",
+            "review_depth": "sections_reviewed",
+            "sections": [
+              "O-USER",
+              "O-QP"
+            ],
+            "applicability": "applicable",
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "EV-S01",
+            "kind": "synthetic",
+            "locator": "fixture://s01/handwritten-metadata",
+            "sha256": null,
+            "note": "Synthetic metadata only. No raw trace exists; no runtime or qualification is asserted."
+          }
+        ],
+        "capabilities": [
+          {
+            "id": "pcie.AckNak_SeqNum",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "observations": [
+          {
+            "event": "pcie.ACK",
+            "state": "observed",
+            "count": 1,
+            "coverage": {
+              "selection": "included",
+              "retention": "retained",
+              "extraction": "complete",
+              "start_index": 10,
+              "end_index": 20
+            },
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          },
+          {
+            "event": "pcie.NAK",
+            "state": "not_observed_in_coverage",
+            "count": 0,
+            "coverage": {
+              "selection": "included",
+              "retention": "retained",
+              "extraction": "complete",
+              "start_index": 10,
+              "end_index": 20
+            },
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "historical_claims": [],
+        "claim_boundary": "INPUT_METADATA_ONLY"
+      },
+      "assessments": [
+        {
+          "slice_id": "R-MODE",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:bidirectional",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-EPOCH",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:epoch",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-FULL",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:capture_start",
+              "status": "missing",
+              "reason": "known fact does not meet requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:capture_end",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-WINDOW",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "coverage:pcie.NAK",
+              "status": "met",
+              "reason": "known coverage within inclusive index window",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "event:pcie.NAK",
+              "status": "met",
+              "reason": "observed state meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-FIELD",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "field:pcie.AckNak_SeqNum",
+              "status": "met",
+              "reason": "field supported, applicable and available",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-POSITIVE",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "event:pcie.ACK",
+              "status": "met",
+              "reason": "observed state meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-BIDIRECTIONAL",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:bidirectional",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-USB",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "missing",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "known fact does not meet requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "field:usb.LnkCmd",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "event:usb.LINK_CMD",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        }
+      ]
+    },
+    {
+      "manifest": {
+        "schema_version": "s01.input-manifest/v1",
+        "manifest_id": "SYN-S01-UNKNOWN-FILTER",
+        "origin": "synthetic",
+        "trace": {
+          "trace_id": "synthetic-unknown-filter",
+          "sha256": "5555555555555555555555555555555555555555555555555555555555555555",
+          "protocol": "pcie",
+          "identity_evidence_refs": [
+            "EV-S01"
+          ],
+          "facts": {
+            "mode": {
+              "state": "known",
+              "value": "non-Flit",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "bidirectional": {
+              "state": "known",
+              "value": true,
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "capture_start": {
+              "state": "known",
+              "value": "complete",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "capture_end": {
+              "state": "known",
+              "value": "complete",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "epoch": {
+              "state": "known",
+              "value": "synthetic-epoch-1",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "filters": {
+              "state": "unknown",
+              "value": null,
+              "evidence_refs": []
+            }
+          }
+        },
+        "toolchain": {
+          "software_version": "synthetic-only-13.26",
+          "extractor_sha256": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+          "constants_sha256": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+          "evidence_refs": [
+            "EV-S01"
+          ]
+        },
+        "sources": [
+          {
+            "source_id": "SYN-S01-ORACLE",
+            "revision": "fixture-v1",
+            "locator": "fixture-oracles.md#獨立依據",
+            "review_depth": "sections_reviewed",
+            "sections": [
+              "O-USER",
+              "O-QP"
+            ],
+            "applicability": "applicable",
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "EV-S01",
+            "kind": "synthetic",
+            "locator": "fixture://s01/handwritten-metadata",
+            "sha256": null,
+            "note": "Synthetic metadata only. No raw trace exists; no runtime or qualification is asserted."
+          }
+        ],
+        "capabilities": [
+          {
+            "id": "pcie.AckNak_SeqNum",
+            "api_support": "supported",
+            "applicability": "applicable",
+            "availability": "available",
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "observations": [
+          {
+            "event": "pcie.ACK",
+            "state": "observed",
+            "count": 1,
+            "coverage": {
+              "selection": "included",
+              "retention": "retained",
+              "extraction": "complete",
+              "start_index": 10,
+              "end_index": 20
+            },
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          },
+          {
+            "event": "pcie.NAK",
+            "state": "unknown",
+            "count": null,
+            "coverage": {
+              "selection": "included",
+              "retention": "retained",
+              "extraction": "complete",
+              "start_index": 10,
+              "end_index": 20
+            },
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "historical_claims": [],
+        "claim_boundary": "INPUT_METADATA_ONLY"
+      },
+      "assessments": [
+        {
+          "slice_id": "R-MODE",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:bidirectional",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-EPOCH",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:epoch",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-FULL",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:capture_start",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:capture_end",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-WINDOW",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "coverage:pcie.NAK",
+              "status": "unknown",
+              "reason": "selection/retention/extraction/filter/range is unknown",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "event:pcie.NAK",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-FIELD",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "field:pcie.AckNak_SeqNum",
+              "status": "met",
+              "reason": "field supported, applicable and available",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-POSITIVE",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "event:pcie.ACK",
+              "status": "met",
+              "reason": "observed state meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-BIDIRECTIONAL",
+          "status": "eligible",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "met",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:bidirectional",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-USB",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "missing",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "known fact does not meet requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "field:usb.LnkCmd",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "event:usb.LINK_CMD",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        }
+      ]
+    },
+    {
+      "manifest": {
+        "schema_version": "s01.input-manifest/v1",
+        "manifest_id": "SYN-S01-INAPPLICABLE",
+        "origin": "synthetic",
+        "trace": {
+          "trace_id": "synthetic-inapplicable",
+          "sha256": "6666666666666666666666666666666666666666666666666666666666666666",
+          "protocol": "usb",
+          "identity_evidence_refs": [
+            "EV-S01"
+          ],
+          "facts": {
+            "mode": {
+              "state": "known",
+              "value": "USB2-HS",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "bidirectional": {
+              "state": "known",
+              "value": true,
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "capture_start": {
+              "state": "known",
+              "value": "complete",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "capture_end": {
+              "state": "known",
+              "value": "complete",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "epoch": {
+              "state": "known",
+              "value": "synthetic-epoch-1",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            "filters": {
+              "state": "known",
+              "value": "all-events-in-effective-window",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          }
+        },
+        "toolchain": {
+          "software_version": "synthetic-only-13.26",
+          "extractor_sha256": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+          "constants_sha256": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+          "evidence_refs": [
+            "EV-S01"
+          ]
+        },
+        "sources": [
+          {
+            "source_id": "SYN-S01-ORACLE",
+            "revision": "fixture-v1",
+            "locator": "fixture-oracles.md#獨立依據",
+            "review_depth": "sections_reviewed",
+            "sections": [
+              "O-USER",
+              "O-QP"
+            ],
+            "applicability": "applicable",
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "EV-S01",
+            "kind": "synthetic",
+            "locator": "fixture://s01/handwritten-metadata",
+            "sha256": null,
+            "note": "Synthetic metadata only. No raw trace exists; no runtime or qualification is asserted."
+          }
+        ],
+        "capabilities": [
+          {
+            "id": "pcie.AckNak_SeqNum",
+            "api_support": "supported",
+            "applicability": "not_applicable",
+            "availability": "not_applicable",
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "observations": [
+          {
+            "event": "pcie.ACK",
+            "state": "not_applicable",
+            "count": null,
+            "coverage": {
+              "selection": "not_applicable",
+              "retention": "not_applicable",
+              "extraction": "not_applicable",
+              "start_index": null,
+              "end_index": null
+            },
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          },
+          {
+            "event": "pcie.NAK",
+            "state": "not_applicable",
+            "count": null,
+            "coverage": {
+              "selection": "not_applicable",
+              "retention": "not_applicable",
+              "extraction": "not_applicable",
+              "start_index": null,
+              "end_index": null
+            },
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "historical_claims": [],
+        "claim_boundary": "INPUT_METADATA_ONLY"
+      },
+      "assessments": [
+        {
+          "slice_id": "R-MODE",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "missing",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:bidirectional",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-EPOCH",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "missing",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:epoch",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-FULL",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "missing",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:capture_start",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:capture_end",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-WINDOW",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "missing",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "coverage:pcie.NAK",
+              "status": "not_applicable",
+              "reason": "event is not applicable",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "event:pcie.NAK",
+              "status": "not_applicable",
+              "reason": "event is not applicable",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-FIELD",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "missing",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "field:pcie.AckNak_SeqNum",
+              "status": "not_applicable",
+              "reason": "field is not applicable",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-POSITIVE",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "missing",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "event:pcie.ACK",
+              "status": "not_applicable",
+              "reason": "event is not applicable",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-BIDIRECTIONAL",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "missing",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:bidirectional",
+              "status": "met",
+              "reason": "known fact meets requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-USB",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "missing",
+              "reason": "known fact does not meet requirement",
+              "evidence_refs": [
+                "EV-S01"
+              ]
+            },
+            {
+              "requirement": "field:usb.LnkCmd",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "event:usb.LINK_CMD",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        }
+      ]
+    },
+    {
+      "manifest": {
+        "schema_version": "s01.input-manifest/v1",
+        "manifest_id": "SYN-S01-ALL-UNKNOWN",
+        "origin": "synthetic",
+        "trace": {
+          "trace_id": "synthetic-all-unknown",
+          "sha256": null,
+          "protocol": "unknown",
+          "identity_evidence_refs": [],
+          "facts": {
+            "mode": {
+              "state": "unknown",
+              "value": null,
+              "evidence_refs": []
+            },
+            "bidirectional": {
+              "state": "unknown",
+              "value": null,
+              "evidence_refs": []
+            },
+            "capture_start": {
+              "state": "unknown",
+              "value": null,
+              "evidence_refs": []
+            },
+            "capture_end": {
+              "state": "unknown",
+              "value": null,
+              "evidence_refs": []
+            },
+            "epoch": {
+              "state": "unknown",
+              "value": null,
+              "evidence_refs": []
+            },
+            "filters": {
+              "state": "unknown",
+              "value": null,
+              "evidence_refs": []
+            }
+          }
+        },
+        "toolchain": {
+          "software_version": "synthetic-only-13.26",
+          "extractor_sha256": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+          "constants_sha256": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+          "evidence_refs": [
+            "EV-S01"
+          ]
+        },
+        "sources": [
+          {
+            "source_id": "SYN-S01-ORACLE",
+            "revision": "fixture-v1",
+            "locator": "fixture-oracles.md#獨立依據",
+            "review_depth": "sections_reviewed",
+            "sections": [
+              "O-USER",
+              "O-QP"
+            ],
+            "applicability": "applicable",
+            "evidence_refs": [
+              "EV-S01"
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "id": "EV-S01",
+            "kind": "synthetic",
+            "locator": "fixture://s01/handwritten-metadata",
+            "sha256": null,
+            "note": "Synthetic metadata only. No raw trace exists; no runtime or qualification is asserted."
+          }
+        ],
+        "capabilities": [],
+        "observations": [],
+        "historical_claims": [],
+        "claim_boundary": "INPUT_METADATA_ONLY"
+      },
+      "assessments": [
+        {
+          "slice_id": "R-MODE",
+          "status": "unknown",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "unknown",
+              "reason": "trace identity unknown",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "unknown",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:bidirectional",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-EPOCH",
+          "status": "unknown",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "unknown",
+              "reason": "trace identity unknown",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "unknown",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:epoch",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-FULL",
+          "status": "unknown",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "unknown",
+              "reason": "trace identity unknown",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "unknown",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:capture_start",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:capture_end",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-WINDOW",
+          "status": "unknown",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "unknown",
+              "reason": "trace identity unknown",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "unknown",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "coverage:pcie.NAK",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "event:pcie.NAK",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-FIELD",
+          "status": "unknown",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "unknown",
+              "reason": "trace identity unknown",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "unknown",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "field:pcie.AckNak_SeqNum",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-POSITIVE",
+          "status": "unknown",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "unknown",
+              "reason": "trace identity unknown",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "unknown",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "event:pcie.ACK",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-BIDIRECTIONAL",
+          "status": "unknown",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "unknown",
+              "reason": "trace identity unknown",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "unknown",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:bidirectional",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        },
+        {
+          "slice_id": "R-USB",
+          "status": "unknown",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "unknown",
+              "reason": "trace identity unknown",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "unknown",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "field:usb.LnkCmd",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "event:usb.LINK_CMD",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        }
+      ]
+    }
+  ],
+  "claim_boundary": "INPUT_ELIGIBILITY_ONLY"
+}

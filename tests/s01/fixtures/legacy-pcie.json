@@ -1,0 +1,23 @@
+{
+  "schema_version": "pcie.triage-input/v1",
+  "trace": {
+    "file_name": "__S01_DO_NOT_OPEN_TRACE__/legacy.pex",
+    "sha256": "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD",
+    "tlp_count": 2
+  },
+  "fields": {
+    "path": "__S01_DO_NOT_OPEN_ARTIFACT__/fields.json",
+    "sha256": "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE",
+    "verifier_summary": "missing-fields-summary.json"
+  },
+  "messages": {
+    "path": "__S01_DO_NOT_OPEN_ARTIFACT__/messages.json",
+    "sha256": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",
+    "verifier_summary": "missing-messages-summary.json"
+  },
+  "historical_result": {
+    "status": "PASS",
+    "scope": "Synthetic historical extraction only; no new coverage metadata"
+  },
+  "extraction_note": "Handwritten fixture; no referenced input files exist."
+}

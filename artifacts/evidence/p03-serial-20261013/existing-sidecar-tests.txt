@@ -1,0 +1,22 @@
+{"rows": 1, "differences": 0}
+test_partial_bit_masks_are_recorded_not_hidden (test_b2h2_sidecar.NormalizeTests.test_partial_bit_masks_are_recorded_not_hidden) ... ok
+test_validates_shape_and_forces_unknown_bits_to_zero (test_b2h2_sidecar.NormalizeTests.test_validates_shape_and_forces_unknown_bits_to_zero) ... ok
+test_b2b_makes_the_same_inclusion_call_on_every_boundary_query (test_b2h2_sidecar.PacketBoundaryTests.test_b2b_makes_the_same_inclusion_call_on_every_boundary_query) ... ok
+test_query_order_does_not_change_results (test_b2h2_sidecar.PacketBoundaryTests.test_query_order_does_not_change_results) ... ok
+test_write_included_at_request_packet_read_at_completion_packet (test_b2h2_sidecar.PacketBoundaryTests.test_write_included_at_request_packet_read_at_completion_packet) ... ok
+test_binding_and_evidence_packets (test_b2h2_sidecar.SavedSnapshotTests.test_binding_and_evidence_packets) ... ok
+test_cli_exit_codes_and_no_overwrite (test_b2h2_sidecar.SavedSnapshotTests.test_cli_exit_codes_and_no_overwrite) ... Refusing existing output
+NOT_VERIFIED_OUT_OF_SCOPE: packet 300000 is in epoch 'disconnect_interval'; only 'before_disconnect' is verified
+ok
+test_five_saved_positions_reproduce_recorded_link_control (test_b2h2_sidecar.SavedSnapshotTests.test_five_saved_positions_reproduce_recorded_link_control) ... ok
+test_inputs_are_not_mutated (test_b2h2_sidecar.SavedSnapshotTests.test_inputs_are_not_mutated) ... ok
+test_out_of_scope_is_refused_not_decoded (test_b2h2_sidecar.SavedSnapshotTests.test_out_of_scope_is_refused_not_decoded) ... ok
+test_wrong_native_value_field_position_known_mask_and_value_are_caught (test_b2h2_sidecar.SavedSnapshotTests.test_wrong_native_value_field_position_known_mask_and_value_are_caught) ... ok
+test_read_and_write_views_stay_apart (test_b2h2_sidecar.SyntheticEndToEndTests.test_read_and_write_views_stay_apart) ... ok
+test_cross_byte_field_and_two_registers_in_one_dword_do_not_pollute (test_b2h2_sidecar.UnknownAndLayoutTests.test_cross_byte_field_and_two_registers_in_one_dword_do_not_pollute) ... ok
+test_unknown_high_byte_does_not_block_low_byte_field_nor_depend_on_filler (test_b2h2_sidecar.UnknownAndLayoutTests.test_unknown_high_byte_does_not_block_low_byte_field_nor_depend_on_filler) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.149s
+
+OK

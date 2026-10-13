@@ -1,0 +1,150 @@
+[
+  {
+    "slice_id": "R-MODE",
+    "engineer_question": "Which explicitly declared input prerequisites have metadata evidence?",
+    "expected_observation": "Input readiness only; runtime and protocol qualification are not evaluated.",
+    "requirements": [
+      {
+        "kind": "fact",
+        "id": "bidirectional",
+        "expected": true
+      }
+    ],
+    "protocol": "pcie",
+    "modes": [
+      "non-Flit"
+    ]
+  },
+  {
+    "slice_id": "R-EPOCH",
+    "engineer_question": "Which explicitly declared input prerequisites have metadata evidence?",
+    "expected_observation": "Input readiness only; runtime and protocol qualification are not evaluated.",
+    "requirements": [
+      {
+        "kind": "fact",
+        "id": "epoch",
+        "expected": "known"
+      }
+    ],
+    "protocol": "pcie",
+    "modes": [
+      "non-Flit"
+    ]
+  },
+  {
+    "slice_id": "R-FULL",
+    "engineer_question": "Which explicitly declared input prerequisites have metadata evidence?",
+    "expected_observation": "Input readiness only; runtime and protocol qualification are not evaluated.",
+    "requirements": [
+      {
+        "kind": "fact",
+        "id": "capture_start",
+        "expected": "complete"
+      },
+      {
+        "kind": "fact",
+        "id": "capture_end",
+        "expected": "complete"
+      }
+    ],
+    "protocol": "pcie",
+    "modes": [
+      "non-Flit"
+    ]
+  },
+  {
+    "slice_id": "R-WINDOW",
+    "engineer_question": "Which explicitly declared input prerequisites have metadata evidence?",
+    "expected_observation": "Input readiness only; runtime and protocol qualification are not evaluated.",
+    "requirements": [
+      {
+        "kind": "coverage",
+        "id": "pcie.NAK",
+        "expected": "complete"
+      },
+      {
+        "kind": "event",
+        "id": "pcie.NAK",
+        "expected": "not_observed_in_coverage"
+      }
+    ],
+    "protocol": "pcie",
+    "modes": [
+      "non-Flit"
+    ]
+  },
+  {
+    "slice_id": "R-FIELD",
+    "engineer_question": "Which explicitly declared input prerequisites have metadata evidence?",
+    "expected_observation": "Input readiness only; runtime and protocol qualification are not evaluated.",
+    "requirements": [
+      {
+        "kind": "field",
+        "id": "pcie.AckNak_SeqNum",
+        "expected": "available"
+      }
+    ],
+    "protocol": "pcie",
+    "modes": [
+      "non-Flit"
+    ]
+  },
+  {
+    "slice_id": "R-POSITIVE",
+    "engineer_question": "Which explicitly declared input prerequisites have metadata evidence?",
+    "expected_observation": "Input readiness only; runtime and protocol qualification are not evaluated.",
+    "requirements": [
+      {
+        "kind": "event",
+        "id": "pcie.ACK",
+        "expected": "observed"
+      }
+    ],
+    "protocol": "pcie",
+    "modes": [
+      "non-Flit"
+    ]
+  },
+  {
+    "slice_id": "R-BIDIRECTIONAL",
+    "engineer_question": "Which explicitly declared input prerequisites have metadata evidence?",
+    "expected_observation": "Input readiness only; runtime and protocol qualification are not evaluated.",
+    "requirements": [
+      {
+        "kind": "fact",
+        "id": "bidirectional",
+        "expected": true
+      }
+    ],
+    "protocol": "pcie",
+    "modes": [
+      "non-Flit"
+    ]
+  },
+  {
+    "slice_id": "R-USB",
+    "engineer_question": "Which explicitly declared input prerequisites have metadata evidence?",
+    "expected_observation": "Input readiness only; runtime and protocol qualification are not evaluated.",
+    "requirements": [
+      {
+        "kind": "fact",
+        "id": "mode",
+        "expected": "USB3-SS"
+      },
+      {
+        "kind": "field",
+        "id": "usb.LnkCmd",
+        "expected": "available"
+      },
+      {
+        "kind": "event",
+        "id": "usb.LINK_CMD",
+        "expected": "observed"
+      }
+    ],
+    "protocol": "usb",
+    "modes": [
+      "USB3-SS"
+    ]
+  }
+]

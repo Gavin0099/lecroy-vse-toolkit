@@ -1,0 +1,35 @@
+{
+  "slice": "P11",
+  "review": "APPROVE_SAVED_VALID_STATE_POINTS",
+  "recovery_packets": [
+    225051,
+    990789,
+    990799,
+    1096915,
+    1096917,
+    1484186,
+    1484200,
+    1484216,
+    1484229
+  ],
+  "ltssm_points": 22,
+  "invalid_points": 2,
+  "l0_points": 2,
+  "link_condition_points": 14,
+  "native_constants_revalidated": true,
+  "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+  "constant_run": "p11-constants-native-b/com-run.json",
+  "source_binding": "CORROBORATED_LEGACY",
+  "report_directory": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\p03-serial-20261013\\p11-state-points-r3",
+  "qualification": "NOT_EVALUATED",
+  "limits": [
+    "saved change-only extractor did not compare validity bit when deduplicating states; validity-only transitions may be omitted",
+    "state labels use same installed native constants; source remains corroborated legacy, not a new capture",
+    "display time quantum is not hardware timer accuracy; no continuous intervals reconstructed",
+    "no PERST/sideband or physical reset evidence; original B1d four validation debts remain",
+    "EQ/HotReset absence not established; missing events remain unknown",
+    "partial input eligibility; no capture mode/epoch proof"
+  ],
+  "early_failure": "relative OpenFile path rejected; owned cleanup preserved; runtime process exited before successful absolute-path retry",
+  "next_gate": "remaining candidates require independent input/source evidence; do not rebuild existing PASS views without a true gap"
+}

@@ -1,0 +1,60 @@
+{
+  "slice": "U01",
+  "review": "APPROVE_BOUNDED_SELECTION_TRANSPORT",
+  "runs": [
+    "u01-run-r3a",
+    "u01-run-r3c"
+  ],
+  "seven_profiles_semantically_identical": true,
+  "counts": {
+    "packet-default": {
+      "visited": 3174680,
+      "window": 202,
+      "rows": 202
+    },
+    "packet-crc-off": {
+      "visited": 3174680,
+      "window": 202,
+      "rows": 202
+    },
+    "packet-crc-on": {
+      "visited": 3174690,
+      "window": 202,
+      "rows": 202
+    },
+    "transaction-all": {
+      "visited": 300,
+      "window": 201,
+      "rows": 201
+    },
+    "transfer-default": {
+      "visited": 138,
+      "window": 138,
+      "rows": 138
+    },
+    "transfer-complete": {
+      "visited": 138,
+      "window": 138,
+      "rows": 138
+    },
+    "transfer-incomplete": {
+      "visited": 0,
+      "window": 0,
+      "rows": 0
+    }
+  },
+  "source_and_all_fourteen_working_copies_unchanged": true,
+  "crc_enabled_total_callback_delta": 10,
+  "scope": "exact trace hash / suite 10.40 / named flags / post-dispatch level-local window 0-200",
+  "remaining_limits": [
+    "10 additional callbacks are not independently qualified CRC examples",
+    "incomplete transfer sample absent; coverage remains unknown",
+    "effective native range, capture completeness and epoch unknown",
+    "no protocol correctness or certification verdict"
+  ],
+  "resolved_findings": [
+    "unary negative literal in CSL payload/scalar prevented execution; v3 explicit NOT_APPLICABLE token retains NA",
+    "transient class-factory RPC failure during repeat; bounded activation-only retry, no automatic replay after trace open"
+  ],
+  "next_allowed": "U02 positive LINK_CMD fields, then review; unobserved command types remain unqualified"
+}

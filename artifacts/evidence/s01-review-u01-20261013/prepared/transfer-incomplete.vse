@@ -1,0 +1,35 @@
+# U01 selection observation only. LC-04 PDF19/89/152/157/161/168/170.
+# Index window is a post-dispatch level-local guard, NOT a native capture range.
+%include "VSTools.inc"
+set Visited = 0;
+set Selected = 0;
+set Emitted = 0;
+set LevelMismatches = 0;
+OnStartScript()
+{
+    SendAllChannels();
+    SendLevelOnly(_XFER);
+    SendTransfer(_ANY, _ANY, _ANY, 0, 0);
+    ScriptForDisplayOnly();
+}
+ProcessEvent()
+{
+    Visited++;
+    if (in.Level != _XFER) LevelMismatches++;
+    if (in.Index >= 0 && in.Index <= 200)
+    {
+        Selected++;
+        if (Emitted < 512)
+        {
+            NotifyClient(2501, ["U01-ROW", in.Index, in.Level, in.Channel,
+                in.Speed, in.TraceEvent, in.Time[0], in.Time[1], in.Completed]);
+            Emitted++;
+        }
+    }
+    return Complete();
+}
+OnFinishScript()
+{
+    NotifyClient(2502, ["U01-END", Visited, Selected, Emitted, LevelMismatches, _XFER]);
+    return 0;
+}

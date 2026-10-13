@@ -1,0 +1,39 @@
+{
+  "slice": "I01",
+  "review": "APPROVE_TYPED_P03_SOURCE_BLOCK",
+  "report_directory": "C:\\Users\\reiko\\.codex\\visualizations\\2026\\10\\13\\01a13339-798e-7020-8e39-ec838f3ed292\\pcie-observations",
+  "report_sha256": {
+    "report.json": "be77da7675c4c95e28dd227453a344df27ff56315dac85b03f8c8fcabb961d7c",
+    "report.md": "6c8199e2f5b558ecf896fb94789a425fb9c4e499090deb26fbf49470e1b8ce28",
+    "report.html": "4a47b13105ed36d20af9c2ff8710358e8dabb8d0f18890243ec76b9bfb187b76"
+  },
+  "frozen_commit": "f417eecb340f56d09d6e4c0ca0b86f81e2977181",
+  "frozen_dependencies": {
+    "scripts/pcie/b3a_event_contract.py": "3883ab3f248a8d0dcbb6b6405b5ef505f6f9647c99b1e6c2be582bc41e9b75cc",
+    "scripts/pcie/b1c_training_timeline.py": "a9fd6edb5639e1f10745c1380ca583c5a7bd49381c960973b8f6b4ef6712f936",
+    "scripts/pcie/b1d_mux_rules.py": "a42df27ccb179fc171e7b2c944f723b2251a2d01c65fdf88901e3cfed1717fe5",
+    "scripts/pcie/b1e_link_findings.py": "dc8549d92ea4bc426810d0ca73dc6253ae5291228045ba729a40294c7e7c09d2",
+    "scripts/pcie/b2a_register_fields.py": "796419f23d2c411936de57f772ef17ee1f9dcf8ced083588c30b0c26fc856455",
+    "scripts/pcie/g2b_associate.py": "c9f5fab28b148f856c63ddf0948762898ae8c91abf80f30cb1199b44213103af",
+    "scripts/pcie/b2b_config_access.py": "48bbf8f38c79a3c865cc7aa57a853e65595b68004a991c5f04dff5f616edb902",
+    "scripts/pcie/b2c_capability_resolution.py": "86b3aff8e9d2c09e409f096df3615fe87bb09307ff7e4a85fc4dc203d716bb8a",
+    "scripts/pcie/b2d_observed_state.py": "4d69b4e56a58350932480f873fdb51437c68676e53efbdfcb95a19f0083d62aa",
+    "scripts/pcie/b2e_snapshot_query.py": "7911add1ab561f4fd2b1600aa9009e4820ef148ba7d2feaf319adeb3c42e2bf4",
+    "scripts/pcie/b2g_watchlist_prepare.py": "2754a96e9d0a7bf259fbd89b377bf0544c83218c18945a1905f874331914b7e4",
+    "scripts/pcie/b3b_unified_timeline.py": "eb68a984f54ea8730f6ad58ae6a8d1aeb3c6a46a4f8f4f9a00f661ce01821ede",
+    "scripts/pcie/b3d_observation_report.py": "da2b81d8bd2468913d6d81e4095b154af48fd569c1ae69644fb1d1ff66b5037b"
+  },
+  "base_model_unchanged": true,
+  "base_markdown_prefix_preserved": true,
+  "base_html_preserved_except_added_section": true,
+  "resolved_json_pointer_links": 517,
+  "sampled_rows": 124,
+  "capture_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+  "limits": [
+    "P03 bounded observation only; not whole protocol qualification",
+    "separate source block; no new W1 verdict",
+    "links require both original checkouts/evidence locations; not a portable standalone package",
+    "file links across C/E drives; existing W5 links require output on frozen checkout drive"
+  ],
+  "next_allowed": "I02 USB command observation source block, independently typed and validated"
+}

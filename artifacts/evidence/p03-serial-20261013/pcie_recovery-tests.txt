@@ -1,0 +1,15 @@
+test_conflicting_same_packet_is_ambiguous (test_pcie_recovery_observations.RecoveryTests.test_conflicting_same_packet_is_ambiguous) ... ok
+test_duplicate_is_one_observation_with_both_refs (test_pcie_recovery_observations.RecoveryTests.test_duplicate_is_one_observation_with_both_refs) ... ok
+test_empty_render_is_unknown_not_no_recovery (test_pcie_recovery_observations.RecoveryTests.test_empty_render_is_unknown_not_no_recovery) ... ok
+test_eq_and_hot_reset_no_electrical_verdict (test_pcie_recovery_observations.RecoveryTests.test_eq_and_hot_reset_no_electrical_verdict) ... ok
+test_invalid_point_visible_but_not_positive (test_pcie_recovery_observations.RecoveryTests.test_invalid_point_visible_but_not_positive) ... ok
+test_link_labels_remain_native_points (test_pcie_recovery_observations.RecoveryTests.test_link_labels_remain_native_points) ... ok
+test_missing_direction_unknown_mode_and_empty_not_absence (test_pcie_recovery_observations.RecoveryTests.test_missing_direction_unknown_mode_and_empty_not_absence) ... ok
+test_order_numeric_types_and_validity_rejected (test_pcie_recovery_observations.RecoveryTests.test_order_numeric_types_and_validity_rejected) ... ok
+test_recovery_point_not_entry_interval_or_timeout (test_pcie_recovery_observations.RecoveryTests.test_recovery_point_not_entry_interval_or_timeout) ... ok
+test_unknown_state_and_label_not_trusted (test_pcie_recovery_observations.RecoveryTests.test_unknown_state_and_label_not_trusted) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.001s
+
+OK

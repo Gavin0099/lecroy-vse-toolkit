@@ -1,0 +1,6 @@
+{
+  "ProcessId": 55764,
+  "ParentProcessId": 34112,
+  "CreationDate": "2026-10-13T15:03:50.976072+08:00",
+  "CommandLine": "\"C:\\Users\\reiko\\AppData\\Local\\Programs\\Python\\Python313\\python.exe\" -B scripts/pcie/com_run_vse.py --trace artifacts/evidence/p03-serial-20261013/tlp-b/working.pex --protect \"C:\\Users\\reiko\\AppData\\Local\\Temp\\pcie-p4a-hang-20260914-dcea0027\\Disable ASPM--Insert SD7-hang.pex\" --script E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\scripts\\pcie\\b1b0-constants.pevs --output-dir artifacts/evidence/p03-serial-20261013/p11-constants-native --timeout 120"
+}

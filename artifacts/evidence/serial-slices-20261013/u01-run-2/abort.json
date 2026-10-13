@@ -1,0 +1,11 @@
+{
+  "status": "ABORTED_NO_RETURN",
+  "stage": "RunVScript",
+  "reason": "No return after approximately two minutes",
+  "suite_pid": 48052,
+  "host_pid": 50364,
+  "timestamp": "2026-10-13T13:02:32.3925942+08:00",
+  "source_sha256": "A5568248D1C3D04F3CC16D6D3649F1303BE0D15FFA1A734E2057D73564836CAE",
+  "working_sha256": "A5568248D1C3D04F3CC16D6D3649F1303BE0D15FFA1A734E2057D73564836CAE",
+  "working_readonly": true
+}

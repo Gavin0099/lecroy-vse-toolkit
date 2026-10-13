@@ -1,0 +1,11 @@
+  File E:\BackUp\Git_EE\lecroy-vse-toolkit\artifacts\evidence\p03-serial-20261013\tlp-b\working.pex.
+  From Packet #3150 to Packet #3150.
+
+Packet#
+_______|_______________________________________________________________________Filtered Traffic 
+Packet(3150) Upstream 5.0(x1) TLP(1406) Cpl 
+_______| CplD(010:01010) Length(1) RequesterID(000:00:0) Tag(4) 
+_______| CompleterID(001:00:0) Status(SC) BCM(0) Byte Cnt(4) Lwr Addr(0x000) 
+_______| PM Capabilities(0xF7C3) Next PTR(0x00) Capability ID(0x01) 
+_______| LCRC(0x3ED64087) Idle(8.000 ns) Time Stamp(0008.276943314000s) 
+_______|_______________________________________________________________________

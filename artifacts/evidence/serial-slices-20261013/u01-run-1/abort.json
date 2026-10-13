@@ -1,0 +1,24 @@
+{
+  "status": "ABORTED_NO_RETURN",
+  "reason": "First U01 profile did not return after over two minutes; no completion evidence",
+  "timestamp": "2026-10-13T13:00:18.6748266+08:00",
+  "suite_pid": 53448,
+  "host_pid": 23208,
+  "suite_cpu": 18.921875,
+  "files_after": [
+    {
+      "path": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\dp1 hub detect SSD fail-2.usb",
+      "sha256": "A5568248D1C3D04F3CC16D6D3649F1303BE0D15FFA1A734E2057D73564836CAE",
+      "size": 104136704,
+      "mtime": "2026-09-10T09:48:45.8250022Z",
+      "readonly": false
+    },
+    {
+      "path": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\serial-slices-20261013\\u01-run-1\\packet-default\\working.usb",
+      "sha256": "A5568248D1C3D04F3CC16D6D3649F1303BE0D15FFA1A734E2057D73564836CAE",
+      "size": 104136704,
+      "mtime": "2026-09-10T09:48:45.8250022Z",
+      "readonly": true
+    }
+  ]
+}

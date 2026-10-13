@@ -1,0 +1,13 @@
+{
+  "schema": "pcie.register-reference/v1",
+  "source": "https://raw.githubusercontent.com/torvalds/linux/v6.12/include/uapi/linux/pci_regs.h",
+  "source_version": "Linux v6.12",
+  "verified_date": "2026-09-30",
+  "authority": "primary implementation header; register layout reference only, not complete PCIe-spec or product-rule verification",
+  "standard": {"VendorDeviceID": 0, "Command": 4, "HeaderTypeDWORD": 12, "CapabilityPointer": 52},
+  "normal_header_bars": [16, 20, 24, 28, 32, 36],
+  "capability_ids": {"PM": 1, "PCIe": 16},
+  "extended_capability_ids": {"L1SS": 30},
+  "relative_offsets": {"LinkControl": 16, "LinkStatus": 18, "PMCSR": 4, "L1SSControl1": 8, "L1SSControl2": 12},
+  "masks": {"ASPMControl": 3, "CommandMemory": 2, "CommandBusMaster": 4, "PMCSRPowerState": 3}
+}

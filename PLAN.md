@@ -193,8 +193,9 @@ Field availability is taken from the installed VSE manual and `VS_constants.inc`
 (`in.LtssmState`, `_PKT_LINK_CONDITION`/`in.LinkConditionType`, `in.Speed`,
 `in.LinkWidth`, `_PKT_DLLP`/`in.DLLPType`/`in.AckNak_SeqNum`, `_PKT_ORDERED_SET`/
 `in.OrderedSetType`, `_PKT_EIE_EVENT`, error flags such as `in.BadLCRC`, and
-`in.Register`/`in.RegisterData`); none is verified on a real trace yet. Rule
-first: probe evidence before parser or rule design.
+`in.Register`/`in.RegisterData`). These were manual-only candidates at roadmap
+creation; current real-trace qualifications are recorded by slice below (B1a and
+B2a). Probe evidence precedes parser or rule design.
 
 | Slice | Name | Status and acceptance |
 | --- | --- | --- |
@@ -205,24 +206,41 @@ first: probe evidence before parser or rule design.
 | PCIe-B1c-r1 | Channel Attribution Revision | PASS (2026-09-15, evidence `docs/pcie-b1c-r1-evidence.md`): `b1c_training_timeline.py` takes the x2 and GUI evidence; each phase lists the last LTSSM state of each channel at its start, `HasErrors` gets a channel only when its whole x2 range is on one channel (basis printed, range sums checked), GUI labels appear only as marked samples. Post-gap phases now read: start Upstream, HasErrors on Downstream, Downstream still Polling. Base B1c output kept; revision in `artifacts/evidence/pcie-b1c-r1-hang-20260915/`. |
 | PCIe-B1c-x1 | Link Condition GUI Cross-check | PASS (2026-09-15, evidence `docs/pcie-b1c-x1x3-evidence.md`): PETracer GUI shows Link Event "Link Down" at 225041 and "Link Up" at 1479760, matching the probed constants; the manual's swapped text is not what the analyzer displays. File identities unchanged. |
 | PCIe-B1c-x3 | Flagged TS1 GUI Detail | PASS at sample level (2026-09-15, same session): flagged Downstream TS1 show analyzer Training Sequence errors: 1096918 and 1479761 `TSRsrvErr` (RSVD 0,1,0; data rate shows a Reserved bit; Link/Lane PAD, N_FTS 254); 990799 `TSDataRateErr, TSRsrvErr, TSLaneErr, TSTrainingControlErr`. Not established: that every flagged TS1 in the phases carries the same error (three samples viewed). |
-| PCIe-B1d | MUX-aware Rules | NEXT (after B1c-r1); input is the B1c-r1 training.json. Product context becomes an explicit rule input: Link Down during SD/SDE insertion/removal is expected and not reported as abnormal. |
-| PCIe-B1e | Link Findings | NOT STARTED; after B1d. Objective observations such as no return to L0, repeated Recovery, NAK/replay, CRC errors, speed/width change after retraining, worded as inconsistent with the expected flow; no root cause. |
-| PCIe-B2a | Register Field Probe | NOT STARTED; after B1. On a real trace: `in.Register` (byte offset or register index), `in.RegisterData`, byte enables, CfgWr data, CfgRd with CplD returned data. Manual reading is inference until probed. |
-| PCIe-B2b | Config Access Log | NOT STARTED; every CfgRd/CfgWr: time, packet, BDF, type, register, value, byte enable, completion. |
-| PCIe-B2c | Capability / Register Resolution | NOT STARTED; map offsets to Command, PCIe Capability, Link Control, PMCSR, L1SS per device from observed capability-list reads; no fixed capability offsets assumed. |
-| PCIe-B2d | Observed Config State | NOT STARTED; replay the access log into the last observed value per register at any packet. Named observed state, not a hardware snapshot; never-observed registers are UNKNOWN, never 0. |
-| PCIe-B2e | Snapshot Query | NOT STARTED; config space of a BDF at a given packet, each value with its last evidence packet or UNKNOWN. |
-| PCIe-B2f | Snapshot Diff | NOT STARTED; observed state at two points (e.g. before vs after a MUX switch) with changed registers and decoded fields. |
-| PCIe-B2g | Register Decode + Watchlist | NOT STARTED; engineer expectations with source provenance (e.g. Disable ASPM means LinkControl.ASPMControl == 0) evaluated deterministically. |
+| PCIe-B1d | MUX-aware Rules | COMPLETE for product-rule v1; bounded implementation/replay PASS (2026-09-30, `docs/pcie-b1d-evidence.md`, r1 rules / current r2 report): three owner-requested source/wording corrections validated. MUX_CONNECTIVITY uses Q7 bilateral valid training independently of BIDIRECTIONAL_L0's explicit valid L0 records; both PASS on this hang window, sampled x1 PASS. INITIAL_GEN1_SAMPLE is observation_only / INCONCLUSIVE (2.5 GT/s x1 observed before first valid L0, no engineer acceptance rule or spec verification). TARGET_SPEED_OBSERVED uses separate present/absent wording, remains INCONCLUSIVE; post-L0 config activity INCONCLUSIVE, initialization completion NOT_EVALUATED. 1.400 sec is descriptive and 384,993 HasErrors tolerance NOT_EVALUATED. Four validation debts (training timeout, TS-error tolerance, Gen3 convergence, hot-plug completion) remain non-blocking for closing v1. 21 focused / 138 PCIe tests passed; corrected two-run replay byte-identical, inputs unchanged. Prior B1d outputs remain superseded history; B1c results/historical UNKNOWN metadata preserved. No overall case PASS/FAIL, direct MUX measurement or root cause; B1e follows as a separate gate. Final r2 report has conservative L0 source attribution and corrected typography; JSON identical to r1, Markdown only those two edits. Local closure only, no commit/push/PR/merge. |
+| PCIe-B1e | Link Findings | COMPLETE locally; validation PASS for bounded findings build (2026-09-30, `docs/pcie-b1e-evidence.md`): 12 B1d states/evidence preserved, expected context separated from rule mismatches, initial Gen1 observation-only, unknown evidence/thresholds not promoted. Real hang replay twice byte-identical with source hashes retained; 7 focused tests PASS. No rule mismatch on this input; no overall product PASS or root cause. Focus AFTER_BIDIRECTIONAL_L0. B2a next, no commit/push/PR/merge. |
+| PCIe-B2a | Register Field Probe | COMPLETE locally; validation PASS for this converted non-Flit capture (2026-09-30, `docs/pcie-b2a-evidence.md`): two COM runs DONE, 704 TLP callbacks / 333 config-and-completion rows byte-identical; hashes, size, mtime and analysis-copy read-only preserved. Register is byte offset, 32 CfgRd / 29 CfgWr, first/last BE matched raw header, 59 DWORD payloads matched little-endian RegisterData (29 writes + 30 config returns). CfgRd requests carry no read value; unassociated CplD remains unclassified. 7 focused tests PASS; B2b next, no delivery. |
+| PCIe-B2b | Config Access Log | COMPLETE locally; validation PASS for this capture (2026-09-30, `docs/pcie-b2b-evidence.md`, r2-run1 current): 61 accesses (32 reads / 29 writes), 30 qualified read returns, 0 after reconnect. Logs preserve byte masks, completion evidence and connection interval; unresolved key reuse never supplies read value. Full TLP keys retained; qualified config replies retire pending keys, avoiding late candidates attaching to completed config reads. 7 focused tests PASS, two-run outputs byte-identical. Initial outputs superseded, historical G2b unchanged. No timeout, applied-write or new-SDE state claim. B2c next. |
+| PCIe-B2c | Capability / Register Resolution | COMPLETE locally; validation PASS for observed mapping (2026-09-30, `docs/pcie-b2c-evidence.md`): old device conventional chain 0x80 PCIe -> 0xE0 MSI -> 0xF8 PM -> end; LinkControl 0x90 / PMCSR 0xFC. Extended observed 0x100 -> 0x108 -> 0x110 L1SS -> 0x128 -> unobserved 0x200; L1SS controls 0x118/0x11C supported, full extended chain UNKNOWN. Public Linux v6.12 layout values independently checked; no full PCIe spec or product-rule verification. 5 focused tests PASS including variable offsets, cycles, missing nodes, completion timing and epoch isolation; two-run output identical. B2d next. |
+| PCIe-B2d | Observed Config State | COMPLETE locally; validation PASS for separate last-read/last-write-intent byte views (2026-09-30, `docs/pcie-b2d-evidence.md`): Completion-time reads, BE-selected intent bytes, unknown bytes not zero, epoch/BDF isolation. 4 focused tests PASS after fixture/incorrect expected-value correction; two before-switch replays identical, new-SDE view empty/UNKNOWN. Last LinkControl intent 0x42 at packet 10354 (ASPM bits 2); no read-back/applied-state claim. B2e next. |
+| PCIe-B2e | Snapshot Query | COMPLETE locally; validation PASS for observed query (2026-09-30, `docs/pcie-b2e-evidence.md`): offset/width query and capability-derived names, last read vs write-intent values/evidence, partial bytes UNKNOWN, later-write marker, cut/epoch isolation. 4 focused tests PASS; before-switch two-run JSON/MD identical, after-reconnect raw 0x90 query stays unnamed/UNKNOWN. No hardware snapshot claim. B2f next. |
+| PCIe-B2f | Snapshot Diff | COMPLETE locally; validation PASS for observed comparisons (2026-09-30, `docs/pcie-b2f-evidence.md`): read and write intent compared separately, UNKNOWN never zero, same-epoch observed changes supported, MUX old/new epoch not comparable despite same BDF. Snapshot/source recomputation rejects tampering or identity mismatch; 5 focused tests PASS; real diff two-run JSON/MD byte-identical. B2g source/scope gate next. |
+| PCIe-B2g | Product ASPM Policy / Watchlist | SOURCE/SCOPE GATE (2026-09-30, `docs/pcie-b2g-engineer-questions.md`): no product FAIL. Extraction/schema COMPLETE; evidence preparation COMPLETE; product evaluation WAITING FOR SOURCE/SCOPE. Current schema v2 in r1-run1 separates write intent, effective_state=UNKNOWN, expected_state=UNKNOWN and policy_result=NOT_EVALUATED. Packet 10354 is L1_ENABLE_WRITE_INTENT (0x42 / ASPM bits 2), not effective/system state, testcase violation or root cause. Minimum four engineer answers: side+device/epoch+BDF, phase, per-register bits/expectation/provenance, intent-vs-read-back/equivalent-proof acceptance. 5 preparation / 5 observed-state tests and 183 PCIe suite tests PASS; same BDF/offset/VID-DID epoch isolation regression added; v2 replay identical, raw observation fields/input bindings unchanged. B1d COMPLETE and B1e/B2a-B2f local completion retained; B2h conditional, B3 unstarted. No commit/push/PR/merge. |
 | PCIe-B2h | Vendor Registers | CONDITIONAL; only with engineer-supplied GL9767 offsets, bit definitions and expectations permitted for tool use. No guessing. |
+| PCIe-B2h-0 | Register-definition Framework (no vendor values) | MECHANISM PASS, SCHEME NOT FINAL (2026-10-05, owner asked to start the decode and CATC-feature work while vendor definitions are missing; evidence `docs/pcie-catc-decode-verification.md`, inventory `docs/catc-feature-inventory.md`): `scripts/pcie/catc_regdef.py` validates an engineer-supplied regdef (provenance and permitted-for-tool-use required), decodes B2b config accesses offline with byte-enable-aware UNKNOWN, and emits a CATC `.dec`. Offline PASS: 13 focused tests, 196 PCIe tests. PETracer 13.26 PASS for one case: the generated `.dec` (installed `CFG.dec` backed up, replaced, restored; SHA-256 `639AB3C0...0FF7` identical after every run; trace copy `C6E9646B...` unchanged) decodes CfgWr LinkControl at packets 8658/9915/10354 as ASPM 2/0/2 via COM `ExportToText` diff against a no-script baseline. Found and fixed one FAIL: `in.Data` is a big-endian bit stream. Known costs: an active script replaces CATC native config decoding (raw `Data` fallback only); CfgRd request has no data so reads are not decodable by `CFG.dec`. NOT VERIFIED: MEM/SDhost `.dec`, multi-byte and multi-register DWORDs, `.pecfgdec`. NOT ESTABLISHED: any vendor register meaning (no definitions), MMIO extraction. B2h itself stays CONDITIONAL until definitions arrive. |
+| PCIe-B2h-1 | Native Configuration Space API Probe | PROBE PASS at sampled positions (2026-10-05, evidence `docs/pcie-b2h1-cfgspace-api-evidence.md`): the installed 13.26 Automation API `GetConfigurationSpace(bdf, packet)` returns CATC-decoded config state through COM with no GUI input and no install-folder change; on one trace, BDF 256, epoch before_disconnect, five packets, native state equals the B2b byte-level reconstruction (same known-byte sets, 0 mismatches, 48 to 115 bytes per packet). Scope of the claim: cross-check at sampled positions only, not independent truth for the whole extraction (equal snapshots do not prove every intermediate event, and both paths may share LeCroy export decoding). The original `.pecfgdec` acceptance items were NOT RUN; this is another viable path, not those items passing. `.pecfgdec` and `BuildConfigurationSpace` are out of the main line (owner decision 2026-10-05); no write to `CfgSpaceScripts`. |
+| PCIe-B2h-2 | Read-only Sidecar Register Decode | PROTOTYPE PASS (2026-10-05, evidence `docs/pcie-b2h2-sidecar-evidence.md`): `scripts/pcie/b2h2_sidecar.py` decodes saved CATC snapshots with the existing regdef and shows CATC merged value, last write intent and last read-back as separate evidence with the native CATC field alongside; never promotes one into another. Five saved positions reproduce LinkControl unknown/unknown/2/0/2; unknown bits are never zero-filled and never influence decoded fields; packet boundary measured (write included at its request packet, read at its completion packet, selected packet inclusive, query order irrelevant, B2b makes the same call); out-of-scope epoch/device/trace refused with exit code 4. 214 PCIe tests pass; four deliberate implementation breaks were each caught. Not established: any vendor register meaning (no definitions; request drafted in `docs/pcie-vendor-register-request.md`), other epochs/traces/devices, MMIO. SDhost/MMIO deferred until the config decode architecture is chosen. |
 | PCIe-B3a | Unified Event Contract | NOT STARTED; common event shape: packet, time, layer, type, device, details, evidence. |
 | PCIe-B3b | Unified Timeline | NOT STARTED; RC config, TLP request/completion, DLLP and LTSSM/link events in one ordered timeline. |
 | PCIe-B3c | Objective Findings | NOT STARTED; rule-backed only: expected MUX Link Down not reported; no L0 after Link Down, repeated Recovery, ASPM enabled under Disable ASPM, NAK/replay pattern, config sequence against the watchlist become candidates. |
 | PCIe-B3d | Engineer Report | NOT STARTED; G7/G8 reports upgraded to three sections: RC/EP control timeline, link timeline, candidate findings. Completes Milestone 1 (Engineering Analyzer). |
 
-Open questions to the engineer (asked before B2): BSOD stop code; which
-registers/bits are checked when judging RC control order; device BDF; case-
-specific registers for this trace; a register definition the tool may use.
+Waiting-period slice proposal (2026-10-02): owner requested a slice plan first,
+with one PR per slice, latest-head review and conditional merge before the next
+slice. See `docs/pcie-waiting-period-slices-20261002.md`: existing local-only
+B1d/B1e/B2a-B2g preparation require scoped delivery PRs; proposed new work is
+B3a contract, B3b config/TLP timeline, B3b link integration, observation-only
+Markdown, then HTML. No new implementation or PR started by this planning step;
+B2g policy evaluation still waits for engineer source/scope/proof answers.
+
+Engineer responses received via owner on 2026-09-30: this hang case is ASPM
+disabled / SD7 insertion / device not visible / system hang / BSOD 0x124;
+0xA0 belongs to other tests. Responder identity and actual response date remain
+unspecified; see the B1d questionnaire. B2a-B2f now supply field/config/state
+evidence; open for B2g: which registers/bits
+are checked for RC control order, device BDF, case-specific registers, and a
+register definition the tool may use (`0x940h[1]` is a supplied statement,
+not yet a register decode contract). B1d's four missing quantitative/completion
+criteria are validation debt, not blockers for its product-rule v1.
 
 Milestones (owner direction 2026-09-14): Milestone 1 Engineering Analyzer ends at
 PCIe-B3d and tells engineers objectively what the RC did, how the EP answered and
@@ -808,3 +826,196 @@ The C1 result is recorded in
 it does not prove Agent behavior. One separate fresh-context sub-agent case
 passed on 2026-09-11; review and delivery are recorded with the scoped Git change. This controlled observation
 does not establish universal natural-session recovery.
+
+## 2026-10-13 — PCIe / USB source inventory and proposed slices
+
+Research and slicing are complete locally. The source map and source register
+record official PCI-SIG / USB-IF specifications, ECNs, test documents, installed
+LeCroy manuals/constants/examples, and OS error-log references, with version,
+access and reading-depth boundaries. They do not claim every document was
+available or read in full.
+
+- Source map: docs/pcie-usb-source-map-20261013.md
+- Source register: docs/pcie-usb-source-register-20261013.json
+- Proposed work: docs/pcie-usb-spec-slices-20261013.md (29 bounded slices)
+- Documentation validation: artifacts/evidence/pcie-usb-research-20261013/validation.json
+
+Current evidence distinguishes this dirty c100ee1 checkout from the clean
+f417eec delivery checkout / remote main. W1-W5 observation timeline/report
+work was already delivered via PRs #19-21; old B3-unstarted wording must not
+cause that work to be repeated. This does not claim full B3 spec/policy or
+root-cause evaluation. Local G3 and B2h work is not all present on main.
+
+Existing bounded PASS results remain within their original scope. The first
+proposed implementation is S01 input/applicability/selection contracts, followed
+by USB U01 coverage and U02/U03/U05 fields/native transactions, or PCIe P01/P02
+coverage/native grouping. G01 product policy and G02 vendor-register meaning
+remain dependent on engineer definitions; those gates do not block unrelated
+source-backed preparation. Restricted normative text and suitable captures are
+separate prerequisites for the rule slices identified in the plan.
+
+This session changes documentation only. It does not implement these slices,
+run LeCroy/COM/VSE/GUI or hardware, contact engineers, submit access agreements,
+commit, push, create a PR, or merge. Existing instruction/memory files and
+unrelated dirty work are preserved. New report verdicts must respect the frozen
+W1 typed contract; opaque extension text cannot create verified report facts.
+
+## 2026-10-13 — S01 offline contract local checkpoint
+
+Owner decision: APPROVE WITH CHANGES. Only S01 offline schema, validator,
+fixtures, compatibility tests and trace-eligibility contract were authorized.
+All other 28 slices remain candidates. U01/P01 require a separate execution
+decision; LeCroy/COM/GUI/hardware, commit, push and merge were not authorized.
+
+S01 is locally implemented without modifying either extraction/scoring pipeline:
+- schemas/s01-input-manifest-v1.schema.json
+- schemas/s01-trace-eligibility-v1.schema.json
+- tools/s01_contract.py
+- tests/s01/ (12 JSON fixtures, independent oracles and focused tests)
+- docs/s01-offline-contract.md
+
+The contract separates API support, field applicability and actual availability
+from event observation and selection/retention/extraction coverage. Observed
+absence requires a known bounded window and coverage prerequisites. Recorded
+observations require a same-trace saved-output/manual-review/legacy reference;
+applicable reviewed documentation can support API knowledge but not establish
+runtime availability. Unknown, not applicable and unsupported remain distinct.
+
+42 offline tests passed, including 64 handwritten readiness expectations.
+Two existing saved JSON formats were read without following trace paths; their
+bytes and original decoded content were preserved, with new coverage unknown.
+Eligibility is input readiness only; qualification remains NOT_EVALUATED.
+The focused review findings on document-only proof, source applicability and
+non-finite JSON numbers were corrected and covered by regression cases.
+
+Evidence: artifacts/evidence/s01-offline-contract-20261013/verification.json,
+tests.txt and synthetic-eligibility.json. Synthetic fixtures do not qualify any
+real trace or later slice. Legacy compatibility recognizes only the two explicit
+formats documented in docs/s01-offline-contract.md and does not rerun their
+historical validators. Existing PASS scope is unchanged.
+
+W1-W5 frozen contract and the clean f417eec delivery checkout remain unchanged;
+no untracked implementation was moved between checkouts. The roadmap now lists
+an Engineer Question / Expected Observation for each of its 29 candidates.
+Stop at this local S01 checkpoint. No automatic U01/P01 start, commit, push,
+PR, merge, reset or runtime execution follows from this result.
+
+## 2026-10-13 — S01 review and U01 offline preparation
+
+Current owner instruction: review S01, then proceed to the next slice if no
+blocking issues. S01 review found no P0/P1 blocker within the offline contract
+scope; the 42 tests were rerun successfully. S01 code, schemas, fixtures and
+historical evidence were not changed. Review: docs/s01-review-20261013.md.
+
+Only U01 was started. The independent selection preparer, USB host, protected-copy
+runner and saved-result assessor are ready locally, without editing the old
+extraction/scoring pipelines or W1-W5. Seven modes cover packet default/CRC off/on,
+transaction-all, and transfer default/complete/incomplete. Each index range is
+level-local and post-dispatch; callback/sample counts remain separate.
+
+13 Python tests and 6 managed callback cases passed, including C# compilation
+and Windows PowerShell 5.1 syntax checks. The actual known USB input SHA-256 and
+104136704-byte identity match the historical source record. A no-COM preflight
+recorded current executable/manual/constants identities and prepared script
+hashes. New output is isolated under artifacts/evidence/s01-review-u01-20261013.
+
+Actual mode, coverage, bad-CRC and incomplete sample eligibility remain unknown;
+S01 input matrix is partial and qualification NOT_EVALUATED. No runtime run has
+occurred. Prior explicit LeCroy/COM/GUI exclusions are retained while a concrete
+readonly-copy execution plan is presented for owner scope confirmation.
+No hardware, P01/U02/other slice, commit/push/merge/reset or checkout transfer.
+U01 scope and exact pending command: docs/u01-selection-coverage.md.
+## 2026-10-13 — Owner-authorized serial slice workflow / runtime checkpoint
+
+Owner explicitly authorized readonly U01 runtime and continued per-slice
+implementation, validation and review without repeated confirmations. This
+supersedes the earlier pending-runtime authority wording, not the evidence gates.
+Hardware, commit/push/merge/reset and checkout transfer remain excluded.
+
+U01: seven named selections completed twice with identical semantic output.
+Review accepts bounded selection transport on the exact USB trace/software.
+CRC-on adds10 whole-trace callbacks outside the0-200 window; not independently
+qualified as bad-CRC examples. Incomplete transfer sample is empty/unknown.
+Resolved unary-negative CSL template failure by v3 explicit NA wire token;
+resolved activation-only RPC race with bounded retry before any trace opens.
+
+U02: 128 SSP LINK_CMD rows repeat identically, LGOOD0-15/LCRD1A-D observed.
+Two GetPacket raw64-bit packets match both word info/CRC5 fields by USB3.2
+Figure7-13. No CRC correctness or other command/mode qualification is claimed.
+U03: 128 LFPS rows repeat identically and all raw fields match the existing
+same-SHA saved timeline; native labels retained, wake/reset success unevaluated.
+
+U04: actual native single-packet export of3 saved LTSSM callback indices does
+not expose a confirmed state-field label; blocked_field, no guessed in.State.
+U05: bounded native TRA/XFER CSV discovery confirms separate group namespace
+and G2 observations, but explicit child packet refs/payload/status qualification
+remain absent. Full U05/P02 grouping stays HOLD on those prerequisites.
+
+P01: six native PCIe selection profiles completed twice with identical output
+and protected identities preserved. TLP704/DLLP2147145 exist but none are in
+window0-200. Native SPLIT resolves to4, not the2 in one manual table. Display
+filters/native effective range/capture scope/epoch remain unknown. Review accepts
+bounded transport only. No existing extraction/scoring or W1-W5 changed.
+
+Canonical checkpoints: docs/serial-slice-checkpoint-20261013.md,
+docs/usb-field-probes-20261013.md, docs/pcie-selection-checkpoint-20261013.md.
+Evidence: artifacts/evidence/serial-slices-20261013/verification.json and
+per-slice review/run outputs. Other19 candidates retain individual prerequisites;
+G01/G02 require engineer definitions. This is not all29 completion or certification.
+Existing authority permits subsequent eligible work without routine reapproval.
+
+## 2026-10-13 — Serial continuation P03 -> I01 -> I02 -> P11 -> P10
+
+Owner authorized serial implementation/validation/review with no recurring approvals.
+Five bounded checkpoints are locally complete, not all29 qualification.
+P03: DLLP2147145/TLP704 callbacks;73/51 field samples;two runs equal;
+18 representative packets agree via separate native ExportToText path (same decoder).
+Missing/unknown mode, epoch, retention, bounds, error-positive and nonzero-scale
+samples remain explicit; raw length/scale encoding is not normalized.
+I01:124 P03 samples composed with frozen W1-W5 commit f417eecb; base model,
+Markdown prefix and HTML outside added source block preserved.517 pointer links resolve.
+I02:128 U02 samples composed with current C5 renderer; source replay and exact FAIL
+trace binding, original C5 JSON/ranking/HTML preserved;128 packet pointers resolve.
+P11:9 valid Recovery state points,2 invalid points retained,2 valid L0 points;
+EQ/HotReset/physical-reset and continuous intervals remain UNKNOWN. Fresh same-SHA
+B1b0 constant probe succeeded after absolute-path correction. Earlier failed
+relative-path OpenFile attempt and owned cleanup retained; all native processes exited.
+Change-only legacy extractor can omit validity-only changes; no timing/PHY/EQ verdict.
+P10:LinkControl standard raw view adds CommonClockConfig/ClockPM using PCI-45 WDK
+layout, source page updated2026-06-29. At query10360: merged/write values2,1,0;
+all3 native CATC fields match, write request10354;readback unknown. Query3300 all3
+unknown. Device role/RC/wire state/L1SS/CLKREQ electrical/effective/policy unqualified.
+Dependencies located in current c100ee1b vs frozen f417eecb checkouts; no file transfer.
+
+Validation:118 slice Python tests plus47 frozen W1-W5 tests plus14 existing B2h2
+regressions,8 managed callbacks and2 activation recovery cases. Canonical verification
+also proves972 existing files unchanged,2 planned docs updated, and append-only
+PLAN/closeout prefixes; both heads and source traces unchanged, delivery remains clean.
+Evidence:artifacts/evidence/p03-serial-20261013/verification.json and five review files.
+Docs:p03-field-checkpoint-20261013.md, i01-i02-report-checkpoint-20261013.md,
+p10-p11-observation-checkpoint-20261013.md; serial checkpoint and roadmap refreshed.
+
+Remaining14 candidates retain individual prerequisites: P04/P05 normative text and
+continuous same-epoch capture, P06 group membership/request identity, P07/P08
+applicable AER/DPC field inputs (saved extended chain stops at unobserved0x200,
+not proof of absence), P09 both adapters, U06 further command/response scope,
+U07-10 native group/payload/status evidence, U11 USB2 input, O01/O02 saved host logs.
+U04/U05/P02 retain data gates;G01/G02 still require engineer definitions.
+No existing PASS expanded; W1 opaque verdict untouched. No hardware/capture,
+engineer contact, commit/push/PR/merge/reset, or movement of untracked work.
+Authority continues for eligible followups; no routine permission question.
+
+
+## 2026-10-13 — Owner-authorized slice source push
+
+Owner said "先push上去": necessary commit/push authorized for the reviewed slice
+sources/fixtures/small evidence on codex/pcie-d1e-f0-baseline. Existing5 local
+commits are included in this branch's publication; no merge/rebase/reset.
+Raw captures, local working copies, giant C4 timeline JSON and unrelated
+untracked work stay local. Required current-checkout B2 dependencies are staged
+in place; differences vs origin/main recorded, no copying across checkouts.
+Delivery scope and fresh-clone replay limitations: docs/slice-push-checkpoint-20261013.md.
+Canonical delivery record: artifacts/evidence/slice-push-20261013/delivery.json.
+This publishes bounded prototypes and historical local evidence; not all29 or
+full protocol qualification. Prior checkout/head/trace preservation results remain
+historical evidence; push state is a separate gate.

@@ -1,0 +1,17 @@
+{
+    "source":  "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\dp1 hub detect SSD fail-2.usb",
+    "source_before":  {
+                          "sha256":  "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+                          "size":  104136704,
+                          "mtime":  "2026-09-10T09:48:45.8250022Z",
+                          "readonly":  false
+                      },
+    "plan_sha256":  "afbb7abb432e291335b4c59d0ea92de6a8248535a8640cd96355fc888af4cf7a",
+    "software_version":  "10, 40, 0, 6309",
+    "executable_sha256":  "07b50aebb8a042dcdb347960779e5e2ab215726476456bed99a25e3c61050840",
+    "manual_sha256":  "2e2d421164a2382f2634d0103582d973c7991c10957fa7a0d7f4858251dce2df",
+    "constants_sha256":  "e92d66548e1a61c727a34d5f251e3c742e469af0683b65c8d94569fb139729fb",
+    "execute_requested":  false,
+    "raw_trace_opened":  false,
+    "qualification":  "NOT_EVALUATED"
+}

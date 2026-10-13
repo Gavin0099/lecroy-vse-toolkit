@@ -1,0 +1,265 @@
+# P03 LC-01 5.2.2/5.2.3: native raw fields; no rule evaluation.
+set ModuleType = "Verification Script";
+set OutputType = "VS";
+set InputType = "VS";
+set DecoderDesc = "P03 dllp raw fields";
+set Visited = 0;
+set Known = 0;
+set Emitted = 0;
+set Mismatches = 0;
+set Count_ACK = 0;
+set Count_NAK = 0;
+set Count_INIT_FC1_P = 0;
+set Count_INIT_FC1_NP = 0;
+set Count_INIT_FC1_CPL = 0;
+set Count_INIT_FC2_P = 0;
+set Count_INIT_FC2_NP = 0;
+set Count_INIT_FC2_CPL = 0;
+set Count_UPDATE_FC_P = 0;
+set Count_UPDATE_FC_NP = 0;
+set Count_UPDATE_FC_CPL = 0;
+%include "VSTools.inc"
+NativeField(v)
+{
+    if (v == null) return "{\"state\":\"unknown\",\"value\":null}";
+    return FormatEx("{\"state\":\"available\",\"value\":%d}", v);
+}
+OnStartScript()
+{
+    ScriptForDisplayOnly();
+    EnableOutput();
+    SendAllChannels();
+    SendLevelOnly(_PACKET);
+    SendTraceEventOnly(_PKT_DLLP);
+    SendDllpType(_ANY_TYPE);
+}
+ProcessEvent()
+{
+    Visited++;
+    if (in.Level != _PACKET || in.TraceEvent != _PKT_DLLP) Mismatches++;
+    if (in.DLLPType == DLLP_TYPE_ACK)
+    {
+        Known++;
+        Count_ACK++;
+        if (Count_ACK <= 8)
+        {
+        f_AckNak_SeqNum = NativeField(in.AckNak_SeqNum);
+        f_VC_ID = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_HdrFC = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_DataFC = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_HdrScale = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_DataScale = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_BadCRC = NativeField(in.BadCRC);
+        f_InvalidEncoding = NativeField(in.InvalidEncoding);
+        f_FCError = NativeField(in.FCError);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"dllp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"AckNak_SeqNum\":%s,\"VC_ID\":%s,\"HdrFC\":%s,\"DataFC\":%s,\"HdrScale\":%s,\"DataScale\":%s,\"BadCRC\":%s,\"InvalidEncoding\":%s,\"FCError\":%s}}", in.Index,in.Level,in.Channel,in.DLLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_AckNak_SeqNum,f_VC_ID,f_HdrFC,f_DataFC,f_HdrScale,f_DataScale,f_BadCRC,f_InvalidEncoding,f_FCError));
+            Emitted++;
+        }
+    }
+    if (in.DLLPType == DLLP_TYPE_NAK)
+    {
+        Known++;
+        Count_NAK++;
+        if (Count_NAK <= 8)
+        {
+        f_AckNak_SeqNum = NativeField(in.AckNak_SeqNum);
+        f_VC_ID = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_HdrFC = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_DataFC = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_HdrScale = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_DataScale = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_BadCRC = NativeField(in.BadCRC);
+        f_InvalidEncoding = NativeField(in.InvalidEncoding);
+        f_FCError = NativeField(in.FCError);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"dllp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"AckNak_SeqNum\":%s,\"VC_ID\":%s,\"HdrFC\":%s,\"DataFC\":%s,\"HdrScale\":%s,\"DataScale\":%s,\"BadCRC\":%s,\"InvalidEncoding\":%s,\"FCError\":%s}}", in.Index,in.Level,in.Channel,in.DLLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_AckNak_SeqNum,f_VC_ID,f_HdrFC,f_DataFC,f_HdrScale,f_DataScale,f_BadCRC,f_InvalidEncoding,f_FCError));
+            Emitted++;
+        }
+    }
+    if (in.DLLPType == DLLP_TYPE_INIT_FC1_P)
+    {
+        Known++;
+        Count_INIT_FC1_P++;
+        if (Count_INIT_FC1_P <= 8)
+        {
+        f_AckNak_SeqNum = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_VC_ID = NativeField(in.VC_ID);
+        f_HdrFC = NativeField(in.HdrFC);
+        f_DataFC = NativeField(in.DataFC);
+        f_HdrScale = NativeField(in.HdrScale);
+        f_DataScale = NativeField(in.DataScale);
+        f_BadCRC = NativeField(in.BadCRC);
+        f_InvalidEncoding = NativeField(in.InvalidEncoding);
+        f_FCError = NativeField(in.FCError);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"dllp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"AckNak_SeqNum\":%s,\"VC_ID\":%s,\"HdrFC\":%s,\"DataFC\":%s,\"HdrScale\":%s,\"DataScale\":%s,\"BadCRC\":%s,\"InvalidEncoding\":%s,\"FCError\":%s}}", in.Index,in.Level,in.Channel,in.DLLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_AckNak_SeqNum,f_VC_ID,f_HdrFC,f_DataFC,f_HdrScale,f_DataScale,f_BadCRC,f_InvalidEncoding,f_FCError));
+            Emitted++;
+        }
+    }
+    if (in.DLLPType == DLLP_TYPE_INIT_FC1_NP)
+    {
+        Known++;
+        Count_INIT_FC1_NP++;
+        if (Count_INIT_FC1_NP <= 8)
+        {
+        f_AckNak_SeqNum = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_VC_ID = NativeField(in.VC_ID);
+        f_HdrFC = NativeField(in.HdrFC);
+        f_DataFC = NativeField(in.DataFC);
+        f_HdrScale = NativeField(in.HdrScale);
+        f_DataScale = NativeField(in.DataScale);
+        f_BadCRC = NativeField(in.BadCRC);
+        f_InvalidEncoding = NativeField(in.InvalidEncoding);
+        f_FCError = NativeField(in.FCError);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"dllp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"AckNak_SeqNum\":%s,\"VC_ID\":%s,\"HdrFC\":%s,\"DataFC\":%s,\"HdrScale\":%s,\"DataScale\":%s,\"BadCRC\":%s,\"InvalidEncoding\":%s,\"FCError\":%s}}", in.Index,in.Level,in.Channel,in.DLLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_AckNak_SeqNum,f_VC_ID,f_HdrFC,f_DataFC,f_HdrScale,f_DataScale,f_BadCRC,f_InvalidEncoding,f_FCError));
+            Emitted++;
+        }
+    }
+    if (in.DLLPType == DLLP_TYPE_INIT_FC1_CPL)
+    {
+        Known++;
+        Count_INIT_FC1_CPL++;
+        if (Count_INIT_FC1_CPL <= 8)
+        {
+        f_AckNak_SeqNum = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_VC_ID = NativeField(in.VC_ID);
+        f_HdrFC = NativeField(in.HdrFC);
+        f_DataFC = NativeField(in.DataFC);
+        f_HdrScale = NativeField(in.HdrScale);
+        f_DataScale = NativeField(in.DataScale);
+        f_BadCRC = NativeField(in.BadCRC);
+        f_InvalidEncoding = NativeField(in.InvalidEncoding);
+        f_FCError = NativeField(in.FCError);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"dllp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"AckNak_SeqNum\":%s,\"VC_ID\":%s,\"HdrFC\":%s,\"DataFC\":%s,\"HdrScale\":%s,\"DataScale\":%s,\"BadCRC\":%s,\"InvalidEncoding\":%s,\"FCError\":%s}}", in.Index,in.Level,in.Channel,in.DLLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_AckNak_SeqNum,f_VC_ID,f_HdrFC,f_DataFC,f_HdrScale,f_DataScale,f_BadCRC,f_InvalidEncoding,f_FCError));
+            Emitted++;
+        }
+    }
+    if (in.DLLPType == DLLP_TYPE_INIT_FC2_P)
+    {
+        Known++;
+        Count_INIT_FC2_P++;
+        if (Count_INIT_FC2_P <= 8)
+        {
+        f_AckNak_SeqNum = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_VC_ID = NativeField(in.VC_ID);
+        f_HdrFC = NativeField(in.HdrFC);
+        f_DataFC = NativeField(in.DataFC);
+        f_HdrScale = NativeField(in.HdrScale);
+        f_DataScale = NativeField(in.DataScale);
+        f_BadCRC = NativeField(in.BadCRC);
+        f_InvalidEncoding = NativeField(in.InvalidEncoding);
+        f_FCError = NativeField(in.FCError);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"dllp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"AckNak_SeqNum\":%s,\"VC_ID\":%s,\"HdrFC\":%s,\"DataFC\":%s,\"HdrScale\":%s,\"DataScale\":%s,\"BadCRC\":%s,\"InvalidEncoding\":%s,\"FCError\":%s}}", in.Index,in.Level,in.Channel,in.DLLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_AckNak_SeqNum,f_VC_ID,f_HdrFC,f_DataFC,f_HdrScale,f_DataScale,f_BadCRC,f_InvalidEncoding,f_FCError));
+            Emitted++;
+        }
+    }
+    if (in.DLLPType == DLLP_TYPE_INIT_FC2_NP)
+    {
+        Known++;
+        Count_INIT_FC2_NP++;
+        if (Count_INIT_FC2_NP <= 8)
+        {
+        f_AckNak_SeqNum = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_VC_ID = NativeField(in.VC_ID);
+        f_HdrFC = NativeField(in.HdrFC);
+        f_DataFC = NativeField(in.DataFC);
+        f_HdrScale = NativeField(in.HdrScale);
+        f_DataScale = NativeField(in.DataScale);
+        f_BadCRC = NativeField(in.BadCRC);
+        f_InvalidEncoding = NativeField(in.InvalidEncoding);
+        f_FCError = NativeField(in.FCError);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"dllp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"AckNak_SeqNum\":%s,\"VC_ID\":%s,\"HdrFC\":%s,\"DataFC\":%s,\"HdrScale\":%s,\"DataScale\":%s,\"BadCRC\":%s,\"InvalidEncoding\":%s,\"FCError\":%s}}", in.Index,in.Level,in.Channel,in.DLLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_AckNak_SeqNum,f_VC_ID,f_HdrFC,f_DataFC,f_HdrScale,f_DataScale,f_BadCRC,f_InvalidEncoding,f_FCError));
+            Emitted++;
+        }
+    }
+    if (in.DLLPType == DLLP_TYPE_INIT_FC2_CPL)
+    {
+        Known++;
+        Count_INIT_FC2_CPL++;
+        if (Count_INIT_FC2_CPL <= 8)
+        {
+        f_AckNak_SeqNum = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_VC_ID = NativeField(in.VC_ID);
+        f_HdrFC = NativeField(in.HdrFC);
+        f_DataFC = NativeField(in.DataFC);
+        f_HdrScale = NativeField(in.HdrScale);
+        f_DataScale = NativeField(in.DataScale);
+        f_BadCRC = NativeField(in.BadCRC);
+        f_InvalidEncoding = NativeField(in.InvalidEncoding);
+        f_FCError = NativeField(in.FCError);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"dllp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"AckNak_SeqNum\":%s,\"VC_ID\":%s,\"HdrFC\":%s,\"DataFC\":%s,\"HdrScale\":%s,\"DataScale\":%s,\"BadCRC\":%s,\"InvalidEncoding\":%s,\"FCError\":%s}}", in.Index,in.Level,in.Channel,in.DLLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_AckNak_SeqNum,f_VC_ID,f_HdrFC,f_DataFC,f_HdrScale,f_DataScale,f_BadCRC,f_InvalidEncoding,f_FCError));
+            Emitted++;
+        }
+    }
+    if (in.DLLPType == DLLP_TYPE_UPDATE_FC_P)
+    {
+        Known++;
+        Count_UPDATE_FC_P++;
+        if (Count_UPDATE_FC_P <= 8)
+        {
+        f_AckNak_SeqNum = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_VC_ID = NativeField(in.VC_ID);
+        f_HdrFC = NativeField(in.HdrFC);
+        f_DataFC = NativeField(in.DataFC);
+        f_HdrScale = NativeField(in.HdrScale);
+        f_DataScale = NativeField(in.DataScale);
+        f_BadCRC = NativeField(in.BadCRC);
+        f_InvalidEncoding = NativeField(in.InvalidEncoding);
+        f_FCError = NativeField(in.FCError);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"dllp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"AckNak_SeqNum\":%s,\"VC_ID\":%s,\"HdrFC\":%s,\"DataFC\":%s,\"HdrScale\":%s,\"DataScale\":%s,\"BadCRC\":%s,\"InvalidEncoding\":%s,\"FCError\":%s}}", in.Index,in.Level,in.Channel,in.DLLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_AckNak_SeqNum,f_VC_ID,f_HdrFC,f_DataFC,f_HdrScale,f_DataScale,f_BadCRC,f_InvalidEncoding,f_FCError));
+            Emitted++;
+        }
+    }
+    if (in.DLLPType == DLLP_TYPE_UPDATE_FC_NP)
+    {
+        Known++;
+        Count_UPDATE_FC_NP++;
+        if (Count_UPDATE_FC_NP <= 8)
+        {
+        f_AckNak_SeqNum = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_VC_ID = NativeField(in.VC_ID);
+        f_HdrFC = NativeField(in.HdrFC);
+        f_DataFC = NativeField(in.DataFC);
+        f_HdrScale = NativeField(in.HdrScale);
+        f_DataScale = NativeField(in.DataScale);
+        f_BadCRC = NativeField(in.BadCRC);
+        f_InvalidEncoding = NativeField(in.InvalidEncoding);
+        f_FCError = NativeField(in.FCError);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"dllp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"AckNak_SeqNum\":%s,\"VC_ID\":%s,\"HdrFC\":%s,\"DataFC\":%s,\"HdrScale\":%s,\"DataScale\":%s,\"BadCRC\":%s,\"InvalidEncoding\":%s,\"FCError\":%s}}", in.Index,in.Level,in.Channel,in.DLLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_AckNak_SeqNum,f_VC_ID,f_HdrFC,f_DataFC,f_HdrScale,f_DataScale,f_BadCRC,f_InvalidEncoding,f_FCError));
+            Emitted++;
+        }
+    }
+    if (in.DLLPType == DLLP_TYPE_UPDATE_FC_CPL)
+    {
+        Known++;
+        Count_UPDATE_FC_CPL++;
+        if (Count_UPDATE_FC_CPL <= 8)
+        {
+        f_AckNak_SeqNum = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_VC_ID = NativeField(in.VC_ID);
+        f_HdrFC = NativeField(in.HdrFC);
+        f_DataFC = NativeField(in.DataFC);
+        f_HdrScale = NativeField(in.HdrScale);
+        f_DataScale = NativeField(in.DataScale);
+        f_BadCRC = NativeField(in.BadCRC);
+        f_InvalidEncoding = NativeField(in.InvalidEncoding);
+        f_FCError = NativeField(in.FCError);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"dllp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"AckNak_SeqNum\":%s,\"VC_ID\":%s,\"HdrFC\":%s,\"DataFC\":%s,\"HdrScale\":%s,\"DataScale\":%s,\"BadCRC\":%s,\"InvalidEncoding\":%s,\"FCError\":%s}}", in.Index,in.Level,in.Channel,in.DLLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_AckNak_SeqNum,f_VC_ID,f_HdrFC,f_DataFC,f_HdrScale,f_DataScale,f_BadCRC,f_InvalidEncoding,f_FCError));
+            Emitted++;
+        }
+    }
+    return Complete();
+}
+OnFinishScript()
+{
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", DLLP_TYPE_ACK, Count_ACK));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", DLLP_TYPE_NAK, Count_NAK));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", DLLP_TYPE_INIT_FC1_P, Count_INIT_FC1_P));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", DLLP_TYPE_INIT_FC1_NP, Count_INIT_FC1_NP));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", DLLP_TYPE_INIT_FC1_CPL, Count_INIT_FC1_CPL));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", DLLP_TYPE_INIT_FC2_P, Count_INIT_FC2_P));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", DLLP_TYPE_INIT_FC2_NP, Count_INIT_FC2_NP));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", DLLP_TYPE_INIT_FC2_CPL, Count_INIT_FC2_CPL));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", DLLP_TYPE_UPDATE_FC_P, Count_UPDATE_FC_P));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", DLLP_TYPE_UPDATE_FC_NP, Count_UPDATE_FC_NP));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", DLLP_TYPE_UPDATE_FC_CPL, Count_UPDATE_FC_CPL));
+    ReportText(FormatEx("{\"kind\":\"p03-end\",\"visited\":%d,\"known\":%d,\"emitted\":%d,\"mismatches\":%d,\"native_level\":%d}", Visited,Known,Emitted,Mismatches,_PACKET));
+}

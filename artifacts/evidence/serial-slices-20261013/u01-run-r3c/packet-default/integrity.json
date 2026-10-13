@@ -1,0 +1,26 @@
+{
+    "source_before":  {
+                          "sha256":  "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+                          "size":  104136704,
+                          "mtime":  "2026-09-10T09:48:45.8250022Z",
+                          "readonly":  false
+                      },
+    "source_after":  {
+                         "sha256":  "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+                         "size":  104136704,
+                         "mtime":  "2026-09-10T09:48:45.8250022Z",
+                         "readonly":  false
+                     },
+    "working_before":  {
+                           "sha256":  "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+                           "size":  104136704,
+                           "mtime":  "2026-09-10T09:48:45.8250022Z",
+                           "readonly":  true
+                       },
+    "working_after":  {
+                          "sha256":  "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+                          "size":  104136704,
+                          "mtime":  "2026-09-10T09:48:45.8250022Z",
+                          "readonly":  true
+                      }
+}

@@ -1,0 +1,158 @@
+{
+  "schema_version": "s01.trace-eligibility/v1",
+  "profiles": [
+    {
+      "slice_id": "U01",
+      "engineer_question": "Do independent known bad-CRC and incomplete examples establish selection coverage?",
+      "expected_observation": "Explicit flags, reconciled rows and independent event examples; unknown stays unknown.",
+      "protocol": "usb",
+      "modes": [
+        "USB2-LS",
+        "USB2-FS",
+        "USB2-HS",
+        "USB3-SS",
+        "USB3-SSP",
+        "USB2-and-USB3"
+      ],
+      "requirements": [
+        {
+          "kind": "fact",
+          "id": "filters",
+          "expected": "known"
+        },
+        {
+          "kind": "event",
+          "id": "usb.BAD_CRC",
+          "expected": "observed"
+        },
+        {
+          "kind": "event",
+          "id": "usb.INCOMPLETE_TRANSFER",
+          "expected": "observed"
+        }
+      ]
+    }
+  ],
+  "traces": [
+    {
+      "manifest": {
+        "schema_version": "s01.input-manifest/v1",
+        "manifest_id": "U01-PREFLIGHT-ONLY",
+        "origin": "recorded",
+        "trace": {
+          "trace_id": "usb-demo-fail-known-source",
+          "sha256": "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+          "protocol": "usb",
+          "identity_evidence_refs": [
+            "PREFLIGHT"
+          ],
+          "facts": {
+            "mode": {
+              "state": "unknown",
+              "value": null,
+              "evidence_refs": []
+            },
+            "bidirectional": {
+              "state": "unknown",
+              "value": null,
+              "evidence_refs": []
+            },
+            "capture_start": {
+              "state": "unknown",
+              "value": null,
+              "evidence_refs": []
+            },
+            "capture_end": {
+              "state": "unknown",
+              "value": null,
+              "evidence_refs": []
+            },
+            "epoch": {
+              "state": "unknown",
+              "value": null,
+              "evidence_refs": []
+            },
+            "filters": {
+              "state": "unknown",
+              "value": null,
+              "evidence_refs": []
+            }
+          }
+        },
+        "toolchain": {
+          "software_version": "10, 40, 0, 6309",
+          "extractor_sha256": null,
+          "constants_sha256": "e92d66548e1a61c727a34d5f251e3c742e469af0683b65c8d94569fb139729fb",
+          "evidence_refs": [
+            "PREFLIGHT"
+          ]
+        },
+        "sources": [],
+        "evidence": [
+          {
+            "id": "PREFLIGHT",
+            "kind": "saved_output",
+            "locator": "preflight/preflight.json",
+            "sha256": "096e56620ca3da950878e5cd5f8fb2e62adb3660580e2dd2348f41371f1db319",
+            "trace_sha256": "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+            "note": "Current file hash inventory of a previously documented USB input; no mode, event, capture completeness or runtime claim."
+          }
+        ],
+        "capabilities": [],
+        "observations": [],
+        "historical_claims": [],
+        "claim_boundary": "INPUT_METADATA_ONLY"
+      },
+      "assessments": [
+        {
+          "slice_id": "U01",
+          "status": "partial",
+          "conditions": [
+            {
+              "requirement": "trace.sha256",
+              "status": "met",
+              "reason": "declared trace identity present",
+              "evidence_refs": [
+                "PREFLIGHT"
+              ]
+            },
+            {
+              "requirement": "trace.protocol",
+              "status": "met",
+              "reason": "declared protocol compared with profile; unknown is not a match",
+              "evidence_refs": [
+                "PREFLIGHT"
+              ]
+            },
+            {
+              "requirement": "fact:mode",
+              "status": "unknown",
+              "reason": "declared mode compared with explicit profile modes",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "fact:filters",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "event:usb.BAD_CRC",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            },
+            {
+              "requirement": "event:usb.INCOMPLETE_TRANSFER",
+              "status": "unknown",
+              "reason": "required metadata was not supplied",
+              "evidence_refs": []
+            }
+          ],
+          "qualification": "NOT_EVALUATED"
+        }
+      ]
+    }
+  ],
+  "claim_boundary": "INPUT_ELIGIBILITY_ONLY"
+}

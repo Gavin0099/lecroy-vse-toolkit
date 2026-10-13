@@ -1,0 +1,9 @@
+  File E:\BackUp\Git_EE\lecroy-vse-toolkit\artifacts\evidence\p03-serial-20261013\tlp-b\working.pex.
+  From Packet #3130 to Packet #3130.
+
+Packet#
+_______|_______________________________________________________________________Filtered Traffic 
+Packet(3130) Downstream 5.0(x1) DLLP UpdateFC-NP 
+_______| VC ID(0) HdrScale(0) HdrFC(80) DataScale(0) DataFC(20) CRC 16(0xAEBA) 
+_______| Idle(0.000 ns) Time Stamp(0008.276852512000s) 
+_______|_______________________________________________________________________

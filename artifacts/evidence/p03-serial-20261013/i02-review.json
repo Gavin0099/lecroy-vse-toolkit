@@ -1,0 +1,21 @@
+{
+  "slice": "I02",
+  "review": "APPROVE_TYPED_U02_SOURCE_BLOCK",
+  "source_trace_sha256": "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+  "report_directory": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\p03-serial-20261013\\usb-composed-report",
+  "report_sha256": {
+    "report.json": "ffeb8e13f8f4364b4514117084e62cdcdb7a25aff05556d0ef7a880406c711f1",
+    "report.html": "75a3992d5a525e2449cebef66f70848e77b78c4c5fff60dd1239a37571644c9c",
+    "historical-c5.html": "2485a3fd834566ffab933fe62429fdcd171b086b3441fea3834e712a9da79345"
+  },
+  "historical_c5_json_unchanged": true,
+  "historical_html_preserved_except_added_section": true,
+  "resolved_packet_source_links": 128,
+  "limits": [
+    "128 sampled LINK_CMD rows; no CRC/compliance/Enumeration/root-cause verdict",
+    "retention/filters/epoch/capture mode unknown",
+    "historical C5 candidate ranking and integrity retain original scope; not new field qualification",
+    "both input directories must remain available for evidence links"
+  ],
+  "next_allowed": "review next candidate input/source prerequisites; no routine owner reapproval required"
+}

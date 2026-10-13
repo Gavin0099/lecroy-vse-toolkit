@@ -1,0 +1,88 @@
+{
+  "slice": "P01",
+  "review": "APPROVE_BOUNDED_SELECTION_TRANSPORT",
+  "profiles": [
+    {
+      "profile": "packet-all",
+      "counts": {
+        "kind": "p01-end",
+        "visited": 3457139,
+        "selected": 201,
+        "emitted": 201,
+        "mismatches": 0,
+        "native_level": 0
+      },
+      "reproducible": true
+    },
+    {
+      "profile": "packet-empty-window",
+      "counts": {
+        "kind": "p01-end",
+        "visited": 3457139,
+        "selected": 0,
+        "emitted": 0,
+        "mismatches": 0,
+        "native_level": 0
+      },
+      "reproducible": true
+    },
+    {
+      "profile": "packet-tlp",
+      "counts": {
+        "kind": "p01-end",
+        "visited": 704,
+        "selected": 0,
+        "emitted": 0,
+        "mismatches": 0,
+        "native_level": 0
+      },
+      "reproducible": true
+    },
+    {
+      "profile": "packet-dllp",
+      "counts": {
+        "kind": "p01-end",
+        "visited": 2147145,
+        "selected": 0,
+        "emitted": 0,
+        "mismatches": 0,
+        "native_level": 0
+      },
+      "reproducible": true
+    },
+    {
+      "profile": "link-all",
+      "counts": {
+        "kind": "p01-end",
+        "visited": 703,
+        "selected": 201,
+        "emitted": 201,
+        "mismatches": 0,
+        "native_level": 1
+      },
+      "reproducible": true
+    },
+    {
+      "profile": "split-all",
+      "counts": {
+        "kind": "p01-end",
+        "visited": 225,
+        "selected": 201,
+        "emitted": 201,
+        "mismatches": 0,
+        "native_level": 4
+      },
+      "reproducible": true
+    }
+  ],
+  "source_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+  "scope": "installed named constants / converted trace / level-local 0-200 and empty window",
+  "split_native_level": 4,
+  "limits": [
+    "TLP/DLLP exist outside tested0-200 window; zero selected rows not event absence",
+    "split named constant resolved to4 despite an installed manual context table listing2",
+    "display filters and native effective range unknown; no absence/compliance verdict",
+    "no complete grouping/packet reference qualification or legacy PASS expansion"
+  ],
+  "next_allowed": "P02 native group status/metrics; explicit packet references still required before complete qualification"
+}

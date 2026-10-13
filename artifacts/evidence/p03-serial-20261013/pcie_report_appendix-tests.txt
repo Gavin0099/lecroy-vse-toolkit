@@ -1,0 +1,13 @@
+test_base_bytes_and_w1_states_unchanged (test_pcie_protocol_appendix.AppendixTests.test_base_bytes_and_w1_states_unchanged) ... ok
+test_capture_mismatch_rejected (test_pcie_protocol_appendix.AppendixTests.test_capture_mismatch_rejected) ... ok
+test_cross_drive_links_are_offline_file_uris (test_pcie_protocol_appendix.AppendixTests.test_cross_drive_links_are_offline_file_uris) ... ok
+test_dependencies_match_pinned_commit_and_new_output_only (test_pcie_protocol_appendix.AppendixTests.test_dependencies_match_pinned_commit_and_new_output_only) ... ok
+test_every_row_source_pointer_resolves_and_equal (test_pcie_protocol_appendix.AppendixTests.test_every_row_source_pointer_resolves_and_equal) ... ok
+test_html_unique_ids_offline_and_escaped (test_pcie_protocol_appendix.AppendixTests.test_html_unique_ids_offline_and_escaped) ... ok
+test_opaque_or_raw_tampering_rejected_before_render (test_pcie_protocol_appendix.AppendixTests.test_opaque_or_raw_tampering_rejected_before_render) ... ok
+test_raw_unknown_na_and_missing_evidence_equal_in_both_formats (test_pcie_protocol_appendix.AppendixTests.test_raw_unknown_na_and_missing_evidence_equal_in_both_formats) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.756s
+
+OK

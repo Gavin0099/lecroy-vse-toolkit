@@ -1,0 +1,20 @@
+{
+    "selection":  "transfer-default",
+    "trace_sha256":  "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+    "script_sha256":  "5a3de42d30888d38c8a983d7ec693bb86cc6960e382f6280dda18d92f0da6c49",
+    "integrity":  {
+                      "source_unchanged":  true,
+                      "working_copy_unchanged":  true,
+                      "working_copy_readonly":  true
+                  },
+    "run_result":  -1,
+    "finished_result":  -1,
+    "error":  "Retrieving the COM class factory for component with CLSID {136D64A4-3CD5-4B41-974A-C7039E3FC292} failed due to the following error: 800706bf The remote procedure call failed and did not execute. (Exception from HRESULT: 0x800706BF). expected one finished callback",
+    "rows":  [
+
+             ],
+    "summary":  null,
+    "software_version":  "10, 40, 0, 6309",
+    "constants_sha256":  "e92d66548e1a61c727a34d5f251e3c742e469af0683b65c8d94569fb139729fb",
+    "manual_sha256":  "2e2d421164a2382f2634d0103582d973c7991c10957fa7a0d7f4858251dce2df"
+}

@@ -1,0 +1,4885 @@
+{
+  "head": "c100ee1bba49c0e1956c726e287ff5158e70aec5",
+  "files": [
+    {
+      "path": "artifacts/evidence/pcie-b1d-hang-20260930/product-context-r1.json",
+      "size": 2612,
+      "sha256": "78bde038bcadee0c12384f149247c5b22a8bd2fbbacfb0d06ac01cf4b3cbf691"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1d-hang-20260930/product-context.json",
+      "size": 2239,
+      "sha256": "0750a7f47499f4f11257375dcd31634c7066b9549879fb5c3609a8d80add8c6c"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1d-hang-20260930/r1-pcie-tests.log",
+      "size": 26728,
+      "sha256": "6fc822bd19609ad42b8faabe1d5ab503bca7d14fd5162be7ad87138d809e730a"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1d-hang-20260930/r1-run1/evaluation.json",
+      "size": 25734,
+      "sha256": "22ed4a80e2917fe547693d6bd43af82cd496c34ffaa5b882da699622c3ec240a"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1d-hang-20260930/r1-run1/evaluation.md",
+      "size": 10475,
+      "sha256": "9adcb1803b680be781b46168f4d96526eee9948c5cf5176786ad0dd8f74fc62d"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1d-hang-20260930/r1-run2/evaluation.json",
+      "size": 25734,
+      "sha256": "22ed4a80e2917fe547693d6bd43af82cd496c34ffaa5b882da699622c3ec240a"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1d-hang-20260930/r1-run2/evaluation.md",
+      "size": 10475,
+      "sha256": "9adcb1803b680be781b46168f4d96526eee9948c5cf5176786ad0dd8f74fc62d"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json",
+      "size": 25734,
+      "sha256": "22ed4a80e2917fe547693d6bd43af82cd496c34ffaa5b882da699622c3ec240a"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.md",
+      "size": 10523,
+      "sha256": "698ef7b82b7918306d62a22aa096bd9e67235fd91994cccbdcafdd7f4c015802"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1d-hang-20260930/run1/evaluation.json",
+      "size": 24287,
+      "sha256": "f6f2310773b87f3eb262393b2d33c36770884023028f80f78f6b146c69dd3389"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1d-hang-20260930/run1/evaluation.md",
+      "size": 10067,
+      "sha256": "6b04fa57b05a63bc0c0893067232571805065a1c595592d8935ff2e0ffce0cc6"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1d-hang-20260930/run2/evaluation.json",
+      "size": 24287,
+      "sha256": "f6f2310773b87f3eb262393b2d33c36770884023028f80f78f6b146c69dd3389"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1d-hang-20260930/run2/evaluation.md",
+      "size": 10067,
+      "sha256": "6b04fa57b05a63bc0c0893067232571805065a1c595592d8935ff2e0ffce0cc6"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1d-hang-20260930/verification-r1.json",
+      "size": 3951,
+      "sha256": "25e285e5c9ddc544473d98532eb4ad5d3819e9acab559641575743f57e8a420b"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1d-hang-20260930/verification-r2.json",
+      "size": 1759,
+      "sha256": "f5af7ce5cfb1b896fa448af8cd454473d27c863e690649bb65d273aff7cb1a52"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1d-hang-20260930/verification.json",
+      "size": 2821,
+      "sha256": "54ddf57c204426c58ed88fa08104d17210ef9831b522a934a36e87efd8b406d7"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json",
+      "size": 28325,
+      "sha256": "5b2aec0446f5580254b89fd5067017b9b9e7528d56f4dcf07f94ef551fb27f5f"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.md",
+      "size": 9748,
+      "sha256": "d4703effcb20862e6ed7518bee26db39fec5221b5ceafde58665465eabb12bee"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1e-hang-20260930/run2/findings.json",
+      "size": 28325,
+      "sha256": "5b2aec0446f5580254b89fd5067017b9b9e7528d56f4dcf07f94ef551fb27f5f"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1e-hang-20260930/run2/findings.md",
+      "size": 9748,
+      "sha256": "d4703effcb20862e6ed7518bee26db39fec5221b5ceafde58665465eabb12bee"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1e-hang-20260930/verification.json",
+      "size": 811,
+      "sha256": "09c0fe96482630eeaa4cb5611a90a3a030e9bb0dd24988dbfcb518a4c73e0251"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2a-hang-20260930/com-run1/com-run.json",
+      "size": 3402,
+      "sha256": "13a8deada4b8a0982d825fe3d0bf7fc005217ffe8dafd403988e57d4c68528bb"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2a-hang-20260930/com-run1/report-lines.json",
+      "size": 45820,
+      "sha256": "ccd8855472dab597358ee7a04eb2619fccaa0113f4afc294e7cd7c50ab9c97dd"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2a-hang-20260930/com-run1/vse-output.txt",
+      "size": 44088,
+      "sha256": "d266e4db77a874dcca5f9a1835fac043677aed4eac07f567080c4194a8b7ab4c"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2a-hang-20260930/com-run2/com-run.json",
+      "size": 3402,
+      "sha256": "3fdc7995918158a601c170569e85c2bc2970378a669024dbf0d31126295f3555"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2a-hang-20260930/com-run2/report-lines.json",
+      "size": 45820,
+      "sha256": "ccd8855472dab597358ee7a04eb2619fccaa0113f4afc294e7cd7c50ab9c97dd"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2a-hang-20260930/com-run2/vse-output.txt",
+      "size": 44088,
+      "sha256": "d266e4db77a874dcca5f9a1835fac043677aed4eac07f567080c4194a8b7ab4c"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2a-hang-20260930/final-check/fields.json",
+      "size": 178825,
+      "sha256": "ab40e8cb481377f84ceb271d1eaeb693a912d6d07d8dd4a863b793de3d9891bd"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2a-hang-20260930/preflight.json",
+      "size": 939,
+      "sha256": "0c52b297b27db717d191f49a7e20af7d1e59de33ca6b651e197c8da580457e44"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2a-hang-20260930/verification.json",
+      "size": 1519,
+      "sha256": "af8c2aa78d1b68895d9b7589c570b32709110f3fae835164e8b55344e38c0172"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json",
+      "size": 178825,
+      "sha256": "ab40e8cb481377f84ceb271d1eaeb693a912d6d07d8dd4a863b793de3d9891bd"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2a-hang-20260930/verified2/fields.json",
+      "size": 178825,
+      "sha256": "b0f5cf227f3b0dff110eb992bd8c2fb1ec5273ae64b0aab4ab2f6e2190385558"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2b-hang-20260930/r1-run1/accesses.json",
+      "size": 104747,
+      "sha256": "7b54aaf6de5fb29eba12bd99f59316e31a14da040a594bc958124bdef8075373"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2b-hang-20260930/r1-run1/accesses.md",
+      "size": 7470,
+      "sha256": "9ace017e3293f07407c0dbde3a8f2f9633bc2094ebdc11379ca076d4f548d081"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json",
+      "size": 104747,
+      "sha256": "7b54aaf6de5fb29eba12bd99f59316e31a14da040a594bc958124bdef8075373"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.md",
+      "size": 7470,
+      "sha256": "9ace017e3293f07407c0dbde3a8f2f9633bc2094ebdc11379ca076d4f548d081"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2b-hang-20260930/r2-run2/accesses.json",
+      "size": 104747,
+      "sha256": "7b54aaf6de5fb29eba12bd99f59316e31a14da040a594bc958124bdef8075373"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2b-hang-20260930/r2-run2/accesses.md",
+      "size": 7470,
+      "sha256": "9ace017e3293f07407c0dbde3a8f2f9633bc2094ebdc11379ca076d4f548d081"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2b-hang-20260930/run1/accesses.json",
+      "size": 108175,
+      "sha256": "531fa5087417bc8b52edb2a3801ccdb371712e4ee65393d6301dcc3d9f77586c"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2b-hang-20260930/run1/accesses.md",
+      "size": 8173,
+      "sha256": "f492705eb61aecb15dac0f1e6fd871b5f602c74dee4a4ee108cd9cf7f252934a"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2b-hang-20260930/verification.json",
+      "size": 1014,
+      "sha256": "f39c96513f67620f40f1bf9ef270f8657a9c249f56b8bc9d9009afe7e11c3842"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2c-hang-20260930/reference-check.json",
+      "size": 906,
+      "sha256": "1c25220694a5800c8620a13a62441d3df2bc3925edcea5f917d36a4179f3b6b7"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2c-hang-20260930/run1/capabilities.json",
+      "size": 11350,
+      "sha256": "51282fc75259191c23e197ef9b159b851d8f91e095d0545ff980ef2e48f94bf2"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2c-hang-20260930/run2/capabilities.json",
+      "size": 11350,
+      "sha256": "51282fc75259191c23e197ef9b159b851d8f91e095d0545ff980ef2e48f94bf2"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2c-hang-20260930/verification.json",
+      "size": 289,
+      "sha256": "41ec4e649ba4af370cec969095d41a2f37c06097c40e74f2b40b7cf398dee98b"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2d-hang-20260930/after/state.json",
+      "size": 483,
+      "sha256": "186fac4a73715a65dd2f02dd0728c8eadbef344aa415abe324e126ce67e7389d"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2d-hang-20260930/before-run1/state.json",
+      "size": 15393,
+      "sha256": "28c7487ba2c996985ca96488674ce0840907d11acdfbc86c7c5c84dad7fadbbf"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2d-hang-20260930/before-run2/state.json",
+      "size": 15393,
+      "sha256": "28c7487ba2c996985ca96488674ce0840907d11acdfbc86c7c5c84dad7fadbbf"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2d-hang-20260930/verification.json",
+      "size": 512,
+      "sha256": "402b88babd1f14aa5db226c0e198c53d674c5d56bd4003175d9ba325ef9abfd1"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2e-hang-20260930/after/snapshot.json",
+      "size": 3002,
+      "sha256": "9aa731005251f40c01ab5f1f9f9ef8acf6edb6687cd7775b5ec557be156958eb"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2e-hang-20260930/after/snapshot.md",
+      "size": 635,
+      "sha256": "0bcea0792a42b9706bb02311daa99ffba9f0ceffcf48e17a5a6084d59fa2f879"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2e-hang-20260930/before-run1/snapshot.json",
+      "size": 38541,
+      "sha256": "b1dcfc64e1d8b5ccfb8ed6a12cf40ae961e7167a1400ec826e114893910d75d0"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2e-hang-20260930/before-run1/snapshot.md",
+      "size": 2724,
+      "sha256": "31fba303122200c04c50f6e1cb1c753bae140449bd9898af604b40f9856c25a7"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2e-hang-20260930/before-run2/snapshot.json",
+      "size": 38541,
+      "sha256": "b1dcfc64e1d8b5ccfb8ed6a12cf40ae961e7167a1400ec826e114893910d75d0"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2e-hang-20260930/before-run2/snapshot.md",
+      "size": 2724,
+      "sha256": "31fba303122200c04c50f6e1cb1c753bae140449bd9898af604b40f9856c25a7"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2e-hang-20260930/verification.json",
+      "size": 283,
+      "sha256": "ee1d42ea2d33e45c1217d29ce14dbd61ead27468f61ce16bf94c6242d4ed07c8"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2f-hang-20260930/run1/diff.json",
+      "size": 46538,
+      "sha256": "cb771eb21cc06d819eb9056bf9c176c0911edecb5de7c59ab5ec2923a0dbbdcc"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2f-hang-20260930/run1/diff.md",
+      "size": 4325,
+      "sha256": "00b954a0713a8797f2d9176d7e615705a1a98ed8a7a842a5ce7e2776a858fc2a"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2f-hang-20260930/run2/diff.json",
+      "size": 46538,
+      "sha256": "cb771eb21cc06d819eb9056bf9c176c0911edecb5de7c59ab5ec2923a0dbbdcc"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2f-hang-20260930/run2/diff.md",
+      "size": 4325,
+      "sha256": "00b954a0713a8797f2d9176d7e615705a1a98ed8a7a842a5ce7e2776a858fc2a"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2f-hang-20260930/verification.json",
+      "size": 223,
+      "sha256": "6ce0b1f41e93c907378353e1e3c0035fcbb41fa1ca8558567a6ee40baa208b97"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2g-hang-20260930/pcie-tests.log",
+      "size": 33338,
+      "sha256": "055e86783fffedf332617fafc0127e0e7cdf2a605d2e6ee3ce4eb791aff7aab7"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2g-hang-20260930/questionnaire-identity-revision.json",
+      "size": 915,
+      "sha256": "fa1f64c7b07fe65d84a0ad1bba31385fd46f81edecda608d00c34ff70d88b9b9"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2g-hang-20260930/r1-pcie-tests.log",
+      "size": 33849,
+      "sha256": "2fcd9696dccc64305282adc31325d6f95178e7db1ec5b620c87694812a4052b8"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2g-hang-20260930/r1-run1/watchlist-preparation.json",
+      "size": 4828,
+      "sha256": "1d3aeba87b6bd91fe9aa6e7bc601d7aca04154ccf3dbad39ace08922ecd5c068"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2g-hang-20260930/r1-run1/watchlist-preparation.md",
+      "size": 1597,
+      "sha256": "16b3e5877a7f52d8379ee001400be67ec90f99ba84d0430d0edbea3c977cccbc"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2g-hang-20260930/r1-run2/watchlist-preparation.json",
+      "size": 4828,
+      "sha256": "1d3aeba87b6bd91fe9aa6e7bc601d7aca04154ccf3dbad39ace08922ecd5c068"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2g-hang-20260930/r1-run2/watchlist-preparation.md",
+      "size": 1597,
+      "sha256": "16b3e5877a7f52d8379ee001400be67ec90f99ba84d0430d0edbea3c977cccbc"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2g-hang-20260930/replay/watchlist-preparation.json",
+      "size": 3452,
+      "sha256": "ae1763fe9087917589d3a22400cfb5d7fbed5b0bab903afa5b8924bbad2f6583"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2g-hang-20260930/replay/watchlist-preparation.md",
+      "size": 956,
+      "sha256": "db3c6862bfa46e040fa181ce29500ca7e2d84fe41cce3f080259ae23db18540d"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2g-hang-20260930/verification-r1.json",
+      "size": 1714,
+      "sha256": "5be4d9b4f94e88b9cd91b7a6ac6d00fc712158ec2ba3708b4b7ae3fc7184121c"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2g-hang-20260930/verification.json",
+      "size": 3399,
+      "sha256": "f1b912a5b57e3c466fc48ffd95f4a23c2ebde0833047de16cc050bfe10187e5b"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2g-hang-20260930/watchlist-preparation.json",
+      "size": 3452,
+      "sha256": "ae1763fe9087917589d3a22400cfb5d7fbed5b0bab903afa5b8924bbad2f6583"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2g-hang-20260930/watchlist-preparation.md",
+      "size": 956,
+      "sha256": "db3c6862bfa46e040fa181ce29500ca7e2d84fe41cce3f080259ae23db18540d"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2h1-cfgspace-20261005/run1/config-space.json",
+      "size": 654329,
+      "sha256": "9f75e9f5ede2c9a8628173a2cc871c2609d7865f1dd333393f147faa5eb49039"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2h1-cfgspace-20261005/run1/crosscheck.json",
+      "size": 407,
+      "sha256": "2d5738cdf742474ed13bb47c9b8319b327f3606d7bee46cd98ad62255f9f1cda"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2h1-cfgspace-20261005/run2-boundary/config-space.json",
+      "size": 484644,
+      "sha256": "fddb6c8769d04dc7fc014913b4b9de7cf17d25b63693e8b6397d7da1e698641e"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2h1-cfgspace-20261005/run3-full/config-space.json",
+      "size": 1345000,
+      "sha256": "5a0e1d5edb510cbb928c9e0657ad022c1fddf1fc7372db7c646e0957ad916fc4"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2h2-sidecar-20261005/p10360/sidecar.json",
+      "size": 2915,
+      "sha256": "cf2064f361a8f27e649a914d9a9a05364f48fb18b69e093f06f9c74797cf89a4"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2h2-sidecar-20261005/p10360/sidecar.md",
+      "size": 1106,
+      "sha256": "71850e1fe478805254f3f6da9dd55b72dae83846bec6bdd943807883c5123ccf"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2h2-sidecar-20261005/p3300/sidecar.json",
+      "size": 2916,
+      "sha256": "b9c06f674476950055c70bad13b41d476df885fde908297b1da86a4bf4203faa"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2h2-sidecar-20261005/p3300/sidecar.md",
+      "size": 1096,
+      "sha256": "a5d6d2e78d0e43fdeb384b80300673582be0abc15346b555a34a88a93e608e05"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2h2-sidecar-20261005/p8650/sidecar.json",
+      "size": 2916,
+      "sha256": "5b861d199c21b15f57b0e46529f7c09e999ceba2ac57196fdd366177afa32c52"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2h2-sidecar-20261005/p8650/sidecar.md",
+      "size": 1096,
+      "sha256": "7d18da21c37e4ced6b5d22c6b1dfd492cd70776df3dcf19b53a5c4a3bb18fec3"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2h2-sidecar-20261005/p8662/sidecar.json",
+      "size": 2912,
+      "sha256": "42c627c7f1ed2bc4d0a1fce56080dfbb61bbac807697fbd61536d4cdc7d6c19d"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2h2-sidecar-20261005/p8662/sidecar.md",
+      "size": 1104,
+      "sha256": "8492c9a079519b3bc4b80ca2ff1646e5faef32206254965f4a2eec873d4f88ac"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2h2-sidecar-20261005/p9920/sidecar.json",
+      "size": 2897,
+      "sha256": "40b27d12b79006292d3066c7a1bf0499c65d88bc75d404570c923866bf5bef99"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b2h2-sidecar-20261005/p9920/sidecar.md",
+      "size": 1088,
+      "sha256": "b8f0774714287b1dda87611a0a5e0e014b99bfded4515d2ecce97b390008fd50"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/CFG.dec.original",
+      "size": 3265,
+      "sha256": "639ab3c055e9cb72c974f900106403a02d5d948438195534b30c12f0dca90ff7"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/CFG.dec.test",
+      "size": 1607,
+      "sha256": "bb487a6fc531de49336062c1cfb0b188b731078e6cb6418597859593d6608c0f"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/baseline/com-export.json",
+      "size": 1343,
+      "sha256": "baebeb6f005f747ea00cd8f0591525476f71038ea3db6a0ac7cb338085c27d14"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/baseline/packets-10352-10360.txt",
+      "size": 3055,
+      "sha256": "45181aae0e15c2f4140d2d20678d306b96ee84d75d073144859b59413e7fb377"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/baseline/packets-8656-8662.txt",
+      "size": 2287,
+      "sha256": "027cc45abb216a4ec53ef9a5e35e95bbacab1f0768638352ffa459d254716bb9"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/baseline/packets-9913-9920.txt",
+      "size": 2542,
+      "sha256": "28b5f7887c812895ddd457caf796658089f502cba7984e768d6dbc90cd5fc8ae"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/baseline2/com-export.json",
+      "size": 1187,
+      "sha256": "c91ebaa05dec4509807ab42a41331a1c576d6ec5ac57f396fbc8d202b1c6a525"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/baseline2/packets-3146-3156.txt",
+      "size": 3625,
+      "sha256": "c2ae5fe31ba6284090530b8d17fc5f44b03505324c66e3907de701ba565238b6"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/baseline2/packets-8646-8650.txt",
+      "size": 1760,
+      "sha256": "6da614632bd43ca09593a3e22d3bfe411bf8a719902defa0a74150b18b696008"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/probe-indata/CFG.dec.deployed",
+      "size": 1184,
+      "sha256": "363e54312c01aedc0187b04f17bb31f4bba5e377c9581d43083aedc86547e5c5"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/probe-indata/CFG.dec.original",
+      "size": 3265,
+      "sha256": "639ab3c055e9cb72c974f900106403a02d5d948438195534b30c12f0dca90ff7"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/probe-indata/export/com-export.json",
+      "size": 1343,
+      "sha256": "7d4e3df0396f85451bf704832aa24fee83f6379e3dfe814480d61675b07ba017"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/probe-indata/export/packets-10352-10360.txt",
+      "size": 3145,
+      "sha256": "f43b3385fede05fa3956c7262aae82d2cafed76d61d148573eaef91aa32dd713"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/probe-indata/export/packets-3146-3156.txt",
+      "size": 3979,
+      "sha256": "3f65f89df9db0a356b476d835f45eda1cce684d5f07bd7fa6f37074ef81c0c11"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/probe-indata/export/packets-8656-8662.txt",
+      "size": 2377,
+      "sha256": "8d566763e2c0b671610f30e4787ab912ea61419d94fa729de7a6011ba2d6888a"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/v2-linkcontrol/CFG.dec.deployed",
+      "size": 2005,
+      "sha256": "c1b49f2532aa5c16f1dff8daa148325aedf3c442c2ad88a6ef67e7ec0d0f35c7"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/v2-linkcontrol/CFG.dec.original",
+      "size": 3265,
+      "sha256": "639ab3c055e9cb72c974f900106403a02d5d948438195534b30c12f0dca90ff7"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/v2-linkcontrol/export/com-export.json",
+      "size": 1647,
+      "sha256": "24e2d9e0d6f3f774b8c458a30b3527090538348bcf221896767c977fe2d7f8f9"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/v2-linkcontrol/export/packets-10352-10360.txt",
+      "size": 3065,
+      "sha256": "b851d6cfd39ed5be3e7ce1e90902100249dfa588d857e1cca66a280d86eab548"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/v2-linkcontrol/export/packets-3146-3156.txt",
+      "size": 3625,
+      "sha256": "c2ae5fe31ba6284090530b8d17fc5f44b03505324c66e3907de701ba565238b6"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/v2-linkcontrol/export/packets-8646-8650.txt",
+      "size": 1718,
+      "sha256": "6ff26fc847bc2324737bfc738b25025b251ca8111e31528088dc8f4e63c7886e"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/v2-linkcontrol/export/packets-8656-8662.txt",
+      "size": 2297,
+      "sha256": "dbd85f5fbd06226af8f8f9f8505e2c7e04c4dcd7b7d876d2508ca587f9a737b9"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/v2-linkcontrol/export/packets-9913-9920.txt",
+      "size": 2555,
+      "sha256": "f3791ebeb0b2e85d589e0d8925f6e078842b9dfd4e0f300a3490f48cb0d2c314"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/v3-linkcontrol-rawfallback/CFG.dec.deployed",
+      "size": 2354,
+      "sha256": "1af765e00ea39fa36d1db6802383388026057b67f13780001bea1eeb5cfe50c7"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/v3-linkcontrol-rawfallback/CFG.dec.original",
+      "size": 3265,
+      "sha256": "639ab3c055e9cb72c974f900106403a02d5d948438195534b30c12f0dca90ff7"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/v3-linkcontrol-rawfallback/export/com-export.json",
+      "size": 1647,
+      "sha256": "e4d15705d892350669ea082329bda63f74eed8b4e1c032b411c0fc7925de4b59"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/v3-linkcontrol-rawfallback/export/packets-10352-10360.txt",
+      "size": 3065,
+      "sha256": "b851d6cfd39ed5be3e7ce1e90902100249dfa588d857e1cca66a280d86eab548"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/v3-linkcontrol-rawfallback/export/packets-3146-3156.txt",
+      "size": 3625,
+      "sha256": "c2ae5fe31ba6284090530b8d17fc5f44b03505324c66e3907de701ba565238b6"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/v3-linkcontrol-rawfallback/export/packets-8646-8650.txt",
+      "size": 1746,
+      "sha256": "f08760cf3e27ccb78a909cb4c5160d38644cf6bdb1eec8f542298bf2fee25510"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/v3-linkcontrol-rawfallback/export/packets-8656-8662.txt",
+      "size": 2297,
+      "sha256": "dbd85f5fbd06226af8f8f9f8505e2c7e04c4dcd7b7d876d2508ca587f9a737b9"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/v3-linkcontrol-rawfallback/export/packets-9913-9920.txt",
+      "size": 2555,
+      "sha256": "f3791ebeb0b2e85d589e0d8925f6e078842b9dfd4e0f300a3490f48cb0d2c314"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/v3-linkcontrol-rawfallback/generated-active.dec",
+      "size": 2354,
+      "sha256": "1af765e00ea39fa36d1db6802383388026057b67f13780001bea1eeb5cfe50c7"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/with-dec/com-export.json",
+      "size": 1343,
+      "sha256": "dc26e615730eb372113f8c2931a6721b84aa2f978f252d533bb20db294b6ef99"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/with-dec/packets-10352-10360.txt",
+      "size": 3057,
+      "sha256": "242cb0178320c7ad536500ef2792ef85570f2b8065c255c6d286c5ab6405c9d8"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/with-dec/packets-8656-8662.txt",
+      "size": 2289,
+      "sha256": "8d43b28c6ebb8e8c3ce1b37adc18f3af5b92a02390aec245ff085b334a7ca998"
+    },
+    {
+      "path": "artifacts/evidence/pcie-catc-dec-20261005/with-dec/packets-9913-9920.txt",
+      "size": 2555,
+      "sha256": "f3791ebeb0b2e85d589e0d8925f6e078842b9dfd4e0f300a3490f48cb0d2c314"
+    },
+    {
+      "path": "artifacts/evidence/pcie-usb-research-20261013/validation.json",
+      "size": 2376,
+      "sha256": "5285225903b59d2cfed42d3ce45d2514fb1000fa9bce583e5f950a9cb37e47fe"
+    },
+    {
+      "path": "artifacts/evidence/s01-offline-contract-20261013/synthetic-eligibility.json",
+      "size": 119135,
+      "sha256": "92e88fe7d107eb0482d57e05e33244ae125d549570fba1a8305b6ac63f8b0cf8"
+    },
+    {
+      "path": "artifacts/evidence/s01-offline-contract-20261013/tests.txt",
+      "size": 7168,
+      "sha256": "55d2628fe1950a2bed44c75494045793c46bba9d1c3dedbc1349783a7d179d73"
+    },
+    {
+      "path": "artifacts/evidence/s01-offline-contract-20261013/verification.json",
+      "size": 10557,
+      "sha256": "95e0062b218e72e3e7e622476ca8926c824ddf3a87e8b6478a2e29e2f7349187"
+    },
+    {
+      "path": "artifacts/evidence/s01-review-u01-20261013/baseline.json",
+      "size": 133947,
+      "sha256": "8658e9d8e4bd599e7cdb99a79b2f862108c2f927ea14f1b896dfd5a0a8b37108"
+    },
+    {
+      "path": "artifacts/evidence/s01-review-u01-20261013/candidate-eligibility.json",
+      "size": 4922,
+      "sha256": "d0384c163a1be196dcc3aaeaee7ba8866bc12a5d08ff6ffee6213a5b709e4f94"
+    },
+    {
+      "path": "artifacts/evidence/s01-review-u01-20261013/host-tests.txt",
+      "size": 78,
+      "sha256": "2d00b27097531664e0454b56cd675092e380af8a471ee8ed691756cca435ec7d"
+    },
+    {
+      "path": "artifacts/evidence/s01-review-u01-20261013/preflight/preflight.json",
+      "size": 932,
+      "sha256": "096e56620ca3da950878e5cd5f8fb2e62adb3660580e2dd2348f41371f1db319"
+    },
+    {
+      "path": "artifacts/evidence/s01-review-u01-20261013/prepared/packet-crc-off.vse",
+      "size": 915,
+      "sha256": "6c528b0d9ce72031e39f4a7e69fb779dd609c45f35167e80d0ad25bbcefe1141"
+    },
+    {
+      "path": "artifacts/evidence/s01-review-u01-20261013/prepared/packet-crc-on.vse",
+      "size": 915,
+      "sha256": "75b38a5d337bdfcbc6e117ec2119a9ca816b529a2504c418d7e162d690fcb973"
+    },
+    {
+      "path": "artifacts/evidence/s01-review-u01-20261013/prepared/packet-default.vse",
+      "size": 888,
+      "sha256": "da91e1a099106c2dbec732d50f27332bcee98b9491a6fa104596e27ae70be110"
+    },
+    {
+      "path": "artifacts/evidence/s01-review-u01-20261013/prepared/plan.json",
+      "size": 2657,
+      "sha256": "afbb7abb432e291335b4c59d0ea92de6a8248535a8640cd96355fc888af4cf7a"
+    },
+    {
+      "path": "artifacts/evidence/s01-review-u01-20261013/prepared/transaction-all.vse",
+      "size": 888,
+      "sha256": "eca414c47c253fa4223e941f1d34e0839e151e760000d21448c9efb7b6f97b4f"
+    },
+    {
+      "path": "artifacts/evidence/s01-review-u01-20261013/prepared/transfer-complete.vse",
+      "size": 917,
+      "sha256": "f3418d20267c5cf358ec9b03cbc430379a0318c9af57fd3140a3e925cdfeb9ac"
+    },
+    {
+      "path": "artifacts/evidence/s01-review-u01-20261013/prepared/transfer-default.vse",
+      "size": 911,
+      "sha256": "a81f3a07a8571bf340965afa826d491c582a2ad385dcfa1a77637f27deb89b77"
+    },
+    {
+      "path": "artifacts/evidence/s01-review-u01-20261013/prepared/transfer-incomplete.vse",
+      "size": 917,
+      "sha256": "4e8c8d0e6d285e246aeba977cf5df7938ee60b9bb52604cd179e11a58d154766"
+    },
+    {
+      "path": "artifacts/evidence/s01-review-u01-20261013/s01-tests.txt",
+      "size": 7166,
+      "sha256": "63509e294277b722e77d00cacef159ca38d12ebe777662914047981fdc58f0d4"
+    },
+    {
+      "path": "artifacts/evidence/s01-review-u01-20261013/u01-tests.txt",
+      "size": 2206,
+      "sha256": "063a9eb6eae3962fda3310ab08cfb4587cbd398b2cb3d2bb7ad436571594b264"
+    },
+    {
+      "path": "artifacts/evidence/s01-review-u01-20261013/verification.json",
+      "size": 4152,
+      "sha256": "fd1bf8cb020103ecc7ba8acf688ef8e86c8d286a719ed8f1544298c711f28bae"
+    },
+    {
+      "path": "artifacts/evidence/s01-review-u01-20261013/verify.py",
+      "size": 7198,
+      "sha256": "8102226ec48ff97dd1d12933a6830d44df8944209fd70a295a903c9083316c95"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/baseline.json",
+      "size": 138799,
+      "sha256": "475937113df2c1c333a7166c012a884fc760f6a1cf685cf7892e4ec86cd75ba5"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/check-u02-raw.ps1",
+      "size": 2122,
+      "sha256": "6d8cbea2773787304e473fe6567faa8fbd519ff4f77e0ac4fb450f0a287e9dcb"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/diagnostic-2.vse",
+      "size": 584,
+      "sha256": "1eb3ef23613a3cd3276608f11602786d54fe9b33d914ed8f50fdf6f252f93483"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/diagnostic-3.vse",
+      "size": 888,
+      "sha256": "1207911300b421375f1fab45d25ceb89eb90459259fcf378c34719244404c2f9"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/diagnostic-4.vse",
+      "size": 887,
+      "sha256": "5d1f202909a8c556c805b35a749c3694a2e535f8c810833ca1791bb08a2cb6d9"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/diagnostic.vse",
+      "size": 551,
+      "sha256": "0f331caa7f62175ba6303735824dc836e84b66a57204ce114597c98056089de3"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/discover-u04.ps1",
+      "size": 2388,
+      "sha256": "17e8dd62d93229997d82d13f42e2019ac2c8c55b6224b9425f54c93ae06d3928"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/discover-u05.ps1",
+      "size": 1985,
+      "sha256": "cefc672153107e38cda3127a7dbaeff168a2e1a237a3d7bef76f72019ab66e76"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/host-tests.txt",
+      "size": 109,
+      "sha256": "0a0e36bcefb4e8cb78c723ec89638dd898ef824f74896c3b0bb0e975dc424f33"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-link-all/assessment.json",
+      "size": 39782,
+      "sha256": "4b083a29a42c9c330586c8818056b6c130e09e1e51aeeee0efee659a0046711f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-link-all/com-run.json",
+      "size": 2801,
+      "sha256": "68be394f5346bd8412aa2be76fd342685c7cf7cb16d4f308f6758dfcc1be2523"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-link-all/report-lines.json",
+      "size": 22808,
+      "sha256": "af90a41c76b8db3903ad8c4c74b523f1a5a881a0a60d451b383d70c65f37879c"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-link-all/vse-output.txt",
+      "size": 18914,
+      "sha256": "d20fb9c4b3342adf3eae28b0268960f36dcab8a777ad74d8f0c14b6a8aa72532"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-packet-all/assessment.json",
+      "size": 39591,
+      "sha256": "ae4e13ce4ff824a2c4dc689e42904ceccb81d8ddbdf346a5fbf8a2c70f31ab46"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-packet-all/com-run.json",
+      "size": 2807,
+      "sha256": "2f6bfca4a035b8f33c76bfb1d22c68e75c99e69ae886aa98c7e448b5d8583014"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-packet-all/report-lines.json",
+      "size": 22613,
+      "sha256": "4598287ee2cce1324cb8b9f5950736cb9c56160d187d2cc67eb465ef8108f144"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-packet-all/vse-output.txt",
+      "size": 18719,
+      "sha256": "eee602b54474c45f78dcc7517105735a72a1a6862fe6e32fa87c31b4f32dc5eb"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-packet-dllp/assessment.json",
+      "size": 503,
+      "sha256": "09a50018391dc325eadee98c355fd0021eaae2c5b5c239b492d6ec5b7133ccf7"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-packet-dllp/com-run.json",
+      "size": 2807,
+      "sha256": "c239212be33cd33361ecfa373496d77bd69287f08b333d948388186798156929"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-packet-dllp/report-lines.json",
+      "size": 610,
+      "sha256": "495909d29877dff5b578e86091d46846e85a754b76ddd108e4df824b59278430"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-packet-dllp/vse-output.txt",
+      "size": 535,
+      "sha256": "5a19b8506584746fbce0de7096623bcbcb229892a1a5560afa7cd45f5689cd91"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-packet-empty-window/assessment.json",
+      "size": 511,
+      "sha256": "0c1527da17842bfc0d42d1ce4adf3e341a79f3f7989583e00f11173ac020ac45"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-packet-empty-window/com-run.json",
+      "size": 2831,
+      "sha256": "ac0ad5f23e64bb59b71c424cc4d815d4be0fa0ae69bbc58ef1b977ff863eb458"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-packet-empty-window/report-lines.json",
+      "size": 618,
+      "sha256": "e0ba3597ed142210e23c360c9edb65e6a5602a9a4aca198dc3e4b12c09a54f28"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-packet-empty-window/vse-output.txt",
+      "size": 543,
+      "sha256": "932dbab5bafe122a37f24b4fad795ab8452f6bf805cc8a2e073ec21037fcf603"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-packet-tlp/assessment.json",
+      "size": 498,
+      "sha256": "1eaa9de4c1274d2dc7b49e7726c8552964ffe8ce7d31d5eabc107b3982ea0b9e"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-packet-tlp/com-run.json",
+      "size": 2804,
+      "sha256": "a4ff060e4e056cfa49b245bf31cccf3ebc46d160a052ef3fe1e0e2f7d7fdc0b5"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-packet-tlp/report-lines.json",
+      "size": 605,
+      "sha256": "eafb6cee5789b03150920e0db625ab48d7f0b7d0b53481a6e81397e941f12f7b"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-packet-tlp/vse-output.txt",
+      "size": 530,
+      "sha256": "0fbc62f5aed475af2daa21d0b5c8cf79f56939e874b18a259c9143a1fd66db18"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-prepared/link-all.pevs",
+      "size": 1137,
+      "sha256": "fea757a090726a12cc80542ab2995109a9b8d1a6c25bb1cde0f53995044bdd94"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-prepared/packet-all.pevs",
+      "size": 1143,
+      "sha256": "12b438f73b2d9ca6e31dda891e80b376d7a7a6ca899a08f9bc93b0cd51156dbd"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-prepared/packet-dllp.pevs",
+      "size": 1152,
+      "sha256": "2c1456abce5ba08c4b9ff3f1dd194186ab98d54b4a651ceb711919d1b9f51be4"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-prepared/packet-empty-window.pevs",
+      "size": 1159,
+      "sha256": "8eb837d12be398594d3d24dddb501260cb71ca56b55a0127264de6d1cb301380"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-prepared/packet-tlp.pevs",
+      "size": 1151,
+      "sha256": "68ce990d4133e4f1dc49711a8eeb1381abafc9ac0c3a7b31ac9b5ae2e9a7d160"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-prepared/plan.json",
+      "size": 1983,
+      "sha256": "b7dd6de2346b128edce50db1401791bd1bf340e44d9957cd2e66ad45cd35f63a"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-prepared/split-all.pevs",
+      "size": 1140,
+      "sha256": "4f2db96d01d82a4370f8f3089d6b5679b4a4e0b6d21729f590f4daf9f7da0e06"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-link-all/assessment.json",
+      "size": 39782,
+      "sha256": "4b083a29a42c9c330586c8818056b6c130e09e1e51aeeee0efee659a0046711f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-link-all/com-run.json",
+      "size": 2801,
+      "sha256": "f5e47c7d4af47f7ad9450bd81f144b999fa83b7ca2c34f341f8edfc9193e4ff9"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-link-all/report-lines.json",
+      "size": 22808,
+      "sha256": "af90a41c76b8db3903ad8c4c74b523f1a5a881a0a60d451b383d70c65f37879c"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-link-all/vse-output.txt",
+      "size": 18914,
+      "sha256": "d20fb9c4b3342adf3eae28b0268960f36dcab8a777ad74d8f0c14b6a8aa72532"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-packet-all/assessment.json",
+      "size": 39589,
+      "sha256": "04e71b6d443b3eb6d69cc2f0d0d92ea9d9811ac4cf17426332373a9193dc8c2f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-packet-all/com-run.json",
+      "size": 2807,
+      "sha256": "b0dc51dcd1a66a0ac2f3c200a453119162451a29b39978f37dec9c493f4ebec1"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-packet-all/report-lines.json",
+      "size": 22613,
+      "sha256": "4598287ee2cce1324cb8b9f5950736cb9c56160d187d2cc67eb465ef8108f144"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-packet-all/vse-output.txt",
+      "size": 18719,
+      "sha256": "eee602b54474c45f78dcc7517105735a72a1a6862fe6e32fa87c31b4f32dc5eb"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-packet-dllp/assessment.json",
+      "size": 503,
+      "sha256": "09a50018391dc325eadee98c355fd0021eaae2c5b5c239b492d6ec5b7133ccf7"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-packet-dllp/com-run.json",
+      "size": 2807,
+      "sha256": "2370d8fa3e112beb6d2a016c68106b8ae351e9b2e00842860f1ae4f576aa2257"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-packet-dllp/report-lines.json",
+      "size": 610,
+      "sha256": "495909d29877dff5b578e86091d46846e85a754b76ddd108e4df824b59278430"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-packet-dllp/vse-output.txt",
+      "size": 535,
+      "sha256": "5a19b8506584746fbce0de7096623bcbcb229892a1a5560afa7cd45f5689cd91"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-packet-empty-window/assessment.json",
+      "size": 511,
+      "sha256": "0c1527da17842bfc0d42d1ce4adf3e341a79f3f7989583e00f11173ac020ac45"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-packet-empty-window/com-run.json",
+      "size": 2831,
+      "sha256": "e7ca3a1c2046073be4aa73e27d41d971ddda49172531ec99adf0268105ebbcb8"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-packet-empty-window/report-lines.json",
+      "size": 618,
+      "sha256": "e0ba3597ed142210e23c360c9edb65e6a5602a9a4aca198dc3e4b12c09a54f28"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-packet-empty-window/vse-output.txt",
+      "size": 543,
+      "sha256": "932dbab5bafe122a37f24b4fad795ab8452f6bf805cc8a2e073ec21037fcf603"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-packet-tlp/assessment.json",
+      "size": 498,
+      "sha256": "1eaa9de4c1274d2dc7b49e7726c8552964ffe8ce7d31d5eabc107b3982ea0b9e"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-packet-tlp/com-run.json",
+      "size": 2804,
+      "sha256": "8da6c3d8597e2f787f3bb3608f3b4e1a628abaefebbeb8fc2bb3d95cd85c7be7"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-packet-tlp/report-lines.json",
+      "size": 605,
+      "sha256": "eafb6cee5789b03150920e0db625ab48d7f0b7d0b53481a6e81397e941f12f7b"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-packet-tlp/vse-output.txt",
+      "size": 530,
+      "sha256": "0fbc62f5aed475af2daa21d0b5c8cf79f56939e874b18a259c9143a1fd66db18"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-split-all/assessment.json",
+      "size": 39762,
+      "sha256": "7738251e207f1c7086ba5b734aa1de9d659bc501f8a159734827cf8b0f2ca102"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-split-all/com-run.json",
+      "size": 2804,
+      "sha256": "b1413ad45dba6b02778413c933286ede92bd3a3c1abbdfa0b43e8772799137fd"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-split-all/report-lines.json",
+      "size": 22787,
+      "sha256": "8e6d22026ad79333ab75ecea199507c3fc806fda2f8788720a862129f05b3be2"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-repeat-split-all/vse-output.txt",
+      "size": 18893,
+      "sha256": "495d0a5310401552d005649c90d47b09474a0ecb66021aa807d2bd8116fa7de8"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-review.json",
+      "size": 2386,
+      "sha256": "8c137f764d9e886728691a918f80e09aa95d052e121ec4301de5e360019c27c1"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-split-all/assessment.json",
+      "size": 39762,
+      "sha256": "7738251e207f1c7086ba5b734aa1de9d659bc501f8a159734827cf8b0f2ca102"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-split-all/com-run.json",
+      "size": 2804,
+      "sha256": "6444ba3e936c766cac3bce7085e1fde1f20879705ed5e61f46156384be2e8473"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-split-all/report-lines.json",
+      "size": 22787,
+      "sha256": "8e6d22026ad79333ab75ecea199507c3fc806fda2f8788720a862129f05b3be2"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-split-all/vse-output.txt",
+      "size": 18893,
+      "sha256": "495d0a5310401552d005649c90d47b09474a0ecb66021aa807d2bd8116fa7de8"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/p01-work/working.pex",
+      "size": 126565918,
+      "sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/review-p01.py",
+      "size": 1681,
+      "sha256": "ba777f801e6c116de6e00fcfdb57e1c31b8fbfc860402f72fe6dba840622bc64"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/review-u01.py",
+      "size": 2225,
+      "sha256": "0960f7a4fa56b1d9eb06233777773102e62b8a9e79a490a9aa758e29e0d8a8a2"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/review-u02.py",
+      "size": 2277,
+      "sha256": "8eeac905303b6e2a21ac2635e16233bc71b2682bb16892e80191698e0eba1d95"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/review-u03.py",
+      "size": 2027,
+      "sha256": "62cd8acb074bcdb96edd25cc16f1d8bf1274959582e25d2d91fd1d6cd253f916"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/run-diagnostic.ps1",
+      "size": 1711,
+      "sha256": "7e68fd673e9c73541b90ea258c53b35e7ea60d504e4173120e1e88afd1b383bb"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/s01-tests.txt",
+      "size": 7168,
+      "sha256": "ba876660e0fc27f8d515938a1c471d940fac467c15dd3f215fbeb6f7dc71040e"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/selection_pcie-tests.txt",
+      "size": 1280,
+      "sha256": "61cbdbad1ec4e90b30f16848dce46f9176feed97244c4978b2c2bc8361bc3f0a"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-diagnostic-1/before.json",
+      "size": 302,
+      "sha256": "1bd3e25091cdb43baba85a2e2314a68565023b63decf9040cd1307a89ef98cbb"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-diagnostic-1/lifecycle.log",
+      "size": 1080,
+      "sha256": "b127418620c9fa19b252c842021633bf2e7676759614d0eaa17597a3421daa79"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-diagnostic-1/result.json",
+      "size": 1201,
+      "sha256": "e6c38cb663b5bc1276ef08b1c333f01d22641db2e3d38a373b2f69ed54091da1"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-diagnostic-2/before.json",
+      "size": 302,
+      "sha256": "f1411923e975697652c66c29ca1cee2a7688e346dea37415031ee30c39fb7f29"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-diagnostic-2/lifecycle.log",
+      "size": 1074,
+      "sha256": "1feeca3af94febf43b72e94ac2a947bf2b7ed4533636ad3a695ed34c60ebe2ec"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-diagnostic-2/result.json",
+      "size": 1001,
+      "sha256": "31aa0a8b853c7dad1be52b1791824e34bd9ea8f65c5fd79c76f75fc1ff7bb0a3"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-diagnostic-3/abort.json",
+      "size": 291,
+      "sha256": "4438901d9c7e1465f0c45d873b3c319e7dc242682f2e6aedbd750bbdabefe948"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-diagnostic-3/before.json",
+      "size": 302,
+      "sha256": "43bcc22d63a99d637729841a0f936f24f0b43ecb310d38137059cb3c6432ce62"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-diagnostic-3/lifecycle.log",
+      "size": 597,
+      "sha256": "c52f467b80cd54cb201136660471dd3729605e9e10e4e5ab85fdf45e98e05e60"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-diagnostic-4/before.json",
+      "size": 302,
+      "sha256": "24353df0dfd4df03198374a9f9a7a8688dc431cf27c6140bfc09305bbc83ebb1"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-diagnostic-4/lifecycle.log",
+      "size": 1039,
+      "sha256": "8e3e169a590de6a2bb4c4ccd2d3b76e917b3ecb1cde1432e30bfc7ad6a4508b1"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-diagnostic-4/result.json",
+      "size": 908,
+      "sha256": "4ee648f3a3777eaf33385bc1e645ac9b2806ac2a295a714684ecbb715fc84dc6"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-prepared-r2/packet-crc-off.vse",
+      "size": 958,
+      "sha256": "0e318e50544ccb8b2766a490131de4ae3173c79c7b4da3acd4f9df57f9e36f34"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-prepared-r2/packet-crc-on.vse",
+      "size": 958,
+      "sha256": "78def508f444682771265a0e62c5e3f1da1da071e48b1c9a5dbab782866d1225"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-prepared-r2/packet-default.vse",
+      "size": 931,
+      "sha256": "ac55cfea931cf2e78eef919bd7f206c9d2a5c9182a9df7e48f59423b69a30cb1"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-prepared-r2/plan.json",
+      "size": 2657,
+      "sha256": "7e97c8a6a164f62157cff030f5171cc17b3fd2db6272e93cf871427ca9338d30"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-prepared-r2/transaction-all.vse",
+      "size": 931,
+      "sha256": "bb6cf0a7c0e2152adb08fa99a92508a9b5ab9c2efdeed4110df5699fc79e579a"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-prepared-r2/transfer-complete.vse",
+      "size": 945,
+      "sha256": "8a871db4a21f2922b7bca6a391ea53b238c62973956b210eb807369596b97867"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-prepared-r2/transfer-default.vse",
+      "size": 939,
+      "sha256": "97c17353737520724623928e4bd7a728dc5528b1ae7e5816a897e53592ab0a57"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-prepared-r2/transfer-incomplete.vse",
+      "size": 945,
+      "sha256": "27ee568149a51804a979611792058b52503df30140e03bf312ddcaefeced2922"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-prepared-r3/packet-crc-off.vse",
+      "size": 929,
+      "sha256": "136224790f9cc05abd6196026c0a4828ba4efcd69af1f9691b8008fef2df353f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-prepared-r3/packet-crc-on.vse",
+      "size": 929,
+      "sha256": "4d501f7595a5bd54ab3b96d282ed7714147801b8712a8359d1d3c216ae00b927"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-prepared-r3/packet-default.vse",
+      "size": 902,
+      "sha256": "8988006365941a0d5f8fdfb27a8809a9b68b4e55eb4c0324864f563ee891c1b5"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-prepared-r3/plan.json",
+      "size": 2657,
+      "sha256": "058c5677d913fdbb56671dee49c9f242ee356913d4c1cf0fbf6c7ac9b99d7c56"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-prepared-r3/transaction-all.vse",
+      "size": 902,
+      "sha256": "b4cced6939640292b4cf82dd93abae20eba9574d4b158ba5a304d8a482b9a50e"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-prepared-r3/transfer-complete.vse",
+      "size": 917,
+      "sha256": "b62a03a1b199d9c2b10906d172c157297da975073f1cadffebd7626693598b69"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-prepared-r3/transfer-default.vse",
+      "size": 911,
+      "sha256": "5a3de42d30888d38c8a983d7ec693bb86cc6960e382f6280dda18d92f0da6c49"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-prepared-r3/transfer-incomplete.vse",
+      "size": 917,
+      "sha256": "f9f3d35444723b80142593cd5061b4730924bbad350e2f369cfe45e820af8ea3"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-review.json",
+      "size": 1792,
+      "sha256": "940ad60001a8d5184e43a24337a5067f948e275434e34a0e3f2b4756b25cbeb4"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-1/abort.json",
+      "size": 910,
+      "sha256": "1d1ecb66860d1b0debcc2081bd26603064e10daaa9c109f610b341c94469af85"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-1/preflight.json",
+      "size": 931,
+      "sha256": "bc7c1595437bcfe140c109645f537ae188cfb8cd5e9336f4bdde264774221d75"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-2/abort.json",
+      "size": 425,
+      "sha256": "11467e5e1e15aa64e314010d88f4e8bd1b0f22d99dc8c331ecd601c2af7fab6f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-2/packet-default/lifecycle.log",
+      "size": 182,
+      "sha256": "471a6229c3bda49d2ffdd2331716afd65d904f92294fc3b46ef29594b208bbcd"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-2/preflight.json",
+      "size": 931,
+      "sha256": "bc7c1595437bcfe140c109645f537ae188cfb8cd5e9336f4bdde264774221d75"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-3/abort.json",
+      "size": 574,
+      "sha256": "f5a4dc0a23d6e93ab03c9da6549574e851e63d0dc36bac05365b5100b5a636d4"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-3/packet-default/lifecycle.log",
+      "size": 609,
+      "sha256": "0d1023c21b0ef62c93c2a1b52a4dfd383cd492428ea915a5474a55f3bc9168b6"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-3/preflight.json",
+      "size": 931,
+      "sha256": "bc7c1595437bcfe140c109645f537ae188cfb8cd5e9336f4bdde264774221d75"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r2a/abort.json",
+      "size": 328,
+      "sha256": "4816981f0f3a4122f287889d62e91041ca69fef7ca47d2137e2aa170585c4d09"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r2a/packet-default/lifecycle.log",
+      "size": 615,
+      "sha256": "110af1c5cb4f20078b4ff16e00f9974c85602b6cf733d8596e3b71097c8023d8"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r2a/preflight.json",
+      "size": 931,
+      "sha256": "199348f5adcc76414d4bc4c3097a6340749320df5e338e2a9a6660d724432981"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/comparison.json",
+      "size": 8746,
+      "sha256": "3119d2855f9d4dc2697abec25f725c11345cefdd14bc2110b9892dda93db2577"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/packet-crc-off/assessment.json",
+      "size": 9803,
+      "sha256": "1fb81467f2e271e5cbb5ccbae27bd67fb283e5fa8bc7d52058bdbe2a0b4297e5"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/packet-crc-off/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/packet-crc-off/lifecycle.log",
+      "size": 1057,
+      "sha256": "b2d2209473868035e6a1a9728fadb2c8781d586d7274f34ae660d845c055f299"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/packet-crc-off/reports.json",
+      "size": 474,
+      "sha256": "158d02e14390c40890921b828bde2cc1d269db1581d13e9cab5573e217122486"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/packet-crc-off/result.json",
+      "size": 51212,
+      "sha256": "afd22c943cc6592db25955d8ac738c0d0c51f9dc667bb80ccd6b45a606c8c113"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/packet-crc-on/assessment.json",
+      "size": 9797,
+      "sha256": "897e036d9d520c032e669b66182ebbf7b566aa2f071a36fbd9e132e0503bb0d4"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/packet-crc-on/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/packet-crc-on/lifecycle.log",
+      "size": 1056,
+      "sha256": "872f81e9306db75fc17ab8808f00f47f7a35cd28aea14d6f754ebc7c5235d91f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/packet-crc-on/reports.json",
+      "size": 473,
+      "sha256": "98a71970e90b1a0b9690693a67b30dda1817d1940ff2e21709980ba432bdaae6"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/packet-crc-on/result.json",
+      "size": 51211,
+      "sha256": "ef914a450303cac8a416257149f9f4a6893c49d9d5ff90113e3c8765d96dd496"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/packet-default/assessment.json",
+      "size": 9803,
+      "sha256": "9cd2aa4fd27d1a8161d89b6d982a6575e2a5ba5e1e1f62933cd5ae379c1bcbcc"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/packet-default/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/packet-default/lifecycle.log",
+      "size": 1057,
+      "sha256": "68d995f6c223ae309a1c0a9cc561abaaf613702ec53f0f78f1aa76d1398a0d0a"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/packet-default/reports.json",
+      "size": 474,
+      "sha256": "3b4089c95fbe092a7660a35fa62053eff611cc63bcd4b2b241999930e7e3f500"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/packet-default/result.json",
+      "size": 51212,
+      "sha256": "75823faae7ab330b27b6ee533160502a3f8ad78e5f2d143643d31ae943a36d25"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/preflight.json",
+      "size": 931,
+      "sha256": "e085685e9580b8dab815c5d78cdd7f21153eda1baf98d8ce644656e1d77a1814"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/transaction-all/assessment.json",
+      "size": 9805,
+      "sha256": "0f42dcc151b57076ef8e37de46b29117703b068ca7c7285fb69a9dc8f7716afc"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/transaction-all/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/transaction-all/lifecycle.log",
+      "size": 1058,
+      "sha256": "c113ca07bf83ea71d2eda183c4be9b31ae0123055d9bc0218fdf755f4fd481ca"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/transaction-all/reports.json",
+      "size": 475,
+      "sha256": "b2249b70a2d79fd3e326b74a4a5e30eea11d78c7ea5628a013f8447115824e22"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/transaction-all/result.json",
+      "size": 51645,
+      "sha256": "d7831ad419d8ec02ef16929b5eb0a432042ad876f8e5a66f9a0a784e90261c08"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/transfer-complete/assessment.json",
+      "size": 9817,
+      "sha256": "32f6e37d53bf9e86166c20cca0cf27148bd2ac12ff98a0d5b1f4d5a84d8dc5ed"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/transfer-complete/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/transfer-complete/lifecycle.log",
+      "size": 1060,
+      "sha256": "7f7338d5a6d0f74a2a30f01bf19859c41edd315c32f0916fa239925d3b4648ae"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/transfer-complete/reports.json",
+      "size": 477,
+      "sha256": "e5a102321142909972412b9df003116fa9513a5de4562c6f80caf5989224d68a"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/transfer-complete/result.json",
+      "size": 35580,
+      "sha256": "61b7e09e09168f138d7ef73ae1b2689e8cd8e17340569ad745308c3d6f27b132"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/transfer-default/assessment.json",
+      "size": 9811,
+      "sha256": "ec6240da81ff1a61b20199420da2565a28fa17347ecf2cf55949e9c6516d178b"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/transfer-default/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/transfer-default/lifecycle.log",
+      "size": 1059,
+      "sha256": "86b9da133481a5a4224b6fccca0baa9100bd104ba232334fccb1b8262957105a"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/transfer-default/reports.json",
+      "size": 476,
+      "sha256": "9fcb46f306a864a896c121f8ea256639fb61369c1dcf22accdd7c299f219f2cf"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/transfer-default/result.json",
+      "size": 35579,
+      "sha256": "2235b3140092d572a0aeecb812d6992e6aedc29476e92cf6ff5b818c81abf51b"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/transfer-incomplete/assessment.json",
+      "size": 9657,
+      "sha256": "6d624db59afa8cef45484812556cdc9e6ce35306a2978f9fc767530b00b94abc"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/transfer-incomplete/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/transfer-incomplete/lifecycle.log",
+      "size": 1020,
+      "sha256": "2223a501812655a409358f8bab408183356062c63aa57c36bcced2a09f494178"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/transfer-incomplete/reports.json",
+      "size": 479,
+      "sha256": "25e272685863de65e548b597271b7523a5d2f742b4d04a92e37ad07b0b2da557"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3a/transfer-incomplete/result.json",
+      "size": 922,
+      "sha256": "d021595b9955f7ed94181f2b4a55560dc8668486587412471d091e8c3e5ed184"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/packet-crc-off/assessment.json",
+      "size": 9803,
+      "sha256": "03bfc4602c4b7c0b692cdef704d77648d52e2968961116a8a83d26ac9d5a1bcc"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/packet-crc-off/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/packet-crc-off/lifecycle.log",
+      "size": 1057,
+      "sha256": "d5a7c7e76e507f3447c5b99c60f8d8f01ada3b35ddb98942c45aaa9c064b1938"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/packet-crc-off/reports.json",
+      "size": 474,
+      "sha256": "158d02e14390c40890921b828bde2cc1d269db1581d13e9cab5573e217122486"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/packet-crc-off/result.json",
+      "size": 51212,
+      "sha256": "afd22c943cc6592db25955d8ac738c0d0c51f9dc667bb80ccd6b45a606c8c113"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/packet-crc-on/assessment.json",
+      "size": 9797,
+      "sha256": "6d79179b4220e33eaa5f4c8bc3a09e9ea5b2c9d9e3b3107a810a1f5b8b440c7a"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/packet-crc-on/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/packet-crc-on/lifecycle.log",
+      "size": 1056,
+      "sha256": "61c1a7d551ee627809dfee3bc847842ecff21e7dcba2cfc12e569c7687b001c5"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/packet-crc-on/reports.json",
+      "size": 473,
+      "sha256": "98a71970e90b1a0b9690693a67b30dda1817d1940ff2e21709980ba432bdaae6"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/packet-crc-on/result.json",
+      "size": 51211,
+      "sha256": "ef914a450303cac8a416257149f9f4a6893c49d9d5ff90113e3c8765d96dd496"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/packet-default/assessment.json",
+      "size": 9803,
+      "sha256": "d0a6ae39d9ebaf8046b74348bc6b15733c6a7312d831716b7c34e6d13349cf78"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/packet-default/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/packet-default/lifecycle.log",
+      "size": 1057,
+      "sha256": "bed3ca4d619dc5b0ec2f60415bf8cd68af70fee1e4a1683c8dcefece001cffc9"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/packet-default/reports.json",
+      "size": 474,
+      "sha256": "3b4089c95fbe092a7660a35fa62053eff611cc63bcd4b2b241999930e7e3f500"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/packet-default/result.json",
+      "size": 51212,
+      "sha256": "75823faae7ab330b27b6ee533160502a3f8ad78e5f2d143643d31ae943a36d25"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/preflight.json",
+      "size": 931,
+      "sha256": "e085685e9580b8dab815c5d78cdd7f21153eda1baf98d8ce644656e1d77a1814"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/transaction-all/assessment.json",
+      "size": 9805,
+      "sha256": "ed046f8018d2fb1ee8902531f642b9eddfaea93b4efe62e9a7248e9ed786734a"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/transaction-all/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/transaction-all/lifecycle.log",
+      "size": 1058,
+      "sha256": "8d6a431d0a837c30a79556fb09963bdce0f0ce45cd70f5a873456b4624216755"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/transaction-all/reports.json",
+      "size": 475,
+      "sha256": "b2249b70a2d79fd3e326b74a4a5e30eea11d78c7ea5628a013f8447115824e22"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/transaction-all/result.json",
+      "size": 51645,
+      "sha256": "d7831ad419d8ec02ef16929b5eb0a432042ad876f8e5a66f9a0a784e90261c08"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/transfer-default/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/transfer-default/lifecycle.log",
+      "size": 116,
+      "sha256": "c03b3e87df45f41005e7f1488f73ff765c925e15817176da902868bbf09a0528"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/transfer-default/reports.json",
+      "size": 6,
+      "sha256": "b423bb45501e0fa49d3b77e635f800a29f1fdcf5a58e00c7e04a7ff7833045f2"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3b/transfer-default/result.json",
+      "size": 1049,
+      "sha256": "e93ee09c6852547e468f5f23591eb8f5518caba81a94c86e3aa43ecfdeb097d4"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/comparison.json",
+      "size": 8746,
+      "sha256": "3119d2855f9d4dc2697abec25f725c11345cefdd14bc2110b9892dda93db2577"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/packet-crc-off/assessment.json",
+      "size": 9803,
+      "sha256": "63f1a3081f841f970b260cc33efd4592f258418b953549fe924a4fe46de98862"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/packet-crc-off/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/packet-crc-off/lifecycle.log",
+      "size": 1057,
+      "sha256": "f94350cf877d0d6e7289c804e23dc61c3c9a44f56e17dcee06cde6c8b366a654"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/packet-crc-off/reports.json",
+      "size": 474,
+      "sha256": "158d02e14390c40890921b828bde2cc1d269db1581d13e9cab5573e217122486"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/packet-crc-off/result.json",
+      "size": 51212,
+      "sha256": "afd22c943cc6592db25955d8ac738c0d0c51f9dc667bb80ccd6b45a606c8c113"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/packet-crc-on/assessment.json",
+      "size": 9797,
+      "sha256": "cbd2cc7321d86480fd49581756e0059cc85f696ea725760beb5aa85788214a20"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/packet-crc-on/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/packet-crc-on/lifecycle.log",
+      "size": 1056,
+      "sha256": "62f8d90d4b74de945ec7e99e3e5376f97d8a358c456bfca0b72cbade83cceb75"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/packet-crc-on/reports.json",
+      "size": 473,
+      "sha256": "98a71970e90b1a0b9690693a67b30dda1817d1940ff2e21709980ba432bdaae6"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/packet-crc-on/result.json",
+      "size": 51211,
+      "sha256": "ef914a450303cac8a416257149f9f4a6893c49d9d5ff90113e3c8765d96dd496"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/packet-default/assessment.json",
+      "size": 9803,
+      "sha256": "3042cd037a1a805d65ee4a9c97c7f354e7109859686c5e3c27a0846ba3f7cd30"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/packet-default/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/packet-default/lifecycle.log",
+      "size": 1057,
+      "sha256": "f8225040d56cc0fead56c0dd267bd6bac77ffcfa7bd2dc76bd3362a420e1c1ba"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/packet-default/reports.json",
+      "size": 474,
+      "sha256": "3b4089c95fbe092a7660a35fa62053eff611cc63bcd4b2b241999930e7e3f500"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/packet-default/result.json",
+      "size": 51212,
+      "sha256": "75823faae7ab330b27b6ee533160502a3f8ad78e5f2d143643d31ae943a36d25"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/preflight.json",
+      "size": 931,
+      "sha256": "e085685e9580b8dab815c5d78cdd7f21153eda1baf98d8ce644656e1d77a1814"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/transaction-all/assessment.json",
+      "size": 9805,
+      "sha256": "a42433d5c91c841da59ec30bd1b80c4909518a8a40fe00761200ede3fb2611d5"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/transaction-all/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/transaction-all/lifecycle.log",
+      "size": 1058,
+      "sha256": "0bc6f62950037cd98e4e9bdc13937ebf52663135870f72623251226bb882c151"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/transaction-all/reports.json",
+      "size": 475,
+      "sha256": "b2249b70a2d79fd3e326b74a4a5e30eea11d78c7ea5628a013f8447115824e22"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/transaction-all/result.json",
+      "size": 51645,
+      "sha256": "d7831ad419d8ec02ef16929b5eb0a432042ad876f8e5a66f9a0a784e90261c08"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/transfer-complete/assessment.json",
+      "size": 9817,
+      "sha256": "4f54e9f838478933d41856510811866d9fc34afc3fb4bc3b03c974c278ef010a"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/transfer-complete/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/transfer-complete/lifecycle.log",
+      "size": 1060,
+      "sha256": "5ca64112d5222de0607cea8961ca60514caf58f19d19909ead3207f6d119d886"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/transfer-complete/reports.json",
+      "size": 477,
+      "sha256": "e5a102321142909972412b9df003116fa9513a5de4562c6f80caf5989224d68a"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/transfer-complete/result.json",
+      "size": 35580,
+      "sha256": "61b7e09e09168f138d7ef73ae1b2689e8cd8e17340569ad745308c3d6f27b132"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/transfer-default/assessment.json",
+      "size": 9811,
+      "sha256": "7fb270f43f33cde592889ef3053656b36934cbdf591022626a9d22ca45f23da9"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/transfer-default/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/transfer-default/lifecycle.log",
+      "size": 1059,
+      "sha256": "db8d2e144904bbf3a340eba4bd3ea7777d251eaff6a56ae6fb8fdb48504c33c6"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/transfer-default/reports.json",
+      "size": 476,
+      "sha256": "9fcb46f306a864a896c121f8ea256639fb61369c1dcf22accdd7c299f219f2cf"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/transfer-default/result.json",
+      "size": 35579,
+      "sha256": "2235b3140092d572a0aeecb812d6992e6aedc29476e92cf6ff5b818c81abf51b"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/transfer-incomplete/assessment.json",
+      "size": 9657,
+      "sha256": "1f679ae5c2d82ac7299ecfb264ddcb5898c479fa81c7c215ca8591c7299f7134"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/transfer-incomplete/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/transfer-incomplete/lifecycle.log",
+      "size": 1020,
+      "sha256": "b309ebdbfab715637cb970c6d10da3e0652f46fbcc626e8a025e953d8c7c665a"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/transfer-incomplete/reports.json",
+      "size": 479,
+      "sha256": "25e272685863de65e548b597271b7523a5d2f742b4d04a92e37ad07b0b2da557"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-r3c/transfer-incomplete/result.json",
+      "size": 922,
+      "sha256": "d021595b9955f7ed94181f2b4a55560dc8668486587412471d091e8c3e5ed184"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-tests.txt",
+      "size": 2368,
+      "sha256": "ef3e6850ce12320f73f96f63c35546e480be30420d361eb6191b085d03c1be9a"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u02-prepared/plan.json",
+      "size": 326,
+      "sha256": "060d74ec1c87f0c2736bff8677df79d1583578ed4e69dde1a75d2502ed51ab13"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u02-prepared/u02.vse",
+      "size": 1229,
+      "sha256": "1b6dff6da3ea65f588a8e9571e6cdeecc2eb9bf9bf50e3524d746a52dbc85ca6"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u02-raw-packets/raw.json",
+      "size": 1760,
+      "sha256": "9de157c91a4219ccd1e007cb304db461c8a5f8ef49448bc3ea8fb89a130c7c90"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u02-review.json",
+      "size": 1567,
+      "sha256": "05fafa08681ea778fb707c2ac67e1fa32fb43ab92425a85be6f87edd5870cc2f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u02-run-a/before.json",
+      "size": 2566,
+      "sha256": "6bb3f62497f435edb44837504896bd320bd3bd8cbbafbdf70d182b4ecf7d15f1"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u02-run-a/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u02-run-a/lifecycle.log",
+      "size": 1183,
+      "sha256": "a77f11eb944e7a4043a60f29d8e9cb7ef547a81bb666ff375fedb2446df1d694"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u02-run-a/manifest-final.json",
+      "size": 6273,
+      "sha256": "afd691335c65eacb9140299d7223953869d230cf968f9cfb4937bccd7143a131"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u02-run-a/observations.json",
+      "size": 154441,
+      "sha256": "0203c222b5d9dfeeac1cdd34e15d05c6e34461e2fd0416b8c36cc9a852bb6229"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u02-run-a/result.json",
+      "size": 10553,
+      "sha256": "a119c8bdb5b139b4a02d74878e533dd85985e42f58823905268b6bc53579df21"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u02-run-b/before.json",
+      "size": 2566,
+      "sha256": "6bb3f62497f435edb44837504896bd320bd3bd8cbbafbdf70d182b4ecf7d15f1"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u02-run-b/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u02-run-b/lifecycle.log",
+      "size": 1183,
+      "sha256": "3b6bcc0d38739b935fe2b602e39d62ccae8e845d05d7513aa8a5bd5c88307a10"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u02-run-b/manifest-final.json",
+      "size": 6273,
+      "sha256": "6022bbe883515503c4d71720bfb7429336238f6cbbf7a03c52bfd7bf7cd3dc35"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u02-run-b/observations.json",
+      "size": 154441,
+      "sha256": "0203c222b5d9dfeeac1cdd34e15d05c6e34461e2fd0416b8c36cc9a852bb6229"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u02-run-b/result.json",
+      "size": 10553,
+      "sha256": "a119c8bdb5b139b4a02d74878e533dd85985e42f58823905268b6bc53579df21"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u03-prepared/plan.json",
+      "size": 326,
+      "sha256": "8144364864ca1bf6e6ae35c0853f92a568cd55bdcff6b4a6df484664b625b413"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u03-prepared/u03.vse",
+      "size": 1243,
+      "sha256": "ff6138ad64c2c2e5eee2655e39740be11e210e95a44363fce83b68a28369c9a8"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u03-review.json",
+      "size": 949,
+      "sha256": "39ef8b9f983bf2b02ffb76a81829bf596dc0b9f2d42ffdad5dbe485ee9d94057"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u03-run-a/before.json",
+      "size": 2566,
+      "sha256": "15143139d8c0632a4a5def72d8987dd18568844590448af51d6d52cb0393c884"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u03-run-a/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u03-run-a/lifecycle.log",
+      "size": 1242,
+      "sha256": "ecf27976828b82e50d9bdd4eb845751218a84b9c1c18fd0cb8e530ab47c11ff2"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u03-run-a/manifest-final.json",
+      "size": 6497,
+      "sha256": "4d3762586b3c61fd93b52f780e7f391ca1bda4da38b6e7d55a8bdcabce3f80d8"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u03-run-a/observations.json",
+      "size": 178139,
+      "sha256": "a9d2da6d4a2fba9d36e9b731587dfa91d0c5a5cf90b5e39c138ff811201f8cad"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u03-run-a/result.json",
+      "size": 12559,
+      "sha256": "833e89b60dc7258dd325388f7e055fab6dd412a53836a5c15ac680b3323a0b34"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u03-run-b/before.json",
+      "size": 2566,
+      "sha256": "15143139d8c0632a4a5def72d8987dd18568844590448af51d6d52cb0393c884"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u03-run-b/integrity.json",
+      "size": 1277,
+      "sha256": "7e552626907bce0a5ad4e0aed11e2a4fb37bc87b819f68a4c6b0359989aaa35f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u03-run-b/lifecycle.log",
+      "size": 1242,
+      "sha256": "8b472190bfa9520af4d12b60c73b3f946557527e6587c38805808be60f36776d"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u03-run-b/manifest-final.json",
+      "size": 6497,
+      "sha256": "ee611855686d9d39ad9cde2f91f9bb20066649055e6e197088af66964da38b24"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u03-run-b/manifest.json",
+      "size": 11698,
+      "sha256": "d3c12f67f2dd8218c0c19a57782f02b9ed89c07b6a6b4f7efed44b71720b6c83"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u03-run-b/observations.json",
+      "size": 178139,
+      "sha256": "a9d2da6d4a2fba9d36e9b731587dfa91d0c5a5cf90b5e39c138ff811201f8cad"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u03-run-b/result.json",
+      "size": 12559,
+      "sha256": "833e89b60dc7258dd325388f7e055fab6dd412a53836a5c15ac680b3323a0b34"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u04-discovery/discovery.json",
+      "size": 2207,
+      "sha256": "6ea08ec3e4e97efc763ea9cc738af3d764db62e8498810ec016b49b23ca5a903"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u04-discovery/packet-506138.txt",
+      "size": 606,
+      "sha256": "c98a362b2e9661c6c5c3340a12d290eee161e98287edd8cc08a3db4d2bed9368"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u04-discovery/packet-629247.txt",
+      "size": 518,
+      "sha256": "104ecaf48bef0706ddf741a63589c64c3b1610239b20593ddcdb73af524af5a7"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u04-discovery/packet-8.txt",
+      "size": 491,
+      "sha256": "aabb82e2c94cf15e9cd5d255f83cadaa8b7e2b4233f6b47f4b363143164d63cf"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u05-discovery/discovery.json",
+      "size": 353,
+      "sha256": "8381b4e1ccb828a72e7e9e1462e006f0e119a6d1b022a3da20cd0fdecdd43755"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u05-discovery/transactions.csv",
+      "size": 281,
+      "sha256": "165dfa8b7648220383957065d0f883c485dc608b5418da6d178e9ba18c1b0aae"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u05-discovery/transfers.csv",
+      "size": 260,
+      "sha256": "5b8b7db5c9f80e68df6a51d2030d290afb22491d67616aab72ad7fbe8497c073"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/usb32-link-word-page155.png",
+      "size": 115334,
+      "sha256": "1c9136bc2e8ae62edc16bafd0003d4581d9a23a7e907e3e37d7f929a8555827a"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/usb_fields-tests.txt",
+      "size": 2286,
+      "sha256": "0456021ab6b6db60bc1211f67fc9f255f4c7006d71c73434a511b046e5d57ab0"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/verification.json",
+      "size": 11769,
+      "sha256": "0c16f2a2564eb7ee5b7c584f56885b89fdca0aabf431ce33646f4cd9de78285f"
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/verify.py",
+      "size": 5702,
+      "sha256": "8ed3dc5b7cece2df9774c56ea591742239632198a806229056cd8a0ea651898c"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914.zip",
+      "size": 37376,
+      "sha256": "8b01f3773d1b51da4c878a1a479714e6602289cb101d60cdb82041d250aaa7b4"
+    },
+    {
+      "path": "c3-output-20260911-v2/timestamp-fidelity.json",
+      "size": 16722043,
+      "sha256": "1b2d682be72c22fee04d6bc4704096ccb9a6ab50e845713143df5c3e5c0ff1fa"
+    },
+    {
+      "path": "c3-output-20260911-v3/timestamp-fidelity.json",
+      "size": 16722538,
+      "sha256": "adffcc25dc4060f0b2fe97e43e86003d4474b7d1752d6f56c380cdbb22161a26"
+    },
+    {
+      "path": "c3-output-20260911/timestamp-fidelity.json",
+      "size": 1592,
+      "sha256": "4844e8356f390a2202bce1af026c8eab0205cb80909263e7c2c6666f64255010"
+    },
+    {
+      "path": "c4-demo-regression-20260911/comparison.json",
+      "size": 25145,
+      "sha256": "da111c3150af783b314f5da320f6437000ad86ca4726830e7e35fb6c1fe00d1c"
+    },
+    {
+      "path": "c4-demo-regression-20260911/fail-timeline.json",
+      "size": 110622939,
+      "sha256": "83ebb293beee374a58c96daeff407d376f53f117a762233b24b61b508dd07aa8"
+    },
+    {
+      "path": "c4-demo-regression-20260911/logs/comparison.log",
+      "size": 479,
+      "sha256": "f9089cb2b721c1fbab897103034af97b6dd279e3dfe0a9877c94d6f48cbe0382"
+    },
+    {
+      "path": "c4-demo-regression-20260911/logs/fail-extraction.log",
+      "size": 793,
+      "sha256": "a0fa2fc872334178b4fc93d8cdd68c6b788c56ed0c2ee602f50362d1cfb0711e"
+    },
+    {
+      "path": "c4-demo-regression-20260911/logs/pass-extraction.log",
+      "size": 793,
+      "sha256": "305da503e76d4815afcbac0f8174f60403e2a39629210e34699c77597f088a73"
+    },
+    {
+      "path": "c4-demo-regression-20260911/pass-timeline.json",
+      "size": 156596529,
+      "sha256": "d191757311587e4c86b44ceb5e2b3e3b1fb13582a3cd8f3e58eb61fa0dcf75ad"
+    },
+    {
+      "path": "c4-demo-regression-20260911/report.md",
+      "size": 1643,
+      "sha256": "ba00a8bcec531e8b0d5ba75ddf56d0c53e2ce23b0fbd545cf0420fddda059571"
+    },
+    {
+      "path": "c4-demo-regression-20260911/source-integrity.json",
+      "size": 5514,
+      "sha256": "49b12f71ad273f153f804861acba8f0147ef20f9c172a6606e8528e432d56dfe"
+    },
+    {
+      "path": "c4-demo-regression-20260911/windows-powershell-compatibility.json",
+      "size": 904,
+      "sha256": "169d2f16db275cd1cc6a87ec2c6091592c186a983e694452760df8d32b2efea0"
+    },
+    {
+      "path": "c4-demo-regression-20260911/windows-powershell-run.log",
+      "size": 811,
+      "sha256": "a857a84a199fc0dc9dd71c675943796a9b833e3222a9476d8a089998c30bf714"
+    },
+    {
+      "path": "c4-old-input-check/semantic-alignment.json",
+      "size": 2437,
+      "sha256": "e478bc9ec6619e969d3745d77e0ac3a37c70d2add56a505c112e64e42c72b01b"
+    },
+    {
+      "path": "c4-output-20260911/fail-timeline.json",
+      "size": 110622949,
+      "sha256": "6e898f46993f91f6d7885d2c58c3517b171c2c11dac9c120aef6a17fe9eedc16"
+    },
+    {
+      "path": "c4-output-20260911/pass-timeline.json",
+      "size": 156596539,
+      "sha256": "e753eff497bb1bfa9786cbc34fdaaa8782473ac654ac8fdcef050202e3b00927"
+    },
+    {
+      "path": "c4-output-20260911/semantic-alignment.json",
+      "size": 2881,
+      "sha256": "d0149443de1c03b6961006743e2e6dc739fbe606d234a6313f67c2873f95319f"
+    },
+    {
+      "path": "c5-output-20260911-v10/report.html",
+      "size": 12719,
+      "sha256": "50af2a3e14598b4c4f5e95a794c86983ced8cf004be2a6796ccba8f1a545ddb3"
+    },
+    {
+      "path": "c5-output-20260911-v11/report.html",
+      "size": 32008,
+      "sha256": "e4826899941de658b252f73bcb9a17df6001060af15af6aed243dedffc72daca"
+    },
+    {
+      "path": "c5-output-20260911-v12/report.html",
+      "size": 32091,
+      "sha256": "ff9de79353d26c64f49c147853f39df16731efb2dbf74b6bd12123ae1c9a766a"
+    },
+    {
+      "path": "c5-output-20260911-v13/report.html",
+      "size": 33086,
+      "sha256": "1385af8eb377ce3bd78c7e62655e7777cdf70e034b095a44dc4e4e9812e37447"
+    },
+    {
+      "path": "c5-output-20260911-v14/report.html",
+      "size": 33086,
+      "sha256": "a2560b9dd615270a887b5709ab0ec3cfa5db25e1be0fe651ec9bc96d64d93582"
+    },
+    {
+      "path": "c5-output-20260911-v15/report.html",
+      "size": 33117,
+      "sha256": "1848d303a55ede213787b9d82f93edb9cca1c869b91250ba77a7b236ebf515dd"
+    },
+    {
+      "path": "c5-output-20260911-v16/report.html",
+      "size": 35643,
+      "sha256": "8714e400b22b886b965a6572e03f7fba76f01ed9189ea05d5f0b1ee3d7f34fa1"
+    },
+    {
+      "path": "c5-output-20260911-v17/report.html",
+      "size": 35643,
+      "sha256": "423c4bf6aff3024d1e3d0b894b65257018489fd8674a2bd3dc56e952e6bfbf61"
+    },
+    {
+      "path": "c5-output-20260911-v18/report.html",
+      "size": 35643,
+      "sha256": "9e610ff7da2ce964f090cbcd6bdaf93b0309b0d4e7e3d9efd913ff8d16976af9"
+    },
+    {
+      "path": "c5-output-20260911-v19/report.html",
+      "size": 35797,
+      "sha256": "18e36d78185235e2bd419d302ef2652cbecc69c4d3497c3c0c7ac3d6fc412001"
+    },
+    {
+      "path": "c5-output-20260911-v2/suspicious-regions.json",
+      "size": 15147,
+      "sha256": "31c0356c3575e90f6ddd42e8af332947a728d2e88cbd7d63561cd9dc38a042a3"
+    },
+    {
+      "path": "c5-output-20260911-v3/report.html",
+      "size": 12653,
+      "sha256": "2e5b59b6c5d78ce69edffdc29825a313180324afd880e3cc86c1162c552aabe6"
+    },
+    {
+      "path": "c5-output-20260911-v3/suspicious-regions.json",
+      "size": 15626,
+      "sha256": "e184762c891ab80716ef6568dc04faaf67d8a78022ff25bd9737929dea8ef7ee"
+    },
+    {
+      "path": "c5-output-20260911-v4/report.html",
+      "size": 12677,
+      "sha256": "a9cbfdfcaacf6ea32078c20a8c8b1b09a86e2eadf729affb88b0020018bf8fa9"
+    },
+    {
+      "path": "c5-output-20260911-v5/report.html",
+      "size": 15023,
+      "sha256": "52c889c497a8b5a5eec4db2aaf6d6d9c5e152f8bd039f012d57c7c71d9703984"
+    },
+    {
+      "path": "c5-output-20260911-v6/report.html",
+      "size": 15722,
+      "sha256": "2ed1db8daaccaa8eb951f10a6c5035beac3c76d85f17bf647ec606517b6f9117"
+    },
+    {
+      "path": "c5-output-20260911-v7/report.html",
+      "size": 15674,
+      "sha256": "f81f12075f53b0d754f053aae08accc1e545f698aab5cb501a2691a1edd77286"
+    },
+    {
+      "path": "c5-output-20260911-v8/report.html",
+      "size": 15650,
+      "sha256": "4e2724f4c837e2bcda202c0eb7f814d8b90700310af933476265ec1f4927059a"
+    },
+    {
+      "path": "c5-output-20260911-v9/report.html",
+      "size": 15650,
+      "sha256": "112950a9e42296c7852e62d5fb568e142d022b002a8ea9a4fb8cde800fcefcd5"
+    },
+    {
+      "path": "c5-output-20260911/suspicious-regions.json",
+      "size": 13163,
+      "sha256": "0c96feacc1efbcbd8669fba3331bd512e4f4218f45c30a12cb6899ddbb003e22"
+    },
+    {
+      "path": "docs/catc-feature-inventory.md",
+      "size": 8463,
+      "sha256": "ba1c651afb431743ad5525cd8b404c45ae189f5998320c116ccaf91940c86ae7"
+    },
+    {
+      "path": "docs/pcie-b1d-engineer-questions.md",
+      "size": 13442,
+      "sha256": "90ca98e2218e6ebf6d233095392349a5e9ef9396e1a9e239098029b2eafb04a5"
+    },
+    {
+      "path": "docs/pcie-b1d-evidence.md",
+      "size": 7820,
+      "sha256": "fb72e271ac7be21600c842e1a764ff528713f3bd7fc6d0bff3ee1dbc7efbf016"
+    },
+    {
+      "path": "docs/pcie-b1d-rule-contract.md",
+      "size": 5990,
+      "sha256": "29b4f0041143104e07d95bfcc63922c36c03b1ff32a734430b0251bb85595017"
+    },
+    {
+      "path": "docs/pcie-b1e-b2-progress-20260930.md",
+      "size": 4254,
+      "sha256": "7d01dc0e999d99be9b95acf68360577c789a3b6cbaca78688024d311ab152759"
+    },
+    {
+      "path": "docs/pcie-b1e-evidence.md",
+      "size": 1545,
+      "sha256": "b3cda40597382ce12b74ff087a03f3fa0707177ad1ef775d05c9c35c741106dc"
+    },
+    {
+      "path": "docs/pcie-b1e-findings-contract.md",
+      "size": 2631,
+      "sha256": "c6d73712b6e19ee488f7af5bc3acf0b0a4075a211fc71555cb740f4a2e0e8bd2"
+    },
+    {
+      "path": "docs/pcie-b2a-evidence.md",
+      "size": 2315,
+      "sha256": "38be746a1f5d27e483075a9a9c4e538ed575cd8f15d2f2df9638bf025bc7bdcf"
+    },
+    {
+      "path": "docs/pcie-b2a-probe-contract.md",
+      "size": 1646,
+      "sha256": "103fd053e0e2f502f1887365bd34e6f2a3b7e9967c2178af90464b7b27e3c5f5"
+    },
+    {
+      "path": "docs/pcie-b2b-config-contract.md",
+      "size": 1703,
+      "sha256": "468e32860cf77ace50794d28028948ab2976b812aefb8823388905dbf747aadb"
+    },
+    {
+      "path": "docs/pcie-b2b-evidence.md",
+      "size": 2276,
+      "sha256": "0a9293c8c0ec5cc8792c2aedbbf09a1e288d377e39ed76d0ae54e97e6168a220"
+    },
+    {
+      "path": "docs/pcie-b2c-evidence.md",
+      "size": 1519,
+      "sha256": "65ae2266b1ce79e22c549eceac46fc53b4a13f1fbb0cebc297417248b4ce1e85"
+    },
+    {
+      "path": "docs/pcie-b2c-resolution-contract.md",
+      "size": 1334,
+      "sha256": "d64a030b0fba4605990320824afebb00caeec6e61b23039d6ec3204019ff4b03"
+    },
+    {
+      "path": "docs/pcie-b2d-evidence.md",
+      "size": 1351,
+      "sha256": "e546d710698a094bcaa8f45a9b4aeddd64bd335cd19bd68615183f3c39757555"
+    },
+    {
+      "path": "docs/pcie-b2d-state-contract.md",
+      "size": 1239,
+      "sha256": "37766915a6c3d5cf93876b381be8d0eb7786506ce25fe2c6de9a6cb486bb612a"
+    },
+    {
+      "path": "docs/pcie-b2e-evidence.md",
+      "size": 1028,
+      "sha256": "302731eaa5af5715f7ace0eab4b2b13516dac30a29f0696b9d389fe45313fbe7"
+    },
+    {
+      "path": "docs/pcie-b2e-query-contract.md",
+      "size": 829,
+      "sha256": "0cb8a7ebb39089fb51ce4c9385fe6d93c106f8060f20cd202e9d66497996c969"
+    },
+    {
+      "path": "docs/pcie-b2f-diff-contract.md",
+      "size": 659,
+      "sha256": "914d448de28e2e098109dd425b2624316ca86ae19adc210f631050467f826c5e"
+    },
+    {
+      "path": "docs/pcie-b2f-evidence.md",
+      "size": 1136,
+      "sha256": "60e4e30c3d401d1f1de29acd26ce27b6d5c2bddaa22f175cd9019fbcae62564a"
+    },
+    {
+      "path": "docs/pcie-b2g-engineer-questions.md",
+      "size": 4618,
+      "sha256": "a2f4425624634af3dda814792289a9f2a63636627cdeaa4a5605e868b7d1609d"
+    },
+    {
+      "path": "docs/pcie-b2g-observation-contract.md",
+      "size": 2975,
+      "sha256": "1ad662fd6edd559016948375e3498f913dcd5c1d226b1ed7a946d919532c886b"
+    },
+    {
+      "path": "docs/pcie-b2h1-cfgspace-api-evidence.md",
+      "size": 4647,
+      "sha256": "785d8dcee0c49da8406fc7ef789a42b530162b12568afb37fca0bd6b20490588"
+    },
+    {
+      "path": "docs/pcie-b2h2-sidecar-evidence.md",
+      "size": 5873,
+      "sha256": "f095ab977d905a4bd47db851bf7615715bb326a8954f193c69d83991e13df1e0"
+    },
+    {
+      "path": "docs/pcie-catc-decode-verification.md",
+      "size": 3829,
+      "sha256": "9fc305d82490dd3cdb56f21061a3977cca6efe2cba862d74555932054465b067"
+    },
+    {
+      "path": "docs/pcie-register-defs/linkcontrol-aspm.regdef.json",
+      "size": 872,
+      "sha256": "8ba80132e2e14763ad406c3d6eac414f6eb16146a0fc76cf7e93bf79878e6bbb"
+    },
+    {
+      "path": "docs/pcie-register-defs/vendor-template.regdef.json",
+      "size": 855,
+      "sha256": "e4c6e1408f6b20bdb8aa1173374c59e9e04e96d5799395acc88d79fa59dbf4b7"
+    },
+    {
+      "path": "docs/pcie-register-reference.json",
+      "size": 789,
+      "sha256": "abcf2e410d6e92ec58d093601fed9b3a1db3f1bda8e6d71423f922e7cfe76918"
+    },
+    {
+      "path": "docs/pcie-selection-checkpoint-20261013.md",
+      "size": 2590,
+      "sha256": "4eb8b696d019f8b4b1ef0e758a62b7e7af30ac45a616a5fc168ba64edcef28fe"
+    },
+    {
+      "path": "docs/pcie-usb-source-map-20261013.md",
+      "size": 46559,
+      "sha256": "e3f4f253d64d3af60ebfb4b23faccc0cad8846187b95f0f2695cb11a8a612f2a"
+    },
+    {
+      "path": "docs/pcie-usb-source-register-20261013.json",
+      "size": 185641,
+      "sha256": "cce86278115b08f37191a32a9c7816d7a70fc3a92b97ac41d10607af5bcc0928"
+    },
+    {
+      "path": "docs/pcie-usb-spec-slices-20261013.md",
+      "size": 47260,
+      "sha256": "eac8535e45c7b426293737240f902f54c5f0564a4e6d33630afb3ade62f071af"
+    },
+    {
+      "path": "docs/pcie-vendor-register-request.md",
+      "size": 2162,
+      "sha256": "d1544bd281623a97a85deeedb0dc020128bf642dfbff4c8d3114e31240d3c24c"
+    },
+    {
+      "path": "docs/pcie-waiting-period-slices-20261002.md",
+      "size": 7157,
+      "sha256": "232646dbab7d08053b9f951a0bff1cddc280e6b0defeca853982f3e15664da82"
+    },
+    {
+      "path": "docs/s01-offline-contract.md",
+      "size": 12794,
+      "sha256": "c3e84d54218b60b8c8d750124c9b369a81d55abdf25c89d5f759925f9d7adb8e"
+    },
+    {
+      "path": "docs/s01-review-20261013.md",
+      "size": 2430,
+      "sha256": "1b506c00e4bdbbd447581e3ab77b813dbc6f454def209c5b660a0acc3411b2ad"
+    },
+    {
+      "path": "docs/serial-slice-checkpoint-20261013.md",
+      "size": 2905,
+      "sha256": "f61b123f24bef9fa60e50d37aaa9b0a7eb2aff700659171fc7724db7fe754b99"
+    },
+    {
+      "path": "docs/u01-selection-coverage.md",
+      "size": 6600,
+      "sha256": "0f327d73a1c1a4db9ffac3998d0c87603915dd462a85e8c285e9d6ea2c995d05"
+    },
+    {
+      "path": "docs/usb-field-probes-20261013.md",
+      "size": 4235,
+      "sha256": "fd9ab1f8155c0d64e835cc2de8108e57b3dee0525011fc0fb788de3aafd95590"
+    },
+    {
+      "path": "schemas/s01-input-manifest-v1.schema.json",
+      "size": 11999,
+      "sha256": "152fb3ef6d6ced6a49c90552924b0b1a9fbc0a1a4ce1ad043a52fa3f9d7754d0"
+    },
+    {
+      "path": "schemas/s01-trace-eligibility-v1.schema.json",
+      "size": 5226,
+      "sha256": "343d1896c2e676e77253f965d1d56293ec8ae8d863611b530dfddeabd92dc3e0"
+    },
+    {
+      "path": "scripts/pcie/b1d_mux_rules.py",
+      "size": 24214,
+      "sha256": "a42df27ccb179fc171e7b2c944f723b2251a2d01c65fdf88901e3cfed1717fe5"
+    },
+    {
+      "path": "scripts/pcie/b1e_link_findings.py",
+      "size": 10252,
+      "sha256": "dc8549d92ea4bc426810d0ca73dc6253ae5291228045ba729a40294c7e7c09d2"
+    },
+    {
+      "path": "scripts/pcie/b2a-register-probe.pevs",
+      "size": 1922,
+      "sha256": "522507744864f20c0219b8415a8764e8d73fcc4990b108dbd958888c70978f59"
+    },
+    {
+      "path": "scripts/pcie/b2a_register_fields.py",
+      "size": 7439,
+      "sha256": "d747b95bdd886ac1e9612de1c241c6f9ccd56b8d858d80e45d41b77b18626247"
+    },
+    {
+      "path": "scripts/pcie/b2b_config_access.py",
+      "size": 8586,
+      "sha256": "d3c64f26031c564c38d495285093a1cc6585f4a9811913e61a094935ed7e83ee"
+    },
+    {
+      "path": "scripts/pcie/b2c_capability_resolution.py",
+      "size": 5724,
+      "sha256": "aa485183696bdf03e0dcefb11e5b54e8a799db0d583e3381f61dc9b5255197a5"
+    },
+    {
+      "path": "scripts/pcie/b2d_observed_state.py",
+      "size": 2699,
+      "sha256": "4d69b4e56a58350932480f873fdb51437c68676e53efbdfcb95a19f0083d62aa"
+    },
+    {
+      "path": "scripts/pcie/b2e_snapshot_query.py",
+      "size": 4379,
+      "sha256": "57cd7539236fe4791dcdf80735386b4d425c9595fd4bb96a84a951cdc639b1b2"
+    },
+    {
+      "path": "scripts/pcie/b2f_snapshot_diff.py",
+      "size": 4326,
+      "sha256": "d7128fe9a12da2e3506e1ff0c6282dc808c16818a12eb6f045bf3928e07b2080"
+    },
+    {
+      "path": "scripts/pcie/b2g_watchlist_prepare.py",
+      "size": 6384,
+      "sha256": "2e36a0cf757044b18e2777ab266088359eb8dddd609b23f2914569e7d61e85ce"
+    },
+    {
+      "path": "scripts/pcie/b2h2_sidecar.py",
+      "size": 11421,
+      "sha256": "9fad21df1bc9dd803dcbc54d6bf162f908ec4517934654a973b1d2cead4c520b"
+    },
+    {
+      "path": "scripts/pcie/catc-dec-probe/probe-indata.dec",
+      "size": 1184,
+      "sha256": "363e54312c01aedc0187b04f17bb31f4bba5e377c9581d43083aedc86547e5c5"
+    },
+    {
+      "path": "scripts/pcie/catc_dec_trial.sh",
+      "size": 1207,
+      "sha256": "46342f6e86f88e237303919389fa5dfe4cb1c50fbcdf7af805893181c0ab380a"
+    },
+    {
+      "path": "scripts/pcie/catc_regdef.py",
+      "size": 17045,
+      "sha256": "7914133b7935a829facefa436a21c565b91c46d772c3f94b4c7e1ba57612f1f8"
+    },
+    {
+      "path": "scripts/pcie/com_config_space.py",
+      "size": 6920,
+      "sha256": "b72131b52a0d77b1b5205a6effe1a14b3012bdedc3d49a2dcbff3930f6fe4d3d"
+    },
+    {
+      "path": "scripts/pcie/com_export_text.py",
+      "size": 3834,
+      "sha256": "723ec74e6c06ed06fb818c0fc1b15fa8b191be190da20948b5a854ec07fb9bc2"
+    },
+    {
+      "path": "scripts/pcie/verify_cfgspace_vs_b2b.py",
+      "size": 3327,
+      "sha256": "4e5ded89b108a5b482b2255e984cd33416490a801a1a386bf0f3f8d018596975"
+    },
+    {
+      "path": "tests/pcie/test_b1d_mux_rules.py",
+      "size": 19608,
+      "sha256": "46762179350f4cf268f47c68c28742a17b3bdb9083d1b493c17703ec8ee67be8"
+    },
+    {
+      "path": "tests/pcie/test_b1e_link_findings.py",
+      "size": 6009,
+      "sha256": "c73449578653334df6d438037b2c632ea9493736aac545fac1be52bc6d60b99d"
+    },
+    {
+      "path": "tests/pcie/test_b2a_register_fields.py",
+      "size": 3710,
+      "sha256": "1dd17790ba830313411b261ff16f02af33c8cad308bdd3d29ed468270dfcf9ef"
+    },
+    {
+      "path": "tests/pcie/test_b2b_config_access.py",
+      "size": 4076,
+      "sha256": "57ce92ddb99af33d6f0672526eced08a660c75f7b983387a26f8fe26d675fb63"
+    },
+    {
+      "path": "tests/pcie/test_b2c_capability_resolution.py",
+      "size": 3655,
+      "sha256": "f6672f6c7c88b96f5f5115fe7675ca9003777cdea11fe20caaa0e3a961a5161d"
+    },
+    {
+      "path": "tests/pcie/test_b2d_observed_state.py",
+      "size": 3762,
+      "sha256": "40c78d7a20192663203495455779811a4435a8910b12d08d775fc2088d2d1328"
+    },
+    {
+      "path": "tests/pcie/test_b2e_snapshot_query.py",
+      "size": 2217,
+      "sha256": "e4d930e94d122d2a9602fcdfc9726b65a2ce394b813844db80cd635090cd38d9"
+    },
+    {
+      "path": "tests/pcie/test_b2f_snapshot_diff.py",
+      "size": 3872,
+      "sha256": "9c5d927147f147d24600ce2a4e1093fd5b79670a11a75f48b99f492525b3a820"
+    },
+    {
+      "path": "tests/pcie/test_b2g_watchlist_prepare.py",
+      "size": 4665,
+      "sha256": "3188795ea568c0abc35f1d7ba552c58ce3c8c3a1ad2d797ec541bfe7fd93d6d8"
+    },
+    {
+      "path": "tests/pcie/test_b2h2_sidecar.py",
+      "size": 12579,
+      "sha256": "4e8e7eb8c7261c0c325d1514571415fad7c3b6af58ac8c1b735a83ec9163de13"
+    },
+    {
+      "path": "tests/pcie/test_catc_regdef.py",
+      "size": 8119,
+      "sha256": "c38d6437ce42c56d25fd05e87dc53d29cd069a2da98cf71fc8913de6b04b5efb"
+    },
+    {
+      "path": "tests/pcie/test_cfgspace_vs_b2b.py",
+      "size": 2000,
+      "sha256": "586b630383b25b4d097f9040d1d45f2309c524e2599911f143d2b8b985414178"
+    },
+    {
+      "path": "tests/s01/fixture-oracles.md",
+      "size": 16953,
+      "sha256": "c6ebd4fc084625c5421dba32b2a784ed4bb929f437cfc429fbd9dfbd180cb08c"
+    },
+    {
+      "path": "tests/s01/fixtures/all-unknown.json",
+      "size": 1945,
+      "sha256": "d75ab37b1976c554e29d376596e70df7b669242b4a8ecc56931326fdca406ecf"
+    },
+    {
+      "path": "tests/s01/fixtures/complete-pcie.json",
+      "size": 3098,
+      "sha256": "f70f6c86710707cac79662845696a5f6fec403e547e3b63924b40abe23e38f70"
+    },
+    {
+      "path": "tests/s01/fixtures/complete-usb.json",
+      "size": 3093,
+      "sha256": "d8e438dbc40379a969de2e7921e9fefbe98f9c5c79295b11f63faa6a230f30b7"
+    },
+    {
+      "path": "tests/s01/fixtures/expected-readiness.json",
+      "size": 2784,
+      "sha256": "b5017b0376941ed3dbb82aca1356b395c9560dba1b932d0f7e2b0c5babef799f"
+    },
+    {
+      "path": "tests/s01/fixtures/inapplicable.json",
+      "size": 3149,
+      "sha256": "e577964f23cd29b22e2fc80357480cd1a608b92ca2df7a042c62c7f0423619b9"
+    },
+    {
+      "path": "tests/s01/fixtures/legacy-pcie.json",
+      "size": 859,
+      "sha256": "a74f136cd0a463ee371d6957da7450c48159c783e4bebb76fee21543002069dc"
+    },
+    {
+      "path": "tests/s01/fixtures/legacy-usb.json",
+      "size": 2573,
+      "sha256": "eca42768b8aeeb7e59867f9730f9f3d639efdd0428c804fbc61d4e0b0b45e9d2"
+    },
+    {
+      "path": "tests/s01/fixtures/missing-epoch.json",
+      "size": 3057,
+      "sha256": "0667d71960bb95c5e61955195cfbc7edee0dbeeed5ca091c482bf280def92ee7"
+    },
+    {
+      "path": "tests/s01/fixtures/missing-mode.json",
+      "size": 3064,
+      "sha256": "ee5519970066c00001f84628168ef1c67882f0086f9b191701e38ebee211488e"
+    },
+    {
+      "path": "tests/s01/fixtures/partial-capture.json",
+      "size": 3101,
+      "sha256": "2c0d11c9541c11dd327fc89649316bff8540b1816c98059d69ae1ea4fddada61"
+    },
+    {
+      "path": "tests/s01/fixtures/profiles.json",
+      "size": 3871,
+      "sha256": "37b411c26c0c42a14416c0da40fa5d5daffb5fcda88243c5e7e28f616e38a610"
+    },
+    {
+      "path": "tests/s01/fixtures/unknown-filter.json",
+      "size": 3032,
+      "sha256": "46342ae3901d835c5431f0f0d35ab860193af5319849c5d76bce8b3aca13c200"
+    },
+    {
+      "path": "tests/s01/test_s01_contract.py",
+      "size": 30249,
+      "sha256": "5f033ceeb921efc0bef5d207beda853ce8ce2977a949f78e98da029cf21400eb"
+    },
+    {
+      "path": "tests/selection_pcie/test_pcie_selection_probe.py",
+      "size": 3434,
+      "sha256": "df2dcfcf390f9dc65c887dc6223f6cb6d3b1a8742b1a5b8733fbe91c3d6bbcd6"
+    },
+    {
+      "path": "tests/u01/fixture-oracles.md",
+      "size": 2224,
+      "sha256": "306f76124a6d273f0fba73cdde3d7e696afff4f0f1caacdab1c1322eb452e62a"
+    },
+    {
+      "path": "tests/u01/test-u01-host.ps1",
+      "size": 2860,
+      "sha256": "8af43e4259fb0c0e7f22a143a2d18b0cc08dbe424f45c3d6d526e4ca02f09db9"
+    },
+    {
+      "path": "tests/u01/test_u01_selection.py",
+      "size": 10622,
+      "sha256": "fc2c9af91e100f141ac72086950b02cc1bc2ce2ea0b94d0e60504ea6350cc8a9"
+    },
+    {
+      "path": "tests/usb_fields/fixture-oracles.md",
+      "size": 1626,
+      "sha256": "d5343a2c1f13f18f37ca0d7b5fb58648fc52427d944d31c9db1d8d8afc88e4e0"
+    },
+    {
+      "path": "tests/usb_fields/test_usb_field_probe.py",
+      "size": 7454,
+      "sha256": "827e8b2e2f25bcdf6ac6baf274c5ff83543418772f60dfdc5eba145f51bc5968"
+    },
+    {
+      "path": "tools/pcie_selection_probe.py",
+      "size": 7839,
+      "sha256": "d4443bfd55f31db02b22a9c73da74e0fe9462156f19588e8eb97fb5a705386eb"
+    },
+    {
+      "path": "tools/run-u01-selection.ps1",
+      "size": 6433,
+      "sha256": "8792703c0fecd611b83bd66ae39499d30f22da4e0602f6ab59b0f00678555004"
+    },
+    {
+      "path": "tools/run-usb-field-probe.ps1",
+      "size": 4609,
+      "sha256": "699884ca44d6a3b07038de24811992bdfffb808e57112c3840c51002269c7a09"
+    },
+    {
+      "path": "tools/s01_contract.py",
+      "size": 25362,
+      "sha256": "dd540dc48f0e6653ae71397034b5084a14be4463cf3f8e4837908ebd2858e5ef"
+    },
+    {
+      "path": "tools/u01-selection-host.cs",
+      "size": 8054,
+      "sha256": "d3bc274078a9f259ab8d42daa342ab87d36c3a2acee6fe4b06c3680186558884"
+    },
+    {
+      "path": "tools/u01_selection.py",
+      "size": 16404,
+      "sha256": "a589f6e4b60fe2dea854673cd1003025fea042304967dfc91c09e8c65507fffa"
+    },
+    {
+      "path": "tools/usb_field_probe.py",
+      "size": 15818,
+      "sha256": "d102a9f5397b5591cc40725ce907cd48a322837b9be53ab81a65d4080fc1f25a"
+    },
+    {
+      "path": ".gitattributes",
+      "size": 340,
+      "sha256": "4e3394abd0e3f3d532c71867f33d9c40aed5751f26003a8ca0f2877a823d3c20"
+    },
+    {
+      "path": ".github/workflows/governance-drift.yml",
+      "size": 962,
+      "sha256": "d2667fe13d95e7e1f8629b2c18168d8659bacf565904b968275b1f71e916ce88"
+    },
+    {
+      "path": ".gitignore",
+      "size": 1130,
+      "sha256": "c1ca20c9933e3a560ac7d19bda693e67aad7144cde8e94acec7a327fc23a40f5"
+    },
+    {
+      "path": ".governance-payload-config.yaml",
+      "size": 500,
+      "sha256": "2b3c60df245bb0adc46baa149dafe021c3b395798798d8f3cf0ac27332c6cbf3"
+    },
+    {
+      "path": ".governance/baseline.yaml",
+      "size": 3444,
+      "sha256": "93e1cd18e04acbac3e0f022511bd81d870429d9df4b11b5a5c44e542222e9bc7"
+    },
+    {
+      "path": "AGENTS.base.md",
+      "size": 7856,
+      "sha256": "8439045a55c71f18402c866a5659903cd465635cb4fed34c0ec0fdc92e69c906"
+    },
+    {
+      "path": "AGENTS.md",
+      "size": 22653,
+      "sha256": "734f4e416acb91354ee629afebdb8ac02e4a4eef9a3d228581f8fe72aec5f6d2"
+    },
+    {
+      "path": "PLAN.md",
+      "size": 95523,
+      "sha256": "bc7e90d0bef95a4a97cff022f9cd15f2c59a87af15e6d2c5c3b4455cec173234"
+    },
+    {
+      "path": "README.md",
+      "size": 10438,
+      "sha256": "cd35170de4459ece7172f85e02738b81c6afe9f02db86762ff51554635226ac1"
+    },
+    {
+      "path": "artifacts/evidence/memory-reconciliation-20260911-v2.json",
+      "size": 1179,
+      "sha256": "71f59fc6471a49277b105c91ebc7fa671ede80ce8380122bada891d4fbba3c8f"
+    },
+    {
+      "path": "artifacts/evidence/memory-reconciliation-20260911-v2.txt",
+      "size": 40,
+      "sha256": "53223e2f2fda3845bcd9681ca583e235a4d0364afe4ca7b019bf9498aee7acfc"
+    },
+    {
+      "path": "artifacts/evidence/pcie-a1-com-20260914/run1/a1-probe-result.json",
+      "size": 3244,
+      "sha256": "6b881d06772dc08044051b2af0af0be3b9575aa3107a9c3e76782dc5e0e847a8"
+    },
+    {
+      "path": "artifacts/evidence/pcie-a1-com-20260914/run1/com-vse-report-lines.json",
+      "size": 679,
+      "sha256": "b3afd8a2ee092c1d96e8d983339f7da89636d511d5e3682d641ca0d56b75c059"
+    },
+    {
+      "path": "artifacts/evidence/pcie-a1-com-20260914/run1/com-vse-report-lines.txt",
+      "size": 604,
+      "sha256": "3b6c063345aa1a3ea2e1b9f803cfabe90b612b91b7d3f57c3d572c3be4c9a7a9"
+    },
+    {
+      "path": "artifacts/evidence/pcie-a1-com-20260914/run2/a1-probe-result.json",
+      "size": 3299,
+      "sha256": "42ef08adc35ba181124cd25794117506752fbf6e11ae9809e610a0972c2e537a"
+    },
+    {
+      "path": "artifacts/evidence/pcie-a1-com-20260914/run2/com-vse-report-lines.json",
+      "size": 679,
+      "sha256": "b3afd8a2ee092c1d96e8d983339f7da89636d511d5e3682d641ca0d56b75c059"
+    },
+    {
+      "path": "artifacts/evidence/pcie-a1-com-20260914/run2/com-vse-report-lines.txt",
+      "size": 612,
+      "sha256": "6218b99e16f3c4b5affa72f30f417b531187adc21af9dedac822abc7c40d9efe"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1a-hang-20260914/com-run1/NOTE.md",
+      "size": 1495,
+      "sha256": "d3e98d5c2b343aae9761ee426a6d8e66c013dd7c7cb8d9b296a5d1faebea2956"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1a-hang-20260914/com-run1/com-run.json",
+      "size": 3435,
+      "sha256": "d45c992abf375c3ea75edab2e8748fa8a8b69a90f0ef7d1c57bc244ee645651e"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1a-hang-20260914/com-run1/report-lines.json",
+      "size": 958,
+      "sha256": "8295dfe1acc67d525a58ed8c76938e285c7fb394efe8a6508d8f2a1a2ebd9564"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1a-hang-20260914/com-run1/vse-output.txt",
+      "size": 883,
+      "sha256": "6308687f098721e14ae2894e85723f3abdc3d416bdf82fa4dc99d945a6112bff"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1a-hang-20260914/com-run2/com-run.json",
+      "size": 3420,
+      "sha256": "38e3dad9685d56359d1fa8d61d6bb5492b692778610d6bcde01ca41538b3a536"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1a-hang-20260914/com-run2/export/records.json",
+      "size": 42120,
+      "sha256": "64b27d0c3a28df0e6103b8c69c9a078ecaf2cf20984b6c0805152aa54295d2fd"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1a-hang-20260914/com-run2/export/summary.json",
+      "size": 1600,
+      "sha256": "d89f9308f857b101275383eeb77531866fb7dee10b3b4c5ab2e05b1b3c388fbf"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1a-hang-20260914/com-run2/report-lines.json",
+      "size": 17273,
+      "sha256": "4692cdaa2de307d3bedb7f87d5772cfdd3e1634f134a74ae24515f351d8f28bc"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1a-hang-20260914/com-run2/vse-output.txt",
+      "size": 15631,
+      "sha256": "77e20987d70d2ea37869d36dfb01f2882c843f0f788cd768c40a5d61c2c2fa0d"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1b-hang-20260914/b1b0-constants/com-run1/com-run.json",
+      "size": 3416,
+      "sha256": "94a068b448572834de4a45ef2252eccf7d3c0ef4d2e8490b2c3dde29e21903c2"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1b-hang-20260914/b1b0-constants/com-run1/report-lines.json",
+      "size": 3021,
+      "sha256": "4bd74f98415e2430f62b646ba1443902571790517427e33038364194cf3397d2"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1b-hang-20260914/b1b0-constants/com-run1/vse-output.txt",
+      "size": 2694,
+      "sha256": "7374ebcfb851225470067adcbac7a67ae74516b01278f813fcdfcc50df8bbbbe"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1b-hang-20260914/b1b0-constants/export/constants.json",
+      "size": 1658,
+      "sha256": "f072f921d2bdadd0f551979e6247cfab43d7de9333e08c44e90ea3b1444be4f3"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1b-hang-20260914/b1b0-constants/export/summary.json",
+      "size": 153,
+      "sha256": "fb6b624de8eb963f2f60628d9c1c6b397660bab8cda7bb69fe7d3e2a9bc2d71a"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1b-hang-20260914/decoded-b1a-samples.json",
+      "size": 51395,
+      "sha256": "0e9ff2c4eec6d5fb9ef07dd313d92033a32ca9500b2a956ca993d3c2a59acef1"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1b-hang-20260914/window-export.runner.log",
+      "size": 1486,
+      "sha256": "d2ecc0f86a706f900663bc718a51041cf55181647f3da835f30170608a464422"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1b-hang-20260914/window-export/com-run1/com-run.json",
+      "size": 3427,
+      "sha256": "3f5afe67318f90cefac93f1cd74b4ad51ee8326619bf1b735f726113ed1a560a"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1b-hang-20260914/window-export/com-run1/report-lines.json",
+      "size": 8447,
+      "sha256": "0ca1fb2080ceeb7da050546da2e8e9630b36152662186f3994e63b590e30c7f2"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1b-hang-20260914/window-export/com-run1/vse-output.txt",
+      "size": 7670,
+      "sha256": "e6976e9f9a4f3566c578fbabed453bd51eb99ab55a7a6a747cb1f03ffb185e6f"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/summary.json",
+      "size": 779,
+      "sha256": "3f7bb24b33366b891efa941a797481a3b5c0634d68b0096b3cdc38f05593dced"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json",
+      "size": 32752,
+      "sha256": "d612f674b9f10a620d98afe1a7823f8c852ec5beb9254c5e7841628a89c7ff41"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1c-hang-20260915/training.json",
+      "size": 20431,
+      "sha256": "da826c602b21354bdce8d5266e718003c4f2048f4c099290bca9c027b1c02e4e"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1c-hang-20260915/training.md",
+      "size": 6628,
+      "sha256": "9cf90f46f53928d40bff644f7f4bbd1b0201e3c3425dd3ff0e0964ea09863c8c"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json",
+      "size": 26876,
+      "sha256": "161fcf9ef28e78d4eaae7bcb6381a8aec8a19587fd37964b7b854e8fb366fbd3"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1c-r1-hang-20260915/training.md",
+      "size": 10585,
+      "sha256": "4372689908afe578de14b1917ebc7ff7e93ff176782013b22986bd183ed6f56c"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1c-x1x3-hang-20260915/gui-observations.json",
+      "size": 2477,
+      "sha256": "1d6a2d7448af00e69b87f7de7d9403e6658ae743d573cc6a4d0290f2f9049566"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1c-x1x3-hang-20260915/gui-pkt-1096918.png",
+      "size": 772041,
+      "sha256": "76992a5a70d9d86e293a3fc35238a84dbbe12e72049581d6d8124c77206b1e06"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1c-x1x3-hang-20260915/gui-pkt-1479760.png",
+      "size": 762621,
+      "sha256": "ff67b5163ebd2bb8016434a59e4c82247b9a7845713fe7cc667ac2d5a7aa23ba"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1c-x1x3-hang-20260915/gui-pkt-1479761.png",
+      "size": 787819,
+      "sha256": "5274a30bcaeff0aafa6ea6698337c4d149de3253c2740b46252aa0231496c898"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1c-x1x3-hang-20260915/gui-pkt-225041.png",
+      "size": 679057,
+      "sha256": "4c7c7508c88ff31ed0ae3341e3e4d76ac94356cbd41203db6d194a61eb21c40b"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1c-x1x3-hang-20260915/gui-pkt-990799.png",
+      "size": 758341,
+      "sha256": "9a64bd520d8bc9b7c772c7e397ee552e6f86eae5873ac10e32cb4036274bd6b6"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1c-x1x3-hang-20260915/gui-ready.png",
+      "size": 715522,
+      "sha256": "6a6686ae336c2dd75ec5ea8038190a1da397bea40eadb4e35e18901ecd39de28"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1c-x2-hang-20260915/com-run1/com-run.json",
+      "size": 3440,
+      "sha256": "bbfd41b0b2408effe928b5610bc99f8a09fddc1bf02a863340d7ca610b4423d0"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1c-x2-hang-20260915/com-run1/report-lines.json",
+      "size": 10692,
+      "sha256": "0831854f3a1748b0c62c0e5fafd16f6f2ea65abbc49fc5786863ccf0109fe7d9"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1c-x2-hang-20260915/com-run1/vse-output.txt",
+      "size": 9525,
+      "sha256": "57fd808ba30636bf29b567840f5fb61f2dc75374a0d2ff2599396bf9f1ac8c36"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1c-x2-hang-20260915/export/haserrors.json",
+      "size": 9555,
+      "sha256": "84bf5f768d986558e942caf36e685c2b7d0589a2e319d993c972196248f6b9bf"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1c-x2-hang-20260915/export/summary.json",
+      "size": 1625,
+      "sha256": "77c0633cf1741b138966ba4d9aecd89f276d7649985c68329d3d7104ab637fd7"
+    },
+    {
+      "path": "artifacts/evidence/pcie-b1c-x2-hang-20260915/runner.log",
+      "size": 1498,
+      "sha256": "58da32b750c50f7af7e6d0ffd9a6d725bea9a03a40ff0e1bbe3d0ae49274b96f"
+    },
+    {
+      "path": "artifacts/evidence/pcie-d1e-20260912/b-extraction-result.png",
+      "size": 27987,
+      "sha256": "3c5b91f4f02c05cc4f96e04653d4b7b5a77268f438d7f32f54b9f566929d43cd"
+    },
+    {
+      "path": "artifacts/evidence/pcie-d1e-20260912/b-goto-dialog.png",
+      "size": 99002,
+      "sha256": "6e3c9312209ed4fa83b6de787bb36a7756817c35834b54319dd8e220a47dbd71"
+    },
+    {
+      "path": "artifacts/evidence/pcie-d1e-20260912/b-ready.png",
+      "size": 78352,
+      "sha256": "6e3f047dbc5c281ab98b9c822b9b85be7748a95d02e20bce1b3f2a487ca0ce73"
+    },
+    {
+      "path": "artifacts/evidence/pcie-d1e-20260912/b-save-result.png",
+      "size": 29173,
+      "sha256": "5b72273dac7ef5c3f9715db8c2e03ddbeebe3d5ded0c247849425052bc7d4063"
+    },
+    {
+      "path": "artifacts/evidence/pcie-d1e-20260912/b-vendor-output.log.txt",
+      "size": 941,
+      "sha256": "eef7bc8ba228cf389ebc5710e72fc58267cba033994f33af60677cfc8a8efc75"
+    },
+    {
+      "path": "artifacts/evidence/pcie-d1e-20260912/b-vse-list.png",
+      "size": 22646,
+      "sha256": "e4dd2ce236d06c29a7ca379d6568e033992780a51e5d5f4db3bfa37cbfe12607"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g1a-20260914/g1a-ready.png",
+      "size": 582998,
+      "sha256": "39b808b812813037a0f127fc19ad70575e20aef15cf8c6554917d15153672939"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g1a-20260914/g1a-result.png",
+      "size": 174002,
+      "sha256": "ce3c5244ef8e845c48fc6200e40306744f861c453510e4e1aa0043e584db5e8b"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g1a-20260914/g1a-vendor-saved-output.log.txt",
+      "size": 760,
+      "sha256": "c1b551461f30fd5fe863de8bf0b95de68f7028a6972ddca0f1dde99e14a17a39"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g1b-20260914/g1b-run1-ready.png",
+      "size": 764356,
+      "sha256": "1d68a4dcf848fd0444726477c02d6ff0e6966ee2b2138da62a669db2ad8d0f5a"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g1b-20260914/g1b-run1-result.png",
+      "size": 224369,
+      "sha256": "3c05d64916c88bde85f65acd8d8ded8a5c69143f71b45e044465f1befcc87867"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g1b-20260914/g1d-run2-ready.png",
+      "size": 762304,
+      "sha256": "6ed7b9f72f23657e31a6ee86798d7ce1f9dfb4a1e87bb96f6faa445d81b798e5"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g1b-20260914/g1d-run2-result.png",
+      "size": 219098,
+      "sha256": "38c7933676cb2d1f32111d2cf5e54b1eb865e041af08d8e53dcb6bf3c3741d21"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g1b-20260914/gui-row469-pkt-2097003.png",
+      "size": 659825,
+      "sha256": "5f4c29f2b15a89164ac9e35383de27e52d57de6297a202035ca9b5d78c2f4665"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g1b-20260914/gui-row938-pkt-2121703.png",
+      "size": 575711,
+      "sha256": "b8826a578f21d82a9a3907022c5ab624e7562c6f99ad77453688303ec7457eba"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g1b-20260914/run1-export/rows.json",
+      "size": 132669,
+      "sha256": "a5398fb6863f63cc44d809eff2884e3eece53d551b1fca18414238c5ee0c12d6"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g1b-20260914/run1-export/rows.tsv",
+      "size": 39880,
+      "sha256": "0028cc8d65948f0bcbf4149a7f50328dc815bddb1b944f4684ce88f1ee45d3b8"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g1b-20260914/run1-export/summary.json",
+      "size": 1808,
+      "sha256": "ca1197c43a854e790bf66b491807d6e85ae8f1a712bd9cab0412008205afa764"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g1b-20260914/run1-g1b-tlp-rows-1k.log.txt",
+      "size": 51891,
+      "sha256": "e5d5fd93a7f6f53ee933daa0211f15b84e82035d494dedb5d7468dcc6848f37a"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g1b-20260914/run2-export/rows.json",
+      "size": 132669,
+      "sha256": "a5398fb6863f63cc44d809eff2884e3eece53d551b1fca18414238c5ee0c12d6"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g1b-20260914/run2-export/rows.tsv",
+      "size": 39880,
+      "sha256": "0028cc8d65948f0bcbf4149a7f50328dc815bddb1b944f4684ce88f1ee45d3b8"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g1b-20260914/run2-export/summary.json",
+      "size": 1808,
+      "sha256": "51a95169aacbdd3b08a329f0dea799948f461f24ce43bb21b6a488a90ce0aae4"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g1b-20260914/run2-g1b-tlp-rows-1k.log.txt",
+      "size": 51891,
+      "sha256": "902a9a97b3f52fad45d6dba2885f3b77dfb605ab8a60ad54757c6ee7be73ee51"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g2a-20260914/export/fields.json",
+      "size": 158492,
+      "sha256": "fa64728d3023df8c476fe858b3c39568e04d3313714edced944bef0fc9d5bb79"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g2a-20260914/export/fields.tsv",
+      "size": 43940,
+      "sha256": "0d759b8eee1b0f5d896ddcfd9893369e932e9a119fd0189b1876175885384732"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g2a-20260914/export/summary.json",
+      "size": 7283,
+      "sha256": "8eb8c1ea5291d006b6fef7f2243492a338e466d5851422c3425758f7420647cc"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g2a-20260914/g2a-run1-ready.png",
+      "size": 762515,
+      "sha256": "33fcf5a20c1d59921132d543cc9c19c63d5bd6d75a4432ad6e0c25948d06b3d6"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g2a-20260914/g2a-run1-result.png",
+      "size": 228230,
+      "sha256": "952e3da4f9e650f0716f0ee93b99c5418080d92713dae601a6e1086e0af06b1f"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g2a-20260914/g2a-tlp-fields.log.txt",
+      "size": 61875,
+      "sha256": "fa7a93ef0b61dba9d9e2ff3cdf8212c4910f63a987a4397ed269c09dd1dfca72"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g2b-20260914/associations.json",
+      "size": 250447,
+      "sha256": "bdf7d1c20a4948e2497fc6c8f4a8ae6a5491d9ce9d1d162365c3696b41139a12"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g2b-20260914/associations.tsv",
+      "size": 31485,
+      "sha256": "6e1b9419ca41aa2d2b80409b600d60cd5ab62aaab28b5f0c11b9776dbe439627"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g2b-20260914/gui-split/crosschecks.json",
+      "size": 1403,
+      "sha256": "151febc497c4311c44c33d5ea3b08504429fde0b783500c52e2412518c49940a"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g2b-20260914/gui-split/split-view-pkt-1945000.png",
+      "size": 781446,
+      "sha256": "21c3bc2c159504aa024057cc70c9321f2de2c82d810f4c1ddf9b66344fa06466"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g2b-20260914/gui-split/split-view-pkt-1945005.png",
+      "size": 757522,
+      "sha256": "70e1127f398c5ef97a0d7e9be596a9d1d3dfc7b5aa42a649028ca563a06c705a"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g2b-20260914/gui-split/split-view-pkt-2093080.png",
+      "size": 714623,
+      "sha256": "78314a1743050828a58cab7dc61973c38b8d2828b2b6d600ba0672224a94bbbd"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g2b-20260914/gui-split/split-view-pkt-2093086.png",
+      "size": 681254,
+      "sha256": "e8e5f89c114ad67cef710cef0345f5e609f741ee46abd43413b9b9f9658580da"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g2b-20260914/orphan_completions.json",
+      "size": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g2b-20260914/roles.json",
+      "size": 156388,
+      "sha256": "556f9f838f1e0295cf6b71ea00b9dd5c2c82a9cc0d7964f202f63bc29a76f7b8"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g2b-20260914/summary.json",
+      "size": 3705,
+      "sha256": "16018365b62482c3b57ef6029b1f82993f95dd2cf358a2ea11627582ef5da943"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g3-20260914/candidates.json",
+      "size": 45146,
+      "sha256": "290fde9569356cbe73b21735af261dcc59fb5ebc4563e4a87de12ecf4c2f181e"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g3-20260914/candidates.tsv",
+      "size": 3400,
+      "sha256": "2b68c917d45c17370d899650684821ebde93e4a472cfbb7836367689b37a731f"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g3c-20260914-v1-rowonly/nearby_messages.json",
+      "size": 45413,
+      "sha256": "1ea4315e9fff24225772aba4b86cd2540c0782ecf85253573a47d3d58b676abc"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g3c-20260914/nearby_messages.json",
+      "size": 45788,
+      "sha256": "9e9ac2ef885687356ade17d6db79a7d33475ecd7ba0078fe730b0a811d608ef3"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g3c0-20260914/export/messages.json",
+      "size": 661,
+      "sha256": "08a7307f029e2bb55ec9419ee694ed97eaa1518112ac1c9e288e2ae9d57e1754"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g3c0-20260914/export/summary.json",
+      "size": 1582,
+      "sha256": "65e6691aa5d413bfc5386e17cef9e3787c9ea92a7f633ec606e8eec54502e67c"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g3c0-20260914/g3c0-msg-fields.log.txt",
+      "size": 927,
+      "sha256": "fb1a2b1d32f74dabb0be66ca5d96955e1448d1384d54255976c12309a73f3f8f"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g3c0-20260914/g3c0-run1-ready.png",
+      "size": 772097,
+      "sha256": "1b149d64cdaced0be4488528e51d3081f90283565ec73b548399770aaf9ecc2d"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g3c0-20260914/g3c0-run1-result.png",
+      "size": 178996,
+      "sha256": "cea67d28453d34b81e7248d19a5dcc9ba25b4e264c6264dffc6b521e76105222"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g3d-20260914/contexts.json",
+      "size": 561279,
+      "sha256": "8c3d00ffef860f44d171a9e96437d3f36eb4a760b9e075af6818c323a280d74d"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g3e-20260914/groups.json",
+      "size": 38706,
+      "sha256": "8d6632799c332de6d8f3b4c992fd13af95f9a111f6c5a65b5956b6f77c5afb3c"
+    },
+    {
+      "path": "artifacts/evidence/pcie-g3f-20260914/findings.json",
+      "size": 100602,
+      "sha256": "b36283941560512b24a25c2db6333af9a8e4fe8fffc76b9baa35dce581b02936"
+    },
+    {
+      "path": "artifacts/evidence/pcie-p4-20260912/legacy-format-update-prompt.png",
+      "size": 13595,
+      "sha256": "6f3c87561c816b1216f7e22cdb490b58079355231b6b5b34cab3abe28a61451f"
+    },
+    {
+      "path": "artifacts/evidence/pcie-p4a-hang-20260914/g1a/g1a-vendor-saved-output.log.txt",
+      "size": 757,
+      "sha256": "5eec8ca9e128187c71e42aff69d6d9cc40af07d1862348c03fc5d6f03c38b1be"
+    },
+    {
+      "path": "artifacts/evidence/pcie-p4a-hang-20260914/g1a/p4a-g1a-ready.png",
+      "size": 715416,
+      "sha256": "899b032d886ad96f929bdc96d0354962125fa6eb419e6e83b7cffaf5ea341d94"
+    },
+    {
+      "path": "artifacts/evidence/pcie-p4a-hang-20260914/g1a/p4a-g1a-result.png",
+      "size": 168056,
+      "sha256": "0527e17423fb4d374d5c6aa68c59a4b76ba61ad20c0f93896c02b4aa2f6edc0a"
+    },
+    {
+      "path": "artifacts/evidence/pcie-p4a-hang-20260914/g1b10k/export/rows.json",
+      "size": 98419,
+      "sha256": "0e665bb1168479daaac76fe9633736dc19e3fc765f55a378a9cce98d66e063d8"
+    },
+    {
+      "path": "artifacts/evidence/pcie-p4a-hang-20260914/g1b10k/export/rows.tsv",
+      "size": 28796,
+      "sha256": "4858bacd8adc475a739af171115f39da91623b9af63ac36a2a83b6d861dbcb2d"
+    },
+    {
+      "path": "artifacts/evidence/pcie-p4a-hang-20260914/g1b10k/export/summary.json",
+      "size": 1790,
+      "sha256": "f8cbe7edadf31770e10077c6ed63c7a8c58db7a8c7c979e1b650562a2190d991"
+    },
+    {
+      "path": "artifacts/evidence/pcie-p4a-hang-20260914/g1b10k/g1b-tlp-rows-10k.log.txt",
+      "size": 38000,
+      "sha256": "9cee4679291418b450767da457618531d3ffbcfcb7e6c0aceae8f804663f167c"
+    },
+    {
+      "path": "artifacts/evidence/pcie-p4a-hang-20260914/g1b10k/p4a-g1b10k-ready.png",
+      "size": 715522,
+      "sha256": "6a6686ae336c2dd75ec5ea8038190a1da397bea40eadb4e35e18901ecd39de28"
+    },
+    {
+      "path": "artifacts/evidence/pcie-p4a-hang-20260914/g1b10k/p4a-g1b10k-result.png",
+      "size": 218428,
+      "sha256": "32a70ab5bcebd2a0410f40c6f3b9cb9edb82415d9585084f570ae3e57e60123c"
+    },
+    {
+      "path": "artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json",
+      "size": 117923,
+      "sha256": "dfc6fc2540b242a549d9f0cc84c1f9fa7c2385f8df620a2fed0b01530657acbc"
+    },
+    {
+      "path": "artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.tsv",
+      "size": 31807,
+      "sha256": "a2d5a409095b38c0ca36e50ee50be6ef9847b8122b29aed32f08b98d9ba79328"
+    },
+    {
+      "path": "artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/summary.json",
+      "size": 6572,
+      "sha256": "eec42eef54c6118f5c66db7c26afb2b71876a32f8b1aad4f254b8c0882c09090"
+    },
+    {
+      "path": "artifacts/evidence/pcie-p4a-hang-20260914/g2a/g2a-tlp-fields.log.txt",
+      "size": 45321,
+      "sha256": "ff34b520a07c3b6f193fb7e78438a2691061d745339f63c976328c5f35869f4d"
+    },
+    {
+      "path": "artifacts/evidence/pcie-p4a-hang-20260914/g2a/p4a-g2a-ready.png",
+      "size": 715522,
+      "sha256": "6a6686ae336c2dd75ec5ea8038190a1da397bea40eadb4e35e18901ecd39de28"
+    },
+    {
+      "path": "artifacts/evidence/pcie-p4a-hang-20260914/g2a/p4a-g2a-result.png",
+      "size": 224424,
+      "sha256": "591901427233236a7e4ddba2f863b819d14e2477aa96c69f4a21aa8e61005bd6"
+    },
+    {
+      "path": "artifacts/evidence/pcie-p4a-hang-20260914/g3c0/export/messages.json",
+      "size": 662,
+      "sha256": "f5b4f1226ca023d617c3fb695e0c772e1fb8ff5eb463393bf4c4617e88e96a12"
+    },
+    {
+      "path": "artifacts/evidence/pcie-p4a-hang-20260914/g3c0/export/summary.json",
+      "size": 1583,
+      "sha256": "cb8bddd7576c8124d5b922be81121d753e1106b081a886cfa46af3c527030105"
+    },
+    {
+      "path": "artifacts/evidence/pcie-p4a-hang-20260914/g3c0/g3c0-msg-fields.log.txt",
+      "size": 924,
+      "sha256": "8cfd82f8194ccfd75188ad082b5847b998b7d6a10d9f2f8c2bae759f1bc74dde"
+    },
+    {
+      "path": "artifacts/evidence/pcie-p4a-hang-20260914/g3c0/p4a-g3c0-ready.png",
+      "size": 715522,
+      "sha256": "6a6686ae336c2dd75ec5ea8038190a1da397bea40eadb4e35e18901ecd39de28"
+    },
+    {
+      "path": "artifacts/evidence/pcie-p4a-hang-20260914/g3c0/p4a-g3c0-result.png",
+      "size": 177243,
+      "sha256": "64492fc23d3204156cdfcbb48e0e327c9b941f4591f93db504d175124a0a73fe"
+    },
+    {
+      "path": "artifacts/evidence/pcie-runtime-20260912/b1-navigation.png",
+      "size": 89333,
+      "sha256": "7231fbaaeb61dfc69b8dc8d61029f2452f5737cef714f397b574bf4cc6957148"
+    },
+    {
+      "path": "artifacts/evidence/pcie-runtime-20260912/b1-ready.png",
+      "size": 82006,
+      "sha256": "a8314f9b7988df1a5541ff915a9970dec0fb4c85fbe23fc72cd5f288885e301d"
+    },
+    {
+      "path": "artifacts/evidence/pcie-runtime-20260912/b2-entry.png",
+      "size": 24523,
+      "sha256": "e677848a7fdff0bb15f9f58ef8514fdd4db6a001a338a1194d4995c3ad323104"
+    },
+    {
+      "path": "artifacts/evidence/pcie-runtime-20260912/b2-tools-menu.png",
+      "size": 89443,
+      "sha256": "853dedd1bc2eec3f324a40dad83ea230fbde149e97da768ec7dfe2e72bb780ad"
+    },
+    {
+      "path": "artifacts/evidence/pcie-runtime-20260912/b3-result.png",
+      "size": 27787,
+      "sha256": "cb0f26033ad732becf9b46d26c87c70ac0415318ce754e10147eb79987f86248"
+    },
+    {
+      "path": "artifacts/evidence/pcie-runtime-20260912/b3-run.png",
+      "size": 30779,
+      "sha256": "2074c20c4eba9a057f6181d7b0fc16922093560ed23542420cef12b29c768f19"
+    },
+    {
+      "path": "artifacts/evidence/pcie-runtime-20260912/b3-selected.png",
+      "size": 24139,
+      "sha256": "365a635ecc01d65290d5f0582a6e4c43c40d7169523e50e8da710200d17336d1"
+    },
+    {
+      "path": "artifacts/evidence/pcie-runtime-20260912/b4-entry.png",
+      "size": 24398,
+      "sha256": "c12327df327ae8d65f97096e4ae707dc13ad1c218a9cf69dafb060d2b1d0002e"
+    },
+    {
+      "path": "artifacts/evidence/pcie-runtime-20260912/b4-navigation.png",
+      "size": 89399,
+      "sha256": "acdfd1bdb1845bc5f622d89e5a3b3bef76ec32e2d5c3cd7dd8a77c537ce426b7"
+    },
+    {
+      "path": "artifacts/evidence/pcie-runtime-20260912/b4-ready.png",
+      "size": 82315,
+      "sha256": "0ff3287bbd326a3e237a9e39472187fd949dc83ef94ee6e74de35118373ca3ab"
+    },
+    {
+      "path": "artifacts/evidence/pcie-runtime-20260912/b4-result.png",
+      "size": 27721,
+      "sha256": "8c47a6cd8b0b854fb1b90a276831da68e7437afa64e147259f6d12b250e3bdac"
+    },
+    {
+      "path": "artifacts/evidence/pcie-runtime-20260912/b4-running.png",
+      "size": 32030,
+      "sha256": "b795caf0f48a9bddabc8794afafb85e254a1f9e7e368dab132bd65b1111b17e0"
+    },
+    {
+      "path": "artifacts/evidence/pcie-runtime-20260912/c1-before-retry.pevs.txt",
+      "size": 459,
+      "sha256": "cd8d0406684d244badf265b27625da00f5811e2d4f0bac04bcc7547ab79bdecf"
+    },
+    {
+      "path": "artifacts/evidence/pcie-runtime-20260912/c1-ready.png",
+      "size": 78841,
+      "sha256": "09f6b8e57071e4836b09290fbfda8ab6c6026f2e79eb9f2094803cd7d8b67d8e"
+    },
+    {
+      "path": "artifacts/evidence/pcie-runtime-20260912/c1-result.png",
+      "size": 26330,
+      "sha256": "6a89932b6dca1368336e9103371a026aa982a162a5d5fed15d59b6f5cd3816f8"
+    },
+    {
+      "path": "artifacts/evidence/pcie-runtime-20260912/c1-retry-loaded.png",
+      "size": 79179,
+      "sha256": "4af0fb2531294e951a1e93de18932cdb388d10450cfe0f79832b5c0bebf40065"
+    },
+    {
+      "path": "artifacts/evidence/pcie-runtime-20260912/c1-retry-result.png",
+      "size": 26663,
+      "sha256": "93a98e2fc1503349206aa6477faf01bbfe40b2dd2e4bdd2c2ad39441de5ff349"
+    },
+    {
+      "path": "artifacts/evidence/pcie-runtime-20260912/c1-retry-selected.png",
+      "size": 23566,
+      "sha256": "093171a67696941ff72298be62b70b8fd2edcea1f2981b90f1b3b64a1a3c2fc2"
+    },
+    {
+      "path": "artifacts/evidence/pcie-runtime-20260912/c1-selected.png",
+      "size": 22806,
+      "sha256": "fba95a9c7a33cadd0a07ebf8af27213badcb9f625d595786272521aeedab8886"
+    },
+    {
+      "path": "artifacts/evidence/pcie-staircase-20260912/c1b-before.pevs.txt",
+      "size": 482,
+      "sha256": "dff053b3eb56033115ab1a52b4e536d7bd056cb26864ddb5c9f430c1c8d2e36a"
+    },
+    {
+      "path": "artifacts/evidence/pcie-staircase-20260912/c1b-result.png",
+      "size": 25886,
+      "sha256": "07682e864bbbed77356ca85dba11d9be02c5ac2d364e995c283304b6f1d4fc8e"
+    },
+    {
+      "path": "artifacts/evidence/pcie-staircase-20260912/c1b-selected.png",
+      "size": 23566,
+      "sha256": "093171a67696941ff72298be62b70b8fd2edcea1f2981b90f1b3b64a1a3c2fc2"
+    },
+    {
+      "path": "artifacts/evidence/pcie-staircase-20260912/c1d-entry.png",
+      "size": 23488,
+      "sha256": "84d978bf65e2ccceb50442658327418f482ce7dc76cb67d1feb14e1acfed623d"
+    },
+    {
+      "path": "artifacts/evidence/pcie-staircase-20260912/c1d-ready2.png",
+      "size": 79252,
+      "sha256": "941f97963ac621d3afafd406c982324a5a2e06aaeeafda61101732dc6f8a7bc4"
+    },
+    {
+      "path": "artifacts/evidence/pcie-staircase-20260912/c1d-result.png",
+      "size": 25814,
+      "sha256": "b90d565ae61d5dfafeb135d34d5a4840ab4debb54c92b982c577a76416b690f1"
+    },
+    {
+      "path": "artifacts/evidence/pcie-staircase-20260912/c2b-result.png",
+      "size": 25351,
+      "sha256": "a8f0bfa456dc0fa05bf5f8cb209bce6e99566188a9b64278dfef6acb58f86d1a"
+    },
+    {
+      "path": "artifacts/evidence/pcie-staircase-20260912/c2b-selected.png",
+      "size": 22627,
+      "sha256": "d928814f1db3e12c3b5392fa781b1679156141e4ceae4aa566dad266fc26f3cf"
+    },
+    {
+      "path": "artifacts/evidence/pcie-staircase-20260912/c2c-result.png",
+      "size": 25351,
+      "sha256": "a8f0bfa456dc0fa05bf5f8cb209bce6e99566188a9b64278dfef6acb58f86d1a"
+    },
+    {
+      "path": "artifacts/evidence/pcie-staircase-20260912/c2d-result.png",
+      "size": 25702,
+      "sha256": "f6936977887337202b1915cae9eeff62755485b8c46b32ce5ed739bdb2c3ba40"
+    },
+    {
+      "path": "artifacts/evidence/pcie-staircase-20260912/d1-gui-crosscheck.png",
+      "size": 76474,
+      "sha256": "c6fe380483acdb27775168aa91da630f282889dffa1e39cc09c21bc4dff873a0"
+    },
+    {
+      "path": "artifacts/evidence/pcie-staircase-20260912/d1-repeat-result.png",
+      "size": 28526,
+      "sha256": "db9a8a958a1454b4e3bb46dec70e1edb110db6b67811c14d4ceaf167f84d03b9"
+    },
+    {
+      "path": "artifacts/evidence/pcie-staircase-20260912/d1-result.png",
+      "size": 28658,
+      "sha256": "60d1d23ca2c502595b8f0278a7acc25df3923d49183e3a008140b9e41821e149"
+    },
+    {
+      "path": "artifacts/evidence/pcie-staircase-20260912/d1-selected.png",
+      "size": 22687,
+      "sha256": "c16fc8103f4f597fb532e542369f33b2ea38db4414f2dfa3ece9af3079002d10"
+    },
+    {
+      "path": "artifacts/evidence/pcie-staircase-20260912/d1-vendor-saved-output.log.txt",
+      "size": 941,
+      "sha256": "31ef4279896c216f4fa6928d275d5d3388f7fac576a059cf4cbc5926d992eef3"
+    },
+    {
+      "path": "artifacts/evidence/pcie-staircase-20260912/final-closed.png",
+      "size": 9286,
+      "sha256": "4c25f5f1fdd9b4210a01dae883f8b6a942b91e113dfac557455c10e2d448e429"
+    },
+    {
+      "path": "artifacts/reports/pcie-g7-1350-20260914/report-v1.md",
+      "size": 36163,
+      "sha256": "167e04988511c5ba3eed99e0a75e24a6411a7f54d9d9b1e4a7866e59814127d6"
+    },
+    {
+      "path": "artifacts/reports/pcie-g7-1350-20260914/report.md",
+      "size": 36977,
+      "sha256": "f45d70a69418be0d1e831b9eb6d95b900cb8c5963c9c0c2abeaccd05e64be5ca"
+    },
+    {
+      "path": "artifacts/reports/pcie-g8-1350-20260914/report.html",
+      "size": 70732,
+      "sha256": "2fbf90ad974ce82c4f3ba7019b59173a5f4210f027c123cc3005e6ce4fe9a18a"
+    },
+    {
+      "path": "artifacts/reports/pcie-inspection-1350-20260912/observations.json",
+      "size": 5572,
+      "sha256": "e75bf12a05f2c5ba2803ad90e79877ad25efe007b127be71360a959a7119cf22"
+    },
+    {
+      "path": "artifacts/reports/pcie-inspection-1350-20260912/report.html",
+      "size": 7943,
+      "sha256": "d2131f90c8941fa499fefcc7c379ffc74a7d59767a35e49c508992715a2470f8"
+    },
+    {
+      "path": "artifacts/reports/pcie-inspection-1350-20260912/report.md",
+      "size": 4107,
+      "sha256": "f71fdca57dec2c2a35c2d975a7774c02ea655cd2b430f64885fd50fbc825c9f1"
+    },
+    {
+      "path": "artifacts/reports/pcie-inspection-1350-20260913/observations.json",
+      "size": 5572,
+      "sha256": "a96e4218f91fdd0a4702f50eeada6f150a7eb216a9118db84f0ff9c88b36c622"
+    },
+    {
+      "path": "artifacts/reports/pcie-inspection-1350-20260913/report.html",
+      "size": 9924,
+      "sha256": "3e2c1aff69533fc3f75207b2d91488b49c51e4930924699370064060d6f9b05d"
+    },
+    {
+      "path": "artifacts/reports/pcie-inspection-1350-20260913/report.md",
+      "size": 4219,
+      "sha256": "45580ecec2f3e9ec1c21278d50a620575b42b8917a757e9a855ab813dbb1cf39"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/findings.json",
+      "size": 100712,
+      "sha256": "91b38b2da1d0608890ee67b664621e79c3d0adaacdc9ce2c35367df59ec00e37"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/report.html",
+      "size": 70732,
+      "sha256": "b65829e5506fb74192854eee16dc2d7f5a34bce8e02c7f9b639a3040819f501d"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/report.md",
+      "size": 36977,
+      "sha256": "f210191dbdb9e96d38cf721313ada05ebf92cf78165e2d9152021e2521a3027f"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/run-manifest.json",
+      "size": 4624,
+      "sha256": "6a504b7ab22a169c67d62022b77e0623c818d48c1e492c3f6f2739b64eec2474"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/stages/g2b/associations.json",
+      "size": 250447,
+      "sha256": "bdf7d1c20a4948e2497fc6c8f4a8ae6a5491d9ce9d1d162365c3696b41139a12"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/stages/g2b/associations.tsv",
+      "size": 31485,
+      "sha256": "6e1b9419ca41aa2d2b80409b600d60cd5ab62aaab28b5f0c11b9776dbe439627"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/stages/g2b/orphan_completions.json",
+      "size": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/stages/g2b/roles.json",
+      "size": 156388,
+      "sha256": "556f9f838f1e0295cf6b71ea00b9dd5c2c82a9cc0d7964f202f63bc29a76f7b8"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/stages/g2b/summary.json",
+      "size": 3705,
+      "sha256": "16018365b62482c3b57ef6029b1f82993f95dd2cf358a2ea11627582ef5da943"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/stages/g3ab/candidates.json",
+      "size": 45200,
+      "sha256": "02830bdfe41021d51781a755b9a4d990e14edfb9889397b5e33186364b5d921f"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/stages/g3ab/candidates.tsv",
+      "size": 3400,
+      "sha256": "2b68c917d45c17370d899650684821ebde93e4a472cfbb7836367689b37a731f"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/stages/g3c/nearby_messages.json",
+      "size": 45880,
+      "sha256": "fe8f04cdbcb6b76efde78be5f81a612f354256d4f32e2112173d0792e33d1e4b"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/stages/g3d/contexts.json",
+      "size": 561389,
+      "sha256": "d42756322133a3740d443594ddd2bd1e0be201952e8a45f1d5673377050b2b7a"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/stages/g3e/groups.json",
+      "size": 38836,
+      "sha256": "97a307ca65e61abb40448508a8bed9f71bac48128ea23b76c93f89f6048b2c7a"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-1350-20260914/stages/g3f/findings.json",
+      "size": 100712,
+      "sha256": "91b38b2da1d0608890ee67b664621e79c3d0adaacdc9ce2c35367df59ec00e37"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/findings.json",
+      "size": 5141,
+      "sha256": "9fd24165518826726b422804a444cd01e28989ee6ea61c04b1842f10da282bc9"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/report.html",
+      "size": 7945,
+      "sha256": "f34ab05d8b8ef158c72aa91a5212d2efebad7d8e3d0e85f6d2c2e520504c8f46"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/report.md",
+      "size": 3377,
+      "sha256": "158a60234858c05cd589b170297c86b8d3fb2c9b5eec2ac807fa908352d71c36"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/run-manifest.json",
+      "size": 4939,
+      "sha256": "b29fc8c000e389acaaf3a8c5c63af015eb169ee6cf20fc29307e46e1a1d89e1d"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g2b/associations.json",
+      "size": 147976,
+      "sha256": "698712433c670f98de3d427935123ffa616dad67d3771e62296adacd6e2985eb"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g2b/associations.tsv",
+      "size": 15827,
+      "sha256": "fc9c08ecc1ed163705e729812e6ed13b7aacd26f33fe0de1ddf70241c8ba1efb"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g2b/orphan_completions.json",
+      "size": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g2b/roles.json",
+      "size": 113080,
+      "sha256": "07ab7227472e8c5146157ffc78707f3c51f30b3b3299d590b62b781123685f4d"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g2b/summary.json",
+      "size": 3575,
+      "sha256": "828f6dc55f11e238b8ba3e2d7bef5c9c450ad7fed7d94afe908d89e2d4f9ff03"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g3ab/candidates.json",
+      "size": 2474,
+      "sha256": "b7d8b7b483308a826ed250cfb1d25c43e14d5d3ada1b3583b44e4e2e0c57e784"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g3ab/candidates.tsv",
+      "size": 237,
+      "sha256": "b6af84886c5f1aeba74628d85913553fb78b60653cb31547b5bedebe8f3d8917"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g3c/nearby_messages.json",
+      "size": 3925,
+      "sha256": "dc0bf0adad6ac635915b6e5bebb2f3f1b282d8086d49d96b1ab8bbec2f10df80"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g3d/contexts.json",
+      "size": 17104,
+      "sha256": "2ae7f98e343a38f6713691d5abd8fef38b34092574a70fce0a2fc15acb2d5de1"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g3e/groups.json",
+      "size": 2952,
+      "sha256": "56d24133d7e2aa4fdb2283f36e61d9a94e12f7d9e82002adfaa74474e411bd59"
+    },
+    {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g3f/findings.json",
+      "size": 5141,
+      "sha256": "9fd24165518826726b422804a444cd01e28989ee6ea61c04b1842f10da282bc9"
+    },
+    {
+      "path": "artifacts/session-closeout.txt",
+      "size": 37421,
+      "sha256": "c6cb0d5b6ac9fe57a9cda300f5936fdfefea3b2fa8c6f049e272530336338f37"
+    },
+    {
+      "path": "c5-output-20260911-v20/report.html",
+      "size": 35829,
+      "sha256": "2485a3fd834566ffab933fe62429fdcd171b086b3441fea3834e712a9da79345"
+    },
+    {
+      "path": "contract.yaml",
+      "size": 357,
+      "sha256": "b4e3df197d62491b09ee51b2bfb7f3ddb3539283e7dc12cfff14b5815c7d3299"
+    },
+    {
+      "path": "docs/c3-timestamp-fidelity-results.md",
+      "size": 2727,
+      "sha256": "382c111b79aed75e84fcf34a95e9336a291a905cb960f210da775393442ab466"
+    },
+    {
+      "path": "docs/demo-1-pass-fail-results.md",
+      "size": 4540,
+      "sha256": "000893f5a2b31a2dd11fdf78f320e09c9a6bc9c8a29f46b4c5b4176aab53b842"
+    },
+    {
+      "path": "docs/demo-2-integrity-closure-results.md",
+      "size": 2513,
+      "sha256": "591f5e55b5e299b6c741b04a9a14254740b98bca2a3ba2c846561de2eac2f8e8"
+    },
+    {
+      "path": "docs/demo-2-winps-compatibility-results.md",
+      "size": 1641,
+      "sha256": "253759b13d51841d95cb04c552e5b831c812aba2b673191139a26aeb6f2dc714"
+    },
+    {
+      "path": "docs/demo-c2-reliable-anchor-results.md",
+      "size": 2375,
+      "sha256": "b30e58ee071d605ad85259d4c4e0722af1f3f84bb41f37dd16a1a31fd5cefa95"
+    },
+    {
+      "path": "docs/demo-c4-semantic-alignment-results.md",
+      "size": 2745,
+      "sha256": "40de533cb9e580d92186f412993d6cf9bdcb4f8c84d624c3927a77db31232bd4"
+    },
+    {
+      "path": "docs/demo-c5-automatic-triage-results.md",
+      "size": 9117,
+      "sha256": "b4e3ad37f3445a669b9581ddbf6029780907fb6f5f748c45c5f8d47d81f05193"
+    },
+    {
+      "path": "docs/demo-i1-trace-mutation-results.md",
+      "size": 1901,
+      "sha256": "ba7d2e2233ffbfdc0d6cf4e9e3594805e52ed83be892e60d110669f843b24107"
+    },
+    {
+      "path": "docs/demo-i2-source-integrity-results.md",
+      "size": 2420,
+      "sha256": "6eb6c3d16d04412a8ba099707d5693b718914c78aa62b36d9a16e699f0887569"
+    },
+    {
+      "path": "docs/g0-c1-state-authority-results.md",
+      "size": 6769,
+      "sha256": "73dcaf5c71c28f5aa8b6a7a6f1f449629cb54d71356db1c05d3ee0a4a3e679ce"
+    },
+    {
+      "path": "docs/governance-adoption-experiment-2026-09-10.md",
+      "size": 8147,
+      "sha256": "f5ac2fa97872af703a848bb4648c17e02687066c832943bbd0d91920eb909672"
+    },
+    {
+      "path": "docs/governance-adoption.md",
+      "size": 2540,
+      "sha256": "51f3535442a69d65f0c2dcf0611c38bc82d436ac94a5a540c65789c156737d32"
+    },
+    {
+      "path": "docs/lecroy-environment.md",
+      "size": 1719,
+      "sha256": "44abfc5c8cee01bd2657cf7ea272b6f2dcef669e9b009efe25cd750f684d9cef"
+    },
+    {
+      "path": "docs/pcie-a1-com-evidence.md",
+      "size": 4513,
+      "sha256": "690f4023a5981ac95b4f7ae47111a23b6a886e57653cdb6bf206dcc599daf121"
+    },
+    {
+      "path": "docs/pcie-api-discovery.md",
+      "size": 4735,
+      "sha256": "8d15eada7b7d3accc1cb9393736f208fecf0cb1ea4a05184fe71f59b3b6094fd"
+    },
+    {
+      "path": "docs/pcie-b1a-evidence.md",
+      "size": 5338,
+      "sha256": "5dacb61337dc3dba50170daa3d4d7d907483405bbcc5772c8ce4ca6f07392d0b"
+    },
+    {
+      "path": "docs/pcie-b1b-evidence.md",
+      "size": 8007,
+      "sha256": "bf0198841f73525fb4ed9f238d5ae9bf630c95b2ccb43b6a377f4dbb3e6ee076"
+    },
+    {
+      "path": "docs/pcie-b1c-evidence.md",
+      "size": 4057,
+      "sha256": "2cb9cacfc58bf19481e4444fe345b4c881c63d511406a69143f56492636266ba"
+    },
+    {
+      "path": "docs/pcie-b1c-r1-evidence.md",
+      "size": 3483,
+      "sha256": "8962a70c25158871af4aab9df8f893ca042d7379fb42bd9fcd644907478ad6b5"
+    },
+    {
+      "path": "docs/pcie-b1c-x1x3-evidence.md",
+      "size": 3984,
+      "sha256": "55c73a22d68d697453375894c49849369d4166ded30596a97a13ed35f939e2e9"
+    },
+    {
+      "path": "docs/pcie-b1c-x2-evidence.md",
+      "size": 4385,
+      "sha256": "766b52b65d1ddfab12e1c3cb2611aeb2e713a0a6a769b9dec98a1b7fa5c3c805"
+    },
+    {
+      "path": "docs/pcie-engineer-handoff.md",
+      "size": 8140,
+      "sha256": "93a53a302a03235b5bc7b54fb925c2e78b09104fb0ca4afadb202eb9beefce42"
+    },
+    {
+      "path": "docs/pcie-g1a-evidence.md",
+      "size": 4565,
+      "sha256": "eb84f5f4fa22f345b8f60e49eec0ee91f9e4fee518e013699ddc2939de83dade"
+    },
+    {
+      "path": "docs/pcie-g1b-g1d-evidence.md",
+      "size": 6820,
+      "sha256": "84b1b627555c9eca177b8f31856b8d6df3d62d23f7e5992866e184e2d8c7c3bb"
+    },
+    {
+      "path": "docs/pcie-g2a-evidence.md",
+      "size": 6358,
+      "sha256": "60d197564022c4bfa646fdd1ab68d56ccddadb8b8726c1ccad53432f184b78fd"
+    },
+    {
+      "path": "docs/pcie-g2b-evidence.md",
+      "size": 10627,
+      "sha256": "3d9c9dba0890db26c7edb19fd63770d324379dbb56af3e6be0558d595092d4f9"
+    },
+    {
+      "path": "docs/pcie-g3ab-evidence.md",
+      "size": 8068,
+      "sha256": "437d12fb1d6ee6fa3c75fecc576c3be4016ae838c1dfcbbe0304607fbfb6966f"
+    },
+    {
+      "path": "docs/pcie-g3c-evidence.md",
+      "size": 8268,
+      "sha256": "c81e384a9793aa4b6f7002c2872e86817fd5d992fa938c71763efeaccc111806"
+    },
+    {
+      "path": "docs/pcie-g3c0-evidence.md",
+      "size": 4204,
+      "sha256": "3162c86aca360f373e27b0892097d3d658165a784d60ac3febd162f9ebd50d4c"
+    },
+    {
+      "path": "docs/pcie-g3d-evidence.md",
+      "size": 7084,
+      "sha256": "57b26250ac0bf3b8d5669ab51f136896e9559e00b6eb2c57594b79c06205d96e"
+    },
+    {
+      "path": "docs/pcie-g3e-evidence.md",
+      "size": 7212,
+      "sha256": "14d6930b02c53302ba2780896d25e10553dbcb86fbf6adffc0b3cd1ed6ac9ff5"
+    },
+    {
+      "path": "docs/pcie-g3f-evidence.md",
+      "size": 10706,
+      "sha256": "02575dda52cb722fbb5b96ca29cbd7a8f10e5793c15b614a4303a37534381f9d"
+    },
+    {
+      "path": "docs/pcie-g7-evidence.md",
+      "size": 5720,
+      "sha256": "61d5b47fba26bcc0beb521d7ed0e0ac184a843b0a9d9801537db9012d500c718"
+    },
+    {
+      "path": "docs/pcie-g8-evidence.md",
+      "size": 3015,
+      "sha256": "26bd8ec8a18c3dc381649ca1b27a5b941865ab1926365b6e133602949bffefa2"
+    },
+    {
+      "path": "docs/pcie-g9-runner-evidence.md",
+      "size": 5764,
+      "sha256": "358d600a0d32a4ec1f1fe287a58449778532677d7247ab33fda85c8c9c708857"
+    },
+    {
+      "path": "docs/pcie-inspection-observation-contract.md",
+      "size": 4468,
+      "sha256": "e734f0e33131ad1f67188a5fa45a2256dc6a427a04a166401024d9927cae09a5"
+    },
+    {
+      "path": "docs/pcie-p4a-hang-evidence.md",
+      "size": 7907,
+      "sha256": "929d9f35cfe747134e3876597aa294f1c415db05b840e10efe88c2783ba7a501"
+    },
+    {
+      "path": "docs/pcie-runtime-baseline.md",
+      "size": 16229,
+      "sha256": "aa32242175201baa8dc5761e9032ec69ee3394e989bfa21b603416750c584ac2"
+    },
+    {
+      "path": "docs/pcie-staircase-evidence.md",
+      "size": 32922,
+      "sha256": "c6fb31c3ea285c34b7aacf348352f61c5760853e583a93b041c586b40260dd6f"
+    },
+    {
+      "path": "docs/setup/pcie-protocol-suite.md",
+      "size": 12874,
+      "sha256": "f82f3e039bbd93d9c4d0104ddc3f8acc97cdd9502edda9d5e0bd790ea023cafe"
+    },
+    {
+      "path": "docs/trace-data-model.md",
+      "size": 1706,
+      "sha256": "66bfafab09332798353e70157bf224418f97834ab3036a36620fb0374eb953de"
+    },
+    {
+      "path": "docs/vse-api-notes.md",
+      "size": 2555,
+      "sha256": "2b780ba415558c685d738ac62660980ff77c81d8d7fc97153fbe8f67f063b98a"
+    },
+    {
+      "path": "governance/AGENT.md",
+      "size": 12112,
+      "sha256": "41b54f9b75ccf524d8d2b36ccb90dffb2d8147c14b94eac7823ee66012d71c56"
+    },
+    {
+      "path": "governance/AI_GOVERNANCE_UPDATE_PROTOCOL.md",
+      "size": 23804,
+      "sha256": "24eb4091eecdab2d1e57d1c3c98564cfac70cc13e101a4c283e2c03cfc3e4f29"
+    },
+    {
+      "path": "governance/ARCHITECTURE.md",
+      "size": 7339,
+      "sha256": "ea40cd95aeafe23d5d5337c99741cd33f943909a48f17232dcb5304fc915d50a"
+    },
+    {
+      "path": "governance/AUTHORITY.md",
+      "size": 11915,
+      "sha256": "f6409d5ec598e6869b0781c4c118a9b8ec56e5cbc16d1acc25846c95540379ee"
+    },
+    {
+      "path": "governance/CLAIM_ENFORCEMENT_EVIDENCE_POLICY.md",
+      "size": 10034,
+      "sha256": "c7eb004afdb787ad6390d57f8124f96aaf924d95d651db367bac31c6858ed133"
+    },
+    {
+      "path": "governance/CONFIDENCE_SEMANTICS_FREEZE.md",
+      "size": 16480,
+      "sha256": "f7dab8e3290c8fb88233848e83ac19d8c85957780b893619dbb5663b53b7b15d"
+    },
+    {
+      "path": "governance/EPISTEMIC_BASE_ASSUMPTIONS.md",
+      "size": 9352,
+      "sha256": "dc37d8384f9d46771071d884ecbdc39a1c1ab79f80dadb586958a5cf32026030"
+    },
+    {
+      "path": "governance/F7_FULL_UPDATE.md",
+      "size": 8757,
+      "sha256": "e26c9d62907fb72227c04f8cb37a0e3568301275446368b722a365b5c02e42dc"
+    },
+    {
+      "path": "governance/GOVERNANCE_SURFACE_RULES.md",
+      "size": 2233,
+      "sha256": "6f731d443fec4ab8bedf9728785c7adb64890a9f083b183a5285a94927a56a73"
+    },
+    {
+      "path": "governance/HUMAN-OVERSIGHT.md",
+      "size": 2831,
+      "sha256": "457cd020054e04a1eecee2d34a6c23a57d3271a1cc1b047abd3e1cb366a00654"
+    },
+    {
+      "path": "governance/MEMORY_AUTHORITY_CONTRACT.md",
+      "size": 19205,
+      "sha256": "229926c7c07251a8b7b6239e5bca6231b0397b4c4bcba601d2acee58f01e4847"
+    },
+    {
+      "path": "governance/MEMORY_PROTOCOL.md",
+      "size": 15922,
+      "sha256": "e98e982529aaa849f162f58f96ca35b2e9b089a2d1770914fc2d089ca941d4dd"
+    },
+    {
+      "path": "governance/MEMORY_RECONCILIATION_ENCODING_INTEGRITY_CONTRACT.md",
+      "size": 4509,
+      "sha256": "ad343ddde748f60351ec67fbefcaa7f8e693e76b41b168f3f2f3e539267163a9"
+    },
+    {
+      "path": "governance/MEMORY_RECONCILIATION_EXACT_BYTE_DETECTOR_CONTRACT.md",
+      "size": 4714,
+      "sha256": "6fb3c3e792dddf1a44759054bca427346705f3dcbecce50998454b9374746998"
+    },
+    {
+      "path": "governance/MEMORY_RECONCILIATION_FIXTURE_ADMISSIBILITY_CONTRACT.md",
+      "size": 7683,
+      "sha256": "5cf724c8d05ca322910f34c0b60e5b9f07e0efdec8466b07b0f29c8ceefe7e25"
+    },
+    {
+      "path": "governance/MEMORY_RECONCILIATION_KNOWLEDGE_IDENTITY_CONTRACT.md",
+      "size": 5619,
+      "sha256": "5addd2385fbed4b8dafaa1d735bc558ab294e888d61ff681cf553e5dff9f23f4"
+    },
+    {
+      "path": "governance/MEMORY_RECONCILIATION_MISSING_LOGICAL_SURFACE_CONTRACT.md",
+      "size": 4829,
+      "sha256": "34b27c7e99c0237c13f8eabaef0e577374dec626e08b3eab26a858aefa7367bb"
+    },
+    {
+      "path": "governance/MEMORY_SURFACE_AUTHORITY_CONTRACT.md",
+      "size": 25595,
+      "sha256": "0d98f541d4900b4b734fdf87cc23e8b506a7ac0884bc981c90c6c248b000efba"
+    },
+    {
+      "path": "governance/METRIC_INTERPRETABILITY_CONTRACT.md",
+      "size": 17759,
+      "sha256": "d07d566eb98966cd797dc7421fa1c1530f0442bbbdbb171a975f24513f9bf431"
+    },
+    {
+      "path": "governance/NATIVE-INTEROP.md",
+      "size": 5391,
+      "sha256": "9d5bd9bde9947163a4b0cc9f703319f1861e9a2cbfe056a4dc5ba1459e7e5519"
+    },
+    {
+      "path": "governance/NULL_ONTOLOGY.md",
+      "size": 10812,
+      "sha256": "bc3c50ede6283c3bde4bcc0d29dfb52743c84f1f46e10f467a0e8510ed5f54af"
+    },
+    {
+      "path": "governance/PHASE_D_CLOSE_AUTHORITY.md",
+      "size": 26891,
+      "sha256": "c121eea1b6b9b5b14a08ddcfb308e507b42ad721178de13beada723c7d70a9cd"
+    },
+    {
+      "path": "governance/RESPONSE_ENVELOPE_CONTRACT.md",
+      "size": 39866,
+      "sha256": "4b686beb20250c562322150a75ca92f728c8d21c11bfe3041bf958d47b6450a3"
+    },
+    {
+      "path": "governance/REVIEW_CRITERIA.md",
+      "size": 12878,
+      "sha256": "06c94ed38590e79fe798f2ccf5f2540bf638ff0c7017ec29a52b4ffa51c8f3e1"
+    },
+    {
+      "path": "governance/RULE_REGISTRY.md",
+      "size": 6842,
+      "sha256": "f9fff8ea4976baca277d3a30dbdd75ab8e621a82d9b56fe5a7b8453bcebdc0d1"
+    },
+    {
+      "path": "governance/RUNTIME_CONTRACT.md",
+      "size": 4532,
+      "sha256": "f4ba1a1b162f16fc6d6a9bac4ac180e4c090a2bbea228eb263ed84fa96c9d85b"
+    },
+    {
+      "path": "governance/SEMANTIC_FAILURE_MODES.md",
+      "size": 708,
+      "sha256": "1a5a5578efd76ac0f341cd99ac9fa7f1e4a6de0e46a58a612b04ee713cb81b55"
+    },
+    {
+      "path": "governance/SEMANTIC_FAILURE_TAXONOMY.md",
+      "size": 3158,
+      "sha256": "18057f1cfc35647ecdf4ee2bdd2b89c8e3c18cb18ef6f50895945f479e3e1c80"
+    },
+    {
+      "path": "governance/SOLO_OWNER_MERGE_AUTHORITY_CONTRACT.md",
+      "size": 8972,
+      "sha256": "774d64734841854a4a4a366a9238a913e4f700ede8f7b06700ca36ce8a952cbe"
+    },
+    {
+      "path": "governance/STRUCTURAL_PROMOTION_CONTRACT.md",
+      "size": 4038,
+      "sha256": "1fe8e6079d6440ff84c8d4117fef7254e8bfae9cf8874f7b476ddfe8d0c09058"
+    },
+    {
+      "path": "governance/STRUCTURAL_PROMOTION_COVERAGE_CLOSEOUT_2026-04-30.md",
+      "size": 648,
+      "sha256": "8d0d4e3a24ed164c82db532c49bb2b8848a7a9f28177881f3af96d686856a6ab"
+    },
+    {
+      "path": "governance/STRUCTURAL_PROMOTION_DECISION_2026-04-30_CLAIM_DISCIPLINE_GUARDRAIL.md",
+      "size": 1085,
+      "sha256": "0ba16954ff48edf92ffb6cdf27931c5b31d3b2d4b0e0115c0711f82ed1c3e22d"
+    },
+    {
+      "path": "governance/STRUCTURAL_PROMOTION_DECISION_2026-04-30_CONVENTIONS.md",
+      "size": 1044,
+      "sha256": "62e9100ded1b4e015920a5975c49eea1cf7bd1a6ba50e1af5c98cb40375372f9"
+    },
+    {
+      "path": "governance/SYSTEM_PROMPT.md",
+      "size": 18154,
+      "sha256": "04f121d8810414e2c41e79a5b983bf418dc2edf01f33c65bafb2b432664203ed"
+    },
+    {
+      "path": "governance/TESTING.md",
+      "size": 17915,
+      "sha256": "536f1af5c66ca7a4dd03bdd55e1871f713538b899dd9e20596478aa71b98d0d3"
+    },
+    {
+      "path": "governance/agent-contract-template.md",
+      "size": 5551,
+      "sha256": "a3248bb7239fefa535dcb638e995671e8de3eb23043ce1589516a32da44f7358"
+    },
+    {
+      "path": "governance/copilot-instructions-template.md",
+      "size": 12723,
+      "sha256": "1bae38115d97d5678a3299eba1fb6ffeedc7877c6e3830fd76129c7a05839b49"
+    },
+    {
+      "path": "governance/rules/avalonia/ui_thread.md",
+      "size": 796,
+      "sha256": "17fb67994cbb3249c240283be6da6a35185d159516b058b81ade4ec53222c77c"
+    },
+    {
+      "path": "governance/rules/avalonia/viewmodel_boundary.md",
+      "size": 379,
+      "sha256": "59e0558897f1bfa8b85780245f7487167bc607e803525df7afa7c955455c2788"
+    },
+    {
+      "path": "governance/rules/common/core.md",
+      "size": 213,
+      "sha256": "ec83c045f04132ebe5a4f701201fb91eaffb196cd4f3bb2244001191e3bcf83c"
+    },
+    {
+      "path": "governance/rules/cpp/build_boundary.md",
+      "size": 536,
+      "sha256": "8269bb839178c239831b3595f5b6b89ac9e1366aa1a0993dae4a8e853aaf5da1"
+    },
+    {
+      "path": "governance/rules/csharp/native_boundary.md",
+      "size": 263,
+      "sha256": "cb95f2cefc94936bdc8fa731834160715161e0d49e6c619f32a98497b487acc8"
+    },
+    {
+      "path": "governance/rules/csharp/threading.md",
+      "size": 646,
+      "sha256": "87489a0e855b9a4822ff9dc03bb0b6881e56e930502f6fc3994a71aad65fa156"
+    },
+    {
+      "path": "governance/rules/gl-hub-vendor-cmd/spec-truth.md",
+      "size": 1001,
+      "sha256": "75f38ca60b3269d9dbb3c0b8da4e3722ae1b20796e6af41588d26bbd09ee532e"
+    },
+    {
+      "path": "governance/rules/kernel-driver/cleanup-unwind.md",
+      "size": 607,
+      "sha256": "b917d9aa699182ef049e835b575ff9708955f5ea4035efb96586f12ae7d8b538"
+    },
+    {
+      "path": "governance/rules/kernel-driver/irql.md",
+      "size": 662,
+      "sha256": "0486c8415bf041f40a612e5e65674e61012c2ff5bfc1d7b22796e16879bff5d9"
+    },
+    {
+      "path": "governance/rules/kernel-driver/memory-boundary.md",
+      "size": 665,
+      "sha256": "12ad65a0261583bd94367bbed944b898109edc59c0acfec674e19a0f39190ee5"
+    },
+    {
+      "path": "governance/rules/python/coding.md",
+      "size": 216,
+      "sha256": "642b5a45945b133a6b22b328fa235e40ceb44197f3199ea6d6f46eec93069156"
+    },
+    {
+      "path": "governance/rules/refactor/behavior_lock.md",
+      "size": 526,
+      "sha256": "503003b72db3f7299e0c7f5c0f16e176bdf02aeb42c2c4fdf2e6761be6894fd5"
+    },
+    {
+      "path": "governance/rules/refactor/boundary_safety.md",
+      "size": 615,
+      "sha256": "3e3800de0723d79e745b225e2d7d2cb64c38c57868017f78b3c588beabf26674"
+    },
+    {
+      "path": "governance/rules/refactor/error_path_coverage.md",
+      "size": 1525,
+      "sha256": "f5a6f51504b48bd5253ca3c392393840bd4907972da9def4c73ddf95b9b0dd1c"
+    },
+    {
+      "path": "governance/rules/refactor/interface_stability.md",
+      "size": 480,
+      "sha256": "db1c5e4b360e7c76743f65426aef8a19725803ddeb8b37c75de7becef072631c"
+    },
+    {
+      "path": "governance/rules/refactor/no_partial_cleanup.md",
+      "size": 418,
+      "sha256": "5916ca741f19d087c6553d644ade3a6748b0a57001279240dd65944eae7aff69"
+    },
+    {
+      "path": "governance/rules/refactor/required_regression_tests.md",
+      "size": 419,
+      "sha256": "435c1f976efbd281c21567202faec60c52e48cfd826059e8829c5ef32460ca21"
+    },
+    {
+      "path": "governance/rules/swift/concurrency.md",
+      "size": 327,
+      "sha256": "5ceaed1056166d23679b55b1690aae83303a5f593038ae13c2da9944270c6bdc"
+    },
+    {
+      "path": "governance/rules/swift/native_interop.md",
+      "size": 322,
+      "sha256": "810a90c0ba39497e4f1d401e87de4768fdabc75a2b18a42fade31b6caab7e84c"
+    },
+    {
+      "path": "memory/01_active_task.md",
+      "size": 246,
+      "sha256": "6f7ab70bae4f920c90d6930605b9e68b54e77ce003776afb5c746facadbd1d46"
+    },
+    {
+      "path": "memory/02_workflow.md",
+      "size": 151,
+      "sha256": "31cff4844078c4a63daf553aedba0d7398026203c9cd696f1190d552dd6fafde"
+    },
+    {
+      "path": "memory/03_knowledge_base.md",
+      "size": 155,
+      "sha256": "1dc16a601c9f92bcb60d5c471407cc1808321263e1b5a7daaf13cf56b08a4c35"
+    },
+    {
+      "path": "memory/04_review_log.md",
+      "size": 151,
+      "sha256": "d3ced6ea35e055941b0e71ef4cc6d9ca206ea2ae2a579fac3255965f7f7ac359"
+    },
+    {
+      "path": "memory/2026-09-11.md",
+      "size": 811,
+      "sha256": "f3a28eb7232e22b8cb8bf07c30faba009219d7f23cc3fbb88c548aed74064a3c"
+    },
+    {
+      "path": "reference/README.md",
+      "size": 1282,
+      "sha256": "e19836e2af4dae1236f57caa152adea7cc7e4b74b15087b3df9359ce7afb9ceb"
+    },
+    {
+      "path": "run-demo.ps1",
+      "size": 13116,
+      "sha256": "384e1bd64332d22e97f371114eadb3133323fc4195e61e0f97252fcbf04f6537"
+    },
+    {
+      "path": "run-pcie-triage.ps1",
+      "size": 481,
+      "sha256": "5f13d5ce22985ad7fd0e352a92640cf15b2d92570ce96aa2d9c32e8929f0d9d9"
+    },
+    {
+      "path": "samples/README.md",
+      "size": 342,
+      "sha256": "798caded1b00c54e67e02aeb0482bbf568c31242dc8fa30ccedc9223f06bb00c"
+    },
+    {
+      "path": "samples/pcie/README.md",
+      "size": 10190,
+      "sha256": "9ff7358da87764055f3296723d194f6ecf8da246487f0beb6dccb711f546bd75"
+    },
+    {
+      "path": "samples/pcie/inspection-1350-evidence.json",
+      "size": 2874,
+      "sha256": "673927dcfe8f3d806488b5d39e3a78a518db9852f220fc6d83813cd132a8c92a"
+    },
+    {
+      "path": "samples/pcie/triage-input-1350.json",
+      "size": 1081,
+      "sha256": "78474dea8f5f749539b1f26601798bf98583363dae9684b833219a42f88981ad"
+    },
+    {
+      "path": "samples/pcie/triage-input-hang-p4a.json",
+      "size": 1550,
+      "sha256": "4ac6553753d8d982da3ea430b2cfa25152759dff686bfff1b13bb87e21da30f3"
+    },
+    {
+      "path": "schemas/pcie-trace-inspection-observations.schema.json",
+      "size": 4906,
+      "sha256": "c811bad24696a648e560153d2312acb6380c594b9f78b3c3b47648c1850068af"
+    },
+    {
+      "path": "scripts/c3-timestamp-fidelity.vse",
+      "size": 1845,
+      "sha256": "c172b636254b2ac770941ca213fc40fcde1752588294961ec5e18bd928faa302"
+    },
+    {
+      "path": "scripts/hello/README.md",
+      "size": 692,
+      "sha256": "00f19626af5cde45dbf6fe6c426e1678420635b4d54222d3a19d3f321123b652"
+    },
+    {
+      "path": "scripts/hello/trace-info.vse",
+      "size": 6622,
+      "sha256": "533e2df48cb759bfbd43a5398f287973e63f82299a6cc1d34ec07db0bb626abf"
+    },
+    {
+      "path": "scripts/io-probe/README.md",
+      "size": 7637,
+      "sha256": "5f19a8e7a623f1fc257a492e03a15e69ae52cfc5c2b79256e3ad6570601f20f6"
+    },
+    {
+      "path": "scripts/io-probe/absolute-temp.vse",
+      "size": 1026,
+      "sha256": "065a25e8a24107d50eec1a7bc349b5b6057ef7c2722b9512d9cd34a89fa3e70a"
+    },
+    {
+      "path": "scripts/io-probe/application-folder.vse",
+      "size": 1063,
+      "sha256": "bf7f9d9771434d4915e9dd3f74357621d916d0d72705e5ea96fc3d8c19be3049"
+    },
+    {
+      "path": "scripts/io-probe/bounded-first-event-temp-results.md",
+      "size": 1492,
+      "sha256": "849d5cd499dda5bee96c8354f393de9f76d7c589d2d0d886c83fb14749d46639"
+    },
+    {
+      "path": "scripts/io-probe/bounded-first-event-temp.vse",
+      "size": 1019,
+      "sha256": "42065c037b02400fdcfd17af90161b740fad88e08c1e1a0e1ebc6befa0e085f8"
+    },
+    {
+      "path": "scripts/io-probe/exact-com3-integrity-results.md",
+      "size": 1903,
+      "sha256": "0860716ccdff45d86f48a43b901acb86079ca91ad5490fc12faea645a1968bb8"
+    },
+    {
+      "path": "scripts/io-probe/first-event-sentinel-results.md",
+      "size": 1766,
+      "sha256": "8fabdaba654caa5d79d82db56dd0dd5a8ac807a94ed4e8c880abfd8b0bb08344"
+    },
+    {
+      "path": "scripts/io-probe/first-event-sentinel.vse",
+      "size": 637,
+      "sha256": "8dae161a53c1a8062c6e4fece8f8941d1940b4662a302f7ef144b6074ad25c2c"
+    },
+    {
+      "path": "scripts/io-probe/host-summary-json-results.md",
+      "size": 3007,
+      "sha256": "10bc6085540617554884c52533ee6e3ffde375942d6b1d1cd2245bbaed4da73d"
+    },
+    {
+      "path": "scripts/io-probe/lifecycle-minimal-results.md",
+      "size": 1561,
+      "sha256": "0d6bf119781122cdec9685225cdf53a0d98c98766b93d903b6a7fa4a88b444b0"
+    },
+    {
+      "path": "scripts/io-probe/lifecycle-minimal.vse",
+      "size": 732,
+      "sha256": "4801253a05adb93769458f938f9bcce2defaa88ec9f9c332934b94fcba2ad603"
+    },
+    {
+      "path": "scripts/io-probe/notify-client-sentinel-results.md",
+      "size": 2083,
+      "sha256": "b9e62f60e8f35d1759dec92a671538752895ef9bc357fea5845cd1bd7bf409f9"
+    },
+    {
+      "path": "scripts/io-probe/notify-client-sentinel.vse",
+      "size": 597,
+      "sha256": "ed894680a266bad0ead58b8f3acce392650316387d87c48cecbcab1b274e0d3a"
+    },
+    {
+      "path": "scripts/io-probe/open-close-only-results.md",
+      "size": 2029,
+      "sha256": "81109ac39f8a3d165e15af25b63c74bacbcd6adf865bb0e2fb6033b5870aad99"
+    },
+    {
+      "path": "scripts/io-probe/open-close-only.vse",
+      "size": 811,
+      "sha256": "ec93927d74f0519befb879a8080365c4bd2fba992e2d0494595d7a6c7485fa4c"
+    },
+    {
+      "path": "scripts/io-probe/pure-absolute-temp.vse",
+      "size": 1067,
+      "sha256": "60d9697a5582249a38e403b05803d48ba552f11c43c7a4e9b14c916f27b2a1db"
+    },
+    {
+      "path": "scripts/io-probe/pure-application-folder.vse",
+      "size": 1103,
+      "sha256": "96f16815bf076ed23b825da679e4e0a4d1ace228e0dbdf1cf433a217a0ac8bd5"
+    },
+    {
+      "path": "scripts/io-probe/pure-results.md",
+      "size": 879,
+      "sha256": "9872eb17bfdc6934ad2516086b58ec31edf1dd6a1ef570d55b305c93fdb1153d"
+    },
+    {
+      "path": "scripts/io-probe/pure-trace-folder.vse",
+      "size": 1081,
+      "sha256": "a2af8a0d08bec8569bccb4e31417af24d6f38dbf84b7b64d2ee4ba2d087446fe"
+    },
+    {
+      "path": "scripts/io-probe/real-summary-notify-results.md",
+      "size": 2694,
+      "sha256": "e91b2f8b57f3bceb626012f8595e2cbe75135134df6b44b997f53863b01b9641"
+    },
+    {
+      "path": "scripts/io-probe/real-summary-notify.vse",
+      "size": 1054,
+      "sha256": "a06a47fe6e3e2ea7493c1353de3102fe6e241c75bd9565ec6e3eca2d9c7e6583"
+    },
+    {
+      "path": "scripts/io-probe/trace-folder.vse",
+      "size": 1036,
+      "sha256": "3619601ef79c770a81e008810a916e2b2e69d16d2b0bc1eace8a1d084df64f8a"
+    },
+    {
+      "path": "scripts/io-probe/trace-integrity-isolation-results.md",
+      "size": 3177,
+      "sha256": "aab3538f1fab8831df5efa109892dd17e40d14771932f6321a4882e0db601cb3"
+    },
+    {
+      "path": "scripts/io-probe/write-string-temp-results.md",
+      "size": 2326,
+      "sha256": "b09feb261da178107dfc505f2c6962b972c1c807fbea64490fdf54fb61eaa6b7"
+    },
+    {
+      "path": "scripts/io-probe/write-string-temp.vse",
+      "size": 780,
+      "sha256": "c8b69a92f0998cb4c2e59038116e0c5cc21684128365756ea6c403b438f9870b"
+    },
+    {
+      "path": "scripts/io-probe/write-string-trace-folder-results.md",
+      "size": 2140,
+      "sha256": "dd19c63a793784cd7b6bfa874319265e8c5bf1cdf656e3820821259db68d899d"
+    },
+    {
+      "path": "scripts/io-probe/write-string-trace-folder.vse",
+      "size": 909,
+      "sha256": "f68f9b7db426b4d289bbb1a981c1c31d74ef1a16bac57cabb88cfd911f9ba360"
+    },
+    {
+      "path": "scripts/m2-packet-extraction-1-results.md",
+      "size": 3140,
+      "sha256": "13542b2a4338aec7126535f5f023fb62ece5ab7cbce1e97ba8f9884680e6c7b8"
+    },
+    {
+      "path": "scripts/m2-packet-extraction-1.vse",
+      "size": 1801,
+      "sha256": "10136ea712c0fcd2749d83d88e8ec872d5a6a3cfaac6b10fc1192a654f573f00"
+    },
+    {
+      "path": "scripts/m2-packet-extraction-2-results.md",
+      "size": 3162,
+      "sha256": "1ea0080b210707bd8efde8a43cfc16a66ffe5d8a7b8408f235008634a40d5950"
+    },
+    {
+      "path": "scripts/m2-packet-extraction-2.vse",
+      "size": 1806,
+      "sha256": "d3674efa993ae15a4736ab0f839713ce21ec18dd7230541098c44b1b95399a70"
+    },
+    {
+      "path": "scripts/m2-packet-extraction-3-results.md",
+      "size": 3528,
+      "sha256": "1081e54bfd2a4f63ecedf1c8fe601d9b3c2ddc3d4828c908432d8dadac6cfcf4"
+    },
+    {
+      "path": "scripts/m2-packet-extraction-3.vse",
+      "size": 1925,
+      "sha256": "5921c671eddfe85a68452a18a02c2dee9d9bc4194453741b6464a1fbaf068d93"
+    },
+    {
+      "path": "scripts/m2-packet-extraction-4.vse",
+      "size": 2941,
+      "sha256": "637989d9c9d251e469948cbb153a95443bfd3b6a78c6d6a1f13c4cedca19709e"
+    },
+    {
+      "path": "scripts/packet-dump/README.md",
+      "size": 262,
+      "sha256": "964606daf18ddd96af1f2a1a063831065c0b3116daed4f6025eccf2100f7593e"
+    },
+    {
+      "path": "scripts/pcie/a1_com_g1a_probe.py",
+      "size": 9383,
+      "sha256": "1da47f0cb38ae30d4cab8ac9f07e241f5c611c370bcf1d0ddc9ddc9525d9cdc1"
+    },
+    {
+      "path": "scripts/pcie/b1a-link-fields.pevs",
+      "size": 9304,
+      "sha256": "e314b6b5ff81ef24f2936780b1da6a0c9f1ab18374b05fa59492eb876dad39ff"
+    },
+    {
+      "path": "scripts/pcie/b1b-window-export.pevs",
+      "size": 9167,
+      "sha256": "0d2b974965f93fd1aad09e8d57d144407ce43d333d1fbf5ccb5852235b487a30"
+    },
+    {
+      "path": "scripts/pcie/b1b0-constants.pevs",
+      "size": 3884,
+      "sha256": "c499cf37361fd0917fb078d52ff47582251d03507d66b188a45f42f1753c1afe"
+    },
+    {
+      "path": "scripts/pcie/b1c_training_timeline.py",
+      "size": 24455,
+      "sha256": "e3895253b0101a1bca7052a576a57182d5bfc97a23a4671ee21dde74a127d4f9"
+    },
+    {
+      "path": "scripts/pcie/b1cx2-haserrors-probe.pevs",
+      "size": 47604,
+      "sha256": "accda2a38b79e22048b43c789883518a10c3641f317fea680f2079738533bd3d"
+    },
+    {
+      "path": "scripts/pcie/build_inspection_comparison.py",
+      "size": 22343,
+      "sha256": "a1137a7c2ca13b26def12fc506c9f09a139651632cd152d530503a2f68a2585d"
+    },
+    {
+      "path": "scripts/pcie/build_inspection_report.py",
+      "size": 28360,
+      "sha256": "b4154cc5ed29ad3ade09190013f03b86d5018e402a1f500295509ce24620fc9f"
+    },
+    {
+      "path": "scripts/pcie/com_run_vse.py",
+      "size": 8622,
+      "sha256": "b135626ff8bd91d534be5890101678ac0a0847b776c43bd7f0cb1438005d9295"
+    },
+    {
+      "path": "scripts/pcie/compare_g1_exports.py",
+      "size": 3081,
+      "sha256": "cc5edb22dcd10d2c9743636ad58bc1f971ac71ddb0e78152a1628dd523942077"
+    },
+    {
+      "path": "scripts/pcie/g1a-tlp-count.pevs",
+      "size": 1429,
+      "sha256": "ecb8ef2b83f25177c1e749250ca19430febe11d843a890d025ad7be94b230094"
+    },
+    {
+      "path": "scripts/pcie/g1b-tlp-rows-10k.pevs",
+      "size": 1392,
+      "sha256": "769f7142d33332c3a710f081602ef1048a7ba4f771f886a247f534a5e5f73a28"
+    },
+    {
+      "path": "scripts/pcie/g1b-tlp-rows-1k.pevs",
+      "size": 1388,
+      "sha256": "952996aeaaa8eb30746f19541f4819fb378b6f78491e73558645cd6e08ea8249"
+    },
+    {
+      "path": "scripts/pcie/g1c-tlp-rows-all.pevs",
+      "size": 1408,
+      "sha256": "5f812fca140677345bcfc1bb33228bc25592b81d495bbec45f817a1d0037614f"
+    },
+    {
+      "path": "scripts/pcie/g2a-tlp-fields.pevs",
+      "size": 1604,
+      "sha256": "dbe5adb6ac4cd02ff73b013c69b5296d6262a7ed835ecadebe0fa798e3c726fe"
+    },
+    {
+      "path": "scripts/pcie/g2b_associate.py",
+      "size": 12307,
+      "sha256": "08279219277e6db06948c377a3412cf75a42cb0e0fc9efe56d7711a0e5dee047"
+    },
+    {
+      "path": "scripts/pcie/g3_candidates.py",
+      "size": 9664,
+      "sha256": "c1b9dde3c2d6d8107ca6c6a869926fd43ed9479fff69a8a2d7c89288d0258316"
+    },
+    {
+      "path": "scripts/pcie/g3c0-msg-fields.pevs",
+      "size": 1777,
+      "sha256": "9389d6e2ee5a876d9a17576fd9f2a17f7220d62b58d7fa0dabdd7c95227b9b48"
+    },
+    {
+      "path": "scripts/pcie/g3c_nearby_messages.py",
+      "size": 8740,
+      "sha256": "60e35cc7eccfb42875403c07e2edc684693bff15f8f7e195d2d719ff901caf82"
+    },
+    {
+      "path": "scripts/pcie/g3d_context.py",
+      "size": 9837,
+      "sha256": "d9b42cd3b51ae05e5b839ec238e097cabcbbe6f35eed203817458f5f064c2063"
+    },
+    {
+      "path": "scripts/pcie/g3e_groups.py",
+      "size": 10784,
+      "sha256": "5573c8a539e83cfa3a465f8e0f8d25ad8fa9860cdd9ee503b9f318e27bc882b8"
+    },
+    {
+      "path": "scripts/pcie/g3f_findings.py",
+      "size": 12628,
+      "sha256": "b020ed1c3c769d147a3cd90a889994099b3acf69aa7030cc87609026af3b5bbd"
+    },
+    {
+      "path": "scripts/pcie/g7_render_markdown.py",
+      "size": 20072,
+      "sha256": "eb1bbfd1a001cdf36358c1da74338831aff8e888ede66215b82ed6348240a981"
+    },
+    {
+      "path": "scripts/pcie/g8_render_html.py",
+      "size": 13069,
+      "sha256": "a9997e3ccddc5bfe796b4a7ad35dc65c7667ce17f5af96e2f8029f7bd95ba75b"
+    },
+    {
+      "path": "scripts/pcie/hello-events.pevs",
+      "size": 2350,
+      "sha256": "a79770489de76da679d5310a0378b2b9b7dde9d1c7196f48f1046b25c8e061de"
+    },
+    {
+      "path": "scripts/pcie/p0-c1-message.pevs",
+      "size": 544,
+      "sha256": "6b84b2d8d5f78bb5fc7a182175523fca6ebc997f910f7dcc5e1d6353bc55a921"
+    },
+    {
+      "path": "scripts/pcie/p0-c2-index-next.pevs",
+      "size": 670,
+      "sha256": "19a06c7e4522838f3f8ebf5e742436ad723ee0af02e129113b2d122c96df4bb7"
+    },
+    {
+      "path": "scripts/pcie/p0-c2-index.pevs",
+      "size": 536,
+      "sha256": "3c5e62a106aace4e20acdf5fa38b552cbecde95cacd2553490127977446a9c0e"
+    },
+    {
+      "path": "scripts/pcie/p0-d1-tlps.pevs",
+      "size": 771,
+      "sha256": "91aaa647d24c4785a2c4418066b0d1a4babf926e4c09b8f1ea86558ee0c507ca"
+    },
+    {
+      "path": "scripts/pcie/run_pcie_triage.py",
+      "size": 16747,
+      "sha256": "223668c24577fcf2ebfb34c86a737f3a788075766dd30305b4b20a9938b372e7"
+    },
+    {
+      "path": "scripts/pcie/verify_b1a_link_fields.py",
+      "size": 8434,
+      "sha256": "5ed9ee8e8c510838b1d26528739ea2a66764e8a92c7873a999e866bb0c3bbd73"
+    },
+    {
+      "path": "scripts/pcie/verify_b1b0_constants.py",
+      "size": 3316,
+      "sha256": "e8afe2326568ce56a3536b7a49de51af5e8f09aa9d6f27ab1e6540dd4d4815fc"
+    },
+    {
+      "path": "scripts/pcie/verify_b1b_window.py",
+      "size": 10967,
+      "sha256": "9b1fd572aa8367e98bcfebbd0a300a5184d6f366d65c3c93dfadb68444e2deca"
+    },
+    {
+      "path": "scripts/pcie/verify_b1cx2_haserrors.py",
+      "size": 11159,
+      "sha256": "2624c464fbf7a3c0de6b5c3bdcf120497276b5c9281890fc9fe6ccd6ddd5d868"
+    },
+    {
+      "path": "scripts/pcie/verify_g1a_log.py",
+      "size": 4468,
+      "sha256": "be0bbbc19a6852e8ec33177210194137a5d90fdab40713f99f1257738f51f2f0"
+    },
+    {
+      "path": "scripts/pcie/verify_g1b_rows.py",
+      "size": 9815,
+      "sha256": "719b6f237517fdd3f8dada3c7a8358d09ab28413e78a829aebae60cb98774d83"
+    },
+    {
+      "path": "scripts/pcie/verify_g2a_fields.py",
+      "size": 9058,
+      "sha256": "d244b758d709abe89c54b1f7459c9718ca6a8ddcd7257a792365ad8ae756bd44"
+    },
+    {
+      "path": "scripts/pcie/verify_g3c0_messages.py",
+      "size": 6760,
+      "sha256": "35a76999053a09a24fd212d393de3718c04e474a488d30ed356aad9c4507ec9a"
+    },
+    {
+      "path": "scripts/transfer-dump/README.md",
+      "size": 197,
+      "sha256": "7081275f3e927c1a459d39cd344d9d2d098d52b3bd6b7d0f886b822924aae959"
+    },
+    {
+      "path": "tests/fixtures/README.md",
+      "size": 410,
+      "sha256": "40e53bda10beefe8771aaa5bb57d514a10db3b0bee62bf5ccfc856a105126162"
+    },
+    {
+      "path": "tests/pcie/test_b1a_link_fields.py",
+      "size": 4397,
+      "sha256": "45c1e865ade5932adf32e5569a7688c8847306813610b183d7ba50c154724d26"
+    },
+    {
+      "path": "tests/pcie/test_b1b0_constants.py",
+      "size": 1743,
+      "sha256": "fe467b297de3ff7efabdb15cd9974c1f0afd395b52db48f7fc9fbaeab92ede3c"
+    },
+    {
+      "path": "tests/pcie/test_b1b_window.py",
+      "size": 4880,
+      "sha256": "bb263fffc66c4b4a455d8238aab25dccf9df30fbd1d8b84f59edc39ecac91b59"
+    },
+    {
+      "path": "tests/pcie/test_b1c_training_timeline.py",
+      "size": 10446,
+      "sha256": "17645bbb137c2b01d754466ca3e5f6a495229c5779396d03f0489f089f53a45c"
+    },
+    {
+      "path": "tests/pcie/test_b1cx2_haserrors.py",
+      "size": 4462,
+      "sha256": "a1de8dd74959119c05e03a3f9b1a5fdbd84dcad12f50a0b12daae218f6bc1368"
+    },
+    {
+      "path": "tests/pcie/test_g1a_log.py",
+      "size": 3119,
+      "sha256": "a4731a97e5f49e995e1bd2f11e04cea4ed96d82e20b9bee681f1fd4d107fb71b"
+    },
+    {
+      "path": "tests/pcie/test_g1b_rows.py",
+      "size": 5777,
+      "sha256": "278538a8bc96a8cecbd4bce4a4c205ae4d5b2b0d0205078ef83990b0b6ab4026"
+    },
+    {
+      "path": "tests/pcie/test_g2a_fields.py",
+      "size": 4426,
+      "sha256": "2c8d8b1a1989fdf164db3de1e349e45c61b93126a584b7622029cd38b1a5eeb9"
+    },
+    {
+      "path": "tests/pcie/test_g2b_associate.py",
+      "size": 4853,
+      "sha256": "af4fd650a5de096f5630f2336fa3b3f4f8027a053e6a68e5767c9478095a357f"
+    },
+    {
+      "path": "tests/pcie/test_g3_candidates.py",
+      "size": 4553,
+      "sha256": "817bff5c4d3ca90a4d85516f6a682be85fe584e3fa09d7be9446e6452947d1a5"
+    },
+    {
+      "path": "tests/pcie/test_g3c0_messages.py",
+      "size": 2802,
+      "sha256": "feb1ee2c62828c8abbec4542ba6a4882a76f1002725e7bbd99f43c55461f821b"
+    },
+    {
+      "path": "tests/pcie/test_g3c_nearby_messages.py",
+      "size": 4177,
+      "sha256": "5f21a382f2d365634cbb1d5cf6607867062154b097cc083a4e7e5b85f9683e6c"
+    },
+    {
+      "path": "tests/pcie/test_g3d_context.py",
+      "size": 5386,
+      "sha256": "ed59c6f66525ad25c3ddb0bad29003041f634dc3724d794d2051f527234c8368"
+    },
+    {
+      "path": "tests/pcie/test_g3e_groups.py",
+      "size": 4383,
+      "sha256": "3799777b1b365127cf04604483b9c1cca7fea6d0f1f500ec51f21f4c828dbab2"
+    },
+    {
+      "path": "tests/pcie/test_g3f_findings.py",
+      "size": 9209,
+      "sha256": "d28057b1074c1c042b5e40b5a643ffaa537a252d8be4bb01f87bf7c8dee1cdda"
+    },
+    {
+      "path": "tests/pcie/test_g7_markdown.py",
+      "size": 5452,
+      "sha256": "faf820f85d038e6e937ce8ea502cce6e85c0bf3e7a392111fe1a41678779447b"
+    },
+    {
+      "path": "tests/pcie/test_g8_html.py",
+      "size": 3998,
+      "sha256": "2edc94a82f749ab110063daaa28f8e3fa245027fb0f51af6ac7c739fc043910f"
+    },
+    {
+      "path": "tests/pcie/test_inspection_comparison.py",
+      "size": 9938,
+      "sha256": "a73b38af37f7fc896e646596c3e390d516a334b6cc381bffa5b3cb2edd07c836"
+    },
+    {
+      "path": "tests/pcie/test_inspection_report.py",
+      "size": 9512,
+      "sha256": "a0ea37959533efcc5fcfd1401d5c40c6258a20c719e9b782153e91ac88806072"
+    },
+    {
+      "path": "tests/pcie/test_run_pcie_triage.py",
+      "size": 8144,
+      "sha256": "781bffd01a6e61824db55723da6df38642376f76cdbd673b763c5fdfe23cdc45"
+    },
+    {
+      "path": "tools/README.md",
+      "size": 8766,
+      "sha256": "96a4b4a774002d9b3d8fa686ef4b2b8e128ff0c235b2f51b76af30568519793f"
+    },
+    {
+      "path": "tools/c3-timestamp-fidelity.cs",
+      "size": 10843,
+      "sha256": "cdac29054e90b9e6ae621a66ae52ff5b14e2fded847ee3a5e905f1eb9ac65461"
+    },
+    {
+      "path": "tools/compare-c4-semantic-timelines.ps1",
+      "size": 12867,
+      "sha256": "bb028cc8886739da7c761e5417b13c0838da8e7bca4ab47721ba0dd0083b4580"
+    },
+    {
+      "path": "tools/compare-m2-timelines.ps1",
+      "size": 12050,
+      "sha256": "1654bd30e60a5dc763a4216d2a6377cd42c6f38ca2e1c5763460fe9879e1355c"
+    },
+    {
+      "path": "tools/discover-c5-suspicious-regions.ps1",
+      "size": 16767,
+      "sha256": "bea8995d62cd389a05be1b42294416322b88a39c22066921cd3e6ea8106d9088"
+    },
+    {
+      "path": "tools/localize-trace-mutation.ps1",
+      "size": 1623,
+      "sha256": "41c188a3b05c6c384373097b0671e8e26e02eae193de5221e8594a31eb6388b0"
+    },
+    {
+      "path": "tools/m1-com1-notify.cs",
+      "size": 5534,
+      "sha256": "6e464bded79c2ae32d550f99a63654699e3d46851ef8f9c3a2378877fad51e77"
+    },
+    {
+      "path": "tools/m1-com2-notify.cs",
+      "size": 6279,
+      "sha256": "b69bf2d12580099d79f203855b1e038f9445866e47d6c0d68bb09c8f7d5f617c"
+    },
+    {
+      "path": "tools/m1-i1-open-close.cs",
+      "size": 1978,
+      "sha256": "a63c1c8ad9a1c8983bbf4c8e9e0fb0854559b6afb069ff53aa82136165d016e5"
+    },
+    {
+      "path": "tools/m1-i1-stage-c.cs",
+      "size": 4933,
+      "sha256": "e57ee7f935ba3303d5445f2c0a62963111d33f28c99630e9050ef2276a1cda9a"
+    },
+    {
+      "path": "tools/m2-lfps-extraction.cs",
+      "size": 9445,
+      "sha256": "795e9c58b4d42c7b226ab56964024e80caf70db03db3ab7f9c51ba56f641ea76"
+    },
+    {
+      "path": "tools/m2-ltssm-extraction.cs",
+      "size": 8795,
+      "sha256": "88d8dc3b00e976b441cb635893cb27b49f37048d7e6d2f99ffaaa1e90752caaa"
+    },
+    {
+      "path": "tools/m2-packet-extraction.cs",
+      "size": 8462,
+      "sha256": "d86a7089dd2f5a34f3dd2d200ca8766a41a32b6b6b9c607bbaf7c8ddb90abbd4"
+    },
+    {
+      "path": "tools/m2-timeline-extraction.cs",
+      "size": 13074,
+      "sha256": "74cfcf9473c3d928aa8c7d75f2c5f239e18ee4347e9415dd991cb99abb37ba0f"
+    },
+    {
+      "path": "tools/render-c5-html.ps1",
+      "size": 40319,
+      "sha256": "1daaa6b45678838189fcf35017ade8f9241b8b7fb6644d1e77086c5c7dae2398"
+    },
+    {
+      "path": "tools/run-c3-timestamp-fidelity.ps1",
+      "size": 6941,
+      "sha256": "62e7ee1592611ebc468d59389f1844feb8b7522a71ca3b7db972143c5abbdec9"
+    },
+    {
+      "path": "tools/run-m1-com1-notify.ps1",
+      "size": 348,
+      "sha256": "a76220039231f811063baa3ea63d3ff66e795b2d5078390f107e1bd958146d62"
+    },
+    {
+      "path": "tools/run-m1-com2-notify.ps1",
+      "size": 754,
+      "sha256": "6c199d32126c14ddf0283929380429d02928acfdf57b5678e2b4459505fb2d41"
+    },
+    {
+      "path": "tools/run-m1-com3-json.ps1",
+      "size": 3097,
+      "sha256": "af0b0525afd0a8244020520166fd7167e8bb11c23ad9ac06d613ffc94d314b5f"
+    },
+    {
+      "path": "tools/run-m1-i1-a-open-close.ps1",
+      "size": 544,
+      "sha256": "1068d02773c104bc5131ce8eb62b71bce0c33425502b212e27ca1bba8e8db399"
+    },
+    {
+      "path": "tools/run-m1-i1-c-host-output.ps1",
+      "size": 2699,
+      "sha256": "e5e3da3f3a6d2d4240cdc25b019e62099737bcd2aa26a3cc82f23d2194569e29"
+    },
+    {
+      "path": "tools/run-m2-lfps-extraction.ps1",
+      "size": 4990,
+      "sha256": "b0a9f2c69e809a9362680e3d2a850b0acc8c2bb63f36ff93c1ca3045a6813c6d"
+    },
+    {
+      "path": "tools/run-m2-ltssm-extraction.ps1",
+      "size": 5065,
+      "sha256": "2ea6899e93ffe14d118352d2f02406d5cff309fc6b2cc738e1623bfc8f4622e6"
+    },
+    {
+      "path": "tools/run-m2-packet-extraction.ps1",
+      "size": 4279,
+      "sha256": "71e3f324358c9a514319aa1bb0173df60050ced8b1dab0d3ffd3d7dc09298c54"
+    },
+    {
+      "path": "tools/run-m2-timeline-extraction.ps1",
+      "size": 7634,
+      "sha256": "45582c0522ff1638376b20067d615df0ac4fee01e6ae30667e03b82db2c0f506"
+    },
+    {
+      "path": "tools/test-demo2-winps-compat.ps1",
+      "size": 6574,
+      "sha256": "c1b1fef48a14795bfa2c3d293745fd37c3b3bff8d60b9e152811aeda3fb1a39e"
+    },
+    {
+      "path": "tools/test-state-authority.ps1",
+      "size": 1065,
+      "sha256": "194ec16bd9f3379d85ee409a608f9248fed0d818f96359122ccf20ce819fb972"
+    },
+    {
+      "path": "tools/trace-mutation-localizer.cs",
+      "size": 5998,
+      "sha256": "c235ec07f7d3b5509a4d449513c67c0d281304de12ce791ec1d33f32f331610c"
+    }
+  ]
+}

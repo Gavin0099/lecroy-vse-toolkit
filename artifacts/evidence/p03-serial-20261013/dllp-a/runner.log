@@ -1,0 +1,44 @@
+14:41:41.349 OpenFile returned after 4.1 s
+14:41:41.564 LaunchVScript returned; waiting for OnVScriptFinished
+14:41:51.565 finish event: {'script_name': 'E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\p03-serial-20261013\\prepared\\dllp.pevs', 'result': 2, 'tag': 177, 'at': '14:41:50.508'}
+14:41:55.069 PETracer remaining pids after release: []
+{
+  "status": "COM_RUN_COMPLETE",
+  "identities_unchanged": true,
+  "steps": {
+    "create": {
+      "ok": true,
+      "seconds": 3.6
+    },
+    "open_file": {
+      "ok": true,
+      "seconds": 4.1
+    },
+    "get_engine": {
+      "ok": true,
+      "vscript_name": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\p03-serial-20261013\\prepared\\dllp.pevs"
+    },
+    "finish_event": {
+      "ok": true,
+      "seconds": 10.0,
+      "event": {
+        "script_name": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\p03-serial-20261013\\prepared\\dllp.pevs",
+        "result": 2,
+        "tag": 177,
+        "at": "14:41:50.508"
+      },
+      "result_name": "DONE"
+    },
+    "close": {
+      "ok": true
+    },
+    "process_exit": {
+      "ok": true,
+      "remaining_pids": []
+    }
+  },
+  "output": {
+    "report_events": 92,
+    "vse_output_sha256": "033BCC6AC0EA21B42D457919ACED9B16424616482A70377C62EBABFAA478B9DE"
+  }
+}
