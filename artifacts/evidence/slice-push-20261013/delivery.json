@@ -1,0 +1,16 @@
+{
+  "schema": "slice-source-delivery/v1",
+  "artifact_kind": "committed_delivery_manifest_not_a_push_receipt",
+  "authorization": "owner: 先push上去",
+  "branch": "codex/pcie-d1e-f0-baseline",
+  "remote": "origin",
+  "repository": "https://github.com/Gavin0099/lecroy-vse-toolkit",
+  "implementation_commit": "e21737c282bcf624d5c84f38bf5e0f43e38fa732",
+  "implementation_files": 470,
+  "delivery_checks": "checks.json",
+  "scope": "reviewed sources/schemas/fixtures/small bounded evidence plus required current-checkout dependencies",
+  "excluded": "raw captures, giant C4 timelines, rendered spec image, unrelated untracked work",
+  "merge": "NOT_AUTHORIZED_NOT_RUN",
+  "push_verification": "post-push receipt is stored locally in push-result.json; final remote HEAD verified via git ls-remote",
+  "claim_boundary": "bounded prototypes and local qualification scopes; no full protocol qualification or fresh-clone full-case replay claim"
+}
