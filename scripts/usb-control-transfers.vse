@@ -1,0 +1,51 @@
+# USB2 native control-transfer observation. No filename/marker/time target input.
+# LC VSE manual 5.2.4; bounded payload access follows installed ShowPayload.
+set Visited = 0;
+set Controls = 0;
+set Emitted = 0;
+set Unsupported = 0;
+const MAX_RECORDS = 100000;
+const PREFIX_BYTES = 64;
+%include "VSTools.inc"
+OnStartScript()
+{
+    SendAllChannels();
+    SendLevelOnly(_XFER);
+    SendAllTraceEvents();
+    ScriptForDisplayOnly();
+}
+ProcessEvent()
+{
+    Visited++;
+    if (in.XferType == _X_CONTROL)
+    {
+        if (in.Channel != _USB2) Unsupported++;
+        else
+        {
+            Controls++;
+            if (Emitted < MAX_RECORDS)
+            {
+                payload = "";
+                count = in.PayloadLength;
+                if (count > PREFIX_BYTES) count = PREFIX_BYTES;
+                if (count > 0)
+                {
+                    GetNBits(in.Payload, 0, 0);
+                    for (j = 0; j < count; j++) payload += FormatEx("%02X", NextNBits(8));
+                }
+                ReportText(FormatEx("UCT|%d|%d|%d|%d|%d|%d|%d|%d|%d|%d|%d|%d|%d|%d|%d|%d|%d|%d|%d|%d|%s",
+                    in.Index, in.Time[0], in.Time[1], in.Duration[0], in.Duration[1],
+                    in.Channel, in.Speed, in.Addr, in.Endp, in.Completed, in.Halted,
+                    in.Error, in.CtrlDirection, in.ReqType, in.ReqRecipient,
+                    in.bRequest, in.wValue, in.wIndex, in.wLength, in.PayloadLength, payload));
+                Emitted++;
+            }
+        }
+    }
+    return Complete();
+}
+OnFinishScript()
+{
+    NotifyClient(2502, ["U01-END", Visited, Controls, Emitted, Unsupported, _XFER]);
+    return 0;
+}

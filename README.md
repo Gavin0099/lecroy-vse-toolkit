@@ -183,3 +183,57 @@ Governance adoption is recorded as a separate G0 decision. Its source is the
 [canonical GitHub repository](https://github.com/Gavin0099/ai-governance-framework),
 but the adoption baseline is a confirmed commit SHA, not the moving main
 branch. See [docs/governance-adoption.md](docs/governance-adoption.md).
+
+## Single-trace USB2 control-transfer guidance
+
+One `.usb` can now produce up to three inspection episodes with exact native
+Transfer IDs/times, evidence, reasons and conditional engineer actions. No PASS
+baseline, filename classification, marker or failure timestamp is required.
+
+```powershell
+powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File `
+  .\tools\run-usb-control-triage.ps1 `
+  -TracePath "C:\path\to\one-trace.usb" `
+  -Output ".\results\control-triage\case01" -Backend Vse
+```
+
+Use `-Backend Automation` for the API-only CSV/error-count path; both backends
+share the same triage engine and offline HTML renderer. Automation CSV blanks
+stay unknown; the bounded VSE path supplies additional control fields. Default
+backend is Vse, with no silent fallback. Source files are protected through new
+read-only copies. Open `report.html` in the new output directory.
+
+This first prototype covers USB2 standard EP0 controls. It does not replace the
+paired USB3 C5 analysis, and a no-candidate result is not USB PASS. Full Chapter 9
+compliance, unseen-FAIL reliability and engineer time savings are not claimed.
+See [usage and actual A/B evidence](docs/usb-control-triage.md) and the
+[10.40 Automation inventory](docs/lecroy-1040-triage-capabilities.md).
+
+### USB2 tool implementation plan (2026-10-16)
+
+The next work is to package the existing single-trace prototype into an engineer
+tool. See [tool plan and implementation slices](docs/usb-control-tool-plan.md): first connect
+a report button to local LeCroy navigation, then integrate file selection,
+analysis and reporting. The API and four native GUI positions are verified;
+the HTML-to-COM bridge is not implemented. Status remains **Prototype PASS /
+Product Validation Pending**. [Review and native observations](docs/usb-control-product-validation.md)
+retain the exact scope and remaining engineer/unseen-case acceptance.
+
+### Native USB Trace Triage trial (2026-10-16, current)
+
+The owner approved implementation. In the portable ZIP, extract the whole folder
+and run **USBTraceTriage.exe**. Python 3.13.16 x64 is bundled; no separate Python
+installation or PATH setup is needed. Import one .usb file, inspect candidates
+and evidence in the same native window, and navigate to the protected LeCroy
+copy. HTML is optional export. Requires Windows 10/11 x64, PowerShell 5.1,
+.NET Framework 4.8 and registered LeCroy USB Protocol Suite COM. Checks default
+installation paths before requesting a custom path. Local 10.40 is verified;
+10.50 runtime qualification is pending. Startup failures show a log location.
+Source-only checkout users can use Start-USB-Trace-Triage.cmd with installed Python.
+
+See [trial instructions and UI references](docs/usb-control-tool.md) and
+[slice results and remaining acceptance](docs/usb-control-tool-results.md).
+This is a local trial candidate: restricted coexistence, physical drag
+qualification, clean Windows, revised-UI human acceptance and unseen-case
+time-saving qualification remain explicit boundaries. The prior prototype
+results remain valid within their original scope. No new analysis rules.

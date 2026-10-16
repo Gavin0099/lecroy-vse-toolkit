@@ -1019,3 +1019,237 @@ Canonical delivery record: artifacts/evidence/slice-push-20261013/delivery.json.
 This publishes bounded prototypes and historical local evidence; not all29 or
 full protocol qualification. Prior checkout/head/trace preservation results remain
 historical evidence; push state is a separate gate.
+
+## 2026-10-16 — GL3525 Billboard Chapter 9 new trace first-pass analysis
+
+New owner-provided input: Desktop/1016/GL3525-OVY1L_Billboarda-CV_test_issue,
+9 distinct .usb captures (6 FAIL / 3 PASS), 235,976,744 bytes. Owner confirmed
+filename labels; same firmware/procedure and exact CV subtests remain unverified.
+This is a new dataset and does not reopen the historical USB3 or PCIe milestones.
+
+Local first-pass complete: all 9 protected copies opened and native transfer CSV
+exported. Existing U01 probe ran 7 selections each on PASS_01 / FAIL_01, all 14
+transport assessments consistent. Native packet counts and transfer row counts
+match U01 default callbacks on that pair; incomplete counts 0 / 1 match native
+Cplt=NO rows. Old USB3 DEMO ran normally on PASS_01 but extracted zero selected
+events, so its pair wrapper stopped before FAIL_01 and no C5 ranking was run.
+
+All 6 FAIL traces have existing descriptor-request annotations. FAIL_01 transfer
+1386 at 35.611541400 sec is native Cplt=NO with Not Enough Data=0 bytes; FAIL_06
+also has an incomplete configuration request. PASS_04 shares a data-shortage
+flag on configuration index 1 with FAIL_02-06, so this flag alone is not a
+failure criterion. No firmware cause, compliance verdict, device identity,
+complete capture coverage, or setup/data/status grouping qualification claimed.
+
+Report: docs/gl3525-billboard-ch9-first-pass-20261016.md.
+Full local evidence: C:/Users/reiko/.codex/visualizations/2026/10/16/01a14297-966e-7b51-b3e6-572fecb51b9e/gl3525-billboard/.
+All nine source and working-copy identities unchanged; native processes exited.
+Next bounded diagnostic candidate: obtain setup/data/status and native packet
+references at the annotated transfers. This supplies new input for the USB2 /
+EP0 work; it is not U09/U11 adapter qualification. No product implementation,
+canonical memory write, staging, commit, push, PR, merge or hardware operation.
+## 2026-10-16 — TRIAGE-1 single-trace guidance / Automation-first A-B
+
+Owner clarified the product target: one trace, no supplied failure time or PASS
+baseline, up to three suspicious episodes with position, observation, reason and
+conditional engineer action. Root-cause proof is not a prerequisite. Subsequent
+owner research prioritizes native Automation reuse, minimal VSE only for proven
+field gaps, and no large viewer or additional packet-class expansion.
+
+Local prototype implemented: tools/run-usb-control-triage.ps1 supports Automation
+and Vse backends. API-only level-3 CSV and minimal USB2 control VSE observations
+feed the same discover/render functions. Labels, Markers and known failure times
+are not discovery inputs. Blank CSV fields remain unknown. Native SETUP-prefixed
+payload is byte-checked before deriving response data; capped prefixes are not
+zero-filled. Existing C5 pipeline/renderer and U01 COM host remain unchanged.
+Default remains explicit Vse (no silent fallback), pending further API composition
+work; both backends are selectable and their present evidence limits are visible.
+
+Validation: 31 new tests plus 14 existing U01 tests passed; 9 traces yielded
+23,456 native control records cross-checked to saved CSV indices/times/address/EP.
+Repeated FAIL_01 normalized native records matched exactly. On current known-data
+replay, A has annotated locations in Top3 on 2/6 FAIL files, B on 6/6; annotation
+point coverage is 2/9 vs 8/9. Both produced zero episodes on three PASS files.
+FAIL_06 transfer296 is outside B Top3. Source traces and protected copies remain
+unchanged. Browser checks cover primary/secondary cards, empty state, copying and
+390px layout. One favicon404 is separate from script execution.
+
+Native10.40 probes: 14 AnalyzerErrors counts are zero on FAIL_01 despite its
+incomplete control request. GotoTime/GotoUnit returned (visual landing unverified).
+ExportVisibleTraList works but this profile emits894015 index/level/name-only
+objects (82,027,165 bytes); no timestamps/request/payload. Bounded native transfer
+data export returns18 descriptor bytes. Thus A's tested projection is incomplete,
+not proof all possible Automation-only compositions are insufficient. One ordered
+live sample measured A14707ms/B9770ms, not a controlled performance comparison.
+
+Qualification boundary: v2 missed reserved FAIL_05; that miss is preserved. After
+inspection it became regression input for a header/larger-followup relationship,
+so it is not held-out validation. PASS_02 remains unused for rule tuning. Engineer
+usefulness/time savings and an unseen FAIL qualification remain NOT_TESTED.
+No USB-CV compliance, root cause, full capture coverage, packet membership or
+cross-reset physical identity claim. Local implementation is complete within
+this scope; product acceptance is pending those separate observations.
+
+Docs: docs/usb-control-triage.md; docs/usb-control-single-trace-contract.md;
+docs/lecroy-1040-triage-capabilities.md. Canonical local evidence and report index:
+C:/Users/reiko/.codex/visualizations/2026/10/16/01a14297-966e-7b51-b3e6-572fecb51b9e/gl3525-billboard-single/.
+Next: engineer follows one report and a new FAIL trace is evaluated; first assess
+native API gap-filling rather than expand VSE or duplicate LeCroy views. No memory
+record write, commit, push, PR, merge, hardware operation or source capture save.
+## 2026-10-16 — TRIAGE-1 tool plan / owner priority
+
+Current owner priority: define a usable tool plan and implementation slices before
+more report-only polishing or new analysis rules. Product posture remains
+Prototype PASS / Product Validation Pending. Plan: docs/usb-control-tool-plan.md.
+
+Baseline preserved: 11 source/test/contract files snapshotted with hashes,
+rule usb2-control-guidance-3, output usb-control-inspection/v1. All 18 detailed
+HTML reports plus their models and original index are bundled for offline review;
+the37 original release files are byte-identical. Package has39 verified local
+references and no external page dependencies. No algorithm/ranking changes.
+
+New native evidence: GotoUnit(3,index) visibly lands on FAIL_01 transfer1386
+(35.611541400,13/0), FAIL_06 transfer562 (40.351786032,19/0),372
+(27.608155682,5/0),446 (33.191925582,12/0). Actual Transfer view fields match.
+Native UI also returned from446 to372 using the Go-to dialog. This updates the
+earlier GUI-unverified checkpoint only for these observed positions; it does not
+qualify every transfer, GUI read-back, full handshakes or root cause. HTML has no
+API bridge yet. Clipboard-to-native paste and real engineer use remain untested.
+
+Implementation slices (not started): TOOL-01 browser button/local COM navigation;
+TOOL-02 select-one-trace/run/report/navigate integrated entry; TOOL-03 UI identity,
+candidate totals and recovery states; TOOL-04 unpack-and-start trial package;
+TOOL-05 unseen cases and engineer task/time validation. TOOL-01 is next. Existing
+VSE/Automation acquisition and discovery are reused, no new ranking rules.
+
+Review notes: docs/usb-control-product-validation.md. Minor UI gaps include trace
+identity hidden in details, missing index orientation, omitted candidate count
+buried in limitations, and absent native navigation instructions. Frozen reports
+remain unchanged; these fixes belong to TOOL-03. No new unseen traces or human
+timing were obtained. Local evidence and portable ZIP remain under:
+C:/Users/reiko/.codex/visualizations/2026/10/16/01a14297-966e-7b51-b3e6-572fecb51b9e/gl3525-billboard-validation/.
+
+This session delivers planning/validation artifacts, not an implemented desktop
+tool, one-click bridge or release. No commit/push/PR/merge, hardware action,
+source-capture save or global-memory edit. Prior dirty work retained.
+
+## 2026-10-16 — Tool plan review incorporated (r2, documentation only)
+
+Owner-supplied review explicitly limits this round to plan/acceptance revisions;
+TOOL-01 implementation is not authorized by this revision. Current plan:
+docs/usb-control-tool-plan.md (r2). Existing prototype remains Prototype PASS /
+Product Validation Pending; no new runtime, coexistence or usability result.
+
+Revised order: TOOL-01 -> TOOL-02 -> TOOL-02.5 -> TOOL-03 -> TOOL-04 -> TOOL-05.
+TOOL-01 first investigates safe coexistence with an already-open LeCroy using
+controlled sessions and verified ownership; existing all-process guard stays
+until isolation is proved. Includes STA message pump, serialized operations,
+out-of-worker timeout observation, late-reply protection, owned-only cleanup,
+HTTP/API/visually-confirmed positioning separation, and exact Host/Origin plus
+session-token/candidate authorization and non-shell-interpolated parameters.
+TOOL-02 adds actual native Windows drag-and-drop and file selection, transfers
+paths over IPC instead of uploading full traces through the browser, and keeps
+the required readonly-copy protection. Minimum candidate total/omitted count
+and explicit USB2 EP0/not-USB-PASS scope are required before early trials.
+TOOL-02.5 observes1-2 engineers on familiar cases before TOOL-03 UI improvements;
+this is usability evidence, not unseen-case validation. No engineer contacted.
+TOOL-04 separates new-unpack-directory from clean-Windows-environment evidence
+and records large-trace timing, memory and temporary-disk usage. TOOL-05 retains
+unseen FAIL/PASS and full-task cost, including coexistence/recovery overhead,
+useful candidates, actual misleading directions and undecided annotations.
+
+No source code/rule/contract changes, COM/UI execution, hardware action,
+commit/push/PR/merge or memory write. Original plan flow and five main slices
+are preserved with the added early human-validation checkpoint. Next planned
+work remains TOOL-01, not started. Review requirements are mapped in the plan.
+
+## 2026-10-16 — Authorized TOOL implementation and native UI correction
+
+The owner approved r2 and authorized implementation in slice order. This
+supersedes the preceding documentation-only work order. Implementation and
+current acceptance boundaries are in docs/usb-control-tool-results.md; usage
+and official UI references are in docs/usb-control-tool.md.
+
+TOOL-01: implemented the asynchronous controller, private candidate binding,
+pumped STA worker, integrity checks and owned-only restricted navigation.
+Actual report-button and native-workspace landings match FAIL_01 1386 and
+FAIL_06 562/372/446; repeated navigation reuses OpenFile. Existing native
+work is refused before takeover. Safe multi-instance coexistence is not proved,
+foreground switching can be refused by Windows, and actual permanently hung
+COM recovery remains unqualified.
+
+TOOL-02: implemented native file selection/FileDrop IPC and frozen VSE analysis.
+Actual native picker -> analysis -> candidate workspace -> LeCroy is verified;
+physical Explorer drag qualification is pending because the Computer Use drag
+API refused a cross-window endpoint. Source/read-only-copy checks passed.
+
+TOOL-02.5: the user personally tried the initial tool and reported poor UI and
+unexpected external web pages. This is real negative feedback, not a PASS.
+Following the user's instruction to research similar tools first, checked
+official Saleae Logic 2, Wireshark, Total Phase and Windows guidance, then
+implemented the native inspection workspace. TOOL-03 objective fixes include
+candidate/detail synchronization, first-screen location and next-step hints,
+native context/source tabs, scoped empty results and optional HTML export;
+normal use no longer launches an external browser. New UI needs human retest.
+
+TOOL-04: explicit 13-source-file trial ZIP with manifest and verified CRC/bytes;
+unpacked to a fresh directory and launched from another cwd. PASS_04 analysis
+and scoped empty state verified there. Largest current-batch trace (FAIL_06,
+about 54 MB) analysis/resources recorded; this is not a general large-trace or
+clean-Windows qualification. TOOL-05 unseen-case and complete engineer-time
+acceptance remains pending actual participants/data. No ranking rules added.
+
+Validation: 15 controller/native-IPC boundary tests, 31 frozen USB-control tests
+and 14 U01 tests passed. All 11 frozen source/test/contract files, nine original
+traces, bound copy identities, package bytes and earlier dirty text prefixes
+verified. Source snapshots and test/GUI evidence remain outside Git under
+the tool-implementation directory alongside the prior validation directory.
+Local trial implementation is delivered; not all slice acceptance gates are
+passed. No commit, push, PR, merge, hardware writes or global-memory edits.
+
+## 2026-10-16 — TOOL-03 approved palette and portable startup repair
+
+Owner approved the existing layout with neutral light semantic colours and
+state-dependent primary actions. Implemented native colour tokens, explicit
+button interaction/focus states, neutral candidates with blue selection,
+tab selection underline, import wording and operation-error recovery state.
+No multi-theme feature or new analysis rules. Human usability/time saving
+remains pending; subjective appearance scores are not acceptance evidence.
+
+Owner reported silent startup on another engineer's LeCroy 10.50 machine and
+requested default installation detection before custom selection and bundled
+Python. Added a precompiled native startup window and persistent logs; portable
+ZIP contains the hash-checked official Python 3.13.16 x64 runtime and license.
+Default LeCroy paths and both COM registry views are checked; only absent paths
+prompt for selection. No system execution-policy or COM-registration writes.
+10.50's documented ProgID is unchanged, but remote runtime remains unverified.
+
+During the new package trial, actual FAIL_06 and FAIL_03 imports exposed a
+local regression: new AppData paths were still virtual when passed to the
+out-of-process LeCroy COM server. Fixed by resolving the physical directory
+after creation, in controller and startup paths. Reproduced the old/new path
+difference and retained failure logs. Bundled-runtime actual reruns in AppData
+now return FAIL_01 1386, FAIL_06 562/372/446, PASS_04 no candidate, source hashes
+unchanged. Remote silent startup is not attributed to this local defect.
+
+Validation: controller/distribution suite18, frozen USB suite31, U01 suite14;
+native startup harness12 assertions; official runtime SHA-256, package CRC and
+exact files; native startup from another cwd with empty PATH. No clean-Windows,
+remote 10.50, engineer-time or general coexistence qualification. Engine,
+ranking, VSE, adapter and COM navigation sources remain unchanged; runner only
+accepts the detected executable path for metadata. Details/evidence are in
+docs/usb-control-tool-results.md and the external tool03-portability directory.
+Local implementation/package work; no commit, push, merge or global-memory edit.
+
+## 2026-10-16 — Owner-authorized USB tool source delivery
+
+Owner explicitly requested push after the portable-r3 repair. This authorizes
+the source/documentation commits and push to the existing
+codex/pcie-d1e-f0-baseline branch, superseding the prior no-commit/push work scope.
+The selected bundle contains31 USB-tool source/test/documentation paths plus
+the separately committed session closeout. Proprietary captures, generated
+timelines, portable binaries/runtime ZIP and unrelated PCIe work remain local.
+Current tests18+31+14 pass. Source delivery does not establish remote10.50,
+clean-Windows or engineer/time-saving acceptance; no PR or merge requested.
+The exact remote-head and preservation result is recorded in the external
+push-20261016 evidence directory after the push operation.
