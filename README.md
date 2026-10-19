@@ -219,7 +219,7 @@ the HTML-to-COM bridge is not implemented. Status remains **Prototype PASS /
 Product Validation Pending**. [Review and native observations](docs/usb-control-product-validation.md)
 retain the exact scope and remaining engineer/unseen-case acceptance.
 
-### Native USB Trace Triage trial (2026-10-16, current)
+### Native USB Trace Triage trial (2026-10-19, current)
 
 The owner approved implementation. In the portable ZIP, extract the whole folder
 and run **USBTraceTriage.exe**. Python 3.13.16 x64 is bundled; no separate Python
@@ -236,4 +236,14 @@ See [trial instructions and UI references](docs/usb-control-tool.md) and
 This is a local trial candidate: restricted coexistence, physical drag
 qualification, clean Windows, revised-UI human acceptance and unseen-case
 time-saving qualification remain explicit boundaries. The prior prototype
-results remain valid within their original scope. No new analysis rules.
+results remain valid within their original scope. USB2 rules remain frozen.
+
+The USB3/PD trial adds per-protocol status and independent top-three candidate
+lists, bounded USB3 Link/LFPS guidance, and Automation-first PD negotiation/VDM
+evidence. Neutral PD flows remain separate from suspect candidates; a single
+NAK is not promoted to a fault. Typed Packet/Transaction/Transfer navigation
+retains trace-hash and owned-session protection. Native PKT/TRA/XFR selection
+is explicitly manual. See [USB3/PD usage](docs/usb3-pd-tool-usage.md),
+[slice plan](docs/usb3-pd-tool-plan.md) and [local results](docs/usb3-pd-tool-results.md).
+Mixed captures, GL3525 PD fault cases, unseen USB3 inputs, 10.50 and human
+qualification still require external evidence; this is not full protocol compliance.

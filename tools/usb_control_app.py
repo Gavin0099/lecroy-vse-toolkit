@@ -24,6 +24,7 @@ from contextlib import contextmanager
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 import usb_control_triage as engine
+import usb_triage_model as presentation
 
 HERE = Path(__file__).resolve().parent
 POWERSHELL = str(Path(os.environ.get('SystemRoot', r'C:\Windows')) / 'System32/WindowsPowerShell/v1.0/powershell.exe')
@@ -134,6 +135,8 @@ def servers():
 
 
 def validate_model(model):
+    if model.get('format') == presentation.FORMAT:
+        return presentation.validate(model)
     if model.get('format') != 'usb-control-inspection/v1':
         raise ValueError('Unsupported inspection format')
     digest = model.get('trace_sha256', '')
@@ -171,7 +174,8 @@ class NativeWorker:
                 raise TimeoutError('Navigation worker did not start')
             time.sleep(.1)
         identity = uuid.uuid4().hex
-        atomic_json(self.root / 'request.json', {'id': identity, 'action': action, 'transfer': transfer})
+        payload = {'target': transfer} if isinstance(transfer, dict) else {'transfer': transfer}
+        atomic_json(self.root / 'request.json', {'id': identity, 'action': action, **payload})
         while time.monotonic() < until:
             response = self.root / 'response.json'
             if response.exists():
@@ -232,7 +236,8 @@ class Tool:
             if self.state['phase'] in ('preparing', 'extracting'):
                 value['case_id'] = None
                 value['trace_name'] = self.state.get('pending_trace_name')
-            value['scope'] = 'USB2 標準 EP0 控制傳輸；未涵蓋 USB3 Link、Bulk、Interrupt、PD。無候選不等於 USB PASS。'
+            value['scope'] = self.case['model'].get('scope', '') if self.case else 'USB2 EP0 / USB3 Link・LFPS / PD 協商・VDM；以完成後的範圍狀態為準，無候選不代表 USB PASS。'
+            value['analyses'] = self.case['model'].get('analyses', []) if self.case else []
             return value
 
     def bind(self, model_path, source, prepared=None):
@@ -259,7 +264,7 @@ class Tool:
         if bound['sha256'] != before['sha256'] or snapshot(source) != before:
             raise ValueError('Trace integrity failed during binding')
         (folder / 'inspection.json').write_bytes(model_path.read_bytes())
-        (folder / 'report.html').write_text(engine.render(model), encoding='utf-8')
+        (folder / 'report.html').write_text(self.render(model), encoding='utf-8')
         case = {'id': case_id, 'name': source.name, 'source': source, 'working': working,
                 'before': before, 'working_before': bound, 'model': model, 'folder': folder}
         atomic_json(folder / 'binding-evidence.json', {'case_id': case_id, 'source': str(source),
@@ -283,7 +288,11 @@ class Tool:
         self.bind(model, source)
         self.update('report', '報告已載入。選擇候選後可在 LeCroy 定位。', busy=False)
 
-    def navigate(self, case_id, rank):
+    @staticmethod
+    def render(model):
+        return presentation.render(model) if model.get('format') == presentation.FORMAT else engine.render(model)
+
+    def navigate(self, case_id, rank, target_index=0, item_kind='candidate'):
         with self.lock:
             if self.shutting_down or self.state['busy']:
                 return False
@@ -291,11 +300,17 @@ class Tool:
                 raise ValueError('先完成目前工作清理，再重試')
             if not self.case or case_id != self.case['id'] or type(rank) is not int:
                 raise ValueError('工作階段已變更')
-            cards = self.case['model']['candidates']
+            if item_kind not in ('candidate','observation'):raise ValueError('Unsupported navigation item')
+            cards = self.case['model'].get('observations',[]) if item_kind=='observation' else self.case['model']['candidates']
             if rank < 1 or rank > len(cards):
                 raise ValueError('候選不存在')
-            transfer = cards[rank - 1]['transfer_indices'][0]
-            self.update('navigating', f'正在定位 Transfer {transfer}…', busy=True, last_navigation=None)
+            card = cards[rank - 1]
+            choices = presentation.targets(card)
+            if type(target_index) is not int or not 0 <= target_index < len(choices):
+                raise ValueError('定位目標不存在')
+            target = choices[target_index]
+            transfer = target if 'native_targets' in card else target['index']
+            self.update('navigating', f'正在定位 {presentation.location(target)}…', busy=True, last_navigation=None)
             self.thread = threading.Thread(target=self._navigate, args=(case_id, transfer), daemon=True)
             self.thread.start()
             return True
@@ -309,8 +324,12 @@ class Tool:
                 if servers():
                     raise RuntimeError('LeCroy 已有工作階段；尚未證明可隔離共存。保留原工作，請關閉本次定位或稍後重試。')
                 case = self.case
-                self.worker = self.worker_factory(case['folder'] / ('navigation-' + uuid.uuid4().hex[:8]),
-                    {'working_path': str(case['working']), 'transfers': [c['transfer_indices'][0] for c in case['model']['candidates']]})
+                binding = {'working_path': str(case['working']), 'trace_sha256': case['before']['sha256']}
+                if case['model'].get('format') == presentation.FORMAT:
+                    binding['targets'] = [t for c in case['model']['candidates']+case['model'].get('observations',[]) for t in presentation.targets(c)]
+                else:
+                    binding['transfers'] = [c['transfer_indices'][0] for c in case['model']['candidates']]
+                self.worker = self.worker_factory(case['folder'] / ('navigation-' + uuid.uuid4().hex[:8]), binding)
             result = self.worker.request('goto', transfer)
             self.integrity()
             elapsed = round((time.monotonic() - started) * 1000)
@@ -320,7 +339,9 @@ class Tool:
                 if 'Native session changed' in detail:
                     raise RuntimeError('LeCroy 工作階段已變更或結束，已停止定位。請先按「結束定位工作」再重試。')
                 raise RuntimeError('定位未完成，請先結束本次定位再重試。詳細原因：' + detail)
-            self.update('api_returned', f'定位請求已送至 LeCroy：Transfer {transfer}。請核對 Trace、時間與 Address/EP；必要時切換 LeCroy 視窗。',
+            target = transfer if isinstance(transfer, dict) else presentation.target('USB2', 3, transfer)
+            view = {0: 'PKT', 1: 'TRA', 3: 'XFR'}[target['level']]
+            self.update('api_returned', f'定位請求已送至 LeCroy：{presentation.location(target)}。請切至 {view} 顯示並核對同一份 Trace、編號、時間與 channel／角色；API 返回不代表畫面已確認。',
                         busy=False, last_navigation={**result, 'controller_elapsed_ms': elapsed})
         except TimeoutError as ex:
             self.event('navigation_timeout', transfer=transfer)
@@ -363,6 +384,10 @@ class Tool:
             return self.import_trace(message['path'], message.get('input_method', 'native_ipc'))
         if set(message) == {'action', 'case_id', 'rank'} and message['action'] == 'navigate':
             return self.navigate(message['case_id'], message['rank'])
+        if set(message) == {'action', 'case_id', 'rank', 'target_index'} and message['action'] == 'navigate':
+            return self.navigate(message['case_id'], message['rank'], message['target_index'])
+        if set(message) == {'action', 'case_id', 'rank', 'target_index','item_kind'} and message['action'] == 'navigate':
+            return self.navigate(message['case_id'],message['rank'],message['target_index'],message['item_kind'])
         if message == {'action': 'end'}:
             return self.end_navigation()
         raise ValueError('Unsupported native command')
@@ -396,49 +421,20 @@ class Tool:
             self.update('error', str(ex), busy=False)
 
     def _analyze_exclusive(self, source):
-        started = time.monotonic()
+        import usb_triage_pipeline as pipeline
+        started=time.monotonic()
         try:
-            if servers():
-                raise RuntimeError('已有 LeCroy 工作階段，受限模式不接管；請保留原工作並稍後重試。')
-            self.case = None
-            output = self.root / ('analysis-' + uuid.uuid4().hex)
-            self.update('extracting', 'LeCroy 正在讀取／擷取 USB2 EP0；仍可查看狀態。', busy=True)
-            with (self.root / 'analysis.log').open('ab') as log:
-                # Acquisition uses the synchronous host's MTA path, separate
-                # from pumped STA navigation. Never inherit the native IPC stdin
-                # pipe: PowerShell/native Python must not consume that stream.
-                proc = subprocess.Popen([POWERSHELL, '-NoProfile', '-MTA', '-File', str(HERE / 'run-usb-control-triage.ps1'),
-                                         '-TracePath', str(source), '-Output', str(output), '-Python', sys.executable],
-                                        stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT,
-                                        creationflags=subprocess.CREATE_NO_WINDOW, env=powershell_environment())
-                self.analysis_process = proc
-                resources = {'process_peaks': {}, 'sampled_workdir_peak_bytes': 0, 'sample_interval_seconds': 1,
-                             'limitations': 'Observed process lifetime peaks; controller may include previous jobs. Disk maximum is sampled. Peaks are not summed or treated as simultaneous.'}
-                deadline = time.monotonic() + 600
-                while proc.poll() is None:
-                    sample_resources(output, proc.pid, resources)
-                    if time.monotonic() > deadline:
-                        raise subprocess.TimeoutExpired(proc.args, 600)
-                    time.sleep(1)
-                code = proc.returncode
-                if output.exists():
-                    atomic_json(output / 'resources.json', resources)
-            deadline = time.monotonic() + 15
-            while servers() and time.monotonic() < deadline:
-                time.sleep(.2)
-            if code or servers():
-                raise RuntimeError('擷取失敗或原生程序清理未完成；請查看 analysis.log 與 PowerShell／LeCroy 環境。')
-            self.bind(output / 'inspection.json', source, output / 'working.usb')
-            resources['analysis_elapsed_ms'] = round((time.monotonic() - started) * 1000)
-            resources['retained_analysis_directory_bytes'] = sum(p.stat().st_size for p in output.rglob('*') if p.is_file())
-            atomic_json(output / 'resources.json', resources)
-            self.event('analysis_completed', elapsed_ms=round((time.monotonic() - started) * 1000))
-            self.update('report', ('分析完成。請先看主要候選，並在 LeCroy 核對。' if self.case['model']['candidates'] else '本次 USB2 EP0 分析未找到足夠候選；不代表 USB PASS。'), busy=False)
+            if servers():raise RuntimeError('已有 LeCroy 工作階段，受限模式不接管；請保留原工作並稍後重試。')
+            self.case=None
+            output=self.root/('analysis-'+uuid.uuid4().hex)
+            result=pipeline.run(source,output,lambda text:self.update('extracting',text,busy=True))
+            self.bind(result['model'],source,result['working'])
+            self.event('analysis_completed',elapsed_ms=round((time.monotonic()-started)*1000))
+            self.update('report','分析結束。請依左側協定狀態查看候選、缺漏與分析範圍；無候選不代表 USB PASS。',busy=False)
         except subprocess.TimeoutExpired:
-            self.update('unresponsive', '原生擷取超過等待時間；結果未知。尚未取消呼叫，請先完成清理。', busy=False)
+            self.update('unresponsive','原生擷取超過等待時間；結果未知，尚未取消呼叫。請先確認原生程序與工作日誌。',busy=False)
         except Exception as ex:
-            self.event('analysis_error', error=str(ex))
-            self.update('error', str(ex), busy=False)
+            self.event('analysis_error',error=str(ex));self.update('error',str(ex),busy=False)
 
     def page(self):
         with self.lock:
@@ -447,12 +443,16 @@ class Tool:
                 body = '<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><title>USB Trace Triage</title><main><h1>USB Trace Triage</h1><p>請把一份 .usb 拖入 Windows 工具入口，或按「選擇檔案」。</p></main></html>'
             else:
                 model = case['model']
-                body = engine.render(model)
-                identity = f'<section class="tool-meta"><strong>{html.escape(case["name"])}</strong><br>SHA-256 {model["trace_sha256"][:16]} · {html.escape(model["rule_version"])} · VSE<br>找到 {model["episode_count"]} 個待檢查區段；顯示 {len(model["candidates"])} 個，另 {model["omitted_episodes"]} 個未顯示。<p>USB2 標準 EP0 控制傳輸；未涵蓋 USB3 Link、Bulk、Interrupt、PD。無候選不等於 USB PASS。</p></section>'
+                body = self.render(model)
+                scope = model.get('scope', 'USB2 標準 EP0 控制傳輸；未涵蓋 USB3 Link、Bulk、Interrupt、PD。無候選不等於 USB PASS。')
+                # Legacy scope may be terse; keep its historical exclusion text.
+                if model.get('format') != presentation.FORMAT:
+                    scope = 'USB2 標準 EP0 控制傳輸；未涵蓋 USB3 Link、Bulk、Interrupt、PD。無候選不等於 USB PASS。'
+                identity = f'<section class="tool-meta"><strong>{html.escape(case["name"])}</strong><br>SHA-256 {model["trace_sha256"][:16]} · {html.escape(model["rule_version"])}<br>找到 {model["episode_count"]} 個待檢查區段；顯示 {len(model["candidates"])} 個，另 {model["omitted_episodes"]} 個未顯示。<p>{html.escape(scope)}</p></section>'
                 body = body.replace('</header>', identity + '</header>')
                 for c in model['candidates']:
                     marker = f'<article class="card" id="candidate-{c["rank"]}">'
-                    body = body.replace(marker, marker + f'<button class="goto" data-rank="{c["rank"]}">在 LeCroy 定位 · Transfer {c["transfer_indices"][0]}</button>')
+                    body = body.replace(marker, marker + f'<button class="goto" data-rank="{c["rank"]}">在 LeCroy 定位 · {html.escape(presentation.location(presentation.targets(c)[0]))}</button>')
             boot = json.dumps({'token': self.token, 'case_id': case['id'] if case else None})
             extra = '<style>.tool-bar,.tool-meta{padding:16px;background:#e7eff6;border-radius:8px;margin:12px 0}.tool-bar{position:sticky;top:0;z-index:2}.goto{font-size:16px;min-height:44px;background:#244e70;color:white}button:disabled{opacity:.5}#tool-status{white-space:pre-wrap}body{font-family:system-ui,"Microsoft JhengHei",sans-serif}</style>'
             extra += '<section class="tool-bar"><strong>本機工具 · 受限共存模式</strong><p id="tool-status" role="status" aria-live="polite"></p><button id="reload">重新載入結果</button><button id="end-session">結束定位工作</button></section>'

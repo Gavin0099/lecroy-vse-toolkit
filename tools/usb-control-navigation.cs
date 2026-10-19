@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
+using System.Security.Cryptography;
 
 public static class TraceNavigationWorker {
     static object analyzer, trace;
@@ -37,6 +38,15 @@ public static class TraceNavigationWorker {
         return !requireCaption || (ps[0].MainWindowHandle!=IntPtr.Zero && ps[0].MainWindowTitle==caption);
     }
     static void Release(object value) { if(value!=null && Marshal.IsComObject(value)) Marshal.FinalReleaseComObject(value); }
+    public static string TargetKey(Dictionary<string,object> t) {
+        string protocol=Convert.ToString(t["protocol"]);
+        if(!(t["level"] is int) || !(t["index"] is int))throw new InvalidDataException("Native level/index must be integers");
+        int level=(int)t["level"], index=(int)t["index"];
+        if(index<0 || !(protocol=="USB2"&&level==3 || protocol=="USB3"&&level==0 || protocol=="PD"&&(level==0||level==1||level==3)))
+            throw new InvalidDataException("Unsupported native protocol/level/index");
+        return protocol+":"+level+":"+index;
+    }
+    static string Hash(string path) {using(var hash=SHA256.Create())using(var file=File.OpenRead(path))return BitConverter.ToString(hash.ComputeHash(file)).Replace("-","").ToLowerInvariant();}
     static void Close() {
         // Do not Close a document if the user changed the selected document/window.
         bool safe=trace!=null && Owned(true);
@@ -55,7 +65,16 @@ public static class TraceNavigationWorker {
         var binding=json.Deserialize<Dictionary<string,object>>(File.ReadAllText(Path.Combine(root,"binding.json"),utf8));
         string path=Path.GetFullPath((string)binding["working_path"]);
         // Candidate whitelist comes from a private controller-created binding file.
-        var allowed=new HashSet<int>(((System.Collections.IEnumerable)binding["transfers"]).Cast<object>().Select(Convert.ToInt32));
+        var allowed=new Dictionary<string,Dictionary<string,object>>();
+        bool typed=binding.ContainsKey("targets");
+        if(typed)foreach(object item in (System.Collections.IEnumerable)binding["targets"]) {
+            var t=(Dictionary<string,object>)item;allowed[TargetKey(t)]=t;
+        }
+        else foreach(object item in (System.Collections.IEnumerable)binding["transfers"]) {
+            var t=new Dictionary<string,object>{{"protocol","USB2"},{"level",3},{"index",item}};allowed[TargetKey(t)]=t;
+        }
+        string expectedHash=binding.ContainsKey("trace_sha256")?(string)binding["trace_sha256"]:null;
+        if(typed && (expectedHash==null || expectedHash.Length!=64))throw new InvalidDataException("Missing bound trace hash");
         var context=new ApplicationContext();
         var timer=new System.Windows.Forms.Timer();timer.Interval=100;
         Save("ready.json",new {state="ready",apartment="STA",message_pump="WinForms",coexistence="restricted"});
@@ -71,8 +90,15 @@ public static class TraceNavigationWorker {
                 if((string)command["action"]=="close") {
                     Close();Save("response.json",new {id=id,state="closed",elapsed_ms=watch.ElapsedMilliseconds});context.ExitThread();return;
                 }
-                int unit=Convert.ToInt32(command["transfer"]);
-                if(!allowed.Contains(unit)) throw new InvalidOperationException("Candidate not allowed");
+                if((string)command["action"]!="goto")throw new InvalidDataException("Unsupported navigation action");
+                Dictionary<string,object> requested;
+                if(typed)requested=(Dictionary<string,object>)command["target"];
+                else requested=new Dictionary<string,object>{{"protocol","USB2"},{"level",3},{"index",command["transfer"]}};
+                string key=TargetKey(requested);
+                if(!allowed.ContainsKey(key))throw new InvalidOperationException("Candidate not allowed");
+                var target=allowed[key];int unit=(int)target["index"], level=(int)target["level"];
+                if(expectedHash!=null && Hash(path)!=expectedHash)throw new InvalidDataException("Bound trace hash mismatch");
+                if((File.GetAttributes(path)&FileAttributes.ReadOnly)==0)throw new InvalidDataException("Bound copy is not read-only");
                 if(trace==null) {
                     if(Servers().Length!=0) throw new InvalidOperationException("LeCroy conflict: existing session is not owned; no COM activation attempted");
                     analyzer=Activator.CreateInstance(Type.GetTypeFromProgID("CATC.UsbTracer",true));
@@ -89,11 +115,12 @@ public static class TraceNavigationWorker {
                         throw new InvalidOperationException("Native window does not identify the bound copy; ownership remains unqualified");
                 }
                 if(!Owned(true)) throw new InvalidOperationException("Native session changed; refusing to navigate or take over");
-                Call(trace,"GotoUnit",3,unit);
+                Call(trace,"GotoUnit",level,unit);
                 var native=Process.GetProcessById(nativePid);native.Refresh();
                 bool foreground=false;
                 if(native.MainWindowHandle!=IntPtr.Zero) {ShowWindow(native.MainWindowHandle,9);foreground=SetForegroundWindow(native.MainWindowHandle);}
-                Save("response.json",new {id=id,state="api_returned",transfer=unit,open_count=opens,pid=nativePid,
+                Save("response.json",new {id=id,state="api_returned",transfer=unit,target=target,open_count=opens,pid=nativePid,
+                    display_layer="manual",display_hint=level==0?"PKT":level==1?"TRA":"XFR",
                     elapsed_ms=watch.ElapsedMilliseconds,foreground_request_accepted=foreground,gui_confirmed=false});
             } catch(Exception ex) {
                 Save("response.json",new {id=id,state="error",error=ex.GetBaseException().Message,elapsed_ms=watch.ElapsedMilliseconds});

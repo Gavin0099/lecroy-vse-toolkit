@@ -4,7 +4,8 @@ param(
     [Parameter(Mandatory=$true)][string]$TracePath,
     [Parameter(Mandatory=$true)][string]$Output,
     [string]$Python='python',
-    [ValidateSet('Automation','Vse')][string]$Backend='Vse'
+    [ValidateSet('Automation','Vse')][string]$Backend='Vse',
+    [switch]$UseReadOnlyInput
 )
 $ErrorActionPreference='Stop'
 function Snapshot([string]$p) {
@@ -31,8 +32,13 @@ $sourceBefore=Snapshot $source
 $scriptBefore=Snapshot $script
 New-Item -ItemType Directory -Path $out | Out-Null
 $work=Join-Path $out 'working.usb'
-Copy-Item -LiteralPath $source -Destination $work
-Set-ItemProperty -LiteralPath $work -Name IsReadOnly -Value $true
+if($UseReadOnlyInput){
+    if(-not $sourceBefore.readonly){throw 'Prepared input must already be read-only'}
+    $work=$source
+}else{
+    Copy-Item -LiteralPath $source -Destination $work
+    Set-ItemProperty -LiteralPath $work -Name IsReadOnly -Value $true
+}
 $workBefore=Snapshot $work
 if($workBefore.sha256 -ne $sourceBefore.sha256 -or -not $workBefore.readonly){throw 'Protected copy verification failed'}
 $exe=$env:LECROY_USB_SUITE_EXE

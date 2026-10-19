@@ -1253,3 +1253,151 @@ Current tests18+31+14 pass. Source delivery does not establish remote10.50,
 clean-Windows or engineer/time-saving acceptance; no PR or merge requested.
 The exact remote-head and preservation result is recorded in the external
 push-20261016 evidence directory after the push operation.
+
+## 2026-10-19 — USB3 / PD data and navigation feasibility; expansion plan
+
+Owner authorized feasibility first using existing functions/traces, then a
+plan and slices. This work order does not implement full USB3/PD product
+integration or authorize a new commit/push. Current USB2 and PCIe results
+retain their original scope. Evidence and implementation slices are in
+docs/usb3-pd-feasibility-20261019.md and docs/usb3-pd-tool-plan.md.
+
+Actual local10.40 Build6309 runs opened eight existing sources: two user USB3
+captures, one installed USB3 LinkUp sample and five installed PD samples.
+Ten originals were inventoried and hash/stat-protected. Existing U02/U03
+runners reproduced Link Command/LFPS fields and native packet anchors.
+Machine-readable exact LTSSM state and complete USB3 group-child membership
+remain unqualified; callback index alone does not identify a separate state.
+Both user USB3 captures had zero observed PD packets, with one CC event each.
+
+PD Automation CSV already provides native Transaction/Transfer grouping,
+negotiation, PDO/RDO display fields, VDM commands and ACKed/NAKed outcomes.
+The five samples exported9/10/8/3/15 PD Transfer rows. The unchanged U01 COM
+host plus a bounded external research VSE exposed Packet/time/channel and
+SOP/revision/role/MsgID/object-count raw headers. Some decoded lookups remain
+empty; full payload/extended messages and positive error-flag qualification
+are not established. Official samples qualify data access, not GL3525 faults.
+
+Native screenshots match USB3 Packet8 LGOOD_11 at0.000067664s and Packet629253
+U3 Wake LFPS at13.897383272s, plus PD Packet110/160 and Transfer6/8. PD
+Transfer6/8 use the unchanged product worker. Packet navigation used an
+external derivative with explicit level selection, not a product change.
+GotoUnit does not automatically select the native display layer: PD Transfer6
+required manual XFR selection to inspect the Transfer row. OpenFile remained1
+within each navigation session. API timing is distinct from GUI/human timing.
+
+Planned sequence, all NOT STARTED: EXP-01 protocol coverage/typed native
+targets and display-layer handling; U3-01 existing extraction adapter;
+U3-02 bounded single-trace candidate/hints; U3-03 native workspace; PD-01
+Automation-first adapter/minimal VSE gaps; PD-02 negotiation/VDM guidance;
+PD-03 native workspace; EXP-02 mixed-protocol/version/engineer qualification.
+EXP-01 is the next implementation slice. Existing paired C5 is optional
+comparison only, not evidence of single-trace triage. No shared protocol
+decoder/framework, scoring reuse or exact-state rules are presumed.
+
+Estimated effort for one repo-familiar engineer is17-28 person-days including
+integration engineering, excluding data/participant/version-machine waiting
+and additional remediation from qualification. True GL3525 PD failure cases,
+independent USB3 cases, mixed captures,10.50 runtime and engineer-time benefit
+remain pending. No full protocol/compliance/root-cause product claim follows.
+
+Validation: external verify.py checks ten unchanged source hashes/stat values,
+15 completed/integrity-preserving probes, two existing field-runner results,
+PD native values, persisted navigation responses, retained GUI evidence,
+three closed navigation sessions and tracked-source/prefix preservation.
+All research scripts, raw output and screenshots remain outside Git under
+usb3-pd-feasibility-20261019 alongside the earlier evidence directory. Only
+this plan, the two new docs and the mandatory closeout are edited in repo;
+no production analyzer/UI/navigation source, capture or hardware write.
+
+## 2026-10-19 — Owner-authorized USB3 / PD implementation in slice order
+
+The owner now authorizes EXP-01 through EXP-02 sequential implementation,
+continuing after each available local verification without repeated questions.
+New traces,10.50 and human-only acceptance stay pending while independent local
+work continues. This supersedes the preceding feasibility-only work order;
+commit/push/merge remain separately unauthorized.
+
+EXP-01 local checks pass: typed protocol/level/index whitelist, source hash and
+readonly check, stale authorization/timeout isolation, backward-compatible
+USB2 and explicit manual PKT/TRA/XFR guidance. Actual native USB2 landings
+1386/562/372/446, USB3 Packet8/629253, PD Transfer6/8 and Packet160 match.
+Repeated navigation retains OpenFile=1. Exact automatic layer switching and
+broad coexistence remain limited, not silently promoted to supported.
+
+U3-01 local data checks pass on two user traces, LinkUp and USB2-only inputs.
+The qualified U02/U03 first32 records each match the combined path. fail-2 has
+166196 Link Commands and47006 LFPS, complete within the300000 record cap;
+the other user trace reaches the cap and is explicitly partial. Counters still
+scan all delivered events. Exact LTSSM state and full capture boundaries are
+not inferred.
+
+U3-02 local checks pass for bounded compound tails: Reset or illegal LFPS with
+Polling after prior Link traffic, Wake followed by Reset, or repeated Reset,
+without later same-channel LGOOD/LCRD in complete delivered output. Normal
+isolated warnings/Wake/Polling and visible recovery are not candidates;
+truncated/unknown-mode output suppresses absence-dependent rules. Seven
+structural tests and four saved-data replays pass. Development fail-2 yields
+Packet3081311/channel5 and3081858/channel6; this is not a blind evaluation.
+The first wake/reset-only prototype produced no candidates; the observed
+reset/polling and illegal/polling compound policy was added during development
+with explicit normal/recovery counterexamples, without filename/time labels.
+
+U3-03 local native picker->sequential acquisition->workspace->Packet3081311
+at21.685629136s is verified. Context, empty and partial views, source/copy
+integrity and trace-switch cleanup were inspected. Walkthrough found stale
+protocol controls, empty-tab and default-protocol-priority gaps; source fixes
+and default-selection C# checks are present, with final-build UI recheck still
+scheduled. Existing USB2 analyzer/VSE/U01 host stay unchanged; its runner gains
+an opt-in readonly-input reuse path so stages share one copy.
+
+Current next slice: PD-01 Automation-first adapter and minimal PD headers.
+Detailed final slice status/evidence will be recorded after integrated checks;
+no all-slices or product/human acceptance claim is made by this progress entry.
+
+### 2026-10-19 final local implementation result
+
+The preceding intermediate next-action is superseded. EXP-01, U3-01/02/03 and
+PD-01/02/03 have passed their available local checks. EXP-02 local engineering,
+packaging and regression are complete; its external qualification remains pending.
+See `docs/usb3-pd-tool-results.md` for the per-slice evidence and limitations,
+and `docs/usb3-pd-tool-usage.md` for the usable scope and manual PKT/TRA/XFR step.
+
+PD Automation-first adapter retains native grouping, ordered duplicate CSV
+columns, units, unknown duration and qualified SOP roles. Five actual vendor
+samples reproduce9/10/8/3/15 Transfers and52/81/49/16/114 PD packets. Structural
+guidance uses distinct native groups, not wire retry counts; single ACK/NAK,
+Reject/Wait, Cap Mismatch or capture-tail incompleteness is not promoted to a
+fault. Neutral observed flows are a separate UI/navigation collection, not
+suspect candidates or root-cause probabilities. Supported messages missing a
+mandatory header are rejected, with a focused regression and actual-data replay.
+
+Actual native picker/import/data/model/UI/navigation works for USB3 and PD.
+PD Transfer6/8 and Packet160 match time/roles, and Packet150 is visible at the
+Transfer6 start; OpenFile remains1. The final portable UI additionally verifies
+PD default group, raw context selection, empty-protocol tab reset and four
+saved-model visual states. This is Codex UI inspection, not engineer acceptance.
+
+Final tests:51 tool tests,31 unchanged USB2 tests,14 U01 tests; C#10 native
+identity/6 default-protocol/12 startup checks. A final isolated bundled-runtime
+CLI run on real FAIL01/FAIL06/PASS04 retains1386 /562,372,446 /no candidates.
+All13 originals checked across feasibility and USB2 regression remain unchanged;
+four frozen sources and unrelated dirty/untracked work are preserved.
+
+Desktop trial ZIP: `C:\Users\reiko\Desktop\USB-Trace-Triage-USB3-PD-20261019.zip`;
+SHA256952244bbb76a93e184c6d42bacba0c97211abb3adf3db228c95109e5a5ef19b9.
+Python3.13.16 is bundled; CRC, manifest and exact source bytes pass. Startup
+works with empty PATH from a different cwd. No commit/push/PR/merge performed.
+
+Next product evidence remains new independent USB3, real GL3525 PD and mixed
+captures,10.50/clean-Windows runtime and human correctness/time-saving checks.
+These are explicitly pending per owner instruction; they do not reopen prior
+USB2 PASS scope or prevent completion of available local implementation work.
+
+### 2026-10-19 owner-authorized USB3 / PD source delivery
+
+The owner now explicitly authorizes committing and pushing this USB3/PD bundle
+to the current codex/pcie-d1e-f0-baseline branch. Source/test/document changes
+are scoped explicitly; the closeout companion stays separate. Trace captures,
+portable ZIP, raw evidence and unrelated PCIe work remain local. This delivery
+does not authorize a PR/merge or change pending10.50/new-trace/human qualification.

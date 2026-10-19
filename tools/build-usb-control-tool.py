@@ -16,6 +16,11 @@ FILES = ['Start-USB-Trace-Triage.cmd', 'docs/usb-control-tool.md',
          'tools/usb-control-navigation.ps1', 'tools/usb-control-navigation.cs',
          'tools/run-usb-control-triage.ps1', 'tools/u01-selection-host.cs',
          'tools/usb_control_triage.py', 'tools/usb_control_automation.py',
+         'tools/usb_triage_model.py',
+         'tools/usb_triage_pipeline.py', 'tools/usb3_triage.py',
+         'tools/run-usb-triage-data.ps1', 'scripts/usb3-triage-data.vse',
+         'tools/pd_triage.py', 'tools/run-pd-triage-data.ps1', 'scripts/pd-triage-headers.vse',
+         'docs/usb3-pd-tool-usage.md',
          'scripts/usb-control-transfers.vse']
 
 PYTHON_VERSION = '3.13.16'
@@ -62,7 +67,7 @@ def build(output, runtime_zip=None):
         data['USBTraceTriage.exe'] = target.read_bytes()
         data['USBTraceTriage.exe.config'] = b'<?xml version="1.0"?><configuration><startup><supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.8"/></startup></configuration>'
     manifest = {'kind': 'portable-windows-x64-trial-candidate' if runtime_zip else 'source-only-windows-trial-candidate',
-                'version': 'tool03-portable-20261016',
+                'version': 'usb3-pd-trial-20261019',
                 'python': {'version': PYTHON_VERSION, 'archive_sha256': PYTHON_SHA256,
                            'source': 'https://www.python.org/downloads/release/python-31316/',
                            'license': 'runtime/LICENSE.txt', 'path_config': 'isolated; tools only'} if runtime_zip else None,
