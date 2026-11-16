@@ -95,22 +95,31 @@ yaml:
 | --- | --- | --- | --- |
 | G1-0 | Record this decision | DONE (this section) | G0 kept as history; no capability backdated |
 | G1-1 | Versioned framework source | DONE (submodule at 6c7e24c3) | Source traceable; rollback = drop submodule commit |
-| G1-2 | Compatibility fixes | DONE | AGENTS.md 20,336 bytes (< 32,768); Product State Authority Rule kept; product files untouched |
-| G1-3 | Full wiring | PARTIAL | Hooks, Core Rules and memory router installed and verified; repo validator declared; hooks installed in every working checkout |
+| G1-2 | Compatibility fixes | DONE | AGENTS.md under 32,768 bytes (22,091 after G1-3); Product State Authority Rule kept; product files untouched |
+| G1-3 | Full wiring | PARTIAL | Hooks, Core Rules and memory router installed and verified; repo validators declared with fixtures (done 2026-11-16); hooks installed in every working checkout |
 | G1-4 | Real acceptance | NOT STARTED | One L0, one L1 and one L2 task plus one natural cross-session handoff, judged by the criteria below |
 
-G1-3 open items: no repo-specific validator in `contract.yaml` (maturity stays
-`partial`); Codex SessionStart/Stop hooks not installed (owner approval needed);
-hooks are local `.git/hooks` state and must be installed again in each checkout.
+G1-3 validators (2026-11-16): rule pack `governance/rules/lecroy`, validators in
+`governance/validators/` (LECROY-TRACE-001 no capture in a change set,
+LECROY-TRACE-002 input trace identity evidence, both hard stops; LECROY-DEL-001
+deletion scope, advisory), 10 pass/fail fixtures, harness
+`tests/governance/test_lecroy_validators.py`. AGENTS.md now lists the L1 → L2
+escalation triggers. Validators run only when the task declares the `lecroy`
+rule, and they check evidence the agent supplies; they do not observe the trace
+themselves.
+
+G1-3 open items: Codex SessionStart/Stop hooks not installed (owner approval
+needed); hooks are local `.git/hooks` state and must be installed again in each
+checkout; `.gitignore` does not cover `*.pex`.
 
 G1-4 acceptance criteria:
 
 - L0 stays light: a typo or formatting fix does not trigger architecture review
   or full regression.
 - L2 protects: raw trace integrity, disk/file deletion and verdict logic are
-  escalated to L2 and blocked without evidence. The task-level detector is
-  keyword-based, so fill `L1 → L2 Escalation Triggers` in `AGENTS.md` before
-  relying on it.
+  escalated to L2 and blocked without evidence. The framework's task-level
+  detector has no LeCroy keywords and caps destructive-data signals at L1, so
+  L2 depends on the `AGENTS.md` triggers and the post-task validators.
 - Cross-session handoff costs less than PLAN-only handoff, or the extra cost
   has a named benefit. Otherwise revisit the configuration.
 

@@ -91,7 +91,34 @@ Prompt yourself:
 - What changes become risky mainly because they are broad, not because they touch one file?
 -->
 
-N/A
+Classify the task as L2 when any trigger below applies. The framework's
+task-level detector has no LeCroy keywords and caps destructive-data signals at
+L1, so apply these yourself; do not wait for auto-detection.
+
+1. **Raw trace integrity**: running, adding or changing code that opens or
+   drives a raw capture (`*.usb`, `*.usbtrace`, `*.uwb`, `*.utp`, `*.pex`):
+   `*.vse`, `*.pevs`, `tools/*.cs`, `tools/run-*.ps1`, `tools/start-*.ps1`,
+   `tools/usb_triage_pipeline.py`, `scripts/pcie/com_*.py`,
+   `scripts/pcie/run_pcie_triage.py`. Evidence: input SHA-256 (and size) before
+   and after the run, as in M1-I1/I2.
+2. **Trace capture entering Git**: any capture file in a change set needs a
+   recorded license/handling decision (PLAN.md "Rules for advancing" #3).
+3. **Deletion or overwrite**: deleting, moving or overwriting files outside a
+   per-run temp/output folder, disk cleanup, or touching the source trace folder
+   or committed `artifacts/evidence/**`. Get owner approval first (Agent Core
+   Rules: irreversible operation).
+4. **Verdict logic**: changes that can alter an engineering conclusion
+   (PASS/FAIL comparison, findings or scoring, fail-closed checks, PLAN claim
+   ceilings such as `PROVEN`). Evidence: before/after results on the existing
+   fixtures or known traces; name every changed verdict.
+5. **The protections themselves**: `contract.yaml`, `governance/validators/**`,
+   `governance/rules/lecroy/**`.
+
+For every non-L0 task declare `RULES = common,lecroy` so the domain validators
+run, and put `trace_identity` (or `trace_identity_not_applicable`) and
+`deletion_scope` in the post-task checks. Rules LECROY-TRACE-001/002 are hard
+stops; LECROY-DEL-001 is advisory. Full text:
+`governance/rules/lecroy/trace_integrity.md`.
 
 ## Repo-Specific Forbidden Behaviors
 <!-- governance:key=forbidden_behaviors -->

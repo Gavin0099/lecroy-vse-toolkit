@@ -1,0 +1,8 @@
+{
+  "changed_files": [
+    "samples/usb/known-good.usb"
+  ],
+  "trace_capture_decisions": {
+    "samples/usb/known-good.usb": "PLAN.md#sample-license-decision"
+  }
+}
