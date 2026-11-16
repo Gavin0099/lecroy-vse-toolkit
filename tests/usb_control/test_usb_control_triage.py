@@ -37,6 +37,28 @@ def analyze(lines):
 
 
 class GuidanceTests(unittest.TestCase):
+    def test_long_episode_context_is_bounded_but_range_and_anchors_kept(self):
+        # Review finding on PR #23: 28,000 repeated incomplete requests produced one card whose
+        # context held every row and broke the workspace JSON limit. 1,000 rows show the same shape.
+        n = 1000
+        lines = [wire(index=i, sec=1, ns=i * 1000, completed=0, payload="8006000100001200") for i in range(n)]
+        m = analyze(lines)
+        self.assertEqual(len(m["candidates"]), 1)
+        c = m["candidates"][0]
+        self.assertEqual(len(c["transfer_indices"]), n)
+        self.assertEqual(c["context_range"], {"first_index": 0, "last_index": n - 1, "rows": n})
+        self.assertLessEqual(len(c["context"]), 2 * triage.CONTEXT_EDGE_ROWS + triage.MAX_SUPPORT_ROWS)
+        self.assertEqual(c["context_omitted_rows"], n - 2 * triage.CONTEXT_EDGE_ROWS)
+        shown = [x["index"] for x in c["context"]]
+        self.assertEqual(shown[0], 0)
+        self.assertEqual(shown[-1], n - 1)
+        self.assertIn("僅顯示頭尾", triage.render(m))
+
+    def test_short_episode_context_is_unchanged(self):
+        c = analyze([wire(index=i, sec=1, ns=i * 1000, completed=0, payload="8006000100001200") for i in range(3)])["candidates"][0]
+        self.assertEqual(c["context_omitted_rows"], 0)
+        self.assertEqual([x["index"] for x in c["context"]], [0, 1, 2])
+
     def test_native_setup_is_verified_and_excluded_from_data_length(self):
         e = triage.normalize(raw([wire()]))["events"][0]
         self.assertTrue(e["setup_bytes_match"])

@@ -9,6 +9,8 @@ import re
 from pathlib import Path
 
 MAX_RECORDS = 100_000
+CONTEXT_EDGE_ROWS = 50
+MAX_SUPPORT_ROWS = 20
 PREFIX_BYTES = 64
 LOOKBACK_RECORDS = 256
 LOOKBACK_NS = 10_000_000_000
@@ -310,10 +312,15 @@ def discover(data):
     for rank, ep in enumerate(episodes[:3], 1):
         first, last = ep["hits"][0], ep["hits"][-1]
         e = first["event"]
-        context = events[max(0, first["position"] - 3):last["position"] + 4]
+        span = events[max(0, first["position"] - 3):last["position"] + 4]
+        # Long episodes keep only the span edges for display; the full span stays in the
+        # native records and is identified by context_range, so counts and anchors are not lost.
+        shown_span = span if len(span) <= 2 * CONTEXT_EDGE_ROWS else span[:CONTEXT_EDGE_ROWS] + span[-CONTEXT_EDGE_ROWS:]
         support_ids = {h["support_index"] for h in ep["hits"] if h["support_index"] is not None}
         support_ids.update(i for h in ep["hits"] for i in h["timing_references"])
-        context = sorted({x["index"]: x for x in context + [x for x in events if x["index"] in support_ids]}.values(), key=lambda x:x["index"])
+        support_rows = sorted((x for x in events if x["index"] in support_ids), key=lambda x: x["index"])
+        context = sorted({x["index"]: x for x in shown_span + support_rows[:MAX_SUPPORT_ROWS]}.values(), key=lambda x:x["index"])
+        context_omitted = (len(span) - len(shown_span)) + max(0, len(support_rows) - MAX_SUPPORT_ROWS)
         cards.append({"rank": rank, "title": request_name(e) + "讀取流程" if descriptor(e) else request_name(e),
             "start_ns": e["timestamp_ns"], "end_ns": max(h["event"]["timestamp_ns"] + (h["event"]["duration_ns"] or 0) for h in ep["hits"]),
             "transfer_indices": [h["event"]["index"] for h in ep["hits"]], "address": e["address"], "endpoint": e["endpoint"],
@@ -321,6 +328,8 @@ def discover(data):
             "reasons": list(dict.fromkeys(f for h in ep["hits"] for f in h["reasons"])),
             "next_step": first["guidance"], "evidence_gaps": list(dict.fromkeys(g for h in ep["hits"] for g in h["gaps"])),
             "rules": sorted({r for h in ep["hits"] for r in h["rules"]}), "context": context,
+            "context_range": {"first_index": span[0]["index"], "last_index": span[-1]["index"], "rows": len(span)},
+            "context_omitted_rows": context_omitted,
             "evidence_completeness": "partial", "packet_refs": None})
     return {"format": "usb-control-inspection/v1", "rule_version": RULE_VERSION,
             "trace_sha256": data["trace_sha256"], "extractor_sha256": data["extractor_sha256"],
@@ -347,7 +356,7 @@ def render(model):
         return f'''<article class="card" id="candidate-{c['rank']}"><div class="eyebrow">{'優先檢查' if c['rank']==1 else '次要線索'} · 證據部分缺漏</div>
 <h2>{esc(c['title'])}</h2><div class="position"><strong>{stamp} 秒</strong> · Address {c['address']} / EP {c['endpoint']}<br>LeCroy Transfer {ids} <button data-copy="{stamp}" aria-label="複製時間">複製時間</button><button data-copy="{esc(ids)}" aria-label="複製 Transfer 編號">複製 Transfer 編號</button></div>
 <h3>發生什麼事</h3>{lis(c['facts'])}<h3>為什麼先看這裡</h3>{lis(c['reasons'])}<div class="next"><h3>工程師下一步</h3><p>{esc(c['next_step'])}</p></div>
-<details><summary>前後事件與證據缺口</summary><p>區段 {stamp}–{ns_text(c['end_ns'])} 秒；從第一筆候選展開。以下編號屬於 Transfer 層。</p><div class="scroll"><table><thead><tr><th>Transfer</th><th>時間（秒）</th><th>Ad/EP</th><th>請求</th><th>wLength</th><th>資料 bytes</th><th>完成/停止/錯誤</th></tr></thead><tbody>{table}</tbody></table></div>{lis(c['evidence_gaps'])}</details></article>'''
+<details><summary>前後事件與證據缺口</summary><p>區段 {stamp}–{ns_text(c['end_ns'])} 秒；從第一筆候選展開。以下編號屬於 Transfer 層。{f"區段共 {c['context_range']['rows']:,} 筆，僅顯示頭尾；{c['context_omitted_rows']:,} 筆未列出，完整資料仍在原生紀錄 Transfer {c['context_range']['first_index']}–{c['context_range']['last_index']}。" if c.get('context_omitted_rows') else ''}</p><div class="scroll"><table><thead><tr><th>Transfer</th><th>時間（秒）</th><th>Ad/EP</th><th>請求</th><th>wLength</th><th>資料 bytes</th><th>完成/停止/錯誤</th></tr></thead><tbody>{table}</tbody></table></div>{lis(c['evidence_gaps'])}</details></article>'''
     cards = model["candidates"]
     content = card(cards[0]) if cards else '<article class="card empty"><h2>本次分析範圍內未找到足夠可疑的區段</h2><p>這表示目前證據不足以提出候選，並不是 USB PASS。若問題在其他 USB 類型、內容語意或未擷取的部分，本版無法排除。</p></article>'
     if len(cards) > 1:
