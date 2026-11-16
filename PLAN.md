@@ -8,6 +8,27 @@ The repository name remains `lecroy-vse-toolkit` because that is the existing ch
 
 ## Milestones
 
+### 1329 desktop Config and UR supplement (2026-11-16)
+
+Local Windows acceptance passed on source commit `c5883d5` using the portable
+WinForms EXE and PETracer 13.26. The branch was based on `main` at `f417eec`,
+with the required desktop sources ported from the divergent 1329 delivery.
+The [evidence contract](docs/pcie-config-ur-contract.md) binds source and
+display SHA-256, Packet namespace, and field-level provenance.
+
+Real 1329 acceptance reproduced six Config Writes, nine Memory Read/UR pairs
+and three address groups over two time intervals. The first two writes lack a
+matching Completion before Link Down, the next two have same-Tag ambiguity,
+and the last two have SC. Observations at the same BDF after Link Down provide
+comparison evidence for earlier writes. The whole-trace coverage, BAR mapping and
+hardware effects remain unknown. The test verified five PETracer viewport
+readbacks, UI export parity, cancellation and retry, and USB2 baseline coverage.
+
+The exact ZIP and qualification receipt are in the original workstation
+checkout under `artifacts/evidence/pcie-config-ur-20261116/desktop/`.
+Delivery is on local branch `codex/pcie-config-ur`. Vendor register mapping is
+pending an authoritative map and a time-matched BAR mapping.
+
 | ID | Milestone | Status | Exit evidence |
 | --- | --- | --- | --- |
 | M0 | Repository bootstrap | Ready | Repo structure, scope, reference policy, and fixture policy exist. |
