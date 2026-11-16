@@ -1,0 +1,54 @@
+{
+  "rule_id": "ASPM-01",
+  "domain": "ASPM_PM",
+  "title": "電源管理僅提供檢查方向",
+  "source_manifest_id": "linux-regs",
+  "source_kind": "FIELD_REFERENCE",
+  "source_url": "https://github.com/torvalds/linux/blob/c03c1a14507dfaf8b856c2608f9ac216021fc222/include/uapi/linux/pci_regs.h",
+  "revision_or_commit": "c03c1a14507dfaf8b856c2608f9ac216021fc222",
+  "license_status": "GPL-2.0 WITH Linux-syscall-note",
+  "applicable_gen_mode": [
+    "NON_FLIT",
+    "UNKNOWN"
+  ],
+  "role_scope": [
+    "OBSERVED_DIRECTION_ONLY"
+  ],
+  "required_event_types": [
+    "DLLP",
+    "CONFIG"
+  ],
+  "required_fields": [
+    "dllp_class",
+    "target_id",
+    "register"
+  ],
+  "preconditions": [
+    "Source/display identities validated",
+    "Typed native evidence available"
+  ],
+  "positive_evidence": [
+    "Source-bound observed event"
+  ],
+  "negative_evidence": [
+    "Unknown/truncated coverage is not negative protocol evidence"
+  ],
+  "contradictions": [
+    "Later disconnect or invalid state prevents reuse of earlier success",
+    "Different channel/epoch is not the same device"
+  ],
+  "coverage_requirements": [
+    "Full capture/filter remains explicit",
+    "No invented timeout threshold"
+  ],
+  "output_class": "NOT_EVALUATED",
+  "allowed_claim_ceiling": "GUIDANCE_ONLY",
+  "next_checks": [
+    "建議補充資料：請提供適用裝置的 vendor 設定定義、生效時間、目標及產品預期；未取得前僅參照 register 欄位，不判定 ASPM 行為正誤。"
+  ],
+  "display_text_zh_tw": "Register 定義不代表產品期望；Write intent 不代表生效。",
+  "test_refs": [
+    "tests/pcie/test_flow_knowledge.py",
+    "tests/pcie/test_flow_triage.py"
+  ]
+}

@@ -68,12 +68,14 @@ def native_exclusive():
         kernel.CloseHandle(handle)
 
 
-def snapshot(path):
+def snapshot(path, cancel=None):
     path = Path(path)
     before = path.stat()
     digest = hashlib.sha256()
     with path.open('rb') as f:
         for chunk in iter(lambda: f.read(1024 * 1024), b''):
+            if cancel is not None and cancel.is_set():
+                raise InterruptedError('已取消來源驗證；尚未啟動原生分析。')
             digest.update(chunk)
     after = path.stat()
     if (before.st_size, before.st_mtime_ns) != (after.st_size, after.st_mtime_ns):
@@ -86,7 +88,15 @@ def atomic_json(path, value):
     path = Path(path)
     temp = path.with_suffix(path.suffix + '.tmp')
     temp.write_text(json.dumps(value, ensure_ascii=False, allow_nan=False), encoding='utf-8')
-    os.replace(temp, path)
+    deadline=time.monotonic()+2
+    while True:
+        try:
+            os.replace(temp,path)
+            return
+        except PermissionError as exc:
+            if getattr(exc,'winerror',None) not in (5,32,33) or time.monotonic()>=deadline:
+                raise
+            time.sleep(.05)
 
 
 def process_peak_bytes(pid):
@@ -135,6 +145,9 @@ def servers():
 
 
 def validate_model(model):
+    if model.get('format') == 'pcie-triage-inspection/v1':
+        import pcie_workspace
+        return pcie_workspace.validate(model)
     if model.get('format') == presentation.FORMAT:
         return presentation.validate(model)
     if model.get('format') != 'usb-control-inspection/v1':
@@ -212,9 +225,11 @@ class Tool:
         self.worker = None
         self.lock = threading.RLock()
         self.case = None
-        self.state = {'phase': 'ready', 'message': '拖入一份 .usb，或按「匯入 Trace」。', 'busy': False}
+        self.state = {'phase': 'ready', 'message': '拖入一份 .usb / .pex，或按「匯入 Trace」。', 'busy': False}
         self.thread = None
         self.shutting_down = False
+        self.cancel_event = threading.Event()
+        self.pending_protocol = None
 
     def event(self, kind, **data):
         # Session tokens never enter persisted evidence.
@@ -233,11 +248,12 @@ class Tool:
             value = copy.deepcopy(self.state)
             value['case_id'] = self.case['id'] if self.case else None
             value['trace_name'] = self.case['name'] if self.case else None
-            if self.state['phase'] in ('preparing', 'extracting'):
+            if self.state['phase'] in ('preparing', 'extracting') or (self.pending_protocol and self.state['phase']=='cleanup_unknown'):
                 value['case_id'] = None
                 value['trace_name'] = self.state.get('pending_trace_name')
             value['scope'] = self.case['model'].get('scope', '') if self.case else 'USB2 EP0 / USB3 Link・LFPS / PD 協商・VDM；以完成後的範圍狀態為準，無候選不代表 USB PASS。'
             value['analyses'] = self.case['model'].get('analyses', []) if self.case else []
+            value['model_revision'] = self.case.get('revision',0) if self.case else 0
             return value
 
     def bind(self, model_path, source, prepared=None):
@@ -290,6 +306,9 @@ class Tool:
 
     @staticmethod
     def render(model):
+        if model.get('format') == 'pcie-triage-inspection/v1':
+            import pcie_workspace
+            return pcie_workspace.render(model)
         return presentation.render(model) if model.get('format') == presentation.FORMAT else engine.render(model)
 
     def navigate(self, case_id, rank, target_index=0, item_kind='candidate'):
@@ -300,8 +319,8 @@ class Tool:
                 raise ValueError('先完成目前工作清理，再重試')
             if not self.case or case_id != self.case['id'] or type(rank) is not int:
                 raise ValueError('工作階段已變更')
-            if item_kind not in ('candidate','observation'):raise ValueError('Unsupported navigation item')
-            cards = self.case['model'].get('observations',[]) if item_kind=='observation' else self.case['model']['candidates']
+            if item_kind not in ('candidate','observation','flow'):raise ValueError('Unsupported navigation item')
+            cards = self.case['model'].get('flow_items',[]) if item_kind=='flow' else self.case['model'].get('observations',[]) if item_kind=='observation' else self.case['model']['candidates']
             if rank < 1 or rank > len(cards):
                 raise ValueError('候選不存在')
             card = cards[rank - 1]
@@ -316,6 +335,8 @@ class Tool:
             return True
 
     def _navigate(self, case_id, transfer):
+        if isinstance(transfer, dict) and transfer.get('protocol') == 'PCIe':
+            return self._navigate_pcie(case_id, transfer)
         started = time.monotonic()
         self.event('navigation_requested', case_id=case_id, transfer=transfer)
         try:
@@ -350,10 +371,40 @@ class Tool:
             self.event('navigation_error', transfer=transfer, error=str(ex))
             self.update('error', str(ex), busy=False)
 
+    def _navigate_pcie(self, case_id, target):
+        import pcie_navigation_service as native
+        started=time.monotonic()
+        try:
+            if not self.case or case_id!=self.case['id']:raise ValueError('工作階段已變更')
+            self.integrity();case=self.case;model=case['model']
+            if model['native_navigation']=='unavailable':raise ValueError('原生 Packet 範圍尚未核實，不能自動開啟定位')
+            if self.worker is None:
+                binding=dict(request=dict(schema='pcie.navigation-probe/v1',
+                    source_trace=dict(path=str(case['source']),sha256=model['source_trace_sha256']),
+                    display_trace=dict(path=str(case['working']),sha256=model['display_trace_sha256']),
+                    anchors=list({loc['packet_index']:loc for c in model['candidates']+model.get('observations',[])+model.get('flow_items',[])
+                                  for loc in c.get('navigation_locators',[c['locator']])}.values())),packet_count=model['coverage']['native_packet_count'])
+                self.worker=native.Worker(case['folder']/('navigation-'+uuid.uuid4().hex[:8]),binding)
+            result=self.worker.request('goto',target)
+            self.integrity()
+            self.event('pcie_navigation_result',case_id=case_id,target=target,result=result,controller_elapsed_ms=round((time.monotonic()-started)*1000))
+            if result.get('state')=='viewport_ready':
+                self.update('viewport_ready','PETracer 已移至 Packet '+str(target['index'])+'；已核對主視圖起點、選取編號、原生時間與方向。請在原生畫面覆核證據。',busy=False,last_navigation=result)
+                return
+            if result.get('state')!='manual_ready':raise RuntimeError(result.get('error','PCIe 定位未完成'))
+            self.update('manual_ready','已核對副本、Packet 與原生時間／方向。請到 PETracer 按 Ctrl+G，輸入 '+str(target['index'])+'；目前仍是人工 GUI 定位。',
+                        busy=False,last_navigation=result)
+        except TimeoutError as ex:self.update('unresponsive',str(ex),busy=False)
+        except Exception as ex:self.update('error',str(ex),busy=False)
+
     def close_navigation(self):
         if self.worker:
+            pcie=self.case and self.case['model'].get('protocol')=='pcie'
             self.worker.close()
             self.worker = None
+            if pcie:
+                self.integrity()
+                return
             deadline = time.monotonic() + 15
             while servers() and time.monotonic() < deadline:
                 time.sleep(.2)
@@ -388,9 +439,39 @@ class Tool:
             return self.navigate(message['case_id'], message['rank'], message['target_index'])
         if set(message) == {'action', 'case_id', 'rank', 'target_index','item_kind'} and message['action'] == 'navigate':
             return self.navigate(message['case_id'],message['rank'],message['target_index'],message['item_kind'])
+        if set(message)=={'action','case_id','context'} and message['action']=='context':
+            return self.set_context(message['case_id'],message['context'])
         if message == {'action': 'end'}:
             return self.end_navigation()
+        if message == {'action': 'cancel'}:
+            with self.lock:
+                if self.state['busy'] and self.pending_protocol=='pcie':
+                    self.cancel_event.set()
+                    self.update('extracting','已要求取消，等待原生呼叫安全結束；尚未取消完成。',busy=True)
+                    return True
+                return False
         raise ValueError('Unsupported native command')
+
+    def set_context(self,case_id,context):
+        """Optional per-import input; no native acquisition, global defaults or rule edits."""
+        import pcie_workspace as view
+        with self.lock:
+            if self.shutting_down or self.state['busy'] or self.state['phase'] in ('unresponsive','cleanup_unknown'):return False
+            if not self.case or case_id!=self.case['id'] or self.case['model'].get('protocol')!='pcie':raise ValueError('工程情境不屬於目前 PCIe 工作')
+            self.integrity()
+            model=view.with_context(self.case['model'],context)
+            html_report,md_report=view.render(model),view.markdown(model)
+            import pcie_ui_pages
+            page_index=pcie_ui_pages.write(self.case['folder'],model,publish=False)
+            for name,text in (('report.html',html_report),('report.md',md_report)):
+                target=self.case['folder']/name;temp=target.with_suffix(target.suffix+'.tmp');temp.write_text(text,encoding='utf-8');os.replace(temp,target)
+            atomic_json(self.case['folder']/'flow-analysis.json',model['flow_analysis'])
+            atomic_json(self.case['folder']/'inspection.json',model)
+            pcie_ui_pages.publish_index(self.case['folder'],page_index)
+            self.case['model']=model;self.case['revision']=self.case.get('revision',0)+1
+            self.event('pcie_context_updated',case_id=case_id,context=context,revision=self.case['revision'])
+            self.update('report','工程情境已套用於本次 Trace；觀察資料與 Packet 候選保持不變。',busy=False)
+            return True
 
     def import_trace(self, source, input_method='native_ipc'):
         # Called by CLI/native IPC only; never an HTTP path endpoint.
@@ -398,11 +479,13 @@ class Tool:
             if self.shutting_down or self.state['busy'] or self.state['phase'] in ('unresponsive', 'cleanup_unknown'):
                 return False
             source = Path(source).resolve(strict=True)
-            if source.suffix.lower() != '.usb' or not source.is_file():
-                raise ValueError('一次只接受一份可讀取的 .usb 檔案')
+            if source.suffix.lower() not in ('.usb','.pex') or not source.is_file():
+                raise ValueError('一次只接受一份可讀取的 .usb 或 .pex 檔案')
             if input_method not in ('native_ipc', 'drag_drop', 'file_picker'):
                 raise ValueError('Unsupported native input method')
             self.event('import_requested', input_method=input_method, source_name=source.name)
+            self.cancel_event.clear()
+            self.pending_protocol='pcie' if source.suffix.lower()=='.pex' else 'usb'
             self.update('preparing', '準備唯讀副本與擷取…', busy=True, pending_trace_name=source.name, last_navigation=None)
             self.thread = threading.Thread(target=self._analyze, args=(source,), daemon=True)
             self.thread.start()
@@ -414,11 +497,51 @@ class Tool:
         except Exception as ex:
             self.update('cleanup_unknown', str(ex), busy=False)
             return
+        self.case=None
         try:
             with native_exclusive():
-                self._analyze_exclusive(source)
+                # The old binding is no longer actionable, even if the new import fails.
+                if source.suffix.lower()=='.pex':self._analyze_pcie(source)
+                else:self._analyze_exclusive(source)
         except Exception as ex:
             self.update('error', str(ex), busy=False)
+
+    def _analyze_pcie(self,source):
+        import pcie_pipeline as pipeline
+        import pcie_workspace as view
+        case_id=uuid.uuid4().hex;folder=self.root/case_id
+        started=time.monotonic()
+        try:
+            before=snapshot(source,cancel=self.cancel_event)
+            result=pipeline.run(source,folder/'analysis',case_id,
+                                lambda text:self.update('extracting',text,busy=True),cancel=self.cancel_event,
+                                cache_root=self.root.parent/'pcie-conversion-cache')
+            model=result['model'];working=result['working']
+            if (snapshot(source)!=before or model['source_trace_sha256']!=before['sha256']
+                    or snapshot(working)['sha256']!=model['display_trace_sha256']):
+                raise ValueError('來源或副本完整性不符')
+            atomic_json(folder/'inspection.json',model)
+            import pcie_ui_pages
+            pcie_ui_pages.write(folder,model)
+            if model.get('flow_analysis'):atomic_json(folder/'flow-analysis.json',model['flow_analysis'])
+            (folder/'report.html').write_text(view.render(model),encoding='utf-8')
+            (folder/'report.md').write_text(view.markdown(model),encoding='utf-8')
+            self.event('pcie_analysis_completed',case_id=case_id,elapsed_seconds=result['elapsed_seconds'],candidate_count=model['candidate_count_total'])
+            atomic_json(folder/'controller-timing.json',dict(import_to_publication_seconds=time.monotonic()-started,
+                pipeline_seconds=result['elapsed_seconds'],ui_interactive='AWAIT_DESKTOP_LOAD'))
+            working_before=snapshot(working)
+            with self.lock:
+                if self.cancel_event.is_set():raise pipeline.Cancelled('已取消報告發布；本次結果未使用，原生清理已確認。')
+                self.case=dict(id=case_id,name=source.name,source=source,working=working,before=before,
+                    working_before=working_before,model=model,folder=folder)
+                self.update('report','PCIe 分析結束；先核對流程階段與下一步，次要交易觀察保留原始順序。無候選不代表 PCIe PASS。',busy=False)
+        except (pipeline.Cancelled,InterruptedError) as ex:self.update('cancelled',str(ex),busy=False)
+        except pipeline.Partial as ex:self.update('partial',str(ex)+'；部分擷取已保留，未產生候選。',busy=False)
+        except pipeline.CleanupUnknown as ex:self.update('cleanup_unknown',str(ex),busy=False)
+        except TimeoutError as ex:self.update('unresponsive',str(ex),busy=False)
+        except Exception as ex:
+            self.event('analysis_error',error=str(ex));self.update('error',str(ex),busy=False)
+        finally:self.pending_protocol=None
 
     def _analyze_exclusive(self, source):
         import usb_triage_pipeline as pipeline
@@ -553,6 +676,9 @@ def main():
         webbrowser.open(http.origin)
     try:
         if args.native_ipc:
+            # Match the native launcher's wire encoding independently of locale
+            # and the embedded interpreter's environment/isolation settings.
+            sys.stdin.reconfigure(encoding='utf-8', errors='strict')
             for line in sys.stdin:
                 try:
                     message = json.loads(line)

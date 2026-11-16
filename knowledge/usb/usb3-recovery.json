@@ -1,0 +1,38 @@
+{
+  "id": "usb3-recovery",
+  "protocol": "USB3",
+  "title": "USB3 Recovery 與恢復證據",
+  "phase": "link-recovery",
+  "revisions": [
+    "3.0",
+    "3.1",
+    "3.2"
+  ],
+  "claim_ceiling": "GUIDANCE_ONLY",
+  "required_evidence": [
+    "channel",
+    "direction",
+    "epoch",
+    "mode",
+    "ltssm_states",
+    "capture_continuity"
+  ],
+  "next_check": "檢查進入 Recovery 的前因與離開狀態，對照同方向的後續 Link 活動及擷取範圍。",
+  "evidence_request": "請補 Recovery 前後實際狀態與連續擷取；Wake／Reset 或後續未見 Link Command 不直接判故障。",
+  "limitations": [
+    "一般電源狀態轉換也可能經過 Recovery。",
+    "未實作規格計時器；不以輸出截斷推論裝置未恢復。"
+  ],
+  "source_refs": [
+    {
+      "source_id": "usb3-tests",
+      "locator": "printed pp41-44: 7.5.10 Recovery",
+      "supports": "Recovery substates and exits require state context"
+    },
+    {
+      "source_id": "local-review-contract",
+      "locator": "Action binding and claim limits",
+      "supports": "Authored inspection/evidence-request policy; not a USB normative requirement"
+    }
+  ]
+}

@@ -52,7 +52,7 @@ def _lineage_end(packet: int, by_packet: dict[int, dict[str, Any]]) -> tuple[int
 
 
 def group(candidates: list[dict[str, Any]], associations: list[dict[str, Any]], nearby: dict[str, Any]) -> list[dict[str, Any]]:
-    by_packet = {q["packet_index"]: q for q in associations}
+    by_packet = associations.packet_map if hasattr(associations, 'packet_map') else {q["packet_index"]: q for q in associations}
     ids = [c["candidate_id"] for c in candidates]
     if len(set(ids)) != len(ids):
         raise G3eError("Duplicate candidate id")

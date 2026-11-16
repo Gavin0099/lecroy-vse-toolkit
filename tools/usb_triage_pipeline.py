@@ -46,9 +46,14 @@ def command(args, output, stage, progress, resources):
                 # Timeout does not cancel COM or kill the native server.
                 raise subprocess.TimeoutExpired(p.args,600)
             time.sleep(1)
-    deadline=time.monotonic()+15
-    while host.servers() and time.monotonic()<deadline:time.sleep(.2)
-    if host.servers():raise RuntimeError('原生程序清理未確認，停止後續擷取。')
+    cleanup_started=time.monotonic();deadline=cleanup_started+30
+    remaining=host.servers()
+    while remaining and time.monotonic()<deadline:
+        time.sleep(.2);remaining=host.servers()
+    resources.setdefault('native_cleanup',[]).append(dict(stage=stage,
+        wait_seconds=time.monotonic()-cleanup_started,limit_seconds=30,
+        confirmed=not remaining,remaining_pids=remaining))
+    if remaining:raise RuntimeError('原生程序清理未確認，停止後續擷取。')
     return p.returncode
 
 

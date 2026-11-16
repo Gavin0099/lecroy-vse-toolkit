@@ -1,0 +1,14 @@
+{
+  "format": "usb-knowledge-manifest/v1",
+  "files": {
+    "LICENSE-NOTICE.md": "8e068ece6f5ecbfb145273ed7a9266cf0a25d7bea98ce7a58009a7d8dcb763ed",
+    "pd-negotiation.json": "d3474fcb805d308f58cd79387bcf641da710892eaae16e749ee3e157f53c1daa",
+    "pd-vdm.json": "ce79ce665431505f0b773ac7a88806984dada3077f1dd27013c4164274771a68",
+    "source-review.md": "af0113bce3861d231e9f7c0e5186c4b0aafdddd0ec0f048f2e4b1ea39ecd4bae",
+    "sources.json": "4f7854b6a139640cc04f5360947dde970e5771c88a35b44ddf278bfdab03684d",
+    "usb2-control.json": "e0a1e866f59c69861d6c5a5e5f63a3f0ad5ddfc977eef105495daa7d5f5ffb9b",
+    "usb2-enumeration.json": "27179ae09cffac1e47ac8b00387a415bdcca5d026c607902ac0c9b2bef43059d",
+    "usb3-link-ltssm.json": "3ace18b62a4b5611a164c67d1fbe173d987fb6768abe89bf94c00a7dfcd36510",
+    "usb3-recovery.json": "4c3f1bd7ca66e5524b2eca83a4fd384f6f1ba945824f1bb59219a3bf016f6868"
+  }
+}

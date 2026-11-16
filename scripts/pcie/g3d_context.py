@@ -35,6 +35,8 @@ def _bdf(value: int | None) -> str | None:
 
 
 def _row_table(fields: list[dict[str, Any]], roles: list[dict[str, Any]], associations: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    if hasattr(fields, 'context_table'):
+        return fields.context_table(roles, associations)
     if len(fields) != len(roles):
         raise G3dError("G2a fields and G2b roles differ in length")
     request_by_packet = {q["packet_index"]: q for q in associations}
@@ -77,7 +79,7 @@ def build(fields, roles, associations, candidates, nearby, context_rows: int = D
     if context_rows < 0:
         raise G3dError("Context rows must be non-negative")
     table = _row_table(fields, roles, associations)
-    row_of = {r["packet_index"]: r["row"] for r in table}
+    row_of = table.packet_rows if hasattr(table, 'packet_rows') else {r["packet_index"]: r["row"] for r in table}
     nearby_by_id = {c["candidate_id"]: c for c in nearby["candidates"]}
     if set(nearby_by_id) != {c["candidate_id"] for c in candidates}:
         raise G3dError("G3c nearby-message candidates do not match G3 candidates")

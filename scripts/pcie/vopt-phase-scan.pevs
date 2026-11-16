@@ -1,0 +1,129 @@
+# Bounded packet-level observations. No test name, failure time or anchor.
+# All callbacks are counted; only state transitions and capped samples leave VSE.
+set ModuleType = "Verification Script";
+set OutputType = "VS";
+set InputType = "VS";
+set DecoderDesc = "PCIe bounded phase observations v1";
+%include "VSTools.inc"
+
+const STATE_CAP = 4096;
+const LINK_CAP = 512;
+const SPEED_CAP = 256;
+const DLLP_CAP = 16;
+set Counts = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+set First = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+set Last = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+set Names = ["TLP","DLLP","ORDERED_SET","LINK_CONDITION","EIE","OTHER","LTSSM_CHANGE","SPEED_WIDTH_CHANGE","ACK","NAK","PM","FC","DLLP_OTHER"];
+set US = [1000,1000,1000,1000];
+set DS = [1000,1000,1000,1000];
+set USSpeed = [1000,1000];
+set DSSpeed = [1000,1000];
+set EndSent = 0;
+
+Val(v) { if (v == null) { return "NA"; } return FormatEx("%d",v); }
+Count(k)
+{
+    if (Counts[k] == 0) { First[k] = in.Index; }
+    Counts[k] = Counts[k] + 1;
+    Last[k] = in.Index;
+}
+Constant(name, value) { ReportText(FormatEx("PCIE_PHASE_CONST|%s|%d",name,value)); }
+Row(kind, data)
+{
+    t = in.Time;
+    ps = "NA";
+    if (in.Time2 != null) { ps = Val(in.Time2[2]); }
+    ReportText(FormatEx("PCIE_PHASE_ROW|%s|%u|%s|%u|%s|%s|%s|%s|%s",
+        kind,in.Index,TimeToText(t),in.Channel,GetChannelName(),Val(t[0]),Val(t[1]),ps,data));
+}
+State(s, origin)
+{
+    if (s == null) { return 0; }
+    changed = 1;
+    if (in.Channel == _CHANNEL_1)
+    {
+        changed = s[0] != US[0] || s[1] != US[1] || s[2] != US[2] || s[3] != US[3];
+        US = s;
+    }
+    else if (in.Channel == _CHANNEL_2)
+    {
+        changed = s[0] != DS[0] || s[1] != DS[1] || s[2] != DS[2] || s[3] != DS[3];
+        DS = s;
+    }
+    # Unknown channels do not borrow either direction's previous state.
+    if (changed)
+    {
+        Count(6);
+        if (Counts[6] <= STATE_CAP)
+        {
+            Row("LTSSM",FormatEx("%u,%u,%u,%u,%s",s[0],s[1],s[2],s[3],origin));
+        }
+    }
+}
+OnStartScript()
+{
+    ScriptForDisplayOnly();
+    ReportText("PCIE_PHASE_V1|state_cap=4096|link_cap=512|speed_cap=256|dllp_cap=16");
+    ReportText(FormatEx("PCIE_PHASE_SETTINGS|nfm_ignore_errors|%d",GetNFMLtssmIgnorePropertiesEx()));
+    Constant("CHANNEL_1",_CHANNEL_1); Constant("CHANNEL_2",_CHANNEL_2);
+    Constant("LINK_DOWN",LINK_CONDITION_LINK_DOWN); Constant("LINK_UP",LINK_CONDITION_LINK_UP);
+    Constant("DETECT",LTSSM_STATE_DETECT); Constant("POLLING",LTSSM_STATE_POLLING);
+    Constant("CONFIG",LTSSM_STATE_CONFIG); Constant("L0",LTSSM_STATE_L0);
+    Constant("RECOVERY",LTSSM_STATE_RECOVERY); Constant("HOT_RESET",LTSSM_STATE_HOT_RESET);
+    Constant("DISABLED",LTSSM_STATE_DISABLED); Constant("UNDEFINED",LTSSM_STATE_UNDEFINED);
+    SendAllChannels();
+    SendLevelOnly(_PACKET);
+    SendTraceEventOnly(_PKT_TLP); SendTraceEvent(_PKT_DLLP);
+    SendTraceEvent(_PKT_ORDERED_SET); SendTraceEvent(_PKT_LINK_CONDITION); SendTraceEvent(_PKT_EIE_EVENT);
+    SendTlpType(_ANY_TYPE); SendDllpType(_ANY_TYPE);
+    SendLtssm();
+    # Read VSE settings without changing either VSE or the user's Flow Graph.
+}
+ProcessEvent()
+{
+    e = in.TraceEvent;
+    select
+    {
+        e == _PKT_TLP : Count(0);
+        e == _PKT_DLLP : Count(1);
+        e == _PKT_ORDERED_SET : Count(2);
+        e == _PKT_LINK_CONDITION : Count(3);
+        e == _PKT_EIE_EVENT : Count(4);
+        default : Count(5);
+    };
+    if (e == _PKT_LINK_CONDITION && Counts[3] <= LINK_CAP) { Row("LINK",Val(in.LinkConditionType)); }
+    if (e == _PKT_DLLP)
+    {
+        dtype = in.DLLPType;
+        cls = 12;
+        select
+        {
+            dtype == DLLP_TYPE_ACK : cls = 8;
+            dtype == DLLP_TYPE_NAK : cls = 9;
+            dtype == DLLP_TYPE_PM_ENTER_L1 || dtype == DLLP_TYPE_PM_ENTER_L23 || dtype == DLLP_TYPE_PM_ACT_STATE_REQUEST_L1 || dtype == DLLP_TYPE_PM_REQUEST_ACK : cls = 10;
+            dtype == DLLP_TYPE_INIT_FC1_P || dtype == DLLP_TYPE_INIT_FC1_NP || dtype == DLLP_TYPE_INIT_FC1_CPL || dtype == DLLP_TYPE_INIT_FC2_P || dtype == DLLP_TYPE_INIT_FC2_NP || dtype == DLLP_TYPE_INIT_FC2_CPL || dtype == DLLP_TYPE_UPDATE_FC_P || dtype == DLLP_TYPE_UPDATE_FC_NP || dtype == DLLP_TYPE_UPDATE_FC_CPL : cls = 11;
+        };
+        Count(cls);
+        if (Counts[cls] <= DLLP_CAP) { Row("DLLP",FormatEx("%s,%s,%s",Names[cls],Val(dtype),Val(in.AckNak_SeqNum))); }
+    }
+    State(in.LtssmStateIdle,"idle");
+    State(in.LtssmState,"packet");
+    speed = in.Speed; width = in.LinkWidth;
+    if (speed != null && width != null && speed != _SPEED_UNDEFINED && width != _LINK_WIDTH_UNDEFINED)
+    {
+        changed = 1;
+        if (in.Channel == _CHANNEL_1) { changed = speed != USSpeed[0] || width != USSpeed[1]; USSpeed = [speed,width]; }
+        else if (in.Channel == _CHANNEL_2) { changed = speed != DSSpeed[0] || width != DSSpeed[1]; DSSpeed = [speed,width]; }
+        if (changed) { Count(7); if (Counts[7] <= SPEED_CAP) { Row("SPEED",FormatEx("%u,%u",speed,width)); } }
+    }
+    return Complete();
+}
+OnFinishScript()
+{
+    if (!EndSent)
+    {
+        for (i=0;i<13;i++) { ReportText(FormatEx("PCIE_PHASE_COUNT|%s|%u|%u|%u",Names[i],Counts[i],First[i],Last[i])); }
+        ReportText("PCIE_PHASE_END|reason=trace_end");
+        EndSent = 1;
+    }
+}

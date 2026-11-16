@@ -1,0 +1,65 @@
+{
+  "id": "pd-negotiation",
+  "protocol": "PD",
+  "title": "PD 電力協商／PDO・RDO",
+  "phase": "power-negotiation",
+  "revisions": [
+    "2.0",
+    "3.0"
+  ],
+  "claim_ceiling": "GUIDANCE_ONLY",
+  "required_evidence": [
+    "channel",
+    "sop",
+    "sender",
+    "epoch",
+    "power_role",
+    "pdo_bytes",
+    "rdo_bytes",
+    "message_sequence"
+  ],
+  "next_check": "在同一 SOP／發送端與重設階段核對能力、Request、Accept、PS_RDY，再對照角色與電力量測。",
+  "evidence_request": "請補同 SOP／階段的 PDO、RDO、角色與 PS_RDY；Accept 或 GoodCRC 不能證明供電已成立。",
+  "limitations": [
+    "原生帶單位欄位不當成完整 PDO/RDO bytes。",
+    "PD3 header 不能細分規格3.1/3.2；PPS、EPR、role swap 合規仍未評估。",
+    "Linux TCPM 是實作範例，不證明 Windows 或本裝置的行為。"
+  ],
+  "source_refs": [
+    {
+      "source_id": "linux-pd",
+      "locator": "#L15-L56",
+      "supports": "Control/data message definitions"
+    },
+    {
+      "source_id": "linux-pd",
+      "locator": "#L299-L315",
+      "supports": "PDO type fields"
+    },
+    {
+      "source_id": "linux-pd",
+      "locator": "#L542-L570",
+      "supports": "RDO object position fields"
+    },
+    {
+      "source_id": "linux-tcpm",
+      "locator": "#L3911-L3917",
+      "supports": "Implementation distinguishes Accept from ready"
+    },
+    {
+      "source_id": "linux-tcpm",
+      "locator": "#L3775-L3790",
+      "supports": "Implementation checks PS_RDY and VBUS before ready"
+    },
+    {
+      "source_id": "linux-typec",
+      "locator": "#L57-L76",
+      "supports": "Power-role field definitions"
+    },
+    {
+      "source_id": "local-review-contract",
+      "locator": "Action binding and claim limits",
+      "supports": "Authored inspection/evidence-request policy; not a USB normative requirement"
+    }
+  ]
+}

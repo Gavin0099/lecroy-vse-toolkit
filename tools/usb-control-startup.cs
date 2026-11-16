@@ -37,10 +37,11 @@ public static class TraceStartup {
         int suffix=command.IndexOf(".exe",StringComparison.OrdinalIgnoreCase);
         return suffix>=0?command.Substring(0,suffix+4):null;
     }
-    public static string RegisteredServer() {
+    public static string RegisteredServer() {return RegisteredServerFor("CATC.USBTracer");}
+    public static string RegisteredServerFor(string progId) {
         foreach(var view in new[]{RegistryView.Registry64,RegistryView.Registry32}) {
             using(var root=RegistryKey.OpenBaseKey(RegistryHive.ClassesRoot,view))
-            using(var prog=root.OpenSubKey(@"CATC.USBTracer\CLSID")) {
+            using(var prog=root.OpenSubKey(progId+@"\CLSID")) {
                 string clsid=prog==null?null:prog.GetValue(null) as string;
                 if(clsid==null)continue;
                 using(var key=root.OpenSubKey(@"CLSID\"+clsid+@"\LocalServer32")) {
@@ -103,15 +104,19 @@ public static class TraceStartup {
                     string root=AppDomain.CurrentDomain.BaseDirectory;
                     string python=await Task.Run(()=>CheckPython(root));
                     string analyzer=await Task.Run(()=>FindAnalyzer());
-                    if(analyzer==null) {
-                        status.Text="未找到 LeCroy，請指定 UsbSuite.exe。";
-                        using(var picker=new OpenFileDialog {Title="指定 LeCroy UsbSuite.exe",Filter="LeCroy USB Protocol Suite|UsbSuite.exe",CheckFileExists=true}) {
+                    string pcie=await Task.Run(()=>RegisteredServerFor("CATC.PETracer"));
+                    if(analyzer==null&&pcie==null) {
+                        status.Text="未找到 LeCroy，請指定 UsbSuite.exe 或 PETracer.exe。";
+                        using(var picker=new OpenFileDialog {Title="指定 LeCroy 分析器",Filter="LeCroy analyzer|UsbSuite.exe;PETracer.exe",CheckFileExists=true}) {
                             if(picker.ShowDialog(this)!=DialogResult.OK)throw new InvalidOperationException("未指定 LeCroy 安裝位置，啟動已停止。");
-                            analyzer=picker.FileName;
+                            if(String.Equals(Path.GetFileName(picker.FileName),"PETracer.exe",StringComparison.OrdinalIgnoreCase)) {
+                                pcie=RegisteredServerFor("CATC.PETracer");
+                                if(pcie==null||!String.Equals(Path.GetFullPath(picker.FileName),pcie,StringComparison.OrdinalIgnoreCase))throw new InvalidOperationException("PETracer COM 尚未正確註冊，請以原廠安裝程式修復。");
+                            }else analyzer=picker.FileName;
                         }
                     }
-                    await Task.Run(()=>ValidateAnalyzer(analyzer));
-                    Environment.SetEnvironmentVariable("LECROY_USB_SUITE_EXE",analyzer);
+                    if(analyzer!=null){await Task.Run(()=>ValidateAnalyzer(analyzer));Environment.SetEnvironmentVariable("LECROY_USB_SUITE_EXE",analyzer);}
+                    Log("PCIe registered analyzer: "+(pcie??"not installed; PCIe import unavailable"));
                     string output=Path.Combine(Path.GetDirectoryName(logsDirectory()),"run-"+DateTime.Now.ToString("yyyyMMdd-HHmmss")+"-"+Guid.NewGuid().ToString("N").Substring(0,8));
                     Log("Workspace: "+output);
                     using(var workspace=new TraceToolEntry(python,Path.Combine(root,@"tools\usb_control_app.py"),output)) {Hide();workspace.ShowDialog();}
