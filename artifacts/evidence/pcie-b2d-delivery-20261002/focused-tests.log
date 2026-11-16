@@ -1,0 +1,11 @@
+test_epoch_and_bdf_isolation_and_crossing_completion (test_b2d_observed_state.StateTests.test_epoch_and_bdf_isolation_and_crossing_completion) ... ok
+test_last_read_follows_completion_order_not_request_order (test_b2d_observed_state.StateTests.test_last_read_follows_completion_order_not_request_order) ... ok
+test_partial_write_does_not_replace_reads_or_fill_other_bytes (test_b2d_observed_state.StateTests.test_partial_write_does_not_replace_reads_or_fill_other_bytes) ... ok
+test_read_not_available_before_completion (test_b2d_observed_state.StateTests.test_read_not_available_before_completion) ... ok
+test_real_old_zero_and_new_unknown (test_b2d_observed_state.StateTests.test_real_old_zero_and_new_unknown) ... ok
+test_same_bdf_offset_and_vid_did_do_not_prove_epoch_continuity (test_b2d_observed_state.StateTests.test_same_bdf_offset_and_vid_did_do_not_prove_epoch_continuity) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.002s
+
+OK

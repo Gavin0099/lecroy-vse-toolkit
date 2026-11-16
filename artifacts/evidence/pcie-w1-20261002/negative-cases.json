@@ -1,0 +1,27 @@
+[
+  {
+    "path": "/events/0/state_claims/policy_result",
+    "value": "FAIL",
+    "reason": "observed write cannot supply a product policy"
+  },
+  {
+    "path": "/events/0/identity_continuity_proof",
+    "value": "same BDF",
+    "reason": "BDF is not physical continuity"
+  },
+  {
+    "path": "/intervals/0/direction",
+    "value": "Downstream",
+    "reason": "segment count does not establish every event direction"
+  },
+  {
+    "path": "/events/0/evidence/0/json_pointer",
+    "value": "/observations/999",
+    "reason": "evidence pointer must resolve"
+  },
+  {
+    "path": "/events/0/details/identity_continuity_proof",
+    "value": "same BDF",
+    "reason": "nested identity claims cannot override v1 ceiling"
+  }
+]

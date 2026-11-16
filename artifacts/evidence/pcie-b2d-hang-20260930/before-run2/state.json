@@ -1,0 +1,744 @@
+{
+  "schema": "pcie.b2d-observed-config-state/v1",
+  "device_id": 256,
+  "bdf": "001:00.0",
+  "packet_index": 225040,
+  "epoch": "before_disconnect",
+  "read_bytes": {
+    "0": {
+      "value": 160,
+      "request_packet": 3230,
+      "completion_packet": 3232,
+      "access_id": "B2B-007"
+    },
+    "1": {
+      "value": 23,
+      "request_packet": 3230,
+      "completion_packet": 3232,
+      "access_id": "B2B-007"
+    },
+    "2": {
+      "value": 103,
+      "request_packet": 3230,
+      "completion_packet": 3232,
+      "access_id": "B2B-007"
+    },
+    "3": {
+      "value": 151,
+      "request_packet": 3230,
+      "completion_packet": 3232,
+      "access_id": "B2B-007"
+    },
+    "4": {
+      "value": 6,
+      "request_packet": 8719,
+      "completion_packet": 8721,
+      "access_id": "B2B-049"
+    },
+    "5": {
+      "value": 4,
+      "request_packet": 8719,
+      "completion_packet": 8721,
+      "access_id": "B2B-049"
+    },
+    "6": {
+      "value": 24,
+      "request_packet": 8719,
+      "completion_packet": 8721,
+      "access_id": "B2B-049"
+    },
+    "7": {
+      "value": 0,
+      "request_packet": 8719,
+      "completion_packet": 8721,
+      "access_id": "B2B-049"
+    },
+    "8": {
+      "value": 4,
+      "request_packet": 3274,
+      "completion_packet": 3276,
+      "access_id": "B2B-015"
+    },
+    "9": {
+      "value": 1,
+      "request_packet": 3274,
+      "completion_packet": 3276,
+      "access_id": "B2B-015"
+    },
+    "10": {
+      "value": 5,
+      "request_packet": 3274,
+      "completion_packet": 3276,
+      "access_id": "B2B-015"
+    },
+    "11": {
+      "value": 8,
+      "request_packet": 3274,
+      "completion_packet": 3276,
+      "access_id": "B2B-015"
+    },
+    "12": {
+      "value": 0,
+      "request_packet": 3286,
+      "completion_packet": 3288,
+      "access_id": "B2B-017"
+    },
+    "13": {
+      "value": 0,
+      "request_packet": 3286,
+      "completion_packet": 3288,
+      "access_id": "B2B-017"
+    },
+    "14": {
+      "value": 0,
+      "request_packet": 3286,
+      "completion_packet": 3288,
+      "access_id": "B2B-017"
+    },
+    "15": {
+      "value": 0,
+      "request_packet": 3286,
+      "completion_packet": 3288,
+      "access_id": "B2B-017"
+    },
+    "44": {
+      "value": 160,
+      "request_packet": 3302,
+      "completion_packet": 3304,
+      "access_id": "B2B-020"
+    },
+    "45": {
+      "value": 23,
+      "request_packet": 3302,
+      "completion_packet": 3304,
+      "access_id": "B2B-020"
+    },
+    "46": {
+      "value": 103,
+      "request_packet": 3302,
+      "completion_packet": 3304,
+      "access_id": "B2B-020"
+    },
+    "47": {
+      "value": 151,
+      "request_packet": 3302,
+      "completion_packet": 3304,
+      "access_id": "B2B-020"
+    },
+    "52": {
+      "value": 128,
+      "request_packet": 3235,
+      "completion_packet": 3237,
+      "access_id": "B2B-008"
+    },
+    "53": {
+      "value": 0,
+      "request_packet": 3235,
+      "completion_packet": 3237,
+      "access_id": "B2B-008"
+    },
+    "54": {
+      "value": 0,
+      "request_packet": 3235,
+      "completion_packet": 3237,
+      "access_id": "B2B-008"
+    },
+    "55": {
+      "value": 0,
+      "request_packet": 3235,
+      "completion_packet": 3237,
+      "access_id": "B2B-008"
+    },
+    "128": {
+      "value": 16,
+      "request_packet": 3246,
+      "completion_packet": 3250,
+      "access_id": "B2B-010"
+    },
+    "129": {
+      "value": 224,
+      "request_packet": 3246,
+      "completion_packet": 3250,
+      "access_id": "B2B-010"
+    },
+    "130": {
+      "value": 2,
+      "request_packet": 3246,
+      "completion_packet": 3250,
+      "access_id": "B2B-010"
+    },
+    "131": {
+      "value": 0,
+      "request_packet": 3246,
+      "completion_packet": 3250,
+      "access_id": "B2B-010"
+    },
+    "224": {
+      "value": 5,
+      "request_packet": 8742,
+      "completion_packet": 8744,
+      "access_id": "B2B-053"
+    },
+    "225": {
+      "value": 248,
+      "request_packet": 8742,
+      "completion_packet": 8744,
+      "access_id": "B2B-053"
+    },
+    "226": {
+      "value": 128,
+      "request_packet": 8742,
+      "completion_packet": 8744,
+      "access_id": "B2B-053"
+    },
+    "227": {
+      "value": 0,
+      "request_packet": 8742,
+      "completion_packet": 8744,
+      "access_id": "B2B-053"
+    },
+    "248": {
+      "value": 1,
+      "request_packet": 3320,
+      "completion_packet": 3322,
+      "access_id": "B2B-023"
+    },
+    "249": {
+      "value": 0,
+      "request_packet": 3320,
+      "completion_packet": 3322,
+      "access_id": "B2B-023"
+    },
+    "250": {
+      "value": 195,
+      "request_packet": 3320,
+      "completion_packet": 3322,
+      "access_id": "B2B-023"
+    },
+    "251": {
+      "value": 247,
+      "request_packet": 3320,
+      "completion_packet": 3322,
+      "access_id": "B2B-023"
+    },
+    "252": {
+      "value": 8,
+      "request_packet": 8594,
+      "completion_packet": 8596,
+      "access_id": "B2B-026"
+    },
+    "253": {
+      "value": 0,
+      "request_packet": 8594,
+      "completion_packet": 8596,
+      "access_id": "B2B-026"
+    },
+    "254": {
+      "value": 0,
+      "request_packet": 8594,
+      "completion_packet": 8596,
+      "access_id": "B2B-026"
+    },
+    "255": {
+      "value": 0,
+      "request_packet": 8594,
+      "completion_packet": 8596,
+      "access_id": "B2B-026"
+    },
+    "256": {
+      "value": 11,
+      "request_packet": 3258,
+      "completion_packet": 3260,
+      "access_id": "B2B-012"
+    },
+    "257": {
+      "value": 0,
+      "request_packet": 3258,
+      "completion_packet": 3260,
+      "access_id": "B2B-012"
+    },
+    "258": {
+      "value": 129,
+      "request_packet": 3258,
+      "completion_packet": 3260,
+      "access_id": "B2B-012"
+    },
+    "259": {
+      "value": 16,
+      "request_packet": 3258,
+      "completion_packet": 3260,
+      "access_id": "B2B-012"
+    },
+    "264": {
+      "value": 24,
+      "request_packet": 3268,
+      "completion_packet": 3270,
+      "access_id": "B2B-014"
+    },
+    "265": {
+      "value": 0,
+      "request_packet": 3268,
+      "completion_packet": 3270,
+      "access_id": "B2B-014"
+    },
+    "266": {
+      "value": 1,
+      "request_packet": 3268,
+      "completion_packet": 3270,
+      "access_id": "B2B-014"
+    },
+    "267": {
+      "value": 17,
+      "request_packet": 3268,
+      "completion_packet": 3270,
+      "access_id": "B2B-014"
+    },
+    "272": {
+      "value": 30,
+      "request_packet": 3279,
+      "completion_packet": 3281,
+      "access_id": "B2B-016"
+    },
+    "273": {
+      "value": 0,
+      "request_packet": 3279,
+      "completion_packet": 3281,
+      "access_id": "B2B-016"
+    },
+    "274": {
+      "value": 129,
+      "request_packet": 3279,
+      "completion_packet": 3281,
+      "access_id": "B2B-016"
+    },
+    "275": {
+      "value": 18,
+      "request_packet": 3279,
+      "completion_packet": 3281,
+      "access_id": "B2B-016"
+    },
+    "280": {
+      "value": 15,
+      "request_packet": 8676,
+      "completion_packet": 8678,
+      "access_id": "B2B-041"
+    },
+    "281": {
+      "value": 0,
+      "request_packet": 8676,
+      "completion_packet": 8678,
+      "access_id": "B2B-041"
+    },
+    "282": {
+      "value": 0,
+      "request_packet": 8676,
+      "completion_packet": 8678,
+      "access_id": "B2B-041"
+    },
+    "283": {
+      "value": 0,
+      "request_packet": 8676,
+      "completion_packet": 8678,
+      "access_id": "B2B-041"
+    },
+    "284": {
+      "value": 40,
+      "request_packet": 8681,
+      "completion_packet": 8683,
+      "access_id": "B2B-042"
+    },
+    "285": {
+      "value": 0,
+      "request_packet": 8681,
+      "completion_packet": 8683,
+      "access_id": "B2B-042"
+    },
+    "286": {
+      "value": 0,
+      "request_packet": 8681,
+      "completion_packet": 8683,
+      "access_id": "B2B-042"
+    },
+    "287": {
+      "value": 0,
+      "request_packet": 8681,
+      "completion_packet": 8683,
+      "access_id": "B2B-042"
+    },
+    "296": {
+      "value": 14,
+      "request_packet": 3291,
+      "completion_packet": 3293,
+      "access_id": "B2B-018"
+    },
+    "297": {
+      "value": 0,
+      "request_packet": 3291,
+      "completion_packet": 3293,
+      "access_id": "B2B-018"
+    },
+    "298": {
+      "value": 1,
+      "request_packet": 3291,
+      "completion_packet": 3293,
+      "access_id": "B2B-018"
+    },
+    "299": {
+      "value": 32,
+      "request_packet": 3291,
+      "completion_packet": 3293,
+      "access_id": "B2B-018"
+    }
+  },
+  "write_intent_bytes": {
+    "4": {
+      "value": 6,
+      "request_packet": 8725,
+      "access_id": "B2B-050"
+    },
+    "5": {
+      "value": 4,
+      "request_packet": 8725,
+      "access_id": "B2B-050"
+    },
+    "6": {
+      "value": 0,
+      "request_packet": 8714,
+      "access_id": "B2B-048"
+    },
+    "7": {
+      "value": 249,
+      "request_packet": 8714,
+      "access_id": "B2B-048"
+    },
+    "12": {
+      "value": 0,
+      "request_packet": 8642,
+      "access_id": "B2B-035"
+    },
+    "16": {
+      "value": 0,
+      "request_packet": 8599,
+      "access_id": "B2B-027"
+    },
+    "17": {
+      "value": 240,
+      "request_packet": 8599,
+      "access_id": "B2B-027"
+    },
+    "18": {
+      "value": 31,
+      "request_packet": 8599,
+      "access_id": "B2B-027"
+    },
+    "19": {
+      "value": 108,
+      "request_packet": 8599,
+      "access_id": "B2B-027"
+    },
+    "20": {
+      "value": 0,
+      "request_packet": 8604,
+      "access_id": "B2B-028"
+    },
+    "21": {
+      "value": 0,
+      "request_packet": 8604,
+      "access_id": "B2B-028"
+    },
+    "22": {
+      "value": 0,
+      "request_packet": 8604,
+      "access_id": "B2B-028"
+    },
+    "23": {
+      "value": 0,
+      "request_packet": 8604,
+      "access_id": "B2B-028"
+    },
+    "24": {
+      "value": 0,
+      "request_packet": 8609,
+      "access_id": "B2B-029"
+    },
+    "25": {
+      "value": 0,
+      "request_packet": 8609,
+      "access_id": "B2B-029"
+    },
+    "26": {
+      "value": 0,
+      "request_packet": 8609,
+      "access_id": "B2B-029"
+    },
+    "27": {
+      "value": 0,
+      "request_packet": 8609,
+      "access_id": "B2B-029"
+    },
+    "28": {
+      "value": 0,
+      "request_packet": 8614,
+      "access_id": "B2B-030"
+    },
+    "29": {
+      "value": 0,
+      "request_packet": 8614,
+      "access_id": "B2B-030"
+    },
+    "30": {
+      "value": 0,
+      "request_packet": 8614,
+      "access_id": "B2B-030"
+    },
+    "31": {
+      "value": 0,
+      "request_packet": 8614,
+      "access_id": "B2B-030"
+    },
+    "32": {
+      "value": 0,
+      "request_packet": 8620,
+      "access_id": "B2B-031"
+    },
+    "33": {
+      "value": 0,
+      "request_packet": 8620,
+      "access_id": "B2B-031"
+    },
+    "34": {
+      "value": 0,
+      "request_packet": 8620,
+      "access_id": "B2B-031"
+    },
+    "35": {
+      "value": 0,
+      "request_packet": 8620,
+      "access_id": "B2B-031"
+    },
+    "36": {
+      "value": 0,
+      "request_packet": 8625,
+      "access_id": "B2B-032"
+    },
+    "37": {
+      "value": 0,
+      "request_packet": 8625,
+      "access_id": "B2B-032"
+    },
+    "38": {
+      "value": 0,
+      "request_packet": 8625,
+      "access_id": "B2B-032"
+    },
+    "39": {
+      "value": 0,
+      "request_packet": 8625,
+      "access_id": "B2B-032"
+    },
+    "48": {
+      "value": 0,
+      "request_packet": 8630,
+      "access_id": "B2B-033"
+    },
+    "49": {
+      "value": 0,
+      "request_packet": 8630,
+      "access_id": "B2B-033"
+    },
+    "50": {
+      "value": 0,
+      "request_packet": 8630,
+      "access_id": "B2B-033"
+    },
+    "51": {
+      "value": 0,
+      "request_packet": 8630,
+      "access_id": "B2B-033"
+    },
+    "60": {
+      "value": 0,
+      "request_packet": 8637,
+      "access_id": "B2B-034"
+    },
+    "136": {
+      "value": 55,
+      "request_packet": 8653,
+      "access_id": "B2B-037"
+    },
+    "137": {
+      "value": 17,
+      "request_packet": 8653,
+      "access_id": "B2B-037"
+    },
+    "144": {
+      "value": 66,
+      "request_packet": 10354,
+      "access_id": "B2B-059"
+    },
+    "145": {
+      "value": 0,
+      "request_packet": 10354,
+      "access_id": "B2B-059"
+    },
+    "168": {
+      "value": 0,
+      "request_packet": 8696,
+      "access_id": "B2B-045"
+    },
+    "169": {
+      "value": 0,
+      "request_packet": 8696,
+      "access_id": "B2B-045"
+    },
+    "176": {
+      "value": 2,
+      "request_packet": 8665,
+      "access_id": "B2B-039"
+    },
+    "177": {
+      "value": 0,
+      "request_packet": 8665,
+      "access_id": "B2B-039"
+    },
+    "226": {
+      "value": 129,
+      "request_packet": 8763,
+      "access_id": "B2B-057"
+    },
+    "227": {
+      "value": 0,
+      "request_packet": 8763,
+      "access_id": "B2B-057"
+    },
+    "228": {
+      "value": 64,
+      "request_packet": 8748,
+      "access_id": "B2B-054"
+    },
+    "229": {
+      "value": 0,
+      "request_packet": 8748,
+      "access_id": "B2B-054"
+    },
+    "230": {
+      "value": 133,
+      "request_packet": 8748,
+      "access_id": "B2B-054"
+    },
+    "231": {
+      "value": 6,
+      "request_packet": 8748,
+      "access_id": "B2B-054"
+    },
+    "232": {
+      "value": 0,
+      "request_packet": 8753,
+      "access_id": "B2B-055"
+    },
+    "233": {
+      "value": 0,
+      "request_packet": 8753,
+      "access_id": "B2B-055"
+    },
+    "234": {
+      "value": 0,
+      "request_packet": 8753,
+      "access_id": "B2B-055"
+    },
+    "235": {
+      "value": 0,
+      "request_packet": 8753,
+      "access_id": "B2B-055"
+    },
+    "236": {
+      "value": 0,
+      "request_packet": 8758,
+      "access_id": "B2B-056"
+    },
+    "237": {
+      "value": 0,
+      "request_packet": 8758,
+      "access_id": "B2B-056"
+    },
+    "252": {
+      "value": 8,
+      "request_packet": 3330,
+      "access_id": "B2B-025"
+    },
+    "253": {
+      "value": 0,
+      "request_packet": 3330,
+      "access_id": "B2B-025"
+    },
+    "268": {
+      "value": 0,
+      "request_packet": 8671,
+      "access_id": "B2B-040"
+    },
+    "269": {
+      "value": 0,
+      "request_packet": 8671,
+      "access_id": "B2B-040"
+    },
+    "270": {
+      "value": 0,
+      "request_packet": 8671,
+      "access_id": "B2B-040"
+    },
+    "271": {
+      "value": 0,
+      "request_packet": 8671,
+      "access_id": "B2B-040"
+    },
+    "280": {
+      "value": 15,
+      "request_packet": 8686,
+      "access_id": "B2B-043"
+    },
+    "281": {
+      "value": 0,
+      "request_packet": 8686,
+      "access_id": "B2B-043"
+    },
+    "282": {
+      "value": 0,
+      "request_packet": 8686,
+      "access_id": "B2B-043"
+    },
+    "283": {
+      "value": 0,
+      "request_packet": 8686,
+      "access_id": "B2B-043"
+    },
+    "284": {
+      "value": 40,
+      "request_packet": 8691,
+      "access_id": "B2B-044"
+    },
+    "285": {
+      "value": 0,
+      "request_packet": 8691,
+      "access_id": "B2B-044"
+    },
+    "286": {
+      "value": 0,
+      "request_packet": 8691,
+      "access_id": "B2B-044"
+    },
+    "287": {
+      "value": 0,
+      "request_packet": 8691,
+      "access_id": "B2B-044"
+    }
+  },
+  "not_established": [
+    "hardware current value or write applied",
+    "unobserved byte value",
+    "old device state after MUX reconnect",
+    "status/W1C register effects"
+  ],
+  "input": {
+    "log_sha256": "7B54AAF6DE5FB29EBA12BD99F59316E31A14DA040A594BC958124BDEF8075373"
+  }
+}

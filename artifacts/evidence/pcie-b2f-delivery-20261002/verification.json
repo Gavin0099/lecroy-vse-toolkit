@@ -1,0 +1,9 @@
+{
+  "status": "PASS_B2F_DELIVERY",
+  "tests_passed": 93,
+  "focused_tests": 6,
+  "replay_byte_identical": true,
+  "diff_sha256": "F1B0101FF01365A4D2AECC10889EA98CBD778430BD59AFA2A84CDBE69536BE96",
+  "tests_log_sha256": "6A89A0836D8187F60ED8DEF656FD0B5F2E220F46A0451CAD443CC4C09D82D22C",
+  "inputs": "current B2e before snapshot; fresh explicit raw 0x90:2 after query with no inherited name/value; historical pointer-width snapshot rejected by source recomputation"
+}

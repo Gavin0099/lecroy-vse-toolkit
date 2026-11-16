@@ -1,0 +1,14 @@
+F
+======================================================================
+FAIL: test_source_alias_cannot_bypass_count_and_gap_consistency (test_b3a_event_contract.EventContractTests.test_source_alias_cannot_bypass_count_and_gap_consistency)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\reiko\.codex\worktrees\pcie-slice-delivery\lecroy-vse-toolkit\tests\pcie\test_b3a_event_contract.py", line 21, in test_source_alias_cannot_bypass_count_and_gap_consistency
+    with self.assertRaises(ValueError): contract.validate(self.doc,self.sources)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+FAILED (failures=1)

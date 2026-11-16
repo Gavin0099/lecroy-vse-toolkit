@@ -1,0 +1,41 @@
+{
+  "scope": "W4+W5 observation report only",
+  "timeline_sha256": "171FC79F4D86E1702EAD5C9B255462D0B0B4F2F2CAA9A0B0FD525193047C4C43",
+  "replay_hashes": [
+    {
+      "report.md": "2FDA54A4E74F71B664950B929F417066190C44D52873D336945EB79B8DC92936",
+      "report.html": "D3D745617BE73938312407451518634447165727AD398BDBFCC5DE974A5CCE6E"
+    },
+    {
+      "report.md": "2FDA54A4E74F71B664950B929F417066190C44D52873D336945EB79B8DC92936",
+      "report.html": "D3D745617BE73938312407451518634447165727AD398BDBFCC5DE974A5CCE6E"
+    }
+  ],
+  "deterministic": true,
+  "second_output": "ignored artifacts/runtime/delivery/report-repair2; equal-depth output",
+  "local_review": "typed facts/source pointers; state ceiling; unknown/time/epoch preservation; safe offline rendering; no new product policy",
+  "suite_tests": 149,
+  "focused_tests": 10,
+  "tests_log_sha256": "B0597DB391C2EDCD008D99E3A25D6795FA0E026EFBBEBBE63DA16DC66A719516",
+  "visual_qa": {
+    "renderer": "isolated headless Edge 1440x7000; header and write/link detail crops",
+    "inspected": [
+      "header metrics and rule summary",
+      "write intent cards and link table"
+    ],
+    "status": "PASS final artifact readable in inspected sections",
+    "screenshots": {
+      "preview.png": "4885F09B46FF98EE8F35FD824D9ED778D67AADA79ECEA70F7FB9D5E93F3033A8",
+      "intents-preview.png": "35D47C5D5D88B25AF4A4B45DF4AC017A6115E9C8DEC9C6D103EEE8ACFA48F993"
+    }
+  },
+  "regressions": {
+    "reviewed_head": "d9c0aeb0e221e0a32582ff75bb67e710b472c145",
+    "before": "2 FAIL/ERROR on reviewed head",
+    "after": "2 PASS in current full suite",
+    "dispositions": [
+      "derive/cite watchlist state; omit unsupported B2h report status",
+      "match rule titles by identity and cite findings records"
+    ]
+  }
+}

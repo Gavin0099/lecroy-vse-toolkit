@@ -1,0 +1,31 @@
+{
+  "status": "PASS_OBSERVATION_BOUNDARY_REVISION",
+  "product_gate": "SOURCE_SCOPE_GATE",
+  "product_policy_result": "NOT_EVALUATED",
+  "schema": "pcie.b2g-watchlist-preparation/v2",
+  "tests_passed": 183,
+  "focused_b2g_tests": 5,
+  "focused_b2d_tests": 5,
+  "replay_byte_identical": true,
+  "original_observation_fields_unchanged": true,
+  "input_bindings_unchanged": true,
+  "output_sha256": {
+    "watchlist-preparation.json": "1D3AEBA87B6BD91FE9AA6E7BC601D7ACA04154CCF3DBAD39ACE08922ECD5C068",
+    "watchlist-preparation.md": "16B3E5877A7F52D8379EE001400BE67EC90F99BA84D0430D0EDBEA3C977CCCBC"
+  },
+  "input": {
+    "log_sha256": "7B54AAF6DE5FB29EBA12BD99F59316E31A14DA040A594BC958124BDEF8075373",
+    "reference_sha256": "ABCF2E410D6E92EC58D093601FED9B3A1DB3F1BDA8E6D71423F922E7CFE76918",
+    "evaluation_sha256": "22ED4A80E2917FE547693D6BD43AF82CD496C34FFAA5B882DA699622C3EC240A"
+  },
+  "implementation_sha256": {
+    "scripts\\pcie\\b2g_watchlist_prepare.py": "2E36A0CF757044B18E2777AB266088359EB8DDDD609B23F2914569E7D61E85CE",
+    "tests\\pcie\\test_b2g_watchlist_prepare.py": "3188795EA568C0ABC35F1D7BA552C58CE3C8C3A1AD2D797EC541BFE7FD93D6D8",
+    "tests\\pcie\\test_b2d_observed_state.py": "40C78D7A20192663203495455779811A4435A8910B12D08D775FC2088D2D1328",
+    "docs\\pcie-b2g-engineer-questions.md": "64418C00861AE99F47388482546B578B261A475EDAB7769F6A33D5928739BF55",
+    "docs\\pcie-b2g-observation-contract.md": "A71F525D9CD3776F74DD356BE21391BF5002050DFAC806D9D0078E3053EE418F"
+  },
+  "test_log_sha256": "2FCD9696DCCC64305282ADC31325D6F95178E7DB1EC5B620C87694812A4052B8",
+  "superseded_schema": "v1 retained as history; current r1-run1 is v2",
+  "delivery": "local only; no commit/push/PR/merge"
+}

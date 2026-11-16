@@ -1,0 +1,1775 @@
+{
+  "schema": "pcie.b2e-observed-snapshot/v1",
+  "device_id": 256,
+  "bdf": "001:00.0",
+  "packet_index": 225040,
+  "epoch": "before_disconnect",
+  "registers": [
+    {
+      "byte_offset": 0,
+      "width_bytes": 4,
+      "read_value": 2540115872,
+      "write_intent_value": null,
+      "read_bytes": [
+        {
+          "value": 160,
+          "request_packet": 3230,
+          "completion_packet": 3232,
+          "access_id": "B2B-007"
+        },
+        {
+          "value": 23,
+          "request_packet": 3230,
+          "completion_packet": 3232,
+          "access_id": "B2B-007"
+        },
+        {
+          "value": 103,
+          "request_packet": 3230,
+          "completion_packet": 3232,
+          "access_id": "B2B-007"
+        },
+        {
+          "value": 151,
+          "request_packet": 3230,
+          "completion_packet": 3232,
+          "access_id": "B2B-007"
+        }
+      ],
+      "write_intent_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [
+        3232
+      ],
+      "write_evidence_packets": [],
+      "names": [
+        "VendorDeviceID"
+      ]
+    },
+    {
+      "byte_offset": 4,
+      "width_bytes": 2,
+      "read_value": 1030,
+      "write_intent_value": 1030,
+      "read_bytes": [
+        {
+          "value": 6,
+          "request_packet": 8719,
+          "completion_packet": 8721,
+          "access_id": "B2B-049"
+        },
+        {
+          "value": 4,
+          "request_packet": 8719,
+          "completion_packet": 8721,
+          "access_id": "B2B-049"
+        }
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 6,
+          "request_packet": 8725,
+          "access_id": "B2B-050"
+        },
+        {
+          "value": 4,
+          "request_packet": 8725,
+          "access_id": "B2B-050"
+        }
+      ],
+      "read_has_later_write": true,
+      "read_evidence_packets": [
+        8721
+      ],
+      "write_evidence_packets": [
+        8725
+      ],
+      "names": [
+        "Command"
+      ]
+    },
+    {
+      "byte_offset": 4,
+      "width_bytes": 4,
+      "read_value": 1573894,
+      "write_intent_value": 4177527814,
+      "read_bytes": [
+        {
+          "value": 6,
+          "request_packet": 8719,
+          "completion_packet": 8721,
+          "access_id": "B2B-049"
+        },
+        {
+          "value": 4,
+          "request_packet": 8719,
+          "completion_packet": 8721,
+          "access_id": "B2B-049"
+        },
+        {
+          "value": 24,
+          "request_packet": 8719,
+          "completion_packet": 8721,
+          "access_id": "B2B-049"
+        },
+        {
+          "value": 0,
+          "request_packet": 8719,
+          "completion_packet": 8721,
+          "access_id": "B2B-049"
+        }
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 6,
+          "request_packet": 8725,
+          "access_id": "B2B-050"
+        },
+        {
+          "value": 4,
+          "request_packet": 8725,
+          "access_id": "B2B-050"
+        },
+        {
+          "value": 0,
+          "request_packet": 8714,
+          "access_id": "B2B-048"
+        },
+        {
+          "value": 249,
+          "request_packet": 8714,
+          "access_id": "B2B-048"
+        }
+      ],
+      "read_has_later_write": true,
+      "read_evidence_packets": [
+        8721
+      ],
+      "write_evidence_packets": [
+        8714,
+        8725
+      ],
+      "names": []
+    },
+    {
+      "byte_offset": 8,
+      "width_bytes": 4,
+      "read_value": 134545668,
+      "write_intent_value": null,
+      "read_bytes": [
+        {
+          "value": 4,
+          "request_packet": 3274,
+          "completion_packet": 3276,
+          "access_id": "B2B-015"
+        },
+        {
+          "value": 1,
+          "request_packet": 3274,
+          "completion_packet": 3276,
+          "access_id": "B2B-015"
+        },
+        {
+          "value": 5,
+          "request_packet": 3274,
+          "completion_packet": 3276,
+          "access_id": "B2B-015"
+        },
+        {
+          "value": 8,
+          "request_packet": 3274,
+          "completion_packet": 3276,
+          "access_id": "B2B-015"
+        }
+      ],
+      "write_intent_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [
+        3276
+      ],
+      "write_evidence_packets": [],
+      "names": []
+    },
+    {
+      "byte_offset": 12,
+      "width_bytes": 4,
+      "read_value": 0,
+      "write_intent_value": null,
+      "read_bytes": [
+        {
+          "value": 0,
+          "request_packet": 3286,
+          "completion_packet": 3288,
+          "access_id": "B2B-017"
+        },
+        {
+          "value": 0,
+          "request_packet": 3286,
+          "completion_packet": 3288,
+          "access_id": "B2B-017"
+        },
+        {
+          "value": 0,
+          "request_packet": 3286,
+          "completion_packet": 3288,
+          "access_id": "B2B-017"
+        },
+        {
+          "value": 0,
+          "request_packet": 3286,
+          "completion_packet": 3288,
+          "access_id": "B2B-017"
+        }
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 0,
+          "request_packet": 8642,
+          "access_id": "B2B-035"
+        },
+        null,
+        null,
+        null
+      ],
+      "read_has_later_write": true,
+      "read_evidence_packets": [
+        3288
+      ],
+      "write_evidence_packets": [
+        8642
+      ],
+      "names": [
+        "HeaderTypeDWORD"
+      ]
+    },
+    {
+      "byte_offset": 16,
+      "width_bytes": 4,
+      "read_value": null,
+      "write_intent_value": 1814032384,
+      "read_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 0,
+          "request_packet": 8599,
+          "access_id": "B2B-027"
+        },
+        {
+          "value": 240,
+          "request_packet": 8599,
+          "access_id": "B2B-027"
+        },
+        {
+          "value": 31,
+          "request_packet": 8599,
+          "access_id": "B2B-027"
+        },
+        {
+          "value": 108,
+          "request_packet": 8599,
+          "access_id": "B2B-027"
+        }
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [
+        8599
+      ],
+      "names": [
+        "BAR0"
+      ]
+    },
+    {
+      "byte_offset": 20,
+      "width_bytes": 4,
+      "read_value": null,
+      "write_intent_value": 0,
+      "read_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 0,
+          "request_packet": 8604,
+          "access_id": "B2B-028"
+        },
+        {
+          "value": 0,
+          "request_packet": 8604,
+          "access_id": "B2B-028"
+        },
+        {
+          "value": 0,
+          "request_packet": 8604,
+          "access_id": "B2B-028"
+        },
+        {
+          "value": 0,
+          "request_packet": 8604,
+          "access_id": "B2B-028"
+        }
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [
+        8604
+      ],
+      "names": [
+        "BAR1"
+      ]
+    },
+    {
+      "byte_offset": 24,
+      "width_bytes": 4,
+      "read_value": null,
+      "write_intent_value": 0,
+      "read_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 0,
+          "request_packet": 8609,
+          "access_id": "B2B-029"
+        },
+        {
+          "value": 0,
+          "request_packet": 8609,
+          "access_id": "B2B-029"
+        },
+        {
+          "value": 0,
+          "request_packet": 8609,
+          "access_id": "B2B-029"
+        },
+        {
+          "value": 0,
+          "request_packet": 8609,
+          "access_id": "B2B-029"
+        }
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [
+        8609
+      ],
+      "names": [
+        "BAR2"
+      ]
+    },
+    {
+      "byte_offset": 28,
+      "width_bytes": 4,
+      "read_value": null,
+      "write_intent_value": 0,
+      "read_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 0,
+          "request_packet": 8614,
+          "access_id": "B2B-030"
+        },
+        {
+          "value": 0,
+          "request_packet": 8614,
+          "access_id": "B2B-030"
+        },
+        {
+          "value": 0,
+          "request_packet": 8614,
+          "access_id": "B2B-030"
+        },
+        {
+          "value": 0,
+          "request_packet": 8614,
+          "access_id": "B2B-030"
+        }
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [
+        8614
+      ],
+      "names": [
+        "BAR3"
+      ]
+    },
+    {
+      "byte_offset": 32,
+      "width_bytes": 4,
+      "read_value": null,
+      "write_intent_value": 0,
+      "read_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 0,
+          "request_packet": 8620,
+          "access_id": "B2B-031"
+        },
+        {
+          "value": 0,
+          "request_packet": 8620,
+          "access_id": "B2B-031"
+        },
+        {
+          "value": 0,
+          "request_packet": 8620,
+          "access_id": "B2B-031"
+        },
+        {
+          "value": 0,
+          "request_packet": 8620,
+          "access_id": "B2B-031"
+        }
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [
+        8620
+      ],
+      "names": [
+        "BAR4"
+      ]
+    },
+    {
+      "byte_offset": 36,
+      "width_bytes": 4,
+      "read_value": null,
+      "write_intent_value": 0,
+      "read_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 0,
+          "request_packet": 8625,
+          "access_id": "B2B-032"
+        },
+        {
+          "value": 0,
+          "request_packet": 8625,
+          "access_id": "B2B-032"
+        },
+        {
+          "value": 0,
+          "request_packet": 8625,
+          "access_id": "B2B-032"
+        },
+        {
+          "value": 0,
+          "request_packet": 8625,
+          "access_id": "B2B-032"
+        }
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [
+        8625
+      ],
+      "names": [
+        "BAR5"
+      ]
+    },
+    {
+      "byte_offset": 44,
+      "width_bytes": 4,
+      "read_value": 2540115872,
+      "write_intent_value": null,
+      "read_bytes": [
+        {
+          "value": 160,
+          "request_packet": 3302,
+          "completion_packet": 3304,
+          "access_id": "B2B-020"
+        },
+        {
+          "value": 23,
+          "request_packet": 3302,
+          "completion_packet": 3304,
+          "access_id": "B2B-020"
+        },
+        {
+          "value": 103,
+          "request_packet": 3302,
+          "completion_packet": 3304,
+          "access_id": "B2B-020"
+        },
+        {
+          "value": 151,
+          "request_packet": 3302,
+          "completion_packet": 3304,
+          "access_id": "B2B-020"
+        }
+      ],
+      "write_intent_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [
+        3304
+      ],
+      "write_evidence_packets": [],
+      "names": []
+    },
+    {
+      "byte_offset": 48,
+      "width_bytes": 4,
+      "read_value": null,
+      "write_intent_value": 0,
+      "read_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 0,
+          "request_packet": 8630,
+          "access_id": "B2B-033"
+        },
+        {
+          "value": 0,
+          "request_packet": 8630,
+          "access_id": "B2B-033"
+        },
+        {
+          "value": 0,
+          "request_packet": 8630,
+          "access_id": "B2B-033"
+        },
+        {
+          "value": 0,
+          "request_packet": 8630,
+          "access_id": "B2B-033"
+        }
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [
+        8630
+      ],
+      "names": []
+    },
+    {
+      "byte_offset": 52,
+      "width_bytes": 1,
+      "read_value": 128,
+      "write_intent_value": null,
+      "read_bytes": [
+        {
+          "value": 128,
+          "request_packet": 3235,
+          "completion_packet": 3237,
+          "access_id": "B2B-008"
+        }
+      ],
+      "write_intent_bytes": [
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [
+        3237
+      ],
+      "write_evidence_packets": [],
+      "names": [
+        "CapabilityPointer"
+      ]
+    },
+    {
+      "byte_offset": 52,
+      "width_bytes": 4,
+      "read_value": 128,
+      "write_intent_value": null,
+      "read_bytes": [
+        {
+          "value": 128,
+          "request_packet": 3235,
+          "completion_packet": 3237,
+          "access_id": "B2B-008"
+        },
+        {
+          "value": 0,
+          "request_packet": 3235,
+          "completion_packet": 3237,
+          "access_id": "B2B-008"
+        },
+        {
+          "value": 0,
+          "request_packet": 3235,
+          "completion_packet": 3237,
+          "access_id": "B2B-008"
+        },
+        {
+          "value": 0,
+          "request_packet": 3235,
+          "completion_packet": 3237,
+          "access_id": "B2B-008"
+        }
+      ],
+      "write_intent_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [
+        3237
+      ],
+      "write_evidence_packets": [],
+      "names": []
+    },
+    {
+      "byte_offset": 60,
+      "width_bytes": 4,
+      "read_value": null,
+      "write_intent_value": null,
+      "read_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 0,
+          "request_packet": 8637,
+          "access_id": "B2B-034"
+        },
+        null,
+        null,
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [
+        8637
+      ],
+      "names": []
+    },
+    {
+      "byte_offset": 128,
+      "width_bytes": 4,
+      "read_value": 188432,
+      "write_intent_value": null,
+      "read_bytes": [
+        {
+          "value": 16,
+          "request_packet": 3246,
+          "completion_packet": 3250,
+          "access_id": "B2B-010"
+        },
+        {
+          "value": 224,
+          "request_packet": 3246,
+          "completion_packet": 3250,
+          "access_id": "B2B-010"
+        },
+        {
+          "value": 2,
+          "request_packet": 3246,
+          "completion_packet": 3250,
+          "access_id": "B2B-010"
+        },
+        {
+          "value": 0,
+          "request_packet": 3246,
+          "completion_packet": 3250,
+          "access_id": "B2B-010"
+        }
+      ],
+      "write_intent_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [
+        3250
+      ],
+      "write_evidence_packets": [],
+      "names": []
+    },
+    {
+      "byte_offset": 136,
+      "width_bytes": 4,
+      "read_value": null,
+      "write_intent_value": null,
+      "read_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 55,
+          "request_packet": 8653,
+          "access_id": "B2B-037"
+        },
+        {
+          "value": 17,
+          "request_packet": 8653,
+          "access_id": "B2B-037"
+        },
+        null,
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [
+        8653
+      ],
+      "names": []
+    },
+    {
+      "byte_offset": 144,
+      "width_bytes": 2,
+      "read_value": null,
+      "write_intent_value": 66,
+      "read_bytes": [
+        null,
+        null
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 66,
+          "request_packet": 10354,
+          "access_id": "B2B-059"
+        },
+        {
+          "value": 0,
+          "request_packet": 10354,
+          "access_id": "B2B-059"
+        }
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [
+        10354
+      ],
+      "names": [
+        "LinkControl"
+      ]
+    },
+    {
+      "byte_offset": 144,
+      "width_bytes": 4,
+      "read_value": null,
+      "write_intent_value": null,
+      "read_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 66,
+          "request_packet": 10354,
+          "access_id": "B2B-059"
+        },
+        {
+          "value": 0,
+          "request_packet": 10354,
+          "access_id": "B2B-059"
+        },
+        null,
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [
+        10354
+      ],
+      "names": []
+    },
+    {
+      "byte_offset": 146,
+      "width_bytes": 2,
+      "read_value": null,
+      "write_intent_value": null,
+      "read_bytes": [
+        null,
+        null
+      ],
+      "write_intent_bytes": [
+        null,
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [],
+      "names": [
+        "LinkStatus"
+      ]
+    },
+    {
+      "byte_offset": 168,
+      "width_bytes": 4,
+      "read_value": null,
+      "write_intent_value": null,
+      "read_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 0,
+          "request_packet": 8696,
+          "access_id": "B2B-045"
+        },
+        {
+          "value": 0,
+          "request_packet": 8696,
+          "access_id": "B2B-045"
+        },
+        null,
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [
+        8696
+      ],
+      "names": []
+    },
+    {
+      "byte_offset": 176,
+      "width_bytes": 4,
+      "read_value": null,
+      "write_intent_value": null,
+      "read_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 2,
+          "request_packet": 8665,
+          "access_id": "B2B-039"
+        },
+        {
+          "value": 0,
+          "request_packet": 8665,
+          "access_id": "B2B-039"
+        },
+        null,
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [
+        8665
+      ],
+      "names": []
+    },
+    {
+      "byte_offset": 224,
+      "width_bytes": 4,
+      "read_value": 8452101,
+      "write_intent_value": null,
+      "read_bytes": [
+        {
+          "value": 5,
+          "request_packet": 8742,
+          "completion_packet": 8744,
+          "access_id": "B2B-053"
+        },
+        {
+          "value": 248,
+          "request_packet": 8742,
+          "completion_packet": 8744,
+          "access_id": "B2B-053"
+        },
+        {
+          "value": 128,
+          "request_packet": 8742,
+          "completion_packet": 8744,
+          "access_id": "B2B-053"
+        },
+        {
+          "value": 0,
+          "request_packet": 8742,
+          "completion_packet": 8744,
+          "access_id": "B2B-053"
+        }
+      ],
+      "write_intent_bytes": [
+        null,
+        null,
+        {
+          "value": 129,
+          "request_packet": 8763,
+          "access_id": "B2B-057"
+        },
+        {
+          "value": 0,
+          "request_packet": 8763,
+          "access_id": "B2B-057"
+        }
+      ],
+      "read_has_later_write": true,
+      "read_evidence_packets": [
+        8744
+      ],
+      "write_evidence_packets": [
+        8763
+      ],
+      "names": []
+    },
+    {
+      "byte_offset": 228,
+      "width_bytes": 4,
+      "read_value": null,
+      "write_intent_value": 109379648,
+      "read_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 64,
+          "request_packet": 8748,
+          "access_id": "B2B-054"
+        },
+        {
+          "value": 0,
+          "request_packet": 8748,
+          "access_id": "B2B-054"
+        },
+        {
+          "value": 133,
+          "request_packet": 8748,
+          "access_id": "B2B-054"
+        },
+        {
+          "value": 6,
+          "request_packet": 8748,
+          "access_id": "B2B-054"
+        }
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [
+        8748
+      ],
+      "names": []
+    },
+    {
+      "byte_offset": 232,
+      "width_bytes": 4,
+      "read_value": null,
+      "write_intent_value": 0,
+      "read_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 0,
+          "request_packet": 8753,
+          "access_id": "B2B-055"
+        },
+        {
+          "value": 0,
+          "request_packet": 8753,
+          "access_id": "B2B-055"
+        },
+        {
+          "value": 0,
+          "request_packet": 8753,
+          "access_id": "B2B-055"
+        },
+        {
+          "value": 0,
+          "request_packet": 8753,
+          "access_id": "B2B-055"
+        }
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [
+        8753
+      ],
+      "names": []
+    },
+    {
+      "byte_offset": 236,
+      "width_bytes": 4,
+      "read_value": null,
+      "write_intent_value": null,
+      "read_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 0,
+          "request_packet": 8758,
+          "access_id": "B2B-056"
+        },
+        {
+          "value": 0,
+          "request_packet": 8758,
+          "access_id": "B2B-056"
+        },
+        null,
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [
+        8758
+      ],
+      "names": []
+    },
+    {
+      "byte_offset": 248,
+      "width_bytes": 4,
+      "read_value": 4156751873,
+      "write_intent_value": null,
+      "read_bytes": [
+        {
+          "value": 1,
+          "request_packet": 3320,
+          "completion_packet": 3322,
+          "access_id": "B2B-023"
+        },
+        {
+          "value": 0,
+          "request_packet": 3320,
+          "completion_packet": 3322,
+          "access_id": "B2B-023"
+        },
+        {
+          "value": 195,
+          "request_packet": 3320,
+          "completion_packet": 3322,
+          "access_id": "B2B-023"
+        },
+        {
+          "value": 247,
+          "request_packet": 3320,
+          "completion_packet": 3322,
+          "access_id": "B2B-023"
+        }
+      ],
+      "write_intent_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [
+        3322
+      ],
+      "write_evidence_packets": [],
+      "names": []
+    },
+    {
+      "byte_offset": 252,
+      "width_bytes": 2,
+      "read_value": 8,
+      "write_intent_value": 8,
+      "read_bytes": [
+        {
+          "value": 8,
+          "request_packet": 8594,
+          "completion_packet": 8596,
+          "access_id": "B2B-026"
+        },
+        {
+          "value": 0,
+          "request_packet": 8594,
+          "completion_packet": 8596,
+          "access_id": "B2B-026"
+        }
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 8,
+          "request_packet": 3330,
+          "access_id": "B2B-025"
+        },
+        {
+          "value": 0,
+          "request_packet": 3330,
+          "access_id": "B2B-025"
+        }
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [
+        8596
+      ],
+      "write_evidence_packets": [
+        3330
+      ],
+      "names": [
+        "PMCSR"
+      ]
+    },
+    {
+      "byte_offset": 252,
+      "width_bytes": 4,
+      "read_value": 8,
+      "write_intent_value": null,
+      "read_bytes": [
+        {
+          "value": 8,
+          "request_packet": 8594,
+          "completion_packet": 8596,
+          "access_id": "B2B-026"
+        },
+        {
+          "value": 0,
+          "request_packet": 8594,
+          "completion_packet": 8596,
+          "access_id": "B2B-026"
+        },
+        {
+          "value": 0,
+          "request_packet": 8594,
+          "completion_packet": 8596,
+          "access_id": "B2B-026"
+        },
+        {
+          "value": 0,
+          "request_packet": 8594,
+          "completion_packet": 8596,
+          "access_id": "B2B-026"
+        }
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 8,
+          "request_packet": 3330,
+          "access_id": "B2B-025"
+        },
+        {
+          "value": 0,
+          "request_packet": 3330,
+          "access_id": "B2B-025"
+        },
+        null,
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [
+        8596
+      ],
+      "write_evidence_packets": [
+        3330
+      ],
+      "names": []
+    },
+    {
+      "byte_offset": 256,
+      "width_bytes": 4,
+      "read_value": 276889611,
+      "write_intent_value": null,
+      "read_bytes": [
+        {
+          "value": 11,
+          "request_packet": 3258,
+          "completion_packet": 3260,
+          "access_id": "B2B-012"
+        },
+        {
+          "value": 0,
+          "request_packet": 3258,
+          "completion_packet": 3260,
+          "access_id": "B2B-012"
+        },
+        {
+          "value": 129,
+          "request_packet": 3258,
+          "completion_packet": 3260,
+          "access_id": "B2B-012"
+        },
+        {
+          "value": 16,
+          "request_packet": 3258,
+          "completion_packet": 3260,
+          "access_id": "B2B-012"
+        }
+      ],
+      "write_intent_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [
+        3260
+      ],
+      "write_evidence_packets": [],
+      "names": []
+    },
+    {
+      "byte_offset": 264,
+      "width_bytes": 4,
+      "read_value": 285278232,
+      "write_intent_value": null,
+      "read_bytes": [
+        {
+          "value": 24,
+          "request_packet": 3268,
+          "completion_packet": 3270,
+          "access_id": "B2B-014"
+        },
+        {
+          "value": 0,
+          "request_packet": 3268,
+          "completion_packet": 3270,
+          "access_id": "B2B-014"
+        },
+        {
+          "value": 1,
+          "request_packet": 3268,
+          "completion_packet": 3270,
+          "access_id": "B2B-014"
+        },
+        {
+          "value": 17,
+          "request_packet": 3268,
+          "completion_packet": 3270,
+          "access_id": "B2B-014"
+        }
+      ],
+      "write_intent_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [
+        3270
+      ],
+      "write_evidence_packets": [],
+      "names": []
+    },
+    {
+      "byte_offset": 268,
+      "width_bytes": 4,
+      "read_value": null,
+      "write_intent_value": 0,
+      "read_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 0,
+          "request_packet": 8671,
+          "access_id": "B2B-040"
+        },
+        {
+          "value": 0,
+          "request_packet": 8671,
+          "access_id": "B2B-040"
+        },
+        {
+          "value": 0,
+          "request_packet": 8671,
+          "access_id": "B2B-040"
+        },
+        {
+          "value": 0,
+          "request_packet": 8671,
+          "access_id": "B2B-040"
+        }
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [],
+      "write_evidence_packets": [
+        8671
+      ],
+      "names": []
+    },
+    {
+      "byte_offset": 272,
+      "width_bytes": 4,
+      "read_value": 310444062,
+      "write_intent_value": null,
+      "read_bytes": [
+        {
+          "value": 30,
+          "request_packet": 3279,
+          "completion_packet": 3281,
+          "access_id": "B2B-016"
+        },
+        {
+          "value": 0,
+          "request_packet": 3279,
+          "completion_packet": 3281,
+          "access_id": "B2B-016"
+        },
+        {
+          "value": 129,
+          "request_packet": 3279,
+          "completion_packet": 3281,
+          "access_id": "B2B-016"
+        },
+        {
+          "value": 18,
+          "request_packet": 3279,
+          "completion_packet": 3281,
+          "access_id": "B2B-016"
+        }
+      ],
+      "write_intent_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [
+        3281
+      ],
+      "write_evidence_packets": [],
+      "names": []
+    },
+    {
+      "byte_offset": 280,
+      "width_bytes": 4,
+      "read_value": 15,
+      "write_intent_value": 15,
+      "read_bytes": [
+        {
+          "value": 15,
+          "request_packet": 8676,
+          "completion_packet": 8678,
+          "access_id": "B2B-041"
+        },
+        {
+          "value": 0,
+          "request_packet": 8676,
+          "completion_packet": 8678,
+          "access_id": "B2B-041"
+        },
+        {
+          "value": 0,
+          "request_packet": 8676,
+          "completion_packet": 8678,
+          "access_id": "B2B-041"
+        },
+        {
+          "value": 0,
+          "request_packet": 8676,
+          "completion_packet": 8678,
+          "access_id": "B2B-041"
+        }
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 15,
+          "request_packet": 8686,
+          "access_id": "B2B-043"
+        },
+        {
+          "value": 0,
+          "request_packet": 8686,
+          "access_id": "B2B-043"
+        },
+        {
+          "value": 0,
+          "request_packet": 8686,
+          "access_id": "B2B-043"
+        },
+        {
+          "value": 0,
+          "request_packet": 8686,
+          "access_id": "B2B-043"
+        }
+      ],
+      "read_has_later_write": true,
+      "read_evidence_packets": [
+        8678
+      ],
+      "write_evidence_packets": [
+        8686
+      ],
+      "names": [
+        "L1SSControl1"
+      ]
+    },
+    {
+      "byte_offset": 284,
+      "width_bytes": 4,
+      "read_value": 40,
+      "write_intent_value": 40,
+      "read_bytes": [
+        {
+          "value": 40,
+          "request_packet": 8681,
+          "completion_packet": 8683,
+          "access_id": "B2B-042"
+        },
+        {
+          "value": 0,
+          "request_packet": 8681,
+          "completion_packet": 8683,
+          "access_id": "B2B-042"
+        },
+        {
+          "value": 0,
+          "request_packet": 8681,
+          "completion_packet": 8683,
+          "access_id": "B2B-042"
+        },
+        {
+          "value": 0,
+          "request_packet": 8681,
+          "completion_packet": 8683,
+          "access_id": "B2B-042"
+        }
+      ],
+      "write_intent_bytes": [
+        {
+          "value": 40,
+          "request_packet": 8691,
+          "access_id": "B2B-044"
+        },
+        {
+          "value": 0,
+          "request_packet": 8691,
+          "access_id": "B2B-044"
+        },
+        {
+          "value": 0,
+          "request_packet": 8691,
+          "access_id": "B2B-044"
+        },
+        {
+          "value": 0,
+          "request_packet": 8691,
+          "access_id": "B2B-044"
+        }
+      ],
+      "read_has_later_write": true,
+      "read_evidence_packets": [
+        8683
+      ],
+      "write_evidence_packets": [
+        8691
+      ],
+      "names": [
+        "L1SSControl2"
+      ]
+    },
+    {
+      "byte_offset": 296,
+      "width_bytes": 4,
+      "read_value": 536936462,
+      "write_intent_value": null,
+      "read_bytes": [
+        {
+          "value": 14,
+          "request_packet": 3291,
+          "completion_packet": 3293,
+          "access_id": "B2B-018"
+        },
+        {
+          "value": 0,
+          "request_packet": 3291,
+          "completion_packet": 3293,
+          "access_id": "B2B-018"
+        },
+        {
+          "value": 1,
+          "request_packet": 3291,
+          "completion_packet": 3293,
+          "access_id": "B2B-018"
+        },
+        {
+          "value": 32,
+          "request_packet": 3291,
+          "completion_packet": 3293,
+          "access_id": "B2B-018"
+        }
+      ],
+      "write_intent_bytes": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "read_has_later_write": false,
+      "read_evidence_packets": [
+        3293
+      ],
+      "write_evidence_packets": [],
+      "names": []
+    }
+  ],
+  "capability_coverage": {
+    "conventional_chain": {
+      "nodes": [
+        {
+          "byte_offset": 128,
+          "capability_id": 16,
+          "next_byte_offset": 224,
+          "evidence": [
+            {
+              "value": 16,
+              "request_packet": 3246,
+              "completion_packet": 3250,
+              "access_id": "B2B-010"
+            },
+            {
+              "value": 224,
+              "request_packet": 3246,
+              "completion_packet": 3250,
+              "access_id": "B2B-010"
+            }
+          ]
+        },
+        {
+          "byte_offset": 224,
+          "capability_id": 5,
+          "next_byte_offset": 248,
+          "evidence": [
+            {
+              "value": 5,
+              "request_packet": 8742,
+              "completion_packet": 8744,
+              "access_id": "B2B-053"
+            },
+            {
+              "value": 248,
+              "request_packet": 8742,
+              "completion_packet": 8744,
+              "access_id": "B2B-053"
+            }
+          ]
+        },
+        {
+          "byte_offset": 248,
+          "capability_id": 1,
+          "next_byte_offset": 0,
+          "evidence": [
+            {
+              "value": 1,
+              "request_packet": 3320,
+              "completion_packet": 3322,
+              "access_id": "B2B-023"
+            },
+            {
+              "value": 0,
+              "request_packet": 3320,
+              "completion_packet": 3322,
+              "access_id": "B2B-023"
+            }
+          ]
+        }
+      ],
+      "complete": true,
+      "gap": null,
+      "pointer_evidence": [
+        {
+          "value": 128,
+          "request_packet": 3235,
+          "completion_packet": 3237,
+          "access_id": "B2B-008"
+        }
+      ]
+    },
+    "extended_chain": {
+      "nodes": [
+        {
+          "byte_offset": 256,
+          "capability_id": 11,
+          "next_byte_offset": 264,
+          "evidence": [
+            {
+              "value": 11,
+              "request_packet": 3258,
+              "completion_packet": 3260,
+              "access_id": "B2B-012"
+            },
+            {
+              "value": 0,
+              "request_packet": 3258,
+              "completion_packet": 3260,
+              "access_id": "B2B-012"
+            },
+            {
+              "value": 129,
+              "request_packet": 3258,
+              "completion_packet": 3260,
+              "access_id": "B2B-012"
+            },
+            {
+              "value": 16,
+              "request_packet": 3258,
+              "completion_packet": 3260,
+              "access_id": "B2B-012"
+            }
+          ]
+        },
+        {
+          "byte_offset": 264,
+          "capability_id": 24,
+          "next_byte_offset": 272,
+          "evidence": [
+            {
+              "value": 24,
+              "request_packet": 3268,
+              "completion_packet": 3270,
+              "access_id": "B2B-014"
+            },
+            {
+              "value": 0,
+              "request_packet": 3268,
+              "completion_packet": 3270,
+              "access_id": "B2B-014"
+            },
+            {
+              "value": 1,
+              "request_packet": 3268,
+              "completion_packet": 3270,
+              "access_id": "B2B-014"
+            },
+            {
+              "value": 17,
+              "request_packet": 3268,
+              "completion_packet": 3270,
+              "access_id": "B2B-014"
+            }
+          ]
+        },
+        {
+          "byte_offset": 272,
+          "capability_id": 30,
+          "next_byte_offset": 296,
+          "evidence": [
+            {
+              "value": 30,
+              "request_packet": 3279,
+              "completion_packet": 3281,
+              "access_id": "B2B-016"
+            },
+            {
+              "value": 0,
+              "request_packet": 3279,
+              "completion_packet": 3281,
+              "access_id": "B2B-016"
+            },
+            {
+              "value": 129,
+              "request_packet": 3279,
+              "completion_packet": 3281,
+              "access_id": "B2B-016"
+            },
+            {
+              "value": 18,
+              "request_packet": 3279,
+              "completion_packet": 3281,
+              "access_id": "B2B-016"
+            }
+          ]
+        },
+        {
+          "byte_offset": 296,
+          "capability_id": 14,
+          "next_byte_offset": 512,
+          "evidence": [
+            {
+              "value": 14,
+              "request_packet": 3291,
+              "completion_packet": 3293,
+              "access_id": "B2B-018"
+            },
+            {
+              "value": 0,
+              "request_packet": 3291,
+              "completion_packet": 3293,
+              "access_id": "B2B-018"
+            },
+            {
+              "value": 1,
+              "request_packet": 3291,
+              "completion_packet": 3293,
+              "access_id": "B2B-018"
+            },
+            {
+              "value": 32,
+              "request_packet": 3291,
+              "completion_packet": 3293,
+              "access_id": "B2B-018"
+            }
+          ]
+        }
+      ],
+      "complete": false,
+      "gap": "HEADER_NOT_OBSERVED_0x200"
+    },
+    "gaps": []
+  },
+  "not_established": [
+    "hardware current value or write applied",
+    "unobserved byte value",
+    "old device state after MUX reconnect",
+    "status/W1C register effects"
+  ],
+  "input": {
+    "log_sha256": "7B54AAF6DE5FB29EBA12BD99F59316E31A14DA040A594BC958124BDEF8075373",
+    "reference_sha256": "ABCF2E410D6E92EC58D093601FED9B3A1DB3F1BDA8E6D71423F922E7CFE76918"
+  }
+}

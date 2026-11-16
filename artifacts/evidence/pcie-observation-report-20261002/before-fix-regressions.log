@@ -1,0 +1,25 @@
+test_rule_title_reference_matches_rule_identity (report_tests.ObservationReportTests.test_rule_title_reference_matches_rule_identity) ... FAIL
+test_statuses_come_from_cited_source_and_rendered_model (report_tests.ObservationReportTests.test_statuses_come_from_cited_source_and_rendered_model) ... ERROR
+
+======================================================================
+ERROR: test_statuses_come_from_cited_source_and_rendered_model (report_tests.ObservationReportTests.test_statuses_come_from_cited_source_and_rendered_model)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\reiko\.codex\worktrees\pcie-slice-delivery\lecroy-vse-toolkit\tests\pcie\test_b3d_observation_report.py", line 74, in test_statuses_come_from_cited_source_and_rendered_model
+    self.assertEqual(self.model['watchlist_status'],source['status'])
+                     ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+KeyError: 'watchlist_status'
+
+======================================================================
+FAIL: test_rule_title_reference_matches_rule_identity (report_tests.ObservationReportTests.test_rule_title_reference_matches_rule_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\reiko\.codex\worktrees\pcie-slice-delivery\lecroy-vse-toolkit\tests\pcie\test_b3d_observation_report.py", line 67, in test_rule_title_reference_matches_rule_identity
+    self.assertEqual(len(refs),1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+AssertionError: 0 != 1
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.113s
+
+FAILED (failures=1, errors=1)

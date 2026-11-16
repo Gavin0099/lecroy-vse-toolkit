@@ -1,0 +1,17 @@
+{
+  "status": "PASS_B1E_REPEATABILITY",
+  "input_sha256": {
+    "artifacts\\evidence\\pcie-b1d-hang-20260930\\r2-run1\\evaluation.json": "22ED4A80E2917FE547693D6BD43AF82CD496C34FFAA5B882DA699622C3EC240A",
+    "artifacts\\evidence\\pcie-b1c-r1-hang-20260915\\training.json": "161FCF9EF28E78D4EAAE7BCB6381A8AEC8A19587FD37964B7B854E8FB366FBD3",
+    "docs\\pcie-b1d-engineer-questions.md": "90CA98E2218E6EBF6D233095392349A5E9EF9396E1A9E239098029B2EAFB04A5"
+  },
+  "outputs_byte_identical": true,
+  "output_sha256": {
+    "findings.json": "5B2AEC0446F5580254B89FD5067017B9B9E7528D56F4DCF07F94EF551FB27F5F",
+    "findings.md": "D4703EFFCB20862E6ED7518BEE26DB39FEC5221B5CEAFDE58665465EABB12BEE"
+  },
+  "findings": 12,
+  "rule_mismatches": 0,
+  "focus": "AFTER_BIDIRECTIONAL_L0",
+  "tests_passed": 7
+}

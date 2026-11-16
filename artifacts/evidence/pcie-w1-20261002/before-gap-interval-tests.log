@@ -1,0 +1,23 @@
+FF
+======================================================================
+FAIL: test_gap_cannot_cover_same_source_segment_counts (test_b3a_event_contract.EventContractTests.test_gap_cannot_cover_same_source_segment_counts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\reiko\.codex\worktrees\pcie-slice-delivery\lecroy-vse-toolkit\tests\pcie\test_b3a_event_contract.py", line 22, in test_gap_cannot_cover_same_source_segment_counts
+    with self.assertRaises(ValueError): contract.validate(self.doc,self.sources)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_duplicate_segment_counts_cannot_inflate_intervals (test_b3a_event_contract.EventContractTests.test_duplicate_segment_counts_cannot_inflate_intervals)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\reiko\.codex\worktrees\pcie-slice-delivery\lecroy-vse-toolkit\tests\pcie\test_b3a_event_contract.py", line 26, in test_duplicate_segment_counts_cannot_inflate_intervals
+    with self.assertRaises(ValueError): contract.validate(self.doc,self.sources)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.006s
+
+FAILED (failures=2)

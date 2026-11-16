@@ -1,0 +1,92 @@
+{
+  "schema": "pcie.b1d-product-context/v1",
+  "training_sha256": "161FCF9EF28E78D4EAAE7BCB6381A8AEC8A19587FD37964B7B854E8FB366FBD3",
+  "provenance": {
+    "source_kind": "owner_relayed_engineer_answers",
+    "document": "docs/pcie-b1d-engineer-questions.md",
+    "document_sha256": "90CA98E2218E6EBF6D233095392349A5E9EF9396E1A9E239098029B2EAFB04A5",
+    "received_date": "2026-09-30",
+    "responder": null,
+    "response_date": null
+  },
+  "operation": {
+    "kind": "sde_insert_mux_switch",
+    "interposer": "between_rc_and_mux",
+    "from_device": "7494 controller",
+    "to_device": "SDE",
+    "disconnect_packet": 225041,
+    "reconnect_packet": 1479760,
+    "anchor_basis": "B1c-x1 Link Down/Up GUI cross-check plus engineer Q1 reconnection interpretation; not automatic MUX event detection",
+    "approx_disconnect_seconds": "1.4",
+    "vendor_register_statement": "0x940h[1]",
+    "vendor_register_definition": null
+  },
+  "expectations": {
+    "width": 1,
+    "target_speed_gt_s": "8.0",
+    "target_generation": "Gen3",
+    "controller_generation": "Gen2",
+    "link_down_expected": true,
+    "disconnect_recovery_polling_or_silence_allowed": true,
+    "new_device_initialization_required": true
+  },
+  "rule_questions": {
+    "SWITCH_LINK_DOWN": [
+      1
+    ],
+    "DISCONNECT_ACTIVITY": [
+      1,
+      2,
+      3
+    ],
+    "MUX_CONNECTIVITY": [
+      7
+    ],
+    "BIDIRECTIONAL_L0": [
+      2
+    ],
+    "LINK_WIDTH_SAMPLES": [
+      4
+    ],
+    "INITIAL_GEN1_SAMPLE": [],
+    "TARGET_SPEED_OBSERVED": [
+      4
+    ],
+    "MUX_DISCONNECT_DURATION": [
+      1,
+      3
+    ],
+    "TRAINING_TIMEOUT": [
+      2,
+      3
+    ],
+    "TS_ERROR_TOLERANCE": [
+      5
+    ],
+    "HOTPLUG_INIT_ACTIVITY": [
+      2,
+      6
+    ],
+    "DEVICE_INITIALIZATION_COMPLETED": [
+      2,
+      6
+    ]
+  },
+  "case": {
+    "trace_basename": "Disable ASPM--Insert SD7-hang.pex",
+    "analysis_copy": "13.26 converted copy",
+    "reported_outcome": "FAIL_OWNER_RELAYED",
+    "reported_symptom": "ASPM disabled; SD7 inserted; device not visible after switching; system hang; BSOD 0x124",
+    "other_tests_bsod": [
+      "0x124",
+      "0xA0"
+    ],
+    "crash_dump_verified": false
+  },
+  "revision": "r1-source-boundary-correction",
+  "source_boundaries": {
+    "initial_speed_sample": "trace observation only; engineer Q4 defines target Gen3 x1 and persistent Gen1 concern, not initial Gen1 acceptance",
+    "mux_connectivity": "engineer Q7: bidirectional valid training; does not require L0",
+    "bidirectional_l0": "explicit valid LTSSM L0 records on both directions; separate observed milestone"
+  }
+}

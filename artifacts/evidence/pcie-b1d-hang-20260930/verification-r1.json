@@ -1,0 +1,99 @@
+{
+  "status": "PASS_B1D_BOUNDED_REPLAY",
+  "revision": "r1-source-boundary-correction",
+  "date": "2026-09-30",
+  "input_hashes_before": {
+    "artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json": "161FCF9EF28E78D4EAAE7BCB6381A8AEC8A19587FD37964B7B854E8FB366FBD3",
+    "docs/pcie-b1d-engineer-questions.md": "90CA98E2218E6EBF6D233095392349A5E9EF9396E1A9E239098029B2EAFB04A5",
+    "artifacts/evidence/pcie-b1d-hang-20260930/product-context-r1.json": "78BDE038BCADEE0C12384F149247C5B22A8BD2FBBACFB0D06AC01CF4B3CBF691"
+  },
+  "input_hashes_after": {
+    "artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json": "161FCF9EF28E78D4EAAE7BCB6381A8AEC8A19587FD37964B7B854E8FB366FBD3",
+    "docs/pcie-b1d-engineer-questions.md": "90CA98E2218E6EBF6D233095392349A5E9EF9396E1A9E239098029B2EAFB04A5",
+    "artifacts/evidence/pcie-b1d-hang-20260930/product-context-r1.json": "78BDE038BCADEE0C12384F149247C5B22A8BD2FBBACFB0D06AC01CF4B3CBF691"
+  },
+  "input_integrity": "UNCHANGED",
+  "outputs": {
+    "evaluation.json": {
+      "r1_run1_sha256": "22ED4A80E2917FE547693D6BD43AF82CD496C34FFAA5B882DA699622C3EC240A",
+      "r1_run2_sha256": "22ED4A80E2917FE547693D6BD43AF82CD496C34FFAA5B882DA699622C3EC240A"
+    },
+    "evaluation.md": {
+      "r1_run1_sha256": "9ADCB1803B680BE781B46168F4D96526EEE9948C5CF5176786AD0DD8F74FC62D",
+      "r1_run2_sha256": "9ADCB1803B680BE781B46168F4D96526EEE9948C5CF5176786AD0DD8F74FC62D"
+    }
+  },
+  "repeatability": "BYTE_IDENTICAL",
+  "states": {
+    "mux_switch": {
+      "state": "MUX_SWITCH_COMPLETED",
+      "status": "PASS",
+      "basis": "engineer Q7 bidirectional-training evidence criterion"
+    },
+    "link_l0": {
+      "state": "BIDIRECTIONAL_L0_OBSERVED",
+      "status": "PASS",
+      "basis": "explicit valid L0 records on both directions; independent of Q7 connectivity"
+    },
+    "hotplug_activity": {
+      "state": "HOTPLUG_INIT_NOT_OBSERVED",
+      "status": "INCONCLUSIVE"
+    },
+    "device_initialization": {
+      "state": "DEVICE_INITIALIZATION_COMPLETION_NOT_ESTABLISHED",
+      "status": "NOT_EVALUATED",
+      "value": null
+    }
+  },
+  "observations": {
+    "initial_speed_sample": {
+      "packet_index": 1479761,
+      "direction_arrow": "R→",
+      "speed": "2.5",
+      "width": "x1",
+      "gui_error_labels": [
+        "TSRsrvErr"
+      ],
+      "fields": {
+        "link": "PAD",
+        "lane": "PAD",
+        "n_fts": "254",
+        "rsvd": "0, 1, 0",
+        "data_rate": "2.5 GT/s, 5.0 GT/s, 8.0 GT/s, 16.0 GT/s, Reserved",
+        "training_control": "0 0 0 0 0 0 0 0"
+      },
+      "screenshot": "gui-pkt-1479761.png",
+      "screenshot_sha256": "5274A30BCAEFF0AAFA6EA6698337C4D149DE3253C2740B46252AA0231496C898",
+      "source": "/phases/8/gui_samples/0"
+    },
+    "switch_link_down_to_reconnect_seconds": "1.400",
+    "has_errors": 384993,
+    "last_observed_packet": 1484414,
+    "last_observed_time": "10.912 sec",
+    "post_l0_observed_seconds": "0.000",
+    "time_basis": "PETracer display time; 0 elapsed display seconds does not mean zero physical duration"
+  },
+  "not_established": [
+    "overall product PASS/FAIL",
+    "direct physical MUX measurement",
+    "persistent Gen1",
+    "enumeration completion",
+    "BSOD root cause",
+    "full-trace or multi-case coverage"
+  ],
+  "runtime_trace_execution": "NOT_RUN",
+  "supersedes": "verification.json, run1/evaluation.*, run2/evaluation.*; previous initial Gen1 PASS is not current acceptance evidence",
+  "focused_tests": {
+    "command": "python -X utf8 -B -m unittest discover -s tests/pcie -p test_b1d_mux_rules.py -v",
+    "tests": 21,
+    "exit_code": 0
+  },
+  "regression_tests": {
+    "command": "python -X utf8 -B -m unittest discover -s tests/pcie -v",
+    "tests": 138,
+    "exit_code": 0,
+    "log": "artifacts/evidence/pcie-b1d-hang-20260930/r1-pcie-tests.log",
+    "log_sha256": "6FC822BD19609AD42B8FAABE1D5AB503BCA7D14FD5162BE7AD87138D809E730A"
+  },
+  "product_slice_status": "COMPLETE_LOCAL_V1"
+}

@@ -1,5 +1,9 @@
 # Plan
 
+> **最後更新**: 2026-11-16
+> **Owner**: Gavin0099
+> **Freshness**: Phase (30d)
+
 ## Objective
 
 Verify that LeCroy USB Protocol Suite VSE can read a large USB trace, expose useful decoded events, and deliver machine-readable data to a host that can support bounded diagnostic triage.
@@ -510,6 +514,71 @@ reproducing the mutation. `M1-I2` then repeated the exact same-folder COM3
 layout on a fresh sacrificial copy and also preserved the input identity.
 M1 is now functionally qualified; the historical discrepancy remains recorded
 as `UNEXPLAINED / NOT REPRODUCED`.
+
+## G1 governance full adoption decision (2026-11-16)
+
+Owner decision: move from G0 (copy-based minimal audit) to full AI Governance
+adoption. This is a new consumer decision. It supersedes G0 for current work and
+leaves the G0 sections below as history; it does not claim that capabilities G0
+excluded were ever active before this date.
+
+Reason: the framework already scales work by task level (L0/L1/L2 with an L0
+fast track and tiered document loading), so the lightweight copy gave little
+value. In practice G0 enforced nothing: the drift workflow could not run, the
+memory router commands could not run, and the copied instructions conflicted
+with G0's own exclusions. The fixed costs are accepted: hooks run on every
+commit/push, and non-stateless sessions end with closeout and memory records.
+
+yaml:
+  G1_RESULT: FULL_ADOPTION_AS_SUBMODULE_CONSUMER
+  framework_source: ai-governance-framework submodule, pinned 6c7e24c3
+  update_path: governance_tools.f7_full_update (managed F-7)
+  runtime_governance: ADOPTION_IN_PROGRESS
+  acceptance: NOT_STARTED
+
+| Slice | Scope | Status | Done when |
+| --- | --- | --- | --- |
+| G1-0 | Record this decision | DONE (this section) | G0 kept as history; no capability backdated |
+| G1-1 | Versioned framework source | DONE (submodule at 6c7e24c3) | Source traceable; rollback = drop submodule commit |
+| G1-2 | Compatibility fixes | DONE | AGENTS.md under 32,768 bytes (22,091 after G1-3); Product State Authority Rule kept; product files untouched |
+| G1-3 | Full wiring | PARTIAL | Hooks, Core Rules and memory router installed and verified; repo validators declared with fixtures (done 2026-11-16); hooks installed in every working checkout |
+| G1-4 | Real acceptance | NOT STARTED | One L0, one L1 and one L2 task plus one natural cross-session handoff, judged by the criteria below |
+
+G1-3 validators (2026-11-16): rule pack `governance/rules/lecroy`, validators in
+`governance/validators/` (LECROY-TRACE-001 no capture in a change set,
+LECROY-TRACE-002 input trace identity evidence, both hard stops; LECROY-DEL-001
+deletion scope, advisory), 10 pass/fail fixtures, harness
+`tests/governance/test_lecroy_validators.py`. AGENTS.md now lists the L1 → L2
+escalation triggers. Validators run only when the task declares the `lecroy`
+rule, and they check evidence the agent supplies; they do not observe the trace
+themselves.
+
+G1-3 open items: Codex SessionStart/Stop hooks not installed (owner approval
+needed); hooks are local `.git/hooks` state and must be installed again in each
+checkout. `.gitignore` covers `*.pex` since 2026-11-16 (LECROY-TRACE-001 still
+catches a force-added capture).
+
+G1-4 acceptance criteria:
+
+- L0 stays light: a typo or formatting fix does not trigger architecture review
+  or full regression.
+- L2 protects: raw trace integrity, disk/file deletion and verdict logic are
+  escalated to L2 and blocked without evidence. The framework's task-level
+  detector has no LeCroy keywords and caps destructive-data signals at L1, so
+  L2 depends on the `AGENTS.md` triggers and the post-task validators.
+- Cross-session handoff costs less than PLAN-only handoff, or the extra cost
+  has a named benefit. Otherwise revisit the configuration.
+
+Known issue: the F-7 updater treats everything between `## AI Governance Update
+Intent Rule` and `## Repo-Specific Risk Levels` in `AGENTS.md` as
+framework-managed, and on 2026-11-16 it deleted the consumer's Product State
+Authority Rule without a usable backup. The rule was restored from git and moved
+below the repo-specific sections. Report this upstream.
+
+Merge note: branch `codex/pcie-d1e-f0-baseline` carries G0 maintenance edits
+(manual-only drift workflow, AGENTS.md consumer note, memory 02-04 marked
+unused, "G0 lightweight maintenance" PLAN text). Resolve those conflicts in
+favor of G1.
 
 ## G0 governance topology decision
 
@@ -1401,3 +1470,84 @@ to the current codex/pcie-d1e-f0-baseline branch. Source/test/document changes
 are scoped explicitly; the closeout companion stays separate. Trace captures,
 portable ZIP, raw evidence and unrelated PCIe work remain local. This delivery
 does not authorize a PR/merge or change pending10.50/new-trace/human qualification.
+
+## PCIe slice delivery (2026-10-02)
+
+Owner authorized one capability per PR, latest-head review, then conditional merge
+before the next dependent slice. B1c offline timeline is the first missing dependency
+on main, delivered separately from B1d and the older checkpoint branch. This slice
+replays named B1b window / x2 counters / GUI observation records only; it does not
+qualify extraction or add product rules. B1d and B2 delivery follow independently.
+B2g product policy remains waiting for engineer Who / When / What / Proof answers.
+
+- feat(pcie): deliver engineer-sourced B1d MUX rules: 30 clean-slice PCIe tests PASS (21 B1d); two real B1d replay JSON/MD byte-identical to historical r2; source document and input hash binding verified. Scope: No overall case PASS/FAIL, electrical MUX measurement, persistent Gen1, initialization completion or root cause. B2g rules still await engineer answers. Existing nonrequired governance-drift checker missing on main; deferred outside this slice.
+
+- feat(pcie): deliver bounded B1e link findings: 37 clean-slice PCIe tests PASS (7 B1e); two real replay JSON/MD match historical run1 byte-for-byte; tampered evaluations and changed training rejected. Scope: No new product rules, replay inference from NAK, global CRC health, full Recovery entry count or root cause. Existing nonrequired governance-drift checker missing on main; deferred outside this slice.
+
+- feat(pcie): deliver qualified B2a register field probe: 44 clean-slice PCIe tests PASS (7 B2a, no skipped real evidence test); two offline replays match historical verified1 fields.json byte-for-byte: 704 TLP, 333 rows, 32 reads, 29 writes, 59 payload DWORD checks. Scope: Runtime qualification is historical PETracer 13.26 non-Flit evidence, no new COM/runtime session. No CplD config interpretation without association, register policy, vendor meaning or root cause. Existing nonrequired governance-drift missing checker deferred.
+
+- feat(pcie): deliver legacy TLP role helpers for B2b: 50 clean-slice PCIe tests PASS (6 G2b); two role/association/orphan JSON replays equal historical hang outputs byte-for-byte. Scope: Legacy nearest-preceding associations are candidates, not returned config data or complete transactions; B2b implements a separate strategy. No timeout/fault/root cause. Nonrequired inherited governance-drift missing checker deferred.
+
+- feat(pcie): deliver B2B config access: 57 clean-slice PCIe tests PASS, no skips; two real offline replays match historical current r2-run1 output byte-for-byte. Scope: B1c did not carry a cryptographic capture hash: overlap packets, basename and matching metadata are the stated binding. No applied state, timeout, memory split completeness or new-SDE initialization claim. Inherited nonrequired governance-drift missing checker deferred outside scope.
+
+- feat(pcie): deliver B2C capability resolution: 62 clean-slice PCIe tests PASS, no skips; two real offline replays match historical current run1 output byte-for-byte. Scope: Layout reference only, not complete PCIe spec verification; no vendor register meaning, absent capability inference or current hardware snapshot. Inherited nonrequired governance-drift missing checker deferred outside scope.
+
+- feat(pcie): deliver B2D observed state: 68 clean-slice PCIe tests PASS, no skips; two real offline replays match historical current before-run1 output byte-for-byte. Scope: No effective hardware state, W1C effects, zero-fill, or continuity override across epochs. Inherited nonrequired governance-drift missing checker deferred outside scope.
+
+- fix(pcie): validate B1c direction totals and GUI link agreement: 71 PCIe tests PASS (12 B1c); eight negative cases reproduced before fix; two real CLI replays equal historical training JSON/Markdown byte-for-byte. Scope: No new product policy or runtime qualification. Inherited nonrequired governance-drift missing checker remains outside this slice.
+
+- fix(pcie): preserve ambiguity and unknown completion fields: 73 PCIe tests PASS without skips; negative regression reproduced before fix; two real replays equal historical output byte-for-byte. Scope: Observed evidence only, no applied state, product policy or root cause. Inherited nonrequired governance-drift missing checker deferred outside scope.
+
+- fix(pcie): prove full register DWORD against fresh raw frame bytes: 78 PCIe tests PASS (12 focused); coupled decoder corruption previously accepted is rejected against full raw bytes; two fresh COM DONE runs with identical raw output; 333 rows match legacy fields except extended frame prefix, 270 raw payload DWORD proofs, 59 available RegisterData values checked, 211 RegisterData payloads remain UNKNOWN; protected identities/read-only unchanged. Scope: Qualified only on this converted PETracer 13.26 non-Flit capture. Historical artifacts are retained, not relabelled as fresh qualification. No applied state/product ASPM policy/causality. Inherited nonrequired governance-drift checker absent and deferred.
+
+- fix(pcie): format BDF bus and device as hexadecimal: 79 PCIe tests PASS (7 helper tests); literal 0x1F58 regression fails before fix and passes after; two real role/association/orphan replays byte-identical. Scope: Formatting only; no physical device continuity, transaction qualification or policy inference. Inherited nonrequired governance-drift missing checker deferred.
+
+- fix(pcie): bound relative registers to their config spaces: 81 PCIe tests PASS without skips; negative regression reproduced before fix; two real replays equal historical output byte-for-byte. Scope: Observed evidence only, no applied state, product policy or root cause. Inherited nonrequired governance-drift missing checker deferred outside scope.
+
+- docs(pcie): distinguish current B2d checks from historical evidence: 6 focused B2d tests and 81 clean-slice PCIe tests PASS; fresh UTF-8 logs, source commit/blob IDs and log hashes retained. Scope: Source-test evidence only; no new hardware/runtime/policy/root-cause proof. Nonrequired inherited governance-drift checker missing and deferred.
+
+- feat(pcie): deliver B2E snapshot query: 87 clean-slice PCIe tests PASS (6 focused); pointer reserved-byte/marker regression fails before fix and passes after; two fresh real snapshot JSON/Markdown replays byte-identical; after-reconnect views remain UNKNOWN. Scope: Observed evidence query, not actual hardware snapshot; old mapping/state not inherited by SDE. Inherited nonrequired governance-drift missing checker deferred outside scope.
+
+- feat(pcie): deliver B2F snapshot diff: 93 clean-slice PCIe tests PASS, no skips; two fresh real diffs byte-identical using current B2e snapshots (pointer width corrected); old artifacts remain historical; stale snapshot regression rejects the earlier pointer width before creating output. Scope: No hardware-change/physical-identity/root-cause claim; same BDF/VID-DID cannot make epochs comparable. Inherited nonrequired governance-drift missing checker deferred outside scope.
+
+- feat(pcie): deliver B2G watchlist prepare: 98 clean-slice PCIe tests PASS, no skips; two real offline replays match historical current r1-run1 output byte-for-byte. Scope: No engineer product expectations supplied; L1_ENABLE_WRITE_INTENT cannot prove register applied, system ASPM enabled, policy violation or BSOD causality. Inherited nonrequired governance-drift missing checker deferred outside scope.
+
+B2g review repair: 101 PCIe tests PASS (8 focused); two real replays identical; two old readback regressions fail before fix; delivered questionnaire hashes freshly bound. Read-back candidates require request and completion after this write and before the next overlapping write in the same device epoch; effective/expected UNKNOWN. Historical questionnaire identity record marked superseded.
+
+B2g read-back repair: completion must remain in the write device epoch; 102 suite tests PASS, 9 focused.
+
+- feat(pcie): add W1 bounded observation event contract: 114 PCIe tests PASS (12 focused); real packet/segment/gap fixture and 4 explicit negative fixtures executed by validator; source, epoch, identity, time, count and policy boundaries tested. Scope: Structural provenance checks are not source authenticity; adapters must recompute lineage. No complete timeline, applied state, ASPM policy, physical identity or root cause. Inherited nonrequired governance-drift checker absent; deferred.
+
+W1 contract review repair: 117 PCIe tests PASS (15 focused); explicit positive/negative source fixtures; nested details policy, alias-duplicate and malformed sources CLI regressions. No product state or identity continuity added.
+
+W1 extension claim bypass repaired; 118 suite / 16 focused tests PASS, current review pending.
+
+W1 interval count / source-gap consistency repaired: 120 tests PASS, 18 focused.
+
+W1 nested identity ceiling repaired: 121 suite / 19 focused tests PASS.
+
+W1 gap/interval overlap and duplicate segment guards added: 123 suite / 21 focused tests PASS.
+
+Owner workflow correction 2026-10-02: freeze W1 invariants; GitHub review is final adversarial gate, not spec discovery. W2+W3 one capability PR, W4+W5 one capability PR; focused development checks, final capability suite/replay. Source-alias loophole fixed; arbitrary extension prose semantic checking explicitly outside W1.
+
+W1 final bounded review: milestone id/summary basic string guard; 125 tests PASS. GitHub final feedback disposed; no further speculative parser-hardening loop.
+
+- feat(pcie): unify W2 and W3 config and link evidence timeline: 138 PCIe tests PASS (13 focused); two real CLI replays byte-identical; W1 validator PASS; local bounded adversarial integration review completed before PR. Scope: Legacy link capture binding remains corroborated, not a direct hash. Opaque prose is not an authoritative fact. ASPM policy awaits engineer; no root cause/full DLLP export. Inherited nonrequired drift checker missing, deferred.
+
+W2+W3 final bounded repair: canonical-byte consumer comparison enforced, 139 tests PASS; canonical timeline SHA unchanged.
+
+## Waiting-period capability closeout
+
+W1 contract and W2+W3 unified timeline have passed bounded review and merged.
+W4+W5 report implementation is complete locally; final PR review/merge is the
+remaining delivery gate. The report keeps engineer-reported device visibility
+failure separate from observed MUX connectivity and bidirectional L0.
+
+No more waiting-period micro-slices are planned. B2g product evaluation awaits
+engineer Who/When/What/Proof answers; B2h awaits the register/address-space
+contract. B3c, full B3d, new capture/runtime qualification and root cause remain
+outside these completed capabilities. Original dirty checkout is preserved.
+
+- feat(pcie): render W4 and W5 observation reports: 147 PCIe tests PASS (8 focused); two real report replays have equal MD and HTML SHA-256; isolated Edge screenshots inspected; local bounded adversarial review completed before PR. Scope: B2g product policy awaits engineer Who/When/What/Proof; B2h conditional. Legacy link capture binding corroborated; no applied state, root cause, full TS/DLLP export or complete B3d. Inherited nonrequired governance-drift checker missing, deferred.
+
+W4+W5 final bounded repair: source-derived/cited B2g status; unsupported B2h report status omitted; rule titles matched by rule ID with findings refs. 149 suite / 10 focused tests PASS; both regressions fail on the reviewed head and pass after. Two final MD/HTML replay hashes match; final HTML visual inspection PASS. One GitHub review round completed; latest-head local repair gate before conditional merge.

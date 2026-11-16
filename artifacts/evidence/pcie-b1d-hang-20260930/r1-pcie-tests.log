@@ -1,0 +1,311 @@
+test_accepts_consistent_probe_output (test_b1a_link_fields.B1aLinkFieldTests.test_accepts_consistent_probe_output) ... ok
+test_cli_writes_summary_once (test_b1a_link_fields.B1aLinkFieldTests.test_cli_writes_summary_once) ... B1a log not accepted: Refusing to reuse existing output directory: C:\Users\reiko\AppData\Local\Temp\tmpoylzk8nn\out
+ok
+test_rejects_inconsistent_sums (test_b1a_link_fields.B1aLinkFieldTests.test_rejects_inconsistent_sums) ... ok
+test_rejects_missing_end_done_runtime_error_and_unknown_lines (test_b1a_link_fields.B1aLinkFieldTests.test_rejects_missing_end_done_runtime_error_and_unknown_lines) ... ok
+test_sample_count_must_equal_min_of_population_and_cap (test_b1a_link_fields.B1aLinkFieldTests.test_sample_count_must_equal_min_of_population_and_cap) ... ok
+test_tlp_count_must_match_g1a (test_b1a_link_fields.B1aLinkFieldTests.test_tlp_count_must_match_g1a) ... ok
+test_parses_constants (test_b1b0_constants.B1b0Tests.test_parses_constants) ... ok
+test_rejects_missing_duplicate_and_non_distinct_packet_events (test_b1b0_constants.B1b0Tests.test_rejects_missing_duplicate_and_non_distinct_packet_events) ... ok
+test_rejects_runtime_error_and_missing_done (test_b1b0_constants.B1b0Tests.test_rejects_runtime_error_and_missing_done) ... ok
+test_accepts_consistent_export_and_crosschecks_tlp (test_b1b_window.B1bWindowTests.test_accepts_consistent_export_and_crosschecks_tlp) ... ok
+test_cli_writes_once (test_b1b_window.B1bWindowTests.test_cli_writes_once) ... B1b export not accepted: Refusing to reuse existing output directory: C:\Users\reiko\AppData\Local\Temp\tmpx4_eptou\out
+ok
+test_rejects_records_outside_window_and_broken_segments (test_b1b_window.B1bWindowTests.test_rejects_records_outside_window_and_broken_segments) ... ok
+test_rejects_runtime_error_unknown_line_and_missing_done (test_b1b_window.B1bWindowTests.test_rejects_runtime_error_unknown_line_and_missing_done) ... ok
+test_rejects_sum_and_tlp_mismatches (test_b1b_window.B1bWindowTests.test_rejects_sum_and_tlp_mismatches) ... ok
+test_timeline_names_codes_with_constants (test_b1b_window.B1bWindowTests.test_timeline_names_codes_with_constants) ... ok
+test_carried_state_channel_and_sample_after_gap (test_b1c_training_timeline.B1cR1Tests.test_carried_state_channel_and_sample_after_gap) ... ok
+test_r1_contract_rejects_unmarked_label_and_missing_basis (test_b1c_training_timeline.B1cR1Tests.test_r1_contract_rejects_unmarked_label_and_missing_basis) ... ok
+test_r1_markdown_passes_contract_and_marks_samples (test_b1c_training_timeline.B1cR1Tests.test_r1_markdown_passes_contract_and_marks_samples) ... ok
+test_range_sum_mismatch_and_orphan_sample_are_rejected (test_b1c_training_timeline.B1cR1Tests.test_range_sum_mismatch_and_orphan_sample_are_rejected) ... ok
+test_cli_requires_matching_pass_summary (test_b1c_training_timeline.B1cTests.test_cli_requires_matching_pass_summary) ... B1c training timeline not produced: B1b summary does not describe this timeline.json
+B1c training timeline not produced: Refusing to reuse existing output directory: C:\Users\reiko\AppData\Local\Temp\tmppboax1ml\out
+ok
+test_contract_rejects_judgement_wording_and_hidden_unknown (test_b1c_training_timeline.B1cTests.test_contract_rejects_judgement_wording_and_hidden_unknown) ... ok
+test_markdown_keeps_unknowns_and_passes_contract (test_b1c_training_timeline.B1cTests.test_markdown_keeps_unknowns_and_passes_contract) ... ok
+test_phases_merge_same_state_and_link_conditions_and_show_gap (test_b1c_training_timeline.B1cTests.test_phases_merge_same_state_and_link_conditions_and_show_gap) ... ok
+test_rejects_record_outside_its_segment (test_b1c_training_timeline.B1cTests.test_rejects_record_outside_its_segment) ... ok
+test_accepts_consistent_output (test_b1cx2_haserrors.B1cx2Tests.test_accepts_consistent_output) ... ok
+test_rejects_bad_samples (test_b1cx2_haserrors.B1cx2Tests.test_rejects_bad_samples) ... ok
+test_rejects_runtime_error_and_missing_done (test_b1cx2_haserrors.B1cx2Tests.test_rejects_runtime_error_and_missing_done) ... ok
+test_rejects_totals_that_do_not_close (test_b1cx2_haserrors.B1cx2Tests.test_rejects_totals_that_do_not_close) ... ok
+test_bad_evidence_and_unattributed_context_are_rejected (test_b1d_mux_rules.B1dTests.test_bad_evidence_and_unattributed_context_are_rejected) ... ok
+test_bilateral_training_is_supported_but_initialization_remains_unknown (test_b1d_mux_rules.B1dTests.test_bilateral_training_is_supported_but_initialization_remains_unknown) ... ok
+test_cli_rejects_changed_training_or_engineer_source_before_writing (test_b1d_mux_rules.B1dTests.test_cli_rejects_changed_training_or_engineer_source_before_writing) ... B1d evaluation not produced: Product context does not describe this training.json
+B1d evaluation not produced: Engineer source document differs from context provenance
+ok
+test_cli_writes_traceable_outputs_and_refuses_overwrite (test_b1d_mux_rules.B1dTests.test_cli_writes_traceable_outputs_and_refuses_overwrite) ... B1d evaluation not produced: Refusing to reuse existing output directory
+ok
+test_config_before_l0_or_in_wrong_direction_does_not_satisfy_activity (test_b1d_mux_rules.B1dTests.test_config_before_l0_or_in_wrong_direction_does_not_satisfy_activity) ... ok
+test_config_request_is_activity_not_initialization_completion (test_b1d_mux_rules.B1dTests.test_config_request_is_activity_not_initialization_completion) ... ok
+test_every_record_pointer_resolves_to_the_original_input (test_b1d_mux_rules.B1dTests.test_every_record_pointer_resolves_to_the_original_input) ... ok
+test_gen1_sample_after_l0_is_not_mislabeled_as_initial_training (test_b1d_mux_rules.B1dTests.test_gen1_sample_after_l0_is_not_mislabeled_as_initial_training) ... ok
+test_gui_gen3_speed_is_observed_without_using_capability_data_rate (test_b1d_mux_rules.B1dTests.test_gui_gen3_speed_is_observed_without_using_capability_data_rate) ... ok
+test_initial_gen1_is_observation_without_an_engineer_acceptance_rule (test_b1d_mux_rules.B1dTests.test_initial_gen1_is_observation_without_an_engineer_acceptance_rule) ... ok
+test_invalid_and_carried_states_cannot_supply_training_evidence (test_b1d_mux_rules.B1dTests.test_invalid_and_carried_states_cannot_supply_training_evidence) ... ok
+test_l0_alone_does_not_replace_the_q7_training_criterion (test_b1d_mux_rules.B1dTests.test_l0_alone_does_not_replace_the_q7_training_criterion) ... ok
+test_mux_connectivity_can_pass_without_any_l0 (test_b1d_mux_rules.B1dTests.test_mux_connectivity_can_pass_without_any_l0) ... ok
+test_no_numeric_thresholds_are_invented_for_time_or_errors (test_b1d_mux_rules.B1dTests.test_no_numeric_thresholds_are_invented_for_time_or_errors) ... ok
+test_no_width_sample_is_inconclusive (test_b1d_mux_rules.B1dTests.test_no_width_sample_is_inconclusive) ... ok
+test_one_sided_training_does_not_claim_mux_failure_or_completion (test_b1d_mux_rules.B1dTests.test_one_sided_training_does_not_claim_mux_failure_or_completion) ... ok
+test_only_one_valid_l0_cannot_start_bilateral_initialization_check (test_b1d_mux_rules.B1dTests.test_only_one_valid_l0_cannot_start_bilateral_initialization_check) ... ok
+test_real_hang_evidence_has_scoped_results_without_reopening_b1c (test_b1d_mux_rules.B1dTests.test_real_hang_evidence_has_scoped_results_without_reopening_b1c) ... ok
+test_target_speed_wording_distinguishes_absent_and_present_samples (test_b1d_mux_rules.B1dTests.test_target_speed_wording_distinguishes_absent_and_present_samples) ... ok
+test_unprobed_raw_speed_code_cannot_prove_gen3 (test_b1d_mux_rules.B1dTests.test_unprobed_raw_speed_code_cannot_prove_gen3) ... ok
+test_width_mismatch_is_fail_even_when_other_samples_are_x1 (test_b1d_mux_rules.B1dTests.test_width_mismatch_is_fail_even_when_other_samples_are_x1) ... ok
+test_accepts_complete_count_only_traversal (test_g1a_log.G1aLogTests.test_accepts_complete_count_only_traversal) ... ok
+test_missing_summary_or_done_is_not_a_complete_traversal (test_g1a_log.G1aLogTests.test_missing_summary_or_done_is_not_a_complete_traversal) ... ok
+test_rejects_inconsistent_progress (test_g1a_log.G1aLogTests.test_rejects_inconsistent_progress) ... ok
+test_rejects_runtime_error_and_unknown_lines (test_g1a_log.G1aLogTests.test_rejects_runtime_error_and_unknown_lines) ... ok
+test_zero_tlp_trace_is_reported_without_positions (test_g1a_log.G1aLogTests.test_zero_tlp_trace_is_reported_without_positions) ... ok
+test_cap_reached_before_trace_end (test_g1b_rows.G1bRowsTests.test_cap_reached_before_trace_end) ... ok
+test_exactly_one_end_with_the_required_reason (test_g1b_rows.G1bRowsTests.test_exactly_one_end_with_the_required_reason) ... ok
+test_first_and_last_index_bind_to_g1a (test_g1b_rows.G1bRowsTests.test_first_and_last_index_bind_to_g1a) ... ok
+test_full_export_cap_runs_to_trace_end (test_g1b_rows.G1bRowsTests.test_full_export_cap_runs_to_trace_end) ... ok
+test_rejects_runtime_error_unknown_line_and_row_after_end (test_g1b_rows.G1bRowsTests.test_rejects_runtime_error_unknown_line_and_row_after_end) ... ok
+test_row_count_must_match_min_of_cap_and_g1a_total (test_g1b_rows.G1bRowsTests.test_row_count_must_match_min_of_cap_and_g1a_total) ... ok
+test_trace_end_before_cap_exports_every_g1a_tlp (test_g1b_rows.G1bRowsTests.test_trace_end_before_cap_exports_every_g1a_tlp) ... ok
+test_tsv_json_round_trip_and_g1d_reproduction (test_g1b_rows.G1bRowsTests.test_tsv_json_round_trip_and_g1d_reproduction) ... ok
+test_availability_is_reported_per_type (test_g2a_fields.G2aFieldsTests.test_availability_is_reported_per_type) ... ok
+test_outputs_round_trip_and_refuse_existing_directory (test_g2a_fields.G2aFieldsTests.test_outputs_round_trip_and_refuse_existing_directory) ... ok
+test_parses_na_as_null_without_defaults (test_g2a_fields.G2aFieldsTests.test_parses_na_as_null_without_defaults) ... ok
+test_rejects_malformed_values_runtime_error_and_duplicate_end (test_g2a_fields.G2aFieldsTests.test_rejects_malformed_values_runtime_error_and_duplicate_end) ... ok
+test_rows_must_match_g1_export_and_count (test_g2a_fields.G2aFieldsTests.test_rows_must_match_g1_export_and_count) ... ok
+test_sample_decodes_routing_ids_and_status (test_g2a_fields.G2aFieldsTests.test_sample_decodes_routing_ids_and_status) ... ok
+test_key_uses_requester_and_tag_only_and_completion_must_follow (test_g2b_associate.AssociationTests.test_key_uses_requester_and_tag_only_and_completion_must_follow) ... ok
+test_no_completion_is_not_called_timeout (test_g2b_associate.AssociationTests.test_no_completion_is_not_called_timeout) ... ok
+test_reissued_key_before_completion_is_not_guessed (test_g2b_associate.AssociationTests.test_reissued_key_before_completion_is_not_guessed) ... ok
+test_rejects_out_of_order_rows_and_existing_output (test_g2b_associate.AssociationTests.test_rejects_out_of_order_rows_and_existing_output) ... ok
+test_split_completions_accumulate_on_one_request (test_g2b_associate.AssociationTests.test_split_completions_accumulate_on_one_request) ... ok
+test_roles_follow_vendor_constants_and_field_shape (test_g2b_associate.ClassificationTests.test_roles_follow_vendor_constants_and_field_shape) ... ok
+test_broken_reissue_chain_is_rejected (test_g3_candidates.G3CandidateTests.test_broken_reissue_chain_is_rejected) ... ok
+test_ids_follow_capture_order_and_output_refuses_reuse (test_g3_candidates.G3CandidateTests.test_ids_follow_capture_order_and_output_refuses_reuse) ... ok
+test_non_success_completion_candidate_is_not_interpreted (test_g3_candidates.G3CandidateTests.test_non_success_completion_candidate_is_not_interpreted) ... ok
+test_reappeared_key_reports_later_completion_without_attributing_it (test_g3_candidates.G3CandidateTests.test_reappeared_key_reports_later_completion_without_attributing_it) ... ok
+test_wording_avoids_fault_retry_and_timeout_claims (test_g3_candidates.G3CandidateTests.test_wording_avoids_fault_retry_and_timeout_claims) ... ok
+test_counts_and_identity_bind_to_g1a_and_g2a (test_g3c0_messages.G3c0Tests.test_counts_and_identity_bind_to_g1a_and_g2a) ... ok
+test_maps_codes_and_routes_from_vendor_constants (test_g3c0_messages.G3c0Tests.test_maps_codes_and_routes_from_vendor_constants) ... ok
+test_na_fields_stay_null_and_unknown_codes_are_unmapped (test_g3c0_messages.G3c0Tests.test_na_fields_stay_null_and_unknown_codes_are_unmapped) ... ok
+test_rejects_runtime_error_and_duplicate_end (test_g3c0_messages.G3c0Tests.test_rejects_runtime_error_and_duplicate_end) ... ok
+test_g3b_searches_first_and_repeated_request_separately (test_g3c_nearby_messages.G3cTests.test_g3b_searches_first_and_repeated_request_separately) ... ok
+test_message_after_span_within_window_is_attached_with_gaps (test_g3c_nearby_messages.G3cTests.test_message_after_span_within_window_is_attached_with_gaps) ... ok
+test_message_between_request_and_completion_is_inside_span (test_g3c_nearby_messages.G3cTests.test_message_between_request_and_completion_is_inside_span) ... ok
+test_no_causal_wording_and_bad_inputs_rejected (test_g3c_nearby_messages.G3cTests.test_no_causal_wording_and_bad_inputs_rejected) ... ok
+test_row_adjacent_message_across_capture_gap_is_excluded_not_attached (test_g3c_nearby_messages.G3cTests.test_row_adjacent_message_across_capture_gap_is_excluded_not_attached) ... ok
+test_window_bounds_are_inclusive_and_exclusive_beyond (test_g3c_nearby_messages.G3cTests.test_window_bounds_are_inclusive_and_exclusive_beyond) ... ok
+test_cross_candidate_anchor_reference_without_new_candidates (test_g3d_context.G3dTests.test_cross_candidate_anchor_reference_without_new_candidates) ... ok
+test_g3a_block_has_before_anchor_span_after_and_goto (test_g3d_context.G3dTests.test_g3a_block_has_before_anchor_span_after_and_goto) ... ok
+test_inputs_must_align_and_wording_stays_neutral (test_g3d_context.G3dTests.test_inputs_must_align_and_wording_stays_neutral) ... ok
+test_truncation_is_marked_at_capture_boundaries (test_g3d_context.G3dTests.test_truncation_is_marked_at_capture_boundaries) ... ok
+test_every_candidate_exactly_once_and_ids_follow_primary_packet (test_g3e_groups.G3eTests.test_every_candidate_exactly_once_and_ids_follow_primary_packet) ... ok
+test_inconsistent_inputs_rejected (test_g3e_groups.G3eTests.test_inconsistent_inputs_rejected) ... ok
+test_lineage_and_shared_anchor_merge_g3b_into_g3a (test_g3e_groups.G3eTests.test_lineage_and_shared_anchor_merge_g3b_into_g3a) ... ok
+test_no_scores_or_interpretation_fields (test_g3e_groups.G3eTests.test_no_scores_or_interpretation_fields) ... ok
+test_weak_relations_never_merge (test_g3e_groups.G3eTests.test_weak_relations_never_merge) ... ok
+test_five_questions_are_answered_and_wording_is_neutral (test_g3f_findings.G3fTests.test_five_questions_are_answered_and_wording_is_neutral) ... ok
+test_interior_rows_between_request_and_completion_are_not_anchors (test_g3f_findings.G3fTests.test_interior_rows_between_request_and_completion_are_not_anchors) ... ok
+test_long_lineage_group_is_split_into_local_segments_with_limitation (test_g3f_findings.G3fTests.test_long_lineage_group_is_split_into_local_segments_with_limitation) ... ok
+test_message_outside_context_rows_is_placed_by_g3c_reference_anchor (test_g3f_findings.G3fTests.test_message_outside_context_rows_is_placed_by_g3c_reference_anchor) ... ok
+test_missing_candidate_in_contexts_is_rejected (test_g3f_findings.G3fTests.test_missing_candidate_in_contexts_is_rejected) ... ok
+test_single_segment_group_has_no_episode_limitation (test_g3f_findings.G3fTests.test_single_segment_group_has_no_episode_limitation) ... ok
+test_singleton_with_two_segments_uses_candidate_wording (test_g3f_findings.G3fTests.test_singleton_with_two_segments_uses_candidate_wording) ... ok
+test_cli_refuses_overwrite (test_g7_markdown.G7MarkdownTests.test_cli_refuses_overwrite) ... G7 report not produced: Refusing to overwrite existing report: C:\Users\reiko\AppData\Local\Temp\tmpktisul86\report.md
+ok
+test_contract_passes_for_rendered_report (test_g7_markdown.G7MarkdownTests.test_contract_passes_for_rendered_report) ... ok
+test_contract_rejects_missing_sections_notes_overclaims_and_dashes (test_g7_markdown.G7MarkdownTests.test_contract_rejects_missing_sections_notes_overclaims_and_dashes) ... ok
+test_conversion_provenance_precedes_findings_and_is_contract_bound (test_g7_markdown.G7MarkdownTests.test_conversion_provenance_precedes_findings_and_is_contract_bound) ... ok
+test_order_must_follow_findings_json (test_g7_markdown.G7MarkdownTests.test_order_must_follow_findings_json) ... ok
+test_report_answers_the_five_questions_in_chinese_with_english_identities (test_g7_markdown.G7MarkdownTests.test_report_answers_the_five_questions_in_chinese_with_english_identities) ... ok
+test_cli_writes_once (test_g8_html.G8HtmlTests.test_cli_writes_once) ... G8 report not produced: Refusing to overwrite existing report: C:\Users\reiko\AppData\Local\Temp\tmpd1qswv_w\report.html
+ok
+test_contract_passes_and_rejects_scripts_external_and_missing_evidence (test_g8_html.G8HtmlTests.test_contract_passes_and_rejects_scripts_external_and_missing_evidence) ... ok
+test_conversion_provenance_panel_precedes_cards (test_g8_html.G8HtmlTests.test_conversion_provenance_panel_precedes_cards) ... ok
+test_layered_card_with_warning_panel_and_scan_badges (test_g8_html.G8HtmlTests.test_layered_card_with_warning_panel_and_scan_badges) ... ok
+test_markdown_and_html_share_wording (test_g8_html.G8HtmlTests.test_markdown_and_html_share_wording) ... ok
+test_trace_name_is_escaped (test_g8_html.G8HtmlTests.test_trace_name_is_escaped) ... ok
+test_builder_writes_new_repo_local_html_and_refuses_overwrite (test_inspection_comparison.InspectionComparisonTests.test_builder_writes_new_repo_local_html_and_refuses_overwrite) ... ok
+test_comparison_reports_bounded_sample_counts_without_event_alignment (test_inspection_comparison.InspectionComparisonTests.test_comparison_reports_bounded_sample_counts_without_event_alignment) ... ok
+test_filename_hint_is_conditional_and_never_ground_truth (test_inspection_comparison.InspectionComparisonTests.test_filename_hint_is_conditional_and_never_ground_truth) ... ok
+test_html_escapes_trace_identity (test_inspection_comparison.InspectionComparisonTests.test_html_escapes_trace_identity) ... ok
+test_identical_sample_shapes_are_described_not_scored (test_inspection_comparison.InspectionComparisonTests.test_identical_sample_shapes_are_described_not_scored) ... ok
+test_rejects_unqualified_or_incompatible_inputs (test_inspection_comparison.InspectionComparisonTests.test_rejects_unqualified_or_incompatible_inputs) ... ok
+test_builder_binds_identities_and_reports_bounded_unknown_state (test_inspection_report.InspectionReportTests.test_builder_binds_identities_and_reports_bounded_unknown_state) ... ok
+test_builder_rejects_trace_hash_drift_and_gui_mismatch (test_inspection_report.InspectionReportTests.test_builder_rejects_trace_hash_drift_and_gui_mismatch) ... ok
+test_bundle_writes_one_structured_source_and_refuses_overwrite (test_inspection_report.InspectionReportTests.test_bundle_writes_one_structured_source_and_refuses_overwrite) ... ok
+test_parse_accepts_five_records_with_normal_completion (test_inspection_report.InspectionReportTests.test_parse_accepts_five_records_with_normal_completion) ... ok
+test_parse_rejects_error_missing_done_and_wrong_count (test_inspection_report.InspectionReportTests.test_parse_rejects_error_missing_done_and_wrong_count) ... ok
+test_renderers_share_json_and_html_escapes_evidence_text (test_inspection_report.InspectionReportTests.test_renderers_share_json_and_html_escapes_evidence_text) ... ok
+test_conversion_provenance_reaches_reports_readme_and_manifest (test_run_pcie_triage.RunnerTests.test_conversion_provenance_reaches_reports_readme_and_manifest) ... ok
+test_end_to_end_package_and_manifest (test_run_pcie_triage.RunnerTests.test_end_to_end_package_and_manifest) ... ok
+test_fail_closed_on_altered_packet_index_note (test_run_pcie_triage.RunnerTests.test_fail_closed_on_altered_packet_index_note) ... PCIe triage not produced (stage validate_inputs): trace.provenance.packet_index_note must be the unchanged packet index caveat
+PCIe triage not produced (stage validate_inputs): trace.provenance.original_sha256 equals the analysed trace SHA-256; a conversion changes the file
+ok
+test_fail_closed_on_hash_mismatch (test_run_pcie_triage.RunnerTests.test_fail_closed_on_hash_mismatch) ... PCIe triage not produced (stage validate_inputs): fields SHA-256 B10239C1A648448545DEFB7945EFFDE99F1B4CF669521065FF633ED501D33975 differs from the input manifest
+ok
+test_fail_closed_on_messages_from_other_extraction (test_run_pcie_triage.RunnerTests.test_fail_closed_on_messages_from_other_extraction) ... PCIe triage not produced (stage validate_inputs): messages.json was verified against a different fields.json (other extraction or trace)
+ok
+test_fail_closed_on_tlp_count_mismatch (test_run_pcie_triage.RunnerTests.test_fail_closed_on_tlp_count_mismatch) ... PCIe triage not produced (stage validate_inputs): G2a verifier rows 30 differ from trace tlp_count 31
+ok
+test_fail_closed_on_unverified_extraction (test_run_pcie_triage.RunnerTests.test_fail_closed_on_unverified_extraction) ... PCIe triage not produced (stage validate_inputs): G2a verifier summary status is not PASS_FIELD_PROBE_OUTPUT
+ok
+test_refuses_existing_output_directory (test_run_pcie_triage.RunnerTests.test_refuses_existing_output_directory) ... PCIe triage not produced (stage validate_inputs): output directory already exists: C:\Users\reiko\AppData\Local\Temp\tmpac8go6vo\package
+ok
+test_stage_failure_stops_before_reports (test_run_pcie_triage.RunnerTests.test_stage_failure_stops_before_reports) ... PCIe triage not produced (stage g2b): g2b failed (exit 2, missing ['C:/Users/reiko/AppData/Local/Temp/tmprwilqgoi/package/stages/g2b/roles.json', 'C:/Users/reiko/AppData/Local/Temp/tmprwilqgoi/package/stages/g2b/associations.json']): G2b not produced: 'tlp_type_hex'
+ok
+
+----------------------------------------------------------------------
+Ran 138 tests in 1.224s
+
+OK
+
+{
+  "status": "PASS_LINK_FIELD_PROBE_OUTPUT",
+  "events": 723,
+  "counts": {
+    "tlp": 704,
+    "dllp": 10,
+    "ordered_set": 6,
+    "link_condition": 2,
+    "eie": 1,
+    "other_event": 0,
+    "dllp_ack": 6,
+    "dllp_nak": 1,
+    "dllp_fc": 3,
+    "dllp_pm": 0,
+    "dllp_other": 0,
+    "dllp_bad_crc": 0,
+    "tlp_bad_lcrc": 0,
+    "os_ts1": 3,
+    "os_ts2": 2,
+    "os_eios": 0,
+    "os_eieos": 0,
+    "os_skip": 1,
+    "os_other": 0,
+    "os_compressed": 0,
+    "error_events": 1,
+    "ltssm_present": 723,
+    "ltssm_changes": 2,
+    "speed_present": 723,
+    "width_present": 723,
+    "speed_width_changes": 1
+  },
+  "caps": {
+    "ltssm": 500,
+    "linkcond": 200,
+    "speedwidth": 100,
+    "nak": 50,
+    "err": 50
+  },
+  "samples": {
+    "ltssm": 2,
+    "linkcond": 2,
+    "speedwidth": 1,
+    "nak": 1,
+    "err": 1
+  },
+  "sample_truncated": {
+    "ltssm": false,
+    "linkcond": false,
+    "speedwidth": false,
+    "nak": false,
+    "err": false
+  },
+  "g1a_tlp_crosscheck": "NOT_RUN",
+  "log_sha256": "0F88812ACDBC4CB7C43926D39C36F8BEFC88EF20ECC56FC3A4CB0F07F4C52EB7",
+  "records_json_sha256": "8B9A6EC7B969295C59C03F7AB695C477FC9A65432372DE4FD48F069AA30973B9",
+  "not_established": [
+    "link health or any rule result (B1c)",
+    "meaning of LTSSM numeric codes against the vendor constants (decoded in B1b)",
+    "GUI agreement for sampled records",
+    "events outside the subscribed packet types (TLP, DLLP, ordered set, link condition, EIE)"
+  ]
+}
+{
+  "status": "PASS_WINDOW_EXPORT",
+  "window": {
+    "start": 100,
+    "end": 200
+  },
+  "totals": {
+    "events": 30,
+    "tlp": 2,
+    "err_any": 5,
+    "segments": 2
+  },
+  "records_by_kind": {
+    "link_condition": 1,
+    "ltssm": 2,
+    "nak": 1,
+    "tlp": 2,
+    "speed_width": 1
+  },
+  "g1_tlp_crosscheck": "NOT_RUN",
+  "named_with_constants": false,
+  "log_sha256": "0D6D6681BB2ABA65B72ADF8A3134AD1FF6B3638F27628CCF69D9A144A646DBEB",
+  "timeline_json_sha256": "DC2DEB23CE507F65C1B312F1EA9489A3134436BF92788A55ACADC0249170017A",
+  "not_established": [
+    "link health, expected MUX behaviour or any rule result (B1c-B1e)",
+    "GUI agreement of link-condition Up/Down wording",
+    "speed code labels (not probed)"
+  ]
+}
+{
+  "status": "PASS_TRAINING_TIMELINE",
+  "revision": "base",
+  "phases": 8,
+  "flow": "Detect（Upstream） → Recovery（Downstream） → link condition ×2 → Polling（Downstream） → 沒有觀察到事件（1.312 sec） → link condition ×1 → Configuration（Downstream、Upstream） → L0（Downstream）",
+  "training_md_sha256": "BFC0243BC0AEB5B9CC234A501D478CB8D39C0B85646C38953DF95031829980C9"
+}
+{
+  "status": "PASS_B1D_RULE_EVALUATION_BUILD",
+  "overall_verdict": "NOT_CLAIMED",
+  "states": {
+    "mux_switch": {
+      "state": "MUX_SWITCH_COMPLETED",
+      "status": "PASS",
+      "basis": "engineer Q7 bidirectional-training evidence criterion"
+    },
+    "link_l0": {
+      "state": "BIDIRECTIONAL_L0_OBSERVED",
+      "status": "PASS",
+      "basis": "explicit valid L0 records on both directions; independent of Q7 connectivity"
+    },
+    "hotplug_activity": {
+      "state": "HOTPLUG_INIT_NOT_OBSERVED",
+      "status": "INCONCLUSIVE"
+    },
+    "device_initialization": {
+      "state": "DEVICE_INITIALIZATION_COMPLETION_NOT_ESTABLISHED",
+      "status": "NOT_EVALUATED",
+      "value": null
+    }
+  },
+  "evaluation_md_sha256": "76AE7FC9A86D19C68B33D9C30535C1E735C78C4C5CE85712C8317BF3AC6D982E"
+}
+{"output": "C:/Users/reiko/AppData/Local/Temp/tmpktisul86/report.md", "findings": 1, "contract_errors": 0, "sha256": "206D1BDC7C7668F0A34DA0387BF15497F59DDC57F2585265616118480A818467"}
+{"output": "C:/Users/reiko/AppData/Local/Temp/tmpd1qswv_w/report.html", "findings": 1, "contract_errors": 0, "sha256": "9173CAF2FCCD85863067016E498DD7C73B86F26826667C3EE255F0E1C49870FE"}
+{
+  "status": "PASS",
+  "run_id": "20260930T072311Z-14192F3B",
+  "findings_total": 1,
+  "package": {
+    "report.html": "6695D43FE0BB311B99E248C39FB20B82B689EA9AF4CE8BA7DFB0BFE86432D9CC",
+    "report.md": "49AD817C53225C59394504ED4D1552F92BFA607EC70E03F9674AA53F731C629F",
+    "findings.json": "7EEAB7781748BF1FBD462550DC42582C512B02D8A6BFC5FE5B13928C6E4A27B5",
+    "使用說明.md": "45E61B64344CC7E641E79772359EF74239B4963C60D985584B180A3D4CE839B3"
+  },
+  "output_dir": "C:/Users/reiko/AppData/Local/Temp/tmplxwtgzgw/package"
+}
+{
+  "status": "PASS",
+  "run_id": "20260930T072311Z-85395139",
+  "findings_total": 1,
+  "package": {
+    "report.html": "ABB599D5989D421D4937A56FA45A239DFF0733EF88887BCC934F8604963560F7",
+    "report.md": "B45F925F9EB46A192888B57A99FED06BD6D8322EF6045DDE53BDD049C90C668C",
+    "findings.json": "6858595048EA1E887A4A59169DC404CAB45E8EC27236450C0DF7FF666BBE471A",
+    "使用說明.md": "1868D514315C2F18E4DC81FACA8BBF4B7105284519DEACCE1980414FC0B0FCA5"
+  },
+  "output_dir": "C:/Users/reiko/AppData/Local/Temp/tmpoljwh30c/package"
+}

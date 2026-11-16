@@ -1,0 +1,98 @@
+{
+  "schema": "pcie.b2g-watchlist-preparation/v1",
+  "status": "BLOCKED_ON_ENGINEER_WATCHLIST_SCOPE",
+  "product_rule_evaluation": "NOT_EVALUATED",
+  "implemented_product_watchlist_rules": [],
+  "test_condition_source": {
+    "engineer_question": 8,
+    "provenance": {
+      "source_kind": "owner_relayed_engineer_answers",
+      "document": "docs/pcie-b1d-engineer-questions.md",
+      "document_sha256": "90CA98E2218E6EBF6D233095392349A5E9EF9396E1A9E239098029B2EAFB04A5",
+      "received_date": "2026-09-30",
+      "responder": null,
+      "response_date": null
+    },
+    "case_condition": "ASPM disabled; SD7 inserted; device not visible after switching; system hang; BSOD 0x124",
+    "scope_definition": null
+  },
+  "layout_source": "https://raw.githubusercontent.com/torvalds/linux/v6.12/include/uapi/linux/pci_regs.h",
+  "observations": [
+    {
+      "packet_index": 8658,
+      "time_display": "8.314 sec",
+      "target_bdf": "001:00.0",
+      "epoch": "before_disconnect",
+      "register_byte_offset": 144,
+      "write_value": 66,
+      "first_be": 3,
+      "aspm_control_requested_bits": 2,
+      "l0s_enable_requested": false,
+      "l1_enable_requested": true,
+      "completion_packets": [
+        8660
+      ],
+      "read_back_observed": false,
+      "mapping_basis": "retrospective observed capability map at pre-disconnect cut, not knowledge at write time",
+      "evidence_access_id": "B2B-038"
+    },
+    {
+      "packet_index": 9915,
+      "time_display": "8.314 sec",
+      "target_bdf": "001:00.0",
+      "epoch": "before_disconnect",
+      "register_byte_offset": 144,
+      "write_value": 64,
+      "first_be": 3,
+      "aspm_control_requested_bits": 0,
+      "l0s_enable_requested": false,
+      "l1_enable_requested": false,
+      "completion_packets": [
+        9918
+      ],
+      "read_back_observed": false,
+      "mapping_basis": "retrospective observed capability map at pre-disconnect cut, not knowledge at write time",
+      "evidence_access_id": "B2B-058"
+    },
+    {
+      "packet_index": 10354,
+      "time_display": "8.314 sec",
+      "target_bdf": "001:00.0",
+      "epoch": "before_disconnect",
+      "register_byte_offset": 144,
+      "write_value": 66,
+      "first_be": 3,
+      "aspm_control_requested_bits": 2,
+      "l0s_enable_requested": false,
+      "l1_enable_requested": true,
+      "completion_packets": [
+        10358
+      ],
+      "read_back_observed": false,
+      "mapping_basis": "retrospective observed capability map at pre-disconnect cut, not knowledge at write time",
+      "evidence_access_id": "B2B-059"
+    }
+  ],
+  "required_inputs": [
+    "ASPM requirement target BDF/side and connection stage",
+    "RC control-order register/bit expectations with usable definitions and provenance"
+  ],
+  "not_established": [
+    "system ASPM enabled from endpoint write alone",
+    "register write applied without read-back",
+    "violation of unspecified product rule",
+    "new SDE identity or initialization state",
+    "hang/BSOD root cause"
+  ],
+  "preserved_milestones": [
+    "B1d COMPLETE",
+    "MUX_CONNECTIVITY PASS",
+    "BIDIRECTIONAL_L0 PASS"
+  ],
+  "b1d_validation_debt_blocks_v1": false,
+  "input": {
+    "log_sha256": "7B54AAF6DE5FB29EBA12BD99F59316E31A14DA040A594BC958124BDEF8075373",
+    "reference_sha256": "ABCF2E410D6E92EC58D093601FED9B3A1DB3F1BDA8E6D71423F922E7CFE76918",
+    "evaluation_sha256": "22ED4A80E2917FE547693D6BD43AF82CD496C34FFAA5B882DA699622C3EC240A"
+  }
+}

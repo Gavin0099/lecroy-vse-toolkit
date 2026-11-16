@@ -1,0 +1,20 @@
+{
+  "metadata": "artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json",
+  "probe": "artifacts/evidence/pcie-b2a-hang-20260930/verified1/fields.json",
+  "raw_probe": "artifacts/evidence/pcie-b2a-raw-dword-20261002/final-verified1/fields.json",
+  "raw_run": "artifacts/evidence/pcie-b2a-raw-dword-20261002/com-run1/com-run.json",
+  "raw_text": "artifacts/evidence/pcie-b2a-raw-dword-20261002/com-run1/vse-output.txt",
+  "accesses": "artifacts/evidence/pcie-b2b-hang-20260930/r2-run1/accesses.json",
+  "evaluation": "artifacts/evidence/pcie-b1d-hang-20260930/r2-run1/evaluation.json",
+  "training": "artifacts/evidence/pcie-b1c-r1-hang-20260915/training.json",
+  "reference": "docs/pcie-register-reference.json",
+  "watchlist": "artifacts/evidence/pcie-b2g-delivery-20261002/run1/watchlist-preparation.json",
+  "link_timeline": "artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/timeline.json",
+  "link_summary": "artifacts/evidence/pcie-b1b-hang-20260914/window-export/export/summary.json",
+  "haserrors": "artifacts/evidence/pcie-b1c-x2-hang-20260915/export/haserrors.json",
+  "haserrors_summary": "artifacts/evidence/pcie-b1c-x2-hang-20260915/export/summary.json",
+  "gui": "artifacts/evidence/pcie-b1c-x1x3-hang-20260915/gui-observations.json",
+  "findings": "artifacts/evidence/pcie-b1e-hang-20260930/run1/findings.json",
+  "engineer_source": "docs/pcie-b1d-engineer-questions.md",
+  "context": "artifacts/evidence/pcie-b1d-hang-20260930/product-context-r1.json"
+}

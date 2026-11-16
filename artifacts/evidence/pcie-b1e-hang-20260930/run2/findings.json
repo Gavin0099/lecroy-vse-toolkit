@@ -1,0 +1,894 @@
+{
+  "schema": "pcie.b1e-link-findings/v1",
+  "overall_verdict": "NOT_CLAIMED",
+  "states": {
+    "mux_switch": {
+      "state": "MUX_SWITCH_COMPLETED",
+      "status": "PASS",
+      "basis": "engineer Q7 bidirectional-training evidence criterion"
+    },
+    "link_l0": {
+      "state": "BIDIRECTIONAL_L0_OBSERVED",
+      "status": "PASS",
+      "basis": "explicit valid L0 records on both directions; independent of Q7 connectivity"
+    },
+    "hotplug_activity": {
+      "state": "HOTPLUG_INIT_NOT_OBSERVED",
+      "status": "INCONCLUSIVE"
+    },
+    "device_initialization": {
+      "state": "DEVICE_INITIALIZATION_COMPLETION_NOT_ESTABLISHED",
+      "status": "NOT_EVALUATED",
+      "value": null
+    }
+  },
+  "findings": [
+    {
+      "finding_id": "B1E-001",
+      "title": "切換起點 Link Down",
+      "category": "EXPECTED_CONTEXT",
+      "is_rule_mismatch": false,
+      "source_evaluation": "/evaluations/0",
+      "rule_id": "SWITCH_LINK_DOWN",
+      "status": "PASS",
+      "summary": "指定切換起點出現 Link Down，符合工程師描述的切換情境。",
+      "evidence": [
+        {
+          "kind": "link_condition",
+          "packet_index": 225041,
+          "time_display": "9.512 sec",
+          "channel": "Upstream",
+          "type_name": "LINK_DOWN",
+          "source": "/phases/0/steps/0"
+        }
+      ],
+      "engineer_questions": [
+        1
+      ],
+      "limitation": "此事件本身不證明後續接通或初始化成功。"
+    },
+    {
+      "finding_id": "B1E-002",
+      "title": "接通前的 link 行為",
+      "category": "EXPECTED_CONTEXT",
+      "is_rule_mismatch": false,
+      "source_evaluation": "/evaluations/1",
+      "rule_id": "DISCONNECT_ACTIVITY",
+      "status": "PASS",
+      "summary": "接通前已觀察的 Recovery／Polling／無事件區間，屬產品允許出現的現象。",
+      "evidence": [
+        {
+          "kind": "ltssm",
+          "packet_index": 225051,
+          "time_display": "9.512 sec",
+          "channel": "Downstream",
+          "state": "RECOVERY",
+          "substate": "RCVRLOCK",
+          "state_valid": 1,
+          "source": "/phases/1/steps/0"
+        },
+        {
+          "kind": "ltssm",
+          "packet_index": 990789,
+          "time_display": "9.538 sec",
+          "channel": "Downstream",
+          "state": "RECOVERY",
+          "substate": "RCVRSPD",
+          "state_valid": 1,
+          "source": "/phases/1/steps/2"
+        },
+        {
+          "kind": "ltssm",
+          "packet_index": 990799,
+          "time_display": "9.552 sec",
+          "channel": "Downstream",
+          "state": "RECOVERY",
+          "substate": "RCVRLOCK",
+          "state_valid": 1,
+          "source": "/phases/3/steps/0"
+        },
+        {
+          "kind": "ltssm",
+          "packet_index": 1096915,
+          "time_display": "9.563 sec",
+          "channel": "Downstream",
+          "state": "RECOVERY",
+          "substate": "RCVRSPD",
+          "state_valid": 1,
+          "source": "/phases/3/steps/2"
+        },
+        {
+          "kind": "ltssm",
+          "packet_index": 1096917,
+          "time_display": "9.575 sec",
+          "channel": "Downstream",
+          "state": "RECOVERY",
+          "substate": "RCVRLOCK",
+          "state_valid": 1,
+          "source": "/phases/5/steps/0"
+        },
+        {
+          "kind": "ltssm",
+          "packet_index": 1096918,
+          "time_display": "9.575 sec",
+          "channel": "Downstream",
+          "state": "POLLING",
+          "substate": null,
+          "state_valid": 0,
+          "source": "/phases/6/steps/0"
+        },
+        {
+          "kind": "NO_OBSERVED_EVENTS",
+          "after_index": 1479759,
+          "after_time": "9.600 sec",
+          "before_index": 1479760,
+          "before_time": "10.912 sec",
+          "duration_seconds": "1.312",
+          "source": "/phases/7"
+        }
+      ],
+      "engineer_questions": [
+        1,
+        2,
+        3
+      ],
+      "limitation": "不驗證整段 LTSSM 的規範合法性或時間；invalid-state 標記原樣保留。"
+    },
+    {
+      "finding_id": "B1E-003",
+      "title": "MUX 接通證據",
+      "category": "SUPPORTED_MILESTONE",
+      "is_rule_mismatch": false,
+      "source_evaluation": "/evaluations/2",
+      "rule_id": "MUX_CONNECTIVITY",
+      "status": "PASS",
+      "summary": "接通 anchor 後有雙向有效 training，支持工程師的 MUX 已接通判斷。",
+      "evidence": [
+        {
+          "kind": "ltssm",
+          "packet_index": 1479845,
+          "time_display": "10.912 sec",
+          "channel": "Upstream",
+          "state": "POLLING",
+          "substate": null,
+          "state_valid": 1,
+          "source": "/phases/9/steps/0"
+        },
+        {
+          "kind": "ltssm",
+          "packet_index": 1484025,
+          "time_display": "10.912 sec",
+          "channel": "Downstream",
+          "state": "CONFIG",
+          "substate": "LINKWIDTH_STRT",
+          "state_valid": 1,
+          "source": "/phases/10/steps/0"
+        },
+        {
+          "kind": "ltssm",
+          "packet_index": 1484046,
+          "time_display": "10.912 sec",
+          "channel": "Upstream",
+          "state": "CONFIG",
+          "substate": "LINKWIDTH_STRT",
+          "state_valid": 1,
+          "source": "/phases/10/steps/1"
+        },
+        {
+          "kind": "ltssm",
+          "packet_index": 1484050,
+          "time_display": "10.912 sec",
+          "channel": "Upstream",
+          "state": "CONFIG",
+          "substate": "LINKWIDTH_ACPT",
+          "state_valid": 1,
+          "source": "/phases/10/steps/2"
+        },
+        {
+          "kind": "ltssm",
+          "packet_index": 1484053,
+          "time_display": "10.912 sec",
+          "channel": "Downstream",
+          "state": "CONFIG",
+          "substate": "LINKWIDTH_ACPT",
+          "state_valid": 1,
+          "source": "/phases/10/steps/3"
+        },
+        {
+          "kind": "ltssm",
+          "packet_index": 1484072,
+          "time_display": "10.912 sec",
+          "channel": "Downstream",
+          "state": "CONFIG",
+          "substate": "LANENUM_WAIT_ACPT",
+          "state_valid": 1,
+          "source": "/phases/10/steps/4"
+        },
+        {
+          "kind": "ltssm",
+          "packet_index": 1484097,
+          "time_display": "10.912 sec",
+          "channel": "Upstream",
+          "state": "CONFIG",
+          "substate": "LANENUM_WAIT_ACPT",
+          "state_valid": 1,
+          "source": "/phases/10/steps/5"
+        },
+        {
+          "kind": "ltssm",
+          "packet_index": 1484118,
+          "time_display": "10.912 sec",
+          "channel": "Downstream",
+          "state": "CONFIG",
+          "substate": "COMPLETE",
+          "state_valid": 1,
+          "source": "/phases/10/steps/6"
+        },
+        {
+          "kind": "ltssm",
+          "packet_index": 1484147,
+          "time_display": "10.912 sec",
+          "channel": "Upstream",
+          "state": "CONFIG",
+          "substate": "COMPLETE",
+          "state_valid": 1,
+          "source": "/phases/10/steps/7"
+        },
+        {
+          "kind": "ltssm",
+          "packet_index": 1484186,
+          "time_display": "10.912 sec",
+          "channel": "Downstream",
+          "state": "RECOVERY",
+          "substate": "RCVRLOCK",
+          "state_valid": 1,
+          "source": "/phases/11/steps/0"
+        },
+        {
+          "kind": "ltssm",
+          "packet_index": 1484200,
+          "time_display": "10.912 sec",
+          "channel": "Upstream",
+          "state": "RECOVERY",
+          "substate": "RCVRLOCK",
+          "state_valid": 1,
+          "source": "/phases/11/steps/1"
+        },
+        {
+          "kind": "ltssm",
+          "packet_index": 1484216,
+          "time_display": "10.912 sec",
+          "channel": "Upstream",
+          "state": "RECOVERY",
+          "substate": "RCVRCFG",
+          "state_valid": 1,
+          "source": "/phases/11/steps/2"
+        },
+        {
+          "kind": "ltssm",
+          "packet_index": 1484229,
+          "time_display": "10.912 sec",
+          "channel": "Downstream",
+          "state": "RECOVERY",
+          "substate": "RCVRCFG",
+          "state_valid": 1,
+          "source": "/phases/11/steps/3"
+        }
+      ],
+      "engineer_questions": [
+        7
+      ],
+      "limitation": "Q7 的依據是雙向有效 training，不要求雙向 L0；未直接量測 MUX 電氣狀態，未證明裝置初始化。"
+    },
+    {
+      "finding_id": "B1E-004",
+      "title": "雙向 L0 觀察里程碑",
+      "category": "SUPPORTED_MILESTONE",
+      "is_rule_mismatch": false,
+      "source_evaluation": "/evaluations/3",
+      "rule_id": "BIDIRECTIONAL_L0",
+      "status": "PASS",
+      "summary": "接通後兩方向均有有效 L0 紀錄。",
+      "evidence": [
+        {
+          "kind": "ltssm",
+          "packet_index": 1484273,
+          "time_display": "10.912 sec",
+          "channel": "Downstream",
+          "state": "L0",
+          "substate": null,
+          "state_valid": 1,
+          "source": "/phases/12/steps/0"
+        },
+        {
+          "kind": "ltssm",
+          "packet_index": 1484298,
+          "time_display": "10.912 sec",
+          "channel": "Upstream",
+          "state": "L0",
+          "substate": null,
+          "state_valid": 1,
+          "source": "/phases/12/steps/1"
+        }
+      ],
+      "engineer_questions": [
+        2
+      ],
+      "limitation": "本項是兩方向明確有效 L0 的觀察里程碑；Q2 提供後續初始化情境，不取代 Q7 的 training 接通依據。缺少 L0 不自動判 FAIL，沒有 timeout 上限。"
+    },
+    {
+      "finding_id": "B1E-005",
+      "title": "連線 width 樣本",
+      "category": "SUPPORTED_MILESTONE",
+      "is_rule_mismatch": false,
+      "source_evaluation": "/evaluations/4",
+      "rule_id": "LINK_WIDTH_SAMPLES",
+      "status": "PASS",
+      "summary": "接通後已觀察的 width 樣本符合 x1。",
+      "evidence": [
+        {
+          "kind": "speed_width",
+          "packet_index": 1479845,
+          "time_display": "10.912 sec",
+          "channel": "Upstream",
+          "event": 5,
+          "speed": 0,
+          "width": 1,
+          "event_name": "ORDERED_SET",
+          "source": "/phases/9/inner_records/0"
+        },
+        {
+          "packet_index": 1479761,
+          "direction_arrow": "R→",
+          "speed": "2.5",
+          "width": "x1",
+          "gui_error_labels": [
+            "TSRsrvErr"
+          ],
+          "fields": {
+            "link": "PAD",
+            "lane": "PAD",
+            "n_fts": "254",
+            "rsvd": "0, 1, 0",
+            "data_rate": "2.5 GT/s, 5.0 GT/s, 8.0 GT/s, 16.0 GT/s, Reserved",
+            "training_control": "0 0 0 0 0 0 0 0"
+          },
+          "screenshot": "gui-pkt-1479761.png",
+          "screenshot_sha256": "5274A30BCAEFF0AAFA6EA6698337C4D149DE3253C2740B46252AA0231496C898",
+          "source": "/phases/8/gui_samples/0"
+        }
+      ],
+      "engineer_questions": [
+        4
+      ],
+      "limitation": "僅限已記錄的 speed_width／GUI 樣本，未確認完整後續連線。"
+    },
+    {
+      "finding_id": "B1E-006",
+      "title": "首次 L0 前速率樣本",
+      "category": "OBSERVATION_ONLY",
+      "is_rule_mismatch": false,
+      "source_evaluation": "/evaluations/5",
+      "rule_id": "INITIAL_GEN1_SAMPLE",
+      "status": "INCONCLUSIVE",
+      "summary": "首次有效 L0 前的 GUI 樣本觀察到 2.5 GT/s x1；本項只記錄觀察。",
+      "evidence": [
+        {
+          "packet_index": 1479761,
+          "direction_arrow": "R→",
+          "speed": "2.5",
+          "width": "x1",
+          "gui_error_labels": [
+            "TSRsrvErr"
+          ],
+          "fields": {
+            "link": "PAD",
+            "lane": "PAD",
+            "n_fts": "254",
+            "rsvd": "0, 1, 0",
+            "data_rate": "2.5 GT/s, 5.0 GT/s, 8.0 GT/s, 16.0 GT/s, Reserved",
+            "training_control": "0 0 0 0 0 0 0 0"
+          },
+          "screenshot": "gui-pkt-1479761.png",
+          "screenshot_sha256": "5274A30BCAEFF0AAFA6EA6698337C4D149DE3253C2740B46252AA0231496C898",
+          "source": "/phases/8/gui_samples/0"
+        }
+      ],
+      "engineer_questions": [],
+      "limitation": "工程師只定義 target Gen3 x1 與持續停留 Gen1 不符合預期，未提供初始 Gen1 接受規則；本版未驗證 PCIe spec，不判本項 PASS／FAIL。",
+      "assessment_kind": "observation_only"
+    },
+    {
+      "finding_id": "B1E-007",
+      "title": "目標 Gen3 樣本",
+      "category": "EVIDENCE_GAP",
+      "is_rule_mismatch": false,
+      "source_evaluation": "/evaluations/6",
+      "rule_id": "TARGET_SPEED_OBSERVED",
+      "status": "INCONCLUSIVE",
+      "summary": "目前僅確認未在既有 GUI speed 樣本中觀察到 target 8.0 GT/s；window 缺少後續升速證據，不能判定後續是否完成升速。",
+      "evidence": [],
+      "engineer_questions": [
+        4
+      ],
+      "limitation": "樣本未見 target rate 不等同後續未升速或持續停在 Gen1；升速完成終點／時限未提供，raw speed code 的標示尚未 probe。"
+    },
+    {
+      "finding_id": "B1E-008",
+      "title": "切換事件時間差",
+      "category": "UNEVALUATED_RULE",
+      "is_rule_mismatch": false,
+      "source_evaluation": "/evaluations/7",
+      "rule_id": "MUX_DISCONNECT_DURATION",
+      "status": "NOT_EVALUATED",
+      "summary": "切換 Link Down 到 reconnect Link Up 的 display-time 差為 1.400 sec，工程師參考值約 1.4 sec。",
+      "evidence": [
+        {
+          "kind": "link_condition",
+          "packet_index": 225041,
+          "time_display": "9.512 sec",
+          "channel": "Upstream",
+          "type_name": "LINK_DOWN",
+          "source": "/phases/0/steps/0"
+        },
+        {
+          "kind": "link_condition",
+          "packet_index": 1479760,
+          "time_display": "10.912 sec",
+          "channel": "Upstream",
+          "type_name": "LINK_UP",
+          "source": "/phases/8/steps/0"
+        }
+      ],
+      "engineer_questions": [
+        1,
+        3
+      ],
+      "limitation": "這是兩個事件間的時間，非直接量測 MUX dead-time；約 1.4 sec 不作 timeout 或接受門檻。"
+    },
+    {
+      "finding_id": "B1E-009",
+      "title": "Training 時限",
+      "category": "UNEVALUATED_RULE",
+      "is_rule_mismatch": false,
+      "source_evaluation": "/evaluations/8",
+      "rule_id": "TRAINING_TIMEOUT",
+      "status": "NOT_EVALUATED",
+      "summary": "適用 spec、training 起算條件及 timeout 上限未提供。",
+      "evidence": [
+        {
+          "kind": "ltssm",
+          "packet_index": 1484273,
+          "time_display": "10.912 sec",
+          "channel": "Downstream",
+          "state": "L0",
+          "substate": null,
+          "state_valid": 1,
+          "source": "/phases/12/steps/0"
+        },
+        {
+          "kind": "ltssm",
+          "packet_index": 1484298,
+          "time_display": "10.912 sec",
+          "channel": "Upstream",
+          "state": "L0",
+          "substate": null,
+          "state_valid": 1,
+          "source": "/phases/12/steps/1"
+        }
+      ],
+      "engineer_questions": [
+        2,
+        3
+      ],
+      "limitation": "不自訂 Recovery 次數或 training 上限。"
+    },
+    {
+      "finding_id": "B1E-010",
+      "title": "TS-error 接受度",
+      "category": "UNEVALUATED_RULE",
+      "is_rule_mismatch": false,
+      "source_evaluation": "/evaluations/9",
+      "rule_id": "TS_ERROR_TOLERANCE",
+      "status": "NOT_EVALUATED",
+      "summary": "輸入 window 共 384,993 筆 HasErrors，保留各段供檢查；容許門檻未定。",
+      "evidence": [
+        {
+          "source": "/phases/3",
+          "first_index": 990799,
+          "last_index": 1096915,
+          "first_time": "9.552 sec",
+          "last_time": "9.563 sec",
+          "count": 1,
+          "error_subtype": "UNKNOWN",
+          "channel_evidence": {
+            "channel": "Downstream",
+            "range": "R1",
+            "range_first": 225041,
+            "range_last": 1096917,
+            "range_has_errors": 2
+          },
+          "gui_samples": [
+            {
+              "packet_index": 990799,
+              "direction_arrow": "R→",
+              "speed": "2.5",
+              "width": "x1",
+              "gui_error_labels": [
+                "TSDataRateErr",
+                "TSRsrvErr",
+                "TSLaneErr",
+                "TSTrainingControlErr"
+              ],
+              "fields": {
+                "link": "4",
+                "lane": "64",
+                "n_fts": "74",
+                "rsvd": "0, 1",
+                "data_rate": "2.5 GT/s, 8.0 GT/s, Reserved",
+                "rsvd_2": "2",
+                "training_control": "0 1 0 0 1 0 1 0"
+              },
+              "screenshot": "gui-pkt-990799.png",
+              "screenshot_sha256": "9A64BD520D8BC9B7C772C7E397EE552E6F86EAE5873AC10E32CB4036274BD6B6"
+            }
+          ]
+        },
+        {
+          "source": "/phases/5",
+          "first_index": 1096917,
+          "last_index": 1096917,
+          "first_time": "9.575 sec",
+          "last_time": "9.575 sec",
+          "count": 1,
+          "error_subtype": "UNKNOWN",
+          "channel_evidence": {
+            "channel": "Downstream",
+            "range": "R1",
+            "range_first": 225041,
+            "range_last": 1096917,
+            "range_has_errors": 2
+          },
+          "gui_samples": []
+        },
+        {
+          "source": "/phases/6",
+          "first_index": 1096918,
+          "last_index": 1479759,
+          "first_time": "9.575 sec",
+          "last_time": "9.600 sec",
+          "count": 382842,
+          "error_subtype": "UNKNOWN",
+          "channel_evidence": {
+            "channel": "Downstream",
+            "range": "R2",
+            "range_first": 1096918,
+            "range_last": 1479759,
+            "range_has_errors": 382842
+          },
+          "gui_samples": [
+            {
+              "packet_index": 1096918,
+              "direction_arrow": "R→",
+              "speed": "2.5",
+              "width": "x1",
+              "gui_error_labels": [
+                "TSRsrvErr"
+              ],
+              "fields": {
+                "link": "PAD",
+                "lane": "PAD",
+                "n_fts": "254",
+                "rsvd": "0, 1, 0",
+                "data_rate": "2.5 GT/s, 5.0 GT/s, 8.0 GT/s, 16.0 GT/s, Reserved",
+                "training_control": "0 0 0 0 0 0 0 0"
+              },
+              "screenshot": "gui-pkt-1096918.png",
+              "screenshot_sha256": "76992A5A70D9D86E293A3FC35238A84DBBE12E72049581D6D8124C77206B1E06"
+            }
+          ]
+        },
+        {
+          "source": "/phases/8",
+          "first_index": 1479760,
+          "last_index": 1479844,
+          "first_time": "10.912 sec",
+          "last_time": "10.912 sec",
+          "count": 84,
+          "error_subtype": "UNKNOWN",
+          "channel_evidence": {
+            "channel": "Downstream",
+            "range": "R3",
+            "range_first": 1479760,
+            "range_last": 1484414,
+            "range_has_errors": 2149
+          },
+          "gui_samples": [
+            {
+              "packet_index": 1479761,
+              "direction_arrow": "R→",
+              "speed": "2.5",
+              "width": "x1",
+              "gui_error_labels": [
+                "TSRsrvErr"
+              ],
+              "fields": {
+                "link": "PAD",
+                "lane": "PAD",
+                "n_fts": "254",
+                "rsvd": "0, 1, 0",
+                "data_rate": "2.5 GT/s, 5.0 GT/s, 8.0 GT/s, 16.0 GT/s, Reserved",
+                "training_control": "0 0 0 0 0 0 0 0"
+              },
+              "screenshot": "gui-pkt-1479761.png",
+              "screenshot_sha256": "5274A30BCAEFF0AAFA6EA6698337C4D149DE3253C2740B46252AA0231496C898"
+            }
+          ]
+        },
+        {
+          "source": "/phases/9",
+          "first_index": 1479845,
+          "last_index": 1484024,
+          "first_time": "10.912 sec",
+          "last_time": "10.912 sec",
+          "count": 2065,
+          "error_subtype": "UNKNOWN",
+          "channel_evidence": {
+            "channel": "Downstream",
+            "range": "R3",
+            "range_first": 1479760,
+            "range_last": 1484414,
+            "range_has_errors": 2149
+          },
+          "gui_samples": []
+        }
+      ],
+      "engineer_questions": [
+        5
+      ],
+      "limitation": "未自訂 transient／persistent 數值分類；GUI subtype 僅代表已抽樣的紀錄。"
+    },
+    {
+      "finding_id": "B1E-011",
+      "title": "L0 後初始化活動",
+      "category": "EVIDENCE_GAP",
+      "is_rule_mismatch": false,
+      "source_evaluation": "/evaluations/10",
+      "rule_id": "HOTPLUG_INIT_ACTIVITY",
+      "status": "INCONCLUSIVE",
+      "summary": "雙向 L0 後在輸入 window 未觀察到 config request，後續初始化仍不確定。",
+      "evidence": [],
+      "engineer_questions": [
+        2,
+        6
+      ],
+      "limitation": "看到 request 不證明 Completion、BAR 寫入或 enumeration 完成；未看到也不推定 window 外不存在。"
+    },
+    {
+      "finding_id": "B1E-012",
+      "title": "裝置初始化完成條件",
+      "category": "UNEVALUATED_RULE",
+      "is_rule_mismatch": false,
+      "source_evaluation": "/evaluations/11",
+      "rule_id": "DEVICE_INITIALIZATION_COMPLETED",
+      "status": "NOT_EVALUATED",
+      "summary": "初始化／enumeration 完成事件、register 清單與時限未提供。",
+      "evidence": [],
+      "engineer_questions": [
+        2,
+        6
+      ],
+      "limitation": "與 MUX 接通狀態獨立；單一 config request 不構成初始化完成。"
+    }
+  ],
+  "observations": {
+    "nak_records": [
+      {
+        "kind": "nak",
+        "packet_index": 225042,
+        "time_display": "9.512 sec",
+        "channel": "Downstream",
+        "seq": 1682,
+        "source": "/phases/0/inner_records/0"
+      }
+    ],
+    "recovery_state_records": [
+      {
+        "kind": "ltssm",
+        "packet_index": 225051,
+        "time_display": "9.512 sec",
+        "channel": "Downstream",
+        "state": "RECOVERY",
+        "substate": "RCVRLOCK",
+        "state_valid": 1,
+        "source": "/phases/1/steps/0"
+      },
+      {
+        "kind": "ltssm",
+        "packet_index": 990789,
+        "time_display": "9.538 sec",
+        "channel": "Downstream",
+        "state": "RECOVERY",
+        "substate": "RCVRSPD",
+        "state_valid": 1,
+        "source": "/phases/1/steps/2"
+      },
+      {
+        "kind": "ltssm",
+        "packet_index": 990799,
+        "time_display": "9.552 sec",
+        "channel": "Downstream",
+        "state": "RECOVERY",
+        "substate": "RCVRLOCK",
+        "state_valid": 1,
+        "source": "/phases/3/steps/0"
+      },
+      {
+        "kind": "ltssm",
+        "packet_index": 1096915,
+        "time_display": "9.563 sec",
+        "channel": "Downstream",
+        "state": "RECOVERY",
+        "substate": "RCVRSPD",
+        "state_valid": 1,
+        "source": "/phases/3/steps/2"
+      },
+      {
+        "kind": "ltssm",
+        "packet_index": 1096917,
+        "time_display": "9.575 sec",
+        "channel": "Downstream",
+        "state": "RECOVERY",
+        "substate": "RCVRLOCK",
+        "state_valid": 1,
+        "source": "/phases/5/steps/0"
+      },
+      {
+        "kind": "ltssm",
+        "packet_index": 1484186,
+        "time_display": "10.912 sec",
+        "channel": "Downstream",
+        "state": "RECOVERY",
+        "substate": "RCVRLOCK",
+        "state_valid": 1,
+        "source": "/phases/11/steps/0"
+      },
+      {
+        "kind": "ltssm",
+        "packet_index": 1484200,
+        "time_display": "10.912 sec",
+        "channel": "Upstream",
+        "state": "RECOVERY",
+        "substate": "RCVRLOCK",
+        "state_valid": 1,
+        "source": "/phases/11/steps/1"
+      },
+      {
+        "kind": "ltssm",
+        "packet_index": 1484216,
+        "time_display": "10.912 sec",
+        "channel": "Upstream",
+        "state": "RECOVERY",
+        "substate": "RCVRCFG",
+        "state_valid": 1,
+        "source": "/phases/11/steps/2"
+      },
+      {
+        "kind": "ltssm",
+        "packet_index": 1484229,
+        "time_display": "10.912 sec",
+        "channel": "Downstream",
+        "state": "RECOVERY",
+        "substate": "RCVRCFG",
+        "state_valid": 1,
+        "source": "/phases/11/steps/3"
+      }
+    ],
+    "raw_speed_width_records": [
+      {
+        "kind": "speed_width",
+        "packet_index": 990799,
+        "time_display": "9.552 sec",
+        "channel": "Downstream",
+        "event": 5,
+        "speed": 0,
+        "width": 1,
+        "event_name": "ORDERED_SET",
+        "source": "/phases/3/inner_records/0"
+      },
+      {
+        "kind": "speed_width",
+        "packet_index": 1479845,
+        "time_display": "10.912 sec",
+        "channel": "Upstream",
+        "event": 5,
+        "speed": 0,
+        "width": 1,
+        "event_name": "ORDERED_SET",
+        "source": "/phases/9/inner_records/0"
+      }
+    ],
+    "crc_flags": {
+      "tlp_bad_lcrc": {
+        "count": 0,
+        "coverage": "input window only; analyzer flag counts; missing is UNKNOWN"
+      },
+      "dllp_bad_crc": {
+        "count": 0,
+        "coverage": "input window only; analyzer flag counts; missing is UNKNOWN"
+      }
+    },
+    "window": {
+      "start": 225041,
+      "end": 1484414
+    },
+    "last_observed_time": "10.912 sec"
+  },
+  "investigation_focus": {
+    "stage": "AFTER_BIDIRECTIONAL_L0",
+    "question": "L0 建立後，是否完成目標升速與新 SDE 裝置初始化？",
+    "next_evidence": [
+      "speed change / Gen3 convergence",
+      "CfgRd/CfgWr and completions",
+      "VID/DID, BAR and Command state",
+      "device enable / driver-emulation interaction"
+    ],
+    "limitation": "目前 capture 尾端不足，沒有判定哪一步造成裝置不可見；不重開已有支持的 MUX 接通。"
+  },
+  "case_report": {
+    "trace_basename": "Disable ASPM--Insert SD7-hang.pex",
+    "analysis_copy": "13.26 converted copy",
+    "reported_outcome": "FAIL_OWNER_RELAYED",
+    "reported_symptom": "ASPM disabled; SD7 inserted; device not visible after switching; system hang; BSOD 0x124",
+    "other_tests_bsod": [
+      "0x124",
+      "0xA0"
+    ],
+    "crash_dump_verified": false
+  },
+  "validation_debt": [
+    {
+      "id": "training_timeout",
+      "status": "NOT_EVALUATED",
+      "reason": "適用 spec、training 起算條件及 timeout 上限未提供。",
+      "blocks_this_version": false
+    },
+    {
+      "id": "ts_error_tolerance",
+      "status": "NOT_EVALUATED",
+      "reason": "TS-error 容許筆數、持續時間、起點與適用階段未提供。",
+      "blocks_this_version": false
+    },
+    {
+      "id": "gen3_convergence",
+      "status": "NOT_EVALUATED",
+      "reason": "Gen3 升速完成的 milestone／觀察時限未提供。",
+      "blocks_this_version": false
+    },
+    {
+      "id": "hotplug_completion",
+      "status": "NOT_EVALUATED",
+      "reason": "初始化／enumeration 完成事件、register 清單與時限未提供。",
+      "blocks_this_version": false
+    }
+  ],
+  "input_unknowns": [
+    "`HasErrors` 在 GUI 抽樣中對應 analyzer 的 Training Sequence Error，但只看了 3 筆；各階段 `HasErrors` 的子類型分布為 `UNKNOWN`。",
+    "單一階段內的 TS1、TS2、DLLP 等計數沒有按方向拆開；方向拆分只到 B1c-x2 的 R1、R2、R3 範圍層級。",
+    "speed code 的 GT/s 標示來自 VSE 手冊文字，未經 probe 驗證。",
+    "B1c-x2 樣本沒有出現 `_CHANNEL_1` 的名稱，範圍統計以 channel id 列出。"
+  ],
+  "not_established": [
+    "overall product PASS/FAIL",
+    "direct physical MUX measurement",
+    "persistent Gen1",
+    "enumeration completion",
+    "BSOD root cause",
+    "full-trace or multi-case coverage"
+  ],
+  "input": {
+    "evaluation_sha256": "22ED4A80E2917FE547693D6BD43AF82CD496C34FFAA5B882DA699622C3EC240A",
+    "training_sha256": "161FCF9EF28E78D4EAAE7BCB6381A8AEC8A19587FD37964B7B854E8FB366FBD3",
+    "source_document_sha256": "90CA98E2218E6EBF6D233095392349A5E9EF9396E1A9E239098029B2EAFB04A5"
+  }
+}

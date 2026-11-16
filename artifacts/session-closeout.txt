@@ -282,3 +282,313 @@ CHECKS_RUN: python -B -m unittest discover -s tests/usb_control_tool -v:51 passe
 OPEN_RISKS: Existing USB3/PD qualifications remain bounded to local10.40 development data and vendor samples. New independent/mixed/GL3525 PD traces,10.50/clean Windows and human total-time/correctness remain pending. PKT/TRA/XFR selection is manual and coexistence remains restricted. Credential-pattern scanning is bounded and is not a general security assurance. Successful Git delivery will not establish product acceptance or merge.
 NOT_DONE: At this pre-push checkpoint the network push and final remote equality proof are pending; final receipt is external, not an additional memory commit. No PR, merge, release upload, ZIP/capture/raw-evidence publication, unrelated PCIe staging, global/canonical memory write or new product qualification.
 RECOMMENDED_MEMORY_UPDATE: NO_UPDATE; source delivery authority is the current user request, PLAN.md and Git receipts; retain prior qualification limits and do not create another memory/PR merely because push succeeds.
+TASK_INTENT: Implement DEMO-V7 as a deterministic Traditional Chinese copy refinement over the existing offline HTML report without changing C5 scoring or accepting the engineer-labeled failure timestamp as algorithm input.
+WORK_COMPLETED: Preserved the DEMO-V6 layout, colors, and deterministic data path, then separated the visible capability, analysis-method, and current-limitation sections. The Hero now uses direct LFPS wording, and secondary candidate ranking data stays in expandable technical details. The known primary episode remains 21.786067664-21.806067664 sec with 5,383 local events and 6 LTSSM markers. Final report output is v20.
+FILES_TOUCHED: tools/render-c5-html.ps1, docs/demo-c5-automatic-triage-results.md, PLAN.md, README.md, tools/README.md, artifacts/session-closeout.txt; existing C3/C4 and unrelated dirty files were preserved.
+CHECKS_RUN: Windows PowerShell 5.1 parser and ASCII-source checks; WinPS 5.1 HTML render/read-back using referenced timeline artifacts; plain-language, Traditional Chinese, capability/method/limitation classification, technical-detail placement, and unchanged-value checks; report checks for C5 known-pair values, trace basenames, 5,383 local events, 6 LTSSM markers, exact LTSSM timestamps, no question-mark encoding, no script tag, and git diff --check.
+OPEN_RISKS: C5 is qualified only on one trace pair; scoring thresholds, baseline behavior, and generalization to other failures are not established. Candidates remain triage suggestions, not root cause, severity, or automatic PASS/FAIL claims. HTML is presentation-only and the JSON remains canonical. Generated timeline and C5 output directories are large untracked artifacts. Existing unrelated working-tree changes remain uncommitted.
+NOT_DONE: No commit was created; the report generator is not integrated into run-demo.ps1; no second trace pair, new decoder, AI diagnosis, or Governance work was started. UI polish stops at DEMO-V7.
+RECOMMENDED_MEMORY_UPDATE: Record DEMO-V7 as a deterministic presentation-only refinement over the C5 known-pair qualification and keep the next product slice focused on a second independent PASS/FAIL pair before tuning the scorer.
+
+
+2026-10-02 B1c offline dependency delivery
+TASK_INTENT: Deliver the minimal B1c offline dependency before B1d as a separately reviewed PR.
+WORK_COMPLETED: Imported only offline B1c code, nine tests and derived replay inputs/results; full clean-slice suite passed and two replays match historical training JSON/Markdown byte-for-byte.
+FILES_TOUCHED: .gitattributes, PLAN.md, scripts/pcie/b1c_training_timeline.py, tests/pcie/test_b1c_training_timeline.py, docs/pcie-b1c-offline-delivery.md, selected B1b/B1c-x2/GUI-observation/r1 derived evidence, artifacts/session-closeout.txt
+CHECKS_RUN: python -X utf8 -B -m unittest discover -s tests/pcie -v (9 PASS); B1c CLI replay twice and historical byte comparison.
+OPEN_RISKS: Historical GUI verification is reused as observation records; raw extraction and full PCIe specification qualification are not claimed.
+NOT_DONE: B1d/B2/W slices, product ASPM evaluation, raw-trace/runtime rerun; PR/merge pending at this commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE; G0 product state kept in PLAN/docs.
+
+
+2026-10-02 b1d delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 30 clean-slice PCIe tests PASS (21 B1d); two real B1d replay JSON/MD byte-identical to historical r2; source document and input hash binding verified
+FILES_TOUCHED: .gitattributes, scripts/pcie/b1d_mux_rules.py, tests/pcie/test_b1d_mux_rules.py, docs/pcie-b1d-engineer-questions.md, docs/pcie-b1d-rule-contract.md, docs/pcie-b1d-evidence.md, artifacts/evidence/pcie-b1d-hang-20260930, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: No overall case PASS/FAIL, electrical MUX measurement, persistent Gen1, initialization completion or root cause. B2g rules still await engineer answers. Existing nonrequired governance-drift checker missing on main; deferred outside this slice.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b1e delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 37 clean-slice PCIe tests PASS (7 B1e); two real replay JSON/MD match historical run1 byte-for-byte; tampered evaluations and changed training rejected
+FILES_TOUCHED: scripts/pcie/b1e_link_findings.py, tests/pcie/test_b1e_link_findings.py, docs/pcie-b1e-evidence.md, docs/pcie-b1e-findings-contract.md, artifacts/evidence/pcie-b1e-hang-20260930, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: No new product rules, replay inference from NAK, global CRC health, full Recovery entry count or root cause. Existing nonrequired governance-drift checker missing on main; deferred outside this slice.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b2a delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 44 clean-slice PCIe tests PASS (7 B2a, no skipped real evidence test); two offline replays match historical verified1 fields.json byte-for-byte: 704 TLP, 333 rows, 32 reads, 29 writes, 59 payload DWORD checks
+FILES_TOUCHED: scripts/pcie/b2a-register-probe.pevs, scripts/pcie/b2a_register_fields.py, tests/pcie/test_b2a_register_fields.py, docs/pcie-b2a-evidence.md, docs/pcie-b2a-probe-contract.md, artifacts/evidence/pcie-b2a-hang-20260930, artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: Runtime qualification is historical PETracer 13.26 non-Flit evidence, no new COM/runtime session. No CplD config interpretation without association, register policy, vendor meaning or root cause. Existing nonrequired governance-drift missing checker deferred.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 g2b delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 50 clean-slice PCIe tests PASS (6 G2b); two role/association/orphan JSON replays equal historical hang outputs byte-for-byte
+FILES_TOUCHED: scripts/pcie/g2b_associate.py, tests/pcie/test_g2b_associate.py, docs/pcie-g2b-helper-delivery.md, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: Legacy nearest-preceding associations are candidates, not returned config data or complete transactions; B2b implements a separate strategy. No timeout/fault/root cause. Nonrequired inherited governance-drift missing checker deferred.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b2b delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 57 clean-slice PCIe tests PASS, no skips; two real offline replays match historical current r2-run1 output byte-for-byte
+FILES_TOUCHED: scripts/pcie/b2b_config_access.py, tests/pcie/test_b2b_config_access.py, docs/pcie-b2b-config-contract.md, artifacts/evidence/pcie-b2b-hang-20260930, docs/pcie-b2b-evidence.md, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: B1c did not carry a cryptographic capture hash: overlap packets, basename and matching metadata are the stated binding. No applied state, timeout, memory split completeness or new-SDE initialization claim. Inherited nonrequired governance-drift missing checker deferred outside scope.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b2c delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 62 clean-slice PCIe tests PASS, no skips; two real offline replays match historical current run1 output byte-for-byte
+FILES_TOUCHED: scripts/pcie/b2c_capability_resolution.py, tests/pcie/test_b2c_capability_resolution.py, docs/pcie-b2c-resolution-contract.md, artifacts/evidence/pcie-b2c-hang-20260930, docs/pcie-b2c-evidence.md, docs/pcie-register-reference.json, .gitattributes, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: Layout reference only, not complete PCIe spec verification; no vendor register meaning, absent capability inference or current hardware snapshot. Inherited nonrequired governance-drift missing checker deferred outside scope.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b2d delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 67 clean-slice PCIe tests PASS, no skips; two real offline replays match historical current before-run1 output byte-for-byte
+FILES_TOUCHED: scripts/pcie/b2d_observed_state.py, tests/pcie/test_b2d_observed_state.py, docs/pcie-b2d-state-contract.md, artifacts/evidence/pcie-b2d-hang-20260930, docs/pcie-b2d-evidence.md, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: No effective hardware state, W1C effects, zero-fill, or continuity override across epochs. Inherited nonrequired governance-drift missing checker deferred outside scope.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b1c-fix delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 71 PCIe tests PASS (12 B1c); eight negative cases reproduced before fix; two real CLI replays equal historical training JSON/Markdown byte-for-byte
+FILES_TOUCHED: scripts/pcie/b1c_training_timeline.py, tests/pcie/test_b1c_training_timeline.py, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: No new product policy or runtime qualification. Inherited nonrequired governance-drift missing checker remains outside this slice.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b2b-fix delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 73 PCIe tests PASS without skips; negative regression reproduced before fix; two real replays equal historical output byte-for-byte
+FILES_TOUCHED: scripts/pcie/b2b_config_access.py, tests/pcie/test_b2b_config_access.py, docs/pcie-b2b-config-contract.md, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: Observed evidence only, no applied state, product policy or root cause. Inherited nonrequired governance-drift missing checker deferred outside scope.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b2a-full delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 78 PCIe tests PASS (12 focused); coupled decoder corruption previously accepted is rejected against full raw bytes; two fresh COM DONE runs with identical raw output; 333 rows match legacy fields except extended frame prefix, 270 raw payload DWORD proofs, 59 available RegisterData values checked, 211 RegisterData payloads remain UNKNOWN; protected identities/read-only unchanged
+FILES_TOUCHED: scripts/pcie/b2a_register_fields.py, scripts/pcie/b2a-register-probe.pevs, tests/pcie/test_b2a_register_fields.py, docs/pcie-b2a-probe-contract.md, docs/pcie-b2a-evidence.md, artifacts/evidence/pcie-b2a-raw-dword-20261002, .gitattributes, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: Qualified only on this converted PETracer 13.26 non-Flit capture. Historical artifacts are retained, not relabelled as fresh qualification. No applied state/product ASPM policy/causality. Inherited nonrequired governance-drift checker absent and deferred.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 g2b-fix delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 79 PCIe tests PASS (7 helper tests); literal 0x1F58 regression fails before fix and passes after; two real role/association/orphan replays byte-identical
+FILES_TOUCHED: scripts/pcie/g2b_associate.py, tests/pcie/test_g2b_associate.py, docs/pcie-g2b-helper-delivery.md, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: Formatting only; no physical device continuity, transaction qualification or policy inference. Inherited nonrequired governance-drift missing checker deferred.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b2c-fix delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 81 PCIe tests PASS without skips; negative regression reproduced before fix; two real replays equal historical output byte-for-byte
+FILES_TOUCHED: scripts/pcie/b2c_capability_resolution.py, tests/pcie/test_b2c_capability_resolution.py, docs/pcie-b2c-resolution-contract.md, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: Observed evidence only, no applied state, product policy or root cause. Inherited nonrequired governance-drift missing checker deferred outside scope.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b2d-proof delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 6 focused B2d tests and 81 clean-slice PCIe tests PASS; fresh UTF-8 logs, source commit/blob IDs and log hashes retained
+FILES_TOUCHED: docs/pcie-b2d-evidence.md, artifacts/evidence/pcie-b2d-delivery-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: Source-test evidence only; no new hardware/runtime/policy/root-cause proof. Nonrequired inherited governance-drift checker missing and deferred.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b2e delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 87 clean-slice PCIe tests PASS (6 focused); pointer reserved-byte/marker regression fails before fix and passes after; two fresh real snapshot JSON/Markdown replays byte-identical; after-reconnect views remain UNKNOWN
+FILES_TOUCHED: scripts/pcie/b2e_snapshot_query.py, tests/pcie/test_b2e_snapshot_query.py, docs/pcie-b2e-query-contract.md, artifacts/evidence/pcie-b2e-hang-20260930, docs/pcie-b2e-evidence.md, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: Observed evidence query, not actual hardware snapshot; old mapping/state not inherited by SDE. Inherited nonrequired governance-drift missing checker deferred outside scope.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b2f delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 93 clean-slice PCIe tests PASS, no skips; two fresh real diffs byte-identical using current B2e snapshots (pointer width corrected); old artifacts remain historical; stale snapshot regression rejects the earlier pointer width before creating output
+FILES_TOUCHED: scripts/pcie/b2f_snapshot_diff.py, tests/pcie/test_b2f_snapshot_diff.py, docs/pcie-b2f-diff-contract.md, artifacts/evidence/pcie-b2f-hang-20260930, docs/pcie-b2f-evidence.md, artifacts/evidence/pcie-b2f-delivery-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: No hardware-change/physical-identity/root-cause claim; same BDF/VID-DID cannot make epochs comparable. Inherited nonrequired governance-drift missing checker deferred outside scope.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 b2g delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 98 clean-slice PCIe tests PASS, no skips; two real offline replays match historical current r1-run1 output byte-for-byte
+FILES_TOUCHED: scripts/pcie/b2g_watchlist_prepare.py, tests/pcie/test_b2g_watchlist_prepare.py, docs/pcie-b2g-observation-contract.md, artifacts/evidence/pcie-b2g-hang-20260930, docs/pcie-b2g-engineer-questions.md, docs/pcie-b1e-b2-progress-20260930.md, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: No engineer product expectations supplied; L1_ENABLE_WRITE_INTENT cannot prove register applied, system ASPM enabled, policy violation or BSOD causality. Inherited nonrequired governance-drift missing checker deferred outside scope.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+B2g review repair: 101 PCIe tests PASS (8 focused); two real replays identical; two old readback regressions fail before fix; delivered questionnaire hashes freshly bound. Read-back candidates require request and completion after this write and before the next overlapping write in the same device epoch; effective/expected UNKNOWN. Historical questionnaire identity record marked superseded.
+
+
+2026-10-02 B2g latest-head review repair
+TASK_INTENT: Fix read-back provenance and current engineer document identity before merging B2g preparation.
+WORK_COMPLETED: 102 PCIe tests PASS (9 focused); deterministic real replay; superseded-write, early-request, overlap and cross-disconnect completion regressions; current questionnaire hashes bound; effective/expected UNKNOWN, policy NOT_EVALUATED.
+FILES_TOUCHED: scripts/pcie/b2g_watchlist_prepare.py, tests/pcie/test_b2g_watchlist_prepare.py, docs/pcie-b2g-observation-contract.md, artifacts/evidence/pcie-b2g-hang-20260930, docs/pcie-b2g-engineer-questions.md, docs/pcie-b1e-b2-progress-20260930.md, artifacts/evidence/pcie-b2g-delivery-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: python -X utf8 -B -m unittest discover -s tests/pcie -v; source-bound B2g replay twice; git show HEAD document byte hashes.
+OPEN_RISKS: Product ASPM policy awaits Who/When/What/Proof; inherited nonrequired drift checker absent.
+NOT_DONE: Latest repair review/merge pending; W1-W5 and product policy not implemented.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 w1 delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 114 PCIe tests PASS (12 focused); real packet/segment/gap fixture and 4 explicit negative fixtures executed by validator; source, epoch, identity, time, count and policy boundaries tested
+FILES_TOUCHED: scripts/pcie/b3a_event_contract.py, tests/pcie/test_b3a_event_contract.py, docs/pcie-observation-timeline-contract.md, docs/pcie-observation-timeline-contract-v1.json, artifacts/evidence/pcie-w1-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: Structural provenance checks are not source authenticity; adapters must recompute lineage. No complete timeline, applied state, ASPM policy, physical identity or root cause. Inherited nonrequired governance-drift checker absent; deferred.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 W1 review repair
+TASK_INTENT: Fix three observation-contract review findings.
+WORK_COMPLETED: 117 PCIe tests PASS (15 focused); explicit positive/negative source fixtures; nested details policy, alias-duplicate and malformed sources CLI regressions.
+FILES_TOUCHED: scripts/pcie/b3a_event_contract.py, tests/pcie/test_b3a_event_contract.py, docs/pcie-observation-timeline-contract.md, docs/pcie-observation-timeline-contract-v1.json, artifacts/evidence/pcie-w1-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: python -X utf8 -B -m unittest discover -s tests/pcie -v; representative source-byte validation; controlled malformed-input subprocess.
+OPEN_RISKS: Structural validator does not authenticate sources or recompute facts; inherited nonrequired drift checker missing.
+NOT_DONE: Latest head review/merge pending; W2-W5 and product policy remain.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Verify alias regression isolates ID validation.
+WORK_COMPLETED: All three review regressions fail on old head; 117 tests pass on current implementation.
+FILES_TOUCHED: tests/pcie/test_b3a_event_contract.py, artifacts/evidence/pcie-w1-20261002/before-repair-tests.log, artifacts/evidence/pcie-w1-20261002/tests.log, artifacts/session-closeout.txt
+CHECKS_RUN: Three regression tests against old module; python -X utf8 -B -m unittest discover -s tests/pcie -v.
+OPEN_RISKS: Inherited nonrequired drift checker missing; no source-authenticity claim.
+NOT_DONE: Latest-head review/merge pending; W2-W5.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Close extension-field state claim bypass in W1.
+WORK_COMPLETED: 118 tests PASS; added regression fails on prior head; record fields fixed, extension claims guarded recursively.
+FILES_TOUCHED: scripts/pcie/b3a_event_contract.py, tests/pcie/test_b3a_event_contract.py, docs/pcie-observation-timeline-contract.md, docs/pcie-observation-timeline-contract-v1.json, artifacts/evidence/pcie-w1-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: prior-head extension regression; python -X utf8 -B -m unittest discover -s tests/pcie -v.
+OPEN_RISKS: Structural checks do not authenticate sources; inherited nonrequired drift checker absent.
+NOT_DONE: Latest-head review/merge pending; W2-W5 and product policy.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Enforce interval count and source-gap consistency before W1 merge.
+WORK_COMPLETED: 120 PCIe tests PASS (18 focused); positive/negative source fixtures; all review regressions fail before fix; source-gap consistency and segment totals bounded.
+FILES_TOUCHED: scripts/pcie/b3a_event_contract.py, tests/pcie/test_b3a_event_contract.py, docs/pcie-observation-timeline-contract.md, docs/pcie-observation-timeline-contract-v1.json, artifacts/evidence/pcie-w1-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: two prior-head regressions; python -X utf8 -B -m unittest discover -s tests/pcie -v.
+OPEN_RISKS: Structural checks do not authenticate sources; inherited nonrequired drift checker missing.
+NOT_DONE: Latest-head review/merge pending; W2-W5 and product policy.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Extend recursive v1 identity ceiling to nested data.
+WORK_COMPLETED: 121 PCIe tests PASS (19 focused), 5 explicit negative fixtures; all review regressions fail before fix; recursive state/policy/identity ceilings and interval/source-gap consistency.
+FILES_TOUCHED: scripts/pcie/b3a_event_contract.py, tests/pcie/test_b3a_event_contract.py, docs/pcie-observation-timeline-contract.md, docs/pcie-observation-timeline-contract-v1.json, artifacts/evidence/pcie-w1-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: prior-head nested identity regression; python -X utf8 -B -m unittest discover -s tests/pcie -v.
+OPEN_RISKS: Structural checks do not authenticate sources; inherited nonrequired drift checker missing.
+NOT_DONE: Latest-head review/merge pending; W2-W5 and product policy.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Enforce same-source gap/interval and interval dedup consistency.
+WORK_COMPLETED: 123 PCIe tests PASS (21 focused), 5 negative fixtures; all review regressions fail before fix; recursive claim ceilings, segment total/dedup and source gap consistency.
+FILES_TOUCHED: scripts/pcie/b3a_event_contract.py, tests/pcie/test_b3a_event_contract.py, docs/pcie-observation-timeline-contract.md, docs/pcie-observation-timeline-contract-v1.json, artifacts/evidence/pcie-w1-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: two prior-head interval regressions; python -X utf8 -B -m unittest discover -s tests/pcie -v.
+OPEN_RISKS: Structural checks do not authenticate sources; inherited nonrequired drift checker missing.
+NOT_DONE: Latest-head review/merge pending; W2-W5 and product policy.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Converge W1 and reduce delivery ceremony per owner correction.
+WORK_COMPLETED: W1 invariants frozen; byte-identical source aliases rejected; 22 focused tests PASS; remaining semantic-prose P2 explicitly scoped/deferred.
+FILES_TOUCHED: scripts/pcie/b3a_event_contract.py, tests/pcie/test_b3a_event_contract.py, docs/pcie-observation-timeline-contract.md, docs/pcie-observation-timeline-contract-v1.json, artifacts/evidence/pcie-w1-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: python -X utf8 -B -m unittest discover -s tests/pcie -p test_b3a*.py -v; local bounded adversarial review.
+OPEN_RISKS: Extension text is opaque, not a validated fact; source authenticity and inherited nonrequired drift check unavailable.
+NOT_DONE: Final capability review/merge; W2+W3, W4+W5; product ASPM policy.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Close W1 final review as one bounded batch.
+WORK_COMPLETED: 125 tests PASS, milestone id/summary guard added; arbitrary opaque-prose semantics P2 deferred explicitly.
+FILES_TOUCHED: scripts/pcie/b3a_event_contract.py, tests/pcie/test_b3a_event_contract.py, docs/pcie-observation-timeline-contract.md, docs/pcie-observation-timeline-contract-v1.json, artifacts/evidence/pcie-w1-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: python -X utf8 -B -m unittest discover -s tests/pcie -v; latest bounded invariant adversarial review; real representative fixture validator.
+OPEN_RISKS: Not an arbitrary JSON semantic classifier or source authenticity verifier; nonrequired drift check missing.
+NOT_DONE: PR merge pending; W2+W3 and W4+W5; engineer ASPM policy.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 unified delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 138 PCIe tests PASS (13 focused); two real CLI replays byte-identical; W1 validator PASS; local bounded adversarial integration review completed before PR
+FILES_TOUCHED: scripts/pcie/b3b_unified_timeline.py, tests/pcie/test_b3b_unified_timeline.py, docs/pcie-unified-timeline.md, artifacts/evidence/pcie-unified-timeline-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: Legacy link capture binding remains corroborated, not a direct hash. Opaque prose is not an authoritative fact. ASPM policy awaits engineer; no root cause/full DLLP export. Inherited nonrequired drift checker missing, deferred.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Keep unified timeline delivery lightweight.
+WORK_COMPLETED: Removed duplicate committed generated output; one canonical timeline and two matching replay hashes retained; code and canonical bytes unchanged.
+FILES_TOUCHED: docs/pcie-unified-timeline.md, artifacts/evidence/pcie-unified-timeline-20261002, artifacts/session-closeout.txt
+CHECKS_RUN: run1/run2 byte equality already verified; scoped source/destination paths; latest-head generated diff inspection.
+OPEN_RISKS: Legacy link binding corroborated; nonrequired drift checker unavailable.
+NOT_DONE: Final PR review/merge; report capability and ASPM policy.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+TASK_INTENT: Finish unified timeline final review as one bounded batch.
+WORK_COMPLETED: 139 tests PASS, byte-canonical/duplicate-key regression fails before fix; canonical timeline unchanged.
+FILES_TOUCHED: scripts/pcie/b3b_unified_timeline.py, tests/pcie/test_b3b_unified_timeline.py, docs/pcie-unified-timeline.md, artifacts/evidence/pcie-unified-timeline-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: prior-head byte regression; python -X utf8 -B -m unittest discover -s tests/pcie -v; verified_timeline canonical-source replay.
+OPEN_RISKS: Legacy link binding corroborated; source authenticity not claimed; inherited nonrequired drift checker missing.
+NOT_DONE: PR merge pending; W4+W5 report; engineer ASPM policy.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+
+2026-10-02 report delivery
+TASK_INTENT: Deliver one approved PCIe capability through PR review and conditional merge.
+WORK_COMPLETED: 147 PCIe tests PASS (8 focused); two real report replays have equal MD and HTML SHA-256; isolated Edge screenshots inspected; local bounded adversarial review completed before PR
+FILES_TOUCHED: scripts/pcie/b3d_observation_report.py, tests/pcie/test_b3d_observation_report.py, docs/pcie-observation-report.md, artifacts/evidence/pcie-observation-report-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: clean-slice PCIe suite; source-bound replay; cr-at-eol diff check.
+OPEN_RISKS: B2g product policy awaits engineer Who/When/What/Proof; B2h conditional. Legacy link capture binding corroborated; no applied state, root cause, full TS/DLLP export or complete B3d. Inherited nonrequired governance-drift checker missing, deferred.
+NOT_DONE: Next slices and product ASPM policy; PR review/merge pending at commit.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE
+
+2026-10-02 report final repair
+TASK_INTENT: Complete bounded W4+W5 report capability after one GitHub final review.
+WORK_COMPLETED: Source-backed report status and rule-title provenance repaired; 149 tests PASS; two final report replays identical; final HTML screenshots inspected.
+FILES_TOUCHED: scripts/pcie/b3d_observation_report.py, tests/pcie/test_b3d_observation_report.py, docs/pcie-observation-report.md, artifacts/evidence/pcie-observation-report-20261002, PLAN.md, artifacts/session-closeout.txt
+CHECKS_RUN: python -X utf8 -B -m unittest discover -s tests/pcie -v; report CLI replay twice; two regressions against reviewed commit; headless Edge visual inspection; git diff --check.
+OPEN_RISKS: Nonrequired governance-drift checker absent; legacy link binding corroborated; short post-L0 tail.
+NOT_DONE: Merge pending at commit; B2g product policy awaits engineer; B2h register contract, full B3d and root cause not established.
+RECOMMENDED_MEMORY_UPDATE: NO_UPDATE

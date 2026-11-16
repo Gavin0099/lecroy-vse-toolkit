@@ -17,8 +17,9 @@ def epoch_at(log,packet):
 
 def read_image(log,device_id,packet,epoch):
     image={}
-    for r in log['accesses']:
-        if r['device_id']!=device_id or r['epoch']!=epoch or r['read_value'] is None:continue
+    reads=[r for r in log['accesses'] if r['device_id']==device_id and r['epoch']==epoch and r['read_value'] is not None]
+    # A returned value becomes an observation at its Completion, not its request.
+    for r in sorted(reads,key=lambda r:r['completions'][0]['packet_index']):
         effective=r['completions'][0]['packet_index']
         if effective>packet or epoch_at(log,effective)!=epoch:continue
         for i in range(4):
@@ -54,7 +55,7 @@ def resolve(log,reference,device_id,packet):
         return nodes,True,None
     pointer=value(reference['standard']['CapabilityPointer'],1) if header is not None and header&127 in (0,1) else None
     conventional,complete,cgap=walk(pointer,False);extended,ecomplete,egap=walk(0x100,True)
-    for nodes,ids,names in ((conventional,reference['capability_ids'],{'PCIe':['LinkControl','LinkStatus'],'PM':['PMCSR']}),(extended,reference['extended_capability_ids'],{'L1SS':['L1SSControl1','L1SSControl2']})):
+    for nodes,ids,names,limit in ((conventional,reference['capability_ids'],{'PCIe':['LinkControl','LinkStatus'],'PM':['PMCSR']},0x100),(extended,reference['extended_capability_ids'],{'L1SS':['L1SSControl1','L1SSControl2']},0x1000)):
         for family,n in ids.items():
             matches=[node for node in nodes if node['capability_id']==n]
             if len(matches)>1:gaps.append(f'DUPLICATE_{family}');continue
@@ -62,7 +63,8 @@ def resolve(log,reference,device_id,packet):
                 node=matches[0]
                 for name in names[family]:
                     offset=node['byte_offset']+reference['relative_offsets'][name]
-                    if offset>4095:gaps.append(f'OUT_OF_RANGE_{name}');continue
+                    width=2 if name in ('LinkControl','LinkStatus','PMCSR') else 4
+                    if offset<node['byte_offset'] or offset+width>limit:gaps.append(f'OUT_OF_RANGE_{name}');continue
                     maps[name]={'byte_offset':offset,'layout_source':reference['source'],'capability_evidence':node['evidence']}
     return {'schema':SCHEMA,'device_id':device_id,'bdf':b2b.g2b.bdf(device_id),'packet_index':packet,'epoch':epoch,'header_type':None if header is None else header&127,'registers':maps,'conventional_chain':{'nodes':conventional,'complete':complete,'gap':cgap,'pointer_evidence':evidence(52,1)},'extended_chain':{'nodes':extended,'complete':ecomplete,'gap':egap},'gaps':gaps,'not_established':['unobserved capability absence','full capability chain when gap remains','hardware state or writes applied','vendor register definitions']}
 

@@ -1,0 +1,53 @@
+{
+  "status": "B1E_B2A_B2F_LOCAL_PASS_B2G_SCOPE_BLOCKED",
+  "pcie_tests": 180,
+  "pcie_tests_passed": true,
+  "test_log_sha256": "055E86783FFFEDF332617FAFC0127E0E7CDF2A605D2E6EE3CE4EB791AFF7AAB7",
+  "preparation_replay_byte_identical": true,
+  "b2g_product_rule_evaluation": "NOT_EVALUATED",
+  "b2a_final_guard_revalidation_byte_identical": true,
+  "source_files_unchanged": [
+    {
+      "path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\pcie-p4a-hang-20260914-dcea0027\\Disable ASPM--Insert SD7-hang.pex",
+      "sha256": "C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD",
+      "bytes": 126565918,
+      "mtime_ns": 1789375908544974500,
+      "read_only": true
+    },
+    {
+      "path": "E:\\Kent\\ASUS NV CRB_20260604\\GL9767\\Disable ASPM--Insert SD7-hang.pex",
+      "sha256": "F21FCDEB86F8BE1927951C8DE9D169E2DE8AAD404D7336C721A0B21BDDC02CD6",
+      "bytes": 126339103,
+      "mtime_ns": 1780626326139983300,
+      "read_only": false
+    },
+    {
+      "path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\pcie-hang-20260914-1ec2caab\\Disable ASPM--Insert SD7-hang.pex",
+      "sha256": "F21FCDEB86F8BE1927951C8DE9D169E2DE8AAD404D7336C721A0B21BDDC02CD6",
+      "bytes": 126339103,
+      "mtime_ns": 1780626326139983300,
+      "read_only": true
+    }
+  ],
+  "b1d_b1c_source_hashes_unchanged": true,
+  "implementation_hashes": {
+    "scripts\\pcie\\b1e_link_findings.py": "DC8549D92EA4BC426810D0CA73DC6253AE5291228045BA729A40294C7E7C09D2",
+    "scripts\\pcie\\b2a-register-probe.pevs": "522507744864F20C0219B8415A8764E8D73FCC4990B108DBD958888C70978F59",
+    "scripts\\pcie\\b2a_register_fields.py": "D747B95BDD886AC1E9612DE1C241C6F9CCD56B8D858D80E45D41B77B18626247",
+    "scripts\\pcie\\b2b_config_access.py": "D3C64F26031C564C38D495285093A1CC6585F4A9811913E61A094935ED7E83EE",
+    "scripts\\pcie\\b2c_capability_resolution.py": "AA485183696BDF03E0DCEFB11E5B54E8A799DB0D583E3381F61DC9B5255197A5",
+    "scripts\\pcie\\b2d_observed_state.py": "4D69B4E56A58350932480F873FDB51437C68676E53EFBDFCB95A19F0083D62AA",
+    "scripts\\pcie\\b2e_snapshot_query.py": "57CD7539236FE4791DCDF80735386B4D425C9595FD4BB96A84A951CDC639B1B2",
+    "scripts\\pcie\\b2f_snapshot_diff.py": "D7128FE9A12DA2E3506E1FF0C6282DC808C16818A12EB6F045BF3928E07B2080",
+    "scripts\\pcie\\b2g_watchlist_prepare.py": "61AAF08C87E1AC3F2A948A78CFE85B1566A1A11E38E06C8EA6E2BD28B08D42E7",
+    "tests\\pcie\\test_b1e_link_findings.py": "C73449578653334DF6D438037B2C632EA9493736AAC545FAC1BE52BC6D60B99D",
+    "tests\\pcie\\test_b2a_register_fields.py": "1DD17790BA830313411B261FF16F02AF33C8CAD308BDD3D29ED468270DFCF9EF",
+    "tests\\pcie\\test_b2b_config_access.py": "57CE92DDB99AF33D6F0672526ECED08A660C75F7B983387A26F8FE26D675FB63",
+    "tests\\pcie\\test_b2c_capability_resolution.py": "F6672F6C7C88B96F5F5115FE7675CA9003777CDEA11FE20CAAA0E3A961A5161D",
+    "tests\\pcie\\test_b2d_observed_state.py": "06F706EB9B8EAC69C91381924E077A6CF460126D7EC457D9DB8B6DCCD394D560",
+    "tests\\pcie\\test_b2e_snapshot_query.py": "E4D930E94D122D2A9602FCDFC9726B65A2CE394B813844DB80CD635090CD38D9",
+    "tests\\pcie\\test_b2f_snapshot_diff.py": "9C5D927147F147D24600CE2A4E1093FD5B79670A11A75F48B99F492525B3A820",
+    "tests\\pcie\\test_b2g_watchlist_prepare.py": "9F4BD6A64ED9A1D1287898CC35B897DCEC72BDDDEB6790E8A3621298D43F4DE0"
+  },
+  "delivery": "not committed/pushed/PR/merged"
+}

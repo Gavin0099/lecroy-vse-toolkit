@@ -1,0 +1,14 @@
+F
+======================================================================
+FAIL: test_consumer_requires_canonical_bytes_and_rejects_duplicate_keys (test_b3b_unified_timeline.UnifiedTimelineTests.test_consumer_requires_canonical_bytes_and_rejects_duplicate_keys)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\reiko\.codex\worktrees\pcie-slice-delivery\lecroy-vse-toolkit\tests\pcie\test_b3b_unified_timeline.py", line 25, in test_consumer_requires_canonical_bytes_and_rejects_duplicate_keys
+    with self.assertRaises(ValueError):adapter.verified_timeline(p,ROOT)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.188s
+
+FAILED (failures=1)

@@ -1,0 +1,6 @@
+{
+  "changed_files": [
+    "tests/usb_fields/test_cleanup.py"
+  ],
+  "diff_text": "diff --git a/tests/usb_fields/test_cleanup.py b/tests/usb_fields/test_cleanup.py\nindex 1111111..2222222 100644\n--- a/tests/usb_fields/test_cleanup.py\n+++ b/tests/usb_fields/test_cleanup.py\n@@ -10,3 +10,4 @@\n def run(out_dir):\n+    os.remove(tmp_path / 'x.json')\n     return out_dir\n"
+}

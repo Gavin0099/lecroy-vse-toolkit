@@ -23,6 +23,12 @@ def run(rows):
 
 
 class ClassificationTests(unittest.TestCase):
+    def test_bdf_uses_hex_bus_and_device_with_existing_padding(self):
+        self.assertEqual(g2b.bdf(0x1F58),'01F:0B.0')
+        self.assertEqual(g2b.bdf(0xFFFF),'0FF:1F.7')
+        self.assertEqual(g2b.bdf(0x0100),'001:00.0')
+        self.assertIsNone(g2b.bdf(None))
+
     def test_roles_follow_vendor_constants_and_field_shape(self):
         roles = [g2b.classify(r) for r in (
             row(1, 10, "0x9", 3),

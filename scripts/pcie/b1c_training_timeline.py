@@ -173,6 +173,13 @@ def build(timeline: list[dict[str, Any]], gap_seconds: Decimal, x2: dict[str, An
     if x2 is not None:
         attach_channel_evidence(phases, x2)
     if gui is not None:
+        link_text = {'LINK_DOWN': 'Link Down', 'LINK_UP': 'Link Up'}
+        for event in gui.get('link_events', []):
+            matches = [r for r in timeline if r['kind'] == 'link_condition'
+                       and r['packet_index'] == event['packet_index']]
+            if (len(matches) != 1 or matches[0].get('type_name') != event['vse_constant']
+                    or link_text.get(event['vse_constant']) != event['gui_text']):
+                raise B1cError(f"GUI link event at packet {event['packet_index']} disagrees with timeline or text")
         for sample in gui.get("ts1_error_samples", []):
             homes = [p for p in phases if p["kind"] != "NO_OBSERVED_EVENTS" and p["first_index"] <= sample["packet_index"] <= p["last_index"]]
             if len(homes) != 1:
@@ -184,14 +191,17 @@ def build(timeline: list[dict[str, Any]], gap_seconds: Decimal, x2: dict[str, An
 def attach_channel_evidence(phases: list[dict[str, Any]], x2: dict[str, Any]) -> None:
     ranges = channel_ranges(x2)
     for name, (low, high) in ranges.items():
+        range_errors = x2["scopes"][name]["has_errors"]
+        by_channel = {cid: x2["cells"][f"{name}C{cid}"]["has_errors"] for cid in (1, 2, 3)}
+        if (any(type(count) is not int or count < 0 for count in [range_errors, *by_channel.values()])
+                or sum(by_channel.values()) != range_errors):
+            raise B1cError(f"Channel HasErrors cells in {name} do not match range total {range_errors}")
         inside = [p for p in phases if p["kind"] != "NO_OBSERVED_EVENTS" and low <= p["first_index"] and p["last_index"] <= high]
         straddle = [p for p in phases if p["kind"] != "NO_OBSERVED_EVENTS" and p not in inside and p["first_index"] <= high and p["last_index"] >= low]
         if straddle:
             continue
-        range_errors = x2["scopes"][name]["has_errors"]
         if sum(p["err_any"] for p in inside) != range_errors:
             raise B1cError(f"Phase HasErrors inside {name} sum to {sum(p['err_any'] for p in inside)}, B1c-x2 reports {range_errors}")
-        by_channel = {cid: x2["cells"][f"{name}C{cid}"]["has_errors"] for cid in (1, 2, 3)}
         carriers = [cid for cid, count in by_channel.items() if count]
         if len(carriers) != 1:
             continue
