@@ -29,6 +29,7 @@ public sealed class TraceToolEntry : Form {
     readonly Label badge=TextLabel("USB / PCIe TRACE\n本機分析 · 來源唯讀",10,Muted,false), scopeLabel=TextLabel("分析完成後顯示實際協定範圍；無候選不代表協定測試通過。",9,Muted,false);
     readonly ComboBox protocols=new ComboBox(), nativeTargets=new ComboBox(),flowView=new ComboBox();
     readonly TraceButton engineerContext=new TraceButton();
+    readonly TraceButton configUr=new TraceButton();
     readonly TraceButton nextCheck=new TraceButton();
     readonly CheckBox observed=new CheckBox {Text="已觀察流程（非候選）",AutoSize=true,Enabled=false};
     readonly CheckBox showAll=new CheckBox {Text="顯示全部候選",AutoSize=true,Visible=false};
@@ -51,6 +52,8 @@ public sealed class TraceToolEntry : Form {
     string caseId, reportFile, phase="starting",shownError;
     Dictionary<string,object> model;
     Dictionary<string,object> pageIndex;
+    Dictionary<string,object> configUrStatus;
+    ConfigUrForm configUrView;
     int currentPage;
     object[] cards=new object[0];
     object[] allCards=new object[0];
@@ -116,7 +119,8 @@ public sealed class TraceToolEntry : Form {
         ButtonStyle(choose,"匯入 Trace…",true);ButtonStyle(end,"結束定位工作",false);ButtonStyle(export,"匯出 HTML…",false);ButtonStyle(folder,"工作資料夾",false);
         ButtonStyle(cancel,"取消分析",false);cancel.Visible=false;cancel.Click+=delegate {Send(new {action="cancel"});cancel.Enabled=false;};
         ButtonStyle(engineerContext,"工程情境…",false);engineerContext.Visible=false;engineerContext.Click+=delegate {EditContext();};
-        toolbar.Controls.AddRange(new Control[]{choose,end,export,folder,engineerContext,cancel});layout.Controls.Add(toolbar,0,1);
+        ButtonStyle(configUr,"暫存器與 UR…",false);configUr.Visible=false;configUr.Click+=delegate {OpenConfigUr();};
+        toolbar.Controls.AddRange(new Control[]{choose,end,export,folder,engineerContext,configUr,cancel});layout.Controls.Add(toolbar,0,1);
         choose.Click+=delegate {ChooseFile();};end.Click+=delegate {Send(new {action="end"});};export.Click+=delegate {ExportReport();};
         folder.Click+=delegate {ThreadPool.QueueUserWorkItem(delegate {try {Process.Start(new ProcessStartInfo("explorer.exe",Quote(directory)){UseShellExecute=false});}catch{}});};
         identity.Text="尚未載入 Trace  ·  拖入一份 .usb / .pex，或按「匯入 Trace」";identity.Dock=DockStyle.Fill;identity.TextAlign=ContentAlignment.MiddleLeft;
@@ -241,6 +245,7 @@ public sealed class TraceToolEntry : Form {
         Send(new {action="import",path=Path.GetFullPath(files[0]),input_method=method});ResetForImport();busy=true;choose.Enabled=locate.Enabled=copy.Enabled=protocols.Enabled=nativeTargets.Enabled=false;message.Text="已接收檔案，正在開始分析…";
     }
     void ResetForImport(){
+        CloseConfigUr();
         pageIndex=null;currentPage=0;previousPage.Visible=nextPage.Visible=pageLabel.Visible=false;
         shownError=null;
         model=null;caseId=reportFile=null;cards=allCards=allObservations=allFlows=new object[0];flowView.Visible=engineerContext.Visible=false;modelRevision="0";changingProtocol=true;observed.Enabled=false;observed.Checked=false;showAll.Checked=false;showAll.Visible=false;changingProtocol=false;
@@ -257,6 +262,28 @@ public sealed class TraceToolEntry : Form {
     void NavigateSelected() {
         if(busy||caseId==null||candidates.SelectedIndex<0)return;
         Send(new {action="navigate",case_id=caseId,rank=Convert.ToInt32(Map(cards[candidates.SelectedIndex])["rank"]),target_index=Math.Max(0,nativeTargets.SelectedIndex),item_kind=FlowMode?"flow":observed.Checked?"observation":"candidate"});busy=true;locate.Enabled=false;message.Text="正在定位，請稍候…";
+    }
+    void CloseConfigUr() {
+        if(configUrView!=null)configUrView.Close();
+        configUrView=null;configUrStatus=null;configUr.Visible=false;
+    }
+    bool ConfigUrControlsAvailable {
+        get{return IsPcie&&caseId!=null&&url!=null&&!controller.HasExited&&!closing&&phase!="unresponsive"&&phase!="cleanup_unknown";}
+    }
+    void OpenConfigUr() {
+        if(!IsPcie||caseId==null||controller.HasExited||closing)return;
+        if(configUrView!=null){configUrView.Activate();return;}
+        string id=caseId;
+        configUrView=new ConfigUrForm(Path.Combine(directory,id),id,model,
+            delegate {if(caseId==id&&ConfigUrControlsAvailable&&!busy)Send(new {action="config_ur_run",case_id=id});},
+            delegate {if(caseId==id&&ConfigUrControlsAvailable&&busy&&phase=="config_ur")Send(new {action="cancel"});},
+            delegate(string row,string target) {
+                if(caseId==id&&ConfigUrControlsAvailable&&!busy)
+                    Send(new {action="config_ur_navigate",case_id=id,row_id=row,target=target});
+            });
+        configUrView.FormClosed+=delegate {configUrView=null;};
+        configUrView.ApplyStatus(configUrStatus,busy,ConfigUrControlsAvailable,phase=="config_ur");
+        configUrView.Show(this);
     }
     void ExportReport() {
         if(reportFile==null||!File.Exists(reportFile))return;
@@ -279,6 +306,7 @@ public sealed class TraceToolEntry : Form {
     }
     void LoadModel(string id) {
         Guid parsed;if(!Guid.TryParseExact(id,"N",out parsed))throw new InvalidDataException("Invalid case identity");
+        if(caseId!=id)CloseConfigUr();
         caseId=id;currentPage=0;pageIndex=null;
         string indexPath=Path.Combine(directory,id,"ui-index.json");
         if(File.Exists(indexPath)){
@@ -527,6 +555,8 @@ public sealed class TraceToolEntry : Form {
                     modelRevision=revision;
                 }
                 string name=S(value,"trace_name");if(name!="未知")identity.Text=name;
+                object config;
+                configUrStatus=value.TryGetValue("config_ur",out config)?config as Dictionary<string,object>:null;
             } else if(url!=null) {message.Text="已就緒。拖入一份 .usb / .pex 或按「匯入 Trace」。";busy=false;}
             bool usable=url!=null&&!controller.HasExited&&!busy&&!closing;
             choose.Enabled=usable&&phase!="unresponsive"&&phase!="cleanup_unknown";
@@ -543,6 +573,8 @@ public sealed class TraceToolEntry : Form {
             copy.Text=IsPcie?"複製 Packet":"複製位置";copyFile.Visible=IsPcie&&!FlowMode;copyFile.Enabled=usable&&IsPcie;nativeTargets.Width=FlowMode?145:210;
             locateStage.Visible=IsPcie&&!FlowMode&&allObservations.Length>0;locateStage.Enabled=usable&&locateStage.Visible;
             flowView.Enabled=usable;engineerContext.Visible=FlowReady;engineerContext.Enabled=usable&&phase!="unresponsive"&&phase!="cleanup_unknown";
+            configUr.Visible=IsPcie&&caseId!=null;configUr.Enabled=configUr.Visible&&url!=null&&!controller.HasExited&&!closing;
+            if(configUrView!=null)configUrView.ApplyStatus(configUrStatus,busy,ConfigUrControlsAvailable,phase=="config_ur");
             showAll.Enabled=usable;cancel.Visible=busy&&pendingPcie&&phase!="navigating";cancel.Enabled=cancel.Visible;
             if(pageIndex!=null){int pages=Items(Map(Map(pageIndex["groups"])[FlowMode?"flow_items":"candidates"]),"pages").Length;previousPage.Enabled=usable&&currentPage>0;nextPage.Enabled=usable&&currentPage+1<pages;}
             if(IsPcie)export.Text="匯出報告…";else export.Text="匯出 HTML…";
@@ -553,6 +585,258 @@ public sealed class TraceToolEntry : Form {
     }
     public static void Run(string python,string script,string output) {
         if(Thread.CurrentThread.GetApartmentState()!=ApartmentState.STA)throw new InvalidOperationException("STA required");Application.EnableVisualStyles();Application.Run(new TraceToolEntry(python,script,output));
+    }
+}
+
+internal sealed class ConfigUrForm : Form {
+    const long MaxPageBytes=1024*1024;
+    static readonly string[] BindingKeys={"source_trace_sha256","display_trace_sha256","packet_namespace"};
+    static readonly string[] GroupKeys={"writes","reads","memory","ur_summary","unmatched"};
+    static readonly string[] GroupNames={"Config Write","Config Read","Memory UR／CA","重複 UR","未配對的異常 Completion"};
+    static readonly string[] Titles={"Packet","交易","目的／回覆端","位址／暫存器","寫入值／BE","Completion","回讀"};
+    static readonly string[] Targets={"request","completion","read_request","read_completion"};
+    readonly Action start, stop;
+    readonly Action<string,string> navigate;
+    readonly string caseFolder, caseId;
+    readonly Dictionary<string,object> caseBinding;
+    readonly JavaScriptSerializer serializer=new JavaScriptSerializer {MaxJsonLength=1024*1024};
+    readonly Label status=new Label {Dock=DockStyle.Fill,TextAlign=ContentAlignment.MiddleLeft,AutoEllipsis=true};
+    readonly Label scope=new Label {Dock=DockStyle.Fill,TextAlign=ContentAlignment.MiddleLeft,AutoEllipsis=true};
+    readonly Label position=new Label {AutoSize=true,Padding=new Padding(5,7,5,0)};
+    readonly ToolTip tips=new ToolTip();
+    readonly ComboBox filter=new ComboBox {DropDownStyle=ComboBoxStyle.DropDownList,Width=230};
+    readonly Button run=new Button {AutoSize=true,Text="補抽暫存器與 UR"};
+    readonly Button cancel=new Button {AutoSize=true,Text="取消補抽"};
+    readonly Button previous=new Button {AutoSize=true,Text="上一頁"};
+    readonly Button next=new Button {AutoSize=true,Text="下一頁"};
+    readonly Button export=new Button {AutoSize=true,Text="匯出暫存器報告…"};
+    readonly Button[] openTargets={
+        new Button {AutoSize=true,Text="定位原請求"},
+        new Button {AutoSize=true,Text="定位 Completion"},
+        new Button {AutoSize=true,Text="定位回讀請求"},
+        new Button {AutoSize=true,Text="定位回讀 Completion"},
+    };
+    readonly DataGridView results=new DataGridView {
+        Dock=DockStyle.Fill,AutoSizeColumnsMode=DataGridViewAutoSizeColumnsMode.Fill,
+        BorderStyle=BorderStyle.None,BackgroundColor=Color.White,ReadOnly=true,
+        AllowUserToAddRows=false,AllowUserToDeleteRows=false,AllowUserToResizeRows=false,
+        MultiSelect=false,RowHeadersVisible=false,SelectionMode=DataGridViewSelectionMode.FullRowSelect
+    };
+    readonly RichTextBox evidence=new RichTextBox {
+        Dock=DockStyle.Fill,ReadOnly=true,BackColor=Color.White,DetectUrls=false,ScrollBars=RichTextBoxScrollBars.Vertical
+    };
+    Dictionary<string,object> index;
+    string loadedIndex;
+    bool idle, ready, pageLoaded;
+    int page;
+
+    internal ConfigUrForm(string folder,string id,Dictionary<string,object> binding,Action start,Action stop,Action<string,string> navigate) {
+        caseFolder=Path.GetFullPath(folder);caseId=id;caseBinding=binding;
+        this.start=start;this.stop=stop;this.navigate=navigate;
+        Text="PCIe 暫存器與 UR";Size=new Size(1080,720);MinimumSize=new Size(820,500);
+        Font=new Font("Microsoft JhengHei",10);ForeColor=TraceTheme.Text;BackColor=TraceTheme.Workspace;
+        StartPosition=FormStartPosition.CenterParent;AutoScaleMode=AutoScaleMode.Dpi;
+        var layout=new TableLayoutPanel {Dock=DockStyle.Fill,ColumnCount=1,RowCount=7,Padding=new Padding(14)};
+        layout.RowStyles.Add(new RowStyle(SizeType.Absolute,30));
+        layout.RowStyles.Add(new RowStyle(SizeType.Absolute,30));
+        layout.RowStyles.Add(new RowStyle(SizeType.Absolute,38));
+        layout.RowStyles.Add(new RowStyle(SizeType.Percent,58));
+        layout.RowStyles.Add(new RowStyle(SizeType.Absolute,38));
+        layout.RowStyles.Add(new RowStyle(SizeType.Percent,42));
+        layout.RowStyles.Add(new RowStyle(SizeType.Absolute,40));
+        Controls.Add(layout);
+        layout.Controls.Add(status,0,0); layout.Controls.Add(scope,0,1);
+        var filters=new FlowLayoutPanel {Dock=DockStyle.Fill,WrapContents=false};
+        filter.AccessibleName="暫存器與 UR 類型";
+        filter.Items.AddRange(GroupNames);filter.SelectedIndex=0;
+        filters.Controls.AddRange(new Control[]{filter,previous,next,position});
+        layout.Controls.Add(filters,0,2); layout.Controls.Add(results,0,3);
+        results.AccessibleName="暫存器與 UR 證據列";
+        evidence.AccessibleName="所選交易的來源與證據";
+        int[] weights={74,97,88,182,126,146,120};
+        for(int i=0;i<Titles.Length;i++){
+            results.Columns.Add(new DataGridViewTextBoxColumn {HeaderText=Titles[i],FillWeight=weights[i],
+                SortMode=DataGridViewColumnSortMode.NotSortable});
+        }
+        var targets=new FlowLayoutPanel {Dock=DockStyle.Fill,WrapContents=false};
+        for(int i=0;i<openTargets.Length;i++){
+            int slot=i;openTargets[i].Click+=delegate {NavigateSelected(slot);};targets.Controls.Add(openTargets[i]);
+        }
+        layout.Controls.Add(targets,0,4);layout.Controls.Add(evidence,0,5);
+        var actions=new FlowLayoutPanel {Dock=DockStyle.Fill,WrapContents=false};
+        actions.Controls.AddRange(new Control[]{run,cancel,export});layout.Controls.Add(actions,0,6);
+        run.Click+=delegate {if(idle)this.start();};
+        cancel.Click+=delegate {this.stop();};
+        export.Click+=delegate {Export();};
+        previous.Click+=delegate {ShowPage(page-1);};next.Click+=delegate {ShowPage(page+1);};
+        filter.SelectedIndexChanged+=delegate {ShowPage(0);};
+        results.CurrentCellChanged+=delegate {SelectionChanged();};
+        FormClosed+=delegate {tips.Dispose();};
+    }
+
+    static string TextValue(Dictionary<string,object> data,string key) {
+        object value;
+        return data!=null&&data.TryGetValue(key,out value)&&value!=null?Convert.ToString(value,CultureInfo.InvariantCulture):"";
+    }
+    static object[] Values(Dictionary<string,object> data,string key) {
+        object value;
+        if(!data.TryGetValue(key,out value)||value==null)throw new InvalidDataException("缺少暫存器報告欄位。");
+        var array=value as object[];
+        if(array!=null)return array;
+        var list=value as ArrayList;
+        if(list!=null)return list.ToArray();
+        throw new InvalidDataException("暫存器報告欄位格式不符。");
+    }
+    static Dictionary<string,object> Object(Dictionary<string,object> data,string key) {
+        object value;
+        if(data.TryGetValue(key,out value)&&value is Dictionary<string,object>)return (Dictionary<string,object>)value;
+        throw new InvalidDataException("暫存器報告缺少必要物件。");
+    }
+    static void VerifyRegularPath(string path) {
+        if((File.GetAttributes(path)&FileAttributes.ReparsePoint)!=0)
+            throw new InvalidDataException("暫存器報告路徑指向工作區外的連結。");
+    }
+    internal static string ResolveIndex(string folder,string relative) {
+        if(!System.Text.RegularExpressions.Regex.IsMatch(relative??"", @"\Aconfig-ur-[0-9a-f]{32}/index\.json\z"))
+            throw new InvalidDataException("暫存器報告索引路徑不符。");
+        string path=Path.Combine(folder,relative.Replace('/',Path.DirectorySeparatorChar));
+        VerifyRegularPath(folder);VerifyRegularPath(Path.GetDirectoryName(path));VerifyRegularPath(path);
+        return path;
+    }
+    Dictionary<string,object> LoadBounded(string path) {
+        VerifyRegularPath(path);
+        using(var stream=new FileStream(path,FileMode.Open,FileAccess.Read,FileShare.Read)){
+            if(stream.Length>MaxPageBytes)throw new InvalidDataException("暫存器報告分頁超出大小上限。");
+            using(var reader=new StreamReader(stream,new UTF8Encoding(false,true)))
+                return serializer.Deserialize<Dictionary<string,object>>(reader.ReadToEnd());
+        }
+    }
+    void VerifyBinding(Dictionary<string,object> data,string schema) {
+        if(TextValue(data,"analysis_id")!=caseId||TextValue(data,"schema")!=schema)
+            throw new InvalidDataException("暫存器證據不屬於目前案件。");
+        foreach(var field in BindingKeys)
+            if(TextValue(caseBinding,field).Length==0||TextValue(caseBinding,field)!=TextValue(data,field))
+                throw new InvalidDataException("暫存器證據來源或 Packet 命名空間不符。");
+    }
+    void LoadIndex(string relative) {
+        string path=ResolveIndex(caseFolder,relative);
+        var data=LoadBounded(path);VerifyBinding(data,"pcie.config-ur-index/v1");
+        foreach(string key in GroupKeys)
+            if(Values(Object(Object(data,"groups"),key),"pages").Length==0)
+                throw new InvalidDataException("暫存器報告缺少分頁。");
+        if(TextValue(data,"report_html")!="report.html"||TextValue(data,"report_markdown")!="report.md")
+            throw new InvalidDataException("暫存器報告檔名不符。");
+        loadedIndex=path; index=data;
+        ShowPage(0);
+    }
+    internal void ApplyStatus(Dictionary<string,object> operation,bool busy,bool enabled,bool supplementActive) {
+        if(IsDisposed)return;
+        string state=TextValue(operation,"state");
+        string notice=TextValue(operation,"message");
+        idle=enabled&&!busy;
+        cancel.Enabled=enabled&&busy&&supplementActive;
+        run.Enabled=idle;
+        status.Text=notice.Length>0?notice:state=="running"?"正在補抽暫存器與 UR…":
+            state=="ready"?"可查看已核對的暫存器和 UR 證據。":state=="cancelled"?"已取消補抽。":
+            state=="error"?"暫存器與 UR 補抽未完成。":"從目前 PCIe 案件補抽暫存器與 UR。";
+        ready=state=="ready";
+        if(ready){
+            string rel=TextValue(operation,"index");
+            try {
+                string path=ResolveIndex(caseFolder,rel);
+                if(path!=loadedIndex)LoadIndex(rel);
+                else if(!pageLoaded)ShowPage(page);
+            }catch(Exception ex){
+                status.Text="暫存器報告讀取失敗："+ex.Message;
+                ready=false;
+            }
+        }
+        scope.Text=index==null?"":TextValue(index,"coverage_text")+(ready?"":" · 上次完成的補抽");
+        tips.SetToolTip(scope,scope.Text);
+        run.Text=index==null?"補抽暫存器與 UR":"重新補抽";
+        filter.Enabled=index!=null;
+        export.Enabled=index!=null&&ready&&!busy;
+        SelectionChanged();
+    }
+    void ShowPage(int number) {
+        if(index==null)return;
+        string key=GroupKeys[filter.SelectedIndex];
+        try {
+            var group=Object(Object(index,"groups"),key);var pages=Values(group,"pages");
+            if(number<0||number>=pages.Length)return;
+            page=number;
+            string leaf=Convert.ToString(pages[number],CultureInfo.InvariantCulture);
+            if(leaf!=key+"-"+number.ToString(CultureInfo.InvariantCulture)+".json")
+                throw new InvalidDataException("暫存器報告分頁路徑不符。");
+            var content=LoadBounded(Path.Combine(Path.GetDirectoryName(loadedIndex),leaf));
+            VerifyBinding(content,"pcie.config-ur-page/v1");
+            if(TextValue(content,"group")!=key||TextValue(content,"page")!=number.ToString(CultureInfo.InvariantCulture))
+                throw new InvalidDataException("暫存器報告分頁身分不符。");
+            var pageRows=Values(content,"rows");
+            if(pageRows.Length>20)throw new InvalidDataException("暫存器報告列數超過上限。");
+            foreach(object entry in pageRows){
+                var row=(Dictionary<string,object>)entry;var columns=Values(row,"columns");
+                if(columns.Length!=Titles.Length||Array.Exists(columns,v=>!(v is string))||
+                    Array.Exists(Values(row,"details"),v=>!(v is string)))
+                    throw new InvalidDataException("暫存器報告欄位格式不符。");
+                Object(row,"locations");
+            }
+            results.Rows.Clear();
+            foreach(Dictionary<string,object> row in pageRows){
+                results.Rows[results.Rows.Add(Values(row,"columns"))].Tag=row;
+            }
+            pageLoaded=true;
+            position.Text=(page+1)+" / "+pages.Length+" 頁 · "+TextValue(group,"count")+" 筆";
+            previous.Enabled=page>0;next.Enabled=page+1<pages.Length;
+        }catch(Exception ex){
+            pageLoaded=false;
+            results.Rows.Clear();position.Text="分頁讀取失敗";previous.Enabled=next.Enabled=false;
+            evidence.Text=ex.Message;
+        }
+        SelectionChanged();
+    }
+    Dictionary<string,object> Selected {
+        get{return results.CurrentRow==null?null:results.CurrentRow.Tag as Dictionary<string,object>;}
+    }
+    void SelectionChanged() {
+        var row=Selected;
+        if(row==null){
+            if(position.Text!="分頁讀取失敗")evidence.Text="";
+            foreach(var target in openTargets)target.Enabled=false;
+            return;
+        }
+        var text=new StringBuilder();
+        foreach(object line in Values(row,"details"))text.AppendLine(Convert.ToString(line,CultureInfo.InvariantCulture));
+        string nextText=text.ToString();
+        if(evidence.Text.Replace("\r\n","\n")!=nextText.Replace("\r\n","\n"))evidence.Text=nextText;
+        var locations=Object(row,"locations");
+        for(int i=0;i<Targets.Length;i++)openTargets[i].Enabled=idle&&ready&&locations.ContainsKey(Targets[i]);
+    }
+    void NavigateSelected(int slot) {
+        var selected=Selected;
+        if(selected==null||!ready||!idle||!openTargets[slot].Enabled)return;
+        string id=TextValue(selected,"id");
+        if(!System.Text.RegularExpressions.Regex.IsMatch(id,@"\Ap[0-9]+\z"))return;
+        this.navigate(id,Targets[slot]);
+    }
+    void Export() {
+        if(index==null||!ready)return;
+        using(var save=new SaveFileDialog {FileName="pcie-config-ur-report",Filter="HTML report (*.html)|*.html|Markdown report (*.md)|*.md"}){
+            if(save.ShowDialog(this)!=DialogResult.OK)return;
+            try {
+                string dest=Path.GetFullPath(save.FileName);
+                if(dest.StartsWith(caseFolder+Path.DirectorySeparatorChar,StringComparison.OrdinalIgnoreCase))
+                    throw new IOException("請將報告匯出到案件工作資料夾以外的位置。");
+                string ext=Path.GetExtension(dest).ToLowerInvariant();
+                if(ext!=".html"&&ext!=".md")throw new IOException("請使用 .html 或 .md 副檔名。");
+                VerifyRegularPath(caseFolder);
+                VerifyRegularPath(Path.GetDirectoryName(loadedIndex));
+                string source=Path.Combine(Path.GetDirectoryName(loadedIndex),ext==".md"?"report.md":"report.html");
+                VerifyRegularPath(source);
+                TraceReportExport.Copy(source,dest,new Dictionary<string,object>());
+                status.Text="已匯出暫存器報告："+dest;
+            }catch(Exception ex){MessageBox.Show(this,"匯出失敗："+ex.Message,"暫存器與 UR");}
+        }
     }
 }
 
