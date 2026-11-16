@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "files": {
+    ".github/hooks/ai-governance-copilot.json": "f1e621b216c37f11d9897ad333ab643a5d54f453b7c78fda3c838c4761659c68",
+    ".github/hooks/ai-governance-lifecycle.py": "8bd6baca66cf19f713e8569976fa2000d972a75ece1546b25183d6c723c7fd92",
+    ".github/hooks/ai-governance-vscode.json": "38c55dc51b2a2a6dcaa8f6817bd993bb8dcfca3e1dc5c7c15eb303330e8ed445"
+  }
+}
