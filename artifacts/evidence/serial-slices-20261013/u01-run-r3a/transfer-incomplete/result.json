@@ -1,0 +1,26 @@
+{
+    "selection":  "transfer-incomplete",
+    "trace_sha256":  "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+    "script_sha256":  "f9f3d35444723b80142593cd5061b4730924bbad350e2f369cfe45e820af8ea3",
+    "integrity":  {
+                      "source_unchanged":  true,
+                      "working_copy_unchanged":  true,
+                      "working_copy_readonly":  true
+                  },
+    "run_result":  2,
+    "finished_result":  2,
+    "error":  "",
+    "rows":  [
+
+             ],
+    "summary":  [
+                    0,
+                    0,
+                    0,
+                    0,
+                    3
+                ],
+    "software_version":  "10, 40, 0, 6309",
+    "constants_sha256":  "e92d66548e1a61c727a34d5f251e3c742e469af0683b65c8d94569fb139729fb",
+    "manual_sha256":  "2e2d421164a2382f2634d0103582d973c7991c10957fa7a0d7f4858251dce2df"
+}

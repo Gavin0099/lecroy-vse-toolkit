@@ -1,0 +1,110 @@
+{
+  "oracle": "fixture-oracles.md; status literals derived by hand from user/API contract, not evaluate_profile",
+  "qualification": "NOT_EVALUATED",
+  "cases": [
+    {
+      "file": "complete-pcie.json",
+      "expected": {
+        "R-MODE": "eligible",
+        "R-EPOCH": "eligible",
+        "R-FULL": "eligible",
+        "R-WINDOW": "eligible",
+        "R-FIELD": "eligible",
+        "R-POSITIVE": "eligible",
+        "R-BIDIRECTIONAL": "eligible",
+        "R-USB": "partial"
+      }
+    },
+    {
+      "file": "missing-mode.json",
+      "expected": {
+        "R-MODE": "partial",
+        "R-EPOCH": "partial",
+        "R-FULL": "partial",
+        "R-WINDOW": "partial",
+        "R-FIELD": "partial",
+        "R-POSITIVE": "partial",
+        "R-BIDIRECTIONAL": "partial",
+        "R-USB": "partial"
+      }
+    },
+    {
+      "file": "missing-epoch.json",
+      "expected": {
+        "R-MODE": "eligible",
+        "R-EPOCH": "partial",
+        "R-FULL": "eligible",
+        "R-WINDOW": "eligible",
+        "R-FIELD": "eligible",
+        "R-POSITIVE": "eligible",
+        "R-BIDIRECTIONAL": "eligible",
+        "R-USB": "partial"
+      }
+    },
+    {
+      "file": "partial-capture.json",
+      "expected": {
+        "R-MODE": "eligible",
+        "R-EPOCH": "eligible",
+        "R-FULL": "partial",
+        "R-WINDOW": "eligible",
+        "R-FIELD": "eligible",
+        "R-POSITIVE": "eligible",
+        "R-BIDIRECTIONAL": "eligible",
+        "R-USB": "partial"
+      }
+    },
+    {
+      "file": "unknown-filter.json",
+      "expected": {
+        "R-MODE": "eligible",
+        "R-EPOCH": "eligible",
+        "R-FULL": "eligible",
+        "R-WINDOW": "partial",
+        "R-FIELD": "eligible",
+        "R-POSITIVE": "eligible",
+        "R-BIDIRECTIONAL": "eligible",
+        "R-USB": "partial"
+      }
+    },
+    {
+      "file": "inapplicable.json",
+      "expected": {
+        "R-MODE": "partial",
+        "R-EPOCH": "partial",
+        "R-FULL": "partial",
+        "R-WINDOW": "partial",
+        "R-FIELD": "partial",
+        "R-POSITIVE": "partial",
+        "R-BIDIRECTIONAL": "partial",
+        "R-USB": "partial"
+      }
+    },
+    {
+      "file": "complete-usb.json",
+      "expected": {
+        "R-MODE": "partial",
+        "R-EPOCH": "partial",
+        "R-FULL": "partial",
+        "R-WINDOW": "partial",
+        "R-FIELD": "partial",
+        "R-POSITIVE": "partial",
+        "R-BIDIRECTIONAL": "partial",
+        "R-USB": "eligible"
+      }
+    },
+    {
+      "file": "all-unknown.json",
+      "expected": {
+        "R-MODE": "unknown",
+        "R-EPOCH": "unknown",
+        "R-FULL": "unknown",
+        "R-WINDOW": "unknown",
+        "R-FIELD": "unknown",
+        "R-POSITIVE": "unknown",
+        "R-BIDIRECTIONAL": "unknown",
+        "R-USB": "unknown"
+      }
+    }
+  ]
+}

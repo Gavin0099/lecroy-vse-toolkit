@@ -1,0 +1,49 @@
+# PCIe-G1c full row export v2: every TLP row until natural trace end (cap 100000000 is not expected to be reached).
+# Bootstrap, subscription and row fields are unchanged from p0-d1-tlps.pevs; no G2a transaction fields.
+# Exactly one END line: EndSent guards the cap path (ScriptDone) and the OnFinishScript trace-end path.
+set ModuleType = "Verification Script";
+set OutputType = "VS";
+set InputType = "VS";
+set DecoderDesc = "PCIe G1c TLP row export - all rows until trace end - v2";
+
+%include "VSTools.inc"
+set Emitted = 0;
+set EndSent = 0;
+
+OnStartScript()
+{
+    ScriptForDisplayOnly();
+    ReportText("PCIE_G1B_TLP_ROWS_V2 cap=100000000 time=vendor_display_text");
+    SendAllChannels();
+    SendTraceEventOnly(_PKT_TLP);
+    SendTlpType(_ANY_TYPE);
+    Emitted = 0;
+    EndSent = 0;
+}
+
+ProcessEvent()
+{
+    if (EndSent == 0)
+    {
+        ReportText(FormatEx("PCIE_G1B_TLP|%u|%s|%s|%s|0x%X|%d",
+            in.Index, TimeToText(in.Time), GetEventName(), GetChannelName(),
+            in.TLPType, in.LinkWidth));
+        Emitted++;
+        if (Emitted >= 100000000)
+        {
+            ReportText(FormatEx("PCIE_G1B_END|rows=%u|reason=cap", Emitted));
+            EndSent = 1;
+            ScriptDone();
+        }
+    }
+    return Complete();
+}
+
+OnFinishScript()
+{
+    if (EndSent == 0)
+    {
+        ReportText(FormatEx("PCIE_G1B_END|rows=%u|reason=trace_end", Emitted));
+        EndSent = 1;
+    }
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "pcie.selection-observation/v1",
+  "profile": "packet-dllp",
+  "counts": {
+    "kind": "p01-end",
+    "visited": 2147145,
+    "selected": 0,
+    "emitted": 0,
+    "mismatches": 0,
+    "native_level": 0
+  },
+  "rows": [],
+  "empty_observation": "unknown",
+  "sample_truncated": false,
+  "index_namespace": "_PACKET",
+  "effective_native_range": "unknown",
+  "display_filters": "unknown",
+  "measurement_resolution": "unknown",
+  "qualification": "NOT_EVALUATED"
+}

@@ -1,0 +1,11 @@
+test_definition_cannot_slide_bit_or_add_opaque_policy (test_pcie_aspm_register_view.AspmTests.test_definition_cannot_slide_bit_or_add_opaque_policy) ... ok
+test_independent_bit_examples_and_no_effective_state (test_pcie_aspm_register_view.AspmTests.test_independent_bit_examples_and_no_effective_state) ... ok
+test_missing_rc_and_wire_state_are_unknown (test_pcie_aspm_register_view.AspmTests.test_missing_rc_and_wire_state_are_unknown) ... ok
+test_partial_mask_preserves_unknown_clock_bits (test_pcie_aspm_register_view.AspmTests.test_partial_mask_preserves_unknown_clock_bits) ... ok
+test_snapshot_hash_or_integrity_mismatch_rejected (test_pcie_aspm_register_view.AspmTests.test_snapshot_hash_or_integrity_mismatch_rejected) ... ok
+test_wrong_device_epoch_offset_and_future_discovery_rejected (test_pcie_aspm_register_view.AspmTests.test_wrong_device_epoch_offset_and_future_discovery_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.005s
+
+OK

@@ -1,0 +1,2433 @@
+{
+  "schema_version": "pcie.selection-observation/v1",
+  "profile": "packet-all",
+  "counts": {
+    "kind": "p01-end",
+    "visited": 3457139,
+    "selected": 201,
+    "emitted": 201,
+    "mismatches": 0,
+    "native_level": 0
+  },
+  "rows": [
+    {
+      "kind": "p01-row",
+      "index": 0,
+      "level": 0,
+      "channel": 3,
+      "event_raw": 6,
+      "time2": [
+        8,
+        275589700,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 1,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 6,
+      "time2": [
+        8,
+        276797984,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 2,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 6,
+      "time2": [
+        8,
+        276798474,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 3,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799120,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 4,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799160,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 5,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799192,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 6,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799224,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 7,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799256,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 8,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799288,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 9,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799320,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 10,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799352,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 11,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799384,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 12,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799416,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 13,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799438,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 14,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799448,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 15,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799470,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 16,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799488,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 17,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799502,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 18,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799520,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 19,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799534,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 20,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799552,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 21,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799566,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 22,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799584,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 23,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799598,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 24,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799618,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 25,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799630,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 26,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799650,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 27,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799662,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 28,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799682,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 29,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799694,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 30,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799714,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 31,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799726,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 32,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799746,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 33,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799758,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 34,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799786,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 35,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799790,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 36,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799818,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 37,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799822,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 38,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799850,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 39,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799854,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 40,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799882,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 41,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799886,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 42,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799914,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 43,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799918,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 44,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799946,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 45,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799950,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 46,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799978,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 47,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276799982,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 48,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800010,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 49,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800014,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 50,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800042,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 51,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800046,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 52,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800078,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 53,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800082,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 54,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800110,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 55,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800142,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 56,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800176,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 57,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800208,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 58,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800240,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 59,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800272,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 60,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800304,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 61,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800336,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 62,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800368,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 63,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800400,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 64,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800432,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 65,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800464,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 66,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800504,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 67,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800536,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 68,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800568,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 69,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800600,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 70,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800632,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 71,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800664,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 72,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800696,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 73,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800728,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 74,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800760,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 75,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800792,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 76,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800824,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 77,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800856,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 78,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800888,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 79,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800920,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 80,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800952,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 81,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276800984,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 82,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801016,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 83,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801048,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 84,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801080,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 85,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801112,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 86,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801144,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 87,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801176,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 88,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801208,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 89,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801240,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 90,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801272,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 91,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801304,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 92,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801336,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 93,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801368,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 94,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801400,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 95,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801432,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 96,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801464,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 97,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801496,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 98,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801528,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 99,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801560,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 100,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801592,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 101,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801624,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 102,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801656,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 103,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801690,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 104,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801722,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 105,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801754,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 106,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801786,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 107,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801818,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 108,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801850,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 109,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801882,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 110,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801914,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 111,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801946,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 112,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276801978,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 113,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802010,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 114,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802042,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 115,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802074,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 116,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802106,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 117,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802138,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 118,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802170,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 119,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802202,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 120,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802234,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 121,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802266,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 122,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802298,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 123,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802330,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 124,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802362,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 125,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802394,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 126,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802426,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 127,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802458,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 128,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802490,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 129,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802522,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 130,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802554,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 131,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802586,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 132,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802618,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 133,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802650,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 134,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802682,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 135,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802714,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 136,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802746,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 137,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802778,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 138,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802810,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 139,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802842,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 140,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802882,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 141,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802914,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 142,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802946,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 143,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276802978,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 144,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803010,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 145,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803042,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 146,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803074,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 147,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803106,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 148,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803138,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 149,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803170,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 150,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803202,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 151,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803236,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 152,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803268,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 153,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803300,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 154,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803332,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 155,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803364,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 156,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803396,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 157,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803428,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 158,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803460,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 159,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803492,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 160,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803524,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 161,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803556,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 162,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803588,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 163,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803620,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 164,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803652,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 165,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803684,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 166,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803716,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 167,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803748,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 168,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803780,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 169,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803812,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 170,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803844,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 171,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803876,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 172,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803908,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 173,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803940,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 174,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276803972,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 175,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804004,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 176,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804036,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 177,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804068,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 178,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804100,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 179,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804114,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 180,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804132,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 181,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804146,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 182,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804164,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 183,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804178,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 184,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804196,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 185,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804210,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 186,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804228,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 187,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804242,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 188,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804262,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 189,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804274,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 190,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804294,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 191,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804306,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 192,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804326,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 193,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804338,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 194,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804358,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 195,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804378,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 196,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804390,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 197,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804410,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 198,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804422,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 199,
+      "level": 0,
+      "channel": 2,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804442,
+        0
+      ]
+    },
+    {
+      "kind": "p01-row",
+      "index": 200,
+      "level": 0,
+      "channel": 1,
+      "event_raw": 5,
+      "time2": [
+        8,
+        276804454,
+        0
+      ]
+    }
+  ],
+  "empty_observation": null,
+  "sample_truncated": false,
+  "index_namespace": "_PACKET",
+  "effective_native_range": "unknown",
+  "display_filters": "unknown",
+  "measurement_resolution": "unknown",
+  "qualification": "NOT_EVALUATED"
+}

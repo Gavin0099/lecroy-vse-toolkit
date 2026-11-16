@@ -1,0 +1,11 @@
+test_all_packet_rows_and_pointers_are_same_source (test_usb_report_appendix.UsbAppendixTests.test_all_packet_rows_and_pointers_are_same_source) ... ok
+test_bad_baseline_identity_and_opaque_observations_rejected (test_usb_report_appendix.UsbAppendixTests.test_bad_baseline_identity_and_opaque_observations_rejected) ... ok
+test_base_html_exactly_preserved_after_section_removed (test_usb_report_appendix.UsbAppendixTests.test_base_html_exactly_preserved_after_section_removed) ... ok
+test_historical_values_untouched_and_qualification_unknown (test_usb_report_appendix.UsbAppendixTests.test_historical_values_untouched_and_qualification_unknown) ... ok
+test_html_escaping_offline_ids_and_link_resolution (test_usb_report_appendix.UsbAppendixTests.test_html_escaping_offline_ids_and_link_resolution) ... ok
+test_unknown_and_candidates_do_not_become_root_cause (test_usb_report_appendix.UsbAppendixTests.test_unknown_and_candidates_do_not_become_root_cause) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.944s
+
+OK

@@ -1,0 +1,23 @@
+# PCIe POC C2: read only the first subscribed event's vendor index.
+set ModuleType = "Verification Script";
+set OutputType = "VS";
+set InputType = "VS";
+set DecoderDesc = "PCIe P0-C2 one vendor event index - index-v1";
+
+%include "VSTools.inc"
+
+OnStartScript()
+{
+    ScriptForDisplayOnly();
+    ReportText("PCIE_P0_C2_INDEX_V1");
+    SendAllChannels();
+    SendTraceEventOnly(_PKT_TLP);
+    SendTlpType(_ANY_TYPE);
+}
+
+ProcessEvent()
+{
+    ReportText(FormatEx("PCIE_P0_C2_INDEX=%u", in.Index));
+    ScriptDone();
+    return Complete();
+}

@@ -1,0 +1,518 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "manifest_id",
+    "origin",
+    "trace",
+    "toolchain",
+    "sources",
+    "evidence",
+    "capabilities",
+    "observations",
+    "historical_claims",
+    "claim_boundary"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "s01.input-manifest/v1"
+    },
+    "manifest_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "origin": {
+      "enum": [
+        "synthetic",
+        "recorded",
+        "legacy"
+      ]
+    },
+    "trace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "trace_id",
+        "sha256",
+        "protocol",
+        "identity_evidence_refs",
+        "facts"
+      ],
+      "properties": {
+        "trace_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9A-Fa-f]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "protocol": {
+          "enum": [
+            "pcie",
+            "usb",
+            "unknown"
+          ]
+        },
+        "identity_evidence_refs": {
+          "type": "array",
+          "minItems": 0,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "facts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode",
+            "bidirectional",
+            "capture_start",
+            "capture_end",
+            "epoch",
+            "filters"
+          ],
+          "properties": {
+            "mode": {
+              "$ref": "#/$defs/fact"
+            },
+            "bidirectional": {
+              "$ref": "#/$defs/fact"
+            },
+            "capture_start": {
+              "$ref": "#/$defs/fact"
+            },
+            "capture_end": {
+              "$ref": "#/$defs/fact"
+            },
+            "epoch": {
+              "$ref": "#/$defs/fact"
+            },
+            "filters": {
+              "$ref": "#/$defs/fact"
+            }
+          }
+        }
+      }
+    },
+    "toolchain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "software_version",
+        "extractor_sha256",
+        "constants_sha256",
+        "evidence_refs"
+      ],
+      "properties": {
+        "software_version": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "extractor_sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9A-Fa-f]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "constants_sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9A-Fa-f]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "minItems": 0,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_id",
+          "revision",
+          "locator",
+          "review_depth",
+          "sections",
+          "applicability",
+          "evidence_refs"
+        ],
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "revision": {
+            "type": "string",
+            "minLength": 1
+          },
+          "locator": {
+            "type": "string",
+            "minLength": 1
+          },
+          "review_depth": {
+            "enum": [
+              "metadata_only",
+              "sections_reviewed"
+            ]
+          },
+          "sections": {
+            "type": "array",
+            "minItems": 0,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "applicability": {
+            "enum": [
+              "applicable",
+              "not_applicable",
+              "unknown"
+            ]
+          },
+          "evidence_refs": {
+            "type": "array",
+            "minItems": 0,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "locator",
+          "sha256",
+          "note"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "document",
+              "saved_output",
+              "manual_review",
+              "synthetic",
+              "legacy"
+            ]
+          },
+          "locator": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[0-9A-Fa-f]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "note": {
+            "type": "string",
+            "minLength": 1
+          },
+          "trace_sha256": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[0-9A-Fa-f]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "api_support",
+          "applicability",
+          "availability",
+          "evidence_refs"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "api_support": {
+            "enum": [
+              "supported",
+              "unsupported",
+              "unknown"
+            ]
+          },
+          "applicability": {
+            "enum": [
+              "applicable",
+              "not_applicable",
+              "unknown"
+            ]
+          },
+          "availability": {
+            "enum": [
+              "available",
+              "unavailable",
+              "unknown",
+              "not_applicable"
+            ]
+          },
+          "evidence_refs": {
+            "type": "array",
+            "minItems": 0,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "observations": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "event",
+          "state",
+          "count",
+          "coverage",
+          "evidence_refs"
+        ],
+        "properties": {
+          "event": {
+            "type": "string",
+            "minLength": 1
+          },
+          "state": {
+            "enum": [
+              "observed",
+              "not_observed_in_coverage",
+              "unknown",
+              "not_applicable"
+            ]
+          },
+          "count": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "coverage": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "selection",
+              "retention",
+              "extraction",
+              "start_index",
+              "end_index"
+            ],
+            "properties": {
+              "selection": {
+                "enum": [
+                  "included",
+                  "excluded",
+                  "unknown",
+                  "not_applicable"
+                ]
+              },
+              "retention": {
+                "enum": [
+                  "retained",
+                  "dropped",
+                  "unknown",
+                  "not_applicable"
+                ]
+              },
+              "extraction": {
+                "enum": [
+                  "complete",
+                  "partial",
+                  "unknown",
+                  "not_applicable"
+                ]
+              },
+              "start_index": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "end_index": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            }
+          },
+          "evidence_refs": {
+            "type": "array",
+            "minItems": 0,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "historical_claims": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "claim",
+          "scope",
+          "evidence_refs"
+        ],
+        "properties": {
+          "claim": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scope": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_refs": {
+            "type": "array",
+            "minItems": 0,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "claim_boundary": {
+      "const": "INPUT_METADATA_ONLY"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.invalid/lecroy-vse-toolkit/s01-input-manifest-v1.schema.json",
+  "title": "S01 offline input metadata; no protocol verdict",
+  "$defs": {
+    "fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "value",
+        "evidence_refs"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "known",
+            "unknown",
+            "not_applicable"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "minItems": 0,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

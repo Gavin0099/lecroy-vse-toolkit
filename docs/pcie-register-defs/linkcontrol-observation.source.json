@@ -1,0 +1,12 @@
+{
+  "source_id": "PCI-45",
+  "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk/ns-ntddk-_pci_express_link_control_register",
+  "title": "PCI_EXPRESS_LINK_CONTROL_REGISTER union (ntddk.h)",
+  "source_page_updated": "2026-06-29",
+  "reviewed_on": "2026-10-13",
+  "review_depth": "Syntax and selected Members",
+  "selected_layout": {"ASPM Control": {"lsb": 0, "width": 2}, "CommonClockConfig": {"lsb": 6, "width": 1}, "EnableClockPowerManagement": {"lsb": 8, "width": 1}},
+  "excluded": {"LinkDisable": "port-type applicability not qualified", "RetrainLink": "port-type applicability/read semantics not qualified"},
+  "offset_authority": "existing Linux v6.12 pci_regs reference and source-bound B2c capability map, not the WDK page",
+  "claim_boundary": "primary implementation layout; no complete PCIe spec, electrical, effective-state or policy qualification"
+}

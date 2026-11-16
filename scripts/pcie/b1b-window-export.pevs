@@ -1,0 +1,332 @@
+# PCIe-B1b case window export v1: every link-layer change inside one packet-index window, plus
+# per-segment counts. A segment starts at each LTSSM change or link condition inside the window.
+# Case-specific window (hang trace): 225041 (first link condition next to the last TLP before the
+# TLP-free stretch) to 1484414 (last TLP). LTSSM and speed/width state is tracked from trace start
+# and separately for channel 1, channel 2 and any other channel (B1a merged the latter two).
+# Error flag names follow the VSE manual (section 5.2.1). No rules, no interpretation.
+set ModuleType = "Verification Script";
+set OutputType = "VS";
+set InputType = "VS";
+set DecoderDesc = "PCIe B1b case window link-layer export - v1";
+
+%include "VSTools.inc"
+
+const WIN_START = 225041;
+const WIN_END = 1484414;
+
+set Seg = 0;
+set SegEvents = 0;
+set SegFirst = 0;
+set SegLast = 0;
+set SegFirstTime = 0;
+set SegLastTime = 0;
+set STlp = 0;
+set SAck = 0;
+set SNak = 0;
+set SFc = 0;
+set SPm = 0;
+set SDllpOther = 0;
+set STs1 = 0;
+set STs2 = 0;
+set SEios = 0;
+set SEieos = 0;
+set SSkip = 0;
+set SOsOther = 0;
+set SErrAny = 0;
+set SErrDisp = 0;
+set SErrSym = 0;
+set SErrWrongSym = 0;
+set SErrDelim = 0;
+set SErrEndBad = 0;
+set SErrAlign = 0;
+set SErrIdle = 0;
+set STsRate = 0;
+set STsFormat = 0;
+set STsParity = 0;
+set STsRsrv = 0;
+set SBadLcrc = 0;
+set SBadCrc = 0;
+set TEvents = 0;
+set TTlp = 0;
+set TErrAny = 0;
+set P1a = 1000;
+set P1b = 1000;
+set P1c = 1000;
+set P2a = 1000;
+set P2b = 1000;
+set P2c = 1000;
+set P3a = 1000;
+set P3b = 1000;
+set P3c = 1000;
+set Q1s = 1000;
+set Q1w = 1000;
+set Q2s = 1000;
+set Q2w = 1000;
+set Q3s = 1000;
+set Q3w = 1000;
+set EndSent = 0;
+
+Flag(v)
+{
+    if (v != null)
+    {
+        if (v != 0)
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+FlushSegment()
+{
+    if (SegEvents > 0)
+    {
+        Seg++;
+        ReportText(FormatEx("PCIE_B1B_SEG|%u|%u|%s|%u|%s|%u|%u",
+            Seg, SegFirst, TimeToText(SegFirstTime), SegLast, TimeToText(SegLastTime), SegEvents, STlp));
+        ReportText(FormatEx("PCIE_B1B_SEGPKT|%u|%u|%u|%u|%u|%u|%u|%u|%u|%u|%u|%u",
+            Seg, SAck, SNak, SFc, SPm, SDllpOther, STs1, STs2, SEios, SEieos, SSkip, SOsOther));
+        ReportText(FormatEx("PCIE_B1B_SEGERR|%u|%u|%u|%u|%u|%u|%u|%u|%u|%u|%u|%u|%u|%u|%u",
+            Seg, SErrAny, SErrDisp, SErrSym, SErrWrongSym, SErrDelim, SErrEndBad, SErrAlign, SErrIdle,
+            STsRate, STsFormat, STsParity, STsRsrv, SBadLcrc, SBadCrc));
+    }
+    SegEvents = 0;
+    STlp = 0;
+    SAck = 0;
+    SNak = 0;
+    SFc = 0;
+    SPm = 0;
+    SDllpOther = 0;
+    STs1 = 0;
+    STs2 = 0;
+    SEios = 0;
+    SEieos = 0;
+    SSkip = 0;
+    SOsOther = 0;
+    SErrAny = 0;
+    SErrDisp = 0;
+    SErrSym = 0;
+    SErrWrongSym = 0;
+    SErrDelim = 0;
+    SErrEndBad = 0;
+    SErrAlign = 0;
+    SErrIdle = 0;
+    STsRate = 0;
+    STsFormat = 0;
+    STsParity = 0;
+    STsRsrv = 0;
+    SBadLcrc = 0;
+    SBadCrc = 0;
+}
+
+OnStartScript()
+{
+    ScriptForDisplayOnly();
+    ReportText(FormatEx("PCIE_B1B_WINDOW_V1 start=%u end=%u", WIN_START, WIN_END));
+    SendAllChannels();
+    SendTraceEventOnly(_PKT_TLP);
+    SendTraceEvent(_PKT_DLLP);
+    SendTraceEvent(_PKT_ORDERED_SET);
+    SendTraceEvent(_PKT_LINK_CONDITION);
+    SendTraceEvent(_PKT_EIE_EVENT);
+    SendTlpType(_ANY_TYPE);
+    SendDllpType(_ANY_TYPE);
+    SendLtssm();
+    EndSent = 0;
+}
+
+ProcessEvent()
+{
+    idx = in.Index;
+    event = in.TraceEvent;
+
+    ltssmchanged = 0;
+    ltssm = in.LtssmState;
+    if (ltssm != null)
+    {
+        if (in.Channel == _CHANNEL_1)
+        {
+            if (ltssm[0] != P1a || ltssm[1] != P1b || ltssm[3] != P1c)
+            {
+                ltssmchanged = 1;
+                P1a = ltssm[0];
+                P1b = ltssm[1];
+                P1c = ltssm[3];
+            }
+        }
+        else if (in.Channel == _CHANNEL_2)
+        {
+            if (ltssm[0] != P2a || ltssm[1] != P2b || ltssm[3] != P2c)
+            {
+                ltssmchanged = 1;
+                P2a = ltssm[0];
+                P2b = ltssm[1];
+                P2c = ltssm[3];
+            }
+        }
+        else
+        {
+            if (ltssm[0] != P3a || ltssm[1] != P3b || ltssm[3] != P3c)
+            {
+                ltssmchanged = 1;
+                P3a = ltssm[0];
+                P3b = ltssm[1];
+                P3c = ltssm[3];
+            }
+        }
+    }
+
+    swchanged = 0;
+    speed = in.Speed;
+    width = in.LinkWidth;
+    if (speed != null && width != null && speed != _SPEED_UNDEFINED && width != _LINK_WIDTH_UNDEFINED)
+    {
+        if (in.Channel == _CHANNEL_1)
+        {
+            if (speed != Q1s || width != Q1w)
+            {
+                swchanged = 1;
+                Q1s = speed;
+                Q1w = width;
+            }
+        }
+        else if (in.Channel == _CHANNEL_2)
+        {
+            if (speed != Q2s || width != Q2w)
+            {
+                swchanged = 1;
+                Q2s = speed;
+                Q2w = width;
+            }
+        }
+        else
+        {
+            if (speed != Q3s || width != Q3w)
+            {
+                swchanged = 1;
+                Q3s = speed;
+                Q3w = width;
+            }
+        }
+    }
+
+    if (idx < WIN_START || idx > WIN_END)
+    {
+        return Complete();
+    }
+
+    if (ltssmchanged == 1 || event == _PKT_LINK_CONDITION)
+    {
+        FlushSegment();
+    }
+    if (SegEvents == 0)
+    {
+        SegFirst = idx;
+        SegFirstTime = in.Time;
+    }
+    SegEvents++;
+    SegLast = idx;
+    SegLastTime = in.Time;
+    TEvents++;
+
+    if (event == _PKT_TLP)
+    {
+        STlp++;
+        TTlp++;
+        SBadLcrc += Flag(in.BadLCRC);
+        ReportText(FormatEx("PCIE_B1B_TLP|%u|%s|%s|%u", idx, TimeToText(in.Time), GetChannelName(), in.TLPType));
+    }
+
+    if (event == _PKT_DLLP)
+    {
+        dtype = in.DLLPType;
+        select
+        {
+            dtype == DLLP_TYPE_ACK : SAck++;
+            dtype == DLLP_TYPE_NAK : SNak++;
+            dtype == DLLP_TYPE_INIT_FC1_P || dtype == DLLP_TYPE_INIT_FC1_NP || dtype == DLLP_TYPE_INIT_FC1_CPL ||
+            dtype == DLLP_TYPE_INIT_FC2_P || dtype == DLLP_TYPE_INIT_FC2_NP || dtype == DLLP_TYPE_INIT_FC2_CPL ||
+            dtype == DLLP_TYPE_UPDATE_FC_P || dtype == DLLP_TYPE_UPDATE_FC_NP || dtype == DLLP_TYPE_UPDATE_FC_CPL : SFc++;
+            dtype == DLLP_TYPE_PM_ENTER_L1 || dtype == DLLP_TYPE_PM_ENTER_L23 ||
+            dtype == DLLP_TYPE_PM_ACT_STATE_REQUEST_L1 || dtype == DLLP_TYPE_PM_REQUEST_ACK : SPm++;
+            default : SDllpOther++;
+        };
+        SBadCrc += Flag(in.BadCRC);
+        if (dtype == DLLP_TYPE_NAK)
+        {
+            seq = "NA";
+            if (in.AckNak_SeqNum != null)
+            {
+                seq = FormatEx("%u", in.AckNak_SeqNum);
+            }
+            ReportText(FormatEx("PCIE_B1B_NAK|%u|%s|%s|%s", idx, TimeToText(in.Time), GetChannelName(), seq));
+        }
+        if (dtype == DLLP_TYPE_PM_ENTER_L1 || dtype == DLLP_TYPE_PM_ENTER_L23 ||
+            dtype == DLLP_TYPE_PM_ACT_STATE_REQUEST_L1 || dtype == DLLP_TYPE_PM_REQUEST_ACK)
+        {
+            ReportText(FormatEx("PCIE_B1B_PM|%u|%s|%s|%u", idx, TimeToText(in.Time), GetChannelName(), dtype));
+        }
+    }
+
+    if (event == _PKT_ORDERED_SET)
+    {
+        otype = in.OrderedSetType;
+        select
+        {
+            otype == ORDSET_TYPE_TS1 || otype == ORDSET_TYPE_TS1_MOD : STs1++;
+            otype == ORDSET_TYPE_TS2 || otype == ORDSET_TYPE_TS2_MOD : STs2++;
+            otype == ORDSET_TYPE_EIOS  : SEios++;
+            otype == ORDSET_TYPE_EIEOS : SEieos++;
+            otype == ORDSET_TYPE_SKIP  : SSkip++;
+            default                    : SOsOther++;
+        };
+    }
+
+    if (Flag(in.HasErrors) == 1)
+    {
+        SErrAny++;
+        TErrAny++;
+        SErrDisp += Flag(in.ErrorDisparity);
+        SErrSym += Flag(in.ErrorSymbol);
+        SErrWrongSym += Flag(in.ErrorWrongSymbol);
+        SErrDelim += Flag(in.ErrorDelimiter);
+        SErrEndBad += Flag(in.ErrorEndBad);
+        SErrAlign += Flag(in.ErrorAlignment);
+        SErrIdle += Flag(in.HasIdleErrors);
+        STsRate += Flag(in.TsErrorDataRate);
+        STsFormat += Flag(in.TsErrorFormat);
+        STsParity += Flag(in.TsErrorParity);
+        STsRsrv += Flag(in.TsErrorRsrvField);
+    }
+
+    if (event == _PKT_LINK_CONDITION)
+    {
+        ctype = "NA";
+        if (in.LinkConditionType != null)
+        {
+            ctype = FormatEx("%u", in.LinkConditionType);
+        }
+        ReportText(FormatEx("PCIE_B1B_LINKCOND|%u|%s|%s|%s", idx, TimeToText(in.Time), GetChannelName(), ctype));
+    }
+    if (ltssmchanged == 1)
+    {
+        ReportText(FormatEx("PCIE_B1B_LTSSM|%u|%s|%s|%u|%u|%u|%u|%u",
+            idx, TimeToText(in.Time), GetChannelName(), event, ltssm[0], ltssm[1], ltssm[3], ltssm[2]));
+    }
+    if (swchanged == 1)
+    {
+        ReportText(FormatEx("PCIE_B1B_SPEEDWIDTH|%u|%s|%s|%u|%u|%u", idx, TimeToText(in.Time), GetChannelName(), event, speed, width));
+    }
+    return Complete();
+}
+
+OnFinishScript()
+{
+    if (EndSent == 0)
+    {
+        FlushSegment();
+        ReportText(FormatEx("PCIE_B1B_END|events=%u|tlp=%u|err_any=%u|segments=%u|reason=trace_end", TEvents, TTlp, TErrAny, Seg));
+        EndSent = 1;
+    }
+}

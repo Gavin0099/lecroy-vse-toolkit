@@ -1,0 +1,847 @@
+{
+  "schema": "pcie.recovery-observations/v1",
+  "slice": "P11",
+  "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+  "origin": "saved_native_state_vector_named_with_probed_constants",
+  "points": [
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 225041,
+        "channel_raw": "Upstream"
+      },
+      "time_display": "9.512 sec",
+      "source_pointer": "/2",
+      "raw": {
+        "state": 1,
+        "substate": 0,
+        "subsubstate": 34,
+        "valid": 0
+      },
+      "state_name_from_constant": "DETECT",
+      "substate_name_from_constant": "UNDEFINED",
+      "validity": "invalid",
+      "duplicate_of": null,
+      "feature": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 225051,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "9.512 sec",
+      "source_pointer": "/7",
+      "raw": {
+        "state": 5,
+        "substate": 12,
+        "subsubstate": 0,
+        "valid": 1
+      },
+      "state_name_from_constant": "RECOVERY",
+      "substate_name_from_constant": "RECOVERY_RCVRLOCK",
+      "validity": "valid",
+      "duplicate_of": null,
+      "feature": "recovery_state"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 990789,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "9.538 sec",
+      "source_pointer": "/10",
+      "raw": {
+        "state": 5,
+        "substate": 16,
+        "subsubstate": 0,
+        "valid": 1
+      },
+      "state_name_from_constant": "RECOVERY",
+      "substate_name_from_constant": "RECOVERY_RCVRSPD",
+      "validity": "valid",
+      "duplicate_of": null,
+      "feature": "recovery_state"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 990799,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "9.552 sec",
+      "source_pointer": "/30",
+      "raw": {
+        "state": 5,
+        "substate": 12,
+        "subsubstate": 0,
+        "valid": 1
+      },
+      "state_name_from_constant": "RECOVERY",
+      "substate_name_from_constant": "RECOVERY_RCVRLOCK",
+      "validity": "valid",
+      "duplicate_of": null,
+      "feature": "recovery_state"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 1096915,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "9.563 sec",
+      "source_pointer": "/34",
+      "raw": {
+        "state": 5,
+        "substate": 16,
+        "subsubstate": 0,
+        "valid": 1
+      },
+      "state_name_from_constant": "RECOVERY",
+      "substate_name_from_constant": "RECOVERY_RCVRSPD",
+      "validity": "valid",
+      "duplicate_of": null,
+      "feature": "recovery_state"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 1096917,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "9.575 sec",
+      "source_pointer": "/38",
+      "raw": {
+        "state": 5,
+        "substate": 12,
+        "subsubstate": 0,
+        "valid": 1
+      },
+      "state_name_from_constant": "RECOVERY",
+      "substate_name_from_constant": "RECOVERY_RCVRLOCK",
+      "validity": "valid",
+      "duplicate_of": null,
+      "feature": "recovery_state"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 1096918,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "9.575 sec",
+      "source_pointer": "/40",
+      "raw": {
+        "state": 2,
+        "substate": 0,
+        "subsubstate": 34,
+        "valid": 0
+      },
+      "state_name_from_constant": "POLLING",
+      "substate_name_from_constant": "UNDEFINED",
+      "validity": "invalid",
+      "duplicate_of": null,
+      "feature": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 1479845,
+        "channel_raw": "Upstream"
+      },
+      "time_display": "10.912 sec",
+      "source_pointer": "/44",
+      "raw": {
+        "state": 2,
+        "substate": 0,
+        "subsubstate": 34,
+        "valid": 1
+      },
+      "state_name_from_constant": "POLLING",
+      "substate_name_from_constant": "UNDEFINED",
+      "validity": "valid",
+      "duplicate_of": null,
+      "feature": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 1484025,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "10.912 sec",
+      "source_pointer": "/47",
+      "raw": {
+        "state": 3,
+        "substate": 17,
+        "subsubstate": 0,
+        "valid": 1
+      },
+      "state_name_from_constant": "CONFIG",
+      "substate_name_from_constant": "CFG_LINKWIDTH_STRT",
+      "validity": "valid",
+      "duplicate_of": null,
+      "feature": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 1484046,
+        "channel_raw": "Upstream"
+      },
+      "time_display": "10.912 sec",
+      "source_pointer": "/49",
+      "raw": {
+        "state": 3,
+        "substate": 17,
+        "subsubstate": 0,
+        "valid": 1
+      },
+      "state_name_from_constant": "CONFIG",
+      "substate_name_from_constant": "CFG_LINKWIDTH_STRT",
+      "validity": "valid",
+      "duplicate_of": null,
+      "feature": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 1484050,
+        "channel_raw": "Upstream"
+      },
+      "time_display": "10.912 sec",
+      "source_pointer": "/51",
+      "raw": {
+        "state": 3,
+        "substate": 18,
+        "subsubstate": 0,
+        "valid": 1
+      },
+      "state_name_from_constant": "CONFIG",
+      "substate_name_from_constant": "CFG_LINKWIDTH_ACPT",
+      "validity": "valid",
+      "duplicate_of": null,
+      "feature": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 1484053,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "10.912 sec",
+      "source_pointer": "/53",
+      "raw": {
+        "state": 3,
+        "substate": 18,
+        "subsubstate": 0,
+        "valid": 1
+      },
+      "state_name_from_constant": "CONFIG",
+      "substate_name_from_constant": "CFG_LINKWIDTH_ACPT",
+      "validity": "valid",
+      "duplicate_of": null,
+      "feature": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 1484072,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "10.912 sec",
+      "source_pointer": "/55",
+      "raw": {
+        "state": 3,
+        "substate": 19,
+        "subsubstate": 0,
+        "valid": 1
+      },
+      "state_name_from_constant": "CONFIG",
+      "substate_name_from_constant": "CFG_LANENUM_WAIT_ACPT",
+      "validity": "valid",
+      "duplicate_of": null,
+      "feature": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 1484097,
+        "channel_raw": "Upstream"
+      },
+      "time_display": "10.912 sec",
+      "source_pointer": "/57",
+      "raw": {
+        "state": 3,
+        "substate": 19,
+        "subsubstate": 0,
+        "valid": 1
+      },
+      "state_name_from_constant": "CONFIG",
+      "substate_name_from_constant": "CFG_LANENUM_WAIT_ACPT",
+      "validity": "valid",
+      "duplicate_of": null,
+      "feature": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 1484118,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "10.912 sec",
+      "source_pointer": "/59",
+      "raw": {
+        "state": 3,
+        "substate": 20,
+        "subsubstate": 0,
+        "valid": 1
+      },
+      "state_name_from_constant": "CONFIG",
+      "substate_name_from_constant": "CFG_COMPLETE",
+      "validity": "valid",
+      "duplicate_of": null,
+      "feature": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 1484147,
+        "channel_raw": "Upstream"
+      },
+      "time_display": "10.912 sec",
+      "source_pointer": "/61",
+      "raw": {
+        "state": 3,
+        "substate": 20,
+        "subsubstate": 0,
+        "valid": 1
+      },
+      "state_name_from_constant": "CONFIG",
+      "substate_name_from_constant": "CFG_COMPLETE",
+      "validity": "valid",
+      "duplicate_of": null,
+      "feature": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 1484186,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "10.912 sec",
+      "source_pointer": "/63",
+      "raw": {
+        "state": 5,
+        "substate": 12,
+        "subsubstate": 0,
+        "valid": 1
+      },
+      "state_name_from_constant": "RECOVERY",
+      "substate_name_from_constant": "RECOVERY_RCVRLOCK",
+      "validity": "valid",
+      "duplicate_of": null,
+      "feature": "recovery_state"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 1484200,
+        "channel_raw": "Upstream"
+      },
+      "time_display": "10.912 sec",
+      "source_pointer": "/65",
+      "raw": {
+        "state": 5,
+        "substate": 12,
+        "subsubstate": 0,
+        "valid": 1
+      },
+      "state_name_from_constant": "RECOVERY",
+      "substate_name_from_constant": "RECOVERY_RCVRLOCK",
+      "validity": "valid",
+      "duplicate_of": null,
+      "feature": "recovery_state"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 1484216,
+        "channel_raw": "Upstream"
+      },
+      "time_display": "10.912 sec",
+      "source_pointer": "/67",
+      "raw": {
+        "state": 5,
+        "substate": 13,
+        "subsubstate": 0,
+        "valid": 1
+      },
+      "state_name_from_constant": "RECOVERY",
+      "substate_name_from_constant": "RECOVERY_RCVRCFG",
+      "validity": "valid",
+      "duplicate_of": null,
+      "feature": "recovery_state"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 1484229,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "10.912 sec",
+      "source_pointer": "/69",
+      "raw": {
+        "state": 5,
+        "substate": 13,
+        "subsubstate": 0,
+        "valid": 1
+      },
+      "state_name_from_constant": "RECOVERY",
+      "substate_name_from_constant": "RECOVERY_RCVRCFG",
+      "validity": "valid",
+      "duplicate_of": null,
+      "feature": "recovery_state"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 1484273,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "10.912 sec",
+      "source_pointer": "/71",
+      "raw": {
+        "state": 4,
+        "substate": 0,
+        "subsubstate": 0,
+        "valid": 1
+      },
+      "state_name_from_constant": "L0",
+      "substate_name_from_constant": "UNDEFINED",
+      "validity": "valid",
+      "duplicate_of": null,
+      "feature": "l0_state"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 1484298,
+        "channel_raw": "Upstream"
+      },
+      "time_display": "10.912 sec",
+      "source_pointer": "/73",
+      "raw": {
+        "state": 4,
+        "substate": 0,
+        "subsubstate": 0,
+        "valid": 1
+      },
+      "state_name_from_constant": "L0",
+      "substate_name_from_constant": "UNDEFINED",
+      "validity": "valid",
+      "duplicate_of": null,
+      "feature": "l0_state"
+    }
+  ],
+  "link_condition_points": [
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 225041,
+        "channel_raw": "Upstream"
+      },
+      "time_display": "9.512 sec",
+      "source_pointer": "/1",
+      "raw_type": 1,
+      "name_from_constant": "LINK_DOWN",
+      "electrical_link_state": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 990789,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "9.538 sec",
+      "source_pointer": "/9",
+      "raw_type": 1,
+      "name_from_constant": "LINK_DOWN",
+      "electrical_link_state": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 990790,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "9.538 sec",
+      "source_pointer": "/12",
+      "raw_type": 2,
+      "name_from_constant": "LINK_UP",
+      "electrical_link_state": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 990791,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "9.541 sec",
+      "source_pointer": "/14",
+      "raw_type": 1,
+      "name_from_constant": "LINK_DOWN",
+      "electrical_link_state": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 990792,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "9.541 sec",
+      "source_pointer": "/16",
+      "raw_type": 2,
+      "name_from_constant": "LINK_UP",
+      "electrical_link_state": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 990793,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "9.545 sec",
+      "source_pointer": "/18",
+      "raw_type": 1,
+      "name_from_constant": "LINK_DOWN",
+      "electrical_link_state": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 990794,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "9.545 sec",
+      "source_pointer": "/20",
+      "raw_type": 2,
+      "name_from_constant": "LINK_UP",
+      "electrical_link_state": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 990795,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "9.548 sec",
+      "source_pointer": "/22",
+      "raw_type": 1,
+      "name_from_constant": "LINK_DOWN",
+      "electrical_link_state": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 990796,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "9.548 sec",
+      "source_pointer": "/24",
+      "raw_type": 2,
+      "name_from_constant": "LINK_UP",
+      "electrical_link_state": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 990797,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "9.552 sec",
+      "source_pointer": "/26",
+      "raw_type": 1,
+      "name_from_constant": "LINK_DOWN",
+      "electrical_link_state": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 990798,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "9.552 sec",
+      "source_pointer": "/28",
+      "raw_type": 2,
+      "name_from_constant": "LINK_UP",
+      "electrical_link_state": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 1096915,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "9.563 sec",
+      "source_pointer": "/33",
+      "raw_type": 1,
+      "name_from_constant": "LINK_DOWN",
+      "electrical_link_state": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 1096916,
+        "channel_raw": "Downstream"
+      },
+      "time_display": "9.575 sec",
+      "source_pointer": "/36",
+      "raw_type": 2,
+      "name_from_constant": "LINK_UP",
+      "electrical_link_state": "unknown"
+    },
+    {
+      "packet_ref": {
+        "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+        "index": 1479760,
+        "channel_raw": "Upstream"
+      },
+      "time_display": "10.912 sec",
+      "source_pointer": "/42",
+      "raw_type": 2,
+      "name_from_constant": "LINK_UP",
+      "electrical_link_state": "unknown"
+    }
+  ],
+  "channels_observed": [
+    "Downstream",
+    "Upstream"
+  ],
+  "role_mapping": "unknown",
+  "transitions": [
+    {
+      "channel_raw": "Downstream",
+      "from_point": 1,
+      "to_point": 2,
+      "basis": "successive_saved_same_channel_samples",
+      "continuous_state_interval": "unknown",
+      "elapsed_time": "unknown"
+    },
+    {
+      "channel_raw": "Downstream",
+      "from_point": 2,
+      "to_point": 3,
+      "basis": "successive_saved_same_channel_samples",
+      "continuous_state_interval": "unknown",
+      "elapsed_time": "unknown"
+    },
+    {
+      "channel_raw": "Downstream",
+      "from_point": 3,
+      "to_point": 4,
+      "basis": "successive_saved_same_channel_samples",
+      "continuous_state_interval": "unknown",
+      "elapsed_time": "unknown"
+    },
+    {
+      "channel_raw": "Downstream",
+      "from_point": 4,
+      "to_point": 5,
+      "basis": "successive_saved_same_channel_samples",
+      "continuous_state_interval": "unknown",
+      "elapsed_time": "unknown"
+    },
+    {
+      "channel_raw": "Downstream",
+      "from_point": 5,
+      "to_point": 6,
+      "basis": "successive_saved_same_channel_samples",
+      "continuous_state_interval": "unknown",
+      "elapsed_time": "unknown"
+    },
+    {
+      "channel_raw": "Upstream",
+      "from_point": 0,
+      "to_point": 7,
+      "basis": "successive_saved_same_channel_samples",
+      "continuous_state_interval": "unknown",
+      "elapsed_time": "unknown"
+    },
+    {
+      "channel_raw": "Downstream",
+      "from_point": 6,
+      "to_point": 8,
+      "basis": "successive_saved_same_channel_samples",
+      "continuous_state_interval": "unknown",
+      "elapsed_time": "unknown"
+    },
+    {
+      "channel_raw": "Upstream",
+      "from_point": 7,
+      "to_point": 9,
+      "basis": "successive_saved_same_channel_samples",
+      "continuous_state_interval": "unknown",
+      "elapsed_time": "unknown"
+    },
+    {
+      "channel_raw": "Upstream",
+      "from_point": 9,
+      "to_point": 10,
+      "basis": "successive_saved_same_channel_samples",
+      "continuous_state_interval": "unknown",
+      "elapsed_time": "unknown"
+    },
+    {
+      "channel_raw": "Downstream",
+      "from_point": 8,
+      "to_point": 11,
+      "basis": "successive_saved_same_channel_samples",
+      "continuous_state_interval": "unknown",
+      "elapsed_time": "unknown"
+    },
+    {
+      "channel_raw": "Downstream",
+      "from_point": 11,
+      "to_point": 12,
+      "basis": "successive_saved_same_channel_samples",
+      "continuous_state_interval": "unknown",
+      "elapsed_time": "unknown"
+    },
+    {
+      "channel_raw": "Upstream",
+      "from_point": 10,
+      "to_point": 13,
+      "basis": "successive_saved_same_channel_samples",
+      "continuous_state_interval": "unknown",
+      "elapsed_time": "unknown"
+    },
+    {
+      "channel_raw": "Downstream",
+      "from_point": 12,
+      "to_point": 14,
+      "basis": "successive_saved_same_channel_samples",
+      "continuous_state_interval": "unknown",
+      "elapsed_time": "unknown"
+    },
+    {
+      "channel_raw": "Upstream",
+      "from_point": 13,
+      "to_point": 15,
+      "basis": "successive_saved_same_channel_samples",
+      "continuous_state_interval": "unknown",
+      "elapsed_time": "unknown"
+    },
+    {
+      "channel_raw": "Downstream",
+      "from_point": 14,
+      "to_point": 16,
+      "basis": "successive_saved_same_channel_samples",
+      "continuous_state_interval": "unknown",
+      "elapsed_time": "unknown"
+    },
+    {
+      "channel_raw": "Upstream",
+      "from_point": 15,
+      "to_point": 17,
+      "basis": "successive_saved_same_channel_samples",
+      "continuous_state_interval": "unknown",
+      "elapsed_time": "unknown"
+    },
+    {
+      "channel_raw": "Upstream",
+      "from_point": 17,
+      "to_point": 18,
+      "basis": "successive_saved_same_channel_samples",
+      "continuous_state_interval": "unknown",
+      "elapsed_time": "unknown"
+    },
+    {
+      "channel_raw": "Downstream",
+      "from_point": 16,
+      "to_point": 19,
+      "basis": "successive_saved_same_channel_samples",
+      "continuous_state_interval": "unknown",
+      "elapsed_time": "unknown"
+    },
+    {
+      "channel_raw": "Downstream",
+      "from_point": 19,
+      "to_point": 20,
+      "basis": "successive_saved_same_channel_samples",
+      "continuous_state_interval": "unknown",
+      "elapsed_time": "unknown"
+    },
+    {
+      "channel_raw": "Upstream",
+      "from_point": 18,
+      "to_point": 21,
+      "basis": "successive_saved_same_channel_samples",
+      "continuous_state_interval": "unknown",
+      "elapsed_time": "unknown"
+    }
+  ],
+  "observations": {
+    "recovery_state": {
+      "state": "observed",
+      "sample_count": 9
+    },
+    "equalization_state": {
+      "state": "unknown",
+      "sample_count": 0
+    },
+    "hot_reset_state": {
+      "state": "unknown",
+      "sample_count": 0
+    },
+    "l0_state": {
+      "state": "observed",
+      "sample_count": 2
+    }
+  },
+  "physical_reset": "unknown",
+  "coverage": {
+    "state_point_export": "change_only",
+    "validity_change_retention": "unknown",
+    "capture_start": "unknown",
+    "capture_end": "unknown",
+    "mode": "unknown",
+    "epoch": "unknown",
+    "perst_sideband": "unknown"
+  },
+  "entry_exit_qualification": "NOT_EVALUATED",
+  "timing_rules": "NOT_EVALUATED",
+  "qualification": "NOT_EVALUATED",
+  "claim_boundary": "positive state-point observations only; no duration/absence/timeout/PHY/EQ electrical verdict",
+  "sources": {
+    "state_points": {
+      "path": "C:\\Users\\reiko\\.codex\\worktrees\\pcie-slice-delivery\\lecroy-vse-toolkit\\artifacts\\evidence\\pcie-b1b-hang-20260914\\window-export\\export\\timeline.json",
+      "sha256": "d612f674b9f10a620d98afe1a7823f8c852ec5beb9254c5e7841628a89c7ff41",
+      "binding": "CORROBORATED_LEGACY"
+    },
+    "constant_run": {
+      "path": "artifacts\\evidence\\p03-serial-20261013\\p11-constants-native-b\\com-run.json",
+      "sha256": "d47585cc2379f33f25826ad8a6ec62c8f809fd941fac6279fd1016030b7fa832"
+    },
+    "constants": {
+      "path": "artifacts\\evidence\\p03-serial-20261013\\p11-constants-native-b\\vse-output.txt",
+      "sha256": "13a79db648c3d7a2300e805002386df1730c4a09e552983403e4144ee778a33e"
+    }
+  },
+  "parser_dependency": {
+    "path": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\scripts\\pcie\\verify_b1b0_constants.py",
+    "sha256": "e8afe2326568ce56a3536b7a49de51af5e8f09aa9d6f27ab1e6540dd4d4815fc",
+    "checkout_head": "c100ee1bba49c0e1956c726e287ff5158e70aec5"
+  },
+  "source_ids": [
+    "LC-01:packet input LtssmState validity vector",
+    "LC-16:LTSSM example"
+  ],
+  "limitations": [
+    "saved change-only extractor did not compare validity bit when deduplicating states; validity-only transitions may be omitted",
+    "state labels use same installed native constants; source remains corroborated legacy, not a new capture",
+    "display time quantum is not hardware timer accuracy; no continuous intervals reconstructed",
+    "no PERST/sideband or physical reset evidence; original B1d four validation debts remain"
+  ]
+}

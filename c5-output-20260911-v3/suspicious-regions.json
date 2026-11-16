@@ -1,0 +1,238 @@
+{
+    "analysis":  "C5 automatic suspicious-region discovery",
+    "pass_timeline":  ".\\c4-output-20260911\\pass-timeline.json",
+    "fail_timeline":  ".\\c4-output-20260911\\fail-timeline.json",
+    "status":  "PASS",
+    "top_k":  3,
+    "trace_relative_windows":  true,
+    "absolute_cross_trace_alignment_used":  false,
+    "windowing":  {
+                      "window_ns":  10000000,
+                      "stride_ns":  1000000,
+                      "bin_ns":  1000000,
+                      "rare_pass_global_count_threshold":  10
+                  },
+    "pass_overview":  {
+                          "total_events":  354499,
+                          "link_cmd":  353289,
+                          "ltssm_state":  35,
+                          "lfps":  1175
+                      },
+    "fail_overview":  {
+                          "total_events":  213232,
+                          "link_cmd":  166196,
+                          "ltssm_state":  30,
+                          "lfps":  47006
+                      },
+    "pass_baseline":  {
+                          "start_timestamp_ns":  2088403560,
+                          "end_timestamp_ns":  31136486152,
+                          "window_count":  29041,
+                          "feature_stats":  {
+                                                "lfps_count":  {
+                                                                   "median":  0,
+                                                                   "p95":  0,
+                                                                   "max":  601
+                                                               },
+                                                "ltssm_state_count":  {
+                                                                          "median":  0,
+                                                                          "p95":  0,
+                                                                          "max":  15
+                                                                      },
+                                                "link_cmd_count":  {
+                                                                       "median":  160,
+                                                                       "p95":  160,
+                                                                       "max":  3140
+                                                                   },
+                                                "lfps_ratio":  {
+                                                                   "median":  0,
+                                                                   "p95":  0,
+                                                                   "max":  0.99601593625498008
+                                                               },
+                                                "rare_lfps_count":  {
+                                                                        "median":  0,
+                                                                        "p95":  0,
+                                                                        "max":  87
+                                                                    }
+                                            }
+                      },
+    "fail_scan":  {
+                      "start_timestamp_ns":  67664,
+                      "end_timestamp_ns":  22165751328,
+                      "window_count":  22158
+                  },
+    "candidates":  [
+                       {
+                           "rank":  1,
+                           "score":  0.849435,
+                           "start_timestamp_ns":  21786067664,
+                           "end_timestamp_ns":  21796067664,
+                           "link_cmd_count":  0,
+                           "ltssm_state_count":  5,
+                           "lfps_count":  3042,
+                           "total_count":  3047,
+                           "rare_lfps_count":  821,
+                           "lfps_ratio":  0.99835904168034129,
+                           "reasons":  [
+                                           "LFPS burst above PASS baseline",
+                                           "rare/unseen raw LFPS signatures",
+                                           "LTSSM density above PASS baseline",
+                                           "LINK_CMD activity below PASS baseline"
+                                       ],
+                           "top_raw_lfps_signatures":  [
+                                                           {
+                                                               "lfps_type":  72,
+                                                               "pattern_type":  4,
+                                                               "duration_ns":  648,
+                                                               "starts_pattern":  0,
+                                                               "count":  1112
+                                                           },
+                                                           {
+                                                               "lfps_type":  72,
+                                                               "pattern_type":  4,
+                                                               "duration_ns":  656,
+                                                               "starts_pattern":  0,
+                                                               "count":  814
+                                                           },
+                                                           {
+                                                               "lfps_type":  74,
+                                                               "pattern_type":  4,
+                                                               "duration_ns":  2200,
+                                                               "starts_pattern":  1,
+                                                               "count":  179
+                                                           },
+                                                           {
+                                                               "lfps_type":  68,
+                                                               "pattern_type":  1,
+                                                               "duration_ns":  1056,
+                                                               "starts_pattern":  0,
+                                                               "count":  162
+                                                           },
+                                                           {
+                                                               "lfps_type":  73,
+                                                               "pattern_type":  4,
+                                                               "duration_ns":  1568,
+                                                               "starts_pattern":  0,
+                                                               "count":  162
+                                                           }
+                                                       ]
+                       },
+                       {
+                           "rank":  2,
+                           "score":  0.846479,
+                           "start_timestamp_ns":  13996067664,
+                           "end_timestamp_ns":  14006067664,
+                           "link_cmd_count":  0,
+                           "ltssm_state_count":  10,
+                           "lfps_count":  600,
+                           "total_count":  610,
+                           "rare_lfps_count":  90,
+                           "lfps_ratio":  0.98360655737704916,
+                           "reasons":  [
+                                           "LFPS burst above PASS baseline",
+                                           "rare/unseen raw LFPS signatures",
+                                           "LTSSM density above PASS baseline",
+                                           "LINK_CMD activity below PASS baseline"
+                                       ],
+                           "top_raw_lfps_signatures":  [
+                                                           {
+                                                               "lfps_type":  68,
+                                                               "pattern_type":  1,
+                                                               "duration_ns":  1056,
+                                                               "starts_pattern":  0,
+                                                               "count":  176
+                                                           },
+                                                           {
+                                                               "lfps_type":  68,
+                                                               "pattern_type":  1,
+                                                               "duration_ns":  1056,
+                                                               "starts_pattern":  1,
+                                                               "count":  57
+                                                           },
+                                                           {
+                                                               "lfps_type":  72,
+                                                               "pattern_type":  5,
+                                                               "duration_ns":  696,
+                                                               "starts_pattern":  0,
+                                                               "count":  41
+                                                           },
+                                                           {
+                                                               "lfps_type":  68,
+                                                               "pattern_type":  1,
+                                                               "duration_ns":  1048,
+                                                               "starts_pattern":  0,
+                                                               "count":  40
+                                                           },
+                                                           {
+                                                               "lfps_type":  72,
+                                                               "pattern_type":  4,
+                                                               "duration_ns":  648,
+                                                               "starts_pattern":  0,
+                                                               "count":  37
+                                                           }
+                                                       ]
+                       },
+                       {
+                           "rank":  3,
+                           "score":  0.812368,
+                           "start_timestamp_ns":  21796067664,
+                           "end_timestamp_ns":  21806067664,
+                           "link_cmd_count":  0,
+                           "ltssm_state_count":  1,
+                           "lfps_count":  2335,
+                           "total_count":  2336,
+                           "rare_lfps_count":  754,
+                           "lfps_ratio":  0.99957191780821919,
+                           "reasons":  [
+                                           "LFPS burst above PASS baseline",
+                                           "rare/unseen raw LFPS signatures",
+                                           "LINK_CMD activity below PASS baseline"
+                                       ],
+                           "top_raw_lfps_signatures":  [
+                                                           {
+                                                               "lfps_type":  72,
+                                                               "pattern_type":  4,
+                                                               "duration_ns":  648,
+                                                               "starts_pattern":  0,
+                                                               "count":  896
+                                                           },
+                                                           {
+                                                               "lfps_type":  72,
+                                                               "pattern_type":  4,
+                                                               "duration_ns":  656,
+                                                               "starts_pattern":  0,
+                                                               "count":  685
+                                                           },
+                                                           {
+                                                               "lfps_type":  74,
+                                                               "pattern_type":  4,
+                                                               "duration_ns":  2200,
+                                                               "starts_pattern":  1,
+                                                               "count":  135
+                                                           },
+                                                           {
+                                                               "lfps_type":  73,
+                                                               "pattern_type":  4,
+                                                               "duration_ns":  1568,
+                                                               "starts_pattern":  0,
+                                                               "count":  131
+                                                           },
+                                                           {
+                                                               "lfps_type":  73,
+                                                               "pattern_type":  4,
+                                                               "duration_ns":  1560,
+                                                               "starts_pattern":  0,
+                                                               "count":  100
+                                                           }
+                                                       ]
+                       }
+                   ],
+    "claims":  [
+                   "The FAIL candidates are ranked without an engineer-supplied timestamp, event index, or root-cause hint.",
+                   "PASS is used as a behavioral baseline; windows are relative to each trace and are not cross-trace timestamp alignment.",
+                   "Raw LFPS values are reported numerically and are not assigned enum names.",
+                   "Candidate ranking is triage evidence, not root cause, severity, or automatic PASS/FAIL classification.",
+                   "The ground-truth region is not an input to this analysis; it is reserved for post-run qualification."
+               ],
+    "trace_integrity_qualified":  true
+}

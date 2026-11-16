@@ -1,0 +1,48 @@
+{
+    "source":  {
+                   "sha256":  "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+                   "size":  104136704,
+                   "mtime":  "2026-09-10T09:48:45.8250022Z",
+                   "readonly":  false
+               },
+    "working":  {
+                    "sha256":  "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+                    "size":  104136704,
+                    "mtime":  "2026-09-10T09:48:45.8250022Z",
+                    "readonly":  true
+                },
+    "script":  {
+                   "sha256":  "ff6138ad64c2c2e5eee2655e39740be11e210e95a44363fce83b68a28369c9a8",
+                   "size":  1243,
+                   "mtime":  "2026-10-13T05:39:24.5131070Z",
+                   "readonly":  false
+               },
+    "toolchain":  {
+                      "software_version":  "10, 40, 0, 6309",
+                      "exe":  {
+                                  "sha256":  "07b50aebb8a042dcdb347960779e5e2ab215726476456bed99a25e3c61050840",
+                                  "size":  57452928,
+                                  "mtime":  "2026-08-11T01:53:40.0000000Z",
+                                  "readonly":  false
+                              },
+                      "constants":  {
+                                        "sha256":  "e92d66548e1a61c727a34d5f251e3c742e469af0683b65c8d94569fb139729fb",
+                                        "size":  14042,
+                                        "mtime":  "2026-08-11T00:47:31.0000000Z",
+                                        "readonly":  false
+                                    },
+                      "vstools":  {
+                                      "sha256":  "77e4d6a91dc6396866794fe095977f2719391c789be2ed4b752e6ea1e3ae2699",
+                                      "size":  94698,
+                                      "mtime":  "2026-08-11T00:47:31.0000000Z",
+                                      "readonly":  false
+                                  },
+                      "host":  {
+                                   "sha256":  "d3bc274078a9f259ab8d42daa342ab87d36c3a2acee6fe4b06c3680186558884",
+                                   "size":  8054,
+                                   "mtime":  "2026-10-13T05:19:31.1331266Z",
+                                   "readonly":  false
+                               },
+                      "plan_sha256":  "8144364864ca1bf6e6ae35c0853f92a568cd55bdcff6b4a6df484664b625b413"
+                  }
+}

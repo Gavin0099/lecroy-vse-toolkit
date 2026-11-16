@@ -1,0 +1,15 @@
+test_cli_rejects_existing_output_and_tampered_timeline (test_b3d_observation_report.ObservationReportTests.test_cli_rejects_existing_output_and_tampered_timeline) ... ok
+test_concrete_observations_have_resolving_evidence (test_b3d_observation_report.ObservationReportTests.test_concrete_observations_have_resolving_evidence) ... ok
+test_display_times_and_unknown_tail_not_promoted_to_absence (test_b3d_observation_report.ObservationReportTests.test_display_times_and_unknown_tail_not_promoted_to_absence) ... ok
+test_ground_truth_is_engineer_report_not_root_cause (test_b3d_observation_report.ObservationReportTests.test_ground_truth_is_engineer_report_not_root_cause) ... ok
+test_hostile_text_is_escaped_not_active_markup (test_b3d_observation_report.ObservationReportTests.test_hostile_text_is_escaped_not_active_markup) ... ok
+test_html_is_offline_and_packet_anchors_unique (test_b3d_observation_report.ObservationReportTests.test_html_is_offline_and_packet_anchors_unique) ... ok
+test_markdown_and_html_preserve_rule_states_and_key_values (test_b3d_observation_report.ObservationReportTests.test_markdown_and_html_preserve_rule_states_and_key_values) ... ok
+test_opaque_extensions_not_report_facts (test_b3d_observation_report.ObservationReportTests.test_opaque_extensions_not_report_facts) ... ok
+test_rule_title_reference_matches_rule_identity (test_b3d_observation_report.ObservationReportTests.test_rule_title_reference_matches_rule_identity) ... ok
+test_statuses_come_from_cited_source_and_rendered_model (test_b3d_observation_report.ObservationReportTests.test_statuses_come_from_cited_source_and_rendered_model) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.857s
+
+OK

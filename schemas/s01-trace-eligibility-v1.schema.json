@@ -1,0 +1,196 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "profiles",
+    "traces",
+    "claim_boundary"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "s01.trace-eligibility/v1"
+    },
+    "profiles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/profile"
+      }
+    },
+    "traces": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "manifest",
+          "assessments"
+        ],
+        "properties": {
+          "manifest": {
+            "$ref": "s01-input-manifest-v1.schema.json"
+          },
+          "assessments": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "slice_id",
+                "status",
+                "conditions",
+                "qualification"
+              ],
+              "properties": {
+                "slice_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "status": {
+                  "enum": [
+                    "eligible",
+                    "partial",
+                    "missing",
+                    "unknown"
+                  ]
+                },
+                "conditions": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "requirement",
+                      "status",
+                      "reason",
+                      "evidence_refs"
+                    ],
+                    "properties": {
+                      "requirement": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "status": {
+                        "enum": [
+                          "met",
+                          "missing",
+                          "unknown",
+                          "not_applicable"
+                        ]
+                      },
+                      "reason": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "evidence_refs": {
+                        "type": "array",
+                        "minItems": 0,
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    }
+                  }
+                },
+                "qualification": {
+                  "const": "NOT_EVALUATED"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "claim_boundary": {
+      "const": "INPUT_ELIGIBILITY_ONLY"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.invalid/lecroy-vse-toolkit/s01-trace-eligibility-v1.schema.json",
+  "title": "S01 input eligibility matrix; no execution or qualification authorization",
+  "$defs": {
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "slice_id",
+        "engineer_question",
+        "expected_observation",
+        "requirements",
+        "protocol",
+        "modes"
+      ],
+      "properties": {
+        "slice_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "engineer_question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_observation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requirements": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "id",
+              "expected"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "fact",
+                  "field",
+                  "event",
+                  "coverage"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "expected": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "boolean"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "protocol": {
+          "enum": [
+            "pcie",
+            "usb"
+          ]
+        },
+        "modes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

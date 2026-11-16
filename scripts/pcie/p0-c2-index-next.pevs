@@ -1,0 +1,30 @@
+# C2d dependency probe: read the next subscribed event, not a fixed value.
+set ModuleType = "Verification Script";
+set OutputType = "VS";
+set InputType = "VS";
+set DecoderDesc = "PCIe P0-C2 next vendor event index - dependency-v1";
+
+%include "VSTools.inc"
+set SkipOne = 0;
+
+OnStartScript()
+{
+    ScriptForDisplayOnly();
+    ReportText("PCIE_P0_C2_NEXT_INDEX_V1");
+    SendAllChannels();
+    SendTraceEventOnly(_PKT_TLP);
+    SendTlpType(_ANY_TYPE);
+    SkipOne = 1;
+}
+
+ProcessEvent()
+{
+    if (SkipOne)
+    {
+        SkipOne = 0;
+        return Complete();
+    }
+    ReportText(FormatEx("PCIE_P0_C2_NEXT_INDEX=%u", in.Index));
+    ScriptDone();
+    return Complete();
+}

@@ -1,0 +1,42 @@
+# U02: LC-04 PDF19/20/32; LC-09/12; USB-01 7.2.2.1-.2 / 7.3.5.
+set Visited = 0;
+set KnownModeCount = 0;
+set UnknownModeCount = 0;
+set Emitted = 0;
+set Mismatches = 0;
+%include "VSTools.inc"
+OnStartScript()
+{
+    SendAllChannels();
+    SendLevelOnly(_PKT);
+    SendTraceEventOnly(_USB3_LINK_CMD);
+    SendPktsWithBadCRC(1);
+    ScriptForDisplayOnly();
+}
+ProcessEvent()
+{
+    Visited++;
+    if (in.Level != _PKT || in.TraceEvent != _USB3_LINK_CMD) Mismatches++;
+    if (in.Speed == _SS || in.Speed == _SSP)
+    {
+        KnownModeCount++;
+        if (Emitted < 128)
+        {
+            ModeName = "SS";
+            if (in.Speed == _SSP) ModeName = "SSP";
+            ReportText(FormatEx("U02|%d|%d|%d|%d|%d|%d|%d|%d|%d|%d|%s|%s",
+                in.Index, in.Time[0], in.Time[1], in.Channel, in.Speed,
+                in.LnkCmd, in.LinkCmdInfo, in.CRC5, in.LinkCmdInfo_2, in.CRC5_2,
+                GetUsb3LnkCmdDesc(in.LnkCmd), ModeName));
+            Emitted++;
+        }
+    }
+    else UnknownModeCount++;
+    return Complete();
+}
+OnFinishScript()
+{
+    ReportText(FormatEx("U02-UNSUPPORTED-MODE|%d", UnknownModeCount));
+    NotifyClient(2502, ["U01-END", Visited, KnownModeCount, Emitted, Mismatches, _PKT]);
+    return 0;
+}

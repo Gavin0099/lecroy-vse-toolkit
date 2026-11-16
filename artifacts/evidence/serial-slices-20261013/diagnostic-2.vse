@@ -1,0 +1,29 @@
+set Visited = 0;
+set Selected = 0;
+set Emitted = 0;
+set LevelMismatches = 0;
+%include "VSTools.inc"
+OnStartScript()
+{
+    ReportText("U01-D2 start");
+    SendAllChannels();
+    SendLevelOnly(_PKT);
+    SendAllTraceEvents();
+    ScriptForDisplayOnly();
+}
+ProcessEvent()
+{
+    Visited++;
+    if (in.Level != _PKT) LevelMismatches++;
+    if (in.Index >= 0 && in.Index <= 200)
+    {
+        Selected++;
+        Emitted++;
+    }
+    return Complete();
+}
+OnFinishScript()
+{
+    ReportText(FormatEx("U01-D2 counts %d %d %d %d", Visited, Selected, Emitted, LevelMismatches));
+    return 0;
+}

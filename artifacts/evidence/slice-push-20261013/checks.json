@@ -1,0 +1,147 @@
+{
+  "schema": "slice-push-checks/v1",
+  "status": "PASS_SCOPED_DELIVERY",
+  "staged_files": 460,
+  "python_tests": {
+    "s01": {
+      "count": 42,
+      "status": "PASS",
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/s01",
+        "-p",
+        "test_*.py",
+        "-v"
+      ]
+    },
+    "u01": {
+      "count": 14,
+      "status": "PASS",
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/u01",
+        "-p",
+        "test_*.py",
+        "-v"
+      ]
+    },
+    "usb_fields": {
+      "count": 14,
+      "status": "PASS",
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/usb_fields",
+        "-p",
+        "test_*.py",
+        "-v"
+      ]
+    },
+    "selection_pcie": {
+      "count": 7,
+      "status": "PASS",
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/selection_pcie",
+        "-p",
+        "test_*.py",
+        "-v"
+      ]
+    },
+    "pcie_fields": {
+      "count": 11,
+      "status": "PASS",
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/pcie_fields",
+        "-p",
+        "test_*.py",
+        "-v"
+      ]
+    },
+    "pcie_recovery": {
+      "count": 10,
+      "status": "PASS",
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/pcie_recovery",
+        "-p",
+        "test_*.py",
+        "-v"
+      ]
+    },
+    "pcie_aspm_view": {
+      "count": 6,
+      "status": "PASS",
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/pcie_aspm_view",
+        "-p",
+        "test_*.py",
+        "-v"
+      ]
+    }
+  },
+  "python_total": 104,
+  "managed_cases": 10,
+  "existing_files_unchanged": 1110,
+  "authorized_existing_changes": [
+    "docs/pcie-usb-spec-slices-20261013.md",
+    "PLAN.md"
+  ],
+  "opaque_evidence_index_byte_checks": 389,
+  "source_whitespace": "PASS; cr-at-eol recognized",
+  "opaque_whitespace": "Captured output whitespace preserved; full diff-check diagnostics retained, not normalized",
+  "large_private_inputs_staged": false,
+  "no_checkout_transfer": true,
+  "full_case_replay": "original local179+10 results retained; giant timelines/frozen checkout prerequisites not shipped",
+  "secret_pattern_scan": "PASS scoped staged files"
+}

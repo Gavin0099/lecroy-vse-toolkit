@@ -1,0 +1,10 @@
+  File E:\BackUp\Git_EE\lecroy-vse-toolkit\artifacts\evidence\p03-serial-20261013\tlp-b\working.pex.
+  From Packet #3148 to Packet #3148.
+
+Packet#
+_______|_______________________________________________________________________Filtered Traffic 
+Packet(3148) Downstream 5.0(x1) TLP(1492) Cfg 
+_______| CfgRd0(000:00100) Length(1) RequesterID(000:00:0) Tag(4) 
+_______| DeviceID(001:00:0) Register(0x0F8) 1st BE(1111) LCRC(0xEA88273A) 
+_______| Time Delta(308.000 ns) Time Stamp(0008.276942148000s) 
+_______|_______________________________________________________________________

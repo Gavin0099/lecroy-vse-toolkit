@@ -1,0 +1,236 @@
+{
+  "schema_version": "s01.input-manifest/v1",
+  "manifest_id": "U03-FIELD-SAMPLE",
+  "origin": "recorded",
+  "trace": {
+    "trace_id": "U03-a5568248d1c3",
+    "sha256": "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+    "protocol": "usb",
+    "identity_evidence_refs": [
+      "NATIVE-OUTPUT"
+    ],
+    "facts": {
+      "mode": {
+        "state": "unknown",
+        "value": null,
+        "evidence_refs": []
+      },
+      "bidirectional": {
+        "state": "unknown",
+        "value": null,
+        "evidence_refs": []
+      },
+      "capture_start": {
+        "state": "unknown",
+        "value": null,
+        "evidence_refs": []
+      },
+      "capture_end": {
+        "state": "unknown",
+        "value": null,
+        "evidence_refs": []
+      },
+      "epoch": {
+        "state": "unknown",
+        "value": null,
+        "evidence_refs": []
+      },
+      "filters": {
+        "state": "known",
+        "value": "{\"bad_crc_flag\": 1, \"level\": \"_PKT\", \"mode_guard\": [\"_SS\", \"_SSP\"], \"sample_limit\": 128, \"slice\": \"U03\"}",
+        "evidence_refs": [
+          "NATIVE-OUTPUT"
+        ]
+      }
+    }
+  },
+  "toolchain": {
+    "software_version": "10, 40, 0, 6309",
+    "extractor_sha256": "ff6138ad64c2c2e5eee2655e39740be11e210e95a44363fce83b68a28369c9a8",
+    "constants_sha256": "e92d66548e1a61c727a34d5f251e3c742e469af0683b65c8d94569fb139729fb",
+    "evidence_refs": [
+      "BEFORE"
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "LC-04",
+      "revision": "VSE Manual9.12, July2025, Suite10.13+",
+      "locator": "installed:USBProtocolSuiteVSEManual.pdf",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "PDF19/20/30/31/32"
+      ],
+      "applicability": "applicable",
+      "evidence_refs": [
+        "LC-04-DOC"
+      ]
+    },
+    {
+      "source_id": "LC-09",
+      "revision": "Installed VSTools SHA in before.json",
+      "locator": "installed:VSTools.inc",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "GetLfpsDesc",
+        "GetUsb3LnkCmdDesc"
+      ],
+      "applicability": "applicable",
+      "evidence_refs": [
+        "LC-09-DOC"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "NATIVE-OUTPUT",
+      "kind": "saved_output",
+      "locator": "artifacts\\evidence\\serial-slices-20261013\\u03-run-b\\result.json",
+      "sha256": "833e89b60dc7258dd325388f7e055fab6dd412a53836a5c15ac680b3323a0b34",
+      "trace_sha256": "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+      "note": "Native field sample only; no wire correctness or complete capture claim."
+    },
+    {
+      "id": "BEFORE",
+      "kind": "saved_output",
+      "locator": "artifacts\\evidence\\serial-slices-20261013\\u03-run-b\\before.json",
+      "sha256": "15143139d8c0632a4a5def72d8987dd18568844590448af51d6d52cb0393c884",
+      "trace_sha256": "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+      "note": "Source/script/toolchain preflight identity; not coverage proof."
+    },
+    {
+      "id": "LC-04-DOC",
+      "kind": "document",
+      "locator": "installed:USBProtocolSuiteVSEManual.pdf",
+      "sha256": null,
+      "note": "Manual9.12 selected input/member sections read; not a runtime availability proof."
+    },
+    {
+      "id": "LC-09-DOC",
+      "kind": "document",
+      "locator": "installed:VSTools.inc",
+      "sha256": "77e4d6a91dc6396866794fe095977f2719391c789be2ed4b752e6ea1e3ae2699",
+      "note": "Installed vendor name functions; native classifier origin retained."
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "usb.in.Index",
+      "api_support": "supported",
+      "applicability": "applicable",
+      "availability": "available",
+      "evidence_refs": [
+        "NATIVE-OUTPUT"
+      ]
+    },
+    {
+      "id": "usb.in.Time",
+      "api_support": "supported",
+      "applicability": "applicable",
+      "availability": "available",
+      "evidence_refs": [
+        "NATIVE-OUTPUT"
+      ]
+    },
+    {
+      "id": "usb.in.Channel",
+      "api_support": "supported",
+      "applicability": "applicable",
+      "availability": "available",
+      "evidence_refs": [
+        "NATIVE-OUTPUT"
+      ]
+    },
+    {
+      "id": "usb.in.Speed",
+      "api_support": "supported",
+      "applicability": "applicable",
+      "availability": "available",
+      "evidence_refs": [
+        "NATIVE-OUTPUT"
+      ]
+    },
+    {
+      "id": "usb.in.Type",
+      "api_support": "supported",
+      "applicability": "applicable",
+      "availability": "available",
+      "evidence_refs": [
+        "NATIVE-OUTPUT"
+      ]
+    },
+    {
+      "id": "usb.in.Duration",
+      "api_support": "supported",
+      "applicability": "applicable",
+      "availability": "available",
+      "evidence_refs": [
+        "NATIVE-OUTPUT"
+      ]
+    },
+    {
+      "id": "usb.in.DurationSec",
+      "api_support": "supported",
+      "applicability": "applicable",
+      "availability": "available",
+      "evidence_refs": [
+        "NATIVE-OUTPUT"
+      ]
+    },
+    {
+      "id": "usb.in.DurationNS",
+      "api_support": "supported",
+      "applicability": "applicable",
+      "availability": "available",
+      "evidence_refs": [
+        "NATIVE-OUTPUT"
+      ]
+    },
+    {
+      "id": "usb.in.PatternType",
+      "api_support": "supported",
+      "applicability": "applicable",
+      "availability": "available",
+      "evidence_refs": [
+        "NATIVE-OUTPUT"
+      ]
+    },
+    {
+      "id": "usb.in.StartsPattern",
+      "api_support": "supported",
+      "applicability": "applicable",
+      "availability": "available",
+      "evidence_refs": [
+        "NATIVE-OUTPUT"
+      ]
+    },
+    {
+      "id": "usb.GetLfpsDesc",
+      "api_support": "supported",
+      "applicability": "applicable",
+      "availability": "available",
+      "evidence_refs": [
+        "NATIVE-OUTPUT"
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "event": "usb.LFPS",
+      "state": "observed",
+      "count": 128,
+      "coverage": {
+        "selection": "included",
+        "retention": "unknown",
+        "extraction": "partial",
+        "start_index": 629253,
+        "end_index": 1504210
+      },
+      "evidence_refs": [
+        "NATIVE-OUTPUT"
+      ]
+    }
+  ],
+  "historical_claims": [],
+  "claim_boundary": "INPUT_METADATA_ONLY"
+}

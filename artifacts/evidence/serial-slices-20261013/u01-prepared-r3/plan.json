@@ -1,0 +1,90 @@
+{
+  "schema_version": "u01.selection-plan/v3",
+  "trace_id": "usb-demo-fail-known-source",
+  "trace_sha256": "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+  "protocol": "usb",
+  "profiles": [
+    {
+      "id": "packet-default",
+      "level": "_PKT",
+      "script": "packet-default.vse",
+      "script_sha256": "8988006365941a0d5f8fdfb27a8809a9b68b4e55eb4c0324864f563ee891c1b5",
+      "calls": [
+        "SendAllTraceEvents();"
+      ]
+    },
+    {
+      "id": "packet-crc-off",
+      "level": "_PKT",
+      "script": "packet-crc-off.vse",
+      "script_sha256": "136224790f9cc05abd6196026c0a4828ba4efcd69af1f9691b8008fef2df353f",
+      "calls": [
+        "SendAllTraceEvents();",
+        "SendPktsWithBadCRC(0);"
+      ]
+    },
+    {
+      "id": "packet-crc-on",
+      "level": "_PKT",
+      "script": "packet-crc-on.vse",
+      "script_sha256": "4d501f7595a5bd54ab3b96d282ed7714147801b8712a8359d1d3c216ae00b927",
+      "calls": [
+        "SendAllTraceEvents();",
+        "SendPktsWithBadCRC(1);"
+      ]
+    },
+    {
+      "id": "transaction-all",
+      "level": "_TRA",
+      "script": "transaction-all.vse",
+      "script_sha256": "b4cced6939640292b4cf82dd93abae20eba9574d4b158ba5a304d8a482b9a50e",
+      "calls": [
+        "SendAllTraceEvents();"
+      ]
+    },
+    {
+      "id": "transfer-default",
+      "level": "_XFER",
+      "script": "transfer-default.vse",
+      "script_sha256": "5a3de42d30888d38c8a983d7ec693bb86cc6960e382f6280dda18d92f0da6c49",
+      "calls": [
+        "SendTransfer(_ANY, _ANY, _ANY);"
+      ]
+    },
+    {
+      "id": "transfer-complete",
+      "level": "_XFER",
+      "script": "transfer-complete.vse",
+      "script_sha256": "b62a03a1b199d9c2b10906d172c157297da975073f1cadffebd7626693598b69",
+      "calls": [
+        "SendTransfer(_ANY, _ANY, _ANY, 1, 0);"
+      ]
+    },
+    {
+      "id": "transfer-incomplete",
+      "level": "_XFER",
+      "script": "transfer-incomplete.vse",
+      "script_sha256": "f9f3d35444723b80142593cd5061b4730924bbad350e2f369cfe45e820af8ea3",
+      "calls": [
+        "SendTransfer(_ANY, _ANY, _ANY, 0, 0);"
+      ]
+    }
+  ],
+  "requested_range": {
+    "namespace": "level_local_event_index",
+    "start": 0,
+    "end": 200
+  },
+  "range_application": "post_dispatch_guard",
+  "max_exported_rows": 512,
+  "source_sections": [
+    "PDF19: input context",
+    "PDF89: in.Completed",
+    "PDF152: SendLevelOnly",
+    "PDF157: SendAllChannels",
+    "PDF161: SendAllTraceEvents",
+    "PDF168: SendTransfer",
+    "PDF170: SendPktsWithBadCRC"
+  ],
+  "qualification": "NOT_EVALUATED"
+}

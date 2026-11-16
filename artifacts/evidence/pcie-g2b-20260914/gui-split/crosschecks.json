@@ -1,0 +1,25 @@
+{
+  "source": "LeCroy PETracer 13.26 Build 43 BETA, Split transaction view, 1350 G2a protected copy, 2026-09-14 13:30-13:33 +08:00",
+  "crosschecks": [
+    {
+      "request_packet": 1945005,
+      "completion_packet": 1945008,
+      "lecroy_view": "Split Tra 22 (Link Tra 24 MRd(32) Tag 11 Address 6C1FC028; Link Tra 25 Cpl Tag 11 UR Lwr Addr 0x028, ACK #1945010)",
+      "result": "MATCHED",
+      "screenshots": [
+        {"path": "artifacts/evidence/pcie-g2b-20260914/gui-split/split-view-pkt-1945000.png", "sha256": "21C3BC2C159504AA024057CC70C9321F2DE2C82D810F4C1DDF9B66344FA06466"},
+        {"path": "artifacts/evidence/pcie-g2b-20260914/gui-split/split-view-pkt-1945005.png", "sha256": "70E1127F398C5EF97A0D7E9BE596A9D1D3DFC7B5AA42A649028CA563A06C705A"}
+      ]
+    },
+    {
+      "request_packet": 2093086,
+      "completion_packet": 2093088,
+      "lecroy_view": "Split Tra 29 (Link Tra 42 MRd(32) Tag 0 Address 6C1FC01C; Link Tra 43 Cpl Tag 0 UR Lwr Addr 0x01C, ACK #2093090)",
+      "result": "MATCHED",
+      "screenshots": [
+        {"path": "artifacts/evidence/pcie-g2b-20260914/gui-split/split-view-pkt-2093080.png", "sha256": "78314A1743050828A58CAB7DC61973C38B8D2828B2B6D600BA0672224A94BBBD"},
+        {"path": "artifacts/evidence/pcie-g2b-20260914/gui-split/split-view-pkt-2093086.png", "sha256": "E8E5F89C114AD67CEF710CEF0345F5E609F741EE46ABD43413B9B9F9658580DA"}
+      ]
+    }
+  ]
+}

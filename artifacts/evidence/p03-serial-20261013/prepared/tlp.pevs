@@ -1,0 +1,386 @@
+# P03 LC-01 5.2.2/5.2.3: native raw fields; no rule evaluation.
+set ModuleType = "Verification Script";
+set OutputType = "VS";
+set InputType = "VS";
+set DecoderDesc = "P03 tlp raw fields";
+set Visited = 0;
+set Known = 0;
+set Emitted = 0;
+set Mismatches = 0;
+set Count_MRD32 = 0;
+set Count_MWR32 = 0;
+set Count_MRD64 = 0;
+set Count_MWR64 = 0;
+set Count_IORD = 0;
+set Count_IOWR = 0;
+set Count_CFGRD_0 = 0;
+set Count_CFGWR_0 = 0;
+set Count_CFGRD_1 = 0;
+set Count_CFGWR_1 = 0;
+set Count_MSG = 0;
+set Count_MSGD = 0;
+set Count_CPL = 0;
+set Count_CPLD = 0;
+set Count_CPLLK = 0;
+set Count_CPLDLK = 0;
+%include "VSTools.inc"
+NativeField(v)
+{
+    if (v == null) return "{\"state\":\"unknown\",\"value\":null}";
+    return FormatEx("{\"state\":\"available\",\"value\":%d}", v);
+}
+OnStartScript()
+{
+    ScriptForDisplayOnly();
+    EnableOutput();
+    SendAllChannels();
+    SendLevelOnly(_PACKET);
+    SendTraceEventOnly(_PKT_TLP);
+    SendTlpType(_ANY_TYPE);
+}
+ProcessEvent()
+{
+    Visited++;
+    if (in.Level != _PACKET || in.TraceEvent != _PKT_TLP) Mismatches++;
+    if (in.TLPType == TLP_TYPE_ID_MRD32)
+    {
+        Known++;
+        Count_MRD32++;
+        if (Count_MRD32 <= 8)
+        {
+        f_Type = NativeField(in.Type);
+        f_Fmt = NativeField(in.Fmt);
+        f_PSN = NativeField(in.PSN);
+        f_Length = NativeField(in.Length);
+        f_ByteCount = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_LowerAddr = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_ComplStatus = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_BadLCRC = NativeField(in.BadLCRC);
+        f_BadECRC = NativeField(in.BadECRC);
+        f_ErrorLengthField = NativeField(in.ErrorLengthField);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"tlp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"Type\":%s,\"Fmt\":%s,\"PSN\":%s,\"Length\":%s,\"ByteCount\":%s,\"LowerAddr\":%s,\"ComplStatus\":%s,\"BadLCRC\":%s,\"BadECRC\":%s,\"ErrorLengthField\":%s}}", in.Index,in.Level,in.Channel,in.TLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_Type,f_Fmt,f_PSN,f_Length,f_ByteCount,f_LowerAddr,f_ComplStatus,f_BadLCRC,f_BadECRC,f_ErrorLengthField));
+            Emitted++;
+        }
+    }
+    if (in.TLPType == TLP_TYPE_ID_MWR32)
+    {
+        Known++;
+        Count_MWR32++;
+        if (Count_MWR32 <= 8)
+        {
+        f_Type = NativeField(in.Type);
+        f_Fmt = NativeField(in.Fmt);
+        f_PSN = NativeField(in.PSN);
+        f_Length = NativeField(in.Length);
+        f_ByteCount = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_LowerAddr = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_ComplStatus = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_BadLCRC = NativeField(in.BadLCRC);
+        f_BadECRC = NativeField(in.BadECRC);
+        f_ErrorLengthField = NativeField(in.ErrorLengthField);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"tlp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"Type\":%s,\"Fmt\":%s,\"PSN\":%s,\"Length\":%s,\"ByteCount\":%s,\"LowerAddr\":%s,\"ComplStatus\":%s,\"BadLCRC\":%s,\"BadECRC\":%s,\"ErrorLengthField\":%s}}", in.Index,in.Level,in.Channel,in.TLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_Type,f_Fmt,f_PSN,f_Length,f_ByteCount,f_LowerAddr,f_ComplStatus,f_BadLCRC,f_BadECRC,f_ErrorLengthField));
+            Emitted++;
+        }
+    }
+    if (in.TLPType == TLP_TYPE_ID_MRD64)
+    {
+        Known++;
+        Count_MRD64++;
+        if (Count_MRD64 <= 8)
+        {
+        f_Type = NativeField(in.Type);
+        f_Fmt = NativeField(in.Fmt);
+        f_PSN = NativeField(in.PSN);
+        f_Length = NativeField(in.Length);
+        f_ByteCount = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_LowerAddr = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_ComplStatus = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_BadLCRC = NativeField(in.BadLCRC);
+        f_BadECRC = NativeField(in.BadECRC);
+        f_ErrorLengthField = NativeField(in.ErrorLengthField);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"tlp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"Type\":%s,\"Fmt\":%s,\"PSN\":%s,\"Length\":%s,\"ByteCount\":%s,\"LowerAddr\":%s,\"ComplStatus\":%s,\"BadLCRC\":%s,\"BadECRC\":%s,\"ErrorLengthField\":%s}}", in.Index,in.Level,in.Channel,in.TLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_Type,f_Fmt,f_PSN,f_Length,f_ByteCount,f_LowerAddr,f_ComplStatus,f_BadLCRC,f_BadECRC,f_ErrorLengthField));
+            Emitted++;
+        }
+    }
+    if (in.TLPType == TLP_TYPE_ID_MWR64)
+    {
+        Known++;
+        Count_MWR64++;
+        if (Count_MWR64 <= 8)
+        {
+        f_Type = NativeField(in.Type);
+        f_Fmt = NativeField(in.Fmt);
+        f_PSN = NativeField(in.PSN);
+        f_Length = NativeField(in.Length);
+        f_ByteCount = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_LowerAddr = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_ComplStatus = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_BadLCRC = NativeField(in.BadLCRC);
+        f_BadECRC = NativeField(in.BadECRC);
+        f_ErrorLengthField = NativeField(in.ErrorLengthField);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"tlp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"Type\":%s,\"Fmt\":%s,\"PSN\":%s,\"Length\":%s,\"ByteCount\":%s,\"LowerAddr\":%s,\"ComplStatus\":%s,\"BadLCRC\":%s,\"BadECRC\":%s,\"ErrorLengthField\":%s}}", in.Index,in.Level,in.Channel,in.TLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_Type,f_Fmt,f_PSN,f_Length,f_ByteCount,f_LowerAddr,f_ComplStatus,f_BadLCRC,f_BadECRC,f_ErrorLengthField));
+            Emitted++;
+        }
+    }
+    if (in.TLPType == TLP_TYPE_ID_IORD)
+    {
+        Known++;
+        Count_IORD++;
+        if (Count_IORD <= 8)
+        {
+        f_Type = NativeField(in.Type);
+        f_Fmt = NativeField(in.Fmt);
+        f_PSN = NativeField(in.PSN);
+        f_Length = NativeField(in.Length);
+        f_ByteCount = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_LowerAddr = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_ComplStatus = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_BadLCRC = NativeField(in.BadLCRC);
+        f_BadECRC = NativeField(in.BadECRC);
+        f_ErrorLengthField = NativeField(in.ErrorLengthField);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"tlp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"Type\":%s,\"Fmt\":%s,\"PSN\":%s,\"Length\":%s,\"ByteCount\":%s,\"LowerAddr\":%s,\"ComplStatus\":%s,\"BadLCRC\":%s,\"BadECRC\":%s,\"ErrorLengthField\":%s}}", in.Index,in.Level,in.Channel,in.TLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_Type,f_Fmt,f_PSN,f_Length,f_ByteCount,f_LowerAddr,f_ComplStatus,f_BadLCRC,f_BadECRC,f_ErrorLengthField));
+            Emitted++;
+        }
+    }
+    if (in.TLPType == TLP_TYPE_ID_IOWR)
+    {
+        Known++;
+        Count_IOWR++;
+        if (Count_IOWR <= 8)
+        {
+        f_Type = NativeField(in.Type);
+        f_Fmt = NativeField(in.Fmt);
+        f_PSN = NativeField(in.PSN);
+        f_Length = NativeField(in.Length);
+        f_ByteCount = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_LowerAddr = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_ComplStatus = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_BadLCRC = NativeField(in.BadLCRC);
+        f_BadECRC = NativeField(in.BadECRC);
+        f_ErrorLengthField = NativeField(in.ErrorLengthField);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"tlp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"Type\":%s,\"Fmt\":%s,\"PSN\":%s,\"Length\":%s,\"ByteCount\":%s,\"LowerAddr\":%s,\"ComplStatus\":%s,\"BadLCRC\":%s,\"BadECRC\":%s,\"ErrorLengthField\":%s}}", in.Index,in.Level,in.Channel,in.TLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_Type,f_Fmt,f_PSN,f_Length,f_ByteCount,f_LowerAddr,f_ComplStatus,f_BadLCRC,f_BadECRC,f_ErrorLengthField));
+            Emitted++;
+        }
+    }
+    if (in.TLPType == TLP_TYPE_ID_CFGRD_0)
+    {
+        Known++;
+        Count_CFGRD_0++;
+        if (Count_CFGRD_0 <= 8)
+        {
+        f_Type = NativeField(in.Type);
+        f_Fmt = NativeField(in.Fmt);
+        f_PSN = NativeField(in.PSN);
+        f_Length = NativeField(in.Length);
+        f_ByteCount = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_LowerAddr = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_ComplStatus = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_BadLCRC = NativeField(in.BadLCRC);
+        f_BadECRC = NativeField(in.BadECRC);
+        f_ErrorLengthField = NativeField(in.ErrorLengthField);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"tlp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"Type\":%s,\"Fmt\":%s,\"PSN\":%s,\"Length\":%s,\"ByteCount\":%s,\"LowerAddr\":%s,\"ComplStatus\":%s,\"BadLCRC\":%s,\"BadECRC\":%s,\"ErrorLengthField\":%s}}", in.Index,in.Level,in.Channel,in.TLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_Type,f_Fmt,f_PSN,f_Length,f_ByteCount,f_LowerAddr,f_ComplStatus,f_BadLCRC,f_BadECRC,f_ErrorLengthField));
+            Emitted++;
+        }
+    }
+    if (in.TLPType == TLP_TYPE_ID_CFGWR_0)
+    {
+        Known++;
+        Count_CFGWR_0++;
+        if (Count_CFGWR_0 <= 8)
+        {
+        f_Type = NativeField(in.Type);
+        f_Fmt = NativeField(in.Fmt);
+        f_PSN = NativeField(in.PSN);
+        f_Length = NativeField(in.Length);
+        f_ByteCount = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_LowerAddr = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_ComplStatus = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_BadLCRC = NativeField(in.BadLCRC);
+        f_BadECRC = NativeField(in.BadECRC);
+        f_ErrorLengthField = NativeField(in.ErrorLengthField);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"tlp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"Type\":%s,\"Fmt\":%s,\"PSN\":%s,\"Length\":%s,\"ByteCount\":%s,\"LowerAddr\":%s,\"ComplStatus\":%s,\"BadLCRC\":%s,\"BadECRC\":%s,\"ErrorLengthField\":%s}}", in.Index,in.Level,in.Channel,in.TLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_Type,f_Fmt,f_PSN,f_Length,f_ByteCount,f_LowerAddr,f_ComplStatus,f_BadLCRC,f_BadECRC,f_ErrorLengthField));
+            Emitted++;
+        }
+    }
+    if (in.TLPType == TLP_TYPE_ID_CFGRD_1)
+    {
+        Known++;
+        Count_CFGRD_1++;
+        if (Count_CFGRD_1 <= 8)
+        {
+        f_Type = NativeField(in.Type);
+        f_Fmt = NativeField(in.Fmt);
+        f_PSN = NativeField(in.PSN);
+        f_Length = NativeField(in.Length);
+        f_ByteCount = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_LowerAddr = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_ComplStatus = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_BadLCRC = NativeField(in.BadLCRC);
+        f_BadECRC = NativeField(in.BadECRC);
+        f_ErrorLengthField = NativeField(in.ErrorLengthField);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"tlp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"Type\":%s,\"Fmt\":%s,\"PSN\":%s,\"Length\":%s,\"ByteCount\":%s,\"LowerAddr\":%s,\"ComplStatus\":%s,\"BadLCRC\":%s,\"BadECRC\":%s,\"ErrorLengthField\":%s}}", in.Index,in.Level,in.Channel,in.TLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_Type,f_Fmt,f_PSN,f_Length,f_ByteCount,f_LowerAddr,f_ComplStatus,f_BadLCRC,f_BadECRC,f_ErrorLengthField));
+            Emitted++;
+        }
+    }
+    if (in.TLPType == TLP_TYPE_ID_CFGWR_1)
+    {
+        Known++;
+        Count_CFGWR_1++;
+        if (Count_CFGWR_1 <= 8)
+        {
+        f_Type = NativeField(in.Type);
+        f_Fmt = NativeField(in.Fmt);
+        f_PSN = NativeField(in.PSN);
+        f_Length = NativeField(in.Length);
+        f_ByteCount = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_LowerAddr = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_ComplStatus = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_BadLCRC = NativeField(in.BadLCRC);
+        f_BadECRC = NativeField(in.BadECRC);
+        f_ErrorLengthField = NativeField(in.ErrorLengthField);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"tlp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"Type\":%s,\"Fmt\":%s,\"PSN\":%s,\"Length\":%s,\"ByteCount\":%s,\"LowerAddr\":%s,\"ComplStatus\":%s,\"BadLCRC\":%s,\"BadECRC\":%s,\"ErrorLengthField\":%s}}", in.Index,in.Level,in.Channel,in.TLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_Type,f_Fmt,f_PSN,f_Length,f_ByteCount,f_LowerAddr,f_ComplStatus,f_BadLCRC,f_BadECRC,f_ErrorLengthField));
+            Emitted++;
+        }
+    }
+    if (in.TLPType == TLP_TYPE_ID_MSG)
+    {
+        Known++;
+        Count_MSG++;
+        if (Count_MSG <= 8)
+        {
+        f_Type = NativeField(in.Type);
+        f_Fmt = NativeField(in.Fmt);
+        f_PSN = NativeField(in.PSN);
+        f_Length = NativeField(in.Length);
+        f_ByteCount = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_LowerAddr = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_ComplStatus = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_BadLCRC = NativeField(in.BadLCRC);
+        f_BadECRC = NativeField(in.BadECRC);
+        f_ErrorLengthField = NativeField(in.ErrorLengthField);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"tlp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"Type\":%s,\"Fmt\":%s,\"PSN\":%s,\"Length\":%s,\"ByteCount\":%s,\"LowerAddr\":%s,\"ComplStatus\":%s,\"BadLCRC\":%s,\"BadECRC\":%s,\"ErrorLengthField\":%s}}", in.Index,in.Level,in.Channel,in.TLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_Type,f_Fmt,f_PSN,f_Length,f_ByteCount,f_LowerAddr,f_ComplStatus,f_BadLCRC,f_BadECRC,f_ErrorLengthField));
+            Emitted++;
+        }
+    }
+    if (in.TLPType == TLP_TYPE_ID_MSGD)
+    {
+        Known++;
+        Count_MSGD++;
+        if (Count_MSGD <= 8)
+        {
+        f_Type = NativeField(in.Type);
+        f_Fmt = NativeField(in.Fmt);
+        f_PSN = NativeField(in.PSN);
+        f_Length = NativeField(in.Length);
+        f_ByteCount = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_LowerAddr = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_ComplStatus = "{\"state\":\"not_applicable\",\"value\":null}";
+        f_BadLCRC = NativeField(in.BadLCRC);
+        f_BadECRC = NativeField(in.BadECRC);
+        f_ErrorLengthField = NativeField(in.ErrorLengthField);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"tlp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"Type\":%s,\"Fmt\":%s,\"PSN\":%s,\"Length\":%s,\"ByteCount\":%s,\"LowerAddr\":%s,\"ComplStatus\":%s,\"BadLCRC\":%s,\"BadECRC\":%s,\"ErrorLengthField\":%s}}", in.Index,in.Level,in.Channel,in.TLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_Type,f_Fmt,f_PSN,f_Length,f_ByteCount,f_LowerAddr,f_ComplStatus,f_BadLCRC,f_BadECRC,f_ErrorLengthField));
+            Emitted++;
+        }
+    }
+    if (in.TLPType == TLP_TYPE_ID_CPL)
+    {
+        Known++;
+        Count_CPL++;
+        if (Count_CPL <= 8)
+        {
+        f_Type = NativeField(in.Type);
+        f_Fmt = NativeField(in.Fmt);
+        f_PSN = NativeField(in.PSN);
+        f_Length = NativeField(in.Length);
+        f_ByteCount = NativeField(in.ByteCount);
+        f_LowerAddr = NativeField(in.LowerAddr);
+        f_ComplStatus = NativeField(in.ComplStatus);
+        f_BadLCRC = NativeField(in.BadLCRC);
+        f_BadECRC = NativeField(in.BadECRC);
+        f_ErrorLengthField = NativeField(in.ErrorLengthField);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"tlp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"Type\":%s,\"Fmt\":%s,\"PSN\":%s,\"Length\":%s,\"ByteCount\":%s,\"LowerAddr\":%s,\"ComplStatus\":%s,\"BadLCRC\":%s,\"BadECRC\":%s,\"ErrorLengthField\":%s}}", in.Index,in.Level,in.Channel,in.TLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_Type,f_Fmt,f_PSN,f_Length,f_ByteCount,f_LowerAddr,f_ComplStatus,f_BadLCRC,f_BadECRC,f_ErrorLengthField));
+            Emitted++;
+        }
+    }
+    if (in.TLPType == TLP_TYPE_ID_CPLD)
+    {
+        Known++;
+        Count_CPLD++;
+        if (Count_CPLD <= 8)
+        {
+        f_Type = NativeField(in.Type);
+        f_Fmt = NativeField(in.Fmt);
+        f_PSN = NativeField(in.PSN);
+        f_Length = NativeField(in.Length);
+        f_ByteCount = NativeField(in.ByteCount);
+        f_LowerAddr = NativeField(in.LowerAddr);
+        f_ComplStatus = NativeField(in.ComplStatus);
+        f_BadLCRC = NativeField(in.BadLCRC);
+        f_BadECRC = NativeField(in.BadECRC);
+        f_ErrorLengthField = NativeField(in.ErrorLengthField);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"tlp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"Type\":%s,\"Fmt\":%s,\"PSN\":%s,\"Length\":%s,\"ByteCount\":%s,\"LowerAddr\":%s,\"ComplStatus\":%s,\"BadLCRC\":%s,\"BadECRC\":%s,\"ErrorLengthField\":%s}}", in.Index,in.Level,in.Channel,in.TLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_Type,f_Fmt,f_PSN,f_Length,f_ByteCount,f_LowerAddr,f_ComplStatus,f_BadLCRC,f_BadECRC,f_ErrorLengthField));
+            Emitted++;
+        }
+    }
+    if (in.TLPType == TLP_TYPE_ID_CPLLK)
+    {
+        Known++;
+        Count_CPLLK++;
+        if (Count_CPLLK <= 8)
+        {
+        f_Type = NativeField(in.Type);
+        f_Fmt = NativeField(in.Fmt);
+        f_PSN = NativeField(in.PSN);
+        f_Length = NativeField(in.Length);
+        f_ByteCount = NativeField(in.ByteCount);
+        f_LowerAddr = NativeField(in.LowerAddr);
+        f_ComplStatus = NativeField(in.ComplStatus);
+        f_BadLCRC = NativeField(in.BadLCRC);
+        f_BadECRC = NativeField(in.BadECRC);
+        f_ErrorLengthField = NativeField(in.ErrorLengthField);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"tlp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"Type\":%s,\"Fmt\":%s,\"PSN\":%s,\"Length\":%s,\"ByteCount\":%s,\"LowerAddr\":%s,\"ComplStatus\":%s,\"BadLCRC\":%s,\"BadECRC\":%s,\"ErrorLengthField\":%s}}", in.Index,in.Level,in.Channel,in.TLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_Type,f_Fmt,f_PSN,f_Length,f_ByteCount,f_LowerAddr,f_ComplStatus,f_BadLCRC,f_BadECRC,f_ErrorLengthField));
+            Emitted++;
+        }
+    }
+    if (in.TLPType == TLP_TYPE_ID_CPLDLK)
+    {
+        Known++;
+        Count_CPLDLK++;
+        if (Count_CPLDLK <= 8)
+        {
+        f_Type = NativeField(in.Type);
+        f_Fmt = NativeField(in.Fmt);
+        f_PSN = NativeField(in.PSN);
+        f_Length = NativeField(in.Length);
+        f_ByteCount = NativeField(in.ByteCount);
+        f_LowerAddr = NativeField(in.LowerAddr);
+        f_ComplStatus = NativeField(in.ComplStatus);
+        f_BadLCRC = NativeField(in.BadLCRC);
+        f_BadECRC = NativeField(in.BadECRC);
+        f_ErrorLengthField = NativeField(in.ErrorLengthField);
+            ReportText(FormatEx("{\"kind\":\"p03-row\",\"profile\":\"tlp\",\"index\":%d,\"level\":%d,\"channel\":%d,\"native_type\":%d,\"time2\":[%d,%d,%d],\"fields\":{\"Type\":%s,\"Fmt\":%s,\"PSN\":%s,\"Length\":%s,\"ByteCount\":%s,\"LowerAddr\":%s,\"ComplStatus\":%s,\"BadLCRC\":%s,\"BadECRC\":%s,\"ErrorLengthField\":%s}}", in.Index,in.Level,in.Channel,in.TLPType,in.Time2[0],in.Time2[1],in.Time2[2],f_Type,f_Fmt,f_PSN,f_Length,f_ByteCount,f_LowerAddr,f_ComplStatus,f_BadLCRC,f_BadECRC,f_ErrorLengthField));
+            Emitted++;
+        }
+    }
+    return Complete();
+}
+OnFinishScript()
+{
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", TLP_TYPE_ID_MRD32, Count_MRD32));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", TLP_TYPE_ID_MWR32, Count_MWR32));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", TLP_TYPE_ID_MRD64, Count_MRD64));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", TLP_TYPE_ID_MWR64, Count_MWR64));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", TLP_TYPE_ID_IORD, Count_IORD));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", TLP_TYPE_ID_IOWR, Count_IOWR));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", TLP_TYPE_ID_CFGRD_0, Count_CFGRD_0));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", TLP_TYPE_ID_CFGWR_0, Count_CFGWR_0));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", TLP_TYPE_ID_CFGRD_1, Count_CFGRD_1));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", TLP_TYPE_ID_CFGWR_1, Count_CFGWR_1));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", TLP_TYPE_ID_MSG, Count_MSG));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", TLP_TYPE_ID_MSGD, Count_MSGD));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", TLP_TYPE_ID_CPL, Count_CPL));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", TLP_TYPE_ID_CPLD, Count_CPLD));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", TLP_TYPE_ID_CPLLK, Count_CPLLK));
+    ReportText(FormatEx("{\"kind\":\"p03-count\",\"native_type\":%d,\"visited\":%d}", TLP_TYPE_ID_CPLDLK, Count_CPLDLK));
+    ReportText(FormatEx("{\"kind\":\"p03-end\",\"visited\":%d,\"known\":%d,\"emitted\":%d,\"mismatches\":%d,\"native_level\":%d}", Visited,Known,Emitted,Mismatches,_PACKET));
+}

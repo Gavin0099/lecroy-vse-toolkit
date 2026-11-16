@@ -1,0 +1,130 @@
+{
+  "schema_version": "pcie.triage-run-manifest/v1",
+  "started_utc": "2026-09-14T08:13:30+00:00",
+  "status": "PASS",
+  "input_manifest": {
+    "path": "samples/pcie/triage-input-1350.json",
+    "sha256": "78474DEA8F5F749539B1F26601798BF98583363DAE9684B833219A42F88981AD"
+  },
+  "parameters": {
+    "g3c_window_tlp_rows": 8,
+    "g3c_max_packet_gap": 64,
+    "g3d_context_rows": 5
+  },
+  "python": "3.13.5",
+  "script_sha256": {
+    "runner": "AB15643A62C07FDDDAD9DEC1237DEC3BFF664924C572D49DCE0E6552DF196965",
+    "g2b": "08279219277E6DB06948C377A3412CF75A42CB0E0FC9EFE56D7711A0E5DEE047",
+    "g3ab": "C1B9DDE3C2D6D8107CA6C6A869926FD43ED9479FFF69A8A2D7C89288D0258316",
+    "g3c": "60E35CC7ECCFB42875403C07E2EDC684693BFF15F8F7E195D2D719FF901CAF82",
+    "g3d": "D9B42CD3B51AE05E5B839EC238E097CABCBBE6F35EED203817458F5F064C2063",
+    "g3e": "5573C8A539E83CFA3A465F8E0F8D25AD8FA9860CDD9EE503B9F318E27BC882B8",
+    "g3f": "B020ED1C3C769D147A3CD90A889994099B3ACF69AA7030CC87609026AF3B5BBD",
+    "g7": "6FFE6BA41485E5EB9527A154D4D2C9AE72BFB89A997DA080CB79B2EF61C5F31D",
+    "g8": "548F8783F34C25F1901786BB4C4061F6299AA530F080496567790E5F2E1278F4"
+  },
+  "excluded": [
+    "PETracer GUI automation",
+    "COM",
+    "opening .pex files",
+    "running VSE scripts",
+    "legacy format conversion",
+    "AI agent",
+    "writing skill"
+  ],
+  "stages": [
+    {
+      "stage": "validate_inputs",
+      "status": "PASS"
+    },
+    {
+      "stage": "g2b",
+      "status": "PASS",
+      "outputs": {
+        "roles.json": "556F9F838F1E0295CF6B71EA00B9DD5C2C82A9CC0D7964F202F63BC29A76F7B8",
+        "associations.json": "BDF7D1C20A4948E2497FC6C8F4A8AE6A5491D9CE9D1D162365C3696B41139A12"
+      }
+    },
+    {
+      "stage": "g3ab",
+      "status": "PASS",
+      "outputs": {
+        "candidates.json": "02830BDFE41021D51781A755B9A4D990E14EDFB9889397B5E33186364B5D921F"
+      }
+    },
+    {
+      "stage": "g3c",
+      "status": "PASS",
+      "outputs": {
+        "nearby_messages.json": "FE8F04CDBCB6B76EFDE78BE5F81A612F354256D4F32E2112173D0792E33D1E4B"
+      }
+    },
+    {
+      "stage": "g3d",
+      "status": "PASS",
+      "outputs": {
+        "contexts.json": "D42756322133A3740D443594DDD2BD1E0BE201952E8A45F1D5673377050B2B7A"
+      }
+    },
+    {
+      "stage": "g3e",
+      "status": "PASS",
+      "outputs": {
+        "groups.json": "97A307CA65E61ABB40448508A8BED9F71BAC48128EA23B76C93F89F6048B2C7A"
+      }
+    },
+    {
+      "stage": "g3f",
+      "status": "PASS",
+      "outputs": {
+        "findings.json": "91B38B2DA1D0608890EE67B664621E79C3D0ADAACDC9CE2C35367DF59EC00E37"
+      }
+    },
+    {
+      "stage": "g7",
+      "status": "PASS",
+      "outputs": {
+        "report.md": "F210191DBDB9E96D38CF721313ADA05EBF92CF78165E2D9152021E2521A3027F"
+      }
+    },
+    {
+      "stage": "g8",
+      "status": "PASS",
+      "outputs": {
+        "report.html": "B65829E5506FB74192854EEE16DC2D7F5A34BCE8E02C7F9B639A3040819F501D"
+      }
+    }
+  ],
+  "trace": {
+    "file_name": "S0-Remove SD7-1350.pex",
+    "sha256": "1ADB98F89C2C0CF2A9733EA01552E39438483C4A9741136DC4BE36F0A27F1AEB",
+    "tlp_count": 938
+  },
+  "inputs": {
+    "fields": {
+      "path": "E:/BackUp/Git_EE/lecroy-vse-toolkit/artifacts/evidence/pcie-g2a-20260914/export/fields.json",
+      "sha256": "FA64728D3023DF8C476FE858B3C39568E04D3313714EDCED944BEF0FC9D5BB79"
+    },
+    "messages": {
+      "path": "E:/BackUp/Git_EE/lecroy-vse-toolkit/artifacts/evidence/pcie-g3c0-20260914/export/messages.json",
+      "sha256": "08A7307F029E2BB55EC9419EE694ED97EAA1518112AC1C9E288E2AE9D57E1754"
+    },
+    "gui_crosschecks": {
+      "path": "E:/BackUp/Git_EE/lecroy-vse-toolkit/artifacts/evidence/pcie-g2b-20260914/gui-split/crosschecks.json",
+      "sha256": "151FEBC497C4311C44C33D5EA3B08504429FDE0B783500C52E2412518C49940A"
+    },
+    "fields_summary": {
+      "path": "E:/BackUp/Git_EE/lecroy-vse-toolkit/artifacts/evidence/pcie-g2a-20260914/export/summary.json",
+      "sha256": "8EB8C1EA5291D006B6FEF7F2243492A338E466D5851422C3425758F7420647CC"
+    }
+  },
+  "run_id": "20260914T081330Z-78474DEA",
+  "package": {
+    "report.html": "B65829E5506FB74192854EEE16DC2D7F5A34BCE8E02C7F9B639A3040819F501D",
+    "report.md": "F210191DBDB9E96D38CF721313ADA05EBF92CF78165E2D9152021E2521A3027F",
+    "findings.json": "91B38B2DA1D0608890EE67B664621E79C3D0ADAACDC9CE2C35367DF59EC00E37",
+    "使用說明.md": "1B5B02199B6DF715AA7D7F7B0CD703D289DA370E8BBD6B0FCF5017E5CFDE3070"
+  },
+  "findings_total": 16,
+  "finished_utc": "2026-09-14T08:13:30+00:00"
+}

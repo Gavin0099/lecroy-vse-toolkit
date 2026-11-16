@@ -1,0 +1,2 @@
+candidate_id	detector	anchor_packet	time	request_packet	request_type	tag	other_packet	status_or_later	gui_crosscheck	interpretation
+C001	G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION	225043	9.512 sec	225043	CfgRd0	6	225048	NO		NOT_EVALUATED

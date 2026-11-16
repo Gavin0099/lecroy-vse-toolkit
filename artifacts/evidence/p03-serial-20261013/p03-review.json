@@ -1,0 +1,434 @@
+{
+  "slice": "P03",
+  "review": "APPROVE_BOUNDED_NATIVE_FIELDS",
+  "source_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+  "repeat_equal": true,
+  "summaries": {
+    "dllp": {
+      "kind": "p03-end",
+      "visited": 2147145,
+      "known": 2146413,
+      "emitted": 73,
+      "mismatches": 0,
+      "native_level": 0
+    },
+    "tlp": {
+      "kind": "p03-end",
+      "visited": 704,
+      "known": 704,
+      "emitted": 51,
+      "mismatches": 0,
+      "native_level": 0
+    }
+  },
+  "type_counts": {
+    "dllp": {
+      "0": {
+        "label": "ACK",
+        "visited": 754,
+        "sampled": 8,
+        "observation": "observed"
+      },
+      "1": {
+        "label": "NAK",
+        "visited": 1,
+        "sampled": 1,
+        "observation": "observed"
+      },
+      "4": {
+        "label": "INIT_FC1_P",
+        "visited": 18,
+        "sampled": 8,
+        "observation": "observed"
+      },
+      "5": {
+        "label": "INIT_FC1_NP",
+        "visited": 18,
+        "sampled": 8,
+        "observation": "observed"
+      },
+      "6": {
+        "label": "INIT_FC1_CPL",
+        "visited": 18,
+        "sampled": 8,
+        "observation": "observed"
+      },
+      "12": {
+        "label": "INIT_FC2_P",
+        "visited": 15,
+        "sampled": 8,
+        "observation": "observed"
+      },
+      "13": {
+        "label": "INIT_FC2_NP",
+        "visited": 15,
+        "sampled": 8,
+        "observation": "observed"
+      },
+      "14": {
+        "label": "INIT_FC2_CPL",
+        "visited": 15,
+        "sampled": 8,
+        "observation": "observed"
+      },
+      "8": {
+        "label": "UPDATE_FC_P",
+        "visited": 1072784,
+        "sampled": 8,
+        "observation": "observed"
+      },
+      "9": {
+        "label": "UPDATE_FC_NP",
+        "visited": 1072775,
+        "sampled": 8,
+        "observation": "observed"
+      },
+      "10": {
+        "label": "UPDATE_FC_CPL",
+        "visited": 0,
+        "sampled": 0,
+        "observation": "unknown"
+      }
+    },
+    "tlp": {
+      "1": {
+        "label": "MRD32",
+        "visited": 165,
+        "sampled": 8,
+        "observation": "observed"
+      },
+      "3": {
+        "label": "MWR32",
+        "visited": 203,
+        "sampled": 8,
+        "observation": "observed"
+      },
+      "4": {
+        "label": "MRD64",
+        "visited": 0,
+        "sampled": 0,
+        "observation": "unknown"
+      },
+      "6": {
+        "label": "MWR64",
+        "visited": 0,
+        "sampled": 0,
+        "observation": "unknown"
+      },
+      "7": {
+        "label": "IORD",
+        "visited": 0,
+        "sampled": 0,
+        "observation": "unknown"
+      },
+      "8": {
+        "label": "IOWR",
+        "visited": 0,
+        "sampled": 0,
+        "observation": "unknown"
+      },
+      "9": {
+        "label": "CFGRD_0",
+        "visited": 32,
+        "sampled": 8,
+        "observation": "observed"
+      },
+      "10": {
+        "label": "CFGWR_0",
+        "visited": 29,
+        "sampled": 8,
+        "observation": "observed"
+      },
+      "11": {
+        "label": "CFGRD_1",
+        "visited": 0,
+        "sampled": 0,
+        "observation": "unknown"
+      },
+      "12": {
+        "label": "CFGWR_1",
+        "visited": 0,
+        "sampled": 0,
+        "observation": "unknown"
+      },
+      "13": {
+        "label": "MSG",
+        "visited": 2,
+        "sampled": 2,
+        "observation": "observed"
+      },
+      "14": {
+        "label": "MSGD",
+        "visited": 1,
+        "sampled": 1,
+        "observation": "observed"
+      },
+      "17": {
+        "label": "CPL",
+        "visited": 31,
+        "sampled": 8,
+        "observation": "observed"
+      },
+      "18": {
+        "label": "CPLD",
+        "visited": 241,
+        "sampled": 8,
+        "observation": "observed"
+      },
+      "19": {
+        "label": "CPLLK",
+        "visited": 0,
+        "sampled": 0,
+        "observation": "unknown"
+      },
+      "20": {
+        "label": "CPLDLK",
+        "visited": 0,
+        "sampled": 0,
+        "observation": "unknown"
+      }
+    }
+  },
+  "packet_crosschecks": [
+    {
+      "profile": "dllp",
+      "native_type": 9,
+      "packet": 3130,
+      "fields": [
+        "VC_ID",
+        "HdrFC",
+        "DataFC",
+        "HdrScale",
+        "DataScale"
+      ],
+      "text_file": "packet-text\\packets-3130-3130.txt",
+      "text_sha256": "a607c0d90f439aa1e536500f9fa159d09c39ff9affc77d9c7610a303b13d1fe9"
+    },
+    {
+      "profile": "dllp",
+      "native_type": 8,
+      "packet": 3131,
+      "fields": [
+        "VC_ID",
+        "HdrFC",
+        "DataFC",
+        "HdrScale",
+        "DataScale"
+      ],
+      "text_file": "packet-text\\packets-3131-3131.txt",
+      "text_sha256": "e420ce37735f9f0cca296ffad05b4bc9531c5a0f5aa5b911fd7c6a107249bd49"
+    },
+    {
+      "profile": "dllp",
+      "native_type": 0,
+      "packet": 3133,
+      "fields": [
+        "AckNak_SeqNum"
+      ],
+      "text_file": "packet-text\\packets-3133-3133.txt",
+      "text_sha256": "537c1829ab2e91f763946c30bc28141926112d0973e37f9caa0e3344929e4480"
+    },
+    {
+      "profile": "dllp",
+      "native_type": 1,
+      "packet": 225042,
+      "fields": [
+        "AckNak_SeqNum"
+      ],
+      "text_file": "packet-text\\packets-225042-225042.txt",
+      "text_sha256": "ae473532331bf85da63a586020124e8caf74fc3270423292b126c0269e8469a1"
+    },
+    {
+      "profile": "dllp",
+      "native_type": 4,
+      "packet": 1484298,
+      "fields": [
+        "VC_ID",
+        "HdrFC",
+        "DataFC",
+        "HdrScale",
+        "DataScale"
+      ],
+      "text_file": "packet-text\\packets-1484298-1484298.txt",
+      "text_sha256": "f1f71652f523632551af8e67280315123be2fcb54a2f3c13413ff139743d026a"
+    },
+    {
+      "profile": "dllp",
+      "native_type": 5,
+      "packet": 1484300,
+      "fields": [
+        "VC_ID",
+        "HdrFC",
+        "DataFC",
+        "HdrScale",
+        "DataScale"
+      ],
+      "text_file": "packet-text\\packets-1484300-1484300.txt",
+      "text_sha256": "eb2fc4162328528bae66739ede7873cd7e2afcf9201b59f43902cb924c43f4f5"
+    },
+    {
+      "profile": "dllp",
+      "native_type": 6,
+      "packet": 1484301,
+      "fields": [
+        "VC_ID",
+        "HdrFC",
+        "DataFC",
+        "HdrScale",
+        "DataScale"
+      ],
+      "text_file": "packet-text\\packets-1484301-1484301.txt",
+      "text_sha256": "7b3d2e039c509c8b193eab8405e01844f70f2454be43a07a450208ced8fb6e83"
+    },
+    {
+      "profile": "dllp",
+      "native_type": 12,
+      "packet": 1484345,
+      "fields": [
+        "VC_ID",
+        "HdrFC",
+        "DataFC",
+        "HdrScale",
+        "DataScale"
+      ],
+      "text_file": "packet-text\\packets-1484345-1484345.txt",
+      "text_sha256": "0db60d563ce5a58ca1522496e2734e1cf554c30497485235120fb76a5a09baeb"
+    },
+    {
+      "profile": "dllp",
+      "native_type": 13,
+      "packet": 1484347,
+      "fields": [
+        "VC_ID",
+        "HdrFC",
+        "DataFC",
+        "HdrScale",
+        "DataScale"
+      ],
+      "text_file": "packet-text\\packets-1484347-1484347.txt",
+      "text_sha256": "59f3d92d489db7a2614afda4862e8d0c77cf92fd80c10bf2421ec0d702a79f60"
+    },
+    {
+      "profile": "dllp",
+      "native_type": 14,
+      "packet": 1484349,
+      "fields": [
+        "VC_ID",
+        "HdrFC",
+        "DataFC",
+        "HdrScale",
+        "DataScale"
+      ],
+      "text_file": "packet-text\\packets-1484349-1484349.txt",
+      "text_sha256": "7d774a80d0bc3799bb23a0b10393854b73b9d6366a246798d4a4c0e8301936da"
+    },
+    {
+      "profile": "tlp",
+      "native_type": 13,
+      "packet": 3129,
+      "fields": [
+        "PSN",
+        "Length"
+      ],
+      "text_file": "packet-text\\packets-3129-3129.txt",
+      "text_sha256": "765944c454768e7342078fa30a3ea04e9d9d6d73569b0436a18e84806cbb8429"
+    },
+    {
+      "profile": "tlp",
+      "native_type": 9,
+      "packet": 3148,
+      "fields": [
+        "PSN",
+        "Length"
+      ],
+      "text_file": "packet-text\\packets-3148-3148.txt",
+      "text_sha256": "3967e1e00925cd8322a628a6718ea03da295911989bc719405bf384a1880d4e6"
+    },
+    {
+      "profile": "tlp",
+      "native_type": 18,
+      "packet": 3150,
+      "fields": [
+        "PSN",
+        "Length",
+        "ByteCount",
+        "LowerAddr"
+      ],
+      "text_file": "packet-text\\packets-3150-3150.txt",
+      "text_sha256": "b478b659b04a70ca8dc01dfcc047a5b4dd3191d99bf952701ca1d2d694fe398b"
+    },
+    {
+      "profile": "tlp",
+      "native_type": 10,
+      "packet": 3312,
+      "fields": [
+        "PSN",
+        "Length"
+      ],
+      "text_file": "packet-text\\packets-3312-3312.txt",
+      "text_sha256": "74550da44db60d5152eeb471844e454261c71783c2225837d996b6247d78f248"
+    },
+    {
+      "profile": "tlp",
+      "native_type": 17,
+      "packet": 3314,
+      "fields": [
+        "PSN",
+        "Length",
+        "ByteCount",
+        "LowerAddr"
+      ],
+      "text_file": "packet-text\\packets-3314-3314.txt",
+      "text_sha256": "f608826a553f4e10fdb51a15a20437f8dd474022d6e19fbc2fe978e2df982338"
+    },
+    {
+      "profile": "tlp",
+      "native_type": 1,
+      "packet": 46820,
+      "fields": [
+        "PSN",
+        "Length"
+      ],
+      "text_file": "packet-text\\packets-46820-46820.txt",
+      "text_sha256": "b9328447ce5cf206818e34677dd80aa91198bca094577494c7a89b6a743b8f1c"
+    },
+    {
+      "profile": "tlp",
+      "native_type": 3,
+      "packet": 57733,
+      "fields": [
+        "PSN",
+        "Length"
+      ],
+      "text_file": "packet-text\\packets-57733-57733.txt",
+      "text_sha256": "4c16a1b7b7d8ba8e9a4619cee8d8c607a2773eb22dd53aa3a05e9734ccccd8e5"
+    },
+    {
+      "profile": "tlp",
+      "native_type": 14,
+      "packet": 1484414,
+      "fields": [
+        "PSN",
+        "Length"
+      ],
+      "text_file": "packet-text\\packets-1484414-1484414.txt",
+      "text_sha256": "0a0465cc9a6e6155564b9c324756a459758b789dde0034d60b4eb36d01bdd8aa"
+    }
+  ],
+  "crosscheck_authority": "independent API path, same vendor decoder; not an independent protocol compliance oracle",
+  "limits": [
+    "first8 per native type; 124 sampled rows total",
+    "zero UpdateFC_Cpl and missing TLP types remain unknown",
+    "ACK/NAK FCError null remains unknown",
+    "raw zero length and scale encodings unchanged; no credit units inferred",
+    "error flags have no positive sample qualification",
+    "capture mode/epoch/retention/display filters unknown",
+    "not all P03 modes/types qualified; no replay, credit, absence or compliance verdict"
+  ],
+  "next_allowed": "I01 isolated typed P03 source block; W1-W5 stay frozen",
+  "blocked_dependents": {
+    "P04": "applicable normative replay text and continuous epoch coverage missing",
+    "P05": "normative credit rules and initial-credit baseline/direction/epoch missing",
+    "P06": "P02 packet membership and unique outstanding request identity not qualified"
+  }
+}

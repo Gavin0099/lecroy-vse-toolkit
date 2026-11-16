@@ -1,0 +1,80 @@
+{
+  "schema_version": "s01.input-manifest/v1",
+  "manifest_id": "SYN-S01-ALL-UNKNOWN",
+  "origin": "synthetic",
+  "trace": {
+    "trace_id": "synthetic-all-unknown",
+    "sha256": null,
+    "protocol": "unknown",
+    "identity_evidence_refs": [],
+    "facts": {
+      "mode": {
+        "state": "unknown",
+        "value": null,
+        "evidence_refs": []
+      },
+      "bidirectional": {
+        "state": "unknown",
+        "value": null,
+        "evidence_refs": []
+      },
+      "capture_start": {
+        "state": "unknown",
+        "value": null,
+        "evidence_refs": []
+      },
+      "capture_end": {
+        "state": "unknown",
+        "value": null,
+        "evidence_refs": []
+      },
+      "epoch": {
+        "state": "unknown",
+        "value": null,
+        "evidence_refs": []
+      },
+      "filters": {
+        "state": "unknown",
+        "value": null,
+        "evidence_refs": []
+      }
+    }
+  },
+  "toolchain": {
+    "software_version": "synthetic-only-13.26",
+    "extractor_sha256": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "constants_sha256": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+    "evidence_refs": [
+      "EV-S01"
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "SYN-S01-ORACLE",
+      "revision": "fixture-v1",
+      "locator": "fixture-oracles.md#獨立依據",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "O-USER",
+        "O-QP"
+      ],
+      "applicability": "applicable",
+      "evidence_refs": [
+        "EV-S01"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EV-S01",
+      "kind": "synthetic",
+      "locator": "fixture://s01/handwritten-metadata",
+      "sha256": null,
+      "note": "Synthetic metadata only. No raw trace exists; no runtime or qualification is asserted."
+    }
+  ],
+  "capabilities": [],
+  "observations": [],
+  "historical_claims": [],
+  "claim_boundary": "INPUT_METADATA_ONLY"
+}

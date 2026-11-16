@@ -1,0 +1,65 @@
+# Reuse qualified U02/U03 members and vendor names; no LTSSM state decoding.
+%include "VSTools.inc"
+set Visited=0;
+set SsCount=0;
+set LinkCount=0;
+set LfpsCount=0;
+set LtCount=0;
+set LinkOut=0;
+set LfpsOut=0;
+set LtOut=0;
+set Unknown=0;
+set PdCount=0;
+set CcCount=0;
+set LastSec=0;
+set LastNs=0;
+const RECORD_LIMIT=300000;
+OnStartScript()
+{
+ SendAllChannels();SendLevelOnly(_PKT);SendAllTraceEvents();
+ SendPktsWithBadCRC(1);ScriptForDisplayOnly();
+}
+ProcessEvent()
+{
+ Visited++;LastSec=in.Time[0];LastNs=in.Time[1];
+ if(in.Speed==_SS || in.Speed==_SSP)SsCount++;
+ if(in.TraceEvent==_PD_PACKET)PdCount++;
+ if(in.Channel==_USB_CC_0)CcCount++;
+ if(in.TraceEvent==_USB3_LINK_CMD || in.TraceEvent==_USB3_LFPS)
+ {
+  if(in.Speed==_SS || in.Speed==_SSP)
+  {
+   ModeName="SS";if(in.Speed==_SSP)ModeName="SSP";
+   if(in.TraceEvent==_USB3_LINK_CMD)
+   {
+    LinkCount++;
+    if(LinkOut+LfpsOut<RECORD_LIMIT)
+    {
+     ReportText(FormatEx("U02|%d|%d|%d|%d|%d|%d|%d|%d|%d|%d|%s|%s",in.Index,in.Time[0],in.Time[1],in.Channel,in.Speed,in.LnkCmd,in.LinkCmdInfo,in.CRC5,in.LinkCmdInfo_2,in.CRC5_2,GetUsb3LnkCmdDesc(in.LnkCmd),ModeName));
+     LinkOut++;
+    }
+   }
+   else
+   {
+    LfpsCount++;
+    if(LinkOut+LfpsOut<RECORD_LIMIT)
+    {
+     ReportText(FormatEx("U03|%d|%d|%d|%d|%d|%d|%d|%d|%d|%d|%d|%s|%s",in.Index,in.Time[0],in.Time[1],in.Channel,in.Speed,in.Type,in.Duration,in.DurationSec,in.DurationNS,in.PatternType,in.StartsPattern,GetLfpsDesc(in.Type),ModeName));
+     LfpsOut++;
+    }
+   }
+  }
+  else Unknown++;
+ }
+ if(in.TraceEvent==_USB3_LTSSM_STATE)
+ {
+  LtCount++;
+  if(LtOut<64){ReportText(FormatEx("U3LT|%d|%d|%d|%d|%d",in.Index,in.Time[0],in.Time[1],in.Channel,in.Speed));LtOut++;}
+ }
+ return Complete();
+}
+OnFinishScript()
+{
+ ReportText(FormatEx("USB3-END|%d|%d|%d|%d|%d|%d|%d|%d|%d|%d|%d|%d|%d",Visited,SsCount,LinkCount,LfpsCount,LtCount,LinkOut,LfpsOut,LtOut,Unknown,PdCount,CcCount,LastSec,LastNs));
+ return 0;
+}
