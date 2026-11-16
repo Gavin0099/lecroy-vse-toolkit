@@ -54,15 +54,24 @@ claim a complete AI Governance update report.
 
 ## Memory Update Triggers
 
-The following events require updating PLAN.md and/or the relevant memory/ file:
+The following events require updating PLAN.md and/or the relevant memory/ file.
+These updates are part of the delivery that produced the event, not extra work
+after DONE; do not record micro-steps or duplicate a record. Targets follow
+`governance/SYSTEM_PROMPT.md` section 6.1 and match `governance/AGENT_CORE_RULES.md`.
 
 | Event | Required update |
 |-------|----------------|
-| Milestone reached | PLAN.md phase/sprint + memory/active_task |
-| Architecture decision made | PLAN.md decision log + memory/knowledge_base |
-| Bug fixed with root cause identified | memory/knowledge_base |
-| Risk or incident encountered | PLAN.md risk section + memory/active_task |
+| Milestone reached | `memory/01_active_task.md`; PLAN.md phase/sprint only when the milestone changes PLAN phase, scope, anti-goal or another existing PLAN obligation |
+| Architecture decision made | `memory/02_workflow.md`; PLAN.md only when the decision changes PLAN scope, phase, anti-goal or another existing PLAN obligation |
+| Bug fixed with root cause identified (new gotcha / solution) | `memory/03_knowledge_base.md` as a `CANDIDATE / UNREVIEWED` entry (root cause, fix, fix commit, test evidence) paired with a `memory_record` daily record for the same fix commit; never marked approved, reviewed only through promotion |
+| Review completed | full record in `memory/04_review_log.md` + one-line summary in `memory/01_active_task.md` |
+| Risk or incident encountered | PLAN.md risk section + `memory/01_active_task.md` |
 | Session end | canonical `memory/YYYY-MM-DD.md` record when closeout is non-stateless |
+
+Use the `memory/02_project_facts.md`, `memory/03_decisions.md` or
+`memory/04_validation_log.md` alias only when this repository has adopted the
+section 6.1 alias schema; never assume an alias that does not exist.
+Repository-specific record duties in `AGENTS.md` still apply.
 
 Automatic closeout has one write boundary: `session_end` may append the daily
 canonical record through `governance_tools.memory_record`. Pre-commit and
@@ -116,14 +125,113 @@ comprehension remains the acceptance signal.
 
 ## Session Closeout Obligation
 
-Writing `artifacts/session-closeout.txt` before session end is a **governance
-obligation**, not a suggestion.
+A formal closeout requires a **session-bound candidate** prepared at a defined
+session end (Session-End Closeout Responsibility below), for example when the
+owner explicitly asks to close out. Task DONE and a per-turn Stop are not
+session end and never trigger preparation. Prepare it only with the existing
+entry point of the framework submodule registered in `.gitmodules`, run from
+that checkout with no `GIT_*` environment variables:
 
-The stop hook always calls `session_end` at session end. If the closeout artifact
+```text
+python -B <framework>/governance_tools/prepare_closeout_candidate.py --consumer-root <repo> --framework-root <framework> --session-id <session-id> --input <input.json>
+```
+
+`<session-id>` is the platform's own session id (`CODEX_THREAD_ID` in Codex,
+`CLAUDE_CODE_SESSION_ID` in Claude Code; in VS Code Copilot, the id that the
+governed SessionStart hook adds to the conversation as `additionalContext`),
+and it must equal `session_id` in
+`artifacts/runtime/.current-session-id`. That file names the most recently
+started or resumed session, which may be another session sharing the checkout;
+if the platform exposes no native id, or the two differ, do not prepare and
+report the closeout as not persisted. `<input.json>` holds `task_intent`, `work_summary`, `tools_used`,
+`artifacts_referenced` and `open_risks` (field guidance:
+`<framework>/.agents/skills/wrap-up/SKILL.md`). `PREPARED` means the candidate
+and `artifacts/session-closeout.txt` were written together under R2 ownership,
+and that text takes part in R2's consistency check with the candidate. It is
+preparation, not closeout, and the agent does not run the closeout itself.
+The manual fallback cannot release an R2-prepared candidate (it is refused with
+`RELEASE_PROOF_INVALID`), so after `PREPARED` do not attempt it. If
+`python -m governance_tools.manage_agent_closeout --project-root <repo> verify
+--agent <agent>`, run from the framework checkout, reports a closeout hook as
+installed and says the closeout is left to it (today the Codex Stop hook
+and the VS Code Copilot Stop hook; a hook that only writes a checkpoint does not count), the closeout is
+left to that hook after the turn: report `PREPARED` / `PENDING_HOOK` (closeout prepared, waiting for the
+session-end hook), not `NOT PERSISTED`. An installed hook is not proof that
+it will run or succeed, and the agent cannot observe it during its own turn;
+only the existing R2 evidence (a valid canonical closeout and released
+ownership) confirms `VALID` / `RELEASED` afterwards. Otherwise report the closeout as
+not persisted: rule 5's manual attempt cannot release a `PREPARED`
+candidate, so that report is its outcome. `REJECTED` is reported verbatim. Preparation is available only in a
+registered-submodule consumer whose session has a qualified (schema 1.1)
+identity. The Copilot paths are separate: a VS Code Copilot session prepares
+with the id above and its Stop hook runs the closeout; a Copilot CLI session is
+given no session id, so it does not prepare and its closeout is reported as not
+persisted (its sessionEnd hook closes out only a session that was prepared).
+
+Writing `artifacts/session-closeout.txt` by hand is **not** a formal closeout:
+it is a legacy/manual input surface, it is not converted into a session-bound
+candidate, and its presence is not proof that the content belongs to the
+current session.
+
+Where a governed lifecycle hook is wired, the harness calls `session_end` on that
+hook's event; Session-End Closeout Responsibility below defines when session end
+applies and what to do without such a hook. If the closeout artifact
 is missing or insufficient, the runtime records `closeout_missing` or
 `closeout_insufficient` in the verdict and writes a fail-closed canonical daily
 record when the session is non-stateless. The invalid closeout content is not
 promoted. The gap remains auditable and visible to reviewers.
+
+Automatic closeout is session-bound. `session_start` creates a session envelope,
+stores its current-session marker under ignored runtime artifacts,
+and `session_end` accepts only a candidate stored under the same `session_id`
+and generated no earlier than that envelope. A previously consumed session or a
+candidate that is missing, mismatched, or older than session start fails closed:
+it is not promoted and its stale content is not reused.
+
+<!-- ai-governance:session-end-closeout BEGIN version=1 canonical=AGENTS.base.md -->
+### Session-End Closeout Responsibility
+
+These rules apply to every agent platform (Codex, Claude, Copilot and others).
+They define when closeout is required, who is responsible, and what may be
+claimed. They do not define which lifecycle event a platform uses; that is
+platform-specific and must be qualified separately for each platform.
+
+1. **Task DONE is not session end.** Finishing a task, a review, or a milestone
+   ends that task only. Report DONE, do not expand the work, and leave the
+   session open for the next request.
+2. **Closeout at a defined session end is a duty, not new work.** A mandatory
+   closeout at session end is not scope expansion. Hard Stop After DONE forbids
+   closeout after task DONE; it does not forbid closeout at session end.
+3. **Session end must come from a defined, observable source.** Only two sources
+   count: a platform lifecycle event whose session-end meaning has been
+   confirmed for that platform, or the user explicitly asking to end the session
+   or to close out. The user may give that request in advance: an owner
+   authorization that names a concrete closeout or handover condition counts
+   once the agent has met that condition, provided it traces to a verifiable
+   original owner source and was recorded before the session started. A plan
+   item, a memory `next_step`, or an authorization the agent wrote for itself
+   does not count. The agent must not infer that the conversation is over. A
+   final answer, a DONE report, or a per-turn `Stop` event is not session end
+   unless that meaning has been confirmed.
+4. **Governed lifecycle hook present:** the harness is responsible for
+   triggering canonical closeout. A governed hook is one wired to the governance
+   closeout entry and confirmed to run for this platform.
+5. **No usable governed hook:** only when session end is established under
+   rule 3, the top-level agent must attempt the existing manual closeout
+   (`python -m governance_tools.manage_agent_closeout print-manual --agent <agent>`
+   prints the command). If it cannot run or its result cannot be verified,
+   report closeout as `NOT PERSISTED` or `UNKNOWN`; never claim it was persisted.
+6. **Subagent completion is not project-level session end.** A subagent
+   returning to its parent must not run project-level closeout unless it has its
+   own governed session identity and was explicitly given closeout
+   responsibility.
+
+A closeout, including the manual fallback, does not authorize commit, push,
+pull request, or a new task; each still needs its own explicit authorization.
+
+Closeout candidate, canonical record, and memory are verified separately. A
+successful closeout on one platform is not evidence for any other platform.
+<!-- ai-governance:session-end-closeout END -->
 
 ### Required fields
 
@@ -164,4 +272,5 @@ A task is done when:
 - Failure paths are guarded
 - Architecture boundaries remain intact
 - Evidence matches the declared risk level
-- PLAN.md and memory/ reflect the new state
+- PLAN.md and memory/ updates required by the Memory Update Triggers above are
+  included in this delivery; after DONE, add no unrelated rollups or new PRs

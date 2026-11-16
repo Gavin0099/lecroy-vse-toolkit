@@ -50,7 +50,7 @@ default_load: always
 先輸出並確認：
 
 ```text
-LANG  = C | C++ | C# | ObjC | Swift | JS | Python | Verilog | SystemVerilog
+LANG  = C | C++ | C# | ObjC | Swift | JS | Python | Verilog | SystemVerilog | GDScript
 LEVEL = L0 | L1 | L2
 SCOPE = feature | refactor | bugfix | I/O | tooling | review | governance | kernel-driver
 ```
@@ -148,7 +148,7 @@ replace risk-matched test evidence.
 ### 2.7 Memory Pressure Check
 
 在 execution 前：
-1. 檢查 `memory/01_active_task.md` 的 line count
+1. 檢查 `memory/01_active_task.md` 的 line count 與 char count
 2. 依第 7.4 節套用 pressure handling
 3. 若狀態是 **WARNING** 或更高，必要時附帶 warning message
 4. 若是 **EMERGENCY**，先 **STOP** 依賴或擴張 active-task memory 的工作；僅可依 §7.4 的全部條件繼續 bounded maintenance
@@ -179,7 +179,7 @@ SESSION  = <YYYY-MM-DD-NN>  # optional; required when AGENT_ID is present
 ```
 
 欄位規則：
-- `LANG`: 取自 `C | C++ | C# | ObjC | Swift | JS | Python | Verilog | SystemVerilog`。
+- `LANG`: 取自 `C | C++ | C# | ObjC | Swift | JS | Python | Verilog | SystemVerilog | GDScript`。
   單一語言直接填該值；跨語言任務以逗號分隔，每個元素都必須是上列值之一（例：`C, C++`）。
   不得把多個語言寫成單一 token（例：`C/C++`）：`/` 已是 `SCOPE` 的 `I/O` 值的一部分，
   在同一個 block 內不能再兼作清單分隔符。分隔符與 `LOADED` 一致。

@@ -1,0 +1,6 @@
+{
+  "changed_files": [
+    "scripts/usb3-triage-data.vse"
+  ],
+  "trace_identity_not_applicable": "comment-only edit; script not run against a trace"
+}

@@ -1,0 +1,7 @@
+{
+  "changed_files": [
+    "tools/cleanup_outputs.py"
+  ],
+  "diff_text": "diff --git a/tools/cleanup_outputs.py b/tools/cleanup_outputs.py\nindex 1111111..2222222 100644\n--- a/tools/cleanup_outputs.py\n+++ b/tools/cleanup_outputs.py\n@@ -10,3 +10,4 @@\n def run(out_dir):\n+    shutil.rmtree(out_dir)\n     return out_dir\n",
+  "deletion_scope": "deletes only the per-run temp output dir under results/; raw traces and artifacts/evidence are excluded"
+}

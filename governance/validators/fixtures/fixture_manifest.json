@@ -1,0 +1,94 @@
+{
+  "fixtures": [
+    {
+      "file": "trace_capture_violation.checks.json",
+      "expected_ok": false,
+      "validator": "lecroy_trace_integrity_validator",
+      "expected_rule_ids": [
+        "LECROY-TRACE-001"
+      ],
+      "description": "PCIe capture (.pex, both slash styles) in change set without a handling decision"
+    },
+    {
+      "file": "trace_capture_compliant.checks.json",
+      "expected_ok": true,
+      "validator": "lecroy_trace_integrity_validator",
+      "expected_rule_ids": [
+        "LECROY-TRACE-001"
+      ],
+      "description": "Evidence report and PLAN only; no capture, no trace-opening code"
+    },
+    {
+      "file": "trace_capture_with_decision.checks.json",
+      "expected_ok": true,
+      "validator": "lecroy_trace_integrity_validator",
+      "expected_rule_ids": [
+        "LECROY-TRACE-001"
+      ],
+      "description": "USB capture with an exact-path handling decision recorded"
+    },
+    {
+      "file": "trace_identity_missing.checks.json",
+      "expected_ok": false,
+      "validator": "lecroy_trace_integrity_validator",
+      "expected_rule_ids": [
+        "LECROY-TRACE-002"
+      ],
+      "description": "PCIe VSE script changed with no trace identity evidence"
+    },
+    {
+      "file": "trace_identity_preserved.checks.json",
+      "expected_ok": true,
+      "validator": "lecroy_trace_integrity_validator",
+      "expected_rule_ids": [
+        "LECROY-TRACE-002"
+      ],
+      "description": "USB triage pipeline changed; input sha256 and size identical before/after"
+    },
+    {
+      "file": "trace_identity_mismatch.checks.json",
+      "expected_ok": false,
+      "validator": "lecroy_trace_integrity_validator",
+      "expected_rule_ids": [
+        "LECROY-TRACE-002"
+      ],
+      "description": "Run script changed; recorded input sha256 differs after the run"
+    },
+    {
+      "file": "trace_identity_not_applicable.checks.json",
+      "expected_ok": true,
+      "validator": "lecroy_trace_integrity_validator",
+      "expected_rule_ids": [
+        "LECROY-TRACE-002"
+      ],
+      "description": "USB3 VSE script edited without opening a trace; reason declared (warning only)"
+    },
+    {
+      "file": "deletion_missing_scope.checks.json",
+      "expected_ok": false,
+      "validator": "lecroy_deletion_scope_validator",
+      "expected_rule_ids": [
+        "LECROY-DEL-001"
+      ],
+      "description": "Product tool adds shutil.rmtree without a deletion scope"
+    },
+    {
+      "file": "deletion_with_scope.checks.json",
+      "expected_ok": true,
+      "validator": "lecroy_deletion_scope_validator",
+      "expected_rule_ids": [
+        "LECROY-DEL-001"
+      ],
+      "description": "Same deletion with a declared scope that excludes traces and evidence"
+    },
+    {
+      "file": "deletion_tests_only.checks.json",
+      "expected_ok": true,
+      "validator": "lecroy_deletion_scope_validator",
+      "expected_rule_ids": [
+        "LECROY-DEL-001"
+      ],
+      "description": "Deletion call added only under tests/"
+    }
+  ]
+}

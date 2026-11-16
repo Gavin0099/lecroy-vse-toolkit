@@ -3,6 +3,7 @@
 *.usbtrace
 *.uwb
 *.utp
+*.pex
 samples/data/
 
 # Generated VSE output
