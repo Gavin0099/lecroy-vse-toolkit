@@ -11,7 +11,7 @@
 - 離線分析由 `pcie_config_ur_analysis.analyze(observations)` 產出 `pcie.config-ur-evidence/v1`。列出 Config Request 和對應到 Memory Request 的 UR／CA，另外保留未配對的異常 Completion。列 ID 以 `p` 加原 Request Packet 組成。後續讀回帶回原讀 Request、Completion 和同區間／跨區間。跨區間只作勘驗線索。
 - Cap pointer、Capability ID 與欄位位置可建立暫存器身分。無對應定義時用 `UNKNOWN`。寫入只宣告觀察到的 request intent，`write_effect` 保持 `NOT_ESTABLISHED`。沒有已驗證 BAR 映射時，Memory 列用 `BAR_UNKNOWN`。
 - 依記憶體地址和讀取長度彙整 UR。每組有 `address`、`byte_length`、`count`、`row_ids`、`bursts`。觀察區間由原生時間相隔超過 100 ms 或 Link Down 切點分開。未知時間另列。分組僅用於呈現。單筆 Request／Completion 關聯和每次 UR 都保留。
-- UI 和匯出共用分析結果。C# 用 controller IPC `config_ur_run`、`config_ur_navigate`。後者帶 `case_id`、`row_id`、`target`（`request`、`completion`、`read_request` 或 `read_completion`）。Controller 只接受已發布結果中的來源綁定定位目標。不接受由 UI 提供自由 Packet index 或檔名。C# 工作狀態從 `status.json` 的 `config_ur` 讀取，ready 後載入其 `index` 相對於 case folder 的檔案。
+- UI 和匯出共用分析結果。每次補抽目錄保存 `evidence.json` 與該次原始證據。C# 用 controller IPC `config_ur_run`、`config_ur_navigate`。後者帶 `case_id`、`row_id`、`target`（`request`、`completion`、`read_request` 或 `read_completion`）。Controller 只接受已發布結果中的來源綁定定位目標。不接受由 UI 提供自由 Packet index 或檔名。C# 工作狀態從 `status.json` 的 `config_ur` 讀取，ready 後載入其 `index` 相對於 case folder 的檔案。
 - 獨立 fixture 和真實 1329 都須驗證寫入、BE、回覆、地址、回讀、能力鏈與時間分群。另測故障、未知 framing、跨 Link Down、同 Tag 競爭與取消。即使補抽失敗，案件仍可查看。
 
 JSON Schema 見 [pcie-config-ur-evidence.v1.json](../schemas/pcie-config-ur-evidence.v1.json)。首版以 [1329 fixture](../tests/fixtures/pcie-config-ur-1329.json) 的原始資料與已另核對的預期結果為共同測資。

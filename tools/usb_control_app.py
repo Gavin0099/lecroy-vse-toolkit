@@ -213,6 +213,34 @@ class NativeWorker:
         self.log.close()
 
 
+def config_ur_locators(result):
+    """Only the selected case's verified events can become native commands."""
+    count = result['native_packet_count']
+    binding = {key:result[key] for key in ('source_trace_sha256','display_trace_sha256','packet_namespace')}
+    locators = {}
+    for row in result['rows']:
+        readback = row['readback'] or {}
+        events = dict(request=row['request'],completion=row['completion'],
+                      read_request=readback.get('request'),read_completion=readback.get('completion'))
+        if row['id'] in locators or row['id'] != 'p'+str(row['request']['packet_index']):
+            raise ValueError('補抽列的 Packet 身分不符')
+        selected = locators[row['id']] = {}
+        for name,event in events.items():
+            if event is None or event['direction']=='UNKNOWN':
+                continue
+            index = event['packet_index']
+            if type(index) is not int or not 0 <= index < count:
+                raise ValueError('補抽 Packet 超出案件範圍')
+            fields = {key for ref in event['evidence'] for key in ref['fields']}
+            if not {'packet_index','direction'} <= fields:
+                continue
+            timed = event['time_ns'] is not None and 'time_ns' in fields
+            selected[name] = dict(binding,packet_index=index,display_level=0,
+                                  timestamp={'value':event['time_ns'],'unit':'ns'} if timed else None,
+                                  time_display=event['time_display'],channel=event['direction'],direction=event['direction'])
+    return locators
+
+
 class Tool:
     def __init__(self, output, worker_factory=NativeWorker):
         self.root = Path(output).resolve()
@@ -254,6 +282,8 @@ class Tool:
             value['scope'] = self.case['model'].get('scope', '') if self.case else 'USB2 EP0 / USB3 Link・LFPS / PD 協商・VDM；以完成後的範圍狀態為準，無候選不代表 USB PASS。'
             value['analyses'] = self.case['model'].get('analyses', []) if self.case else []
             value['model_revision'] = self.case.get('revision',0) if self.case else 0
+            if value['case_id'] and 'config_ur' in self.case:
+                value['config_ur'] = dict(self.case['config_ur'])
             return value
 
     def bind(self, model_path, source, prepared=None):
@@ -379,11 +409,15 @@ class Tool:
             self.integrity();case=self.case;model=case['model']
             if model['native_navigation']=='unavailable':raise ValueError('原生 Packet 範圍尚未核實，不能自動開啟定位')
             if self.worker is None:
+                anchors = {loc['packet_index']: loc for card in model['candidates']+model.get('observations',[])+model.get('flow_items',[])
+                           for loc in card.get('navigation_locators',[card['locator']])}
+                for choices in case.get('config_ur_locators', {}).values():
+                    for anchor in choices.values():
+                        anchors.setdefault(anchor['packet_index'], anchor)
                 binding=dict(request=dict(schema='pcie.navigation-probe/v1',
                     source_trace=dict(path=str(case['source']),sha256=model['source_trace_sha256']),
                     display_trace=dict(path=str(case['working']),sha256=model['display_trace_sha256']),
-                    anchors=list({loc['packet_index']:loc for c in model['candidates']+model.get('observations',[])+model.get('flow_items',[])
-                                  for loc in c.get('navigation_locators',[c['locator']])}.values())),packet_count=model['coverage']['native_packet_count'])
+                    anchors=list(anchors.values())),packet_count=model['coverage']['native_packet_count'])
                 self.worker=native.Worker(case['folder']/('navigation-'+uuid.uuid4().hex[:8]),binding)
             result=self.worker.request('goto',target)
             self.integrity()
@@ -441,16 +475,128 @@ class Tool:
             return self.navigate(message['case_id'],message['rank'],message['target_index'],message['item_kind'])
         if set(message)=={'action','case_id','context'} and message['action']=='context':
             return self.set_context(message['case_id'],message['context'])
+        if set(message)=={'action','case_id'} and message['action']=='config_ur_run':
+            return self.start_config_ur(message['case_id'])
+        if set(message)=={'action','case_id','row_id','target'} and message['action']=='config_ur_navigate':
+            return self.navigate_config_ur(message['case_id'],message['row_id'],message['target'])
         if message == {'action': 'end'}:
             return self.end_navigation()
         if message == {'action': 'cancel'}:
             with self.lock:
                 if self.state['busy'] and self.pending_protocol=='pcie':
                     self.cancel_event.set()
-                    self.update('extracting','已要求取消，等待原生呼叫安全結束；尚未取消完成。',busy=True)
+                    phase = 'config_ur' if self.state['phase'] == 'config_ur' else 'extracting'
+                    message = '已要求取消，等待原生呼叫安全結束；尚未取消完成。'
+                    if phase == 'config_ur':
+                        self.case['config_ur']['message'] = message
+                    self.update(phase,message,busy=True)
                     return True
                 return False
         raise ValueError('Unsupported native command')
+
+    def start_config_ur(self, case_id):
+        with self.lock:
+            if self.shutting_down or self.state['busy'] or self.state['phase'] in ('unresponsive','cleanup_unknown'):
+                return False
+            case = self.case
+            if not case or case_id != case['id'] or case['model'].get('protocol') != 'pcie':
+                raise ValueError('目前案件沒有可補抽的 PCIe Trace')
+            count = case['model']['coverage']['native_packet_count']
+            if type(count) is not int or count < 1:
+                raise ValueError('原生 Packet 範圍尚未核對')
+            self.cancel_event.clear()
+            self.pending_protocol = 'pcie'
+            message = '正在補抽 PCIe 暫存器與 UR…'
+            case['config_ur'] = {'state':'running','message':message}
+            self.update('config_ur',message,busy=True,last_navigation=None)
+            self.thread = threading.Thread(target=self._analyze_config_ur, args=(case,), daemon=True)
+            self.thread.start()
+            return True
+
+    def _analyze_config_ur(self, case):
+        from pcie_pipeline import CleanupUnknown
+        phase = 'report'
+        try:
+            import pcie_config_ur_acquisition as acquisition
+            import pcie_config_ur_analysis as analysis
+            import pcie_config_ur_report as report
+            import pcie_large_io as large
+            try:
+                self.close_navigation()
+            except Exception as exc:
+                raise CleanupUnknown(str(exc)) from exc
+            model = case['model']
+            binding = {key:model[key] for key in ('source_trace_sha256','display_trace_sha256','packet_namespace')}
+            binding.update(analysis_id=case['id'],native_packet_count=model['coverage']['native_packet_count'])
+            directory = case['folder']/('config-ur-'+uuid.uuid4().hex)
+            directory.mkdir()
+            def progress(message):
+                with self.lock:
+                    if not self.cancel_event.is_set():
+                        case['config_ur']['message'] = message
+                        self.update('config_ur',message,busy=True)
+            with native_exclusive():
+                observed = acquisition.run(case['working'],case['folder']/'analysis',directory,binding,self.cancel_event,progress)
+            self.integrity()
+            if self.cancel_event.is_set():
+                raise InterruptedError('已取消補抽分析')
+            result = analysis.analyze(observed)
+            if result.get('schema') != 'pcie.config-ur-evidence/v1' or any(result[key] != value for key,value in binding.items()):
+                raise ValueError('補抽結果的來源與案件不符')
+            locators = config_ur_locators(result)
+            large.check_disk(directory, 32 * large.MIB)
+            large.write_json_bounded(directory/'evidence.json',result,limit=32*large.MIB)
+            report.write(directory,result)
+            if not (directory/'index.json').is_file():
+                raise ValueError('補抽報告索引未完成')
+            with self.lock:
+                if self.cancel_event.is_set() or self.shutting_down:
+                    raise InterruptedError('已取消補抽分析')
+                if case is not self.case:
+                    raise ValueError('補抽的案件已變更')
+                message = '暫存器與 UR 證據已整理，可查看原請求、回覆與回讀。'
+                case['config_ur'] = {'state':'ready','index':directory.name+'/index.json','message':message}
+                case['config_ur_locators'] = locators
+                self.pending_protocol = None
+                self.update('report',message,busy=False)
+                try:
+                    self.event('config_ur_completed',case_id=case['id'],index=case['config_ur']['index'])
+                except OSError as exc:
+                    print('Unable to log completed Config/UR supplement: '+str(exc),file=sys.stderr)
+            return
+        except InterruptedError as exc:
+            message, state = str(exc), 'cancelled'
+        except CleanupUnknown as exc:
+            message, state, phase = str(exc), 'error', 'cleanup_unknown'
+        except TimeoutError as exc:
+            message, state, phase = str(exc), 'error', 'unresponsive'
+        except Exception as exc:
+            message, state = str(exc), 'error'
+        with self.lock:
+            self.pending_protocol = None
+            if self.case is case:
+                case['config_ur'] = {'state':state,'message':message}
+                case.pop('config_ur_locators',None)
+                self.update(phase,message,busy=False)
+
+    def navigate_config_ur(self, case_id, row_id, target_name):
+        with self.lock:
+            if self.shutting_down or self.state['busy'] or self.state['phase'] in ('unresponsive','cleanup_unknown'):
+                return False
+            case = self.case
+            if not case or case_id != case['id'] or case.get('config_ur',{}).get('state') != 'ready':
+                raise ValueError('補抽結果不屬於目前工作')
+            if not isinstance(row_id,str) or not isinstance(target_name,str):
+                raise ValueError('補抽定位欄位不符')
+            anchor = case['config_ur_locators'].get(row_id,{}).get(target_name)
+            if anchor is None:
+                raise ValueError('這一列缺少可核對的 Packet 位置')
+            index = anchor['packet_index']
+            target = dict(protocol='PCIe',level=0,index=index,channel=anchor['channel'])
+            self.update('navigating',f'正在定位 PCIe · Packet {index}…',busy=True,last_navigation=None)
+            self.thread = threading.Thread(target=self._navigate_pcie,args=(case_id,target),daemon=True)
+            self.thread.start()
+            return True
 
     def set_context(self,case_id,context):
         """Optional per-import input; no native acquisition, global defaults or rule edits."""
@@ -704,7 +850,10 @@ def main():
     finally:
         tool.shutting_down = True
         if tool.thread and tool.thread.is_alive():
-            tool.thread.join(timeout=15)
+            supplement = tool.state['phase'] == 'config_ur'
+            if supplement:
+                tool.cancel_event.set()
+            tool.thread.join(timeout=45 if supplement else 15)
         try:
             if tool.thread and tool.thread.is_alive():
                 raise RuntimeError('原生操作仍在進行，不得當作已取消或清理完成')

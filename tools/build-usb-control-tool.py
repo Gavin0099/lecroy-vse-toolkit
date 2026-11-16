@@ -32,7 +32,8 @@ PYWIN32_SHA256 = '718a38f7e5b058e76aee1c56ddd06908116d35147e133427e59a3983f703a2
 
 def pcie_sources():
     """Package the local static dependency closure, never frozen case outputs."""
-    pending=['pcie_workspace','pcie_pipeline','pcie_navigation_service','pcie_ui_pages']
+    pending=['pcie_workspace','pcie_pipeline','pcie_navigation_service','pcie_ui_pages',
+             'pcie_config_ur_acquisition','pcie_config_ur_analysis','pcie_config_ur_report']
     found={}
     while pending:
         name=pending.pop()
@@ -46,12 +47,13 @@ def pcie_sources():
     return sorted(found.values())+['scripts/pcie/'+n for n in
         ('g1a-tlp-count.pevs','g1c-tlp-rows-all.pevs','g2a-tlp-fields.pevs','g3c0-msg-fields.pevs',
          'g1c-tlp-rows-batched.pevs','g2a-tlp-fields-batched.pevs','g3c0-msg-fields-batched.pevs',
-         'vopt-phase-scan.pevs','vopt-transactions.pevs')]
+         'vopt-phase-scan.pevs','vopt-transactions.pevs','b2a-register-probe.pevs')]
 
 
 FILES=list(dict.fromkeys(FILES+pcie_sources()+['docs/pcie-workflow-parity-matrix.md',
     'docs/usb-pcie-tool-usage.md','docs/pcie-large-trace-safeguards-usage.md','docs/pcie-dense-analysis-usage.md','docs/pcie-dense-analysis-contract-20261020.md','docs/pcie-parity-engineer-trial.md','tools/pcie-gui-navigation.cs',
     'docs/pcie-flow-triage-contract.md','docs/pcie-knowledge-sources.md','docs/pcie-engineer-ux-contract-20261021.md',
+    'docs/pcie-config-ur-contract.md','schemas/pcie-config-ur-evidence.v1.json',
     'knowledge/pcie/LICENSE-NOTICE.md','knowledge/pcie/sources.json','knowledge/pcie/rule-cards.schema.json',
     'knowledge/pcie/next-actions.json','knowledge/pcie/next-action-contract.md',
     '.agents/skills/pcie-debug-analysis/SKILL.md','.agents/skills/pcie-debug-analysis/references/examples.md',
