@@ -22,7 +22,8 @@ def result_fixture():
         if read_reply is not None:
             read_packet = {2309449: 2309447, 2309473: 2309469}[read_reply]
             readback = dict(request=packets[read_packet], completion=packets[read_reply], scope="later_interval")
-        register = dict(identity=identity, scope="later_interval" if identity != "UNKNOWN" else "unknown",
+        scope = ("same_interval" if reply else "later_interval") if identity != "UNKNOWN" else "unknown"
+        register = dict(identity=identity, scope=scope,
                         evidence_packets=[2309436, 2309449] if identity == "PCI_EXP_CAP_HEADER" else [])
         if identity == "PCI_EXP_CAP_HEADER":
             register["write_fields"] = [{"name": "Capability ID", "value": packets[packet]["value"]},
@@ -78,6 +79,8 @@ class ConfigUrReportTests(unittest.TestCase):
         self.assertEqual(rows[4]["locations"], {"request": 2160355, "completion": 2160359, "read_request": 2309447,
                                                 "read_completion": 2309449})
         self.assertIn("觀察到的寫入欄位 Capability ID = 0x42", rows[4]["details"])
+        self.assertIn("後段同 BDF，供比對", rows[3]["columns"][3])
+        self.assertNotIn("觀察到的寫入欄位", "\n".join(rows[3]["details"]))
         self.assertIn("硬體寫入效果尚未建立。", rows[4]["details"])
         self.assertIn("後續連線區間，僅可供比對", "\n".join(rows[4]["details"]))
         self.assertIn("暫存器身分未知", "\n".join(rows[2]["details"]))

@@ -237,10 +237,11 @@ def add_raw(path, rows, events, total):
         event = events[packet]
         fields = dict(payload_bytes=row['payload_length'])
         typ = row['tlp_type']
+        header = bytes.fromhex(row['frame_prefix'])
+        raw_length = int.from_bytes(header[5:7], 'big') & 0x3FF
         if typ in b2a.CFG:
             # The supported Config header carries literal Length=1 for both read and write.
-            first_header = bytes.fromhex(row['frame_prefix'])
-            if int.from_bytes(first_header[5:7], 'big') & 0x3FF != 1:
+            if raw_length != 1:
                 raise ValueError('Config request did not have Length=1')
             fields.update(device_id=row['device_id'], register=row['register'], length_dw=1,
                           first_be=row['first_be'], last_be=row['last_be'])
@@ -249,6 +250,7 @@ def add_raw(path, rows, events, total):
             if byte_count == 0 and typ == 18 and event['status'] == 'SC' and row['payload_length'] > 0:
                 byte_count = 4096
             fields.update(device_id=row['completer_id'], status=event['status'],
+                          length_dw=(raw_length or 1024) if typ == 18 else raw_length,
                           byte_count=byte_count, lower_address=row['lower_addr'])
         if row['payload_length'] >= 4 and len(row['frame_prefix']) == 38:
             fields['value'] = int.from_bytes(bytes.fromhex(row['payload_prefix'][:8]), 'little')

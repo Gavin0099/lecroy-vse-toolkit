@@ -96,6 +96,8 @@ def _row(row):
     address = _hex(req["register"] if config else req["address"])
     if config and expected != "UNKNOWN":
         address += " " + REGISTER_NAMES.get(expected, expected)
+        if reg["scope"] == "later_interval":
+            address += "（後段同 BDF，供比對）"
     locations = {"request": req["packet_index"]}
     details = _event_lines("原請求", req)
     if cpl is not None:
@@ -118,8 +120,11 @@ def _row(row):
         if reg and expected != "UNKNOWN":
             basis = "、".join(str(p) for p in reg["evidence_packets"])
             details.append(f"暫存器定位證據 Packet {basis}／{INTERVALS[reg['scope']]}")
-            for field in reg.get("write_fields", ()):
-                details.append(f"觀察到的寫入欄位 {field['name']} = {_hex(field['value'])}")
+            if reg["scope"] == "same_interval":
+                for field in reg.get("write_fields", ()):
+                    details.append(f"觀察到的寫入欄位 {field['name']} = {_hex(field['value'])}")
+            elif reg["scope"] == "later_interval":
+                details.append("後段同 BDF 的暫存器定義僅供比對，原區間的暫存器身分尚未核對。")
         else:
             details.append("暫存器身分未知，保留 Config offset。")
     if row["write_effect"] == "NOT_ESTABLISHED":

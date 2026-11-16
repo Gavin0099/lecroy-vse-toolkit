@@ -377,7 +377,8 @@ def _annotate_config(rows):
             }
         if request["kind"] not in _WRITES:
             continue
-        _write_fields(row["register"], request)
+        if row["register"]["scope"] == "same_interval":
+            _write_fields(row["register"], request)
         minimum = (row["completion"] or request)["packet_index"]
         enabled = request["first_be"]
         lookup = (device, offset, enabled)

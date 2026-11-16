@@ -84,7 +84,7 @@ class ConfigUrTests(unittest.TestCase):
             self.assertEqual(result[field], observations[field])
         writes = []
         memory = []
-        header_values = {2151602: 0x40, 2160355: 0x42, 2160418: 0x40}
+        header_values = {2160355: 0x42, 2160418: 0x40}
         for row in result["rows"]:
             request = row["request"]
             if request["kind"] == "CfgWr0":
@@ -97,11 +97,13 @@ class ConfigUrTests(unittest.TestCase):
                     self.assertEqual(row["register"]["scope"], "same_interval" if completion else "later_interval")
                 if readback:
                     self.assertEqual(readback["scope"], "same_interval" if completion else "later_interval")
-                if request["register"] == 0x80:
+                if request["packet_index"] in header_values:
                     self.assertEqual(row["register"]["write_fields"], [
                         {"name": "Capability ID", "value": header_values[request["packet_index"]]},
                         {"name": "Next Capability Pointer", "value": 0},
                     ])
+                elif row["register"]["scope"] != "same_interval":
+                    self.assertNotIn("write_fields", row["register"])
                 writes.append([
                     request["packet_index"], request["register"], request["value"],
                     request["first_be"], request["last_be"],
@@ -259,6 +261,15 @@ class ConfigUrTests(unittest.TestCase):
         self.assertEqual(partial["register"]["identity"], "L1SS_EXT_CAP_HEADER")
         self.assertEqual(partial["register"]["write_fields"], [{"name": "Capability Version", "value": 15}])
         self.assertNotIn("write_fields", unverified["register"])
+
+    def test_later_bdf_reuse_cannot_classify_an_earlier_write_field(self):
+        result = analyze(_observations(
+            _config(1, 0, 0x90), _cpl(2, 0),
+            *_read(4, 0, 0x34, 0x80), *_read(6, 0, 0x80, 0x0002E010), cuts=[3],
+        ))
+        earlier = result["rows"][0]["register"]
+        self.assertEqual(earlier, dict(identity="PCI_EXP_LINK_CONTROL", scope="later_interval",
+                                       evidence_packets=[4, 5, 6, 7]))
 
     def test_readback_requires_success_and_covered_byte_enables(self):
         result = analyze(_observations(

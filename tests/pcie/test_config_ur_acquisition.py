@@ -8,6 +8,7 @@ import uuid
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools'))
 import pcie_config_ur_acquisition as acquisition
+import pcie_config_ur_analysis as association
 
 
 def metadata(packet, type_code, *, tag=8, direction='Downstream', completion_status=None, row=1):
@@ -17,6 +18,32 @@ def metadata(packet, type_code, *, tag=8, direction='Downstream', completion_sta
 
 
 class ConfigUrAcquisitionTests(unittest.TestCase):
+    def test_raw_config_read_and_completion_are_usable_by_association(self):
+        rows = [dict(metadata(2309447, 9, tag=6), time_display='94.700 sec'),
+                dict(metadata(2309449, 18, tag=6, direction='Upstream', completion_status=0, row=2),
+                     time_display='94.700 sec')]
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary)
+            events = acquisition.make_events(rows, output)
+            path = output / 'b2a-register-fields.txt'
+            path.write_text('\n'.join((
+                acquisition.b2a.HEADER,
+                'B2A_ROW|2309447|94.700 sec|Downstream|0x9|0x0|0x6|0x100|0x80|NA|NA|0xF|0x0|0x0|NA|NA|NA|NA|NA|FB0037040000010000060F0100008005',
+                'B2A_ROW|2309449|94.700 sec|Upstream|0x12|0x0|0x6|NA|NA|0x0|0x2E010|NA|NA|0x4|10E00200|0x100|0x0|0x4|0x0|FB00354A000001010000040000060010E00200',
+                'B2A_END|tlps=2|rows=2|reason=trace_end', acquisition.g1a.DONE_MARKER,
+            )), encoding='utf-8')
+            self.assertEqual(acquisition.add_raw(path, rows, events, 2), (0, 0))
+            observations = dict(schema=acquisition.SCHEMA, analysis_id='a'*32, source_trace_sha256='b'*64,
+                                display_trace_sha256='c'*64, packet_namespace='native_trace_packet_zero_based',
+                                native_packet_count=2310000, events=list(events.values()), link_downs=[],
+                                coverage=dict(stream_complete=True, link_boundaries_complete=True,
+                                              full_trace_coverage='UNKNOWN', unsupported_frame_rows=0, omitted_rows=0))
+            result = association.analyze(observations)
+        self.assertEqual(result['rows'][0]['completion_status'], 'SC')
+        completion = result['rows'][0]['completion']
+        self.assertEqual((completion['length_dw'], completion['value']), (1, 0x0002E010))
+        self.assertIn('length_dw', completion['evidence'][-1]['fields'])
+
     def raw_report(self, output, prefix):
         # Packet 2151492's header and independently observed payload 00 00 0F 00.
         path = output / 'b2a-register-fields.txt'
