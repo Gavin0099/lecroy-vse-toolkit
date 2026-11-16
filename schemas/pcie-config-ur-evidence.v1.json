@@ -1,0 +1,483 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PCIe Config and UR evidence",
+  "type": "object",
+  "required": [
+    "schema",
+    "analysis_id",
+    "source_trace_sha256",
+    "display_trace_sha256",
+    "packet_namespace",
+    "native_packet_count",
+    "coverage"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "enum": [
+        "pcie.config-ur-observations/v1",
+        "pcie.config-ur-evidence/v1"
+      ]
+    },
+    "analysis_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{32}$"
+    },
+    "source_trace_sha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "display_trace_sha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "packet_namespace": {
+      "enum": [
+        "native_trace_packet_zero_based",
+        "converted_trace_packet_zero_based"
+      ]
+    },
+    "native_packet_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "coverage": {
+      "type": "object",
+      "required": [
+        "stream_complete",
+        "link_boundaries_complete",
+        "full_trace_coverage",
+        "unsupported_frame_rows",
+        "omitted_rows"
+      ],
+      "properties": {
+        "stream_complete": {
+          "type": "boolean"
+        },
+        "link_boundaries_complete": {
+          "type": "boolean"
+        },
+        "full_trace_coverage": {
+          "const": "UNKNOWN"
+        },
+        "unsupported_frame_rows": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "omitted_rows": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": true
+    },
+    "link_downs": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "uniqueItems": true
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/event"
+      }
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/row"
+      }
+    },
+    "ur_groups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "address",
+          "byte_length",
+          "count",
+          "row_ids",
+          "bursts"
+        ]
+      }
+    },
+    "unmatched_completions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/event"
+      }
+    }
+  },
+  "oneOf": [
+    {
+      "properties": {
+        "schema": {
+          "const": "pcie.config-ur-observations/v1"
+        }
+      },
+      "required": [
+        "events",
+        "link_downs"
+      ]
+    },
+    {
+      "properties": {
+        "schema": {
+          "const": "pcie.config-ur-evidence/v1"
+        }
+      },
+      "required": [
+        "rows",
+        "ur_groups",
+        "unmatched_completions"
+      ]
+    }
+  ],
+  "$defs": {
+    "sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "reference": {
+      "type": "object",
+      "required": [
+        "kind",
+        "file",
+        "sha256",
+        "line",
+        "fields"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "RAW_FRAME_VERIFIED",
+            "NATIVE_TEXT_VERIFIED",
+            "METADATA_ONLY"
+          ]
+        },
+        "file": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "fields": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "event": {
+      "type": "object",
+      "required": [
+        "packet_index",
+        "time_ns",
+        "time_display",
+        "direction",
+        "kind",
+        "requester_id",
+        "tag",
+        "device_id",
+        "register",
+        "address",
+        "length_dw",
+        "first_be",
+        "last_be",
+        "value",
+        "payload_bytes",
+        "byte_count",
+        "lower_address",
+        "status",
+        "evidence"
+      ],
+      "properties": {
+        "packet_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "time_ns": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "time_display": {
+          "type": "string"
+        },
+        "direction": {
+          "enum": [
+            "Upstream",
+            "Downstream",
+            "UNKNOWN"
+          ]
+        },
+        "kind": {
+          "enum": [
+            "CfgRd0",
+            "CfgWr0",
+            "CfgRd1",
+            "CfgWr1",
+            "MRd32",
+            "MRd64",
+            "OtherNonPosted",
+            "Cpl",
+            "CplD"
+          ]
+        },
+        "requester_id": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 65535
+        },
+        "tag": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1023
+        },
+        "device_id": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 65535
+        },
+        "register": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 4095
+        },
+        "address": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "length_dw": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1024
+        },
+        "first_be": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 15
+        },
+        "last_be": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 15
+        },
+        "value": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "payload_bytes": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 4096
+        },
+        "byte_count": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 4096
+        },
+        "lower_address": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 127
+        },
+        "status": {
+          "enum": [
+            "SC",
+            "UR",
+            "CA",
+            "CRS",
+            "UNKNOWN",
+            null
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/reference"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "row": {
+      "type": "object",
+      "required": [
+        "id",
+        "epoch",
+        "request",
+        "completion",
+        "completion_status",
+        "register",
+        "readback",
+        "write_effect",
+        "bar"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^p[0-9]+$"
+        },
+        "epoch": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "request": {
+          "$ref": "#/$defs/event"
+        },
+        "completion": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/event"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "completion_status": {
+          "enum": [
+            "SC",
+            "UR",
+            "CA",
+            "CRS",
+            "UNKNOWN",
+            "NO_COMPLETION_OBSERVED_BEFORE_LINK_DOWN",
+            "NO_COMPLETION_OBSERVED",
+            "DATA_GAP",
+            "AMBIGUOUS"
+          ]
+        },
+        "register": {
+          "anyOf": [
+            {
+              "type": "object",
+              "required": [
+                "identity",
+                "evidence_packets",
+                "scope"
+              ],
+              "properties": {
+                "identity": {
+                  "type": "string"
+                },
+                "evidence_packets": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "scope": {
+                  "enum": [
+                    "same_interval",
+                    "later_interval",
+                    "unknown"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "readback": {
+          "anyOf": [
+            {
+              "type": "object",
+              "required": [
+                "request",
+                "completion",
+                "scope"
+              ],
+              "properties": {
+                "request": {
+                  "$ref": "#/$defs/event"
+                },
+                "completion": {
+                  "$ref": "#/$defs/event"
+                },
+                "scope": {
+                  "enum": [
+                    "same_interval",
+                    "later_interval"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "write_effect": {
+          "enum": [
+            "NOT_ESTABLISHED",
+            null
+          ]
+        },
+        "bar": {
+          "enum": [
+            "BAR_UNKNOWN",
+            null
+          ]
+        }
+      }
+    }
+  }
+}

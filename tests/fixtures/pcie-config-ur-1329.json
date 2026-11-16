@@ -1,0 +1,1931 @@
+{
+  "observations": {
+    "schema": "pcie.config-ur-observations/v1",
+    "analysis_id": "0595973852434d6f9dddf46368b95d68",
+    "source_trace_sha256": "d2b88c860dd8c6291af16357615eb67ef0abba9e993be4715740744e2f794f2b",
+    "display_trace_sha256": "d2b88c860dd8c6291af16357615eb67ef0abba9e993be4715740744e2f794f2b",
+    "packet_namespace": "native_trace_packet_zero_based",
+    "native_packet_count": 3322034,
+    "coverage": {
+      "stream_complete": true,
+      "link_boundaries_complete": true,
+      "full_trace_coverage": "UNKNOWN",
+      "unsupported_frame_rows": 263,
+      "omitted_rows": 0,
+      "fixture_scope": "curated original request, reply and capability rows in the 1329 evidence"
+    },
+    "events": [
+      {
+        "packet_index": 2151476,
+        "kind": "CfgWr0",
+        "time_ns": 93664121090,
+        "time_display": "93.664121090 s",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 12,
+        "device_id": 256,
+        "register": 260,
+        "address": null,
+        "length_dw": 1,
+        "first_be": 15,
+        "last_be": 0,
+        "value": 4294967295,
+        "payload_bytes": 4,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 292,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "register",
+              "length_dw",
+              "first_be",
+              "last_be",
+              "value",
+              "payload_bytes"
+            ]
+          },
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-0.txt",
+            "sha256": "ce73006406b94a2aeff5360ba4dbf7d2f4baf171f11a2a234a7cffc59281d145",
+            "line": 1033,
+            "fields": [
+              "packet_index",
+              "time_ns",
+              "direction"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2151486,
+        "kind": "CfgWr0",
+        "time_ns": 93664260464,
+        "time_display": "93.664260464 s",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 2,
+        "device_id": 256,
+        "register": 272,
+        "address": null,
+        "length_dw": 1,
+        "first_be": 15,
+        "last_be": 0,
+        "value": 4294967295,
+        "payload_bytes": 4,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 293,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "register",
+              "length_dw",
+              "first_be",
+              "last_be",
+              "value",
+              "payload_bytes"
+            ]
+          },
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-0.txt",
+            "sha256": "ce73006406b94a2aeff5360ba4dbf7d2f4baf171f11a2a234a7cffc59281d145",
+            "line": 1075,
+            "fields": [
+              "packet_index",
+              "time_ns",
+              "direction"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2151492,
+        "kind": "CfgWr0",
+        "time_ns": 93664327004,
+        "time_display": "93.664327004 s",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 8,
+        "device_id": 256,
+        "register": 120,
+        "address": null,
+        "length_dw": 1,
+        "first_be": 12,
+        "last_be": 0,
+        "value": 983040,
+        "payload_bytes": 4,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 294,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "register",
+              "length_dw",
+              "first_be",
+              "last_be",
+              "value",
+              "payload_bytes"
+            ]
+          },
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-0.txt",
+            "sha256": "ce73006406b94a2aeff5360ba4dbf7d2f4baf171f11a2a234a7cffc59281d145",
+            "line": 1101,
+            "fields": [
+              "packet_index",
+              "time_ns",
+              "direction"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2151602,
+        "kind": "CfgWr0",
+        "time_ns": 93666086814,
+        "time_display": "93.666086814 s",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 14,
+        "device_id": 256,
+        "register": 128,
+        "address": null,
+        "length_dw": 1,
+        "first_be": 3,
+        "last_be": 0,
+        "value": 64,
+        "payload_bytes": 4,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 295,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "register",
+              "length_dw",
+              "first_be",
+              "last_be",
+              "value",
+              "payload_bytes"
+            ]
+          },
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-0.txt",
+            "sha256": "ce73006406b94a2aeff5360ba4dbf7d2f4baf171f11a2a234a7cffc59281d145",
+            "line": 1543,
+            "fields": [
+              "packet_index",
+              "time_ns",
+              "direction"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2160355,
+        "kind": "CfgWr0",
+        "time_ns": 93666647468,
+        "time_display": "93.666647468 s",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 0,
+        "device_id": 256,
+        "register": 128,
+        "address": null,
+        "length_dw": 1,
+        "first_be": 3,
+        "last_be": 0,
+        "value": 66,
+        "payload_bytes": 4,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 296,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "register",
+              "length_dw",
+              "first_be",
+              "last_be",
+              "value",
+              "payload_bytes"
+            ]
+          },
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-1.txt",
+            "sha256": "e3465d675e7cdf9371427f14083811e703928782bc439a60f2c11f315c3babed",
+            "line": 48,
+            "fields": [
+              "packet_index",
+              "time_ns",
+              "direction"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2160359,
+        "kind": "Cpl",
+        "time_ns": 93666648584,
+        "time_display": "93.666648584 s",
+        "direction": "Upstream",
+        "requester_id": 0,
+        "tag": 0,
+        "device_id": 256,
+        "register": null,
+        "address": null,
+        "length_dw": 0,
+        "first_be": null,
+        "last_be": null,
+        "value": null,
+        "payload_bytes": 0,
+        "byte_count": 4,
+        "lower_address": 0,
+        "status": "SC",
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 297,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "length_dw",
+              "payload_bytes",
+              "byte_count",
+              "lower_address",
+              "status"
+            ]
+          },
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-1.txt",
+            "sha256": "e3465d675e7cdf9371427f14083811e703928782bc439a60f2c11f315c3babed",
+            "line": 66,
+            "fields": [
+              "packet_index",
+              "time_ns",
+              "direction"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2160418,
+        "kind": "CfgWr0",
+        "time_ns": 93667048328,
+        "time_display": "93.667048328 s",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 5,
+        "device_id": 256,
+        "register": 128,
+        "address": null,
+        "length_dw": 1,
+        "first_be": 3,
+        "last_be": 0,
+        "value": 64,
+        "payload_bytes": 4,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 298,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "register",
+              "length_dw",
+              "first_be",
+              "last_be",
+              "value",
+              "payload_bytes"
+            ]
+          },
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-1.txt",
+            "sha256": "e3465d675e7cdf9371427f14083811e703928782bc439a60f2c11f315c3babed",
+            "line": 303,
+            "fields": [
+              "packet_index",
+              "time_ns",
+              "direction"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2160420,
+        "kind": "Cpl",
+        "time_ns": 93667049436,
+        "time_display": "93.667049436 s",
+        "direction": "Upstream",
+        "requester_id": 0,
+        "tag": 5,
+        "device_id": 256,
+        "register": null,
+        "address": null,
+        "length_dw": 0,
+        "first_be": null,
+        "last_be": null,
+        "value": null,
+        "payload_bytes": 0,
+        "byte_count": 4,
+        "lower_address": 0,
+        "status": "SC",
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 299,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "length_dw",
+              "payload_bytes",
+              "byte_count",
+              "lower_address",
+              "status"
+            ]
+          },
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-1.txt",
+            "sha256": "e3465d675e7cdf9371427f14083811e703928782bc439a60f2c11f315c3babed",
+            "line": 314,
+            "fields": [
+              "packet_index",
+              "time_ns",
+              "direction"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2161214,
+        "kind": "MRd32",
+        "time_ns": 93672515042,
+        "time_display": "93.672515042 s",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 11,
+        "device_id": null,
+        "register": null,
+        "address": 1814020136,
+        "length_dw": 2,
+        "first_be": 15,
+        "last_be": 15,
+        "value": null,
+        "payload_bytes": null,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-2.txt",
+            "sha256": "820fceb3a5a629c312cd6cc8e6849b28ba90fb65e145c274f8129746e94ecf7b",
+            "line": 44,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_ns",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "address",
+              "length_dw",
+              "first_be",
+              "last_be"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2161217,
+        "kind": "Cpl",
+        "time_ns": 93672516054,
+        "time_display": "93.672516054 s",
+        "direction": "Upstream",
+        "requester_id": 0,
+        "tag": 11,
+        "device_id": 256,
+        "register": null,
+        "address": null,
+        "length_dw": 0,
+        "first_be": null,
+        "last_be": null,
+        "value": null,
+        "payload_bytes": 0,
+        "byte_count": 8,
+        "lower_address": 40,
+        "status": "UR",
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 300,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "length_dw",
+              "payload_bytes",
+              "byte_count",
+              "lower_address",
+              "status"
+            ]
+          },
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-2.txt",
+            "sha256": "820fceb3a5a629c312cd6cc8e6849b28ba90fb65e145c274f8129746e94ecf7b",
+            "line": 56,
+            "fields": [
+              "packet_index",
+              "time_ns",
+              "direction"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2161220,
+        "kind": "MRd32",
+        "time_ns": 93672518160,
+        "time_display": "93.672518160 s",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 1,
+        "device_id": null,
+        "register": null,
+        "address": 1814020124,
+        "length_dw": 1,
+        "first_be": 15,
+        "last_be": 0,
+        "value": null,
+        "payload_bytes": null,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-2.txt",
+            "sha256": "820fceb3a5a629c312cd6cc8e6849b28ba90fb65e145c274f8129746e94ecf7b",
+            "line": 69,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_ns",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "address",
+              "length_dw",
+              "first_be",
+              "last_be"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2161222,
+        "kind": "Cpl",
+        "time_ns": 93672519140,
+        "time_display": "93.672519140 s",
+        "direction": "Upstream",
+        "requester_id": 0,
+        "tag": 1,
+        "device_id": 256,
+        "register": null,
+        "address": null,
+        "length_dw": 0,
+        "first_be": null,
+        "last_be": null,
+        "value": null,
+        "payload_bytes": 0,
+        "byte_count": 4,
+        "lower_address": 28,
+        "status": "UR",
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 301,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "length_dw",
+              "payload_bytes",
+              "byte_count",
+              "lower_address",
+              "status"
+            ]
+          },
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-2.txt",
+            "sha256": "820fceb3a5a629c312cd6cc8e6849b28ba90fb65e145c274f8129746e94ecf7b",
+            "line": 78,
+            "fields": [
+              "packet_index",
+              "time_ns",
+              "direction"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2161225,
+        "kind": "MRd32",
+        "time_ns": 93672522966,
+        "time_display": "93.672522966 s",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 7,
+        "device_id": null,
+        "register": null,
+        "address": 1814020124,
+        "length_dw": 1,
+        "first_be": 15,
+        "last_be": 0,
+        "value": null,
+        "payload_bytes": null,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-2.txt",
+            "sha256": "820fceb3a5a629c312cd6cc8e6849b28ba90fb65e145c274f8129746e94ecf7b",
+            "line": 91,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_ns",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "address",
+              "length_dw",
+              "first_be",
+              "last_be"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2161227,
+        "kind": "Cpl",
+        "time_ns": 93672523944,
+        "time_display": "93.672523944 s",
+        "direction": "Upstream",
+        "requester_id": 0,
+        "tag": 7,
+        "device_id": 256,
+        "register": null,
+        "address": null,
+        "length_dw": 0,
+        "first_be": null,
+        "last_be": null,
+        "value": null,
+        "payload_bytes": 0,
+        "byte_count": 4,
+        "lower_address": 28,
+        "status": "UR",
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 302,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "length_dw",
+              "payload_bytes",
+              "byte_count",
+              "lower_address",
+              "status"
+            ]
+          },
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-2.txt",
+            "sha256": "820fceb3a5a629c312cd6cc8e6849b28ba90fb65e145c274f8129746e94ecf7b",
+            "line": 100,
+            "fields": [
+              "packet_index",
+              "time_ns",
+              "direction"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2161230,
+        "kind": "MRd32",
+        "time_ns": 93672524822,
+        "time_display": "93.672524822 s",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 13,
+        "device_id": null,
+        "register": null,
+        "address": 1814020116,
+        "length_dw": 1,
+        "first_be": 15,
+        "last_be": 0,
+        "value": null,
+        "payload_bytes": null,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-2.txt",
+            "sha256": "820fceb3a5a629c312cd6cc8e6849b28ba90fb65e145c274f8129746e94ecf7b",
+            "line": 113,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_ns",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "address",
+              "length_dw",
+              "first_be",
+              "last_be"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2161232,
+        "kind": "Cpl",
+        "time_ns": 93672525824,
+        "time_display": "93.672525824 s",
+        "direction": "Upstream",
+        "requester_id": 0,
+        "tag": 13,
+        "device_id": 256,
+        "register": null,
+        "address": null,
+        "length_dw": 0,
+        "first_be": null,
+        "last_be": null,
+        "value": null,
+        "payload_bytes": 0,
+        "byte_count": 4,
+        "lower_address": 20,
+        "status": "UR",
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 303,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "length_dw",
+              "payload_bytes",
+              "byte_count",
+              "lower_address",
+              "status"
+            ]
+          },
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-2.txt",
+            "sha256": "820fceb3a5a629c312cd6cc8e6849b28ba90fb65e145c274f8129746e94ecf7b",
+            "line": 122,
+            "fields": [
+              "packet_index",
+              "time_ns",
+              "direction"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2308107,
+        "kind": "MRd32",
+        "time_ns": 94691263182,
+        "time_display": "94.691263182 s",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 3,
+        "device_id": null,
+        "register": null,
+        "address": 1814020116,
+        "length_dw": 1,
+        "first_be": 15,
+        "last_be": 0,
+        "value": null,
+        "payload_bytes": null,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-3.txt",
+            "sha256": "a552929e9eb7dda190ec66b783f178f8a2faab7e22155250465166a78b73c31c",
+            "line": 46,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_ns",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "address",
+              "length_dw",
+              "first_be",
+              "last_be"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2308109,
+        "kind": "Cpl",
+        "time_ns": 94691264186,
+        "time_display": "94.691264186 s",
+        "direction": "Upstream",
+        "requester_id": 0,
+        "tag": 3,
+        "device_id": 256,
+        "register": null,
+        "address": null,
+        "length_dw": 0,
+        "first_be": null,
+        "last_be": null,
+        "value": null,
+        "payload_bytes": 0,
+        "byte_count": 4,
+        "lower_address": 20,
+        "status": "UR",
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 304,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "length_dw",
+              "payload_bytes",
+              "byte_count",
+              "lower_address",
+              "status"
+            ]
+          },
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-3.txt",
+            "sha256": "a552929e9eb7dda190ec66b783f178f8a2faab7e22155250465166a78b73c31c",
+            "line": 55,
+            "fields": [
+              "packet_index",
+              "time_ns",
+              "direction"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2308116,
+        "kind": "MRd32",
+        "time_ns": 94691268578,
+        "time_display": "94.691268578 s",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 9,
+        "device_id": null,
+        "register": null,
+        "address": 1814020136,
+        "length_dw": 2,
+        "first_be": 15,
+        "last_be": 15,
+        "value": null,
+        "payload_bytes": null,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-3.txt",
+            "sha256": "a552929e9eb7dda190ec66b783f178f8a2faab7e22155250465166a78b73c31c",
+            "line": 87,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_ns",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "address",
+              "length_dw",
+              "first_be",
+              "last_be"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2308120,
+        "kind": "Cpl",
+        "time_ns": 94691269548,
+        "time_display": "94.691269548 s",
+        "direction": "Upstream",
+        "requester_id": 0,
+        "tag": 9,
+        "device_id": 256,
+        "register": null,
+        "address": null,
+        "length_dw": 0,
+        "first_be": null,
+        "last_be": null,
+        "value": null,
+        "payload_bytes": 0,
+        "byte_count": 8,
+        "lower_address": 40,
+        "status": "UR",
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 305,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "length_dw",
+              "payload_bytes",
+              "byte_count",
+              "lower_address",
+              "status"
+            ]
+          },
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-3.txt",
+            "sha256": "a552929e9eb7dda190ec66b783f178f8a2faab7e22155250465166a78b73c31c",
+            "line": 104,
+            "fields": [
+              "packet_index",
+              "time_ns",
+              "direction"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2308123,
+        "kind": "MRd32",
+        "time_ns": 94691271274,
+        "time_display": "94.691271274 s",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 15,
+        "device_id": null,
+        "register": null,
+        "address": 1814020124,
+        "length_dw": 1,
+        "first_be": 15,
+        "last_be": 0,
+        "value": null,
+        "payload_bytes": null,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-3.txt",
+            "sha256": "a552929e9eb7dda190ec66b783f178f8a2faab7e22155250465166a78b73c31c",
+            "line": 117,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_ns",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "address",
+              "length_dw",
+              "first_be",
+              "last_be"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2308125,
+        "kind": "Cpl",
+        "time_ns": 94691272268,
+        "time_display": "94.691272268 s",
+        "direction": "Upstream",
+        "requester_id": 0,
+        "tag": 15,
+        "device_id": 256,
+        "register": null,
+        "address": null,
+        "length_dw": 0,
+        "first_be": null,
+        "last_be": null,
+        "value": null,
+        "payload_bytes": 0,
+        "byte_count": 4,
+        "lower_address": 28,
+        "status": "UR",
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 306,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "length_dw",
+              "payload_bytes",
+              "byte_count",
+              "lower_address",
+              "status"
+            ]
+          },
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-3.txt",
+            "sha256": "a552929e9eb7dda190ec66b783f178f8a2faab7e22155250465166a78b73c31c",
+            "line": 126,
+            "fields": [
+              "packet_index",
+              "time_ns",
+              "direction"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2308130,
+        "kind": "MRd32",
+        "time_ns": 94691281182,
+        "time_display": "94.691281182 s",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 0,
+        "device_id": null,
+        "register": null,
+        "address": 1814020124,
+        "length_dw": 1,
+        "first_be": 15,
+        "last_be": 0,
+        "value": null,
+        "payload_bytes": null,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-3.txt",
+            "sha256": "a552929e9eb7dda190ec66b783f178f8a2faab7e22155250465166a78b73c31c",
+            "line": 147,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_ns",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "address",
+              "length_dw",
+              "first_be",
+              "last_be"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2308132,
+        "kind": "Cpl",
+        "time_ns": 94691282162,
+        "time_display": "94.691282162 s",
+        "direction": "Upstream",
+        "requester_id": 0,
+        "tag": 0,
+        "device_id": 256,
+        "register": null,
+        "address": null,
+        "length_dw": 0,
+        "first_be": null,
+        "last_be": null,
+        "value": null,
+        "payload_bytes": 0,
+        "byte_count": 4,
+        "lower_address": 28,
+        "status": "UR",
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 307,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "length_dw",
+              "payload_bytes",
+              "byte_count",
+              "lower_address",
+              "status"
+            ]
+          },
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-3.txt",
+            "sha256": "a552929e9eb7dda190ec66b783f178f8a2faab7e22155250465166a78b73c31c",
+            "line": 156,
+            "fields": [
+              "packet_index",
+              "time_ns",
+              "direction"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2308135,
+        "kind": "MRd32",
+        "time_ns": 94691283064,
+        "time_display": "94.691283064 s",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 4,
+        "device_id": null,
+        "register": null,
+        "address": 1814020116,
+        "length_dw": 1,
+        "first_be": 15,
+        "last_be": 0,
+        "value": null,
+        "payload_bytes": null,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-3.txt",
+            "sha256": "a552929e9eb7dda190ec66b783f178f8a2faab7e22155250465166a78b73c31c",
+            "line": 169,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_ns",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "address",
+              "length_dw",
+              "first_be",
+              "last_be"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2308137,
+        "kind": "Cpl",
+        "time_ns": 94691284046,
+        "time_display": "94.691284046 s",
+        "direction": "Upstream",
+        "requester_id": 0,
+        "tag": 4,
+        "device_id": 256,
+        "register": null,
+        "address": null,
+        "length_dw": 0,
+        "first_be": null,
+        "last_be": null,
+        "value": null,
+        "payload_bytes": 0,
+        "byte_count": 4,
+        "lower_address": 20,
+        "status": "UR",
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 308,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "length_dw",
+              "payload_bytes",
+              "byte_count",
+              "lower_address",
+              "status"
+            ]
+          },
+          {
+            "kind": "NATIVE_TEXT_VERIFIED",
+            "file": "detail-window-3.txt",
+            "sha256": "a552929e9eb7dda190ec66b783f178f8a2faab7e22155250465166a78b73c31c",
+            "line": 178,
+            "fields": [
+              "packet_index",
+              "time_ns",
+              "direction"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2309434,
+        "kind": "CfgRd0",
+        "time_ns": null,
+        "time_display": "94.700 sec",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 10,
+        "device_id": 256,
+        "register": 52,
+        "address": null,
+        "length_dw": 1,
+        "first_be": 15,
+        "last_be": 0,
+        "value": null,
+        "payload_bytes": 0,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 345,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "register",
+              "length_dw",
+              "first_be",
+              "last_be",
+              "payload_bytes"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2309436,
+        "kind": "CplD",
+        "time_ns": null,
+        "time_display": "94.700 sec",
+        "direction": "Upstream",
+        "requester_id": 0,
+        "tag": 10,
+        "device_id": 256,
+        "register": null,
+        "address": null,
+        "length_dw": 1,
+        "first_be": null,
+        "last_be": null,
+        "value": 128,
+        "payload_bytes": 4,
+        "byte_count": 4,
+        "lower_address": 0,
+        "status": "SC",
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 346,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "length_dw",
+              "value",
+              "payload_bytes",
+              "byte_count",
+              "lower_address",
+              "status"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2309447,
+        "kind": "CfgRd0",
+        "time_ns": null,
+        "time_display": "94.700 sec",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 6,
+        "device_id": 256,
+        "register": 128,
+        "address": null,
+        "length_dw": 1,
+        "first_be": 15,
+        "last_be": 0,
+        "value": null,
+        "payload_bytes": 0,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 349,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "register",
+              "length_dw",
+              "first_be",
+              "last_be",
+              "payload_bytes"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2309449,
+        "kind": "CplD",
+        "time_ns": null,
+        "time_display": "94.700 sec",
+        "direction": "Upstream",
+        "requester_id": 0,
+        "tag": 6,
+        "device_id": 256,
+        "register": null,
+        "address": null,
+        "length_dw": 1,
+        "first_be": null,
+        "last_be": null,
+        "value": 188432,
+        "payload_bytes": 4,
+        "byte_count": 4,
+        "lower_address": 0,
+        "status": "SC",
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 350,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "length_dw",
+              "value",
+              "payload_bytes",
+              "byte_count",
+              "lower_address",
+              "status"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2309457,
+        "kind": "CfgRd0",
+        "time_ns": null,
+        "time_display": "94.700 sec",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 2,
+        "device_id": 256,
+        "register": 256,
+        "address": null,
+        "length_dw": 1,
+        "first_be": 15,
+        "last_be": 0,
+        "value": null,
+        "payload_bytes": 0,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 353,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "register",
+              "length_dw",
+              "first_be",
+              "last_be",
+              "payload_bytes"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2309459,
+        "kind": "CplD",
+        "time_ns": null,
+        "time_display": "94.700 sec",
+        "direction": "Upstream",
+        "requester_id": 0,
+        "tag": 2,
+        "device_id": 256,
+        "register": null,
+        "address": null,
+        "length_dw": 1,
+        "first_be": null,
+        "last_be": null,
+        "value": 276889611,
+        "payload_bytes": 4,
+        "byte_count": 4,
+        "lower_address": 0,
+        "status": "SC",
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 354,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "length_dw",
+              "value",
+              "payload_bytes",
+              "byte_count",
+              "lower_address",
+              "status"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2309464,
+        "kind": "CfgRd0",
+        "time_ns": null,
+        "time_display": "94.700 sec",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 8,
+        "device_id": 256,
+        "register": 264,
+        "address": null,
+        "length_dw": 1,
+        "first_be": 15,
+        "last_be": 0,
+        "value": null,
+        "payload_bytes": 0,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 355,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "register",
+              "length_dw",
+              "first_be",
+              "last_be",
+              "payload_bytes"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2309466,
+        "kind": "CplD",
+        "time_ns": null,
+        "time_display": "94.700 sec",
+        "direction": "Upstream",
+        "requester_id": 0,
+        "tag": 8,
+        "device_id": 256,
+        "register": null,
+        "address": null,
+        "length_dw": 1,
+        "first_be": null,
+        "last_be": null,
+        "value": 285278232,
+        "payload_bytes": 4,
+        "byte_count": 4,
+        "lower_address": 0,
+        "status": "SC",
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 356,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "length_dw",
+              "value",
+              "payload_bytes",
+              "byte_count",
+              "lower_address",
+              "status"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2309469,
+        "kind": "CfgRd0",
+        "time_ns": null,
+        "time_display": "94.700 sec",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 14,
+        "device_id": 256,
+        "register": 272,
+        "address": null,
+        "length_dw": 1,
+        "first_be": 15,
+        "last_be": 0,
+        "value": null,
+        "payload_bytes": 0,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 357,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "register",
+              "length_dw",
+              "first_be",
+              "last_be",
+              "payload_bytes"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2309473,
+        "kind": "CplD",
+        "time_ns": null,
+        "time_display": "94.700 sec",
+        "direction": "Upstream",
+        "requester_id": 0,
+        "tag": 14,
+        "device_id": 256,
+        "register": null,
+        "address": null,
+        "length_dw": 1,
+        "first_be": null,
+        "last_be": null,
+        "value": 310444062,
+        "payload_bytes": 4,
+        "byte_count": 4,
+        "lower_address": 0,
+        "status": "SC",
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 358,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "length_dw",
+              "value",
+              "payload_bytes",
+              "byte_count",
+              "lower_address",
+              "status"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2309476,
+        "kind": "CfgRd0",
+        "time_ns": null,
+        "time_display": "94.700 sec",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 0,
+        "device_id": 256,
+        "register": 296,
+        "address": null,
+        "length_dw": 1,
+        "first_be": 15,
+        "last_be": 0,
+        "value": null,
+        "payload_bytes": 0,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 359,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "register",
+              "length_dw",
+              "first_be",
+              "last_be",
+              "payload_bytes"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2309478,
+        "kind": "CplD",
+        "time_ns": null,
+        "time_display": "94.700 sec",
+        "direction": "Upstream",
+        "requester_id": 0,
+        "tag": 0,
+        "device_id": 256,
+        "register": null,
+        "address": null,
+        "length_dw": 1,
+        "first_be": null,
+        "last_be": null,
+        "value": 536936462,
+        "payload_bytes": 4,
+        "byte_count": 4,
+        "lower_address": 0,
+        "status": "SC",
+        "evidence": [
+          {
+            "kind": "RAW_FRAME_VERIFIED",
+            "file": "b2a-register-fields.txt",
+            "sha256": "b913e30ec33037c04f145492c4615e90bbb1efce91d34667e538176234e152bf",
+            "line": 360,
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag",
+              "device_id",
+              "length_dw",
+              "value",
+              "payload_bytes",
+              "byte_count",
+              "lower_address",
+              "status"
+            ]
+          }
+        ]
+      }
+    ],
+    "link_downs": [
+      2151775,
+      2151799
+    ]
+  },
+  "expected": {
+    "writes": [
+      [
+        2151476,
+        260,
+        4294967295,
+        15,
+        0,
+        null,
+        "VSEC_SECOND_HEADER",
+        null
+      ],
+      [
+        2151486,
+        272,
+        4294967295,
+        15,
+        0,
+        null,
+        "L1SS_EXT_CAP_HEADER",
+        2309473
+      ],
+      [
+        2151492,
+        120,
+        983040,
+        12,
+        0,
+        null,
+        "UNKNOWN",
+        null
+      ],
+      [
+        2151602,
+        128,
+        64,
+        3,
+        0,
+        null,
+        "PCI_EXP_CAP_HEADER",
+        2309449
+      ],
+      [
+        2160355,
+        128,
+        66,
+        3,
+        0,
+        2160359,
+        "PCI_EXP_CAP_HEADER",
+        2309449
+      ],
+      [
+        2160418,
+        128,
+        64,
+        3,
+        0,
+        2160420,
+        "PCI_EXP_CAP_HEADER",
+        2309449
+      ]
+    ],
+    "ur_pairs": [
+      [
+        2161214,
+        2161217
+      ],
+      [
+        2161220,
+        2161222
+      ],
+      [
+        2161225,
+        2161227
+      ],
+      [
+        2161230,
+        2161232
+      ],
+      [
+        2308107,
+        2308109
+      ],
+      [
+        2308116,
+        2308120
+      ],
+      [
+        2308123,
+        2308125
+      ],
+      [
+        2308130,
+        2308132
+      ],
+      [
+        2308135,
+        2308137
+      ]
+    ],
+    "ur_counts": {
+      "0x6C1FC014": 3,
+      "0x6C1FC01C": 4,
+      "0x6C1FC028": 2
+    },
+    "ur_bursts": {
+      "0x6C1FC014": [
+        1,
+        2
+      ],
+      "0x6C1FC01C": [
+        2,
+        2
+      ],
+      "0x6C1FC028": [
+        1,
+        1
+      ]
+    }
+  }
+}
