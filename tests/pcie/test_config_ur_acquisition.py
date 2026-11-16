@@ -123,6 +123,50 @@ class ConfigUrAcquisitionTests(unittest.TestCase):
             launch.assert_not_called()
             self.assertEqual(list(output.iterdir()), [])
 
+    def test_supplement_refuses_native_call_while_pcie_navigation_owns_session(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            work = root / 'display-working.pex'
+            work.write_bytes(b'read-only fixture')
+            work.chmod(0o444)
+            try:
+                binding = dict(display_trace_sha256=acquisition.nav.identity(work)['sha256'], native_packet_count=3)
+                receipt = {'native_cleanup': 'confirmed'}
+                with patch.object(acquisition, 'validate_import', return_value=({}, {}, 1)), \
+                     patch.object(acquisition, 'retained_rows', return_value=([metadata(2, 10)], {'omitted_rows': 0})), \
+                     patch.object(acquisition, 'phase_boundaries', return_value=([], False, None)), \
+                     patch.object(acquisition, 'detail_plan', return_value=([], 0)), \
+                     patch.object(acquisition, 'exclusive', side_effect=RuntimeError('EXISTING_SESSION_BLOCKED')), \
+                     patch.object(acquisition, 'acquire_native') as native:
+                    with self.assertRaisesRegex(RuntimeError, 'EXISTING_SESSION_BLOCKED'):
+                        acquisition.collect(work.resolve(), root.resolve(), root, binding, lambda: False, receipt)
+                    native.assert_not_called()
+                self.assertEqual(receipt['native_cleanup'], 'confirmed')
+            finally:
+                work.chmod(0o666)
+
+    def test_converted_manifest_must_match_original_and_display_sha(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            fields = root / 'verified-fields/fields.json'
+            fields.parent.mkdir()
+            row = metadata(2, 10)
+            acquisition.probe.write(fields, [row])
+            source, display = 'a'*64, 'b'*64
+            manifest = dict(schema_version='pcie.triage-input/v1',
+                            trace=dict(file_name='display-working.pex', sha256=display, tlp_count=1,
+                                       provenance=dict(original_sha256=source, analysis_target='display-working.pex')),
+                            fields=dict(path=str(fields), sha256=acquisition.nav.digest(fields)))
+            acquisition.probe.write(root / 'triage-input.json', manifest)
+            binding = dict(source_trace_sha256=source, display_trace_sha256=display, native_packet_count=3)
+            with patch.object(acquisition.coverage, 'bound_log'):
+                rows, state = acquisition.retained_rows(root, {'fields': {}}, 1, binding, lambda: False)
+                self.assertEqual(rows, [row])
+                self.assertEqual(state['omitted_rows'], 0)
+                with self.assertRaisesRegex(ValueError, 'Converted Verified Fields'):
+                    acquisition.retained_rows(root, {'fields': {}}, 1,
+                                              dict(binding, source_trace_sha256='c'*64), lambda: False)
+
     def test_zero_tlp_worker_checks_binding_and_completes_without_native(self):
         with tempfile.TemporaryDirectory() as temporary:
             analysis_id = uuid.uuid4().hex

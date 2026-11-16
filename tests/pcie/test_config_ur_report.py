@@ -17,7 +17,7 @@ def result_fixture():
     packets = {e["packet_index"]: e for e in observations["events"]}
     result = {key: observations[key] for key in (*report.IDENTITY, "coverage")}
     result.update(schema=report.SCHEMA, rows=[], ur_groups=[], unmatched_completions=[])
-    for packet, _, _, _, _, reply, identity, read_reply in expected["writes"]:
+    for (packet, _, _, _, _, reply, identity, read_reply), status in zip(expected["writes"], expected["write_statuses"]):
         readback = None
         if read_reply is not None:
             read_packet = {2309449: 2309447, 2309473: 2309469}[read_reply]
@@ -29,7 +29,7 @@ def result_fixture():
             register["write_fields"] = [{"name": "Capability ID", "value": packets[packet]["value"]},
                                         {"name": "Next Capability Pointer", "value": 0}]
         result["rows"].append(dict(id=f"p{packet}", request=packets[packet], completion=packets.get(reply),
-                                  completion_status="SC" if reply else "NO_COMPLETION_OBSERVED_BEFORE_LINK_DOWN",
+                                  completion_status=status,
                                   epoch=0, register=register, readback=readback,
                                   write_effect="NOT_ESTABLISHED", bar=None))
     for packet, reply in expected["ur_pairs"]:

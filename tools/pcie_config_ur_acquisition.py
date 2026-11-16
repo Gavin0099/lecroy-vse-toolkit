@@ -20,6 +20,7 @@ import pcie_detail_windows as detail
 import pcie_disk_index as disk
 import pcie_event_coverage as coverage
 import pcie_large_io as large
+from pcie_navigation_service import exclusive
 import pcie_phase_evidence as phase
 import pcie_resources as resources
 import verify_g1a_log as g1a
@@ -111,10 +112,15 @@ def retained_rows(root, probes, total, binding, cancelled):
         return [], {'source': 'verified count', 'unknown_type_rows': 0, 'omitted_rows': 0,
                     'metadata_total': 0}
     manifest = probe.read_json(root / 'triage-input.json')
-    if manifest.get('schema_version') != 'pcie.triage-input/v1' or manifest['trace'] != {
-        'file_name': 'display-working.pex', 'sha256': binding['display_trace_sha256'], 'tlp_count': total
-    }:
+    trace = manifest['trace']
+    if (manifest.get('schema_version') != 'pcie.triage-input/v1'
+            or trace.get('file_name') != 'display-working.pex'
+            or trace.get('sha256') != binding['display_trace_sha256'] or trace.get('tlp_count') != total):
         raise ValueError('Verified Fields manifest disagrees with the import')
+    provenance = trace.get('provenance')
+    if provenance is not None and (provenance.get('original_sha256') != binding['source_trace_sha256']
+                                   or provenance.get('analysis_target') != trace['file_name']):
+        raise ValueError('Converted Verified Fields manifest disagrees with the source')
     fields = (root / 'verified-fields/fields.json').resolve(strict=True)
     if fields.parent != root / 'verified-fields' or fields != Path(manifest['fields']['path']).resolve(strict=True):
         raise ValueError('Verified Fields path escaped this import')
@@ -506,8 +512,9 @@ def collect(work, root, output, binding, cancelled, receipt):
     details = {'windows': [], 'status': 'not_requested'}
     unsupported = weak_payload = 0
     if raw_requested or plan:
-        details = acquire_native(work, output, binding, imported['capabilities']['file_version'],
-                                 raw_requested, plan, cancelled, receipt)
+        with exclusive():
+            details = acquire_native(work, output, binding, imported['capabilities']['file_version'],
+                                     raw_requested, plan, cancelled, receipt)
     if receipt['native_cleanup'] != 'confirmed':
         raise CleanupUnknown('Supplemental native process cleanup could not be confirmed')
     check_cancel(cancelled)

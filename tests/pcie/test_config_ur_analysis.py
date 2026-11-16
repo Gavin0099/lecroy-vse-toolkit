@@ -83,6 +83,7 @@ class ConfigUrTests(unittest.TestCase):
                       "packet_namespace", "native_packet_count", "coverage"):
             self.assertEqual(result[field], observations[field])
         writes = []
+        write_statuses = []
         memory = []
         header_values = {2160355: 0x42, 2160418: 0x40}
         for row in result["rows"]:
@@ -91,8 +92,7 @@ class ConfigUrTests(unittest.TestCase):
                 completion = row["completion"]
                 readback = row["readback"]
                 self.assertEqual(row["write_effect"], "NOT_ESTABLISHED")
-                self.assertEqual(row["completion_status"], "SC" if completion else
-                                 "NO_COMPLETION_OBSERVED_BEFORE_LINK_DOWN")
+                write_statuses.append(row["completion_status"])
                 if row["register"]["identity"] != "UNKNOWN":
                     self.assertEqual(row["register"]["scope"], "same_interval" if completion else "later_interval")
                 if readback:
@@ -115,6 +115,7 @@ class ConfigUrTests(unittest.TestCase):
                 self.assertIsNone(row["write_effect"])
                 memory.append([request["packet_index"], row["completion"]["packet_index"]])
         self.assertEqual(writes, expected["writes"])
+        self.assertEqual(write_statuses, expected["write_statuses"])
         self.assertEqual(memory, expected["ur_pairs"])
         self.assertEqual(result["unmatched_completions"], [])
         counts, bursts = {}, {}

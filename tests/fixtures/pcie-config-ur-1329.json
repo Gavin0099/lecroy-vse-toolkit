@@ -12,9 +12,81 @@
       "full_trace_coverage": "UNKNOWN",
       "unsupported_frame_rows": 263,
       "omitted_rows": 0,
-      "fixture_scope": "curated original request, reply and capability rows in the 1329 evidence"
+      "fixture_scope": "curated original requests, tag competitors, replies and capability rows in the 1329 evidence"
     },
     "events": [
+      {
+        "packet_index": 2151380,
+        "kind": "CfgRd0",
+        "time_ns": null,
+        "time_display": "93.663 sec",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 8,
+        "device_id": null,
+        "register": null,
+        "address": null,
+        "length_dw": null,
+        "first_be": null,
+        "last_be": null,
+        "value": null,
+        "payload_bytes": null,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "METADATA_ONLY",
+            "file": "fields.txt",
+            "line": 866,
+            "sha256": "8adf59a43fd9381e8836b8af95e28fad9507f78557e389daf395fd93c36a846e",
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag"
+            ]
+          }
+        ]
+      },
+      {
+        "packet_index": 2151382,
+        "kind": "CfgRd0",
+        "time_ns": null,
+        "time_display": "93.663 sec",
+        "direction": "Downstream",
+        "requester_id": 0,
+        "tag": 14,
+        "device_id": null,
+        "register": null,
+        "address": null,
+        "length_dw": null,
+        "first_be": null,
+        "last_be": null,
+        "value": null,
+        "payload_bytes": null,
+        "byte_count": null,
+        "lower_address": null,
+        "status": null,
+        "evidence": [
+          {
+            "kind": "METADATA_ONLY",
+            "file": "fields.txt",
+            "line": 867,
+            "sha256": "8adf59a43fd9381e8836b8af95e28fad9507f78557e389daf395fd93c36a846e",
+            "fields": [
+              "packet_index",
+              "kind",
+              "time_display",
+              "direction",
+              "requester_id",
+              "tag"
+            ]
+          }
+        ]
+      },
       {
         "packet_index": 2151476,
         "kind": "CfgWr0",
@@ -1926,6 +1998,14 @@
         1,
         1
       ]
-    }
+    },
+    "write_statuses": [
+      "NO_COMPLETION_OBSERVED_BEFORE_LINK_DOWN",
+      "NO_COMPLETION_OBSERVED_BEFORE_LINK_DOWN",
+      "AMBIGUOUS",
+      "AMBIGUOUS",
+      "SC",
+      "SC"
+    ]
   }
 }
