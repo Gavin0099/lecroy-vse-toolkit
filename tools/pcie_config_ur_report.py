@@ -15,7 +15,7 @@ GROUPS = {
     "reads": "Config Read",
     "memory": "Memory UR／CA",
     "ur_summary": "重複 UR",
-    "unmatched": "未配對的異常 Completion",
+    "unmatched": "未配對／狀態未確認的 Completion",
 }
 COLUMNS = ("Packet", "交易", "目的／回覆端", "位址／暫存器", "寫入值／BE", "Completion", "回讀")
 STATES = {
@@ -156,7 +156,7 @@ def _group(group):
 def _unmatched(event):
     return dict(id="", columns=[str(event["packet_index"]), event["kind"], _bdf(event["device_id"]), "—",
                     "—", f"{_status(event['status'])} · 未配對", "—"],
-                details=_event_lines("未配對的異常 Completion", event), locations={})
+                details=_event_lines("未配對的 Completion", event), locations={})
 
 
 def _coverage(result):

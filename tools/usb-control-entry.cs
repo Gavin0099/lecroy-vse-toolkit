@@ -592,7 +592,7 @@ internal sealed class ConfigUrForm : Form {
     const long MaxPageBytes=1024*1024;
     static readonly string[] BindingKeys={"source_trace_sha256","display_trace_sha256","packet_namespace"};
     static readonly string[] GroupKeys={"writes","reads","memory","ur_summary","unmatched"};
-    static readonly string[] GroupNames={"Config Write","Config Read","Memory UR／CA","重複 UR","未配對的異常 Completion"};
+    static readonly string[] GroupNames={"Config Write","Config Read","Memory UR／CA","重複 UR","未配對／狀態未確認的 Completion"};
     static readonly string[] Titles={"Packet","交易","目的／回覆端","位址／暫存器","寫入值／BE","Completion","回讀"};
     static readonly string[] Targets={"request","completion","read_request","read_completion"};
     readonly Action start, stop;
