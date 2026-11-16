@@ -1,0 +1,186 @@
+{
+  "format": "usb-knowledge-sources/v1",
+  "sources": [
+    {
+      "id": "linux-ch9",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/c03c1a14507dfaf8b856c2608f9ac216021fc222/include/uapi/linux/usb/ch9.h",
+      "revision": "c03c1a14507dfaf8b856c2608f9ac216021fc222",
+      "kind": "FIELD_REFERENCE",
+      "content_sha256": "56ac789006af0e76a0cdfc671540aabc8da3f1edcab0c034518e2314c3e72ff8",
+      "pin_basis": "ORIGINAL_BYTES",
+      "license": "GPL-2.0 WITH Linux-syscall-note; no source code bundled",
+      "checked_at": "2026-10-21",
+      "locators": [
+        "#L76-L96",
+        "#L198-L242",
+        "#L358-L387"
+      ],
+      "distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY"
+    },
+    {
+      "id": "linux-pd",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/c03c1a14507dfaf8b856c2608f9ac216021fc222/include/linux/usb/pd.h",
+      "revision": "c03c1a14507dfaf8b856c2608f9ac216021fc222",
+      "kind": "FIELD_REFERENCE",
+      "content_sha256": "c844b3db3f0e4f3cf760d68ba3ff96145d73988c8d030aad8c29b2c1e9a88b50",
+      "pin_basis": "ORIGINAL_BYTES",
+      "license": "GPL-2.0-or-later; no source code bundled",
+      "checked_at": "2026-10-21",
+      "locators": [
+        "#L15-L56",
+        "#L299-L315",
+        "#L542-L570"
+      ],
+      "distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY"
+    },
+    {
+      "id": "linux-vdo",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/c03c1a14507dfaf8b856c2608f9ac216021fc222/include/linux/usb/pd_vdo.h",
+      "revision": "c03c1a14507dfaf8b856c2608f9ac216021fc222",
+      "kind": "FIELD_REFERENCE",
+      "content_sha256": "b16e7254893b68b3d6a96636fdcf0cb3f187de36e654708d48935605360adb88",
+      "pin_basis": "ORIGINAL_BYTES",
+      "license": "GPL-2.0-or-later; no source code bundled",
+      "checked_at": "2026-10-21",
+      "locators": [
+        "#L21-L60"
+      ],
+      "distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY"
+    },
+    {
+      "id": "linux-typec",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/c03c1a14507dfaf8b856c2608f9ac216021fc222/include/linux/usb/typec.h",
+      "revision": "c03c1a14507dfaf8b856c2608f9ac216021fc222",
+      "kind": "FIELD_REFERENCE",
+      "content_sha256": "a19188e1e92ed7f57bae8dcff4e65e232f2957b59deecbc2d7b2dce5cd06d2e4",
+      "pin_basis": "ORIGINAL_BYTES",
+      "license": "GPL-2.0; no source code bundled",
+      "checked_at": "2026-10-21",
+      "locators": [
+        "#L57-L76",
+        "#L141-L160"
+      ],
+      "distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY"
+    },
+    {
+      "id": "linux-tcpm",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/c03c1a14507dfaf8b856c2608f9ac216021fc222/drivers/usb/typec/tcpm/tcpm.c",
+      "revision": "c03c1a14507dfaf8b856c2608f9ac216021fc222",
+      "kind": "IMPLEMENTATION_REFERENCE",
+      "content_sha256": "e7e8b9c692e64782e3422ba8e1f79b21072ed89e1dce8751d53f4b197762c0ab",
+      "pin_basis": "ORIGINAL_BYTES",
+      "license": "GPL-2.0+ SPDX; no implementation code bundled",
+      "checked_at": "2026-10-21",
+      "locators": [
+        "#L3775-L3790",
+        "#L3911-L3917"
+      ],
+      "distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY"
+    },
+    {
+      "id": "linux-typec-doc",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/c03c1a14507dfaf8b856c2608f9ac216021fc222/Documentation/driver-api/usb/typec_bus.rst",
+      "revision": "c03c1a14507dfaf8b856c2608f9ac216021fc222",
+      "kind": "IMPLEMENTATION_REFERENCE",
+      "content_sha256": "6ca64115e76f462e56471214e1e83e51ab8ef5891e6845e64fda710e187e36e5",
+      "pin_basis": "ORIGINAL_BYTES",
+      "license": "No inline license declaration; redistribution rights NOT_VERIFIED; references only",
+      "checked_at": "2026-10-21",
+      "locators": [
+        "#L5-L20",
+        "#L38-L74",
+        "#L81-L92"
+      ],
+      "distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY"
+    },
+    {
+      "id": "ms-control",
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/usbcon/usb-control-transfer",
+      "revision": "reviewed 2026-10-21",
+      "kind": "VENDOR_GUIDANCE",
+      "content_sha256": "a49f3a8c1bed2b94777e0f36b3417321fb99f16c7891abce1ed03bc85c97b76a",
+      "pin_basis": "ORIGINAL_BYTES",
+      "license": "Microsoft Learn terms; link and authored notes only",
+      "checked_at": "2026-10-21",
+      "locators": [
+        "#layout-of-a-control-transfer",
+        "#setup-transaction",
+        "#data-transaction",
+        "#status-transaction"
+      ],
+      "distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY"
+    },
+    {
+      "id": "usb3-tests",
+      "url": "https://www.usb.org/sites/default/files/USB%203%202%20Link%20Layer%20Test%20Specification%202024%2003%2003.pdf",
+      "revision": "Revision 1.1, 2024-03-03",
+      "kind": "TEST_REFERENCE",
+      "content_sha256": "af0113bce3861d231e9f7c0e5186c4b0aafdddd0ec0f048f2e4b1ea39ecd4bae",
+      "pin_basis": "AUTHORED_REVIEW_RECORD",
+      "license": "Copyright USB-IF; internal reproduction only; no specification bundled",
+      "checked_at": "2026-10-21",
+      "locators": [
+        "printed pp27-36: 7.5.4 Polling / LFPS",
+        "printed pp37-38: 7.5.6 U0",
+        "printed pp41-44: 7.5.10 Recovery"
+      ],
+      "distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY"
+    },
+    {
+      "id": "usb2-catalog",
+      "url": "https://www.usb.org/document-library/usb-20-specification",
+      "revision": "USB2 catalog 2025-06-03",
+      "kind": "CATALOG_ONLY",
+      "content_sha256": "af0113bce3861d231e9f7c0e5186c4b0aafdddd0ec0f048f2e4b1ea39ecd4bae",
+      "pin_basis": "AUTHORED_REVIEW_RECORD",
+      "license": "USB-IF terms / associated adopter agreement; no specification bundled",
+      "checked_at": "2026-10-21",
+      "locators": [
+        "document title/revision only"
+      ],
+      "distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY"
+    },
+    {
+      "id": "usb3-catalog",
+      "url": "https://www.usb.org/document-library/usb-32-revision-11-june-2022",
+      "revision": "USB3.2 Revision1.1 June2022",
+      "kind": "CATALOG_ONLY",
+      "content_sha256": "af0113bce3861d231e9f7c0e5186c4b0aafdddd0ec0f048f2e4b1ea39ecd4bae",
+      "pin_basis": "AUTHORED_REVIEW_RECORD",
+      "license": "USB-IF terms / associated adopter agreement; no specification bundled",
+      "checked_at": "2026-10-21",
+      "locators": [
+        "document title/revision only"
+      ],
+      "distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY"
+    },
+    {
+      "id": "pd-catalog",
+      "url": "https://www.usb.org/document-library/usb-power-delivery",
+      "revision": "PD Revision3.2 Version1.2; catalog 2026-09-14",
+      "kind": "CATALOG_ONLY",
+      "content_sha256": "af0113bce3861d231e9f7c0e5186c4b0aafdddd0ec0f048f2e4b1ea39ecd4bae",
+      "pin_basis": "AUTHORED_REVIEW_RECORD",
+      "license": "USB-IF terms / associated adopter agreement; no specification bundled",
+      "checked_at": "2026-10-21",
+      "locators": [
+        "document title/revision only"
+      ],
+      "distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY"
+    },
+    {
+      "id": "local-review-contract",
+      "url": "docs/usb-knowledge-contract.md",
+      "revision": "usb-engineering-review/v1",
+      "kind": "ENGINEERING_CONTRACT",
+      "content_sha256": "f4174e13ff6a49c499c50248299cf0c83290dc18655b20b8267f5e48c7bb5eb5",
+      "pin_basis": "ORIGINAL_BYTES",
+      "license": "Repository-authored engineering policy",
+      "checked_at": "2026-10-21",
+      "locators": [
+        "Action binding and claim limits"
+      ],
+      "distribution": "LOCAL_AUTHORED_TEXT"
+    }
+  ]
+}

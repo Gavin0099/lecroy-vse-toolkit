@@ -1,0 +1,42 @@
+{
+  "id": "usb3-link-ltssm",
+  "protocol": "USB3",
+  "title": "USB3 Link／LTSSM 階段",
+  "phase": "link-training",
+  "revisions": [
+    "3.0",
+    "3.1",
+    "3.2"
+  ],
+  "claim_ceiling": "GUIDANCE_ONLY",
+  "required_evidence": [
+    "channel",
+    "direction",
+    "epoch",
+    "mode",
+    "ltssm_states"
+  ],
+  "next_check": "核對同一方向與 Link 階段的實際 LTSSM 轉移，再查看是否進入 U0；另查裝置辨識證據。",
+  "evidence_request": "請補同 Channel／方向／階段的精確 LTSSM 與模式；目前位置標記不能證明 U0 或裝置初始化。",
+  "limitations": [
+    "現有 VSE LTSSM anchor 不含精確 state。",
+    "U0 不等於 Enumeration 成功；USB4 不在範圍。"
+  ],
+  "source_refs": [
+    {
+      "source_id": "usb3-tests",
+      "locator": "printed pp27-36: 7.5.4 Polling / LFPS",
+      "supports": "State and LFPS context for training review"
+    },
+    {
+      "source_id": "usb3-tests",
+      "locator": "printed pp37-38: 7.5.6 U0",
+      "supports": "Distinct link state; no enumeration acceptance rule"
+    },
+    {
+      "source_id": "local-review-contract",
+      "locator": "Action binding and claim limits",
+      "supports": "Authored inspection/evidence-request policy; not a USB normative requirement"
+    }
+  ]
+}

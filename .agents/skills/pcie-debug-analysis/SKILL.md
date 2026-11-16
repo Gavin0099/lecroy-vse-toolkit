@@ -1,0 +1,18 @@
+---
+name: pcie-debug-analysis
+description: Review PCIe trace flows, Hot Plug, Link training/LTSSM, enumeration and Request/Completion evidence in lecroy-vse-toolkit. Use for PCIe trace analysis, the last supported phase, unknown initialization or the next engineering check, including Chinese PCIe questions. Not for USB-only analysis or unrestricted specification ingestion.
+---
+
+# PCIe evidence review
+
+Use the current local `PLAN.md`, source tree and verified receipts. This skill supports Codex research/review; the desktop runtime stays deterministic and offline. Resolve repo paths below from the repository/package root. The authoritative Skill is `.agents/skills/pcie-debug-analysis/`.
+
+1. Identify the imported source SHA-256, display-copy SHA-256, namespace, capture mode and coverage. A converted trace uses display indices only. Do not modify raw captures or attach to an unowned native session.
+2. Read `knowledge/pcie/sources.json` and the relevant cards under `knowledge/pcie/cards/`. `tools/pcie_flow_knowledge.py` validates their pins, shape and claim ceilings. Offline review uses these local notes; unavailable normative text remains unavailable. Do not invent PCI-SIG clauses or mirror restricted documents.
+3. Inspect `flow-analysis.json` and `inspection.json`: keep channel, direction and observed epoch separate from physical Link/device identity. Follow raw evidence references before interpreting a milestone. A single directional L0 does not establish a bidirectional link or device initialization.
+4. Separate observations from optional engineer context. Only a source-bound, explicitly scoped context can label an observed Link Down expected. Filename, device names and familiar packet numbers are not context evidence. Context never removes contradictory observations or packet findings.
+5. Check counterexamples before a conclusion: invalid/later LTSSM, different requester/target, reused Tag, opposite-direction evidence, epoch boundary, truncated capture and unknown filters. Similar requests do not establish RC retry or Data Link replay. Visible Completion status is not complete Split mapping.
+6. For each proposed next action, read its `source_refs`, direct locator, `applicability`, `required_evidence` and `limitations`. Use `knowledge/pcie/next-action-contract.md` and `next-actions.json` for the action contract/catalog. Distinguish local trace observations, authored engineering policy and external field/guidance sources. `REFERENCE_MATCHED` is an offline reference match, not a fresh upstream or hardware check. A generic card's `reference_text` is not a scoped instruction; missing/inapplicable support must remain an `EVIDENCE_REQUEST` with `NOT_EVALUATED`. Without platform/vendor evidence, ask for available data; do not prescribe BIOS logging or infer ASPM policy/effective time.
+7. Present the last supported stage, the next unverified step, why it is useful to check, an exact source-bound locator and missing external evidence. Keep confirmed errors, if independently supported, visible beside flow review; never downgrade them merely because Hot Plug was expected. Current cards are engineering guidance, not normative conformance rules.
+
+Use `docs/pcie-flow-triage-contract.md` for model boundaries and `docs/pcie-knowledge-sources.md` for source licensing. Read [examples](references/examples.md) when checking expected transitions, unexpected disconnects or post-L0 initialization gaps. Native navigation is a separate action using the existing owned-session path; API success alone does not prove a visible GUI landing. Report local replay, new-trace accuracy and human time saving separately.

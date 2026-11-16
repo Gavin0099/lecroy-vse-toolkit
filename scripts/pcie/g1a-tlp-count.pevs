@@ -1,0 +1,52 @@
+# PCIe-G1a full-trace traversal probe: count TLP callbacks only, no per-row output.
+# Bootstrap/subscription is unchanged from the verified D1 extractor (p0-d1-tlps.pevs).
+# New constructs versus D1: OnFinishScript summary and a progress counter; both are
+# unverified on this runtime until G1a executes.
+set ModuleType = "Verification Script";
+set OutputType = "VS";
+set InputType = "VS";
+set DecoderDesc = "PCIe G1a full-trace TLP count probe - v1";
+
+%include "VSTools.inc"
+set TlpCount = 0;
+set NextProgress = 250000;
+set FirstIndex = 0;
+set FirstTime = "";
+set LastIndex = 0;
+
+OnStartScript()
+{
+    ScriptForDisplayOnly();
+    ReportText("PCIE_G1A_TLP_COUNT_V1 progress_every=250000 rows=none");
+    SendAllChannels();
+    SendTraceEventOnly(_PKT_TLP);
+    SendTlpType(_ANY_TYPE);
+    TlpCount = 0;
+    NextProgress = 250000;
+    FirstIndex = 0;
+    FirstTime = "";
+    LastIndex = 0;
+}
+
+ProcessEvent()
+{
+    TlpCount++;
+    if (TlpCount == 1)
+    {
+        FirstIndex = in.Index;
+        FirstTime = TimeToText(in.Time);
+    }
+    LastIndex = in.Index;
+    if (TlpCount >= NextProgress)
+    {
+        ReportText(FormatEx("PCIE_G1A_PROGRESS|%u|%u", TlpCount, LastIndex));
+        NextProgress = NextProgress + 250000;
+    }
+    return Complete();
+}
+
+OnFinishScript()
+{
+    ReportText(FormatEx("PCIE_G1A_SUMMARY|tlp_count=%u|first_index=%u|first_time=%s|last_index=%u",
+        TlpCount, FirstIndex, FirstTime, LastIndex));
+}

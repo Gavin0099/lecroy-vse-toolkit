@@ -1,0 +1,52 @@
+{
+  "rule_id": "REPLAY-01",
+  "domain": "DLLP_REPLAY",
+  "title": "NAK 與重送機制待核對",
+  "source_manifest_id": "lecroy-vse",
+  "source_kind": "FIELD_REFERENCE",
+  "source_url": "https://cdn.teledynelecroy.com/files/manuals/petracer_vse_manual.pdf",
+  "revision_or_commit": "13.42; generated 2026-10-09",
+  "license_status": "Vendor copyrighted; reference only",
+  "applicable_gen_mode": [
+    "NON_FLIT",
+    "UNKNOWN"
+  ],
+  "role_scope": [
+    "OBSERVED_DIRECTION_ONLY"
+  ],
+  "required_event_types": [
+    "DLLP"
+  ],
+  "required_fields": [
+    "dllp_class",
+    "sequence"
+  ],
+  "preconditions": [
+    "Source/display identities validated",
+    "Typed native evidence available"
+  ],
+  "positive_evidence": [
+    "Source-bound observed event"
+  ],
+  "negative_evidence": [
+    "Unknown/truncated coverage is not negative protocol evidence"
+  ],
+  "contradictions": [
+    "Later disconnect or invalid state prevents reuse of earlier success",
+    "Different channel/epoch is not the same device"
+  ],
+  "coverage_requirements": [
+    "Full capture/filter remains explicit",
+    "No invented timeout threshold"
+  ],
+  "output_class": "CHECK_RECOMMENDED",
+  "allowed_claim_ceiling": "GUIDANCE_ONLY",
+  "next_checks": [
+    "建議補充資料：取得原生 ACK／NAK sequence、Link transaction status 與前後 TLP；先核對本機欄位能力，不由 NAK 或相似 Request 判定 Retry／Replay。"
+  ],
+  "display_text_zh_tw": "NAK 或相似 TLP 不足以判定 RC retry／DLL replay。",
+  "test_refs": [
+    "tests/pcie/test_flow_knowledge.py",
+    "tests/pcie/test_flow_triage.py"
+  ]
+}

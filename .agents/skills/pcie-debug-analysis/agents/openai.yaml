@@ -1,0 +1,6 @@
+interface:
+  display_name: "PCIe Debug Analysis"
+  short_description: "Review PCIe phases, evidence and next checks"
+  default_prompt: "Use $pcie-debug-analysis to review this PCIe flow and identify source-supported next checks."
+policy:
+  allow_implicit_invocation: true

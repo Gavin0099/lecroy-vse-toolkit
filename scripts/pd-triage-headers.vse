@@ -1,0 +1,23 @@
+# Minimal PD evidence; native Automation keeps negotiation/VDM grouping.
+%include "VSTools.inc"
+set Seen=0;
+set Emitted=0;
+const HEADER_LIMIT=50000;
+OnStartScript(){SendAllChannels();SendLevelOnly(_PKT);SendTraceEventOnly(_PD_PACKET);SendPktsWithBadCRC(1);ScriptForDisplayOnly();}
+ProcessEvent()
+{
+ Seen++;
+ if(Emitted<HEADER_LIMIT)
+ {
+  ReportText(FormatEx("PDBASE|%d|%d|%d|%d|%d|%d",in.Index,in.Time[0],in.Time[1],in.Channel,in.PacketType,in.SenderPort));
+  if(in.PacketType>=_PD_MESSAGE_TYPE_START___ && in.PacketType<=_PD_MESSAGE_TYPE_END___)
+  {
+   ReportText(FormatEx("PDHDR|%d|%d|%d|%d|%d|%d|%d|%d",in.Index,in.SOP_Type,in.Spec_Rev,in.Msg_ID,in.DR,in.PR,in.Obj_Cnt,in.BufferLen));
+   if(in.PacketType==_PD_DATA_VENDOR_DEF)
+    ReportText(FormatEx("PDVDM|%d|%s|%s|%s",in.Index,GetDecodedPktField("OBJ1_Vendor_ID"),GetDecodedPktField("OBJ1_Cmd"),GetDecodedPktField("OBJ1_Cmd_Type")));
+  }
+  Emitted++;
+ }
+ return Complete();
+}
+OnFinishScript(){ReportText(FormatEx("PD-END|%d|%d",Seen,Emitted));return 0;}

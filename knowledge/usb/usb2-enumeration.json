@@ -1,0 +1,40 @@
+{
+  "id": "usb2-enumeration",
+  "protocol": "USB2",
+  "title": "USB2 裝置辨識與 Descriptor",
+  "phase": "enumeration",
+  "revisions": [
+    "2.0"
+  ],
+  "claim_ceiling": "GUIDANCE_ONLY",
+  "required_evidence": [
+    "address",
+    "endpoint",
+    "epoch",
+    "descriptor_bytes",
+    "configuration_evidence"
+  ],
+  "next_check": "在同一重設階段核對 Descriptor 的型別、長度及設定選取；先確認資料確實來自這個裝置。",
+  "evidence_request": "請補同一重設階段的 Descriptor bytes 與設定選取證據；讀取成功不代表初始化完成。",
+  "limitations": [
+    "裝置位址可能重用；沒有 reset epoch 不綁定裝置身分。",
+    "Linux 欄位只是交叉參考；不代替 USB-IF 規範或測試期待。"
+  ],
+  "source_refs": [
+    {
+      "source_id": "linux-ch9",
+      "locator": "#L76-L96",
+      "supports": "Standard request names"
+    },
+    {
+      "source_id": "linux-ch9",
+      "locator": "#L358-L387",
+      "supports": "Configuration descriptor layout"
+    },
+    {
+      "source_id": "local-review-contract",
+      "locator": "Action binding and claim limits",
+      "supports": "Authored inspection/evidence-request policy; not a USB normative requirement"
+    }
+  ]
+}

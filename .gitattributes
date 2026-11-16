@@ -10,3 +10,7 @@ docs/pcie-register-reference.json -text
 
 # Exact deployed bytes bound by fresh raw probe evidence.
 scripts/pcie/b2a-register-probe.pevs -text
+
+# Knowledge package identities depend on the original release bytes.
+knowledge/pcie/** -text whitespace=cr-at-eol
+knowledge/usb/** -text whitespace=cr-at-eol
