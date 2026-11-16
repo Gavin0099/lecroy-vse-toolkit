@@ -1,0 +1,17 @@
+{
+  "receipt_schema": "test_evidence_receipt.v0.1",
+  "status": "report_only",
+  "command": "python -X utf8 -m pytest tests/governance -q -p no:cacheprovider --basetemp .tmp_g1v",
+  "exit_code": 0,
+  "started_at": "2026-11-16T07:21:04Z",
+  "finished_at": "2026-11-16T07:21:07Z",
+  "runner": "claude-code",
+  "linked_commit": "720317d3215312fe0d8d9c6850bf034e374bffb6",
+  "output_artifacts": [
+    "artifacts/evidence/test-results/g1-3-lecroy-validators.txt"
+  ],
+  "cannot_claim": [
+    "semantic correctness of the tested behavior",
+    "receipt authenticity: every field is fabricatable by a direct writer"
+  ]
+}

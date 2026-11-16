@@ -13,3 +13,8 @@ ai_behavior_override:
 rule_roots:
   - governance/rules
 validators:
+  - governance/validators/lecroy_trace_integrity_validator.py
+  - governance/validators/lecroy_deletion_scope_validator.py
+hard_stop_rules:
+  - LECROY-TRACE-001
+  - LECROY-TRACE-002

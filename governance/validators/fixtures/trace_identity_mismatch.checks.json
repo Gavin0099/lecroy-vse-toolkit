@@ -1,0 +1,12 @@
+{
+  "changed_files": [
+    "tools/run-usb-triage-data.ps1"
+  ],
+  "trace_identity": [
+    {
+      "trace": "dp1 hub detect SSD fail-2.usb",
+      "before_sha256": "1ADB98F89C2C0CF2A9733EA01552E39438483C4A9741136DC4BE36F0A27F1AEB",
+      "after_sha256": "1ADB98F89C2C0CF2A9733EA01552E39438483C4A9741136DC4BE36F0A27F1AEC"
+    }
+  ]
+}

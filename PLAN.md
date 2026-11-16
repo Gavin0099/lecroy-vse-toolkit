@@ -1,5 +1,9 @@
 # Plan
 
+> **最後更新**: 2026-11-16
+> **Owner**: Gavin0099
+> **Freshness**: Phase (30d)
+
 ## Objective
 
 Verify that LeCroy USB Protocol Suite VSE can read a large USB trace, expose useful decoded events, and deliver machine-readable data to a host that can support bounded diagnostic triage.
@@ -65,6 +69,71 @@ reproducing the mutation. `M1-I2` then repeated the exact same-folder COM3
 layout on a fresh sacrificial copy and also preserved the input identity.
 M1 is now functionally qualified; the historical discrepancy remains recorded
 as `UNEXPLAINED / NOT REPRODUCED`.
+
+## G1 governance full adoption decision (2026-11-16)
+
+Owner decision: move from G0 (copy-based minimal audit) to full AI Governance
+adoption. This is a new consumer decision. It supersedes G0 for current work and
+leaves the G0 sections below as history; it does not claim that capabilities G0
+excluded were ever active before this date.
+
+Reason: the framework already scales work by task level (L0/L1/L2 with an L0
+fast track and tiered document loading), so the lightweight copy gave little
+value. In practice G0 enforced nothing: the drift workflow could not run, the
+memory router commands could not run, and the copied instructions conflicted
+with G0's own exclusions. The fixed costs are accepted: hooks run on every
+commit/push, and non-stateless sessions end with closeout and memory records.
+
+yaml:
+  G1_RESULT: FULL_ADOPTION_AS_SUBMODULE_CONSUMER
+  framework_source: ai-governance-framework submodule, pinned 6c7e24c3
+  update_path: governance_tools.f7_full_update (managed F-7)
+  runtime_governance: ADOPTION_IN_PROGRESS
+  acceptance: NOT_STARTED
+
+| Slice | Scope | Status | Done when |
+| --- | --- | --- | --- |
+| G1-0 | Record this decision | DONE (this section) | G0 kept as history; no capability backdated |
+| G1-1 | Versioned framework source | DONE (submodule at 6c7e24c3) | Source traceable; rollback = drop submodule commit |
+| G1-2 | Compatibility fixes | DONE | AGENTS.md under 32,768 bytes (22,091 after G1-3); Product State Authority Rule kept; product files untouched |
+| G1-3 | Full wiring | PARTIAL | Hooks, Core Rules and memory router installed and verified; repo validators declared with fixtures (done 2026-11-16); hooks installed in every working checkout |
+| G1-4 | Real acceptance | NOT STARTED | One L0, one L1 and one L2 task plus one natural cross-session handoff, judged by the criteria below |
+
+G1-3 validators (2026-11-16): rule pack `governance/rules/lecroy`, validators in
+`governance/validators/` (LECROY-TRACE-001 no capture in a change set,
+LECROY-TRACE-002 input trace identity evidence, both hard stops; LECROY-DEL-001
+deletion scope, advisory), 10 pass/fail fixtures, harness
+`tests/governance/test_lecroy_validators.py`. AGENTS.md now lists the L1 → L2
+escalation triggers. Validators run only when the task declares the `lecroy`
+rule, and they check evidence the agent supplies; they do not observe the trace
+themselves.
+
+G1-3 open items: Codex SessionStart/Stop hooks not installed (owner approval
+needed); hooks are local `.git/hooks` state and must be installed again in each
+checkout. `.gitignore` covers `*.pex` since 2026-11-16 (LECROY-TRACE-001 still
+catches a force-added capture).
+
+G1-4 acceptance criteria:
+
+- L0 stays light: a typo or formatting fix does not trigger architecture review
+  or full regression.
+- L2 protects: raw trace integrity, disk/file deletion and verdict logic are
+  escalated to L2 and blocked without evidence. The framework's task-level
+  detector has no LeCroy keywords and caps destructive-data signals at L1, so
+  L2 depends on the `AGENTS.md` triggers and the post-task validators.
+- Cross-session handoff costs less than PLAN-only handoff, or the extra cost
+  has a named benefit. Otherwise revisit the configuration.
+
+Known issue: the F-7 updater treats everything between `## AI Governance Update
+Intent Rule` and `## Repo-Specific Risk Levels` in `AGENTS.md` as
+framework-managed, and on 2026-11-16 it deleted the consumer's Product State
+Authority Rule without a usable backup. The rule was restored from git and moved
+below the repo-specific sections. Report this upstream.
+
+Merge note: branch `codex/pcie-d1e-f0-baseline` carries G0 maintenance edits
+(manual-only drift workflow, AGENTS.md consumer note, memory 02-04 marked
+unused, "G0 lightweight maintenance" PLAN text). Resolve those conflicts in
+favor of G1.
 
 ## G0 governance topology decision
 
