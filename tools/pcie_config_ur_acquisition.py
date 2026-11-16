@@ -589,7 +589,7 @@ def run(working, analysis_root, output, binding, cancel=None, progress=lambda _:
     cancellation_path = output / 'cancel.json'
     command = [sys.executable, str(Path(__file__).resolve()), '--worker', str(request_path)]
     with (output / 'acquisition.log').open('xb') as log:
-        process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT,
+        process = subprocess.Popen(command, stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT,
                                    creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
         with supervised_worker(process, output):
             deadline = time.monotonic() + TIME_LIMIT
