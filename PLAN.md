@@ -110,7 +110,8 @@ themselves.
 
 G1-3 open items: Codex SessionStart/Stop hooks not installed (owner approval
 needed); hooks are local `.git/hooks` state and must be installed again in each
-checkout; `.gitignore` does not cover `*.pex`.
+checkout. `.gitignore` covers `*.pex` since 2026-11-16 (LECROY-TRACE-001 still
+catches a force-added capture).
 
 G1-4 acceptance criteria:
 
