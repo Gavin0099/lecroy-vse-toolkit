@@ -37,6 +37,34 @@ class DesktopTests(unittest.TestCase):
                 tool.import_trace(source);tool.thread.join(10)
             self.assertFalse(tool.state['busy']);self.assertEqual(tool.state['phase'],'cancelled')
             self.assertIsNone(tool.case);self.assertIsNone(tool.public()['case_id'])
+            self.assertFalse(list(tool.root.rglob('ui-index.json')))
+            self.assertNotIn('pcie_analysis_completed',(tool.root/'operations.jsonl').read_text(encoding='utf-8'))
+
+    def test_failed_pcie_publication_exposes_no_index_and_next_import_works(self):
+        for stage in ('render', 'status'):
+            with self.subTest(stage=stage),tempfile.TemporaryDirectory() as d:
+                root=Path(d);source=root/'retry.pex';source.write_bytes(b'independent test capture identity')
+                tool=host.Tool(root/'tool')
+                def run(src,out,aid,progress,**kwargs):
+                    fixture(out)
+                    return dict(model=view.compose(out,aid),working=out/'display-working.pex',elapsed_seconds=1)
+                real_atomic=host.atomic_json
+                def fail_report_status(path,value):
+                    if path.name=='status.json' and value['phase']=='report':
+                        raise OSError('status write denied')
+                    return real_atomic(path,value)
+                failure=(patch.object(view,'markdown',side_effect=OSError('render failed')) if stage=='render'
+                         else patch.object(host,'atomic_json',side_effect=fail_report_status))
+                with patch.object(pipeline,'run',side_effect=run):
+                    with failure:
+                        self.assertTrue(tool.import_trace(source));tool.thread.join(10)
+                    self.assertEqual(tool.public()['phase'],'error')
+                    self.assertIsNone(tool.public()['case_id'])
+                    self.assertFalse(list(tool.root.rglob('ui-index.json')))
+                    self.assertNotIn('pcie_analysis_completed',(tool.root/'operations.jsonl').read_text(encoding='utf-8'))
+                    self.assertTrue(tool.import_trace(source));tool.thread.join(10)
+                self.assertEqual(tool.public()['phase'],'report')
+                self.assertEqual(list(tool.root.rglob('ui-index.json')),[tool.case['folder']/'ui-index.json'])
     def test_pcie_import_persists_same_model_and_reports(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);source=root/'中文 大寫.PEX';source.write_bytes(b'independent test capture identity')

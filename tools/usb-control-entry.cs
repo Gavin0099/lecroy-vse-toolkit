@@ -242,12 +242,17 @@ public sealed class TraceToolEntry : Form {
     }
     void ResetForImport(){
         pageIndex=null;currentPage=0;previousPage.Visible=nextPage.Visible=pageLabel.Visible=false;
+        shownError=null;
         model=null;caseId=reportFile=null;cards=allCards=allObservations=allFlows=new object[0];flowView.Visible=engineerContext.Visible=false;modelRevision="0";changingProtocol=true;observed.Enabled=false;observed.Checked=false;showAll.Checked=false;showAll.Visible=false;changingProtocol=false;
         candidates.Items.Clear();ClearEvidence();raw.Clear();gaps.Clear();summary.Clear();
-        protocols.Items.Clear();protocols.Items.Add("正在分析協定範圍…");protocols.SelectedIndex=0;nativeTargets.Items.Clear();nativeTargets.Visible=false;
-        badge.Text=(pendingPcie?"PCIe":"USB / PCIe")+" TRACE\n本機分析 · 來源唯讀";badge.ForeColor=Muted;scopeLabel.Text="正在分析；無候選不代表協定測試通過。";
+        SetProtocolScopePlaceholder("正在分析協定範圍…","正在分析；無候選不代表協定測試通過。");nativeTargets.Items.Clear();nativeTargets.Visible=false;
+        badge.Text=(pendingPcie?"PCIe":"USB / PCIe")+" TRACE\n本機分析 · 來源唯讀";badge.ForeColor=Muted;
         totals.Text="正在分析…";title.Text="正在讀取 Trace";coordinates.Text="完成後在這裡顯示候選";copy.Enabled=copyFile.Enabled=false;
         findings.Text="正在分析本次 Trace";findings.ForeColor=Ink;coverage.Text="Coverage 尚未取得；不沿用上一份 Trace 的結果";candidateStatus.Text="分析中";candidateStatus.ForeColor=Muted;
+    }
+    void SetProtocolScopePlaceholder(string selection,string scope) {
+        protocols.Items.Clear();protocols.Items.Add(selection);protocols.SelectedIndex=0;
+        scopeLabel.Text=scope;
     }
     void NavigateSelected() {
         if(busy||caseId==null||candidates.SelectedIndex<0)return;
@@ -502,6 +507,7 @@ public sealed class TraceToolEntry : Form {
                 if(OperationError&&model==null&&shownError!=message.Text) {
                     shownError=message.Text;title.Text="未能完成 Trace 分析";coordinates.Text="請先查看錯誤與恢復方式";
                     findings.Text="本次分析未完成";findings.ForeColor=TraceTheme.Error;coverage.Text="Coverage 尚無可用結果；不能判定 Trace 是否正常";candidateStatus.Text="操作錯誤 · 非協定故障判定";candidateStatus.ForeColor=TraceTheme.Error;
+                    SetProtocolScopePlaceholder("分析未完成","協定範圍未確認。");
                     totals.Text="分析未完成\n尚無可用候選";summary.Clear();
                     Section(summary,"發生什麼事",message.Text);
                     Section(summary,"下一步","按「查看錯誤與恢復方式」，或開啟工作資料夾檢查完整日誌。修復後再匯入 Trace。");
@@ -512,9 +518,14 @@ public sealed class TraceToolEntry : Form {
                 }
                 if(phase=="cancelled"&&model==null&&title.Text!="分析已取消"){
                     findings.Text="本次分析已取消";findings.ForeColor=Muted;coverage.Text="Coverage 未確認；未使用本次分析結果";candidateStatus.Text="已取消";candidateStatus.ForeColor=Muted;
+                    SetProtocolScopePlaceholder("分析已取消","未使用本次分析結果。");
                     title.Text="分析已取消";coordinates.Text="可以匯入另一份 Trace";totals.Text="未使用本次分析結果";summary.Clear();Section(summary,"目前狀態",message.Text);Section(summary,"下一步","工作副本與日誌已保留。重新匯入會建立獨立工作，不會重用本次候選。");
                 }
-                string id=S(value,"case_id"),revision=S(value,"model_revision");if(id!="未知"&&(id!=caseId||revision!=modelRevision)){LoadModel(id);modelRevision=revision;}
+                string id=S(value,"case_id"),revision=S(value,"model_revision");
+                if(id!="未知"&&(model==null||id!=caseId||revision!=modelRevision)){
+                    LoadModel(id);
+                    modelRevision=revision;
+                }
                 string name=S(value,"trace_name");if(name!="未知")identity.Text=name;
             } else if(url!=null) {message.Text="已就緒。拖入一份 .usb / .pex 或按「匯入 Trace」。";busy=false;}
             bool usable=url!=null&&!controller.HasExited&&!busy&&!closing;

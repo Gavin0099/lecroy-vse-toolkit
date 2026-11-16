@@ -11,8 +11,10 @@ from unittest.mock import patch
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/"tools"))
 import pcie_ui_pages as pages
 import pcie_large_io as large
+import pcie_model_storage as storage
 import pcie_model_worker
 from test_stage_workspace import stage_fixture, workspace
+from test_phase_evidence import log as phase_log
 
 
 class PageTests(unittest.TestCase):
@@ -58,6 +60,94 @@ class PageTests(unittest.TestCase):
             actual=pcie_model_worker.compose(root,aid)
             self.assertEqual(actual,expected)
             self.assertTrue((root/"model-resources.jsonl").read_text().strip())
+            self.assertFalse((root/"model-handoff").exists())
+
+    def test_real_worker_low_tlp_many_flow_scenarios_spill_and_restore(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);aid=stage_fixture(root)
+            first_packet=120
+            count=350
+            rows=[]
+            for packet in range(first_packet,first_packet+count*2,2):
+                rows.append(('LINK',packet,'1','Upstream','1','LINK_CONDITION'))
+                rows.append(('LTSSM',packet+1,'1','Upstream','13,255,1,255,packet','LTSSM_CHANGE'))
+            path=root/'phase.txt'
+            path.write_text(phase_log(rows).replace('|TLP|0|0|0','|TLP|2|100|110'),encoding='utf-8')
+            worker=workspace.read(root/'worker.json')
+            worker['native_packet_count']=first_packet+count*2
+            next(p for p in worker['probes'] if p['name']=='phase')['log_sha256']=workspace.nav.digest(path)
+            (root/'worker.json').write_text(json.dumps(worker),encoding='utf-8')
+
+            expected=workspace.compose(root,aid)
+            self.assertGreater(len(pages.encoded(expected)),large.DEFAULTS['max_model_bytes'])
+            actual=pcie_model_worker.compose(root,aid)
+            self.assertEqual(actual,expected)
+            self.assertEqual(actual['coverage']['tlp_count'],2)
+            self.assertSetEqual({item['locator']['packet_index'] for item in actual['flow_items']
+                                 if item['locator']['direction']=='Upstream'},
+                                set(range(first_packet+1,first_packet+count*2,2)))
+            self.assertFalse((root/'disk-index.json').exists())
+            manifest=root/pcie_model_worker.MODEL_NAME
+            self.assertLessEqual(manifest.stat().st_size,large.DEFAULTS['max_model_bytes'])
+            self.assertFalse(manifest.with_suffix('.json.partial').exists())
+            self.assertIn('worker_handoff',workspace.read(manifest))
+            self.assertNotIn('worker_handoff',actual)
+
+    def test_flow_handoff_rejects_incomplete_modified_or_other_job_attachment(self):
+        model=dict(analysis_id='a'*32,source_trace_sha256='b'*64,display_trace_sha256='c'*64,
+                   flow_analysis=dict(scenarios=[{'text':'場'*900}]),flow_items=[{'text':'觀'*900}])
+        for defect in ('missing', 'content', 'other_job', 'size', 'incomplete'):
+            with self.subTest(defect=defect),tempfile.TemporaryDirectory() as d:
+                root=Path(d)
+                with patch.dict(large.DEFAULTS,max_model_bytes=1024):
+                    pcie_model_worker.write_model(root,model)
+                attachment=root/'model-handoff/items.json'
+                path=root/pcie_model_worker.MODEL_NAME
+                manifest=workspace.read(path)
+                refs=manifest['worker_handoff']['refs']
+                if defect=='missing':
+                    attachment.unlink()
+                elif defect=='content':
+                    attachment.write_bytes(attachment.read_bytes().replace('觀'.encode(), '文'.encode(), 1))
+                elif defect=='other_job':
+                    value=workspace.read(attachment)
+                    value['binding']['analysis_id']='d'*32
+                    attachment.write_bytes(pages.encoded(value))
+                    refs['items.json']['sha256']=workspace.nav.digest(attachment)
+                elif defect=='size':
+                    refs['items.json']['bytes']=pcie_model_worker.FLOW_BUDGET+1
+                else:
+                    del refs['items.json']
+                path.write_bytes(pages.encoded(manifest))
+                error={'missing':FileNotFoundError,'size':large.ResourceLimit}.get(defect,ValueError)
+                with self.assertRaises(error):
+                    pcie_model_worker.read_model(root,model['analysis_id'],1024)
+
+    def test_flow_handoff_preserves_existing_external_evidence(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d)
+            model=dict(analysis_id='a'*32,source_trace_sha256='b'*64,display_trace_sha256='c'*64,
+                       display_trace_path=str(root/'display-working.pex'),limitations=[],
+                       flow_analysis=dict(scenarios=[{'text':'場'*900}]),flow_items=[{'text':'觀'*900}],
+                       stage_summary=dict(events=[{'packet_index':1}]))
+            packed=storage.pack(model,root)
+            with patch.dict(large.DEFAULTS,max_model_bytes=2048):
+                pcie_model_worker.write_model(root,packed)
+            actual=pcie_model_worker.read_model(root,model['analysis_id'],2048)
+            self.assertEqual(actual,packed)
+            self.assertEqual(storage.expand(actual)['stage_summary'],model['stage_summary'])
+
+    def test_flow_handoff_total_budget_refusal_does_not_publish_manifest(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d)
+            model=dict(analysis_id='a'*32,source_trace_sha256='b'*64,display_trace_sha256='c'*64,
+                       flow_analysis=dict(scenarios=[{'text':'場'*900}]),flow_items=[{'text':'觀'*900}])
+            # Each attachment is smaller than this budget. Together they are over it.
+            with patch.dict(large.DEFAULTS,max_model_bytes=1024), patch.object(pcie_model_worker,'FLOW_BUDGET',4000):
+                with self.assertRaises(large.ResourceLimit):
+                    pcie_model_worker.write_model(root,model)
+            self.assertTrue((root/'model-handoff/scenarios.json').is_file())
+            self.assertFalse((root/pcie_model_worker.MODEL_NAME).exists())
 
     def test_model_worker_cancel_and_memory_refusal_publish_nothing(self):
         for mode in ("cancel","memory"):

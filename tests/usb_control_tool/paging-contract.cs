@@ -20,8 +20,15 @@ public static class PagingContract {
         Check(new FileInfo(Path.Combine(folder,"inspection.json")).Length>16777216,"synthetic file exceeds legacy size");
         using(var form=new TraceToolEntry(args[0],args[1],args[2])){
             try{
-                Call(form,"LoadModel",id);
                 var list=(ListBox)Get(form,"candidates");
+                var status=new JavaScriptSerializer().Serialize(new {phase="report",busy=false,case_id=id,model_revision=0,message="fixture result ready"});
+                File.WriteAllText(Path.Combine(args[2],"status.json"),status);
+                using(var lockedIndex=new FileStream(Path.Combine(folder,"ui-index.json"),FileMode.Open,FileAccess.Read,FileShare.None)) {
+                    Call(form,"RefreshStatus");
+                    Check(Get(form,"model")==null&&list.Items.Count==0,"locked index leaves report pending");
+                }
+                Call(form,"RefreshStatus");
+                Check(Get(form,"model")!=null,"same case and revision load after index is unlocked");
                 Check(list.Items.Count==3,"primary view is three targets");
                 Check(Get(form,"pageIndex")!=null,"bounded projection loaded");
                 ((CheckBox)Get(form,"showAll")).Checked=true;

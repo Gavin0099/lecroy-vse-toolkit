@@ -522,19 +522,28 @@ class Tool:
                 raise ValueError('來源或副本完整性不符')
             atomic_json(folder/'inspection.json',model)
             import pcie_ui_pages
-            pcie_ui_pages.write(folder,model)
+            page_index=pcie_ui_pages.write(folder,model,publish=False)
             if model.get('flow_analysis'):atomic_json(folder/'flow-analysis.json',model['flow_analysis'])
             (folder/'report.html').write_text(view.render(model),encoding='utf-8')
             (folder/'report.md').write_text(view.markdown(model),encoding='utf-8')
-            self.event('pcie_analysis_completed',case_id=case_id,elapsed_seconds=result['elapsed_seconds'],candidate_count=model['candidate_count_total'])
             atomic_json(folder/'controller-timing.json',dict(import_to_publication_seconds=time.monotonic()-started,
                 pipeline_seconds=result['elapsed_seconds'],ui_interactive='AWAIT_DESKTOP_LOAD'))
             working_before=snapshot(working)
             with self.lock:
                 if self.cancel_event.is_set():raise pipeline.Cancelled('已取消報告發布；本次結果未使用，原生清理已確認。')
+                pcie_ui_pages.publish_index(folder,page_index)
                 self.case=dict(id=case_id,name=source.name,source=source,working=working,before=before,
                     working_before=working_before,model=model,folder=folder)
-                self.update('report','PCIe 分析結束；先核對流程階段與下一步，次要交易觀察保留原始順序。無候選不代表 PCIe PASS。',busy=False)
+                try:
+                    self.update('report','PCIe 分析結束；先核對流程階段與下一步，次要交易觀察保留原始順序。無候選不代表 PCIe PASS。',busy=False)
+                except Exception:
+                    self.case=None
+                    (folder/'ui-index.json').unlink(missing_ok=True)
+                    raise
+                try:
+                    self.event('pcie_analysis_completed',case_id=case_id,elapsed_seconds=result['elapsed_seconds'],candidate_count=model['candidate_count_total'])
+                except OSError as ex:
+                    print('Unable to log completed PCIe analysis: '+str(ex),file=sys.stderr)
         except (pipeline.Cancelled,InterruptedError) as ex:self.update('cancelled',str(ex),busy=False)
         except pipeline.Partial as ex:self.update('partial',str(ex)+'；部分擷取已保留，未產生候選。',busy=False)
         except pipeline.CleanupUnknown as ex:self.update('cleanup_unknown',str(ex),busy=False)
