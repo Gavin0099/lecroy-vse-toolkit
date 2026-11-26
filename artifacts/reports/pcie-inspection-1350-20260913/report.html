@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline';">
+<title>PCIe Trace 檢視報告 — S0-Remove SD7-1350.pex</title>
+<style>
+:root { color-scheme: light; --ink:#172b3a; --muted:#536777; --line:#d7e0e7; --paper:#fff; --wash:#f2f6f8; --accent:#24516b; }
+* { box-sizing:border-box; } body { margin:0; background:var(--wash); color:var(--ink); font:16px/1.55 "Segoe UI", "Noto Sans TC", sans-serif; }
+main { max-width:1040px; margin:0 auto; padding:30px 20px 52px; } h1 { margin:0 0 6px; font-size:2rem; } h2 { margin:0 0 14px; font-size:1.25rem; } h3 { margin:18px 0 8px; font-size:1.05rem; } p { margin:8px 0; }
+.intro { color:var(--muted); margin:0 0 20px; } section { background:var(--paper); border:1px solid var(--line); padding:22px; margin:16px 0; }
+.summary-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin:16px 0; } .summary-card { border:1px solid var(--line); background:var(--paper); padding:13px; } .summary-card span { display:block; color:var(--muted); font-size:.88rem; } .summary-card strong { display:block; margin-top:4px; }
+.plain-note { background:var(--wash); border-left:4px solid var(--accent); padding:12px 15px; margin:12px 0; } .table-wrap { overflow-x:auto; } table { width:100%; border-collapse:collapse; min-width:600px; } th,td { border-bottom:1px solid var(--line); text-align:left; padding:10px 9px; vertical-align:top; } th { color:var(--muted); font-size:.9rem; }
+.glossary { display:grid; grid-template-columns:190px 1fr; gap:7px 14px; } .term { color:var(--muted); } code { overflow-wrap:anywhere; font:.92em/1.45 Consolas,monospace; } ul,ol { padding-left:22px; } li { margin:7px 0; } a { color:var(--accent); } img { display:block; width:100%; height:auto; border:1px solid var(--line); } details { margin-top:12px; border-top:1px solid var(--line); padding-top:12px; } summary { cursor:pointer; color:var(--accent); font-weight:600; } footer { color:var(--muted); font-size:.9rem; margin-top:20px; }
+@media(max-width:760px) { main { padding:18px 12px 34px; } .summary-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } section { padding:16px; } .glossary { grid-template-columns:1fr; gap:2px; } .term:not(:first-child) { margin-top:9px; } }
+</style>
+</head>
+<body><main>
+<header><h1>PCIe Trace 檢視報告</h1><p class="intro">S0-Remove SD7-1350.pex。先看摘要即可理解本報告結果；檔案與程式身份資料放在頁面下方。</p></header>
+<section><h2>先看重點</h2>
+<p><strong>這份報告檢查什麼？</strong>從 PCIe 擷取檔（trace）讀出前 5 筆 TLP（PCIe 封包），再抽樣與 LeCroy 畫面核對。</p>
+<div class="summary-grid">
+<div class="summary-card"><span>讀到資料</span><strong>5 筆（僅前五筆）</strong></div>
+<div class="summary-card"><span>畫面核對</span><strong>5 / 5 筆相符</strong></div>
+<div class="summary-card"><span>測試正常或異常</span><strong>未知</strong></div>
+<div class="summary-card"><span>故障判斷</span><strong>未進行</strong></div>
+</div>
+<p class="plain-note"><strong>簡單說：</strong>工具讀到並核對了這幾筆資料；這不代表裝置測試 PASS，也不代表已找出問題。整份 trace 尚未分析。</p>
+</section>
+<section><h2>封包清單</h2>
+<div class="glossary"><div class="term">封包編號</div><div>用這個編號在 LeCroy 畫面找到同一筆資料。</div>
+<div class="term">LeCroy 顯示名稱</div><div>分析軟體對封包顯示的名稱。</div>
+<div class="term">兩種時間</div><div>LeCroy 時間較精確；工具時間只到千分之一秒（1 毫秒），因此五筆都顯示 4.848 秒，不代表它們同時發生。</div></div>
+<div class="table-wrap"><table><thead><tr><th>封包編號</th><th>LeCroy 顯示名稱</th><th>LeCroy 畫面時間</th><th>工具讀取時間</th></tr></thead><tbody><tr><td><code>1944516</code></td><td>Msg / MsgD</td><td>4.847933004000</td><td>4.848 sec</td></tr><tr><td><code>1944517</code></td><td>Cfg / CfgRd0</td><td>4.847933068000</td><td>4.848 sec</td></tr><tr><td><code>1944519</code></td><td>Cfg / CfgRd0</td><td>4.847937356000</td><td>4.848 sec</td></tr><tr><td><code>1944521</code></td><td>Cfg / CfgRd0</td><td>4.847939414000</td><td>4.848 sec</td></tr><tr><td><code>1944523</code></td><td>Cfg / CfgRd0</td><td>4.847948900000</td><td>4.848 sec</td></tr></tbody></table></div>
+</section>
+<section><h2>回看證據</h2><ol>
+<li><a href="../../evidence/pcie-staircase-20260912/d1-gui-crosscheck.png">先看 LeCroy 畫面核對</a>：可用上方封包編號定位。</li>
+<li><a href="../../evidence/pcie-staircase-20260912/d1-vendor-saved-output.log.txt">看工具原始輸出</a>：確認工具實際列出的資料。</li>
+<li><a href="observations.json">看資料底稿（JSON）</a>：供程式或追查身份使用。</li>
+</ol><details><summary>展開 LeCroy 核對畫面</summary><p><img src="../../evidence/pcie-staircase-20260912/d1-gui-crosscheck.png" alt="LeCroy 畫面中與工具輸出核對的五筆 TLP"></p></details></section>
+<section><h2>本報告沒有判斷的事</h2><ul>
+<li>這份 trace 對應的裝置測試是 PASS 還是 FAIL。</li><li>整份 trace 的封包總數；目前只讀取前五筆。</li>
+<li>封包內容、可疑區段或故障原因。</li><li>LeCroy 的「Errors detected!」提示不等同產品測試結果。</li>
+</ul></section>
+<section><details><summary>技術附錄：檔案、軟體與原始欄位（需要重現或追查時再展開）</summary>
+<h3>Trace 與軟體身份</h3><div class="glossary">
+<div class="term">Trace 原始檔</div><div>S0-Remove SD7-1350.pex</div><div class="term">本機來源路徑</div><div><code>C:\Users\reiko\Desktop\Kent\ASUS NV CRB_20260604\GL9767\S0-Remove SD7-1350.pex</code></div>
+<div class="term">檔案大小</div><div>105,224,486 bytes</div><div class="term">Trace SHA-256</div><div><code>1ADB98F89C2C0CF2A9733EA01552E39438483C4A9741136DC4BE36F0A27F1AEB</code></div>
+<div class="term">最後修改時間 (UTC)</div><div><code>2026-06-11T07:12:55.2721460Z</code></div><div class="term">分析軟體</div><div>Teledyne LeCroy PCIe Protocol Analysis 13.26 Build 43 BETA</div>
+<div class="term">PETracer SHA-256</div><div><code>160A542BF369701DF00466E744C9981FA9C530265AC237D81C0343C8F732E118</code></div><div class="term">VSE script</div><div><code>scripts/pcie/p0-d1-tlps.pevs</code></div>
+<div class="term">Script SHA-256</div><div><code>91AAA647D24C4785A2C4418066B0D1A4BABF926E4C09B8F1EA86558EE0C507CA</code></div><div class="term">工具範圍</div><div>First five TLP callbacks emitted by the unchanged D1 bounded spike; not a full-trace traversal/count.</div>
+<div class="term">實際輸出欄位</div><div><code>in.Index</code> <code>TimeToText(in.Time)</code> <code>GetEventName()</code> <code>GetChannelName()</code> <code>in.TLPType</code> <code>in.LinkWidth</code></div><div class="term">工具時間來源</div><div>Vendor-formatted display text from TimeToText(in.Time); coarse seconds only. GUI timestamps are separate corroborating observations.</div>
+</div>
+<h3>VSE 原始值</h3><div class="table-wrap"><table><thead><tr><th>封包編號</th><th>原始類型碼</th><th>Channel 標籤</th><th>Link width</th></tr></thead><tbody><tr><td>1944516</td><td><code>0xE</code></td><td>Downstream</td><td>x1</td></tr><tr><td>1944517</td><td><code>0x9</code></td><td>Downstream</td><td>x1</td></tr><tr><td>1944519</td><td><code>0x9</code></td><td>Downstream</td><td>x1</td></tr><tr><td>1944521</td><td><code>0x9</code></td><td>Downstream</td><td>x1</td></tr><tr><td>1944523</td><td><code>0x9</code></td><td>Downstream</td><td>x1</td></tr></tbody></table></div>
+<p>這些是工具與分析軟體提供的技術欄位，不表示嚴重度或錯誤分類。</p>
+<p>畫面可見的封包編號：1944516, 1944517, 1944518, 1944519, 1944520, 1944521, 1944522, 1944523, 1944524, 1944525。其中 1944518, 1944520, 1944522, 1944524 沒有出現在這支工具的五筆輸出中。下一筆畫面可見 TLP 是 1944525，只作畫面脈絡。</p>
+<ul><li>VSE 原始輸出 SHA-256：<code>31EF4279896C216F4FA6928D275D5D3388F7FAC576A059CF4CBC5926D992EEF3</code></li><li>GUI 截圖 SHA-256：<code>C6FE380483ACDB27775168AA91DA630F282889DFFA1E39CC09C21BC4DFF873A0</code></li>
+<li>機器狀態碼：<code>PASS_BOUNDED</code>；ground truth <code>UNKNOWN</code>；diagnostic <code>NOT_EVALUATED</code>；coverage <code>FIRST_FIVE_TLP_RECORDS_ONLY</code>。</li>
+</ul><p>Schema pcie.trace-inspection-observations/v1。這是單 trace 檢視資料，不是 PCIe finding contract、normalized event model 或 USB/PCIe 共用 schema。</p>
+<h3>來源中記錄的限制</h3><ul><li>This is a single-trace inspection report, not PASS/FAIL triage.</li><li>Ground truth is UNKNOWN; diagnostic result is NOT EVALUATED.</li><li>Only the first five TLP callbacks emitted by this bounded script are represented; this is not full-trace coverage or a total TLP count.</li><li>Extractor time is coarse vendor display text. More precise values shown are separate GUI cross-check observations.</li><li>The extractor reports the vendor channel label Downstream; physical endpoint mapping is not established.</li><li>No TLP payload, request/completion semantics, suspicious region, or root cause was analyzed.</li><li>The GUI Errors detected! indicator is not interpreted as a device PASS/FAIL result.</li><li>The source capture remains external to this report bundle; its identity is bound by size, modification time, and SHA-256.</li></ul>
+</details></section>
+<footer>本頁呈現資料讀取與 GUI 抽樣核對，不代表完整 trace 分析，也不提供裝置 PASS/FAIL 或故障診斷。</footer>
+</main></body></html>

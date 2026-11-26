@@ -1,0 +1,1 @@
+PASS: C# compiled; 6 managed callback cases; runner parsed; no COM activation.

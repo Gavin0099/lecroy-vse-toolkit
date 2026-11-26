@@ -1,5 +1,11 @@
 # Governance adoption boundary
 
+> Status 2026-09-14: G0 was applied as a static audit surface with lightweight memory
+> (see PLAN.md "G0 governance topology decision" and "G0 lightweight maintenance").
+> The Governance Drift workflow is manual-only and automatic enforcement is disabled;
+> it cannot run successfully until a pinned checker is vendored. The "Current state"
+> block at the end of this file is the pre-adoption snapshot.
+
 This repository has two independent decisions:
 
 1. M1 proves the LeCroy VSE execution path.

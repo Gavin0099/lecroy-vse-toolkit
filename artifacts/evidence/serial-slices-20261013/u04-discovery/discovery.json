@@ -1,0 +1,40 @@
+﻿{
+    "trace_sha256":  "A5568248D1C3D04F3CC16D6D3649F1303BE0D15FFA1A734E2057D73564836CAE",
+    "saved_ltssm_candidates":  [
+                                   {
+                                       "EventClass":  "LTSSM_STATE",
+                                       "Index":  8,
+                                       "TimestampSeconds":  0,
+                                       "TimestampNanoseconds":  67664,
+                                       "TimestampNs":  67664,
+                                       "Timestamp":  "67.664 us",
+                                       "Type":  "_USB3_LTSSM_STATE",
+                                       "Raw":  null
+                                   },
+                                   {
+                                       "EventClass":  "LTSSM_STATE",
+                                       "Index":  506138,
+                                       "TimestampSeconds":  6,
+                                       "TimestampNanoseconds":  305710764,
+                                       "TimestampNs":  6305710764,
+                                       "Timestamp":  "6.306 sec",
+                                       "Type":  "_USB3_LTSSM_STATE",
+                                       "Raw":  null
+                                   },
+                                   {
+                                       "EventClass":  "LTSSM_STATE",
+                                       "Index":  629247,
+                                       "TimestampSeconds":  7,
+                                       "TimestampNanoseconds":  838869896,
+                                       "TimestampNs":  7838869896,
+                                       "Timestamp":  "7.839 sec",
+                                       "Type":  "_USB3_LTSSM_STATE",
+                                       "Raw":  null
+                                   }
+                               ],
+    "source_unchanged":  true,
+    "working_unchanged":  true,
+    "working_readonly":  true,
+    "export_method":  "ExportToText explicit single packet range; display filters not independently known",
+    "qualification":  "NOT_EVALUATED"
+}

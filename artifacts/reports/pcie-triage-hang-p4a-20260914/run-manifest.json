@@ -1,0 +1,132 @@
+{
+  "schema_version": "pcie.triage-run-manifest/v1",
+  "started_utc": "2026-09-14T09:19:19+00:00",
+  "status": "PASS",
+  "input_manifest": {
+    "path": "samples/pcie/triage-input-hang-p4a.json",
+    "sha256": "4AC6553753D8D982DA3EA430B2CFA25152759DFF686BFFF1B13BB87E21DA30F3"
+  },
+  "parameters": {
+    "g3c_window_tlp_rows": 8,
+    "g3c_max_packet_gap": 64,
+    "g3d_context_rows": 5
+  },
+  "python": "3.13.5",
+  "script_sha256": {
+    "runner": "223668C24577FCF2EBFB34C86A737F3A788075766DD30305B4B20A9938B372E7",
+    "g2b": "08279219277E6DB06948C377A3412CF75A42CB0E0FC9EFE56D7711A0E5DEE047",
+    "g3ab": "C1B9DDE3C2D6D8107CA6C6A869926FD43ED9479FFF69A8A2D7C89288D0258316",
+    "g3c": "60E35CC7ECCFB42875403C07E2EDC684693BFF15F8F7E195D2D719FF901CAF82",
+    "g3d": "D9B42CD3B51AE05E5B839EC238E097CABCBBE6F35EED203817458F5F064C2063",
+    "g3e": "5573C8A539E83CFA3A465F8E0F8D25AD8FA9860CDD9EE503B9F318E27BC882B8",
+    "g3f": "B020ED1C3C769D147A3CD90A889994099B3ACF69AA7030CC87609026AF3B5BBD",
+    "g7": "EB1BBFD1A001CDF36358C1DA74338831AFF8E888EDE66215B82ED6348240A981",
+    "g8": "A9997E3CCDDC5BFE796B4A7AD35DC65C7667CE17F5AF96E2F8029F7BD95BA75B"
+  },
+  "excluded": [
+    "PETracer GUI automation",
+    "COM",
+    "opening .pex files",
+    "running VSE scripts",
+    "legacy format conversion",
+    "AI agent",
+    "writing skill"
+  ],
+  "stages": [
+    {
+      "stage": "validate_inputs",
+      "status": "PASS"
+    },
+    {
+      "stage": "g2b",
+      "status": "PASS",
+      "outputs": {
+        "roles.json": "07AB7227472E8C5146157FFC78707F3C51F30B3B3299D590B62B781123685F4D",
+        "associations.json": "698712433C670F98DE3D427935123FFA616DAD67D3771E62296ADACD6E2985EB"
+      }
+    },
+    {
+      "stage": "g3ab",
+      "status": "PASS",
+      "outputs": {
+        "candidates.json": "B7D8B7B483308A826ED250CFB1D25C43E14D5D3ADA1B3583B44E4E2E0C57E784"
+      }
+    },
+    {
+      "stage": "g3c",
+      "status": "PASS",
+      "outputs": {
+        "nearby_messages.json": "DC0BF0ADAD6AC635915B6E5BEBB2F3F1B282D8086D49D96B1AB8BBEC2F10DF80"
+      }
+    },
+    {
+      "stage": "g3d",
+      "status": "PASS",
+      "outputs": {
+        "contexts.json": "2AE7F98E343A38F6713691D5ABD8FEF38B34092574A70FCE0A2FC15ACB2D5DE1"
+      }
+    },
+    {
+      "stage": "g3e",
+      "status": "PASS",
+      "outputs": {
+        "groups.json": "56D24133D7E2AA4FDB2283F36E61D9A94E12F7D9E82002ADFAA74474E411BD59"
+      }
+    },
+    {
+      "stage": "g3f",
+      "status": "PASS",
+      "outputs": {
+        "findings.json": "9FD24165518826726B422804A444CD01E28989EE6EA61C04B1842F10DA282BC9"
+      }
+    },
+    {
+      "stage": "g7",
+      "status": "PASS",
+      "outputs": {
+        "report.md": "158A60234858C05CD589B170297C86B8D3FB2C9B5EEC2AC807FA908352D71C36"
+      }
+    },
+    {
+      "stage": "g8",
+      "status": "PASS",
+      "outputs": {
+        "report.html": "F34AB05D8B8EF158C72AA91A5212D2EFEBAD7D8E3D0E85F6D2C2E520504C8F46"
+      }
+    }
+  ],
+  "trace": {
+    "file_name": "Disable ASPM--Insert SD7-hang.pex",
+    "sha256": "C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD",
+    "tlp_count": 704,
+    "provenance": {
+      "original_sha256": "F21FCDEB86F8BE1927951C8DE9D169E2DE8AAD404D7336C721A0B21BDDC02CD6",
+      "conversion": "PETracer 12.36 (Build 19) → 13.26 (Build 43) format update（PCIe Protocol Analysis 13.26 的 Update file）",
+      "analysis_target": "converted disposable copy（原始 .pex 與既有唯讀副本都沒有轉換）",
+      "packet_index_note": "packet 編號來自轉換後的 13.26 trace；尚未證明與原始 12.36 顯示的 packet index 完全一致。"
+    }
+  },
+  "inputs": {
+    "fields": {
+      "path": "E:/BackUp/Git_EE/lecroy-vse-toolkit/artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json",
+      "sha256": "DFC6FC2540B242A549D9F0CC84C1F9FA7C2385F8DF620A2FED0B01530657ACBC"
+    },
+    "messages": {
+      "path": "E:/BackUp/Git_EE/lecroy-vse-toolkit/artifacts/evidence/pcie-p4a-hang-20260914/g3c0/export/messages.json",
+      "sha256": "F5B4F1226CA023D617C3FB695E0C772E1FB8FF5EB463393BF4C4617E88E96A12"
+    },
+    "fields_summary": {
+      "path": "E:/BackUp/Git_EE/lecroy-vse-toolkit/artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/summary.json",
+      "sha256": "EEC42EEF54C6118F5C66DB7C26AFB2B71876A32F8B1AAD4F254B8C0882C09090"
+    }
+  },
+  "run_id": "20260914T091919Z-4AC65537",
+  "package": {
+    "report.html": "F34AB05D8B8EF158C72AA91A5212D2EFEBAD7D8E3D0E85F6D2C2E520504C8F46",
+    "report.md": "158A60234858C05CD589B170297C86B8D3FB2C9B5EEC2AC807FA908352D71C36",
+    "findings.json": "9FD24165518826726B422804A444CD01E28989EE6EA61C04B1842F10DA282BC9",
+    "使用說明.md": "019C32E77C6B96039B0D1CB79081508CAA5B710BB625FE3F11BEA1D635F1C6ED"
+  },
+  "findings_total": 1,
+  "finished_utc": "2026-09-14T09:19:19+00:00"
+}

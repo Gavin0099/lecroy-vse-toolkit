@@ -1,0 +1,1235 @@
+{
+  "schema_version": "pcie.g3-candidates/v1",
+  "input": {
+    "associations_path": "artifacts/evidence/pcie-g2b-20260914/associations.json",
+    "associations_sha256": "BDF7D1C20A4948E2497FC6C8F4A8AE6A5491D9CE9D1D162365C3696B41139A12",
+    "gui_crosschecks_path": "artifacts/evidence/pcie-g2b-20260914/gui-split/crosschecks.json",
+    "gui_crosschecks_sha256": "151FEBC497C4311C44C33D5EA3B08504429FDE0B783500C52E2412518C49940A"
+  },
+  "ground_truth": "UNKNOWN",
+  "detectors": {
+    "G3A_NON_SUCCESS_COMPLETION": {
+      "surfaces": "An associated completion reports a status other than SC.",
+      "does_not_establish": [
+        "that the request was invalid or the device misbehaved (UR can be expected, e.g. probing absent functions)",
+        "a causal link to any user-visible failure",
+        "that the association is correct when earlier same-key requests were reissued, unless GUI-cross-checked"
+      ]
+    },
+    "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION": {
+      "surfaces": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "does_not_establish": [
+        "that the requester retransmitted the request",
+        "that this is not an analyzer or capture representation effect",
+        "that the Tag reuse is protocol-illegal",
+        "that the earlier request's completion did not occur outside the capture"
+      ]
+    }
+  },
+  "ranking": "NONE",
+  "grouping": "NONE (G3e)",
+  "candidate_counts": {
+    "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION": 22,
+    "G3A_NON_SUCCESS_COMPLETION": 9
+  },
+  "candidates": [
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944517,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 8,
+      "first_request": {
+        "packet_index": 1944517,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 8
+      },
+      "repeated_request": {
+        "packet_index": 1944559,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 8
+      },
+      "packet_gap": 42,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 2093603,
+        "time_display": "5.883 sec",
+        "channel": "Upstream",
+        "type": "CplD",
+        "type_evidence": "GUI_CONFIRMED+VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 0,
+        "compl_status_name": "SC",
+        "packet_gap_from_request": 2,
+        "associated_with_request_packet": 2093601,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C001"
+    },
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944519,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 14,
+      "first_request": {
+        "packet_index": 1944519,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 14
+      },
+      "repeated_request": {
+        "packet_index": 1944563,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgWr0",
+        "requester_bdf": "000:00.0",
+        "tag": 14
+      },
+      "packet_gap": 44,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 2093617,
+        "time_display": "5.883 sec",
+        "channel": "Upstream",
+        "type": "CplD",
+        "type_evidence": "GUI_CONFIRMED+VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 0,
+        "compl_status_name": "SC",
+        "packet_gap_from_request": 2,
+        "associated_with_request_packet": 2093615,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C002"
+    },
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944521,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 0,
+      "first_request": {
+        "packet_index": 1944521,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 0
+      },
+      "repeated_request": {
+        "packet_index": 1944543,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 0
+      },
+      "packet_gap": 22,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 2093088,
+        "time_display": "5.880 sec",
+        "channel": "Upstream",
+        "type": "Cpl",
+        "type_evidence": "VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 1,
+        "compl_status_name": "UR",
+        "packet_gap_from_request": 2,
+        "associated_with_request_packet": 2093086,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C003"
+    },
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944523,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 5,
+      "first_request": {
+        "packet_index": 1944523,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 5
+      },
+      "repeated_request": {
+        "packet_index": 1944571,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgWr0",
+        "requester_bdf": "000:00.0",
+        "tag": 5
+      },
+      "packet_gap": 48,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 2093654,
+        "time_display": "5.883 sec",
+        "channel": "Upstream",
+        "type": "CplD",
+        "type_evidence": "GUI_CONFIRMED+VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 0,
+        "compl_status_name": "SC",
+        "packet_gap_from_request": 2,
+        "associated_with_request_packet": 2093652,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C004"
+    },
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944525,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 11,
+      "first_request": {
+        "packet_index": 1944525,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 11
+      },
+      "repeated_request": {
+        "packet_index": 1945005,
+        "time_display": "4.853 sec",
+        "channel": "Downstream",
+        "type": "MRd(32)",
+        "requester_bdf": "000:00.0",
+        "tag": 11
+      },
+      "packet_gap": 480,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 1945008,
+        "time_display": "4.853 sec",
+        "channel": "Upstream",
+        "type": "Cpl",
+        "type_evidence": "VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 1,
+        "compl_status_name": "UR",
+        "packet_gap_from_request": 3,
+        "associated_with_request_packet": 1945005,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C005"
+    },
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944527,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 1,
+      "first_request": {
+        "packet_index": 1944527,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 1
+      },
+      "repeated_request": {
+        "packet_index": 1944551,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 1
+      },
+      "packet_gap": 24,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 1945013,
+        "time_display": "4.853 sec",
+        "channel": "Upstream",
+        "type": "Cpl",
+        "type_evidence": "VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 1,
+        "compl_status_name": "UR",
+        "packet_gap_from_request": 2,
+        "associated_with_request_packet": 1945011,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C006"
+    },
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944531,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 7,
+      "first_request": {
+        "packet_index": 1944531,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 7
+      },
+      "repeated_request": {
+        "packet_index": 1945016,
+        "time_display": "4.853 sec",
+        "channel": "Downstream",
+        "type": "MRd(32)",
+        "requester_bdf": "000:00.0",
+        "tag": 7
+      },
+      "packet_gap": 485,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 1945018,
+        "time_display": "4.853 sec",
+        "channel": "Upstream",
+        "type": "Cpl",
+        "type_evidence": "VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 1,
+        "compl_status_name": "UR",
+        "packet_gap_from_request": 2,
+        "associated_with_request_packet": 1945016,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C007"
+    },
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944533,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 13,
+      "first_request": {
+        "packet_index": 1944533,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 13
+      },
+      "repeated_request": {
+        "packet_index": 1945021,
+        "time_display": "4.853 sec",
+        "channel": "Downstream",
+        "type": "MRd(32)",
+        "requester_bdf": "000:00.0",
+        "tag": 13
+      },
+      "packet_gap": 488,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 1945023,
+        "time_display": "4.853 sec",
+        "channel": "Upstream",
+        "type": "Cpl",
+        "type_evidence": "VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 1,
+        "compl_status_name": "UR",
+        "packet_gap_from_request": 2,
+        "associated_with_request_packet": 1945021,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C008"
+    },
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944535,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 3,
+      "first_request": {
+        "packet_index": 1944535,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 3
+      },
+      "repeated_request": {
+        "packet_index": 2093063,
+        "time_display": "5.880 sec",
+        "channel": "Downstream",
+        "type": "MRd(32)",
+        "requester_bdf": "000:00.0",
+        "tag": 3
+      },
+      "packet_gap": 148528,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 2093065,
+        "time_display": "5.880 sec",
+        "channel": "Upstream",
+        "type": "Cpl",
+        "type_evidence": "VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 1,
+        "compl_status_name": "UR",
+        "packet_gap_from_request": 2,
+        "associated_with_request_packet": 2093063,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C009"
+    },
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944537,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 9,
+      "first_request": {
+        "packet_index": 1944537,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 9
+      },
+      "repeated_request": {
+        "packet_index": 2093071,
+        "time_display": "5.880 sec",
+        "channel": "Downstream",
+        "type": "MRd(32)",
+        "requester_bdf": "000:00.0",
+        "tag": 9
+      },
+      "packet_gap": 148534,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 2093075,
+        "time_display": "5.880 sec",
+        "channel": "Upstream",
+        "type": "Cpl",
+        "type_evidence": "VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 1,
+        "compl_status_name": "UR",
+        "packet_gap_from_request": 4,
+        "associated_with_request_packet": 2093071,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C010"
+    },
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944539,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 15,
+      "first_request": {
+        "packet_index": 1944539,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 15
+      },
+      "repeated_request": {
+        "packet_index": 2093079,
+        "time_display": "5.880 sec",
+        "channel": "Downstream",
+        "type": "MRd(32)",
+        "requester_bdf": "000:00.0",
+        "tag": 15
+      },
+      "packet_gap": 148540,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 2093081,
+        "time_display": "5.880 sec",
+        "channel": "Upstream",
+        "type": "Cpl",
+        "type_evidence": "VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 1,
+        "compl_status_name": "UR",
+        "packet_gap_from_request": 2,
+        "associated_with_request_packet": 2093079,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C011"
+    },
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944543,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 0,
+      "first_request": {
+        "packet_index": 1944543,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 0
+      },
+      "repeated_request": {
+        "packet_index": 1944567,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgWr0",
+        "requester_bdf": "000:00.0",
+        "tag": 0
+      },
+      "packet_gap": 24,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 2093088,
+        "time_display": "5.880 sec",
+        "channel": "Upstream",
+        "type": "Cpl",
+        "type_evidence": "VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 1,
+        "compl_status_name": "UR",
+        "packet_gap_from_request": 2,
+        "associated_with_request_packet": 2093086,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C012"
+    },
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944547,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 4,
+      "first_request": {
+        "packet_index": 1944547,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 4
+      },
+      "repeated_request": {
+        "packet_index": 2093091,
+        "time_display": "5.880 sec",
+        "channel": "Downstream",
+        "type": "MRd(32)",
+        "requester_bdf": "000:00.0",
+        "tag": 4
+      },
+      "packet_gap": 148544,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 2093093,
+        "time_display": "5.880 sec",
+        "channel": "Upstream",
+        "type": "Cpl",
+        "type_evidence": "VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 1,
+        "compl_status_name": "UR",
+        "packet_gap_from_request": 2,
+        "associated_with_request_packet": 2093091,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C013"
+    },
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944549,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 10,
+      "first_request": {
+        "packet_index": 1944549,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 10
+      },
+      "repeated_request": {
+        "packet_index": 2093522,
+        "time_display": "5.883 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 10
+      },
+      "packet_gap": 148973,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 2093524,
+        "time_display": "5.883 sec",
+        "channel": "Upstream",
+        "type": "CplD",
+        "type_evidence": "GUI_CONFIRMED+VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 0,
+        "compl_status_name": "SC",
+        "packet_gap_from_request": 2,
+        "associated_with_request_packet": 2093522,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C014"
+    },
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944551,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 1,
+      "first_request": {
+        "packet_index": 1944551,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 1
+      },
+      "repeated_request": {
+        "packet_index": 1945011,
+        "time_display": "4.853 sec",
+        "channel": "Downstream",
+        "type": "MRd(32)",
+        "requester_bdf": "000:00.0",
+        "tag": 1
+      },
+      "packet_gap": 460,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 1945013,
+        "time_display": "4.853 sec",
+        "channel": "Upstream",
+        "type": "Cpl",
+        "type_evidence": "VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 1,
+        "compl_status_name": "UR",
+        "packet_gap_from_request": 2,
+        "associated_with_request_packet": 1945011,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C015"
+    },
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944553,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 6,
+      "first_request": {
+        "packet_index": 1944553,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 6
+      },
+      "repeated_request": {
+        "packet_index": 2093550,
+        "time_display": "5.883 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 6
+      },
+      "packet_gap": 148997,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 2093552,
+        "time_display": "5.883 sec",
+        "channel": "Upstream",
+        "type": "CplD",
+        "type_evidence": "GUI_CONFIRMED+VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 0,
+        "compl_status_name": "SC",
+        "packet_gap_from_request": 2,
+        "associated_with_request_packet": 2093550,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C016"
+    },
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944555,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 12,
+      "first_request": {
+        "packet_index": 1944555,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 12
+      },
+      "repeated_request": {
+        "packet_index": 2093564,
+        "time_display": "5.883 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 12
+      },
+      "packet_gap": 149009,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 2093566,
+        "time_display": "5.883 sec",
+        "channel": "Upstream",
+        "type": "CplD",
+        "type_evidence": "GUI_CONFIRMED+VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 0,
+        "compl_status_name": "SC",
+        "packet_gap_from_request": 2,
+        "associated_with_request_packet": 2093564,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C017"
+    },
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944557,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 2,
+      "first_request": {
+        "packet_index": 1944557,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 2
+      },
+      "repeated_request": {
+        "packet_index": 2093577,
+        "time_display": "5.883 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 2
+      },
+      "packet_gap": 149020,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 2093580,
+        "time_display": "5.883 sec",
+        "channel": "Upstream",
+        "type": "CplD",
+        "type_evidence": "GUI_CONFIRMED+VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 0,
+        "compl_status_name": "SC",
+        "packet_gap_from_request": 3,
+        "associated_with_request_packet": 2093577,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C018"
+    },
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944559,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 8,
+      "first_request": {
+        "packet_index": 1944559,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 8
+      },
+      "repeated_request": {
+        "packet_index": 2093601,
+        "time_display": "5.883 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 8
+      },
+      "packet_gap": 149042,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 2093603,
+        "time_display": "5.883 sec",
+        "channel": "Upstream",
+        "type": "CplD",
+        "type_evidence": "GUI_CONFIRMED+VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 0,
+        "compl_status_name": "SC",
+        "packet_gap_from_request": 2,
+        "associated_with_request_packet": 2093601,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C019"
+    },
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944563,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 14,
+      "first_request": {
+        "packet_index": 1944563,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgWr0",
+        "requester_bdf": "000:00.0",
+        "tag": 14
+      },
+      "repeated_request": {
+        "packet_index": 2093615,
+        "time_display": "5.883 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 14
+      },
+      "packet_gap": 149052,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 2093617,
+        "time_display": "5.883 sec",
+        "channel": "Upstream",
+        "type": "CplD",
+        "type_evidence": "GUI_CONFIRMED+VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 0,
+        "compl_status_name": "SC",
+        "packet_gap_from_request": 2,
+        "associated_with_request_packet": 2093615,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C020"
+    },
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944567,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 0,
+      "first_request": {
+        "packet_index": 1944567,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgWr0",
+        "requester_bdf": "000:00.0",
+        "tag": 0
+      },
+      "repeated_request": {
+        "packet_index": 2093086,
+        "time_display": "5.880 sec",
+        "channel": "Downstream",
+        "type": "MRd(32)",
+        "requester_bdf": "000:00.0",
+        "tag": 0
+      },
+      "packet_gap": 148519,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 2093088,
+        "time_display": "5.880 sec",
+        "channel": "Upstream",
+        "type": "Cpl",
+        "type_evidence": "VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 1,
+        "compl_status_name": "UR",
+        "packet_gap_from_request": 2,
+        "associated_with_request_packet": 2093086,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C021"
+    },
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 1944571,
+      "anchor_time_display": "4.848 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 5,
+      "first_request": {
+        "packet_index": 1944571,
+        "time_display": "4.848 sec",
+        "channel": "Downstream",
+        "type": "CfgWr0",
+        "requester_bdf": "000:00.0",
+        "tag": 5
+      },
+      "repeated_request": {
+        "packet_index": 2093652,
+        "time_display": "5.883 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 5
+      },
+      "packet_gap": 149081,
+      "completion_observed_later_for_same_key": "YES",
+      "later_completion": {
+        "packet_index": 2093654,
+        "time_display": "5.883 sec",
+        "channel": "Upstream",
+        "type": "CplD",
+        "type_evidence": "GUI_CONFIRMED+VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 0,
+        "compl_status_name": "SC",
+        "packet_gap_from_request": 2,
+        "associated_with_request_packet": 2093652,
+        "note": "attributed by G2b to the last request of the same-key chain, not necessarily to first_request"
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C022"
+    },
+    {
+      "detector": "G3A_NON_SUCCESS_COMPLETION",
+      "anchor_packet": 1945008,
+      "anchor_time_display": "4.853 sec",
+      "why_surfaced": "An associated completion reports a status other than SC.",
+      "request": {
+        "packet_index": 1945005,
+        "time_display": "4.853 sec",
+        "channel": "Downstream",
+        "type": "MRd(32)",
+        "requester_bdf": "000:00.0",
+        "tag": 11
+      },
+      "completion": {
+        "packet_index": 1945008,
+        "time_display": "4.853 sec",
+        "channel": "Upstream",
+        "type": "Cpl",
+        "type_evidence": "VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 1,
+        "compl_status_name": "UR",
+        "packet_gap_from_request": 3
+      },
+      "association_basis": "nearest preceding non-posted request with the same (RequesterId, Tag) in capture order (G2b-2)",
+      "earlier_same_key_requests_reissued_into_this_request": 1,
+      "gui_crosscheck": {
+        "lecroy_view": "Split Tra 22 (Link Tra 24 MRd(32) Tag 11 Address 6C1FC028; Link Tra 25 Cpl Tag 11 UR Lwr Addr 0x028, ACK #1945010)",
+        "result": "MATCHED",
+        "screenshots": [
+          {
+            "path": "artifacts/evidence/pcie-g2b-20260914/gui-split/split-view-pkt-1945000.png",
+            "sha256": "21C3BC2C159504AA024057CC70C9321F2DE2C82D810F4C1DDF9B66344FA06466"
+          },
+          {
+            "path": "artifacts/evidence/pcie-g2b-20260914/gui-split/split-view-pkt-1945005.png",
+            "sha256": "70E1127F398C5EF97A0D7E9BE596A9D1D3DFC7B5AA42A649028CA563A06C705A"
+          }
+        ]
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C023"
+    },
+    {
+      "detector": "G3A_NON_SUCCESS_COMPLETION",
+      "anchor_packet": 1945013,
+      "anchor_time_display": "4.853 sec",
+      "why_surfaced": "An associated completion reports a status other than SC.",
+      "request": {
+        "packet_index": 1945011,
+        "time_display": "4.853 sec",
+        "channel": "Downstream",
+        "type": "MRd(32)",
+        "requester_bdf": "000:00.0",
+        "tag": 1
+      },
+      "completion": {
+        "packet_index": 1945013,
+        "time_display": "4.853 sec",
+        "channel": "Upstream",
+        "type": "Cpl",
+        "type_evidence": "VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 1,
+        "compl_status_name": "UR",
+        "packet_gap_from_request": 2
+      },
+      "association_basis": "nearest preceding non-posted request with the same (RequesterId, Tag) in capture order (G2b-2)",
+      "earlier_same_key_requests_reissued_into_this_request": 2,
+      "gui_crosscheck": null,
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C024"
+    },
+    {
+      "detector": "G3A_NON_SUCCESS_COMPLETION",
+      "anchor_packet": 1945018,
+      "anchor_time_display": "4.853 sec",
+      "why_surfaced": "An associated completion reports a status other than SC.",
+      "request": {
+        "packet_index": 1945016,
+        "time_display": "4.853 sec",
+        "channel": "Downstream",
+        "type": "MRd(32)",
+        "requester_bdf": "000:00.0",
+        "tag": 7
+      },
+      "completion": {
+        "packet_index": 1945018,
+        "time_display": "4.853 sec",
+        "channel": "Upstream",
+        "type": "Cpl",
+        "type_evidence": "VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 1,
+        "compl_status_name": "UR",
+        "packet_gap_from_request": 2
+      },
+      "association_basis": "nearest preceding non-posted request with the same (RequesterId, Tag) in capture order (G2b-2)",
+      "earlier_same_key_requests_reissued_into_this_request": 1,
+      "gui_crosscheck": null,
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C025"
+    },
+    {
+      "detector": "G3A_NON_SUCCESS_COMPLETION",
+      "anchor_packet": 1945023,
+      "anchor_time_display": "4.853 sec",
+      "why_surfaced": "An associated completion reports a status other than SC.",
+      "request": {
+        "packet_index": 1945021,
+        "time_display": "4.853 sec",
+        "channel": "Downstream",
+        "type": "MRd(32)",
+        "requester_bdf": "000:00.0",
+        "tag": 13
+      },
+      "completion": {
+        "packet_index": 1945023,
+        "time_display": "4.853 sec",
+        "channel": "Upstream",
+        "type": "Cpl",
+        "type_evidence": "VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 1,
+        "compl_status_name": "UR",
+        "packet_gap_from_request": 2
+      },
+      "association_basis": "nearest preceding non-posted request with the same (RequesterId, Tag) in capture order (G2b-2)",
+      "earlier_same_key_requests_reissued_into_this_request": 1,
+      "gui_crosscheck": null,
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C026"
+    },
+    {
+      "detector": "G3A_NON_SUCCESS_COMPLETION",
+      "anchor_packet": 2093065,
+      "anchor_time_display": "5.880 sec",
+      "why_surfaced": "An associated completion reports a status other than SC.",
+      "request": {
+        "packet_index": 2093063,
+        "time_display": "5.880 sec",
+        "channel": "Downstream",
+        "type": "MRd(32)",
+        "requester_bdf": "000:00.0",
+        "tag": 3
+      },
+      "completion": {
+        "packet_index": 2093065,
+        "time_display": "5.880 sec",
+        "channel": "Upstream",
+        "type": "Cpl",
+        "type_evidence": "VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 1,
+        "compl_status_name": "UR",
+        "packet_gap_from_request": 2
+      },
+      "association_basis": "nearest preceding non-posted request with the same (RequesterId, Tag) in capture order (G2b-2)",
+      "earlier_same_key_requests_reissued_into_this_request": 1,
+      "gui_crosscheck": null,
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C027"
+    },
+    {
+      "detector": "G3A_NON_SUCCESS_COMPLETION",
+      "anchor_packet": 2093075,
+      "anchor_time_display": "5.880 sec",
+      "why_surfaced": "An associated completion reports a status other than SC.",
+      "request": {
+        "packet_index": 2093071,
+        "time_display": "5.880 sec",
+        "channel": "Downstream",
+        "type": "MRd(32)",
+        "requester_bdf": "000:00.0",
+        "tag": 9
+      },
+      "completion": {
+        "packet_index": 2093075,
+        "time_display": "5.880 sec",
+        "channel": "Upstream",
+        "type": "Cpl",
+        "type_evidence": "VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 1,
+        "compl_status_name": "UR",
+        "packet_gap_from_request": 4
+      },
+      "association_basis": "nearest preceding non-posted request with the same (RequesterId, Tag) in capture order (G2b-2)",
+      "earlier_same_key_requests_reissued_into_this_request": 1,
+      "gui_crosscheck": null,
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C028"
+    },
+    {
+      "detector": "G3A_NON_SUCCESS_COMPLETION",
+      "anchor_packet": 2093081,
+      "anchor_time_display": "5.880 sec",
+      "why_surfaced": "An associated completion reports a status other than SC.",
+      "request": {
+        "packet_index": 2093079,
+        "time_display": "5.880 sec",
+        "channel": "Downstream",
+        "type": "MRd(32)",
+        "requester_bdf": "000:00.0",
+        "tag": 15
+      },
+      "completion": {
+        "packet_index": 2093081,
+        "time_display": "5.880 sec",
+        "channel": "Upstream",
+        "type": "Cpl",
+        "type_evidence": "VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 1,
+        "compl_status_name": "UR",
+        "packet_gap_from_request": 2
+      },
+      "association_basis": "nearest preceding non-posted request with the same (RequesterId, Tag) in capture order (G2b-2)",
+      "earlier_same_key_requests_reissued_into_this_request": 1,
+      "gui_crosscheck": null,
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C029"
+    },
+    {
+      "detector": "G3A_NON_SUCCESS_COMPLETION",
+      "anchor_packet": 2093088,
+      "anchor_time_display": "5.880 sec",
+      "why_surfaced": "An associated completion reports a status other than SC.",
+      "request": {
+        "packet_index": 2093086,
+        "time_display": "5.880 sec",
+        "channel": "Downstream",
+        "type": "MRd(32)",
+        "requester_bdf": "000:00.0",
+        "tag": 0
+      },
+      "completion": {
+        "packet_index": 2093088,
+        "time_display": "5.880 sec",
+        "channel": "Upstream",
+        "type": "Cpl",
+        "type_evidence": "VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 1,
+        "compl_status_name": "UR",
+        "packet_gap_from_request": 2
+      },
+      "association_basis": "nearest preceding non-posted request with the same (RequesterId, Tag) in capture order (G2b-2)",
+      "earlier_same_key_requests_reissued_into_this_request": 3,
+      "gui_crosscheck": {
+        "lecroy_view": "Split Tra 29 (Link Tra 42 MRd(32) Tag 0 Address 6C1FC01C; Link Tra 43 Cpl Tag 0 UR Lwr Addr 0x01C, ACK #2093090)",
+        "result": "MATCHED",
+        "screenshots": [
+          {
+            "path": "artifacts/evidence/pcie-g2b-20260914/gui-split/split-view-pkt-2093080.png",
+            "sha256": "78314A1743050828A58CAB7DC61973C38B8D2828B2B6D600BA0672224A94BBBD"
+          },
+          {
+            "path": "artifacts/evidence/pcie-g2b-20260914/gui-split/split-view-pkt-2093086.png",
+            "sha256": "E8E5F89C114AD67CEF710CEF0345F5E609F741EE46ABD43413B9B9F9658580DA"
+          }
+        ]
+      },
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C030"
+    },
+    {
+      "detector": "G3A_NON_SUCCESS_COMPLETION",
+      "anchor_packet": 2093093,
+      "anchor_time_display": "5.880 sec",
+      "why_surfaced": "An associated completion reports a status other than SC.",
+      "request": {
+        "packet_index": 2093091,
+        "time_display": "5.880 sec",
+        "channel": "Downstream",
+        "type": "MRd(32)",
+        "requester_bdf": "000:00.0",
+        "tag": 4
+      },
+      "completion": {
+        "packet_index": 2093093,
+        "time_display": "5.880 sec",
+        "channel": "Upstream",
+        "type": "Cpl",
+        "type_evidence": "VENDOR_CONSTANT",
+        "completer_bdf": "001:00.0",
+        "compl_status": 1,
+        "compl_status_name": "UR",
+        "packet_gap_from_request": 2
+      },
+      "association_basis": "nearest preceding non-posted request with the same (RequesterId, Tag) in capture order (G2b-2)",
+      "earlier_same_key_requests_reissued_into_this_request": 1,
+      "gui_crosscheck": null,
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C031"
+    }
+  ]
+}

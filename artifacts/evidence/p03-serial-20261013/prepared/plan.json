@@ -1,0 +1,10 @@
+{
+  "schema_version": "pcie.field-plan/v1",
+  "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+  "cap_per_type": 8,
+  "selection": "first_callbacks_per_native_type",
+  "profiles": {
+    "dllp": "816e44a617b1fc91413ca8fbbf933368e9563cbf6f70048586cd6ff08c2931b1",
+    "tlp": "6b24012538c0952dec54916d30bd10c8d02f89dc6634d3eccabf7fa9e559c046"
+  }
+}

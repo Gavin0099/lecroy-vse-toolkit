@@ -1,0 +1,147 @@
+{
+  "schema_version": "pcie.g3f-findings/v1",
+  "inputs": {
+    "groups": {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g3e/groups.json",
+      "sha256": "56D24133D7E2AA4FDB2283F36E61D9A94E12F7D9E82002ADFAA74474E411BD59"
+    },
+    "candidates": {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g3ab/candidates.json",
+      "sha256": "B7D8B7B483308A826ED250CFB1D25C43E14D5D3ADA1B3583B44E4E2E0C57E784"
+    },
+    "nearby": {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g3c/nearby_messages.json",
+      "sha256": "DC0BF0ADAD6AC635915B6E5BEBB2F3F1B282D8086D49D96B1AB8BBEC2F10DF80"
+    },
+    "contexts": {
+      "path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g3d/contexts.json",
+      "sha256": "2AE7F98E343A38F6713691D5ABD8FEF38B34092574A70FCE0A2FC15ACB2D5DE1"
+    },
+    "fields": {
+      "path": "E:/BackUp/Git_EE/lecroy-vse-toolkit/artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json",
+      "sha256": "DFC6FC2540B242A549D9F0CC84C1F9FA7C2385F8DF620A2FED0B01530657ACBC"
+    }
+  },
+  "trace_ground_truth": "UNKNOWN",
+  "ordering": "capture order of primary Go to Packet; not a ranking",
+  "segmentation": "G3d context blocks merged when their TLP row ranges overlap; display only, membership unchanged",
+  "findings_total": 1,
+  "findings": [
+    {
+      "finding_id": "F001",
+      "group_id": "G001",
+      "where_to_look": {
+        "primary_go_to_packet": 225043,
+        "primary_rule": "earliest request packet among member anchors; earliest anchor packet if none",
+        "segment_go_to_packets": [
+          225043
+        ],
+        "lecroy_hint": "LeCroy PETracer: Search > Go to Packet (Ctrl+G)."
+      },
+      "what_was_observed": {
+        "candidate_observations": [
+          {
+            "candidate_id": "C001",
+            "observed": "CfgRd0 request 225043 (Tag 6): same association key observed again at 225048 (CfgRd0) before an associated completion was observed"
+          }
+        ],
+        "local_segments": [
+          {
+            "segment": "A",
+            "go_to_packet": 225043,
+            "display_times": [
+              "9.512 sec"
+            ],
+            "anchor_packet_range": [
+              225043,
+              225048
+            ],
+            "anchors": [
+              {
+                "packet": 225043,
+                "display_time": "9.512 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 6,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C001:first_request"
+                ]
+              },
+              {
+                "packet": 225048,
+                "display_time": "9.512 sec",
+                "channel": "Downstream",
+                "type": "CfgRd0",
+                "requester": "000:00.0",
+                "tag": 6,
+                "completer": null,
+                "status": null,
+                "roles": [
+                  "C001:repeated_request"
+                ]
+              }
+            ],
+            "candidates": [
+              "C001"
+            ],
+            "nearby_messages": [],
+            "context_refs": [
+              {
+                "candidate_id": "C001",
+                "g3d_block": "first_request",
+                "tlp_rows": [
+                  696,
+                  704
+                ],
+                "truncated_sides": [
+                  "after"
+                ]
+              },
+              {
+                "candidate_id": "C001",
+                "g3d_block": "repeated_request",
+                "tlp_rows": [
+                  697,
+                  704
+                ],
+                "truncated_sides": [
+                  "after"
+                ]
+              }
+            ]
+          }
+        ],
+        "nearby_messages_outside_segments": []
+      },
+      "why_surfaced": {
+        "detectors": [
+          {
+            "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+            "surfaces": "Same association key observed again before an associated completion was observed in the captured sequence."
+          }
+        ],
+        "grouping_basis": [
+          "none_singleton"
+        ],
+        "grouping_basis_text": [
+          "no strong relationship to any other candidate; kept alone"
+        ],
+        "group_relationship": "singleton_no_strong_relationship",
+        "members": [
+          "C001"
+        ]
+      },
+      "gui_crosschecks": [],
+      "trace_span_packets": 5,
+      "not_known": [
+        "Interpretation NOT_EVALUATED: no statement that this is abnormal, a fault, or related to the reported failure.",
+        "Ground truth for the trace is UNKNOWN.",
+        "Same-key reappearance does not establish a requester retransmission, an illegal Tag reuse, or a completion missing from the capture."
+      ],
+      "interpretation": "NOT_EVALUATED"
+    }
+  ]
+}

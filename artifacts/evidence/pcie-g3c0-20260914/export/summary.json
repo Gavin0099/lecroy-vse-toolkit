@@ -1,0 +1,46 @@
+{
+  "status": "PASS_MESSAGE_FIELD_PROBE_OUTPUT",
+  "messages": [
+    {
+      "packet_index": 1944516,
+      "time_display": "4.848 sec",
+      "channel": "Downstream",
+      "tlp_type_hex": "0xE",
+      "requester_id": 0,
+      "message_code": 80,
+      "message_code_name": "SLOTPOWERLIMIT",
+      "message_route": 4,
+      "message_route_name": "LOCALTERMRECEIVER"
+    },
+    {
+      "packet_index": 1945029,
+      "time_display": "4.853 sec",
+      "channel": "Upstream",
+      "tlp_type_hex": "0xD",
+      "requester_id": 256,
+      "message_code": 48,
+      "message_code_name": "ERR_COR",
+      "message_route": 0,
+      "message_route_name": "TOROOTCOMPLEX"
+    },
+    {
+      "packet_index": 2093072,
+      "time_display": "5.880 sec",
+      "channel": "Upstream",
+      "tlp_type_hex": "0xD",
+      "requester_id": 256,
+      "message_code": 48,
+      "message_code_name": "ERR_COR",
+      "message_route": 0,
+      "message_route_name": "TOROOTCOMPLEX"
+    }
+  ],
+  "log_sha256": "FB1A2B1D32F74DABB0BE66CA5D96955E1448D1384D54255976C12309A73F3F8F",
+  "g2a_fields_sha256": "FA64728D3023DF8C476FE858B3C39568E04D3313714EDCED944BEF0FC9D5BB79",
+  "messages_json_sha256": "08A7307F029E2BB55EC9419EE694ED97EAA1518112AC1C9E288E2AE9D57E1754",
+  "name_source": "Scripts/VFScripts/VS_constants.inc SHA-256 799311B51894B31B1B35B99294227D3CB770D28758B0EEE4D915CAD09E6A2E6D",
+  "not_established": [
+    "GUI agreement (compared separately against retained GUI screenshots)",
+    "any causal relation between a message and a candidate"
+  ]
+}

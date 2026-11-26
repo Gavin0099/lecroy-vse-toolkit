@@ -1,0 +1,122 @@
+{
+  "rows": 704,
+  "roles": [
+    {
+      "tlp_type_hex": "0x1",
+      "vendor_type_name": "MRd(32)",
+      "type_evidence": "VENDOR_CONSTANT",
+      "role": "NON_POSTED_REQUEST",
+      "rows": 165
+    },
+    {
+      "tlp_type_hex": "0x3",
+      "vendor_type_name": "MWr(32)",
+      "type_evidence": "VENDOR_CONSTANT",
+      "role": "POSTED_OR_OTHER",
+      "rows": 203
+    },
+    {
+      "tlp_type_hex": "0x9",
+      "vendor_type_name": "CfgRd0",
+      "type_evidence": "GUI_CONFIRMED+VENDOR_CONSTANT",
+      "role": "NON_POSTED_REQUEST",
+      "rows": 32
+    },
+    {
+      "tlp_type_hex": "0xA",
+      "vendor_type_name": "CfgWr0",
+      "type_evidence": "VENDOR_CONSTANT",
+      "role": "NON_POSTED_REQUEST",
+      "rows": 29
+    },
+    {
+      "tlp_type_hex": "0xD",
+      "vendor_type_name": "Msg",
+      "type_evidence": "VENDOR_CONSTANT",
+      "role": "POSTED_OR_OTHER",
+      "rows": 2
+    },
+    {
+      "tlp_type_hex": "0xE",
+      "vendor_type_name": "MsgD",
+      "type_evidence": "GUI_CONFIRMED+VENDOR_CONSTANT",
+      "role": "POSTED_OR_OTHER",
+      "rows": 1
+    },
+    {
+      "tlp_type_hex": "0x11",
+      "vendor_type_name": "Cpl",
+      "type_evidence": "VENDOR_CONSTANT",
+      "role": "COMPLETION_CANDIDATE",
+      "rows": 31
+    },
+    {
+      "tlp_type_hex": "0x12",
+      "vendor_type_name": "CplD",
+      "type_evidence": "GUI_CONFIRMED+VENDOR_CONSTANT",
+      "role": "COMPLETION_CANDIDATE",
+      "rows": 241
+    }
+  ],
+  "role_notes": [],
+  "requests": 226,
+  "request_outcomes": [
+    {
+      "vendor_type_name": "CfgRd0",
+      "outcome": "COMPLETIONS_OBSERVED",
+      "requests": 30
+    },
+    {
+      "vendor_type_name": "CfgRd0",
+      "outcome": "NONE_OBSERVED_IN_CAPTURE",
+      "requests": 1
+    },
+    {
+      "vendor_type_name": "CfgRd0",
+      "outcome": "SAME_KEY_REISSUED_BEFORE_ANY_COMPLETION_OBSERVED",
+      "requests": 1
+    },
+    {
+      "vendor_type_name": "CfgWr0",
+      "outcome": "COMPLETIONS_OBSERVED",
+      "requests": 29
+    },
+    {
+      "vendor_type_name": "MRd(32)",
+      "outcome": "COMPLETIONS_OBSERVED",
+      "requests": 165
+    }
+  ],
+  "requests_with_multiple_completions": 16,
+  "completion_candidates": 272,
+  "completions_associated": 272,
+  "completions_without_preceding_request": 0,
+  "completion_status_observations": [
+    {
+      "vendor_type_name": "Cpl",
+      "compl_status_name": "SC",
+      "completions": 31
+    },
+    {
+      "vendor_type_name": "CplD",
+      "compl_status_name": "SC",
+      "completions": 241
+    }
+  ],
+  "direction_relation_counts": {
+    "opposite": 272
+  },
+  "not_established": [
+    "transaction completeness (Byte Count / Length / Lower Address not read)",
+    "completion timeout: no completion observed before capture end is not a protocol timeout",
+    "fault or abnormality: UR/CA/CRS status values are observations only",
+    "correctness of nearest-preceding association when Tags are reused"
+  ],
+  "input_fields_sha256": "DFC6FC2540B242A549D9F0CC84C1F9FA7C2385F8DF620A2FED0B01530657ACBC",
+  "vendor_constants_source": "Scripts/VFScripts/VS_constants.inc SHA-256 799311B51894B31B1B35B99294227D3CB770D28758B0EEE4D915CAD09E6A2E6D",
+  "output_sha256": {
+    "roles.json": "07AB7227472E8C5146157FFC78707F3C51F30B3B3299D590B62B781123685F4D",
+    "associations.json": "698712433C670F98DE3D427935123FFA616DAD67D3771E62296ADACD6E2985EB",
+    "orphan_completions.json": "37517E5F3DC66819F61F5A7BB8ACE1921282415F10551D2DEFA5C3EB0985B570"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "schema": "pcie.com-vse-run/v1",
+  "started_utc": "2026-10-13T07:15:13+00:00",
+  "input_sent_to_gui": "none",
+  "window_hidden": false,
+  "steps": {
+    "create": {
+      "ok": true,
+      "seconds": 3.7
+    },
+    "open_file": {
+      "ok": true,
+      "seconds": 5.0
+    },
+    "get_engine": {
+      "ok": true,
+      "vscript_name": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\scripts\\pcie\\b1b0-constants.pevs"
+    },
+    "finish_event": {
+      "ok": true,
+      "seconds": 4.6,
+      "event": {
+        "script_name": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\scripts\\pcie\\b1b0-constants.pevs",
+        "result": 2,
+        "tag": 177,
+        "at": "15:15:26.616"
+      },
+      "result_name": "DONE"
+    },
+    "close": {
+      "ok": true
+    },
+    "process_exit": {
+      "ok": true,
+      "remaining_pids": []
+    }
+  },
+  "pre": {
+    "files": [
+      {
+        "path": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\p03-serial-20261013\\tlp-b\\working.pex",
+        "bytes": 126565918,
+        "mtime_ns": 1789375908544974500,
+        "sha256": "C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD"
+      },
+      {
+        "path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\pcie-p4a-hang-20260914-dcea0027\\Disable ASPM--Insert SD7-hang.pex",
+        "bytes": 126565918,
+        "mtime_ns": 1789375908544974500,
+        "sha256": "C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD"
+      }
+    ],
+    "script": {
+      "path": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\scripts\\pcie\\b1b0-constants.pevs",
+      "bytes": 3884,
+      "mtime_ns": 1789380950448238600,
+      "sha256": "C499CF37361FD0917FB078D52FF47582251D03507D66B188A45F42F1753C1AFE"
+    }
+  },
+  "output": {
+    "report_events": 61,
+    "vse_output_sha256": "13A79DB648C3D7A2300E805002386DF1730C4A09E552983403E4144EE778A33E"
+  },
+  "post": {
+    "files": [
+      {
+        "path": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\p03-serial-20261013\\tlp-b\\working.pex",
+        "bytes": 126565918,
+        "mtime_ns": 1789375908544974500,
+        "sha256": "C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD"
+      },
+      {
+        "path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\pcie-p4a-hang-20260914-dcea0027\\Disable ASPM--Insert SD7-hang.pex",
+        "bytes": 126565918,
+        "mtime_ns": 1789375908544974500,
+        "sha256": "C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD"
+      }
+    ]
+  },
+  "identities_unchanged": true,
+  "status": "COM_RUN_COMPLETE",
+  "finished_utc": "2026-10-13T07:15:31+00:00"
+}

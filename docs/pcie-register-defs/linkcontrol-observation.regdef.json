@@ -1,0 +1,20 @@
+{
+  "schema": "pcie.catc-regdef/v1",
+  "name": "P10 LinkControl observed bits - case offset 0x90",
+  "space": "cfg",
+  "match": {},
+  "provenance": {
+    "source": "PCI-45 WDK ntddk.h LinkControl layout, Microsoft Learn last updated 2026-06-29, reviewed 2026-10-13; capability-relative +0x10 from existing Linux v6.12 reference; case offset must be verified by B2c",
+    "who": "primary implementation layout; observed bits only, no product rule or hardware effectiveness claim",
+    "date": "2026-10-13",
+    "permitted_for_tool_use": true
+  },
+  "registers": [{
+    "name": "LinkControl", "offset": "0x90", "width_bits": 16,
+    "fields": [
+      {"name": "ASPM Control", "lsb": 0, "width": 2, "access": "RW", "description": "Observed raw ASPM control encoding; not effective state.", "values": {"0": "Disabled", "1": "L0s Entry Enabled", "2": "L1 Entry Enabled", "3": "L0s and L1 Entry Enabled"}},
+      {"name": "CommonClockConfig", "lsb": 6, "width": 1, "access": "RW", "description": "Observed raw configuration bit; electrical reference clock operation not verified.", "values": {"0": "Clear", "1": "Set"}},
+      {"name": "EnableClockPowerManagement", "lsb": 8, "width": 1, "access": "RW", "description": "Observed raw enable bit; CLKREQ sideband/electrical action not verified.", "values": {"0": "Clear", "1": "Set"}}
+    ]
+  }]
+}

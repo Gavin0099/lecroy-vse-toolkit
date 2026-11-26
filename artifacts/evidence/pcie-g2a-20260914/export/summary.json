@@ -1,0 +1,338 @@
+{
+  "status": "PASS_FIELD_PROBE_OUTPUT",
+  "rows": 938,
+  "log_sha256": "FA7A93EF0B61DBA9D9E2FF3CDF8212C4910F63A987A4397ED269C09DD1DFCA72",
+  "g1_rows_sha256": "A5398FB6863F63CC44D809EFF2884E3EECE53D551B1FCA18414238C5EE0C12D6",
+  "fields_tsv_sha256": "0D759B8EEE1B0F5D896DDCFD9893369E932E9A119FD0189B1876175885384732",
+  "fields_json_canonical_sha256": "FA64728D3023DF8C476FE858B3C39568E04D3313714EDCED944BEF0FC9D5BB79",
+  "availability_by_tlp_type": {
+    "0x1": {
+      "rows": 82,
+      "tag": {
+        "present": 82,
+        "null": 0,
+        "distinct_count": 16,
+        "distinct_sample": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "requester_id": {
+        "present": 82,
+        "null": 0,
+        "distinct_count": 1,
+        "distinct_sample": [
+          0
+        ]
+      },
+      "completer_id": {
+        "present": 0,
+        "null": 82,
+        "distinct_count": 0,
+        "distinct_sample": []
+      },
+      "compl_status": {
+        "present": 0,
+        "null": 82,
+        "distinct_count": 0,
+        "distinct_sample": []
+      }
+    },
+    "0x3": {
+      "rows": 79,
+      "tag": {
+        "present": 79,
+        "null": 0,
+        "distinct_count": 1,
+        "distinct_sample": [
+          0
+        ]
+      },
+      "requester_id": {
+        "present": 79,
+        "null": 0,
+        "distinct_count": 1,
+        "distinct_sample": [
+          0
+        ]
+      },
+      "completer_id": {
+        "present": 0,
+        "null": 79,
+        "distinct_count": 0,
+        "distinct_sample": []
+      },
+      "compl_status": {
+        "present": 0,
+        "null": 79,
+        "distinct_count": 0,
+        "distinct_sample": []
+      }
+    },
+    "0x9": {
+      "rows": 293,
+      "tag": {
+        "present": 293,
+        "null": 0,
+        "distinct_count": 16,
+        "distinct_sample": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "requester_id": {
+        "present": 293,
+        "null": 0,
+        "distinct_count": 1,
+        "distinct_sample": [
+          0
+        ]
+      },
+      "completer_id": {
+        "present": 0,
+        "null": 293,
+        "distinct_count": 0,
+        "distinct_sample": []
+      },
+      "compl_status": {
+        "present": 0,
+        "null": 293,
+        "distinct_count": 0,
+        "distinct_sample": []
+      }
+    },
+    "0xA": {
+      "rows": 64,
+      "tag": {
+        "present": 64,
+        "null": 0,
+        "distinct_count": 16,
+        "distinct_sample": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "requester_id": {
+        "present": 64,
+        "null": 0,
+        "distinct_count": 1,
+        "distinct_sample": [
+          0
+        ]
+      },
+      "completer_id": {
+        "present": 0,
+        "null": 64,
+        "distinct_count": 0,
+        "distinct_sample": []
+      },
+      "compl_status": {
+        "present": 0,
+        "null": 64,
+        "distinct_count": 0,
+        "distinct_sample": []
+      }
+    },
+    "0xD": {
+      "rows": 2,
+      "tag": {
+        "present": 2,
+        "null": 0,
+        "distinct_count": 1,
+        "distinct_sample": [
+          0
+        ]
+      },
+      "requester_id": {
+        "present": 2,
+        "null": 0,
+        "distinct_count": 1,
+        "distinct_sample": [
+          256
+        ]
+      },
+      "completer_id": {
+        "present": 0,
+        "null": 2,
+        "distinct_count": 0,
+        "distinct_sample": []
+      },
+      "compl_status": {
+        "present": 0,
+        "null": 2,
+        "distinct_count": 0,
+        "distinct_sample": []
+      }
+    },
+    "0xE": {
+      "rows": 1,
+      "tag": {
+        "present": 1,
+        "null": 0,
+        "distinct_count": 1,
+        "distinct_sample": [
+          0
+        ]
+      },
+      "requester_id": {
+        "present": 1,
+        "null": 0,
+        "distinct_count": 1,
+        "distinct_sample": [
+          0
+        ]
+      },
+      "completer_id": {
+        "present": 0,
+        "null": 1,
+        "distinct_count": 0,
+        "distinct_sample": []
+      },
+      "compl_status": {
+        "present": 0,
+        "null": 1,
+        "distinct_count": 0,
+        "distinct_sample": []
+      }
+    },
+    "0x11": {
+      "rows": 70,
+      "tag": {
+        "present": 70,
+        "null": 0,
+        "distinct_count": 16,
+        "distinct_sample": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "requester_id": {
+        "present": 70,
+        "null": 0,
+        "distinct_count": 1,
+        "distinct_sample": [
+          0
+        ]
+      },
+      "completer_id": {
+        "present": 70,
+        "null": 0,
+        "distinct_count": 1,
+        "distinct_sample": [
+          256
+        ]
+      },
+      "compl_status": {
+        "present": 70,
+        "null": 0,
+        "distinct_count": 2,
+        "distinct_sample": [
+          0,
+          1
+        ]
+      }
+    },
+    "0x12": {
+      "rows": 347,
+      "tag": {
+        "present": 347,
+        "null": 0,
+        "distinct_count": 16,
+        "distinct_sample": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "requester_id": {
+        "present": 347,
+        "null": 0,
+        "distinct_count": 1,
+        "distinct_sample": [
+          0
+        ]
+      },
+      "completer_id": {
+        "present": 347,
+        "null": 0,
+        "distinct_count": 1,
+        "distinct_sample": [
+          256
+        ]
+      },
+      "compl_status": {
+        "present": 347,
+        "null": 0,
+        "distinct_count": 1,
+        "distinct_sample": [
+          0
+        ]
+      }
+    }
+  },
+  "gui_samples": [
+    {
+      "row": 469,
+      "packet_index": 2097003,
+      "time_display": "5.897 sec",
+      "channel": "Downstream",
+      "tlp_type_hex": "0x9",
+      "tag": 3,
+      "requester_id": 0,
+      "completer_id": null,
+      "compl_status": null,
+      "requester_bdf": "000:00.0",
+      "completer_bdf": null,
+      "compl_status_name": null
+    },
+    {
+      "row": 938,
+      "packet_index": 2121703,
+      "time_display": "6.055 sec",
+      "channel": "Upstream",
+      "tlp_type_hex": "0x12",
+      "tag": 7,
+      "requester_id": 0,
+      "completer_id": 256,
+      "compl_status": 0,
+      "requester_bdf": "000:00.0",
+      "completer_bdf": "001:00.0",
+      "compl_status_name": "SC"
+    }
+  ],
+  "not_established": [
+    "GUI agreement of sample values (compared separately against retained GUI screenshots)",
+    "whether a non-null value on a TLP type is meaningful for that type (a reader may return 0 instead of null)",
+    "request/completion pairing (G2b)",
+    "vendor TLP type code to TLP name mapping beyond GUI-observed samples"
+  ]
+}

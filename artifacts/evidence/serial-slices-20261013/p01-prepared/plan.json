@@ -1,0 +1,74 @@
+{
+  "schema_version": "pcie.selection-plan/v1",
+  "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+  "profiles": [
+    {
+      "id": "packet-all",
+      "level": "_PACKET",
+      "event": null,
+      "script": "packet-all.pevs",
+      "sha256": "12b438f73b2d9ca6e31dda891e80b376d7a7a6ca899a08f9bc93b0cd51156dbd",
+      "requested_index_window": [
+        0,
+        200
+      ]
+    },
+    {
+      "id": "packet-empty-window",
+      "level": "_PACKET",
+      "event": null,
+      "script": "packet-empty-window.pevs",
+      "sha256": "8eb837d12be398594d3d24dddb501260cb71ca56b55a0127264de6d1cb301380",
+      "requested_index_window": [
+        1000000000,
+        1000000001
+      ]
+    },
+    {
+      "id": "packet-tlp",
+      "level": "_PACKET",
+      "event": "_PKT_TLP",
+      "script": "packet-tlp.pevs",
+      "sha256": "68ce990d4133e4f1dc49711a8eeb1381abafc9ac0c3a7b31ac9b5ae2e9a7d160",
+      "requested_index_window": [
+        0,
+        200
+      ]
+    },
+    {
+      "id": "packet-dllp",
+      "level": "_PACKET",
+      "event": "_PKT_DLLP",
+      "script": "packet-dllp.pevs",
+      "sha256": "2c1456abce5ba08c4b9ff3f1dd194186ab98d54b4a651ceb711919d1b9f51be4",
+      "requested_index_window": [
+        0,
+        200
+      ]
+    },
+    {
+      "id": "link-all",
+      "level": "_LINK",
+      "event": null,
+      "script": "link-all.pevs",
+      "sha256": "fea757a090726a12cc80542ab2995109a9b8d1a6c25bb1cde0f53995044bdd94",
+      "requested_index_window": [
+        0,
+        200
+      ]
+    },
+    {
+      "id": "split-all",
+      "level": "_SPLIT",
+      "event": null,
+      "script": "split-all.pevs",
+      "sha256": "4f2db96d01d82a4370f8f3089d6b5679b4a4e0b6d21729f590f4daf9f7da0e06",
+      "requested_index_window": [
+        0,
+        200
+      ]
+    }
+  ],
+  "range_application": "post_dispatch_level_local_guard",
+  "qualification": "NOT_EVALUATED"
+}

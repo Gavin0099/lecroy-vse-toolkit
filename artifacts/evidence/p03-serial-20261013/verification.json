@@ -1,0 +1,868 @@
+{
+  "status": "LOCAL_BOUNDED_P03_I01_I02_P11_P10_COMPLETE",
+  "reviews": {
+    "p03": {
+      "slice": "P03",
+      "review": "APPROVE_BOUNDED_NATIVE_FIELDS",
+      "source_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+      "repeat_equal": true,
+      "summaries": {
+        "dllp": {
+          "kind": "p03-end",
+          "visited": 2147145,
+          "known": 2146413,
+          "emitted": 73,
+          "mismatches": 0,
+          "native_level": 0
+        },
+        "tlp": {
+          "kind": "p03-end",
+          "visited": 704,
+          "known": 704,
+          "emitted": 51,
+          "mismatches": 0,
+          "native_level": 0
+        }
+      },
+      "type_counts": {
+        "dllp": {
+          "0": {
+            "label": "ACK",
+            "visited": 754,
+            "sampled": 8,
+            "observation": "observed"
+          },
+          "1": {
+            "label": "NAK",
+            "visited": 1,
+            "sampled": 1,
+            "observation": "observed"
+          },
+          "4": {
+            "label": "INIT_FC1_P",
+            "visited": 18,
+            "sampled": 8,
+            "observation": "observed"
+          },
+          "5": {
+            "label": "INIT_FC1_NP",
+            "visited": 18,
+            "sampled": 8,
+            "observation": "observed"
+          },
+          "6": {
+            "label": "INIT_FC1_CPL",
+            "visited": 18,
+            "sampled": 8,
+            "observation": "observed"
+          },
+          "12": {
+            "label": "INIT_FC2_P",
+            "visited": 15,
+            "sampled": 8,
+            "observation": "observed"
+          },
+          "13": {
+            "label": "INIT_FC2_NP",
+            "visited": 15,
+            "sampled": 8,
+            "observation": "observed"
+          },
+          "14": {
+            "label": "INIT_FC2_CPL",
+            "visited": 15,
+            "sampled": 8,
+            "observation": "observed"
+          },
+          "8": {
+            "label": "UPDATE_FC_P",
+            "visited": 1072784,
+            "sampled": 8,
+            "observation": "observed"
+          },
+          "9": {
+            "label": "UPDATE_FC_NP",
+            "visited": 1072775,
+            "sampled": 8,
+            "observation": "observed"
+          },
+          "10": {
+            "label": "UPDATE_FC_CPL",
+            "visited": 0,
+            "sampled": 0,
+            "observation": "unknown"
+          }
+        },
+        "tlp": {
+          "1": {
+            "label": "MRD32",
+            "visited": 165,
+            "sampled": 8,
+            "observation": "observed"
+          },
+          "3": {
+            "label": "MWR32",
+            "visited": 203,
+            "sampled": 8,
+            "observation": "observed"
+          },
+          "4": {
+            "label": "MRD64",
+            "visited": 0,
+            "sampled": 0,
+            "observation": "unknown"
+          },
+          "6": {
+            "label": "MWR64",
+            "visited": 0,
+            "sampled": 0,
+            "observation": "unknown"
+          },
+          "7": {
+            "label": "IORD",
+            "visited": 0,
+            "sampled": 0,
+            "observation": "unknown"
+          },
+          "8": {
+            "label": "IOWR",
+            "visited": 0,
+            "sampled": 0,
+            "observation": "unknown"
+          },
+          "9": {
+            "label": "CFGRD_0",
+            "visited": 32,
+            "sampled": 8,
+            "observation": "observed"
+          },
+          "10": {
+            "label": "CFGWR_0",
+            "visited": 29,
+            "sampled": 8,
+            "observation": "observed"
+          },
+          "11": {
+            "label": "CFGRD_1",
+            "visited": 0,
+            "sampled": 0,
+            "observation": "unknown"
+          },
+          "12": {
+            "label": "CFGWR_1",
+            "visited": 0,
+            "sampled": 0,
+            "observation": "unknown"
+          },
+          "13": {
+            "label": "MSG",
+            "visited": 2,
+            "sampled": 2,
+            "observation": "observed"
+          },
+          "14": {
+            "label": "MSGD",
+            "visited": 1,
+            "sampled": 1,
+            "observation": "observed"
+          },
+          "17": {
+            "label": "CPL",
+            "visited": 31,
+            "sampled": 8,
+            "observation": "observed"
+          },
+          "18": {
+            "label": "CPLD",
+            "visited": 241,
+            "sampled": 8,
+            "observation": "observed"
+          },
+          "19": {
+            "label": "CPLLK",
+            "visited": 0,
+            "sampled": 0,
+            "observation": "unknown"
+          },
+          "20": {
+            "label": "CPLDLK",
+            "visited": 0,
+            "sampled": 0,
+            "observation": "unknown"
+          }
+        }
+      },
+      "packet_crosschecks": [
+        {
+          "profile": "dllp",
+          "native_type": 9,
+          "packet": 3130,
+          "fields": [
+            "VC_ID",
+            "HdrFC",
+            "DataFC",
+            "HdrScale",
+            "DataScale"
+          ],
+          "text_file": "packet-text\\packets-3130-3130.txt",
+          "text_sha256": "a607c0d90f439aa1e536500f9fa159d09c39ff9affc77d9c7610a303b13d1fe9"
+        },
+        {
+          "profile": "dllp",
+          "native_type": 8,
+          "packet": 3131,
+          "fields": [
+            "VC_ID",
+            "HdrFC",
+            "DataFC",
+            "HdrScale",
+            "DataScale"
+          ],
+          "text_file": "packet-text\\packets-3131-3131.txt",
+          "text_sha256": "e420ce37735f9f0cca296ffad05b4bc9531c5a0f5aa5b911fd7c6a107249bd49"
+        },
+        {
+          "profile": "dllp",
+          "native_type": 0,
+          "packet": 3133,
+          "fields": [
+            "AckNak_SeqNum"
+          ],
+          "text_file": "packet-text\\packets-3133-3133.txt",
+          "text_sha256": "537c1829ab2e91f763946c30bc28141926112d0973e37f9caa0e3344929e4480"
+        },
+        {
+          "profile": "dllp",
+          "native_type": 1,
+          "packet": 225042,
+          "fields": [
+            "AckNak_SeqNum"
+          ],
+          "text_file": "packet-text\\packets-225042-225042.txt",
+          "text_sha256": "ae473532331bf85da63a586020124e8caf74fc3270423292b126c0269e8469a1"
+        },
+        {
+          "profile": "dllp",
+          "native_type": 4,
+          "packet": 1484298,
+          "fields": [
+            "VC_ID",
+            "HdrFC",
+            "DataFC",
+            "HdrScale",
+            "DataScale"
+          ],
+          "text_file": "packet-text\\packets-1484298-1484298.txt",
+          "text_sha256": "f1f71652f523632551af8e67280315123be2fcb54a2f3c13413ff139743d026a"
+        },
+        {
+          "profile": "dllp",
+          "native_type": 5,
+          "packet": 1484300,
+          "fields": [
+            "VC_ID",
+            "HdrFC",
+            "DataFC",
+            "HdrScale",
+            "DataScale"
+          ],
+          "text_file": "packet-text\\packets-1484300-1484300.txt",
+          "text_sha256": "eb2fc4162328528bae66739ede7873cd7e2afcf9201b59f43902cb924c43f4f5"
+        },
+        {
+          "profile": "dllp",
+          "native_type": 6,
+          "packet": 1484301,
+          "fields": [
+            "VC_ID",
+            "HdrFC",
+            "DataFC",
+            "HdrScale",
+            "DataScale"
+          ],
+          "text_file": "packet-text\\packets-1484301-1484301.txt",
+          "text_sha256": "7b3d2e039c509c8b193eab8405e01844f70f2454be43a07a450208ced8fb6e83"
+        },
+        {
+          "profile": "dllp",
+          "native_type": 12,
+          "packet": 1484345,
+          "fields": [
+            "VC_ID",
+            "HdrFC",
+            "DataFC",
+            "HdrScale",
+            "DataScale"
+          ],
+          "text_file": "packet-text\\packets-1484345-1484345.txt",
+          "text_sha256": "0db60d563ce5a58ca1522496e2734e1cf554c30497485235120fb76a5a09baeb"
+        },
+        {
+          "profile": "dllp",
+          "native_type": 13,
+          "packet": 1484347,
+          "fields": [
+            "VC_ID",
+            "HdrFC",
+            "DataFC",
+            "HdrScale",
+            "DataScale"
+          ],
+          "text_file": "packet-text\\packets-1484347-1484347.txt",
+          "text_sha256": "59f3d92d489db7a2614afda4862e8d0c77cf92fd80c10bf2421ec0d702a79f60"
+        },
+        {
+          "profile": "dllp",
+          "native_type": 14,
+          "packet": 1484349,
+          "fields": [
+            "VC_ID",
+            "HdrFC",
+            "DataFC",
+            "HdrScale",
+            "DataScale"
+          ],
+          "text_file": "packet-text\\packets-1484349-1484349.txt",
+          "text_sha256": "7d774a80d0bc3799bb23a0b10393854b73b9d6366a246798d4a4c0e8301936da"
+        },
+        {
+          "profile": "tlp",
+          "native_type": 13,
+          "packet": 3129,
+          "fields": [
+            "PSN",
+            "Length"
+          ],
+          "text_file": "packet-text\\packets-3129-3129.txt",
+          "text_sha256": "765944c454768e7342078fa30a3ea04e9d9d6d73569b0436a18e84806cbb8429"
+        },
+        {
+          "profile": "tlp",
+          "native_type": 9,
+          "packet": 3148,
+          "fields": [
+            "PSN",
+            "Length"
+          ],
+          "text_file": "packet-text\\packets-3148-3148.txt",
+          "text_sha256": "3967e1e00925cd8322a628a6718ea03da295911989bc719405bf384a1880d4e6"
+        },
+        {
+          "profile": "tlp",
+          "native_type": 18,
+          "packet": 3150,
+          "fields": [
+            "PSN",
+            "Length",
+            "ByteCount",
+            "LowerAddr"
+          ],
+          "text_file": "packet-text\\packets-3150-3150.txt",
+          "text_sha256": "b478b659b04a70ca8dc01dfcc047a5b4dd3191d99bf952701ca1d2d694fe398b"
+        },
+        {
+          "profile": "tlp",
+          "native_type": 10,
+          "packet": 3312,
+          "fields": [
+            "PSN",
+            "Length"
+          ],
+          "text_file": "packet-text\\packets-3312-3312.txt",
+          "text_sha256": "74550da44db60d5152eeb471844e454261c71783c2225837d996b6247d78f248"
+        },
+        {
+          "profile": "tlp",
+          "native_type": 17,
+          "packet": 3314,
+          "fields": [
+            "PSN",
+            "Length",
+            "ByteCount",
+            "LowerAddr"
+          ],
+          "text_file": "packet-text\\packets-3314-3314.txt",
+          "text_sha256": "f608826a553f4e10fdb51a15a20437f8dd474022d6e19fbc2fe978e2df982338"
+        },
+        {
+          "profile": "tlp",
+          "native_type": 1,
+          "packet": 46820,
+          "fields": [
+            "PSN",
+            "Length"
+          ],
+          "text_file": "packet-text\\packets-46820-46820.txt",
+          "text_sha256": "b9328447ce5cf206818e34677dd80aa91198bca094577494c7a89b6a743b8f1c"
+        },
+        {
+          "profile": "tlp",
+          "native_type": 3,
+          "packet": 57733,
+          "fields": [
+            "PSN",
+            "Length"
+          ],
+          "text_file": "packet-text\\packets-57733-57733.txt",
+          "text_sha256": "4c16a1b7b7d8ba8e9a4619cee8d8c607a2773eb22dd53aa3a05e9734ccccd8e5"
+        },
+        {
+          "profile": "tlp",
+          "native_type": 14,
+          "packet": 1484414,
+          "fields": [
+            "PSN",
+            "Length"
+          ],
+          "text_file": "packet-text\\packets-1484414-1484414.txt",
+          "text_sha256": "0a0465cc9a6e6155564b9c324756a459758b789dde0034d60b4eb36d01bdd8aa"
+        }
+      ],
+      "crosscheck_authority": "independent API path, same vendor decoder; not an independent protocol compliance oracle",
+      "limits": [
+        "first8 per native type; 124 sampled rows total",
+        "zero UpdateFC_Cpl and missing TLP types remain unknown",
+        "ACK/NAK FCError null remains unknown",
+        "raw zero length and scale encodings unchanged; no credit units inferred",
+        "error flags have no positive sample qualification",
+        "capture mode/epoch/retention/display filters unknown",
+        "not all P03 modes/types qualified; no replay, credit, absence or compliance verdict"
+      ],
+      "next_allowed": "I01 isolated typed P03 source block; W1-W5 stay frozen",
+      "blocked_dependents": {
+        "P04": "applicable normative replay text and continuous epoch coverage missing",
+        "P05": "normative credit rules and initial-credit baseline/direction/epoch missing",
+        "P06": "P02 packet membership and unique outstanding request identity not qualified"
+      }
+    },
+    "i01": {
+      "slice": "I01",
+      "review": "APPROVE_TYPED_P03_SOURCE_BLOCK",
+      "report_directory": "C:\\Users\\reiko\\.codex\\visualizations\\2026\\10\\13\\01a13339-798e-7020-8e39-ec838f3ed292\\pcie-observations",
+      "report_sha256": {
+        "report.json": "be77da7675c4c95e28dd227453a344df27ff56315dac85b03f8c8fcabb961d7c",
+        "report.md": "6c8199e2f5b558ecf896fb94789a425fb9c4e499090deb26fbf49470e1b8ce28",
+        "report.html": "4a47b13105ed36d20af9c2ff8710358e8dabb8d0f18890243ec76b9bfb187b76"
+      },
+      "frozen_commit": "f417eecb340f56d09d6e4c0ca0b86f81e2977181",
+      "frozen_dependencies": {
+        "scripts/pcie/b3a_event_contract.py": "3883ab3f248a8d0dcbb6b6405b5ef505f6f9647c99b1e6c2be582bc41e9b75cc",
+        "scripts/pcie/b1c_training_timeline.py": "a9fd6edb5639e1f10745c1380ca583c5a7bd49381c960973b8f6b4ef6712f936",
+        "scripts/pcie/b1d_mux_rules.py": "a42df27ccb179fc171e7b2c944f723b2251a2d01c65fdf88901e3cfed1717fe5",
+        "scripts/pcie/b1e_link_findings.py": "dc8549d92ea4bc426810d0ca73dc6253ae5291228045ba729a40294c7e7c09d2",
+        "scripts/pcie/b2a_register_fields.py": "796419f23d2c411936de57f772ef17ee1f9dcf8ced083588c30b0c26fc856455",
+        "scripts/pcie/g2b_associate.py": "c9f5fab28b148f856c63ddf0948762898ae8c91abf80f30cb1199b44213103af",
+        "scripts/pcie/b2b_config_access.py": "48bbf8f38c79a3c865cc7aa57a853e65595b68004a991c5f04dff5f616edb902",
+        "scripts/pcie/b2c_capability_resolution.py": "86b3aff8e9d2c09e409f096df3615fe87bb09307ff7e4a85fc4dc203d716bb8a",
+        "scripts/pcie/b2d_observed_state.py": "4d69b4e56a58350932480f873fdb51437c68676e53efbdfcb95a19f0083d62aa",
+        "scripts/pcie/b2e_snapshot_query.py": "7911add1ab561f4fd2b1600aa9009e4820ef148ba7d2feaf319adeb3c42e2bf4",
+        "scripts/pcie/b2g_watchlist_prepare.py": "2754a96e9d0a7bf259fbd89b377bf0544c83218c18945a1905f874331914b7e4",
+        "scripts/pcie/b3b_unified_timeline.py": "eb68a984f54ea8730f6ad58ae6a8d1aeb3c6a46a4f8f4f9a00f661ce01821ede",
+        "scripts/pcie/b3d_observation_report.py": "da2b81d8bd2468913d6d81e4095b154af48fd569c1ae69644fb1d1ff66b5037b"
+      },
+      "base_model_unchanged": true,
+      "base_markdown_prefix_preserved": true,
+      "base_html_preserved_except_added_section": true,
+      "resolved_json_pointer_links": 517,
+      "sampled_rows": 124,
+      "capture_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+      "limits": [
+        "P03 bounded observation only; not whole protocol qualification",
+        "separate source block; no new W1 verdict",
+        "links require both original checkouts/evidence locations; not a portable standalone package",
+        "file links across C/E drives; existing W5 links require output on frozen checkout drive"
+      ],
+      "next_allowed": "I02 USB command observation source block, independently typed and validated"
+    },
+    "i02": {
+      "slice": "I02",
+      "review": "APPROVE_TYPED_U02_SOURCE_BLOCK",
+      "source_trace_sha256": "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+      "report_directory": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\p03-serial-20261013\\usb-composed-report",
+      "report_sha256": {
+        "report.json": "ffeb8e13f8f4364b4514117084e62cdcdb7a25aff05556d0ef7a880406c711f1",
+        "report.html": "75a3992d5a525e2449cebef66f70848e77b78c4c5fff60dd1239a37571644c9c",
+        "historical-c5.html": "2485a3fd834566ffab933fe62429fdcd171b086b3441fea3834e712a9da79345"
+      },
+      "historical_c5_json_unchanged": true,
+      "historical_html_preserved_except_added_section": true,
+      "resolved_packet_source_links": 128,
+      "limits": [
+        "128 sampled LINK_CMD rows; no CRC/compliance/Enumeration/root-cause verdict",
+        "retention/filters/epoch/capture mode unknown",
+        "historical C5 candidate ranking and integrity retain original scope; not new field qualification",
+        "both input directories must remain available for evidence links"
+      ],
+      "next_allowed": "review next candidate input/source prerequisites; no routine owner reapproval required"
+    },
+    "p11": {
+      "slice": "P11",
+      "review": "APPROVE_SAVED_VALID_STATE_POINTS",
+      "recovery_packets": [
+        225051,
+        990789,
+        990799,
+        1096915,
+        1096917,
+        1484186,
+        1484200,
+        1484216,
+        1484229
+      ],
+      "ltssm_points": 22,
+      "invalid_points": 2,
+      "l0_points": 2,
+      "link_condition_points": 14,
+      "native_constants_revalidated": true,
+      "trace_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+      "constant_run": "p11-constants-native-b/com-run.json",
+      "source_binding": "CORROBORATED_LEGACY",
+      "report_directory": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\p03-serial-20261013\\p11-state-points-r3",
+      "qualification": "NOT_EVALUATED",
+      "limits": [
+        "saved change-only extractor did not compare validity bit when deduplicating states; validity-only transitions may be omitted",
+        "state labels use same installed native constants; source remains corroborated legacy, not a new capture",
+        "display time quantum is not hardware timer accuracy; no continuous intervals reconstructed",
+        "no PERST/sideband or physical reset evidence; original B1d four validation debts remain",
+        "EQ/HotReset absence not established; missing events remain unknown",
+        "partial input eligibility; no capture mode/epoch proof"
+      ],
+      "early_failure": "relative OpenFile path rejected; owned cleanup preserved; runtime process exited before successful absolute-path retry",
+      "next_gate": "remaining candidates require independent input/source evidence; do not rebuild existing PASS views without a true gap"
+    },
+    "p10": {
+      "slice": "P10",
+      "review": "APPROVE_BOUNDED_STANDARD_REGISTER_VIEW",
+      "report_directory": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\p03-serial-20261013\\p10-standard-view-r3",
+      "queries": [
+        3300,
+        10360
+      ],
+      "fields": [
+        "ASPM Control",
+        "CommonClockConfig",
+        "EnableClockPowerManagement"
+      ],
+      "real_query10360_merged_and_write_values": [
+        2,
+        1,
+        0
+      ],
+      "write_request": 10354,
+      "real_query3300_fields": "all unknown",
+      "readback": "unknown at both queries",
+      "native_catc_matches": 3,
+      "source_id": "PCI-45",
+      "layout_source_notes": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\docs\\pcie-register-defs\\linkcontrol-observation.source.json",
+      "scope": "one trace/BDF001:00.0/before_disconnect/case capability offset0x90; standard raw bit view only",
+      "limits": [
+        "device role/RC counterpart/wire state unknown; not full P10 qualification",
+        "L1SS named fields not qualified",
+        "CATC merged state and write intent are not effective state or hardware readback",
+        "CLKREQ/electrical clock/L1 entry unverified; no product policy verdict"
+      ],
+      "next_gate": "P07/P08 need applicable named capability inputs; U06 needs further command samples; other evaluators retain input/normative/engineer gates"
+    }
+  },
+  "python_tests": {
+    "s01": {
+      "count": 42,
+      "status": "PASS",
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/s01",
+        "-p",
+        "test_*.py",
+        "-v"
+      ]
+    },
+    "u01": {
+      "count": 14,
+      "status": "PASS",
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/u01",
+        "-p",
+        "test_*.py",
+        "-v"
+      ]
+    },
+    "usb_fields": {
+      "count": 14,
+      "status": "PASS",
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/usb_fields",
+        "-p",
+        "test_*.py",
+        "-v"
+      ]
+    },
+    "selection_pcie": {
+      "count": 7,
+      "status": "PASS",
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/selection_pcie",
+        "-p",
+        "test_*.py",
+        "-v"
+      ]
+    },
+    "pcie_fields": {
+      "count": 11,
+      "status": "PASS",
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/pcie_fields",
+        "-p",
+        "test_*.py",
+        "-v"
+      ]
+    },
+    "pcie_report_appendix": {
+      "count": 8,
+      "status": "PASS",
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/pcie_report_appendix",
+        "-p",
+        "test_*.py",
+        "-v"
+      ]
+    },
+    "usb_report_appendix": {
+      "count": 6,
+      "status": "PASS",
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/usb_report_appendix",
+        "-p",
+        "test_*.py",
+        "-v"
+      ]
+    },
+    "pcie_recovery": {
+      "count": 10,
+      "status": "PASS",
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/pcie_recovery",
+        "-p",
+        "test_*.py",
+        "-v"
+      ]
+    },
+    "pcie_aspm_view": {
+      "count": 6,
+      "status": "PASS",
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/pcie_aspm_view",
+        "-p",
+        "test_*.py",
+        "-v"
+      ]
+    }
+  },
+  "python_total": 118,
+  "frozen_W1_W5_tests": {
+    "b3a": {
+      "status": "PASS",
+      "count": 23,
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/pcie",
+        "-p",
+        "test_b3a*.py",
+        "-v"
+      ]
+    },
+    "b3b": {
+      "status": "PASS",
+      "count": 14,
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/pcie",
+        "-p",
+        "test_b3b*.py",
+        "-v"
+      ]
+    },
+    "b3d": {
+      "status": "PASS",
+      "count": 10,
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/pcie",
+        "-p",
+        "test_b3d*.py",
+        "-v"
+      ]
+    }
+  },
+  "frozen_total": 47,
+  "existing_sidecar_tests": {
+    "status": "PASS",
+    "count": 14,
+    "command": [
+      "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "-X",
+      "utf8",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/pcie",
+      "-p",
+      "test_b2h2*.py",
+      "-v"
+    ]
+  },
+  "managed_callbacks": 8,
+  "managed_activation": 2,
+  "existing_files_unchanged": 972,
+  "modified_existing_paths": [
+    "docs/pcie-usb-spec-slices-20261013.md",
+    "docs/serial-slice-checkpoint-20261013.md"
+  ],
+  "append_only_evidence": [
+    {
+      "path": "PLAN.md",
+      "prefix_preserved": true,
+      "prefix_bytes": 95523,
+      "append_bytes": 3006
+    },
+    {
+      "path": "artifacts/session-closeout.txt",
+      "prefix_preserved": true,
+      "prefix_bytes": 37421,
+      "append_bytes": 2865
+    }
+  ],
+  "original_head_preserved": "c100ee1bba49c0e1956c726e287ff5158e70aec5",
+  "frozen_head_preserved": "f417eecb340f56d09d6e4c0ca0b86f81e2977181",
+  "delivery_clean": true,
+  "source_traces_preserved": true,
+  "p11_failure": {
+    "status": "FAILED_PATH_ARGUMENT_BEFORE_TRACE_OPEN",
+    "trace_opened": false,
+    "error": "CATC.PETracer OpenFile rejected relative artifacts/evidence/p03-serial-20261013/tlp-b/working.pex as incorrect path",
+    "successful_absolute_path_retry": "p11-constants-native-b/com-run.json",
+    "intermediate_repeat_refused_by_guard": "PETracer is already running; a COM run needs a clean start",
+    "owned_main_pid": 20984,
+    "owned_client_pid": 55764,
+    "owned_child_pid": 9464,
+    "cleanup": "main/client stopped after exact ownership checks; child Stop-Process access denied then exited; no remaining owned PETracer process",
+    "current_tasklist": "INFO: No tasks are running which match the specified criteria.",
+    "source_sha256_preserved": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+    "working_sha256_preserved": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+    "p11_implementation": "BOUNDED_STATE_POINTS_COMPLETE",
+    "p11_qualification": "NOT_EVALUATED"
+  },
+  "limits": [
+    "bounded field/report scopes only; no all29 qualification",
+    "mode/epoch/retention/bounds unknown",
+    "no new policy/compliance/root-cause verdict"
+  ],
+  "not_done": [
+    "remaining14 candidates and full slice qualification",
+    "P04/P05 normative/continuous-epoch gates",
+    "U04/U05/P02 data prerequisites",
+    "G01/G02 engineer prerequisites",
+    "hardware/capture, contact engineers, commit/push/PR/merge/reset, or checkout transfer"
+  ],
+  "code_sha256": {
+    "tools/pcie_field_probe.py": "24121f86541e15888e5cb5708e84608f1221c2627b246666362bbec988fb4db7",
+    "tools/run-pcie-field-probe.py": "d0a45966dcaef6cc8d2a37f3936492089e56b0a2124fe4dec74ae6dde281d151",
+    "tools/pcie_protocol_appendix.py": "d78c16da3cae2898fe96be3e60d8a1043a13716234d58a99e844609c4df80749",
+    "tools/usb_report_appendix.py": "9b573db31a1fef57d3a8128a0e847dc95c7220211c1900850f7d35eb5796021f",
+    "tools/pcie_recovery_observations.py": "09895f1c792d50ea4ef182b2a8cade0eca891e113453f6ac90909ace2e9b5afe",
+    "tools/pcie_aspm_register_view.py": "646719e3e275ca881ed5ba1d4e223c8bf124b97762069acde008e351fb508e4e"
+  }
+}

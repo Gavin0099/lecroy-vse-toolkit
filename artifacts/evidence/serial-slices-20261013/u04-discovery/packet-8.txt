@@ -1,0 +1,9 @@
+  File E:\BackUp\Git_EE\lecroy-vse-toolkit\artifacts\evidence\serial-slices-20261013\u04-discovery\working.usb.
+  From Packet #8 to Packet #8.
+
+Packet#
+_______|_______________________________________________________________________Power State R 
+Packet(8) Right("Right") Dir G2(x1) LC 
+_______| LGOOD_11(0x4B 0x4B 0x4B 0x36 0x0B 0x20 0x0B 0x20 ) Duration(6.610 ns) 
+_______| Time Stamp(0 . 000 067 664) 
+_______|_______________________________________________________________________

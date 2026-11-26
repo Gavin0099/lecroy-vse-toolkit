@@ -1,0 +1,99 @@
+{
+  "schema": "pcie.a1-com-probe/v1",
+  "started_utc": "2026-09-14T09:43:10+00:00",
+  "route": "CATC.PETracer.OpenFile -> GetVScriptEngine -> LaunchVScript + events -> Close",
+  "input_sent_to_gui": "none",
+  "window_hidden": false,
+  "steps": {
+    "create": {
+      "ok": true,
+      "seconds": 3.4,
+      "pids": [
+        22560
+      ]
+    },
+    "open_file": {
+      "ok": true,
+      "seconds": 7.0
+    },
+    "get_engine": {
+      "ok": true,
+      "vscript_name": "C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\lecroy-vse-toolkit-poc-20260912-30e3b5c6\\g1a-tlp-count.pevs"
+    },
+    "launch": {
+      "ok": true,
+      "return": null
+    },
+    "finish_event": {
+      "ok": true,
+      "seconds": 1.6,
+      "event": {
+        "script_name": "C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\lecroy-vse-toolkit-poc-20260912-30e3b5c6\\g1a-tlp-count.pevs",
+        "result": 2,
+        "tag": 161,
+        "at": "17:43:23.514"
+      },
+      "result_name": "DONE"
+    },
+    "close": {
+      "ok": true
+    },
+    "process_exit": {
+      "ok": true,
+      "remaining_pids": []
+    }
+  },
+  "pre": {
+    "source": {
+      "path": "E:\\Kent\\ASUS NV CRB_20260604\\GL9767\\S0-Remove SD7-1350.pex",
+      "bytes": 105224486,
+      "mtime_ns": 1781161975272146000,
+      "sha256": "1ADB98F89C2C0CF2A9733EA01552E39438483C4A9741136DC4BE36F0A27F1AEB"
+    },
+    "trace": {
+      "path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\pcie-a1-com-20260914-d8880bac\\S0-Remove SD7-1350.pex",
+      "bytes": 105224486,
+      "mtime_ns": 1781161975272146000,
+      "sha256": "1ADB98F89C2C0CF2A9733EA01552E39438483C4A9741136DC4BE36F0A27F1AEB"
+    },
+    "script": {
+      "path": "C:\\Users\\Public\\Documents\\LeCroy\\PCIe Protocol Suite\\Scripts\\VFScripts\\lecroy-vse-toolkit-poc-20260912-30e3b5c6\\g1a-tlp-count.pevs",
+      "bytes": 1429,
+      "mtime_ns": 1789354242155211300,
+      "sha256": "ECB8EF2B83F25177C1E749250CA19430FEBE11D843A890D025AD7BE94B230094"
+    }
+  },
+  "report_events": {
+    "count": 9,
+    "text_sha256": "3B6C063345AA1A3EA2E1B9F803CFABE90B612B91B7D3F57C3D572C3BE4C9A7A9"
+  },
+  "expected_from_gui_route": {
+    "tlp_count": 938,
+    "first_index": 1944516,
+    "last_index": 2121703
+  },
+  "semantic": {
+    "header_lines": 0,
+    "summary_lines": 0,
+    "runtime_error_marker": false,
+    "matches_gui": false,
+    "full_gui_log_verifier": "NOT_ACCEPTED (informational): Expected exactly one G1a header"
+  },
+  "post": {
+    "source": {
+      "path": "E:\\Kent\\ASUS NV CRB_20260604\\GL9767\\S0-Remove SD7-1350.pex",
+      "bytes": 105224486,
+      "mtime_ns": 1781161975272146000,
+      "sha256": "1ADB98F89C2C0CF2A9733EA01552E39438483C4A9741136DC4BE36F0A27F1AEB"
+    },
+    "trace": {
+      "path": "C:\\Users\\reiko\\AppData\\Local\\Temp\\pcie-a1-com-20260914-d8880bac\\S0-Remove SD7-1350.pex",
+      "bytes": 105224486,
+      "mtime_ns": 1781161975272146000,
+      "sha256": "1ADB98F89C2C0CF2A9733EA01552E39438483C4A9741136DC4BE36F0A27F1AEB"
+    }
+  },
+  "identities_unchanged": true,
+  "status": "A1_PARTIAL",
+  "finished_utc": "2026-09-14T09:43:40+00:00"
+}

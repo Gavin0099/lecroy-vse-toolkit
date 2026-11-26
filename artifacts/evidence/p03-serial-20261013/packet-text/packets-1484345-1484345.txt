@@ -1,0 +1,9 @@
+  File E:\BackUp\Git_EE\lecroy-vse-toolkit\artifacts\evidence\p03-serial-20261013\tlp-b\working.pex.
+  From Packet #1484345 to Packet #1484345.
+
+Packet#
+_______|_______________________________________________________________________
+Packet(1484345) Downstream 2.5(x1) DLLP InitFC2-P VC ID(0) HdrScale(0) 
+_______| HdrFC(80) DataScale(0) DataFC(192) CRC 16(0x712E) Time Delta(22.000 ns) 
+_______| Time Stamp(0010.911829090000s) 
+_______|_______________________________________________________________________

@@ -1,0 +1,67 @@
+{
+  "slice": "U02",
+  "review": "APPROVE_SAMPLED_NATIVE_FIELDS",
+  "two_runs_semantically_identical": true,
+  "native_callbacks": 166196,
+  "sampled_rows": 128,
+  "observed_names": [
+    "LCRD1_A",
+    "LCRD1_B",
+    "LCRD1_C",
+    "LCRD1_D",
+    "LGOOD_0",
+    "LGOOD_1",
+    "LGOOD_10",
+    "LGOOD_11",
+    "LGOOD_12",
+    "LGOOD_13",
+    "LGOOD_14",
+    "LGOOD_15",
+    "LGOOD_2",
+    "LGOOD_3",
+    "LGOOD_4",
+    "LGOOD_5",
+    "LGOOD_6",
+    "LGOOD_7",
+    "LGOOD_8",
+    "LGOOD_9"
+  ],
+  "raw_packet_field_checks": [
+    {
+      "index": 8,
+      "raw_hex": "4B 4B 4B 36 0B 20 0B 20",
+      "word_fields": [
+        11,
+        4,
+        11,
+        4
+      ],
+      "native_name": "LGOOD_11",
+      "match": true
+    },
+    {
+      "index": 9,
+      "raw_hex": "4B 4B 4B 36 80 A0 80 A0",
+      "word_fields": [
+        128,
+        20,
+        128,
+        20
+      ],
+      "native_name": "LCRD1_A",
+      "match": true
+    }
+  ],
+  "sources": [
+    "LC-04 PDF19/20/32",
+    "LC-09/12",
+    "USB-01 Revision1.1 7.2.2.1-.2 Figure7-13 / 7.3.5"
+  ],
+  "limits": [
+    "observed sample is SSP only; SS has offline fixtures but no real sample qualification",
+    "LGOOD/LCRD1 observed; LBAD/LRTY/LGO and other names not qualified",
+    "CRC bit values match two raw packets; CRC correctness NOT_EVALUATED",
+    "sample128 is partial, epoch/capture completeness remain unknown"
+  ],
+  "next_allowed": "U03 LFPS raw/vendor-name mapping using independently qualified historical raw observations"
+}

@@ -1,0 +1,371 @@
+{
+  "status": "LOCAL_BOUNDED_CHECKPOINT",
+  "authorization": "owner permits serial implementation/validation/review and readonly runtime; no recurring confirmations",
+  "reviews": {
+    "u01": {
+      "slice": "U01",
+      "review": "APPROVE_BOUNDED_SELECTION_TRANSPORT",
+      "runs": [
+        "u01-run-r3a",
+        "u01-run-r3c"
+      ],
+      "seven_profiles_semantically_identical": true,
+      "counts": {
+        "packet-default": {
+          "visited": 3174680,
+          "window": 202,
+          "rows": 202
+        },
+        "packet-crc-off": {
+          "visited": 3174680,
+          "window": 202,
+          "rows": 202
+        },
+        "packet-crc-on": {
+          "visited": 3174690,
+          "window": 202,
+          "rows": 202
+        },
+        "transaction-all": {
+          "visited": 300,
+          "window": 201,
+          "rows": 201
+        },
+        "transfer-default": {
+          "visited": 138,
+          "window": 138,
+          "rows": 138
+        },
+        "transfer-complete": {
+          "visited": 138,
+          "window": 138,
+          "rows": 138
+        },
+        "transfer-incomplete": {
+          "visited": 0,
+          "window": 0,
+          "rows": 0
+        }
+      },
+      "source_and_all_fourteen_working_copies_unchanged": true,
+      "crc_enabled_total_callback_delta": 10,
+      "scope": "exact trace hash / suite 10.40 / named flags / post-dispatch level-local window 0-200",
+      "remaining_limits": [
+        "10 additional callbacks are not independently qualified CRC examples",
+        "incomplete transfer sample absent; coverage remains unknown",
+        "effective native range, capture completeness and epoch unknown",
+        "no protocol correctness or certification verdict"
+      ],
+      "resolved_findings": [
+        "unary negative literal in CSL payload/scalar prevented execution; v3 explicit NOT_APPLICABLE token retains NA",
+        "transient class-factory RPC failure during repeat; bounded activation-only retry, no automatic replay after trace open"
+      ],
+      "next_allowed": "U02 positive LINK_CMD fields, then review; unobserved command types remain unqualified"
+    },
+    "u02": {
+      "slice": "U02",
+      "review": "APPROVE_SAMPLED_NATIVE_FIELDS",
+      "two_runs_semantically_identical": true,
+      "native_callbacks": 166196,
+      "sampled_rows": 128,
+      "observed_names": [
+        "LCRD1_A",
+        "LCRD1_B",
+        "LCRD1_C",
+        "LCRD1_D",
+        "LGOOD_0",
+        "LGOOD_1",
+        "LGOOD_10",
+        "LGOOD_11",
+        "LGOOD_12",
+        "LGOOD_13",
+        "LGOOD_14",
+        "LGOOD_15",
+        "LGOOD_2",
+        "LGOOD_3",
+        "LGOOD_4",
+        "LGOOD_5",
+        "LGOOD_6",
+        "LGOOD_7",
+        "LGOOD_8",
+        "LGOOD_9"
+      ],
+      "raw_packet_field_checks": [
+        {
+          "index": 8,
+          "raw_hex": "4B 4B 4B 36 0B 20 0B 20",
+          "word_fields": [
+            11,
+            4,
+            11,
+            4
+          ],
+          "native_name": "LGOOD_11",
+          "match": true
+        },
+        {
+          "index": 9,
+          "raw_hex": "4B 4B 4B 36 80 A0 80 A0",
+          "word_fields": [
+            128,
+            20,
+            128,
+            20
+          ],
+          "native_name": "LCRD1_A",
+          "match": true
+        }
+      ],
+      "sources": [
+        "LC-04 PDF19/20/32",
+        "LC-09/12",
+        "USB-01 Revision1.1 7.2.2.1-.2 Figure7-13 / 7.3.5"
+      ],
+      "limits": [
+        "observed sample is SSP only; SS has offline fixtures but no real sample qualification",
+        "LGOOD/LCRD1 observed; LBAD/LRTY/LGO and other names not qualified",
+        "CRC bit values match two raw packets; CRC correctness NOT_EVALUATED",
+        "sample128 is partial, epoch/capture completeness remain unknown"
+      ],
+      "next_allowed": "U03 LFPS raw/vendor-name mapping using independently qualified historical raw observations"
+    },
+    "u03": {
+      "slice": "U03",
+      "review": "APPROVE_SAMPLED_RAW_VENDOR_MAPPING",
+      "two_runs_semantically_identical": true,
+      "native_callbacks": 47006,
+      "sampled_rows": 128,
+      "historical_raw_rows_matched": 128,
+      "historical_reference": "c4-demo-regression-20260911/fail-timeline.json",
+      "historical_reference_sha256": "83ebb293beee374a58c96daeff407d376f53f117a762233b24b61b508dd07aa8",
+      "observed_names": [
+        "LFPS_ILLEGAL",
+        "LFPS_POLLING",
+        "LFPS_RESET",
+        "LFPS_WAKE_U3"
+      ],
+      "same_underlying_vendor_decoder_warning": true,
+      "limits": [
+        "sample128 is partial, unobserved LFPS types unqualified",
+        "name is native classifier output, not observed wake/reset success",
+        "event Speed label is not negotiated link mode",
+        "pattern end/capture scope and measurement accuracy unknown"
+      ],
+      "next_allowed": "U04 exact-field discovery; no guessed in.State. Missing field must not block unrelated P01/U05."
+    },
+    "p01": {
+      "slice": "P01",
+      "review": "APPROVE_BOUNDED_SELECTION_TRANSPORT",
+      "profiles": [
+        {
+          "profile": "packet-all",
+          "counts": {
+            "kind": "p01-end",
+            "visited": 3457139,
+            "selected": 201,
+            "emitted": 201,
+            "mismatches": 0,
+            "native_level": 0
+          },
+          "reproducible": true
+        },
+        {
+          "profile": "packet-empty-window",
+          "counts": {
+            "kind": "p01-end",
+            "visited": 3457139,
+            "selected": 0,
+            "emitted": 0,
+            "mismatches": 0,
+            "native_level": 0
+          },
+          "reproducible": true
+        },
+        {
+          "profile": "packet-tlp",
+          "counts": {
+            "kind": "p01-end",
+            "visited": 704,
+            "selected": 0,
+            "emitted": 0,
+            "mismatches": 0,
+            "native_level": 0
+          },
+          "reproducible": true
+        },
+        {
+          "profile": "packet-dllp",
+          "counts": {
+            "kind": "p01-end",
+            "visited": 2147145,
+            "selected": 0,
+            "emitted": 0,
+            "mismatches": 0,
+            "native_level": 0
+          },
+          "reproducible": true
+        },
+        {
+          "profile": "link-all",
+          "counts": {
+            "kind": "p01-end",
+            "visited": 703,
+            "selected": 201,
+            "emitted": 201,
+            "mismatches": 0,
+            "native_level": 1
+          },
+          "reproducible": true
+        },
+        {
+          "profile": "split-all",
+          "counts": {
+            "kind": "p01-end",
+            "visited": 225,
+            "selected": 201,
+            "emitted": 201,
+            "mismatches": 0,
+            "native_level": 4
+          },
+          "reproducible": true
+        }
+      ],
+      "source_sha256": "c6e9646be0624b3efdd2a31796edcfc9e3a517c1429491a8101c7e48f96e15ad",
+      "scope": "installed named constants / converted trace / level-local 0-200 and empty window",
+      "split_native_level": 4,
+      "limits": [
+        "TLP/DLLP exist outside tested0-200 window; zero selected rows not event absence",
+        "split named constant resolved to4 despite an installed manual context table listing2",
+        "display filters and native effective range unknown; no absence/compliance verdict",
+        "no complete grouping/packet reference qualification or legacy PASS expansion"
+      ],
+      "next_allowed": "P02 native group status/metrics; explicit packet references still required before complete qualification"
+    }
+  },
+  "qualification_claim": "bounded scopes only; not all29 or full protocol qualification",
+  "python_tests": {
+    "s01": {
+      "count": 42,
+      "status": "PASS",
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/s01",
+        "-p",
+        "test_*.py",
+        "-v"
+      ]
+    },
+    "u01": {
+      "count": 14,
+      "status": "PASS",
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/u01",
+        "-p",
+        "test_*.py",
+        "-v"
+      ]
+    },
+    "usb_fields": {
+      "count": 14,
+      "status": "PASS",
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/usb_fields",
+        "-p",
+        "test_*.py",
+        "-v"
+      ]
+    },
+    "selection_pcie": {
+      "count": 7,
+      "status": "PASS",
+      "command": [
+        "C:\\Users\\reiko\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/selection_pcie",
+        "-p",
+        "test_*.py",
+        "-v"
+      ]
+    }
+  },
+  "python_total": 77,
+  "managed_callback_cases": 8,
+  "activation_recovery_cases": 2,
+  "csharp_compile": "PASS",
+  "powershell51_parse": "PASS",
+  "local_links_checked": 24,
+  "existing_unchanged_files": 702,
+  "existing_modified_in_scope": [
+    "docs/pcie-usb-spec-slices-20261013.md",
+    "docs/u01-selection-coverage.md",
+    "tests/u01/test-u01-host.ps1",
+    "tests/u01/test_u01_selection.py",
+    "tools/run-u01-selection.ps1",
+    "tools/u01-selection-host.cs",
+    "tools/u01_selection.py"
+  ],
+  "append_only": [
+    {
+      "path": "PLAN.md",
+      "prefix_bytes": 93051,
+      "prefix_preserved": true,
+      "append_bytes": 2472
+    },
+    {
+      "path": "artifacts/session-closeout.txt",
+      "prefix_bytes": 34923,
+      "prefix_preserved": true,
+      "append_bytes": 2498
+    }
+  ],
+  "current_head": "c100ee1bba49c0e1956c726e287ff5158e70aec5",
+  "delivery_head": "f417eecb340f56d09d6e4c0ca0b86f81e2977181",
+  "delivery_clean": true,
+  "source_traces_sha256_unchanged": true,
+  "s01_code_schema_fixtures_unchanged": true,
+  "w1_w5_frozen": true,
+  "no_commit_push_merge_reset_or_hardware": true,
+  "data_gates": {
+    "U04": "blocked_field; exact LTSSM state label/API unavailable in native export",
+    "U05/P02": "explicit child-packet references not qualified",
+    "G01/G02": "engineer scope/definitions absent"
+  },
+  "remaining_candidates": "19 retain individual source/input/qualification prerequisites; no completion claim",
+  "changed_code_sha256": {
+    "tools/u01_selection.py": "a589f6e4b60fe2dea854673cd1003025fea042304967dfc91c09e8c65507fffa",
+    "tools/u01-selection-host.cs": "d3bc274078a9f259ab8d42daa342ab87d36c3a2acee6fe4b06c3680186558884",
+    "tools/run-u01-selection.ps1": "8792703c0fecd611b83bd66ae39499d30f22da4e0602f6ab59b0f00678555004",
+    "tools/usb_field_probe.py": "d102a9f5397b5591cc40725ce907cd48a322837b9be53ab81a65d4080fc1f25a",
+    "tools/run-usb-field-probe.ps1": "699884ca44d6a3b07038de24811992bdfffb808e57112c3840c51002269c7a09",
+    "tools/pcie_selection_probe.py": "d4443bfd55f31db02b22a9c73da74e0fe9462156f19588e8eb97fb5a705386eb"
+  }
+}

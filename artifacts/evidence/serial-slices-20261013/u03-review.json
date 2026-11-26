@@ -1,0 +1,24 @@
+{
+  "slice": "U03",
+  "review": "APPROVE_SAMPLED_RAW_VENDOR_MAPPING",
+  "two_runs_semantically_identical": true,
+  "native_callbacks": 47006,
+  "sampled_rows": 128,
+  "historical_raw_rows_matched": 128,
+  "historical_reference": "c4-demo-regression-20260911/fail-timeline.json",
+  "historical_reference_sha256": "83ebb293beee374a58c96daeff407d376f53f117a762233b24b61b508dd07aa8",
+  "observed_names": [
+    "LFPS_ILLEGAL",
+    "LFPS_POLLING",
+    "LFPS_RESET",
+    "LFPS_WAKE_U3"
+  ],
+  "same_underlying_vendor_decoder_warning": true,
+  "limits": [
+    "sample128 is partial, unobserved LFPS types unqualified",
+    "name is native classifier output, not observed wake/reset success",
+    "event Speed label is not negotiated link mode",
+    "pattern end/capture scope and measurement accuracy unknown"
+  ],
+  "next_allowed": "U04 exact-field discovery; no guessed in.State. Missing field must not block unrelated P01/U05."
+}

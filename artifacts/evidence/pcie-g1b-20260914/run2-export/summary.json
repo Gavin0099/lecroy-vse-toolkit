@@ -1,0 +1,54 @@
+{
+  "status": "PASS_ROW_EXPORT",
+  "cap": 1000,
+  "end_reason": "trace_end",
+  "rows": 938,
+  "g1a_tlp_callback_count": 938,
+  "complete_export": true,
+  "log_sha256": "902A9A97B3F52FAD45D6DBA2885F3B77DFB605AB8A60AD54757C6EE7BE73EE51",
+  "g1a_log_sha256": "C1B551461F30FD5FE863DE8BF0B95DE68F7028A6972DDCA0F1DDE99E14A17A39",
+  "log_bytes": 51891,
+  "log_bytes_per_row": 55.3,
+  "rows_tsv_sha256": "0028CC8D65948F0BCBF4149A7F50328DC815BDDB1B944F4684CE88F1EE45D3B8",
+  "rows_json_canonical_sha256": "A5398FB6863F63CC44D809EFF2884E3EECE53D551B1FCA18414238C5EE0C12D6",
+  "first_packet_index": 1944516,
+  "last_packet_index": 2121703,
+  "d1_crosscheck": "MATCHED_FIRST_FIVE",
+  "gui_sample_rows_to_check": [
+    {
+      "row": 1,
+      "packet_index": 1944516,
+      "time_display": "4.848 sec",
+      "event_family": "TLP",
+      "channel": "Downstream",
+      "tlp_type_hex": "0xE",
+      "link_width": 1
+    },
+    {
+      "row": 469,
+      "packet_index": 2097003,
+      "time_display": "5.897 sec",
+      "event_family": "TLP",
+      "channel": "Downstream",
+      "tlp_type_hex": "0x9",
+      "link_width": 1
+    },
+    {
+      "row": 938,
+      "packet_index": 2121703,
+      "time_display": "6.055 sec",
+      "event_family": "TLP",
+      "channel": "Upstream",
+      "tlp_type_hex": "0x12",
+      "link_width": 1
+    }
+  ],
+  "not_established": [
+    "GUI agreement for sampled rows (checked manually and recorded separately)",
+    "wall-clock runtime (recorded from GUI observation)",
+    "reproducibility (G1d)",
+    "all PETracer events; only TLP callbacks of this subscription are exported",
+    "precise timestamps; time_display is coarse vendor display text",
+    "transaction fields such as Tag/RequesterId/CompleterId/ComplStatus (G2a)"
+  ]
+}

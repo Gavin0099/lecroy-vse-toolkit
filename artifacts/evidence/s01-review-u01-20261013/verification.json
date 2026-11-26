@@ -1,0 +1,108 @@
+{
+  "status": "S01_REVIEW_APPROVE_U01_OFFLINE_READY",
+  "s01_blocking_findings": [],
+  "review_scope": "offline manifest/schema/validator/oracles/legacy/CLI, no protocol qualification",
+  "checks": {
+    "s01-tests.txt": {
+      "tests": 42,
+      "sha256": "63509e294277b722e77d00cacef159ca38d12ebe777662914047981fdc58f0d4",
+      "result": "PASS"
+    },
+    "u01-tests.txt": {
+      "tests": 13,
+      "sha256": "063a9eb6eae3962fda3310ab08cfb4587cbd398b2cb3d2bb7ad436571594b264",
+      "result": "PASS"
+    }
+  },
+  "host_checks": {
+    "csharp_compile": "PASS",
+    "managed_callback_cases": 6,
+    "powershell_51_parser": "PASS",
+    "com_activation": false
+  },
+  "u01_execution": "NOT_RUN_PENDING_RUNTIME_SCOPE_CONFIRMATION",
+  "u01_qualification": "NOT_EVALUATED",
+  "u01_trace_input_readiness": "partial",
+  "candidate_matrix": "candidate-eligibility.json",
+  "prepared_profiles": 7,
+  "preflight": "preflight/preflight.json",
+  "source_sha256": "a5568248d1c3d04f3cc16d6d3649f1303be0d15ffa1a734e2057d73564836cae",
+  "source_sha256_preserved": true,
+  "baseline_file_count": 687,
+  "existing_files_unchanged_count": 685,
+  "append_only_prefixes": [
+    {
+      "path": "PLAN.md",
+      "original_bytes": 91432,
+      "append_bytes": 1619,
+      "original_prefix_preserved": true
+    },
+    {
+      "path": "artifacts/session-closeout.txt",
+      "original_bytes": 33127,
+      "append_bytes": 1796,
+      "original_prefix_preserved": true
+    }
+  ],
+  "current_head": "c100ee1bba49c0e1956c726e287ff5158e70aec5",
+  "delivery_head": "f417eecb340f56d09d6e4c0ca0b86f81e2977181",
+  "delivery_worktree_clean": true,
+  "s01_code_schemas_tests_unchanged": true,
+  "new_file_sha256": {
+    "tests/u01/fixture-oracles.md": "306f76124a6d273f0fba73cdde3d7e696afff4f0f1caacdab1c1322eb452e62a",
+    "tests/u01/test-u01-host.ps1": "c67be8922ad5216a147d4ec426ca95c416e8f4f822fce2d7836f55889c606d63",
+    "tests/u01/test_u01_selection.py": "d70d168d48e15e79b031151c35d918c02fa86b09b7581be75d2cc8d5fa19c0e9",
+    "tools/u01_selection.py": "780e146f16718b0032bcfa13ccb56465299ed62d6b12c8810819339657f03481",
+    "tools/u01-selection-host.cs": "8f0bc936822f6be8cea92e76b3f5b607b3e2211e8383548442246f2c41c51349",
+    "tools/run-u01-selection.ps1": "38bc1ac08368e8b14592cfe95dc4f0dd3ec590cc43dd5246c0b9d2012f456d3d",
+    "docs/u01-selection-coverage.md": "1254b43d277e03d34351b78689ad935038d9967481579cc9be49ff9481ccab34",
+    "docs/s01-review-20261013.md": "1b506c00e4bdbbd447581e3ab77b813dbc6f454def209c5b660a0acc3411b2ad"
+  },
+  "local_links_checked": [
+    {
+      "document": "docs/u01-selection-coverage.md",
+      "target": "../tools/u01_selection.py"
+    },
+    {
+      "document": "docs/u01-selection-coverage.md",
+      "target": "../tools/run-u01-selection.ps1"
+    },
+    {
+      "document": "docs/u01-selection-coverage.md",
+      "target": "../tools/u01-selection-host.cs"
+    },
+    {
+      "document": "docs/u01-selection-coverage.md",
+      "target": "../tests/u01/test_u01_selection.py"
+    },
+    {
+      "document": "docs/u01-selection-coverage.md",
+      "target": "../tests/u01/test-u01-host.ps1"
+    },
+    {
+      "document": "docs/u01-selection-coverage.md",
+      "target": "../artifacts/evidence/s01-review-u01-20261013/prepared/plan.json"
+    },
+    {
+      "document": "docs/u01-selection-coverage.md",
+      "target": "../artifacts/evidence/s01-review-u01-20261013/preflight/preflight.json"
+    },
+    {
+      "document": "docs/u01-selection-coverage.md",
+      "target": "../tests/u01/fixture-oracles.md"
+    },
+    {
+      "document": "docs/s01-review-20261013.md",
+      "target": "u01-selection-coverage.md"
+    }
+  ],
+  "diff_check": "PASS",
+  "commit_push_merge_reset": "NOT_RUN",
+  "limits": [
+    "no decoded raw trace access or VSE syntax/runtime validation",
+    "no independent known bad-CRC/incomplete sample in selected window",
+    "delivered bounds are not native effective capture range",
+    "S01 consistency does not authenticate evidence contents",
+    "other slices and historical PASS scope unchanged"
+  ]
+}

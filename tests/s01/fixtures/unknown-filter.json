@@ -1,0 +1,133 @@
+{
+  "schema_version": "s01.input-manifest/v1",
+  "manifest_id": "SYN-S01-UNKNOWN-FILTER",
+  "origin": "synthetic",
+  "trace": {
+    "trace_id": "synthetic-unknown-filter",
+    "sha256": "5555555555555555555555555555555555555555555555555555555555555555",
+    "protocol": "pcie",
+    "identity_evidence_refs": [
+      "EV-S01"
+    ],
+    "facts": {
+      "mode": {
+        "state": "known",
+        "value": "non-Flit",
+        "evidence_refs": [
+          "EV-S01"
+        ]
+      },
+      "bidirectional": {
+        "state": "known",
+        "value": true,
+        "evidence_refs": [
+          "EV-S01"
+        ]
+      },
+      "capture_start": {
+        "state": "known",
+        "value": "complete",
+        "evidence_refs": [
+          "EV-S01"
+        ]
+      },
+      "capture_end": {
+        "state": "known",
+        "value": "complete",
+        "evidence_refs": [
+          "EV-S01"
+        ]
+      },
+      "epoch": {
+        "state": "known",
+        "value": "synthetic-epoch-1",
+        "evidence_refs": [
+          "EV-S01"
+        ]
+      },
+      "filters": {
+        "state": "unknown",
+        "value": null,
+        "evidence_refs": []
+      }
+    }
+  },
+  "toolchain": {
+    "software_version": "synthetic-only-13.26",
+    "extractor_sha256": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "constants_sha256": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+    "evidence_refs": [
+      "EV-S01"
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "SYN-S01-ORACLE",
+      "revision": "fixture-v1",
+      "locator": "fixture-oracles.md#獨立依據",
+      "review_depth": "sections_reviewed",
+      "sections": [
+        "O-USER",
+        "O-QP"
+      ],
+      "applicability": "applicable",
+      "evidence_refs": [
+        "EV-S01"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EV-S01",
+      "kind": "synthetic",
+      "locator": "fixture://s01/handwritten-metadata",
+      "sha256": null,
+      "note": "Synthetic metadata only. No raw trace exists; no runtime or qualification is asserted."
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "pcie.AckNak_SeqNum",
+      "api_support": "supported",
+      "applicability": "applicable",
+      "availability": "available",
+      "evidence_refs": [
+        "EV-S01"
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "event": "pcie.ACK",
+      "state": "observed",
+      "count": 1,
+      "coverage": {
+        "selection": "included",
+        "retention": "retained",
+        "extraction": "complete",
+        "start_index": 10,
+        "end_index": 20
+      },
+      "evidence_refs": [
+        "EV-S01"
+      ]
+    },
+    {
+      "event": "pcie.NAK",
+      "state": "unknown",
+      "count": null,
+      "coverage": {
+        "selection": "included",
+        "retention": "retained",
+        "extraction": "complete",
+        "start_index": 10,
+        "end_index": 20
+      },
+      "evidence_refs": [
+        "EV-S01"
+      ]
+    }
+  ],
+  "historical_claims": [],
+  "claim_boundary": "INPUT_METADATA_ONLY"
+}

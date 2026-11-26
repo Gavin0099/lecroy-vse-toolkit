@@ -1,0 +1,17 @@
+{
+  "status": "ABORTED_NO_RETURN",
+  "stage": "RunVScript after report header, before any notification",
+  "timestamp": "2026-10-13T13:04:45.4135774+08:00",
+  "files": [
+    {
+      "path": "dp1 hub detect SSD fail-2.usb",
+      "sha256": "A5568248D1C3D04F3CC16D6D3649F1303BE0D15FFA1A734E2057D73564836CAE",
+      "readonly": false
+    },
+    {
+      "path": "artifacts/evidence/serial-slices-20261013/u01-run-3/packet-default/working.usb",
+      "sha256": "A5568248D1C3D04F3CC16D6D3649F1303BE0D15FFA1A734E2057D73564836CAE",
+      "readonly": true
+    }
+  ]
+}

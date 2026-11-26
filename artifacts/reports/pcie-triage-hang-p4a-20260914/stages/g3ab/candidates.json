@@ -1,0 +1,65 @@
+{
+  "schema_version": "pcie.g3-candidates/v1",
+  "input": {
+    "associations_path": "artifacts/reports/pcie-triage-hang-p4a-20260914/stages/g2b/associations.json",
+    "associations_sha256": "698712433C670F98DE3D427935123FFA616DAD67D3771E62296ADACD6E2985EB",
+    "gui_crosschecks_path": null,
+    "gui_crosschecks_sha256": null
+  },
+  "ground_truth": "UNKNOWN",
+  "detectors": {
+    "G3A_NON_SUCCESS_COMPLETION": {
+      "surfaces": "An associated completion reports a status other than SC.",
+      "does_not_establish": [
+        "that the request was invalid or the device misbehaved (UR can be expected, e.g. probing absent functions)",
+        "a causal link to any user-visible failure",
+        "that the association is correct when earlier same-key requests were reissued, unless GUI-cross-checked"
+      ]
+    },
+    "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION": {
+      "surfaces": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "does_not_establish": [
+        "that the requester retransmitted the request",
+        "that this is not an analyzer or capture representation effect",
+        "that the Tag reuse is protocol-illegal",
+        "that the earlier request's completion did not occur outside the capture"
+      ]
+    }
+  },
+  "ranking": "NONE",
+  "grouping": "NONE (G3e)",
+  "candidate_counts": {
+    "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION": 1
+  },
+  "candidates": [
+    {
+      "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",
+      "anchor_packet": 225043,
+      "anchor_time_display": "9.512 sec",
+      "why_surfaced": "Same association key observed again before an associated completion was observed in the captured sequence.",
+      "requester_bdf": "000:00.0",
+      "tag": 6,
+      "first_request": {
+        "packet_index": 225043,
+        "time_display": "9.512 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 6
+      },
+      "repeated_request": {
+        "packet_index": 225048,
+        "time_display": "9.512 sec",
+        "channel": "Downstream",
+        "type": "CfgRd0",
+        "requester_bdf": "000:00.0",
+        "tag": 6
+      },
+      "packet_gap": 5,
+      "completion_observed_later_for_same_key": "NO",
+      "later_completion": null,
+      "interpretation": "NOT_EVALUATED",
+      "candidate_id": "C001"
+    }
+  ]
+}

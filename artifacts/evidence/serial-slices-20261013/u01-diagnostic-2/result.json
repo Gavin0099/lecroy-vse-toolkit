@@ -1,0 +1,19 @@
+﻿{
+    "run_result":  2,
+    "error":  "",
+    "reports":  [
+                    "\n------------------------------------------------------------------------------------",
+                    "                                    E:\\BackUp\\Git_EE\\lecroy-vse-toolkit\\artifacts\\evidence\\serial-slices-20261013\\diagnostic-2.vse",
+                    "------------------------------------------------------------------------------------\n\n",
+                    "Running verification script...\n...\n",
+                    "Test Description : ",
+                    "U01-D2 start",
+                    "U01-D2 counts 3174680 202 202 0",
+                    "\n\n------- D O N E !!! -------"
+                ],
+    "finished":  2,
+    "source_hash":  "A5568248D1C3D04F3CC16D6D3649F1303BE0D15FFA1A734E2057D73564836CAE",
+    "working_hash":  "A5568248D1C3D04F3CC16D6D3649F1303BE0D15FFA1A734E2057D73564836CAE",
+    "working_readonly":  true,
+    "qualification":  "NOT_EVALUATED"
+}

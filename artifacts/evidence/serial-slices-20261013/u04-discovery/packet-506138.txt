@@ -1,0 +1,10 @@
+  File E:\BackUp\Git_EE\lecroy-vse-toolkit\artifacts\evidence\serial-slices-20261013\u04-discovery\working.usb.
+  From Packet #506138 to Packet #506138.
+
+Packet#
+_______|_______________________________________________________________________Power State L 
+Packet(506138) Left("Left") Dir G2(x1) DP Data Len(32) 
+_______| ADDR(2) ENDP(4) TT(Bulk) Dir(Out) SeqN(22) EoB(N) Stream ID(0x0000) 
+_______| PP(Not Pnd)   LCW  (Hseq:9) Data(32 bytes) Duration(56.240 ns) 
+_______| Time(236.000 ns) Time Stamp(6 . 305 710 764) 
+_______|_______________________________________________________________________

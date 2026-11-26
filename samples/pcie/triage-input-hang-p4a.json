@@ -1,0 +1,25 @@
+{
+  "schema_version": "pcie.triage-input/v1",
+  "trace": {
+    "file_name": "Disable ASPM--Insert SD7-hang.pex",
+    "sha256": "C6E9646BE0624B3EFDD2A31796EDCFC9E3A517C1429491A8101C7E48F96E15AD",
+    "tlp_count": 704,
+    "provenance": {
+      "original_sha256": "F21FCDEB86F8BE1927951C8DE9D169E2DE8AAD404D7336C721A0B21BDDC02CD6",
+      "conversion": "PETracer 12.36 (Build 19) → 13.26 (Build 43) format update（PCIe Protocol Analysis 13.26 的 Update file）",
+      "analysis_target": "converted disposable copy（原始 .pex 與既有唯讀副本都沒有轉換）",
+      "packet_index_note": "packet 編號來自轉換後的 13.26 trace；尚未證明與原始 12.36 顯示的 packet index 完全一致。"
+    }
+  },
+  "fields": {
+    "path": "artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/fields.json",
+    "sha256": "DFC6FC2540B242A549D9F0CC84C1F9FA7C2385F8DF620A2FED0B01530657ACBC",
+    "verifier_summary": "artifacts/evidence/pcie-p4a-hang-20260914/g2a/export/summary.json"
+  },
+  "messages": {
+    "path": "artifacts/evidence/pcie-p4a-hang-20260914/g3c0/export/messages.json",
+    "sha256": "F5B4F1226CA023D617C3FB695E0C772E1FB8FF5EB463393BF4C4617E88E96A12",
+    "verifier_summary": "artifacts/evidence/pcie-p4a-hang-20260914/g3c0/export/summary.json"
+  },
+  "extraction_note": "GUI extraction was performed under control on the converted disposable copy (read-only after conversion, SHA-256 re-checked before and after every run); see docs/pcie-p4a-hang-evidence.md. No GUI cross-check of associations was run for this trace."
+}
