@@ -39,6 +39,16 @@
 3. 以先前送出和後續再次送出的同一 TLP 為重送候選。至少核對方向、同一序號狀態、PSN、可取得的 TLP 身分及傳輸順序。Link Down 或 Recovery 只有觀察紀錄時暫停承接；有可驗證的狀態延續才延續，確認進入 `DL_Inactive` 時重建序號狀態。
 4. 優先輸出可回到 analyzer 的封包、觀察內容、建議核對順序及缺少欄位。第一版結果限於 `OBSERVED`、`CHECK_RECOMMENDED` 與 `INCONCLUSIVE`。缺少可審核的規格與完整證據時，規格違反維持未確認。
 
+### 規格來源及可用於審核的邊界
+
+| 要核對的行為 | 查閱位置 | 候選規則的證據要求 |
+| --- | --- | --- |
+| 累積確認、12-bit 序號與 Retry Buffer | Base 5.0 v1.0 §3.6.2.1、§3.6.2.2、Figure 3-18 | 反向且 CRC 有效的 DLLP，原送出記錄與當時仍待確認的 TLP。分開看後續 ACK 前進、正在 replay 與 timer 驅動的重送。 |
+| Receiver 的序號與 LCRC | §3.6.3.1 | 以同一實體 Link 的同一序列、有效 TLP 與錯誤旗標核對。缺起點或中間封包時保留未知。 |
+| 序號狀態的延續與重新初始化 | Chapter 3 Data Link 狀態與 §3.6.2.1、§3.6.3.1 | Recovery 和 analyzer 的 Link Down 是定位錨點。需另外核對 `DL_Inactive` 或狀態延續證據、模式和同一實體 Link。 |
+
+PCI-SIG 公開測試資料提供獨立的反例來源。優先核對 52-10 的 NAK 重送、52-100 的重送順序、52-150 的壞 DLLP CRC、52-170 的錯誤確認序號、53-20 的 Bad LCRC 和 53-31 的重複 TLP。這些是合規測試定位，`PCIE-DLL-001` 目前只可引用為診斷設計的依據。規格入口的全文下載需會員權限。待具授權的工程審核者確認適用版本、ECN 和例外後，再紀錄審核結果與對應測試。 [PCI-SIG 5.0 合規測試](https://pcisig.com/sites/default/files/files/PCI-SIG%20PCIe%205.0%20Compliance%20Webinar_1.25.23_FINAL.pdf) · [PCI-SIG Base 5.0](https://pcisig.com/PCIExpress/Specs/Base/_5.0_1.0)
+
 ### 擷取驗收
 
 先驗證一個已授權的 Non-Flit 視窗。沿用現有 VSE 欄位與來源綁定方式，在獨立工作副本上核對來源和顯示副本的 SHA-256、封包 namespace、兩方向的實體 Link 對應、視窗起點狀態與尾端。對照 analyzer 的 packet locator、TLP PSN、DLLP 類型與序號、TLP／DLLP 的 CRC 驗證、Link／LTSSM 和可用的 InitFC 訊號。把 callback 數、輸出數、保留上限、已知 filter 或 decode gap 分開紀錄。兩次擷取的證據對齊且來源保持完整，才可使用該視窗驗證規則。缺視窗起點時能呈現觀察，未確認集合維持未知。
