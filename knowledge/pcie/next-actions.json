@@ -1,0 +1,637 @@
+{
+  "schema": "pcie.next-action-catalog/v1",
+  "card_actions": {
+    "LTSSM-01": [
+      "card-ltssm"
+    ],
+    "HOTPLUG-01": [
+      "card-hotplug"
+    ],
+    "ENUM-01": [
+      "card-enumeration"
+    ],
+    "CPL-01": [
+      "card-completion"
+    ],
+    "REPLAY-01": [
+      "card-replay"
+    ],
+    "ASPM-01": [
+      "card-aspm"
+    ]
+  },
+  "actions": [
+    {
+      "action_id": "review-later-epoch",
+      "text_source": {
+        "literal": "查看同方向較晚的區間，先確認 Link／epoch，再追查後續配置。"
+      },
+      "rule_ids": [
+        "LTSSM-01"
+      ],
+      "claim_kind": "ENGINEERING_RECOMMENDATION",
+      "applicability": {
+        "modes": [
+          "NON_FLIT",
+          "UNKNOWN"
+        ],
+        "phases": [
+          "HISTORY"
+        ],
+        "requires_known_direction": true,
+        "device": "UNRESOLVED_TRACE_DEVICE"
+      },
+      "source_refs": [
+        {
+          "source_manifest_id": "local-action-contract",
+          "revision_or_commit": "2026-10-20/v1",
+          "source_kind": "LOCAL_ENGINEERING_CONTRACT",
+          "locator": "#phase-review",
+          "supports": "本 Repo 的證據範圍、查證流程或補資料政策。",
+          "limitations": "不是 PCIe 規範、裝置接受條件或外部觀察證據。"
+        }
+      ],
+      "required_evidence": [
+        "同方向較晚區間的來源位置與 observed epoch",
+        "實體 Link／裝置對應"
+      ],
+      "limitations": [
+        "Device、physical Link 身分 UNKNOWN；observed epoch 不代表裝置更換已確認。",
+        "Coverage/filter/tail 未確認；未觀察不等於失敗；本建議不作規範判定。"
+      ]
+    },
+    {
+      "action_id": "post-l0-config",
+      "text_source": {
+        "literal": "從此 L0 往後核對同一 Link／epoch 的 Config Request、Completion 與目標 BDF；再對照 OS 裝置辨識紀錄及擷取結尾。"
+      },
+      "rule_ids": [
+        "LTSSM-01",
+        "ENUM-01",
+        "CPL-01"
+      ],
+      "claim_kind": "ENGINEERING_RECOMMENDATION",
+      "applicability": {
+        "modes": [
+          "NON_FLIT",
+          "UNKNOWN"
+        ],
+        "phases": [
+          "L0_OBSERVED"
+        ],
+        "requires_known_direction": true,
+        "device": "UNRESOLVED_TRACE_DEVICE"
+      },
+      "source_refs": [
+        {
+          "source_manifest_id": "local-action-contract",
+          "revision_or_commit": "2026-10-20/v1",
+          "source_kind": "LOCAL_ENGINEERING_CONTRACT",
+          "locator": "#evidence-scope",
+          "supports": "本 Repo 的證據範圍、查證流程或補資料政策。",
+          "limitations": "不是 PCIe 規範、裝置接受條件或外部觀察證據。"
+        },
+        {
+          "source_manifest_id": "xilinx-kmap",
+          "revision_or_commit": "1161d6f06ea4e3b0c0ebf34a4293b08347a6740a",
+          "source_kind": "VENDOR_GUIDE",
+          "locator": "#L8-L14",
+          "supports": "穩定 L0、Config Request/Completion 與 OS 發現裝置是分別核對的步驟。",
+          "limitations": "FPGA debug 指引；不套用其中 100ms、重啟或 FPGA 設定至未知裝置。"
+        },
+        {
+          "source_manifest_id": "lecroy-vse",
+          "revision_or_commit": "13.42; generated 2026-10-09",
+          "source_kind": "FIELD_REFERENCE",
+          "locator": "#page=21",
+          "supports": "§5.2.1 的 LTSSM state/idle 含 valid 欄位，支持核對所取得事件。",
+          "limitations": "13.42 欄位文件；本機 13.26 可用性須另看 native receipt，不證明 API/GUI 或裝置結果。"
+        },
+        {
+          "source_manifest_id": "cocotb-pcie",
+          "revision_or_commit": "4befa5eb60f12bc7e1050509defbb9afc33a15a9",
+          "source_kind": "MODEL_REFERENCE",
+          "locator": "#L143-L147",
+          "supports": "Completion SC/UR/CRS/CA 標籤分開保留。",
+          "limitations": "模擬模型不是規範；不能證明完整 Split、Tag 未重用、Retry 或初始化。"
+        },
+        {
+          "source_manifest_id": "cocotb-pcie",
+          "revision_or_commit": "4befa5eb60f12bc7e1050509defbb9afc33a15a9",
+          "source_kind": "MODEL_REFERENCE",
+          "locator": "#L312-L325",
+          "supports": "模型建立 Completion 時複製 Requester ID 與 Tag；僅作關聯欄位核對參考。",
+          "limitations": "模擬模型不是規範；不能證明完整 Split、Tag 未重用、Retry 或初始化。"
+        }
+      ],
+      "required_evidence": [
+        "有效、同方向、同 observed epoch 的 L0 錨點",
+        "後續 Config/Completion、目標 BDF 及完整關聯證據",
+        "實體 Link、OS 裝置辨識與擷取尾端"
+      ],
+      "limitations": [
+        "Device、physical Link 身分 UNKNOWN；observed epoch 不代表裝置更換已確認。",
+        "Coverage/filter/tail 未確認；未觀察不等於失敗；本建議不作規範判定。"
+      ]
+    },
+    {
+      "action_id": "review-training",
+      "text_source": {
+        "literal": "先展開此位置與後續 LTSSM，核對 valid、方向、速度／寬度及後續 L0；若到達擷取結尾，補錄後段而非判定逾時。"
+      },
+      "rule_ids": [
+        "LTSSM-01"
+      ],
+      "claim_kind": "ENGINEERING_RECOMMENDATION",
+      "applicability": {
+        "modes": [
+          "NON_FLIT",
+          "UNKNOWN"
+        ],
+        "phases": [
+          "LINK_REVIEW"
+        ],
+        "requires_known_direction": true,
+        "device": "UNRESOLVED_TRACE_DEVICE"
+      },
+      "source_refs": [
+        {
+          "source_manifest_id": "local-action-contract",
+          "revision_or_commit": "2026-10-20/v1",
+          "source_kind": "LOCAL_ENGINEERING_CONTRACT",
+          "locator": "#phase-review",
+          "supports": "本 Repo 的證據範圍、查證流程或補資料政策。",
+          "limitations": "不是 PCIe 規範、裝置接受條件或外部觀察證據。"
+        },
+        {
+          "source_manifest_id": "lecroy-vse",
+          "revision_or_commit": "13.42; generated 2026-10-09",
+          "source_kind": "FIELD_REFERENCE",
+          "locator": "#page=21",
+          "supports": "§5.2.1 的 LTSSM state/idle 含 valid 欄位，支持核對所取得事件。",
+          "limitations": "13.42 欄位文件；本機 13.26 可用性須另看 native receipt，不證明 API/GUI 或裝置結果。"
+        }
+      ],
+      "required_evidence": [
+        "來源有效的 Link/LTSSM 欄位與 native receipt",
+        "後續狀態與完整擷取範圍"
+      ],
+      "limitations": [
+        "Device、physical Link 身分 UNKNOWN；observed epoch 不代表裝置更換已確認。",
+        "Coverage/filter/tail 未確認；未觀察不等於失敗；本建議不作規範判定。"
+      ]
+    },
+    {
+      "action_id": "config-scope",
+      "text_source": {
+        "literal": "核對 Config Request 的目標與可見 Completion；補足同方向的 Link／LTSSM 與擷取設定。"
+      },
+      "rule_ids": [
+        "ENUM-01",
+        "CPL-01"
+      ],
+      "claim_kind": "ENGINEERING_RECOMMENDATION",
+      "applicability": {
+        "modes": [
+          "NON_FLIT",
+          "UNKNOWN"
+        ],
+        "phases": [
+          "CONFIG_ONLY"
+        ],
+        "requires_known_direction": true,
+        "device": "UNRESOLVED_TRACE_DEVICE"
+      },
+      "source_refs": [
+        {
+          "source_manifest_id": "local-action-contract",
+          "revision_or_commit": "2026-10-20/v1",
+          "source_kind": "LOCAL_ENGINEERING_CONTRACT",
+          "locator": "#phase-review",
+          "supports": "本 Repo 的證據範圍、查證流程或補資料政策。",
+          "limitations": "不是 PCIe 規範、裝置接受條件或外部觀察證據。"
+        },
+        {
+          "source_manifest_id": "xilinx-kmap",
+          "revision_or_commit": "1161d6f06ea4e3b0c0ebf34a4293b08347a6740a",
+          "source_kind": "VENDOR_GUIDE",
+          "locator": "#L8-L14",
+          "supports": "穩定 L0、Config Request/Completion 與 OS 發現裝置是分別核對的步驟。",
+          "limitations": "FPGA debug 指引；不套用其中 100ms、重啟或 FPGA 設定至未知裝置。"
+        },
+        {
+          "source_manifest_id": "cocotb-pcie",
+          "revision_or_commit": "4befa5eb60f12bc7e1050509defbb9afc33a15a9",
+          "source_kind": "MODEL_REFERENCE",
+          "locator": "#L143-L147",
+          "supports": "Completion SC/UR/CRS/CA 標籤分開保留。",
+          "limitations": "模擬模型不是規範；不能證明完整 Split、Tag 未重用、Retry 或初始化。"
+        },
+        {
+          "source_manifest_id": "cocotb-pcie",
+          "revision_or_commit": "4befa5eb60f12bc7e1050509defbb9afc33a15a9",
+          "source_kind": "MODEL_REFERENCE",
+          "locator": "#L312-L325",
+          "supports": "模型建立 Completion 時複製 Requester ID 與 Tag；僅作關聯欄位核對參考。",
+          "limitations": "模擬模型不是規範；不能證明完整 Split、Tag 未重用、Retry 或初始化。"
+        }
+      ],
+      "required_evidence": [
+        "Config 目標、可見 Completion 原始身分",
+        "同 Link／epoch 配對與擷取設定"
+      ],
+      "limitations": [
+        "Device、physical Link 身分 UNKNOWN；observed epoch 不代表裝置更換已確認。",
+        "Coverage/filter/tail 未確認；未觀察不等於失敗；本建議不作規範判定。"
+      ]
+    },
+    {
+      "action_id": "collect-context",
+      "text_source": {
+        "literal": "建議補充資料：提供可取得的操作 marker、OS 裝置辨識紀錄與實體 Link／BDF 對應；未提供前保留 UNKNOWN。"
+      },
+      "rule_ids": [],
+      "claim_kind": "EVIDENCE_REQUEST",
+      "applicability": {
+        "modes": [
+          "NON_FLIT",
+          "UNKNOWN",
+          "FLIT"
+        ],
+        "phases": [
+          "ANY"
+        ],
+        "requires_known_direction": false,
+        "device": "UNRESOLVED_TRACE_DEVICE"
+      },
+      "source_refs": [
+        {
+          "source_manifest_id": "local-action-contract",
+          "revision_or_commit": "2026-10-20/v1",
+          "source_kind": "LOCAL_ENGINEERING_CONTRACT",
+          "locator": "#data-requests",
+          "supports": "本 Repo 的證據範圍、查證流程或補資料政策。",
+          "limitations": "不是 PCIe 規範、裝置接受條件或外部觀察證據。"
+        }
+      ],
+      "required_evidence": [
+        "工程師操作時間與範圍",
+        "平台可提供的外部紀錄及拓撲；取得方法需另查平台文件"
+      ],
+      "limitations": [
+        "Device、physical Link 身分 UNKNOWN；observed epoch 不代表裝置更換已確認。",
+        "Coverage/filter/tail 未確認；未觀察不等於失敗；本建議不作規範判定。"
+      ]
+    },
+    {
+      "action_id": "collect-capture",
+      "text_source": {
+        "literal": "建議補充資料：先核對擷取範圍、模式與過濾設定，補充可追溯的 Link／LTSSM 資料。"
+      },
+      "rule_ids": [],
+      "claim_kind": "EVIDENCE_REQUEST",
+      "applicability": {
+        "modes": [
+          "NON_FLIT",
+          "UNKNOWN",
+          "FLIT"
+        ],
+        "phases": [
+          "ANY"
+        ],
+        "requires_known_direction": false,
+        "device": "UNRESOLVED_TRACE_DEVICE"
+      },
+      "source_refs": [
+        {
+          "source_manifest_id": "local-action-contract",
+          "revision_or_commit": "2026-10-20/v1",
+          "source_kind": "LOCAL_ENGINEERING_CONTRACT",
+          "locator": "#data-requests",
+          "supports": "本 Repo 的證據範圍、查證流程或補資料政策。",
+          "limitations": "不是 PCIe 規範、裝置接受條件或外部觀察證據。"
+        }
+      ],
+      "required_evidence": [
+        "Capture mode、filter、tail 與可追溯原生事件"
+      ],
+      "limitations": [
+        "Device、physical Link 身分 UNKNOWN；observed epoch 不代表裝置更換已確認。",
+        "Coverage/filter/tail 未確認；未觀察不等於失敗；本建議不作規範判定。"
+      ]
+    },
+    {
+      "action_id": "card-ltssm",
+      "text_source": {
+        "rule_id": "LTSSM-01",
+        "index": 0
+      },
+      "rule_ids": [
+        "LTSSM-01"
+      ],
+      "claim_kind": "ENGINEERING_RECOMMENDATION",
+      "applicability": {
+        "modes": [
+          "NON_FLIT",
+          "UNKNOWN"
+        ],
+        "phases": [
+          "ANY"
+        ],
+        "requires_known_direction": false,
+        "device": "UNRESOLVED_TRACE_DEVICE"
+      },
+      "source_refs": [
+        {
+          "source_manifest_id": "local-action-contract",
+          "revision_or_commit": "2026-10-20/v1",
+          "source_kind": "LOCAL_ENGINEERING_CONTRACT",
+          "locator": "#phase-review",
+          "supports": "本 Repo 的證據範圍、查證流程或補資料政策。",
+          "limitations": "不是 PCIe 規範、裝置接受條件或外部觀察證據。"
+        },
+        {
+          "source_manifest_id": "lecroy-vse",
+          "revision_or_commit": "13.42; generated 2026-10-09",
+          "source_kind": "FIELD_REFERENCE",
+          "locator": "#page=21",
+          "supports": "§5.2.1 的 LTSSM state/idle 含 valid 欄位，支持核對所取得事件。",
+          "limitations": "13.42 欄位文件；本機 13.26 可用性須另看 native receipt，不證明 API/GUI 或裝置結果。"
+        }
+      ],
+      "required_evidence": [
+        "有效原生狀態、方向及目前 epoch",
+        "後續狀態與 native 版本證據"
+      ],
+      "limitations": [
+        "Device、physical Link 身分 UNKNOWN；observed epoch 不代表裝置更換已確認。",
+        "Coverage/filter/tail 未確認；未觀察不等於失敗；本建議不作規範判定。"
+      ]
+    },
+    {
+      "action_id": "card-hotplug",
+      "text_source": {
+        "rule_id": "HOTPLUG-01",
+        "index": 0
+      },
+      "rule_ids": [
+        "HOTPLUG-01"
+      ],
+      "claim_kind": "ENGINEERING_RECOMMENDATION",
+      "applicability": {
+        "modes": [
+          "NON_FLIT",
+          "UNKNOWN"
+        ],
+        "phases": [
+          "ANY"
+        ],
+        "requires_known_direction": false,
+        "device": "UNRESOLVED_TRACE_DEVICE"
+      },
+      "source_refs": [
+        {
+          "source_manifest_id": "local-action-contract",
+          "revision_or_commit": "2026-10-20/v1",
+          "source_kind": "LOCAL_ENGINEERING_CONTRACT",
+          "locator": "#evidence-scope",
+          "supports": "本 Repo 的證據範圍、查證流程或補資料政策。",
+          "limitations": "不是 PCIe 規範、裝置接受條件或外部觀察證據。"
+        },
+        {
+          "source_manifest_id": "linux-hotplug",
+          "revision_or_commit": "c03c1a14507dfaf8b856c2608f9ac216021fc222",
+          "source_kind": "IMPLEMENTATION_REFERENCE",
+          "locator": "#L62-L100",
+          "supports": "Link status check 與 configure device 為分開步驟。",
+          "limitations": "Linux 實作不證明 Windows 行為或本案使用者意圖。"
+        },
+        {
+          "source_manifest_id": "linux-hotplug",
+          "revision_or_commit": "c03c1a14507dfaf8b856c2608f9ac216021fc222",
+          "source_kind": "IMPLEMENTATION_REFERENCE",
+          "locator": "#L110-L114",
+          "supports": "Linux hotplug 的 removal 路徑另行 unconfigure device；不是本案操作時間或裝置證據。",
+          "limitations": "Linux 實作不證明 Windows 行為或本案使用者意圖。"
+        }
+      ],
+      "required_evidence": [
+        "來源綁定的操作意圖及明確範圍",
+        "原始 Link/Training 觀察"
+      ],
+      "limitations": [
+        "Device、physical Link 身分 UNKNOWN；observed epoch 不代表裝置更換已確認。",
+        "Coverage/filter/tail 未確認；未觀察不等於失敗；本建議不作規範判定。"
+      ]
+    },
+    {
+      "action_id": "card-enumeration",
+      "text_source": {
+        "rule_id": "ENUM-01",
+        "index": 0
+      },
+      "rule_ids": [
+        "ENUM-01"
+      ],
+      "claim_kind": "ENGINEERING_RECOMMENDATION",
+      "applicability": {
+        "modes": [
+          "NON_FLIT",
+          "UNKNOWN"
+        ],
+        "phases": [
+          "ANY"
+        ],
+        "requires_known_direction": false,
+        "device": "UNRESOLVED_TRACE_DEVICE"
+      },
+      "source_refs": [
+        {
+          "source_manifest_id": "local-action-contract",
+          "revision_or_commit": "2026-10-20/v1",
+          "source_kind": "LOCAL_ENGINEERING_CONTRACT",
+          "locator": "#phase-review",
+          "supports": "本 Repo 的證據範圍、查證流程或補資料政策。",
+          "limitations": "不是 PCIe 規範、裝置接受條件或外部觀察證據。"
+        },
+        {
+          "source_manifest_id": "xilinx-kmap",
+          "revision_or_commit": "1161d6f06ea4e3b0c0ebf34a4293b08347a6740a",
+          "source_kind": "VENDOR_GUIDE",
+          "locator": "#L8-L14",
+          "supports": "穩定 L0、Config Request/Completion 與 OS 發現裝置是分別核對的步驟。",
+          "limitations": "FPGA debug 指引；不套用其中 100ms、重啟或 FPGA 設定至未知裝置。"
+        }
+      ],
+      "required_evidence": [
+        "有效 L0 與其後同 Link／epoch 的 Config/Completion",
+        "目標 BDF 與外部裝置辨識"
+      ],
+      "limitations": [
+        "Device、physical Link 身分 UNKNOWN；observed epoch 不代表裝置更換已確認。",
+        "Coverage/filter/tail 未確認；未觀察不等於失敗；本建議不作規範判定。"
+      ]
+    },
+    {
+      "action_id": "card-completion",
+      "text_source": {
+        "rule_id": "CPL-01",
+        "index": 0
+      },
+      "rule_ids": [
+        "CPL-01"
+      ],
+      "claim_kind": "ENGINEERING_RECOMMENDATION",
+      "applicability": {
+        "modes": [
+          "NON_FLIT",
+          "UNKNOWN"
+        ],
+        "phases": [
+          "ANY"
+        ],
+        "requires_known_direction": false,
+        "device": "UNRESOLVED_TRACE_DEVICE"
+      },
+      "source_refs": [
+        {
+          "source_manifest_id": "local-action-contract",
+          "revision_or_commit": "2026-10-20/v1",
+          "source_kind": "LOCAL_ENGINEERING_CONTRACT",
+          "locator": "#evidence-scope",
+          "supports": "本 Repo 的證據範圍、查證流程或補資料政策。",
+          "limitations": "不是 PCIe 規範、裝置接受條件或外部觀察證據。"
+        },
+        {
+          "source_manifest_id": "cocotb-pcie",
+          "revision_or_commit": "4befa5eb60f12bc7e1050509defbb9afc33a15a9",
+          "source_kind": "MODEL_REFERENCE",
+          "locator": "#L143-L147",
+          "supports": "Completion SC/UR/CRS/CA 標籤分開保留。",
+          "limitations": "模擬模型不是規範；不能證明完整 Split、Tag 未重用、Retry 或初始化。"
+        },
+        {
+          "source_manifest_id": "cocotb-pcie",
+          "revision_or_commit": "4befa5eb60f12bc7e1050509defbb9afc33a15a9",
+          "source_kind": "MODEL_REFERENCE",
+          "locator": "#L312-L325",
+          "supports": "模型建立 Completion 時複製 Requester ID 與 Tag；僅作關聯欄位核對參考。",
+          "limitations": "模擬模型不是規範；不能證明完整 Split、Tag 未重用、Retry 或初始化。"
+        }
+      ],
+      "required_evidence": [
+        "Requester/Tag/target、方向、epoch 與完整 Split 子封包"
+      ],
+      "limitations": [
+        "Device、physical Link 身分 UNKNOWN；observed epoch 不代表裝置更換已確認。",
+        "Coverage/filter/tail 未確認；未觀察不等於失敗；本建議不作規範判定。"
+      ]
+    },
+    {
+      "action_id": "card-replay",
+      "text_source": {
+        "rule_id": "REPLAY-01",
+        "index": 0
+      },
+      "rule_ids": [
+        "REPLAY-01"
+      ],
+      "claim_kind": "EVIDENCE_REQUEST",
+      "applicability": {
+        "modes": [
+          "NON_FLIT",
+          "UNKNOWN",
+          "FLIT"
+        ],
+        "phases": [
+          "ANY"
+        ],
+        "requires_known_direction": false,
+        "device": "UNRESOLVED_TRACE_DEVICE"
+      },
+      "source_refs": [
+        {
+          "source_manifest_id": "local-action-contract",
+          "revision_or_commit": "2026-10-20/v1",
+          "source_kind": "LOCAL_ENGINEERING_CONTRACT",
+          "locator": "#data-requests",
+          "supports": "本 Repo 的證據範圍、查證流程或補資料政策。",
+          "limitations": "不是 PCIe 規範、裝置接受條件或外部觀察證據。"
+        },
+        {
+          "source_manifest_id": "lecroy-vse",
+          "revision_or_commit": "13.42; generated 2026-10-09",
+          "source_kind": "FIELD_REFERENCE",
+          "locator": "#page=23",
+          "supports": "§5.2.2 的 in.AckNak_SeqNum 是 ACK/NAK DLLP 的欄位。",
+          "limitations": "13.42 文件，不代表本機已取得欄位；相似 TLP 或 NAK 不是 Retry/Replay 證據。"
+        },
+        {
+          "source_manifest_id": "lecroy-vse",
+          "revision_or_commit": "13.42; generated 2026-10-09",
+          "source_kind": "FIELD_REFERENCE",
+          "locator": "#page=38",
+          "supports": "§5.11 的 in.TransactionStatus 是 Link transaction 的狀態欄位，不能與單一 Packet 混用。",
+          "limitations": "13.42 文件，不代表本機已取得欄位；相似 TLP 或 NAK 不是 Retry/Replay 證據。"
+        }
+      ],
+      "required_evidence": [
+        "原生 ACK/NAK sequence、Link transaction status 及前後 TLP",
+        "本機擷取能力與適用規範來源"
+      ],
+      "limitations": [
+        "Device、physical Link 身分 UNKNOWN；observed epoch 不代表裝置更換已確認。",
+        "Coverage/filter/tail 未確認；未觀察不等於失敗；本建議不作規範判定。"
+      ]
+    },
+    {
+      "action_id": "card-aspm",
+      "text_source": {
+        "rule_id": "ASPM-01",
+        "index": 0
+      },
+      "rule_ids": [
+        "ASPM-01"
+      ],
+      "claim_kind": "EVIDENCE_REQUEST",
+      "applicability": {
+        "modes": [
+          "NON_FLIT",
+          "UNKNOWN",
+          "FLIT"
+        ],
+        "phases": [
+          "ANY"
+        ],
+        "requires_known_direction": false,
+        "device": "UNRESOLVED_TRACE_DEVICE"
+      },
+      "source_refs": [
+        {
+          "source_manifest_id": "local-action-contract",
+          "revision_or_commit": "2026-10-20/v1",
+          "source_kind": "LOCAL_ENGINEERING_CONTRACT",
+          "locator": "#vendor-policy",
+          "supports": "本 Repo 的證據範圍、查證流程或補資料政策。",
+          "limitations": "不是 PCIe 規範、裝置接受條件或外部觀察證據。"
+        },
+        {
+          "source_manifest_id": "linux-regs",
+          "revision_or_commit": "c03c1a14507dfaf8b856c2608f9ac216021fc222",
+          "source_kind": "FIELD_REFERENCE",
+          "locator": "#L554-L577",
+          "supports": "ASPM capability/control 與 Link status 的欄位定義。",
+          "limitations": "不定義 vendor 生效時間、產品期望、寫入成功或特定裝置的 PM 接受條件。"
+        }
+      ],
+      "required_evidence": [
+        "適用裝置的 vendor 設定定義、生效時間及產品預期來源（目前未提供）",
+        "目標/Link/epoch、讀回與 PM 事件"
+      ],
+      "limitations": [
+        "Device、physical Link 身分 UNKNOWN；observed epoch 不代表裝置更換已確認。",
+        "Coverage/filter/tail 未確認；未觀察不等於失敗；本建議不作規範判定。"
+      ]
+    }
+  ]
+}

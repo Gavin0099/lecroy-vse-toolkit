@@ -41,9 +41,11 @@ finally{
  foreach($value in @($trace,$app)){if($value){[void][Runtime.InteropServices.Marshal]::FinalReleaseComObject($value)}}
  [GC]::Collect();[GC]::WaitForPendingFinalizers();[GC]::Collect()
 }
-$deadline=[DateTime]::UtcNow.AddSeconds(15)
+$cleanupWatch=[Diagnostics.Stopwatch]::StartNew()
+$deadline=[DateTime]::UtcNow.AddSeconds(30)
 while((Get-Process UsbSuite -ErrorAction SilentlyContinue) -and [DateTime]::UtcNow -lt $deadline){Start-Sleep -Milliseconds 250}
+$nativeExited=(-not [bool](Get-Process UsbSuite -ErrorAction SilentlyContinue))
 $after=Snapshot $work;$same=($before.sha256 -eq $after.sha256 -and $before.size -eq $after.size -and $before.mtime -eq $after.mtime -and $before.readonly -eq $after.readonly)
-$result=[ordered]@{format='pd-native-data/v1';trace_sha256=$before.sha256;before=$before;after=$after;integrity_unchanged=$same;native_exited=(-not [bool](Get-Process UsbSuite -ErrorAction SilentlyContinue));owned_pid=if($owned){$owned.Id}else{$null};owned_start_ticks=$start;bound_caption=$caption;error=$errorText;exports=$exports;elapsed_ms=$watch.ElapsedMilliseconds;header_raw_sha256=(Snapshot (Join-Path $out 'headers/raw-result.json')).sha256}
+$result=[ordered]@{format='pd-native-data/v1';trace_sha256=$before.sha256;before=$before;after=$after;integrity_unchanged=$same;native_exited=$nativeExited;owned_pid=if($owned){$owned.Id}else{$null};owned_start_ticks=$start;bound_caption=$caption;error=$errorText;exports=$exports;elapsed_ms=$watch.ElapsedMilliseconds;cleanup_wait_ms=$cleanupWatch.ElapsedMilliseconds;header_raw_sha256=(Snapshot (Join-Path $out 'headers/raw-result.json')).sha256}
 Save (Join-Path $out 'raw-result.json') $result
 if(-not $same -or -not $result.native_exited -or $errorText){throw 'PD native acquisition incomplete; inspect raw-result.json'}

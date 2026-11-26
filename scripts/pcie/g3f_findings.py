@@ -64,7 +64,7 @@ def build(groups: dict[str, Any], candidates: list[dict[str, Any]], nearby: dict
     cand_by_id = {c["candidate_id"]: c for c in candidates}
     contexts_by_id = {c["candidate_id"]: c for c in contexts["candidates"]}
     nearby_by_id = {c["candidate_id"]: c for c in nearby["candidates"]}
-    row_of = {f["packet_index"]: f["row"] for f in fields}
+    row_of = fields.packet_rows if hasattr(fields, 'packet_rows') else {f["packet_index"]: f["row"] for f in fields}
     detectors = groups.get("detectors") or {}
     if not (set(cand_by_id) == set(contexts_by_id) == set(nearby_by_id)):
         raise G3fError("Candidate ids differ between G3, G3c and G3d")

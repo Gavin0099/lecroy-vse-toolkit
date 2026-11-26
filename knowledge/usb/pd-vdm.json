@@ -1,0 +1,49 @@
+{
+  "id": "pd-vdm",
+  "protocol": "PD",
+  "title": "PD Structured VDM／Alt Mode",
+  "phase": "vdm",
+  "revisions": [
+    "2.0",
+    "3.0"
+  ],
+  "claim_ceiling": "GUIDANCE_ONLY",
+  "required_evidence": [
+    "channel",
+    "sop",
+    "sender",
+    "epoch",
+    "svid",
+    "command",
+    "object_position",
+    "structured_version"
+  ],
+  "next_check": "先比對同 SOP／階段的 SVID、command、object position 與回覆，再核對模式設定及實際資料功能。",
+  "evidence_request": "請補 SOP／階段與 Structured VDM 完整標頭；ACK／Enter Mode 不等於 Alt Mode 已正常工作。",
+  "limitations": [
+    "單次 NAK/BUSY 需對照產品及測試期待。",
+    "SOP 與 cable SOP 角色不混用；沒有版本或 object position 只要求補證據。"
+  ],
+  "source_refs": [
+    {
+      "source_id": "linux-vdo",
+      "locator": "#L21-L60",
+      "supports": "Structured VDM header, commands and response types"
+    },
+    {
+      "source_id": "linux-typec",
+      "locator": "#L141-L160",
+      "supports": "SVID, mode and cable/partner identities"
+    },
+    {
+      "source_id": "linux-typec-doc",
+      "locator": "#L38-L74",
+      "supports": "Mode entry and mux configuration are distinct implementation steps"
+    },
+    {
+      "source_id": "local-review-contract",
+      "locator": "Action binding and claim limits",
+      "supports": "Authored inspection/evidence-request policy; not a USB normative requirement"
+    }
+  ]
+}

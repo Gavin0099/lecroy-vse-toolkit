@@ -1,0 +1,37 @@
+{
+  "id": "usb2-control",
+  "protocol": "USB2",
+  "title": "USB2 控制傳輸階段",
+  "phase": "control-transfer",
+  "revisions": [
+    "ANY_REVIEW"
+  ],
+  "claim_ceiling": "GUIDANCE_ONLY",
+  "required_evidence": [
+    "address",
+    "endpoint"
+  ],
+  "next_check": "在這筆 Transfer 核對 SETUP、必要的 DATA 與 STATUS；先排除擷取結尾，再解讀完成旗標。",
+  "evidence_request": "請補這筆 Transfer 的位址、EP 與完整回應區段；NAK、short response 或停止旗標本身不判錯。",
+  "limitations": [
+    "只適用 USB2 EP0 的傳輸內檢查；不推論跨重設裝置身分。",
+    "本知識包沒有新增 NAK、short packet 或逾時的違規判定。"
+  ],
+  "source_refs": [
+    {
+      "source_id": "ms-control",
+      "locator": "#layout-of-a-control-transfer",
+      "supports": "Control transfer stages; DATA may be absent"
+    },
+    {
+      "source_id": "linux-ch9",
+      "locator": "#L198-L242",
+      "supports": "SETUP request field layout"
+    },
+    {
+      "source_id": "local-review-contract",
+      "locator": "Action binding and claim limits",
+      "supports": "Authored inspection/evidence-request policy; not a USB normative requirement"
+    }
+  ]
+}
