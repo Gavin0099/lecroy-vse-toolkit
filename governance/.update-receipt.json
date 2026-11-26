@@ -3,14 +3,14 @@
   "receipt_type": "ai_governance_update",
   "tool": "external_governance_submodule_updater",
   "tool_mode": "apply",
-  "repo_root": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit-g1",
-  "framework_root": "E:\\BackUp\\Git_EE\\lecroy-vse-toolkit-g1\\ai-governance-framework",
+  "repo_root": "E:\\BackUp\\CodexWorktrees\\lecroy-vse-toolkit-governance-20261126",
+  "framework_root": "E:\\BackUp\\CodexWorktrees\\lecroy-vse-toolkit-governance-20261126\\ai-governance-framework",
   "framework_before": "6c7e24c3161fe80dc4c5bd6bfe1bec5cd04fd8dc",
-  "framework_after": "6c7e24c3161fe80dc4c5bd6bfe1bec5cd04fd8dc",
+  "framework_after": "8a9cd99c5660582fee296371c4310cfee48eebb4",
   "lock_adopted_commit": null,
   "lock_matches_checkout": false,
-  "update_status": "already_current",
-  "generated_at_utc": "2026-11-16T06:46:32Z",
+  "update_status": "updated",
+  "generated_at_utc": "2026-11-26T02:16:08Z",
   "claim_boundary": [
     "receipt is review evidence, not proof",
     "no fetch truth is implied unless explicitly recorded",
@@ -30,6 +30,6 @@
     "target_source": "fresh_remote_fetch_head",
     "target_fresh_upstream_verified": true,
     "target_claim_boundary": "fresh upstream target verified; already_current/updated claims are allowed",
-    "target_head": "6c7e24c3161fe80dc4c5bd6bfe1bec5cd04fd8dc"
+    "target_head": "8a9cd99c5660582fee296371c4310cfee48eebb4"
   }
 }
