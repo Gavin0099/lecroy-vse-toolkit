@@ -28,10 +28,30 @@ class Tags(HTMLParser):
 
 class UsbAppendixTests(unittest.TestCase):
     @classmethod
-    def setUpClass(cls): cls.model = a.load_model(C5, PLAN, RUN)
+    def setUpClass(cls):
+        temp = tempfile.TemporaryDirectory()
+        cls.addClassCleanup(temp.cleanup)
+        directory = Path(temp.name).resolve()
+        cls.c5 = directory / "c5.json"
+        baseline = s.read_json(C5)
+        # Only timeline identity participates in the appendix contract. Keep
+        # the historical rankings and replay the tracked U02 result as usual.
+        for role, sha in [("pass", "1" * 64), ("fail", s.read_json(PLAN)["trace_sha256"])]:
+            timeline = directory / (role + "-timeline.json")
+            identity = {"sha256": sha}
+            timeline.write_text(json.dumps({"before": identity, "after": identity,
+                                            "trace_integrity_unchanged": True}), encoding="utf-8")
+            baseline[role + "_timeline"] = str(timeline)
+        cls.c5.write_text(json.dumps(baseline), encoding="utf-8")
+        cls.model = a.load_model(cls.c5, PLAN, RUN)
 
     def test_historical_values_untouched_and_qualification_unknown(self):
-        self.assertEqual(self.model["historical_c5"], s.read_json(C5))
+        baseline = s.read_json(C5)
+        for role in ("pass", "fail"):
+            timeline = self.c5.parent / (role + "-timeline.json")
+            baseline[role + "_timeline"] = str(timeline)
+            self.assertEqual(self.model["historical_timelines"][role]["path"], str(timeline))
+        self.assertEqual(self.model["historical_c5"], baseline)
         b = self.model["native_command_observations"]
         self.assertEqual(b["qualification"], "NOT_EVALUATED")
         self.assertEqual(b["coverage"]["epoch"], "unknown")
@@ -50,6 +70,7 @@ class UsbAppendixTests(unittest.TestCase):
             self.assertEqual(data["records"][i], row)
             self.assertEqual(row["packet_ref"]["trace_sha256"], b["trace_sha256"])
         self.assertEqual(b["observation"]["exported_count"], 128)
+        self.assertEqual(len(b["observation"]["records"]), 128)
 
     def test_unknown_and_candidates_do_not_become_root_cause(self):
         b = self.model["native_command_observations"]; page = a.render_block(b, ROOT)
@@ -71,18 +92,36 @@ class UsbAppendixTests(unittest.TestCase):
 
     def test_bad_baseline_identity_and_opaque_observations_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
-            target = Path(directory); bad_c5 = target / "c5.json"; baseline = s.read_json(C5)
+            target = Path(directory); bad_c5 = target / "c5.json"; baseline = s.read_json(self.c5)
             baseline["trace_integrity_qualified"] = False; bad_c5.write_text(json.dumps(baseline), encoding="utf-8")
-            with self.assertRaises(s.ContractError): a.load_model(bad_c5, PLAN, RUN)
+            with self.assertRaisesRegex(s.ContractError, "verified historical C5 input required"):
+                a.load_model(bad_c5, PLAN, RUN)
+            baseline = s.read_json(self.c5)
+            bad_timeline = target / "bad-timeline.json"
+            baseline["fail_timeline"] = str(bad_timeline)
+            bad_c5.write_text(json.dumps(baseline), encoding="utf-8")
+            with self.assertRaisesRegex(s.ContractError, "C5 referenced timeline is missing"):
+                a.load_model(bad_c5, PLAN, RUN)
+            timeline = s.read_json(self.c5.parent / "fail-timeline.json")
+            timeline["after"]["sha256"] = "f" * 64
+            bad_timeline.write_text(json.dumps(timeline), encoding="utf-8")
+            with self.assertRaisesRegex(s.ContractError, "historical timeline identity not qualified"):
+                a.load_model(bad_c5, PLAN, RUN)
+            timeline["before"] = timeline["after"]
+            bad_timeline.write_text(json.dumps(timeline), encoding="utf-8")
+            with self.assertRaisesRegex(s.ContractError, "C5 fail trace and U02 source are different"):
+                a.load_model(bad_c5, PLAN, RUN)
             for rel in ["before.json", "integrity.json", "observations.json", "result.json"]:
                 shutil.copyfile(RUN / rel, target / rel)
             observation = s.read_json(target / "observations.json"); observation["extensions"] = {"root_cause": "CRC_FAIL"}
             (target / "observations.json").write_text(json.dumps(observation), encoding="utf-8")
-            with self.assertRaises(s.ContractError): a.load_model(C5, PLAN, target)
+            with self.assertRaisesRegex(s.ContractError, "U02 source replay mismatch"):
+                a.load_model(self.c5, PLAN, target)
             shutil.copyfile(RUN / "observations.json", target / "observations.json")
             before = s.read_json(target / "before.json"); before["source"]["sha256"] = "f" * 64
             (target / "before.json").write_text(json.dumps(before), encoding="utf-8")
-            with self.assertRaises(s.ContractError): a.load_model(C5, PLAN, target)
+            with self.assertRaisesRegex(s.ContractError, "U02 protected identity mismatch"):
+                a.load_model(self.c5, PLAN, target)
 
 
 if __name__ == "__main__": unittest.main()
