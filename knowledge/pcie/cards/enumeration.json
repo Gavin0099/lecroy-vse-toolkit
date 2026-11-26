@@ -1,0 +1,54 @@
+{
+  "rule_id": "ENUM-01",
+  "domain": "ENUMERATION",
+  "title": "L0 後的配置證據",
+  "source_manifest_id": "xilinx-kmap",
+  "source_kind": "VENDOR_GUIDE",
+  "source_url": "https://github.com/Xilinx/pcie-debug-kmap/blob/1161d6f06ea4e3b0c0ebf34a4293b08347a6740a/pciedebug/source/docs/PCIe_Common_Issues/index.rst",
+  "revision_or_commit": "1161d6f06ea4e3b0c0ebf34a4293b08347a6740a",
+  "license_status": "MIT",
+  "applicable_gen_mode": [
+    "NON_FLIT",
+    "UNKNOWN"
+  ],
+  "role_scope": [
+    "OBSERVED_DIRECTION_ONLY"
+  ],
+  "required_event_types": [
+    "LTSSM",
+    "CONFIG"
+  ],
+  "required_fields": [
+    "valid",
+    "direction",
+    "target_id"
+  ],
+  "preconditions": [
+    "Source/display identities validated",
+    "Typed native evidence available"
+  ],
+  "positive_evidence": [
+    "Source-bound observed event"
+  ],
+  "negative_evidence": [
+    "Unknown/truncated coverage is not negative protocol evidence"
+  ],
+  "contradictions": [
+    "Later disconnect or invalid state prevents reuse of earlier success",
+    "Different channel/epoch is not the same device"
+  ],
+  "coverage_requirements": [
+    "Full capture/filter remains explicit",
+    "No invented timeout threshold"
+  ],
+  "output_class": "CHECK_RECOMMENDED",
+  "allowed_claim_ceiling": "GUIDANCE_ONLY",
+  "next_checks": [
+    "從有效 L0 往後查 Config／Completion、BDF 與 OS 裝置辨識紀錄。"
+  ],
+  "display_text_zh_tw": "L0 與 Config 交換分開核對；FPGA 指引的時間或測試條件不套用至未知產品。",
+  "test_refs": [
+    "tests/pcie/test_flow_knowledge.py",
+    "tests/pcie/test_flow_triage.py"
+  ]
+}

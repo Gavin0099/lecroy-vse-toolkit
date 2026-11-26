@@ -53,7 +53,7 @@ def attach(candidates: list[dict[str, Any]], fields: list[dict[str, Any]], messa
            max_packet_gap: int = DEFAULT_MAX_PACKET_GAP) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     if window < 0 or max_packet_gap < 0:
         raise G3cError("Window and packet bound must be non-negative")
-    row_of = {r["packet_index"]: r["row"] for r in fields}
+    row_of = fields.packet_rows if hasattr(fields, 'packet_rows') else {r["packet_index"]: r["row"] for r in fields}
     if len(row_of) != len(fields):
         raise G3cError("Duplicate packet index in G2a export")
     for m in messages:
@@ -67,6 +67,8 @@ def attach(candidates: list[dict[str, Any]], fields: list[dict[str, Any]], messa
         excluded: list[dict[str, Any]] = []
         for span in spans:
             lo, hi = min(span["rows"]), max(span["rows"])
+            if hasattr(fields,'guard_graph') and hi-lo>4096:
+                raise G3cError('Displayed evidence span exceeds bounded context budget; complete rows retained in disk index')
             span["window_rows"] = [lo - window, hi + window]
             for m in messages:
                 m_row = row_of[m["packet_index"]]
@@ -80,6 +82,7 @@ def attach(candidates: list[dict[str, Any]], fields: list[dict[str, Any]], messa
                     position, anchor_packet, row_gap = "after", max(span["packets"]), m_row - hi
                 packet_gap = m["packet_index"] - anchor_packet
                 if abs(packet_gap) > max_packet_gap:
+                    if hasattr(fields,'guard_graph'):fields.guard_graph(m)
                     excluded.append({"span_anchors": span["anchors"], "packet": m["packet_index"], "message_name": m["message_code_name"],
                                      "tlp_row_gap": row_gap, "packet_gap": packet_gap, "gap_reference_packet": anchor_packet})
                     continue
@@ -99,6 +102,7 @@ def attach(candidates: list[dict[str, Any]], fields: list[dict[str, Any]], messa
                     "relationship": "temporal_correlation_only",
                 })
                 attached_packets.add(m["packet_index"])
+                if hasattr(fields,'guard_graph'):fields.guard_graph(nearby[-1])
         results.append({
             "candidate_id": candidate["candidate_id"],
             "detector": candidate["detector"],
@@ -110,7 +114,7 @@ def attach(candidates: list[dict[str, Any]], fields: list[dict[str, Any]], messa
             "excluded_beyond_packet_bound": excluded,
             "interpretation": "NOT_EVALUATED",
         })
-    unattached = [
+    unattached = messages.unattached(attached_packets) if hasattr(messages,'unattached') else [
         {"packet": m["packet_index"], "display_time": m["time_display"], "message_name": m["message_code_name"],
          "routing": m["message_route_name"], "requester_id": m["requester_id"]}
         for m in messages if m["packet_index"] not in attached_packets

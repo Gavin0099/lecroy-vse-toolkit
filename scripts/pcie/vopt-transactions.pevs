@@ -1,0 +1,57 @@
+# Config/Completion cross-check. Indices retain their native level namespace.
+set ModuleType = "Verification Script";
+set OutputType = "VS";
+set InputType = "VS";
+set DecoderDesc = "PCIe bounded native transaction cross-check v1";
+%include "VSTools.inc"
+const CAP = 8192;
+set Counts = [0,0,0];
+set First = [0,0,0];
+set Last = [0,0,0];
+set Names = ["packet","link","split"];
+set EndSent = 0;
+Val(v) { if (v == null) { return "NA"; } return FormatEx("%d",v); }
+C(name,v) { ReportText(FormatEx("PCIE_TX_CONST|%s|%d",name,v)); }
+OnStartScript()
+{
+    ScriptForDisplayOnly();
+    ReportText("PCIE_TX_V1|cap=8192");
+    C("packet",_PACKET); C("link",_LINK); C("split",_SPLIT);
+    C("CHANNEL_1",_CHANNEL_1); C("CHANNEL_2",_CHANNEL_2);
+    C("CFGRD0",TLP_TYPE_ID_CFGRD_0); C("CFGWR0",TLP_TYPE_ID_CFGWR_0);
+    C("CFGRD1",TLP_TYPE_ID_CFGRD_1); C("CFGWR1",TLP_TYPE_ID_CFGWR_1);
+    C("CPL",TLP_TYPE_ID_CPL); C("CPLD",TLP_TYPE_ID_CPLD);
+    SendAllChannels(); SendLevelOnly(_PACKET); SendLevel(_LINK); SendLevel(_SPLIT);
+    SendTraceEventOnly(_PKT_TLP); SendTraceEvent(_LINK_CONFIG);
+    SendTraceEvent(_LINK_COMPLETION); SendTraceEvent(_SPLIT_CONFIG);
+    SendTlpType(_ANY_TYPE);
+}
+ProcessEvent()
+{
+    typ = in.TLPType;
+    if (typ != TLP_TYPE_ID_CFGRD_0 && typ != TLP_TYPE_ID_CFGWR_0 && typ != TLP_TYPE_ID_CFGRD_1 && typ != TLP_TYPE_ID_CFGWR_1 && typ != TLP_TYPE_ID_CPL && typ != TLP_TYPE_ID_CPLD) { return Complete(); }
+    slot = 0;
+    if (in.Level == _LINK) { slot=1; }
+    else if (in.Level == _SPLIT) { slot=2; }
+    else if (in.Level != _PACKET) { ReportText("PCIE_TX_UNSUPPORTED_LEVEL"); return Complete(); }
+    if (Counts[slot] == 0) { First[slot]=in.Index; }
+    Counts[slot] = Counts[slot]+1; Last[slot]=in.Index;
+    if (Counts[slot] <= CAP)
+    {
+        ps="NA"; if (in.Time2 != null) { ps=Val(in.Time2[2]); }
+        status=in.ComplStatus;
+        if (in.Level == _SPLIT) { status=in.CompletionStatus; }
+        ReportText(FormatEx("PCIE_TX_ROW|%s|%u|%s|%u|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s",
+            Names[slot],in.Index,TimeToText(in.Time),in.Channel,GetChannelName(),Val(in.Time[0]),Val(in.Time[1]),ps,
+            Val(typ),Val(in.RequesterId),Val(in.Tag),Val(in.DeviceId),Val(in.Register),Val(in.PSN),Val(status),Val(in.TransactionStatus),Val(in.Metric_NumOfPackets)));
+    }
+    return Complete();
+}
+OnFinishScript()
+{
+    if (!EndSent)
+    {
+        for (i=0;i<3;i++) { ReportText(FormatEx("PCIE_TX_COUNT|%s|%u|%u|%u",Names[i],Counts[i],First[i],Last[i])); }
+        ReportText("PCIE_TX_END|reason=trace_end"); EndSent=1;
+    }
+}

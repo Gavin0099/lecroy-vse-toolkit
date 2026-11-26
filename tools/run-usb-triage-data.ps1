@@ -26,7 +26,10 @@ try{
  if($run.Error){$errorText=$run.Error}
 }catch{$errorText=$_.Exception.GetBaseException().Message}
 finally{[GC]::Collect();[GC]::WaitForPendingFinalizers();[GC]::Collect()}
-$deadline=[DateTime]::UtcNow.AddSeconds(15)
+$cleanupWatch=[Diagnostics.Stopwatch]::StartNew()
+# Native Close may return before the server exits. Keep the process-exit
+# predicate fail-closed, with a bounded grace period shared with PCIe.
+$deadline=[DateTime]::UtcNow.AddSeconds(30)
 while((Get-Process UsbSuite -ErrorAction SilentlyContinue) -and [DateTime]::UtcNow -lt $deadline){Start-Sleep -Milliseconds 250}
 $after=Snapshot $work
 $scriptAfter=Snapshot $script
@@ -38,7 +41,7 @@ $raw=[ordered]@{format='usb-protocol-data/v1';trace_sha256=$before.sha256;workin
  script_sha256=$scriptBefore.sha256;script_unchanged=($scriptBefore.sha256 -eq $scriptAfter.sha256);
  run_result=if($run){$run.RunResult}else{-1};finished_result=if($run){$run.Sink.FinishedResult}else{-1};
  finished_count=if($run){$run.Sink.FinishedCount}else{0};reports=if($run){@($run.Sink.Reports.ToArray())}else{@()};
- error=$errorText;integrity_unchanged=$same;native_exited=$nativeExited;elapsed_ms=$watch.ElapsedMilliseconds;
+ error=$errorText;integrity_unchanged=$same;native_exited=$nativeExited;elapsed_ms=$watch.ElapsedMilliseconds;cleanup_wait_ms=$cleanupWatch.ElapsedMilliseconds;
  software_version=(Get-Item -LiteralPath $exe).VersionInfo.FileVersion}
 Save (Join-Path $out 'raw-result.json') $raw
 if(-not $same -or -not $nativeExited -or -not $raw.script_unchanged -or $errorText -or $raw.run_result -ne 2 -or $raw.finished_result -ne 2 -or $raw.finished_count -ne 1){throw 'Protocol acquisition incomplete; see raw-result.json'}

@@ -6,8 +6,6 @@ artifacts/reports/** -text
 artifacts/evidence/pcie-d1e-20260912/b-vendor-output.log.txt binary
 artifacts/evidence/pcie-staircase-20260912/d1-vendor-saved-output.log.txt binary
 
-# Preserve provenance artifact bytes across platforms.
-
 # Engineer source document is SHA-bound to product context.
 docs/pcie-b1d-engineer-questions.md -text
 
@@ -16,3 +14,7 @@ docs/pcie-register-reference.json -text
 
 # Exact deployed bytes bound by fresh raw probe evidence.
 scripts/pcie/b2a-register-probe.pevs -text
+
+# Knowledge package identities depend on the exact release bytes.
+knowledge/pcie/** -text whitespace=cr-at-eol
+knowledge/usb/** -text whitespace=cr-at-eol

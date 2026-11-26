@@ -114,7 +114,7 @@ def compose(digest, analyses):
             cards.append(card)
         analysis.setdefault('episode_count', len(local))
         summaries.append(analysis)
-    return validate(dict(format=FORMAT, trace_sha256=digest, rule_version='usb-multiprotocol/1',
+    result = validate(dict(format=FORMAT, trace_sha256=digest, rule_version='usb-multiprotocol/1',
                          status='candidates_found' if cards else 'no_supported_candidate',
                          scope='USB2 EP0 / USB3 Link・LFPS / PD 協商・VDM；無候選不代表 USB PASS。',
                          candidates=cards, observations=observations, analyses=summaries,
@@ -122,6 +122,8 @@ def compose(digest, analyses):
                          omitted_episodes=sum(a['episode_count'] for a in summaries)-len(cards),
                          limitations=['各協定獨立排序；時間接近不代表因果。',
                                       '未涵蓋完整 USB3 bulk/streams、精確 LTSSM state、完整 PD 延伸訊息或合規判定。']))
+    from usb_debug_knowledge import enrich
+    return enrich(result)
 
 
 def render(model):
@@ -147,6 +149,8 @@ def render(model):
             body += '<p>' + esc(location(c['native_targets'][0])) + ' · ' + seconds(c['start_ns']) + ' s</p>'
             body += '<h3>工程師下一步</h3><p>' + esc(c['next_step']) + '</p><h3>發生什麼事</h3>' + lines(c['facts'])
             body += '<h3>為什麼先看這裡</h3>' + lines(c['reasons'])
+            if c.get('knowledge_notes'):
+                body += '<details><summary>工程知識、適用條件與來源</summary>' + lines(c['knowledge_notes']) + '</details>'
             body += '<details><summary>前後事件與限制</summary>' + lines(c.get('evidence_gaps', []))
             body += '<code>' + esc(__import__('json').dumps(c.get('context', []), ensure_ascii=False, indent=2)) + '</code></details></article>'
         body += '</section>'

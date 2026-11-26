@@ -1,0 +1,4 @@
+interface:
+  display_name: "USB Debug Analysis"
+  short_description: "Review USB2, USB3 and PD trace evidence and next checks"
+  default_prompt: "Use $usb-debug-analysis to review this USB trace and identify the next source-supported engineering check."

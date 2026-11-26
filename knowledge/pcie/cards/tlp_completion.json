@@ -1,0 +1,55 @@
+{
+  "rule_id": "CPL-01",
+  "domain": "TLP_COMPLETION",
+  "title": "Completion 狀態與關聯限制",
+  "source_manifest_id": "cocotb-pcie",
+  "source_kind": "FIELD_REFERENCE",
+  "source_url": "https://github.com/alexforencich/cocotbext-pcie/blob/4befa5eb60f12bc7e1050509defbb9afc33a15a9/cocotbext/pcie/core/tlp.py",
+  "revision_or_commit": "4befa5eb60f12bc7e1050509defbb9afc33a15a9",
+  "license_status": "MIT",
+  "applicable_gen_mode": [
+    "NON_FLIT",
+    "UNKNOWN"
+  ],
+  "role_scope": [
+    "OBSERVED_DIRECTION_ONLY"
+  ],
+  "required_event_types": [
+    "CONFIG",
+    "COMPLETION"
+  ],
+  "required_fields": [
+    "requester_id",
+    "tag",
+    "completion_status",
+    "direction"
+  ],
+  "preconditions": [
+    "Source/display identities validated",
+    "Typed native evidence available"
+  ],
+  "positive_evidence": [
+    "Source-bound observed event"
+  ],
+  "negative_evidence": [
+    "Unknown/truncated coverage is not negative protocol evidence"
+  ],
+  "contradictions": [
+    "Later disconnect or invalid state prevents reuse of earlier success",
+    "Different channel/epoch is not the same device"
+  ],
+  "coverage_requirements": [
+    "Full capture/filter remains explicit",
+    "No invented timeout threshold"
+  ],
+  "output_class": "CHECK_RECOMMENDED",
+  "allowed_claim_ceiling": "GUIDANCE_ONLY",
+  "next_checks": [
+    "對照 Requester／Tag、目標、epoch 與 Split 子封包；確認是否有範圍缺口。"
+  ],
+  "display_text_zh_tw": "SC、UR、CRS、CA 僅為可見狀態；相同 Key 不證明配對或重新發送。",
+  "test_refs": [
+    "tests/pcie/test_flow_knowledge.py",
+    "tests/pcie/test_flow_triage.py"
+  ]
+}

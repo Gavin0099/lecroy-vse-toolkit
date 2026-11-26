@@ -1,0 +1,53 @@
+{
+  "rule_id": "HOTPLUG-01",
+  "domain": "HOTPLUG",
+  "title": "情境與觀察分離",
+  "source_manifest_id": "linux-hotplug",
+  "source_kind": "FIELD_REFERENCE",
+  "source_url": "https://github.com/torvalds/linux/blob/c03c1a14507dfaf8b856c2608f9ac216021fc222/drivers/pci/hotplug/pciehp_ctrl.c",
+  "revision_or_commit": "c03c1a14507dfaf8b856c2608f9ac216021fc222",
+  "license_status": "GPL-2.0-or-later",
+  "applicable_gen_mode": [
+    "NON_FLIT",
+    "UNKNOWN"
+  ],
+  "role_scope": [
+    "OBSERVED_DIRECTION_ONLY"
+  ],
+  "required_event_types": [
+    "LINK"
+  ],
+  "required_fields": [
+    "semantic",
+    "channel",
+    "epoch"
+  ],
+  "preconditions": [
+    "Source/display identities validated",
+    "Typed native evidence available"
+  ],
+  "positive_evidence": [
+    "Source-bound observed event"
+  ],
+  "negative_evidence": [
+    "Unknown/truncated coverage is not negative protocol evidence"
+  ],
+  "contradictions": [
+    "Later disconnect or invalid state prevents reuse of earlier success",
+    "Different channel/epoch is not the same device"
+  ],
+  "coverage_requirements": [
+    "Full capture/filter remains explicit",
+    "No invented timeout threshold"
+  ],
+  "output_class": "CHECK_RECOMMENDED",
+  "allowed_claim_ceiling": "GUIDANCE_ONLY",
+  "next_checks": [
+    "取得操作 marker、適用方向與切換區間；核對重新連線及配置。"
+  ],
+  "display_text_zh_tw": "工程情境只有在來源、副本、方向與 Packet 範圍相符時才套用；不能推論新裝置身分。",
+  "test_refs": [
+    "tests/pcie/test_flow_knowledge.py",
+    "tests/pcie/test_flow_triage.py"
+  ]
+}

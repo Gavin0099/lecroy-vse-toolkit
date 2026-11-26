@@ -75,15 +75,16 @@ def _chain_end(request: dict[str, Any], by_packet: dict[int, dict[str, Any]]) ->
 
 
 def detect(requests: list[dict[str, Any]], crosschecks: list[dict[str, Any]] | None = None) -> list[dict[str, Any]]:
-    by_packet = {q["packet_index"]: q for q in requests}
+    by_packet = requests.packet_map if hasattr(requests, 'packet_map') else {q["packet_index"]: q for q in requests}
     if len(by_packet) != len(requests):
         raise G3Error("Duplicate request packet index")
     checks = {(c["request_packet"], c["completion_packet"]): c for c in (crosschecks or [])}
-    reissued_into: dict[int, int] = {}
-    for q in requests:
-        if q["outcome"] == REISSUED:
-            end = _chain_end(q, by_packet)
-            reissued_into[end["packet_index"]] = reissued_into.get(end["packet_index"], 0) + 1
+    reissued_into: dict[int, int] = requests.lineage_counts() if hasattr(requests, 'lineage_counts') else {}
+    if not hasattr(requests, 'lineage_counts'):
+        for q in requests:
+            if q["outcome"] == REISSUED:
+                end = _chain_end(q, by_packet)
+                reissued_into[end["packet_index"]] = reissued_into.get(end["packet_index"], 0) + 1
 
     candidates: list[dict[str, Any]] = []
     for q in requests:
@@ -105,7 +106,7 @@ def detect(requests: list[dict[str, Any]], crosschecks: list[dict[str, Any]] | N
             })
         if q["outcome"] == REISSUED:
             repeated = by_packet[q["reissued_at_packet"]]
-            end = _chain_end(q, by_packet)
+            end = requests.lineage_end(q) if hasattr(requests, 'lineage_end') else _chain_end(q, by_packet)
             later = end["completions"]
             candidates.append({
                 "detector": "G3B_SAME_KEY_REAPPEARED_BEFORE_COMPLETION",

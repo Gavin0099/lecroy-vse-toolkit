@@ -1,0 +1,142 @@
+{
+  "schema": "pcie.knowledge-sources/v1",
+  "sources": [
+    {
+      "source_manifest_id": "xilinx-kmap",
+      "source_url": "https://github.com/Xilinx/pcie-debug-kmap/blob/1161d6f06ea4e3b0c0ebf34a4293b08347a6740a/pciedebug/source/docs/PCIe_Common_Issues/index.rst",
+      "revision_or_commit": "1161d6f06ea4e3b0c0ebf34a4293b08347a6740a",
+      "license_status": "MIT",
+      "checked_at": "2026-10-20T02:30:46.941692+00:00",
+      "license_url": "https://github.com/Xilinx/pcie-debug-kmap/blob/1161d6f06ea4e3b0c0ebf34a4293b08347a6740a/LICENSE.txt",
+      "license_sha256": "3c063313aa191a3ac71b9e111494e4991f0a7eda8d7cc88531df269e36a353cb",
+      "use": "Vendor debug guidance, not general acceptance criteria",
+      "repo_distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY",
+      "skill_distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY",
+      "commercial_distribution": "NO_THIRD_PARTY_SOURCE_BUNDLED; downstream distribution rights not assessed",
+      "fallback": "NOT_EVALUATED; retain observable trace facts",
+      "pin_probe_url": "https://github.com/Xilinx/pcie-debug-kmap/blob/1161d6f06ea4e3b0c0ebf34a4293b08347a6740a/README.md",
+      "pin_probe_sha256": "68c0d0ca6f05f0f4bce08321911e9ff36ea58a1698a297580d73dccf0ce0bd47",
+      "action_locators": [
+        "#L8-L14"
+      ]
+    },
+    {
+      "source_manifest_id": "linux-regs",
+      "source_url": "https://github.com/torvalds/linux/blob/c03c1a14507dfaf8b856c2608f9ac216021fc222/include/uapi/linux/pci_regs.h",
+      "revision_or_commit": "c03c1a14507dfaf8b856c2608f9ac216021fc222",
+      "license_status": "GPL-2.0 WITH Linux-syscall-note",
+      "checked_at": "2026-10-20T02:30:49.653678+00:00",
+      "content_sha256": "51d2a1344da2a56e913e9d69b3b5d90eaaf4fb0bf96e672a5674ea819182c69b",
+      "license_url": "https://github.com/torvalds/linux/blob/c03c1a14507dfaf8b856c2608f9ac216021fc222/COPYING",
+      "license_sha256": "fb5a425bd3b3cd6071a3a9aff9909a859e7c1158d54d32e07658398cd67eb6a0",
+      "use": "Field definition cross-check only",
+      "repo_distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY",
+      "skill_distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY",
+      "commercial_distribution": "NO_THIRD_PARTY_SOURCE_BUNDLED; downstream distribution rights not assessed",
+      "fallback": "NOT_EVALUATED; retain observable trace facts",
+      "action_locators": [
+        "#L554-L577"
+      ]
+    },
+    {
+      "source_manifest_id": "pciutils",
+      "source_url": "https://github.com/pciutils/pciutils/blob/6d7fccdf64c14560ffa967b40d1b81bc366da7fb/README",
+      "revision_or_commit": "6d7fccdf64c14560ffa967b40d1b81bc366da7fb",
+      "license_status": "GPL-2.0-or-later",
+      "checked_at": "2026-10-20T02:30:52.365274+00:00",
+      "content_sha256": "ae2babf8a1ce898ac5d7f12aaa6e7d9bebccbe8b6c0339eeff727bfc81c09f75",
+      "license_url": "https://github.com/pciutils/pciutils/blob/6d7fccdf64c14560ffa967b40d1b81bc366da7fb/COPYING",
+      "license_sha256": "ab15fd526bd8dd18a9e77ebc139656bf4d33e97fc7238cd11bf60e2b9b8666c6",
+      "use": "Decoder behavior reference only",
+      "repo_distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY",
+      "skill_distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY",
+      "commercial_distribution": "NO_THIRD_PARTY_SOURCE_BUNDLED; downstream distribution rights not assessed",
+      "fallback": "NOT_EVALUATED; retain observable trace facts"
+    },
+    {
+      "source_manifest_id": "cocotb-pcie",
+      "source_url": "https://github.com/alexforencich/cocotbext-pcie/blob/4befa5eb60f12bc7e1050509defbb9afc33a15a9/cocotbext/pcie/core/tlp.py",
+      "revision_or_commit": "4befa5eb60f12bc7e1050509defbb9afc33a15a9",
+      "license_status": "MIT",
+      "checked_at": "2026-10-20T02:30:55.723377+00:00",
+      "content_sha256": "0c87e6896ef8ff5b9576d33326d3c1045160b3729c1510c986471686ae348fab",
+      "license_url": "https://github.com/alexforencich/cocotbext-pcie/blob/4befa5eb60f12bc7e1050509defbb9afc33a15a9/LICENSE",
+      "license_sha256": "d10da1a65b4ba610e3df21fc1b8122dca0043e8ee7715eaf341d5d8a4a560729",
+      "use": "Completion labels and negative-test inspiration only",
+      "repo_distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY",
+      "skill_distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY",
+      "commercial_distribution": "NO_THIRD_PARTY_SOURCE_BUNDLED; downstream distribution rights not assessed",
+      "fallback": "NOT_EVALUATED; retain observable trace facts",
+      "action_locators": [
+        "#L143-L147",
+        "#L312-L325"
+      ]
+    },
+    {
+      "source_manifest_id": "linux-hotplug",
+      "source_url": "https://github.com/torvalds/linux/blob/c03c1a14507dfaf8b856c2608f9ac216021fc222/drivers/pci/hotplug/pciehp_ctrl.c",
+      "revision_or_commit": "c03c1a14507dfaf8b856c2608f9ac216021fc222",
+      "license_status": "GPL-2.0-or-later",
+      "checked_at": "2026-10-20T02:41:57.036863+00:00",
+      "use": "OS implementation reference; not proof of Windows behavior",
+      "repo_distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY",
+      "skill_distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY",
+      "commercial_distribution": "NO_SOURCE_TEXT_BUNDLED; no additional rights inferred",
+      "fallback": "NOT_EVALUATED",
+      "action_locators": [
+        "#L62-L100",
+        "#L110-L114"
+      ]
+    },
+    {
+      "source_manifest_id": "lecroy-vse",
+      "source_url": "https://cdn.teledynelecroy.com/files/manuals/petracer_vse_manual.pdf",
+      "revision_or_commit": "13.42; generated 2026-10-09",
+      "license_status": "Vendor copyrighted; reference only",
+      "checked_at": "2026-10-20T02:41:57.036878+00:00",
+      "use": "VSE field definitions; local runtime qualification remains 13.26.0.43",
+      "repo_distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY",
+      "skill_distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY",
+      "commercial_distribution": "NO_SOURCE_TEXT_BUNDLED; no additional rights inferred",
+      "fallback": "NOT_EVALUATED",
+      "action_locators": [
+        "#page=21",
+        "#page=23",
+        "#page=38"
+      ]
+    },
+    {
+      "source_manifest_id": "pcisig-policy",
+      "source_url": "https://pcisig.com/specifications",
+      "revision_or_commit": "policy-page checked 2026-10-20",
+      "license_status": "Restricted specifications; no spec ingestion authorized",
+      "checked_at": "2026-10-20T02:41:57.036882+00:00",
+      "use": "Access-policy reference only; no normative rule authority",
+      "repo_distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY",
+      "skill_distribution": "AUTHORED_NOTES_AND_REFERENCES_ONLY",
+      "commercial_distribution": "NO_SOURCE_TEXT_BUNDLED; no additional rights inferred",
+      "fallback": "NOT_EVALUATED"
+    },
+    {
+      "source_manifest_id": "local-action-contract",
+      "source_url": "knowledge/pcie/next-action-contract.md",
+      "revision_or_commit": "2026-10-20/v1",
+      "license_status": "Repository-authored engineering policy",
+      "content_sha256": "85bf22f8ada548761571ab6d1f0fed5664cd2a15c7a16849b4970caa0543e549",
+      "checked_at": "2026-10-20",
+      "use": "Per-action evidence scope and data request policy; no normative authority",
+      "repo_distribution": "AUTHORED_POLICY",
+      "skill_distribution": "AUTHORED_POLICY",
+      "commercial_distribution": "No third-party text included",
+      "fallback": "NOT_EVALUATED",
+      "action_locators": [
+        "#evidence-scope",
+        "#phase-review",
+        "#source-claims",
+        "#data-requests",
+        "#vendor-policy",
+        "#compatibility"
+      ]
+    }
+  ]
+}
