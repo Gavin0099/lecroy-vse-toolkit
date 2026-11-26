@@ -1,0 +1,109 @@
+# Packet-level evidence for a configured window, including every subscribed DLLP.
+set ModuleType = "Verification Script";
+set OutputType = "VS";
+set InputType = "VS";
+set DecoderDesc = "PCIe protocol event extraction";
+%include "VSTools.inc"
+
+const FIRST_PACKET = 0;
+const LAST_PACKET = 2147483647;
+set Kinds = ["TLP", "ACK", "NAK", "DLLP", "LINK", "LTSSM", "ORDERED_SET", "EIE"];
+set Counts = [0, 0, 0, 0, 0, 0, 0, 0];
+set LastUp = [1000,1000,1000,1000];
+set LastDown = [1000,1000,1000,1000];
+
+Val(value)
+{
+    if (value == null) { return "NA"; }
+    return FormatEx("%d", value);
+}
+
+Emit(kind, data)
+{
+    t = in.Time;
+    picoseconds = "NA";
+    if (in.Time2 != null) { picoseconds = Val(in.Time2[2]); }
+    Counts[kind] = Counts[kind] + 1;
+    ReportText(FormatEx("PCIE_EVENT|%s|%u|%u|%s|%s|%s|%s|%s",
+        Kinds[kind], in.Index, in.Channel, GetChannelName(), Val(t[0]), Val(t[1]), picoseconds, data));
+}
+
+State(value, origin)
+{
+    if (value == null) { return 0; }
+    previous = [1000,1000,1000,1000];
+    if (in.Channel == _CHANNEL_1) { previous = LastUp; LastUp = value; }
+    if (in.Channel == _CHANNEL_2) { previous = LastDown; LastDown = value; }
+    if (value[0] != previous[0] || value[1] != previous[1] ||
+        value[2] != previous[2] || value[3] != previous[3])
+    {
+        Emit(5, FormatEx("%s,%s,%s,%s,%s", origin,
+            Val(value[0]), Val(value[1]), Val(value[2]), Val(value[3])));
+    }
+}
+
+OnStartScript()
+{
+    ScriptForDisplayOnly();
+    SendAllChannels();
+    SendLevelOnly(_PACKET);
+    SendTraceEventOnly(_PKT_TLP);
+    SendTraceEvent(_PKT_DLLP);
+    SendTraceEvent(_PKT_LINK_CONDITION);
+    SendTraceEvent(_PKT_ORDERED_SET);
+    SendTraceEvent(_PKT_EIE_EVENT);
+    SendTlpType(_ANY_TYPE);
+    SendDllpType(_ANY_TYPE);
+    SendLtssm();
+    ReportText(FormatEx("PCIE_EVENT_BEGIN|1|%u|%u|%u|%u|%s", FIRST_PACKET, LAST_PACKET,
+        _CHANNEL_1, _CHANNEL_2, Val(GetNFMLtssmIgnorePropertiesEx())));
+}
+
+ProcessEvent()
+{
+    if (in.Index < FIRST_PACKET || in.Index > LAST_PACKET) { return Complete(); }
+    State(in.LtssmStateIdle, "idle");
+    State(in.LtssmState, "packet");
+    event = in.TraceEvent;
+    if (event == _PKT_TLP)
+    {
+        Emit(0, FormatEx("%s,%s,%s,%s,%s,%s,%s,%s", Val(in.PSN), Val(in.TLPType),
+            Val(in.RequesterId), Val(in.Tag), Val(in.BadLCRC), Val(in.HasErrors),
+            Val(in.Length), Val(in.ComplStatus)));
+    }
+    if (event == _PKT_DLLP)
+    {
+        kind = 3;
+        if (in.DLLPType == DLLP_TYPE_ACK) { kind = 1; }
+        if (in.DLLPType == DLLP_TYPE_NAK) { kind = 2; }
+        Emit(kind, FormatEx("%s,%s,%s,%s,%s,%s,%s,%s,%s",
+            Val(in.DLLPType), Val(in.AckNak_SeqNum), Val(in.BadCRC), Val(in.HasErrors),
+            Val(in.VC_ID), Val(in.HdrFC), Val(in.DataFC), Val(in.HdrScale), Val(in.DataScale)));
+    }
+    if (event == _PKT_LINK_CONDITION)
+    {
+        condition = "other";
+        if (in.LinkConditionType == LINK_CONDITION_LINK_DOWN) { condition = "down"; }
+        if (in.LinkConditionType == LINK_CONDITION_LINK_UP) { condition = "up"; }
+        Emit(4, FormatEx("%s,%s", Val(in.LinkConditionType), condition));
+    }
+    if (event == _PKT_ORDERED_SET)
+    {
+        t = in.OrderedSetType;
+        if (t == ORDSET_TYPE_TS1 || t == ORDSET_TYPE_TS2 || t == ORDSET_TYPE_EIEOS || t == ORDSET_TYPE_EIOS)
+        {
+            Emit(6, FormatEx("%s,%s,%s", Val(t), Val(in.Speed), Val(in.LinkWidth)));
+        }
+    }
+    if (event == _PKT_EIE_EVENT) { Emit(7, ""); }
+    return Complete();
+}
+
+OnFinishScript()
+{
+    for (i = 0; i < 8; i++)
+    {
+        ReportText(FormatEx("PCIE_EVENT_COUNT|%s|%u", Kinds[i], Counts[i]));
+    }
+    ReportText("PCIE_EVENT_END");
+}
