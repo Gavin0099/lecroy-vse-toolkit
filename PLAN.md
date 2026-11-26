@@ -1,6 +1,6 @@
 # Plan
 
-> **最後更新**: 2026-11-16
+> **最後更新**: 2026-11-26
 > **Owner**: Gavin0099
 > **Freshness**: Phase (30d)
 
@@ -37,6 +37,7 @@ The repository name remains `lecroy-vse-toolkit` because that is the existing ch
 | M5 | Large-trace performance validation | Not started | Trace size, event count, runtime, peak memory, and output size recorded. |
 | M6 | Automation API integration | Not started | Repeatable open-trace/run-VSE/collect-result flow. |
 | M7 | AI-assisted diagnosis | Not started | Optional explanation over normalized deterministic evidence. |
+| PCIe Diagnostic Intelligence | D1 inventory verified; case 3362 and first candidate documented | Qualify a bounded two-direction Data Link export before implementing replay analysis. D2–D6 and holdout acceptance are tracked in [the diagnostic plan](docs/pcie-diagnostic-intelligence.md). |
 
 ## Architecture decision: M1-B host-owned artifacts
 
