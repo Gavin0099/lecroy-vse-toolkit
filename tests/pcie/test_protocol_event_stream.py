@@ -6,7 +6,89 @@ import tempfile
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts" / "pcie"))
-from protocol_event_stream import normalize
+from protocol_event_stream import normalize, summarize_dllp_anomalies
+
+
+def dllp_event(packet_index, kind="ACK", *, direction="Upstream", **fields):
+    return {"kind": kind, "packet_index": packet_index, "direction": direction, "fields": fields}
+
+
+class DllpSummaryTests(unittest.TestCase):
+    def test_empty_and_non_dllp_events(self):
+        expected = {
+            "schema": "pcie.dllp-anomaly-summary/v1",
+            "diagnosis_claim": "summary_only_not_pcie_dll_001_verdict",
+            "total_dllp_events": 0,
+            "by_direction": {},
+        }
+        self.assertEqual(summarize_dllp_anomalies(iter(())), expected)
+        self.assertEqual(summarize_dllp_anomalies([{"kind": "TLP"}, {"kind": "LINK"}]), expected)
+
+    def test_wrap_and_backward_sequences_are_isolated_by_direction(self):
+        events = [
+            dllp_event(1, ack_nak_seq_num=4095),
+            dllp_event(2, direction="Downstream", ack_nak_seq_num=100),
+            dllp_event(3, ack_nak_seq_num=0),
+            dllp_event(4, "NAK", direction="Downstream", ack_nak_seq_num=95),
+        ]
+        directions = summarize_dllp_anomalies(iter(events))["by_direction"]
+        self.assertEqual(list(directions), ["Downstream", "Upstream"])
+        upstream, downstream = directions["Upstream"], directions["Downstream"]
+        self.assertEqual((upstream["wrap_around_count"], upstream["backward_seq_count"]), (1, 0))
+        self.assertEqual((downstream["wrap_around_count"], downstream["backward_seq_count"]), (0, 1))
+        self.assertEqual(downstream["backward_seq_samples"],
+                         [{"packet_index": 4, "kind": "NAK", "prev_seq": 100, "curr_seq": 95}])
+
+    def test_half_range_delta_is_backward(self):
+        events = [dllp_event(1, ack_nak_seq_num=0), dllp_event(2, ack_nak_seq_num=2048)]
+        upstream = summarize_dllp_anomalies(events)["by_direction"]["Upstream"]
+        self.assertEqual(upstream["backward_seq_count"], 1)
+        self.assertEqual(upstream["wrap_around_count"], 0)
+
+    def test_missing_and_invalid_sequences_do_not_interrupt_repeat_tracking(self):
+        events = [dllp_event(1, ack_nak_seq_num=10), dllp_event(2)]
+        events.extend(
+            dllp_event(index, ack_nak_seq_num=seq)
+            for index, seq in enumerate((None, -1, 4096, True, "10", 10.0), start=3)
+        )
+        events.extend([dllp_event(9, "DLLP", ack_nak_seq_num=100),
+                       dllp_event(10, "NAK", ack_nak_seq_num=10)])
+        upstream = summarize_dllp_anomalies(events)["by_direction"]["Upstream"]
+        self.assertEqual(upstream["missing_seq_count"], 2)
+        self.assertEqual(upstream["out_of_range_seq_count"], 5)
+        self.assertEqual(upstream["repeated_seq_count"], 1)
+        self.assertEqual(upstream["backward_seq_count"], 0)
+        self.assertEqual(upstream["wrap_around_count"], 0)
+
+    def test_crc_counts_and_unknown_direction(self):
+        events = [
+            dllp_event(1, direction="", crc_validation="valid_analyzer_reported"),
+            {"kind": "NAK", "packet_index": 2, "fields": {"crc_validation": "invalid"}},
+            dllp_event(3, "DLLP", direction="UNKNOWN", crc_validation="unknown"),
+            dllp_event(4, "DLLP", direction="UNKNOWN"),
+            dllp_event(5, "DLLP", direction="UNKNOWN", crc_validation="unrecognized"),
+        ]
+        summary = summarize_dllp_anomalies(events)
+        self.assertEqual(summary["total_dllp_events"], 5)
+        self.assertEqual(list(summary["by_direction"]), ["UNKNOWN"])
+        unknown = summary["by_direction"]["UNKNOWN"]
+        self.assertEqual((unknown["ack_count"], unknown["nak_count"], unknown["other_dllp_count"]),
+                         (1, 1, 3))
+        self.assertEqual(unknown["crc_validation_counts"],
+                         {"valid_analyzer_reported": 1, "invalid": 1, "unknown": 3})
+        self.assertEqual(unknown["invalid_crc_packet_indices"], [2])
+
+    def test_samples_are_capped_while_counts_remain_exact(self):
+        events = (
+            dllp_event(index, ack_nak_seq_num=30 - index, crc_validation="invalid")
+            for index in range(25)
+        )
+        upstream = summarize_dllp_anomalies(events)["by_direction"]["Upstream"]
+        self.assertEqual(upstream["backward_seq_count"], 24)
+        self.assertEqual(upstream["crc_validation_counts"], {"invalid": 25})
+        self.assertEqual([sample["packet_index"] for sample in upstream["backward_seq_samples"]],
+                         list(range(1, 21)))
+        self.assertEqual(upstream["invalid_crc_packet_indices"], list(range(20)))
 
 
 class EventStreamTests(unittest.TestCase):
@@ -85,6 +167,34 @@ class EventStreamTests(unittest.TestCase):
                          {"invalid": 1, "unknown": 1, "valid_analyzer_reported": 1})
         self.assertEqual([event["fields"]["crc_validation"] for event in self.read_events()],
                          ["valid_analyzer_reported", "invalid", "unknown"])
+
+    def test_summarizes_normalized_jsonl(self):
+        self.sample([
+            "PCIE_EVENT|TLP|100|1|Upstream|0|10|0|11,4,0,1,1,0,1,NA",
+            "PCIE_EVENT|ACK|101|1|Upstream|0|11|0|0,4095,0,0,NA,NA,NA,NA,NA",
+            "PCIE_EVENT|NAK|102|1|Upstream|0|12|0|1,0,1,0,NA,NA,NA,NA,NA",
+            "PCIE_EVENT|DLLP|103|1|Upstream|0|13|0|2,NA,NA,0,NA,NA,NA,NA,NA",
+        ], {"TLP": 1, "ACK": 1, "NAK": 1, "DLLP": 1})
+        normalize(self.acquisition, self.output)
+        with (self.output / "events.jsonl").open(encoding="utf-8") as stream:
+            summary = summarize_dllp_anomalies(json.loads(row) for row in stream)
+
+        self.assertEqual(summary["total_dllp_events"], 3)
+        self.assertEqual(summary["by_direction"], {
+            "Upstream": {
+                "ack_count": 1,
+                "nak_count": 1,
+                "other_dllp_count": 1,
+                "crc_validation_counts": {"valid_analyzer_reported": 1, "invalid": 1, "unknown": 1},
+                "missing_seq_count": 0,
+                "out_of_range_seq_count": 0,
+                "repeated_seq_count": 0,
+                "wrap_around_count": 1,
+                "backward_seq_count": 0,
+                "backward_seq_samples": [],
+                "invalid_crc_packet_indices": [102],
+            },
+        })
 
     def test_dropped_rows_never_publish_a_manifest(self):
         self.sample([], {"ACK": 17})

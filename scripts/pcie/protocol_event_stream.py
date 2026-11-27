@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter
+from collections.abc import Iterable
 import hashlib
 import json
 from pathlib import Path
@@ -168,6 +169,86 @@ def normalize(acquisition: Path, output: Path) -> dict:
     }
     (output / "manifest.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
     return summary
+
+
+def summarize_dllp_anomalies(events: Iterable[dict]) -> dict:
+    """Summarize normalized DLLP rows in input order, comparing valid sequences only."""
+    kind_counts = {"ACK": "ack_count", "NAK": "nak_count", "DLLP": "other_dllp_count"}
+    crc_states = ("valid_analyzer_reported", "invalid", "unknown")
+    sample_limit = 20
+    total_dllp_events = 0
+    by_direction = {}
+    previous_sequences = {}
+
+    for event in events:
+        kind = event["kind"]
+        if kind not in kind_counts:
+            continue
+        total_dllp_events += 1
+        direction = event.get("direction") or "UNKNOWN"
+        if direction not in by_direction:
+            by_direction[direction] = {
+                "ack_count": 0,
+                "nak_count": 0,
+                "other_dllp_count": 0,
+                "crc_validation_counts": {},
+                "missing_seq_count": 0,
+                "out_of_range_seq_count": 0,
+                "repeated_seq_count": 0,
+                "wrap_around_count": 0,
+                "backward_seq_count": 0,
+                "backward_seq_samples": [],
+                "invalid_crc_packet_indices": [],
+            }
+        summary = by_direction[direction]
+        summary[kind_counts[kind]] += 1
+
+        fields = event["fields"]
+        crc = fields.get("crc_validation")
+        if crc not in crc_states:
+            crc = "unknown"
+        crc_counts = summary["crc_validation_counts"]
+        crc_counts[crc] = crc_counts.get(crc, 0) + 1
+        invalid_indices = summary["invalid_crc_packet_indices"]
+        if crc == "invalid" and len(invalid_indices) < sample_limit:
+            invalid_indices.append(event["packet_index"])
+
+        if kind == "DLLP":
+            continue
+        seq = fields.get("ack_nak_seq_num")
+        if seq is None:
+            summary["missing_seq_count"] += 1
+            continue
+        if not isinstance(seq, int) or isinstance(seq, bool) or not 0 <= seq <= 4095:
+            summary["out_of_range_seq_count"] += 1
+            continue
+
+        previous = previous_sequences.get(direction)
+        previous_sequences[direction] = seq
+        if previous is None:
+            continue
+        delta = (seq - previous) % 4096
+        if delta == 0:
+            summary["repeated_seq_count"] += 1
+        elif delta >= 2048:
+            summary["backward_seq_count"] += 1
+            samples = summary["backward_seq_samples"]
+            if len(samples) < sample_limit:
+                samples.append({
+                    "packet_index": event["packet_index"],
+                    "kind": kind,
+                    "prev_seq": previous,
+                    "curr_seq": seq,
+                })
+        elif seq < previous:
+            summary["wrap_around_count"] += 1
+
+    return {
+        "schema": "pcie.dllp-anomaly-summary/v1",
+        "diagnosis_claim": "summary_only_not_pcie_dll_001_verdict",
+        "total_dllp_events": total_dllp_events,
+        "by_direction": dict(sorted(by_direction.items())),
+    }
 
 
 def main() -> int:
